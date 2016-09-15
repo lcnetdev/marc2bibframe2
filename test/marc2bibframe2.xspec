@@ -2,6 +2,7 @@
 
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:bf2="http://bibframe.org/vocab2/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
   
   <x:scenario label="Trival tests">
@@ -9,11 +10,13 @@
     <x:scenario label="Single record...">
       <x:context href="marc2.xml"/>
       <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1" />
+      <x:expect label="and one Work node" test="count(/rdf:RDF/bf2:Work) = 1" />
     </x:scenario>
 
-    <x:scenario label="Collection of records...">
+    <x:scenario label="Collection of records (loc_general.xml)...">
       <x:context href="../dataset/loc_general.xml"/>
       <x:expect label="should also return one RDF node" test="count(/rdf:RDF) = 1" />
+      <x:expect label="with 99 Work nodes" test="count(/rdf:RDF/bf2:Work) = 99" />
     </x:scenario>
 
   </x:scenario>
