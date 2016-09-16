@@ -11,12 +11,15 @@
       <x:context href="marc2.xml"/>
       <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1" />
       <x:expect label="and one Work node" test="count(/rdf:RDF/bf2:Work) = 1" />
+      <x:expect label="rdf:about should match control number" test="string(/rdf:RDF/bf2:Work/@rdf:about) = 'http://example.org/13600108'" />
+      <x:expect label="and one Instance node" test="count(/rdf:RDF/bf2:Instance) = 1" />
     </x:scenario>
 
     <x:scenario label="Collection of records (loc_general.xml)...">
       <x:context href="../dataset/loc_general.xml"/>
       <x:expect label="should also return one RDF node" test="count(/rdf:RDF) = 1" />
       <x:expect label="with 99 Work nodes" test="count(/rdf:RDF/bf2:Work) = 99" />
+      <x:expect label="and 99 Instance nodes" test="count(/rdf:RDF/bf2:Instance) = 99" />
     </x:scenario>
 
   </x:scenario>
