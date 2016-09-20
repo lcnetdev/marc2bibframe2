@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim">
+  <marc:record xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <marc:leader>00986cam a22002895a 4500</marc:leader>
+    <marc:controlfield tag="001">16972248</marc:controlfield>
+    <marc:controlfield tag="005">20110922103952.0</marc:controlfield>
+    <marc:controlfield tag="008">110922s2010    enk           000 0 eng  </marc:controlfield>
+    <marc:datafield tag="906" ind1=" " ind2=" ">
+      <marc:subfield code="a">0</marc:subfield>
+      <marc:subfield code="b">ibc</marc:subfield>
+      <marc:subfield code="c">origres</marc:subfield>
+      <marc:subfield code="d">2</marc:subfield>
+      <marc:subfield code="e">ncip</marc:subfield>
+      <marc:subfield code="f">20</marc:subfield>
+      <marc:subfield code="g">y-gencatlg</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="925" ind1="0" ind2=" ">
+      <marc:subfield code="a">acquire</marc:subfield>
+      <marc:subfield code="b">* shelf copies</marc:subfield>
+      <marc:subfield code="x">policy default</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="b">rc02 2011-09-22 z-processor to subj.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2011500165</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1906833214 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781906833213 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">pcc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Sharon, Ruth Velikovsky</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Immanuel Velikovsky - The Truth Behind the Torment.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">London</marc:subfield>
+      <marc:subfield code="b">Paradigma Ltd</marc:subfield>
+      <marc:subfield code="c">2010</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">200 p.</marc:subfield>
+      <marc:subfield code="b">ill.</marc:subfield>
+      <marc:subfield code="c">16 x 23 cm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="a">Velikovsky, Immanuel,</marc:subfield>
+      <marc:subfield code="d">1895-1979.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Astronomers</marc:subfield>
+      <marc:subfield code="z">United States</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Scientists</marc:subfield>
+      <marc:subfield code="z">United States</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Astronomers</marc:subfield>
+      <marc:subfield code="z">Russia (Federation)</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Scientists</marc:subfield>
+      <marc:subfield code="z">Russia (Federation)</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Astronomy</marc:subfield>
+      <marc:subfield code="x">History.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Celestial mechanics.</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <marc:leader>01004cam a22003135a 4500</marc:leader>
+    <marc:controlfield tag="001">16614942</marc:controlfield>
+    <marc:controlfield tag="005">20110119113005.0</marc:controlfield>
+    <marc:controlfield tag="008">110119r20102009enka          000 0beng  </marc:controlfield>
+    <marc:datafield tag="906" ind1=" " ind2=" ">
+      <marc:subfield code="a">0</marc:subfield>
+      <marc:subfield code="b">ibc</marc:subfield>
+      <marc:subfield code="c">copycat</marc:subfield>
+      <marc:subfield code="d">2</marc:subfield>
+      <marc:subfield code="e">ncip</marc:subfield>
+      <marc:subfield code="f">20</marc:subfield>
+      <marc:subfield code="g">y-gencatlg</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="925" ind1="0" ind2=" ">
+      <marc:subfield code="a">acquire</marc:subfield>
+      <marc:subfield code="b">2 shelf copies</marc:subfield>
+      <marc:subfield code="x">policy default</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="b">re12 2011-01-19 z-processor to GPSE</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2010525222</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="015" ind1=" " ind2=" ">
+      <marc:subfield code="a">GBB058607</marc:subfield>
+      <marc:subfield code="2">bnb</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="016" ind1="7" ind2=" ">
+      <marc:subfield code="a">015546025</marc:subfield>
+      <marc:subfield code="2">Uk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781844549511 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1844549518 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn620341843</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">UKM</marc:subfield>
+      <marc:subfield code="c">UKM</marc:subfield>
+      <marc:subfield code="d">DLC</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">lccopycat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="4">
+      <marc:subfield code="a">796.334092</marc:subfield>
+      <marc:subfield code="2">22</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Moss, Simon.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Paul Scholes :</marc:subfield>
+      <marc:subfield code="b">the biography /</marc:subfield>
+      <marc:subfield code="c">Simon Moss.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">London :</marc:subfield>
+      <marc:subfield code="b">John Blake,</marc:subfield>
+      <marc:subfield code="c">2010.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">310 p. :</marc:subfield>
+      <marc:subfield code="b">col. ill. ;</marc:subfield>
+      <marc:subfield code="c">20 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Originally published: 2009.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="a">Scholes, Paul.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="610" ind1="2" ind2="0">
+      <marc:subfield code="a">Manchester United (Soccer team)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Soccer players</marc:subfield>
+      <marc:subfield code="z">Great Britain</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Soccer players</marc:subfield>
+      <marc:subfield code="z">England</marc:subfield>
+      <marc:subfield code="z">Manchester</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <marc:leader>01054cam a22003015a 4500</marc:leader>
+    <marc:controlfield tag="005">20101213165845.0</marc:controlfield>
+    <marc:controlfield tag="008">101213s2010    enkaf    b    000 0beng d</marc:controlfield>
+    <marc:datafield tag="906" ind1=" " ind2=" ">
+      <marc:subfield code="a">0</marc:subfield>
+      <marc:subfield code="b">ibc</marc:subfield>
+      <marc:subfield code="c">copycat</marc:subfield>
+      <marc:subfield code="d">2</marc:subfield>
+      <marc:subfield code="e">ncip</marc:subfield>
+      <marc:subfield code="f">20</marc:subfield>
+      <marc:subfield code="g">y-gencatlg</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="925" ind1="0" ind2=" ">
+      <marc:subfield code="a">acquire</marc:subfield>
+      <marc:subfield code="b">1 shelf copy</marc:subfield>
+      <marc:subfield code="x">policy default</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="b">rg04 2010-12-13 z-processor</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2010549340</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="015" ind1=" " ind2=" ">
+      <marc:subfield code="a">GBA9B6477</marc:subfield>
+      <marc:subfield code="2">bnb</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="016" ind1="7" ind2=" ">
+      <marc:subfield code="a">015433709</marc:subfield>
+      <marc:subfield code="2">Uk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781844549368 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1844549364 (pbk.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn473471136</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">UKM</marc:subfield>
+      <marc:subfield code="c">UKM</marc:subfield>
+      <marc:subfield code="d">IFK</marc:subfield>
+      <marc:subfield code="d">BKX</marc:subfield>
+      <marc:subfield code="d">DLC</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">lccopycat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="4">
+      <marc:subfield code="a">813/.6</marc:subfield>
+      <marc:subfield code="a">B</marc:subfield>
+      <marc:subfield code="2">22</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Newkey-Burden, Chas.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Stephenie Meyer :</marc:subfield>
+      <marc:subfield code="b">queen of Twilight : the biography /</marc:subfield>
+      <marc:subfield code="c">Chas Newkey-Burden.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">London :</marc:subfield>
+      <marc:subfield code="b">John Blake,</marc:subfield>
+      <marc:subfield code="c">2010.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">xv, 239 p., 8 p. of plates :</marc:subfield>
+      <marc:subfield code="b">col. ill. ;</marc:subfield>
+      <marc:subfield code="c">20 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references (p. 237-239).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="a">Meyer, Stephenie,</marc:subfield>
+      <marc:subfield code="d">1973-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Women novelists, American</marc:subfield>
+      <marc:subfield code="y">21st century</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Novelists, American</marc:subfield>
+      <marc:subfield code="y">21st century</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:marc="http://www.loc.gov/MARC21/slim">
+    <marc:leader>01084cam a2200325 a 4500</marc:leader>
+    <marc:controlfield tag="001">16352626</marc:controlfield>
+    <marc:controlfield tag="005">20110131161040.0</marc:controlfield>
+    <marc:controlfield tag="008">100728s2010    sx            000 0aeng d</marc:controlfield>
+    <marc:datafield tag="906" ind1=" " ind2=" ">
+      <marc:subfield code="a">7</marc:subfield>
+      <marc:subfield code="b">cbc</marc:subfield>
+      <marc:subfield code="c">copycat</marc:subfield>
+      <marc:subfield code="d">3</marc:subfield>
+      <marc:subfield code="e">ncip</marc:subfield>
+      <marc:subfield code="f">20</marc:subfield>
+      <marc:subfield code="g">y-gencatlg</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="923" ind1=" " ind2=" ">
+      <marc:subfield code="a">purchase</marc:subfield>
+      <marc:subfield code="d">05/11/2010</marc:subfield>
+      <marc:subfield code="n">111530</marc:subfield>
+      <marc:subfield code="s">Frank R. Thorold; 00935627</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="925" ind1="0" ind2=" ">
+      <marc:subfield code="a">acquire</marc:subfield>
+      <marc:subfield code="b">1 shelf copy</marc:subfield>
+      <marc:subfield code="x">policy default</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="b">bc08 2011-01-03 z-processor;</marc:subfield>
+      <marc:subfield code="e">bc05 2011-01-31 to BCCD</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2010501006</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781920397043</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1920397043</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn669061580</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NUI</marc:subfield>
+      <marc:subfield code="c">NUI</marc:subfield>
+      <marc:subfield code="d">DLC</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">lccopycat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">f-sx---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2="0">
+      <marc:subfield code="a">CT2018.K38</marc:subfield>
+      <marc:subfield code="b">U53 2010</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Katjavivi, Jane.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Undisciplined heart /</marc:subfield>
+      <marc:subfield code="c">Jane Katjavivi.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Windhoek :</marc:subfield>
+      <marc:subfield code="b">Tigereye Publishing,</marc:subfield>
+      <marc:subfield code="c">2010.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">300 p. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="a">Katjavivi, Jane.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Ambassadors' spouses</marc:subfield>
+      <marc:subfield code="z">Namibia</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Heart</marc:subfield>
+      <marc:subfield code="x">Diseases</marc:subfield>
+      <marc:subfield code="x">Patients</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Women</marc:subfield>
+      <marc:subfield code="z">Namibia</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">Namibia</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="b">bc05 2010-07-28 z-processor</marc:subfield>
+      <marc:subfield code="a">bc00 2010-08-04</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marcxml:collection>

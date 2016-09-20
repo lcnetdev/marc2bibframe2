@@ -1,14 +1,18 @@
 <?xml version='1.0'?>
 <xsl:stylesheet version="1.0"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
-                xmlns:bf2="http://bibframe.org/vocab2/"
+                xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
+  <xsl:strip-space elements="*"/>
 
   <xsl:param name="baseuri" select="'http://example.org/'"/>
 
+  <xsl:include href="validate.xsl"/>
   <xsl:include href="work.xsl"/>
   <xsl:include href="instance.xsl"/>
 
@@ -16,9 +20,8 @@
 
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-             xmlns:bf2="http://bibframe.org/vocab2/"
-             xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
-             xmlns:relators="http://id.loc.gov/vocabulary/relators/">
+             xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+             xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
 
       <xsl:apply-templates/>
       
@@ -34,19 +37,43 @@
 
   <xsl:template match="marc:record[@type='Bibliographic' or not(@type)]">
 
-    <bf2:Work>
-      <xsl:attribute name="rdf:about">
-        <xsl:value-of select="$baseuri"/><xsl:value-of select="marc:controlfield[@tag='001']"/>
-      </xsl:attribute>
+    <xsl:variable name="validation_error">
+      <xsl:call-template name="validate"/>
+    </xsl:variable>
 
-      <xsl:apply-templates mode="work"/>
+    <xsl:choose>
+
+      <xsl:when test="$validation_error = ''">
+
+        <bf:Work>
+          <xsl:attribute name="rdf:about">
+            <xsl:value-of select="$baseuri"/><xsl:value-of select="marc:controlfield[@tag='001']"/>
+          </xsl:attribute>
+
+          <xsl:apply-templates mode="work">
+            <xsl:with-param name="serialization" select="'rdfxml'"/>
+          </xsl:apply-templates>
+          
+        </bf:Work>
+
+        <bf:Instance>
+          <xsl:apply-templates mode="instance">
+            <xsl:with-param name="serialization" select="'rdfxml'"/>
+          </xsl:apply-templates>
+        </bf:Instance>
+
+      </xsl:when>
+
+      <xsl:otherwise>
+
+        <!-- put a useful comment in the RDF/XML output -->
+        <xsl:comment><xsl:value-of select="$validation_error"/></xsl:comment>
+
+
+      </xsl:otherwise>
       
-    </bf2:Work>
-
-    <bf2:Instance>
-      <xsl:apply-templates mode="instance"/>
-    </bf2:Instance>
-
+    </xsl:choose>
+    
   </xsl:template>
 
   <!-- warn about other elements -->

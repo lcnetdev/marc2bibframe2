@@ -2,24 +2,52 @@
 
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-               xmlns:bf2="http://bibframe.org/vocab2/"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
+  
+  <x:scenario label="MARC validation" focus="MARC validation">
+
+    <x:scenario label="Valid record (marc2.xml)...">
+      <x:context href="marc2.xml"/>
+      <x:expect label="should not return an error" test="count(//comment()) = 0"/>
+    </x:scenario>
+    
+    <x:scenario label="No 001 (marc-no001.xml)...">
+      <x:context href="marc-no001.xml"/>
+      <x:expect label="should return an error" test="//comment() = 'No 001 tag in record 1'"/>
+    </x:scenario>
+
+    <x:scenario label="Multiple 001s (marc-multi001.xml)...">
+      <x:context href="marc-multi001.xml"/>
+      <x:expect label="should return an error" test="//comment() = 'Multiple 001 tags in record 1'"/>
+    </x:scenario>
+
+
+    <x:scenario label="Error in collection (marc-collection-no001.xml)...">
+      <x:context href="marc-collection-no001.xml"/>
+      <x:expect label="should return an error at the right position in the file" test="//comment() = 'No 001 tag in record 3'"/>
+    </x:scenario>
+
+  </x:scenario>
   
   <x:scenario label="Trival tests">
 
-    <x:scenario label="Single record...">
+    <x:scenario label="Single record (marc2.xml)...">
       <x:context href="marc2.xml"/>
       <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1" />
-      <x:expect label="and one Work node" test="count(/rdf:RDF/bf2:Work) = 1" />
-      <x:expect label="rdf:about should match control number" test="string(/rdf:RDF/bf2:Work/@rdf:about) = 'http://example.org/13600108'" />
-      <x:expect label="and one Instance node" test="count(/rdf:RDF/bf2:Instance) = 1" />
+      <x:expect label="and at least one Work node" test="count(/rdf:RDF/bf:Work) >= 1" />
+      <x:expect label="and at least one Instance node" test="count(/rdf:RDF/bf:Instance) >= 1" />
+      <x:expect label="one Work should have control number as rdf:about" test="count(rdf:RDF/bf:Work[@rdf:about='http://example.org/13600108']) = 1"/>
     </x:scenario>
 
-    <x:scenario label="Collection of records (loc_general.xml)...">
+    <x:scenario label="Collection of records (../dataset/loc_general.xml)...">
       <x:context href="../dataset/loc_general.xml"/>
       <x:expect label="should also return one RDF node" test="count(/rdf:RDF) = 1" />
-      <x:expect label="with 99 Work nodes" test="count(/rdf:RDF/bf2:Work) = 99" />
-      <x:expect label="and 99 Instance nodes" test="count(/rdf:RDF/bf2:Instance) = 99" />
+      <x:expect label="with at least 99 Work nodes" test="count(/rdf:RDF/bf:Work) >= 99" />
+      <x:expect label="and at least 99 Instance nodes" test="count(/rdf:RDF/bf:Instance) >= 99" />
     </x:scenario>
 
   </x:scenario>
