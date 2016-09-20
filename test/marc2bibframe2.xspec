@@ -8,7 +8,7 @@
                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
   
-  <x:scenario label="MARC validation" focus="MARC validation">
+  <x:scenario label="MARC validation">
 
     <x:scenario label="Valid record (marc2.xml)...">
       <x:context href="marc2.xml"/>

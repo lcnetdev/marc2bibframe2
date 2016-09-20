@@ -8,6 +8,11 @@ Towards transformation from
 
 * xsl - XSLT 1.0 stylesheets for transformation
 * test - Unit tests for the [XSpec](https://github.com/expath/xspec)
-  testing framework
+  testing framework and sample records
 * dataset - sample records for testing transformation
-  
+
+## Dependencies
+
+* [exsl:node-set](http://exslt.org/exsl/functions/node-set/)
+* [XSpec](https://github.com/expath/xspec) (for unit tests)
+
