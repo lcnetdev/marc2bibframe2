@@ -59,7 +59,6 @@
         <xsl:variable name="entities">
           <xsl:apply-templates mode="entities">
             <xsl:with-param name="workid" select="$workid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:variable>
         <xsl:copy-of select="$entities"/>

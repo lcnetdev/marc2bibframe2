@@ -1,0 +1,79 @@
+<marc:record xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:marc="http://www.loc.gov/MARC21/slim">
+  <marc:leader>01043pam a2200265 a 4500</marc:leader>
+  <marc:controlfield tag="001">4981716</marc:controlfield>
+  <marc:controlfield tag="005">19981029091631.9</marc:controlfield>
+  <marc:controlfield tag="008">980825s1998    nyua     d    001 0ceng  </marc:controlfield>
+  <marc:datafield tag="035" ind1=" " ind2=" ">
+    <marc:subfield code="9">(DLC)   98041832</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="906" ind1=" " ind2=" ">
+    <marc:subfield code="a">7</marc:subfield>
+    <marc:subfield code="b">cbc</marc:subfield>
+    <marc:subfield code="c">orignew</marc:subfield>
+    <marc:subfield code="d">1</marc:subfield>
+    <marc:subfield code="e">ocip</marc:subfield>
+    <marc:subfield code="f">19</marc:subfield>
+    <marc:subfield code="g">y-gencatlg</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="955" ind1=" " ind2=" ">
+    <marc:subfield code="a">pc17 to sa00 08-25-98; lc04 (CIP desc.) 08-27-98; lk07 09-03-98; lh37 09-04-98; CIP ver. lh04 to SL 10-29-98</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="010" ind1=" " ind2=" ">
+    <marc:subfield code="a">   98041832 </marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="020" ind1=" " ind2=" ">
+    <marc:subfield code="a">0028650603 (alk. paper)</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="040" ind1=" " ind2=" ">
+    <marc:subfield code="a">DLC</marc:subfield>
+    <marc:subfield code="c">DLC</marc:subfield>
+    <marc:subfield code="d">DLC</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="043" ind1=" " ind2=" ">
+    <marc:subfield code="a">cl-----</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="050" ind1="0" ind2="0">
+    <marc:subfield code="a">CT502</marc:subfield>
+    <marc:subfield code="b">.E542 1998</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="082" ind1="0" ind2="0">
+    <marc:subfield code="a">920.08</marc:subfield>
+    <marc:subfield code="2">21</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="130" ind1="0" ind2=" ">
+    <marc:subfield code="a">Encyclopedia of Latin American history and culture.</marc:subfield>
+    <marc:subfield code="k">Selections.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="245" ind1="1" ind2="0">
+    <marc:subfield code="a">Latin American lives :</marc:subfield>
+    <marc:subfield code="b">selected biographies from the five-volume Encyclopedia of Latin American history and culture.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="260" ind1=" " ind2=" ">
+    <marc:subfield code="a">New York :</marc:subfield>
+    <marc:subfield code="b">Macmillan Library Reference USA,</marc:subfield>
+    <marc:subfield code="c">c1998.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="300" ind1=" " ind2=" ">
+    <marc:subfield code="a">vii, 1189 p. :</marc:subfield>
+    <marc:subfield code="b">ill. ;</marc:subfield>
+    <marc:subfield code="c">29 cm.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="440" ind1=" " ind2="0">
+    <marc:subfield code="a">Macmillan compendium</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="500" ind1=" " ind2=" ">
+    <marc:subfield code="a">Includes index.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="651" ind1=" " ind2="0">
+    <marc:subfield code="a">Latin America</marc:subfield>
+    <marc:subfield code="x">Biography</marc:subfield>
+    <marc:subfield code="x">Dictionaries.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="991" ind1=" " ind2=" ">
+    <marc:subfield code="b">c-GenColl</marc:subfield>
+    <marc:subfield code="h">CT502</marc:subfield>
+    <marc:subfield code="i">.E542 1998</marc:subfield>
+    <marc:subfield code="t">Copy 1</marc:subfield>
+    <marc:subfield code="w">BOOKS</marc:subfield>
+  </marc:datafield>
+</marc:record>
