@@ -20,26 +20,38 @@
 
   <xsl:template match="/">
 
-    <!-- RDF/XML document frame -->
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-             xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-             xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
 
-      <xsl:apply-templates/>
-      
-    </rdf:RDF>
+        <!-- RDF/XML document frame -->
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+
+          <xsl:apply-templates>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          
+        </rdf:RDF>
+
+      </xsl:when>
+    </xsl:choose>
     
   </xsl:template>
 
   <xsl:template match="marc:collection">
+    <xsl:param name="serialization"/>
 
     <!-- pass marc:record nodes on down -->
-    <xsl:apply-templates/>
+    <xsl:apply-templates>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
 
   </xsl:template>
 
   <xsl:template match="marc:record[@type='Bibliographic' or not(@type)]">
+    <xsl:param name="serialization"/>
 
     <!-- Simplistic MARC validation, only for conversion purposes -->
     <xsl:variable name="validation_error">
@@ -50,40 +62,39 @@
 
       <xsl:when test="$validation_error = ''">
 
-        <xsl:variable name="workid">
+        <xsl:variable name="recordid">
           <xsl:value-of select="$baseuri"/><xsl:value-of select="marc:controlfield[@tag='001']"/>
         </xsl:variable>
 
 
-        <!-- generate entities to be used by Work and Instance -->
-        <xsl:variable name="entities">
-          <xsl:apply-templates mode="entities">
-            <xsl:with-param name="workid" select="$workid"/>
-          </xsl:apply-templates>
-        </xsl:variable>
-        <xsl:copy-of select="$entities"/>
+        <!-- generate entities -->
+        <xsl:apply-templates mode="entities">
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
         
         <!-- generate main Work entity -->
         <xsl:apply-templates mode="work" select=".">
-          <xsl:with-param name="workid" select="$workid"/>
+          <xsl:with-param name="recordid" select="$recordid"/>
           <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="entities" select="$entities"/>
         </xsl:apply-templates>
           
         <!-- generate main Instance entity -->
-        <bf:Instance>
-          <xsl:apply-templates mode="instance">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </bf:Instance>
+        <xsl:apply-templates mode="instance" select=".">
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
 
       </xsl:when>
 
       <xsl:otherwise>
 
-        <!-- put a somewhat useful comment in the RDF/XML output -->
-        <xsl:comment><xsl:value-of select="$validation_error"/></xsl:comment>
-
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <!-- put a somewhat useful comment in the RDF/XML output -->
+            <xsl:comment><xsl:value-of select="$validation_error"/></xsl:comment>
+          </xsl:when>
+        </xsl:choose>
 
       </xsl:otherwise>
       
