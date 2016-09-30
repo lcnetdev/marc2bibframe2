@@ -9,8 +9,9 @@
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:import href="validation.xspec"/>
-  
-  <x:import href="entities.xspec"/>
+
+  <!-- think this is covered in more detailed ConvSpec tests -->
+  <!-- <x:import href="entities.xspec"/> -->
 
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
 

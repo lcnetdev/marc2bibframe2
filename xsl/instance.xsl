@@ -33,6 +33,55 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='210']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+
+    <xsl:choose>
+
+      <xsl:when test="@ind1 = 1">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:title>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title210-<xsl:value-of select="position()"/></xsl:attribute>
+            </bf:title>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:title>
+              <bf:Title>
+                <rdf:type>bf:VariantTitle</rdf:type>
+                <rdf:type>bf:AbbreviatedTitle</rdf:type>
+                <xsl:if test="@ind2 = ' '">
+                  <bf:source>
+                    <bf:Source>
+                      <rdf:value>issnkey</rdf:value>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:if>
+                <xsl:variable name="label">
+                  <xsl:apply-templates mode="title210-label" select="marc:subfield[@code='a' or @code='b']"/>
+                </xsl:variable>
+                <xsl:if test="$label != ''">
+                  <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+                  <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+                </xsl:if>
+                <xsl:apply-templates mode="title210">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </bf:title>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:otherwise>
+      
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

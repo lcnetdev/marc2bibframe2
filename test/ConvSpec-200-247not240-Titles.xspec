@@ -8,15 +8,49 @@
                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
+  <x:scenario label="210 - ABBREVIATED TITLE">
+    <x:scenario label="multiple 210s">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="should make multiple Titles" test="//bf:Title[@rdf:about='http://example.org/7title210-2'] and //bf:Title[@rdf:about='http://example.org/7title210-3']"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[7]/bf:title) = 2"/>
+    </x:scenario>
+    <x:scenario label="@ind1 != 1">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="should not create a Title entity" test="not(//bf:Title[@rdf:about='http://example.org/8title210-2'])"/>
+      <x:expect label="should create a title property in Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:title) = 1"/>
+      <x:expect label="it should be a blank node" test="not(//bf:Instance[8]/bf:title/@rdf:resource)"/>
+    </x:scenario>
+    <x:scenario label="@ind2 = ' '">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="creates an issnkey source" test="//bf:Instance[8]/bf:title/bf:Title/bf:source/bf:Source/rdf:value = 'issnkey'"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="$a $b in record order" test="//bf:Instance[8]/bf:title/bf:Title/rdfs:label = 'Idler (Lond.)'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance[8]/bf:title/bf:Title/bf:mainTitle = 'Idler'"/>
+    </x:scenario>
+    <x:scenario label="$b">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the qualifier" test="//bf:Instance[8]/bf:title/bf:Title/bf:qualifier = '(Lond.)'"/>
+    </x:scenario>
+    <x:scenario label="$2">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the source" test="//bf:Title[@rdf:about='http://example.org/7title210-2']/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
+    </x:scenario>
+  </x:scenario>
+
   <x:scenario label="245 - TITLE STATEMENT">
-    <x:scenario label="Indicator 0">
+    <x:scenario label="@ind1 != 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
       <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title245']) = 0"/>
       <x:expect label="should not create a title property in Work" test="count(/rdf:RDF/bf:Work[1]/bf:title) = 0"/>
       <x:expect label="should create a title property in Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:title) = 1"/>
       <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title/@rdf:resource)"/>
     </x:scenario>
-    <x:scenario label="Indicator 1">
+    <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
       <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
     </x:scenario>
