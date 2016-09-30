@@ -66,7 +66,7 @@
   </x:scenario>
       
 
-  <x:scenario label="245 - TITLE STATEMENT">
+  <x:scenario label="245 - TITLE STATEMENT" focus="testing 245">
     <x:scenario label="@ind1 != 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
       <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title245']) = 0"/>
@@ -113,6 +113,10 @@
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
       <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$s">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release.'"/>
     </x:scenario>
   </x:scenario>
 

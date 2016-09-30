@@ -13,7 +13,9 @@
   <xsl:param name="baseuri" select="'http://example.org/'"/>
   <xsl:param name="serialization" select="'rdfxml'"/>
 
+  <xsl:include href="utils.xsl"/>
   <xsl:include href="validate.xsl"/>
+  <xsl:include href="properties.xsl"/>
   <xsl:include href="entities.xsl"/>
   <xsl:include href="work.xsl"/>
   <xsl:include href="instance.xsl"/>

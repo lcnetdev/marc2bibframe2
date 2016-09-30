@@ -54,23 +54,7 @@
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:title>
               <bf:Title>
-                <rdf:type>bf:VariantTitle</rdf:type>
-                <rdf:type>bf:AbbreviatedTitle</rdf:type>
-                <xsl:if test="@ind2 = ' '">
-                  <bf:source>
-                    <bf:Source>
-                      <rdf:value>issnkey</rdf:value>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:if>
-                <xsl:variable name="label">
-                  <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='b']"/>
-                </xsl:variable>
-                <xsl:if test="$label != ''">
-                  <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
-                  <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
-                </xsl:if>
-                <xsl:apply-templates mode="title210">
+                <xsl:apply-templates mode="title210" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Title>
@@ -117,15 +101,7 @@
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:title>
               <bf:Title>
-                <rdf:type>bf:InstanceTitle</rdf:type>
-                <xsl:variable name="label">
-                  <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
-                </xsl:variable>
-                <xsl:if test="$label != ''">
-                  <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
-                  <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
-                </xsl:if>
-                <xsl:apply-templates mode="title245">
+                <xsl:apply-templates mode="title245" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Title>
