@@ -32,7 +32,7 @@
               </bf:source>
             </xsl:if>
             <xsl:variable name="label">
-              <xsl:apply-templates mode="title210-label" select="marc:subfield[@code='a' or @code='b']"/>
+              <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='b']"/>
             </xsl:variable>
             <xsl:if test="$label != ''">
               <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -48,10 +48,6 @@
 
   </xsl:template>
         
-  <xsl:template match="*" mode="title210-label">
-      <xsl:value-of select="."/><xsl:text> </xsl:text>
-  </xsl:template>
-
   <xsl:template match="marc:subfield[@code='a']" mode="title210">
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -86,6 +82,52 @@
   <!-- suppress text from unmatched nodes -->
   <xsl:template match="text()" mode="title210"/>
 
+  <xsl:template match="marc:datafield[@tag='222']" mode="entities">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Title>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title222-<xsl:value-of select="position()"/></xsl:attribute>
+          <rdf:type>bf:VariantTitle</rdf:type>
+          <rdf:type>bf:KeyTitle</rdf:type>
+          <xsl:variable name="label">
+            <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='b']"/>
+          </xsl:variable>
+          <xsl:if test="$label != ''">
+            <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+            <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+          </xsl:if>
+          <xsl:apply-templates mode="title222">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </bf:Title>
+      </xsl:when>
+    </xsl:choose>
+
+  </xsl:template>
+  
+  <xsl:template match="marc:subfield[@code='a']" mode="title222">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:subfield[@code='b']" mode="title222">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:qualifier><xsl:value-of select="."/></bf:qualifier>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- suppress text from unmatched nodes -->
+  <xsl:template match="text()" mode="title222"/>
+
   <xsl:template match="marc:datafield[@tag='245']" mode="entities">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization"/>
@@ -102,7 +144,7 @@
             </xsl:if>
 
             <xsl:variable name="label">
-              <xsl:apply-templates mode="title245-label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+              <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
             </xsl:variable>
             <xsl:if test="$label != ''">
               <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -118,10 +160,6 @@
       </xsl:choose>
     </xsl:if>
 
-  </xsl:template>
-
-  <xsl:template match="*" mode="title245-label">
-      <xsl:value-of select="."/><xsl:text> </xsl:text>
   </xsl:template>
 
   <xsl:template match="marc:subfield[@code='a']" mode="title245">
@@ -158,6 +196,12 @@
         <bf:partName><xsl:value-of select="."/></bf:partName>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="*" mode="label">
+    <!-- create a space delimited label -->
+    <!-- need to trim off the trailing space to use -->
+    <xsl:value-of select="."/><xsl:text> </xsl:text>
   </xsl:template>
 
   <!-- suppress text from unmatched nodes -->

@@ -64,7 +64,7 @@
                   </bf:source>
                 </xsl:if>
                 <xsl:variable name="label">
-                  <xsl:apply-templates mode="title210-label" select="marc:subfield[@code='a' or @code='b']"/>
+                  <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='b']"/>
                 </xsl:variable>
                 <xsl:if test="$label != ''">
                   <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -82,6 +82,20 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='222']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:title>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title222-<xsl:value-of select="position()"/></xsl:attribute>
+        </bf:title>
+      </xsl:when>
+    </xsl:choose>
+
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -105,7 +119,7 @@
               <bf:Title>
                 <rdf:type>bf:InstanceTitle</rdf:type>
                 <xsl:variable name="label">
-                  <xsl:apply-templates mode="title245-label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+                  <xsl:apply-templates mode="label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
                 </xsl:variable>
                 <xsl:if test="$label != ''">
                   <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
