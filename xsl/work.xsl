@@ -36,19 +36,21 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
 
-    <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:title>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title245</xsl:attribute>
-          </bf:title>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
+    <xsl:if test="@ind1 = 1">
+      <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:title>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title245</xsl:attribute>
+            </bf:title>
+          </xsl:when>
+        </xsl:choose>
 
-    <xsl:apply-templates mode="work245">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+        <xsl:apply-templates mode="work245">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:subfield[@code='f' or @code='g']" mode="work245">

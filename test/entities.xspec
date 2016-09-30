@@ -19,7 +19,7 @@
     </x:scenario>
 
     <x:scenario label="Title from 130 (marc_unif.xml)...">
-      <x:context href="data/marc_unif.xml"/>
+      <x:context href="data/entities/marc_unif.xml"/>
       <x:expect label="245 title should not be a WorkTitle" test="not(/rdf:RDF/bf:Title[@rdf:about='http://example.org/4981716title245']/rdf:type[contains(.,'bf:WorkTitle')])"/>
     </x:scenario>
       

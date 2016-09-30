@@ -29,7 +29,7 @@
             </xsl:if>
 
             <xsl:variable name="label">
-              <xsl:apply-templates mode="title245-label" select="marc:subfield[@code='a' or @code='n' or code='p']"/>
+              <xsl:apply-templates mode="title245-label" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
             </xsl:variable>
             <xsl:if test="$label != ''">
               <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>

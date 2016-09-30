@@ -16,17 +16,17 @@
     </x:scenario>
     
     <x:scenario label="No 001 (marc-no001.xml)...">
-      <x:context href="data/marc-no001.xml"/>
+      <x:context href="data/validation/marc-no001.xml"/>
       <x:expect label="should return an error" test="//comment() = 'No 001 tag in record 1'"/>
     </x:scenario>
 
     <x:scenario label="Multiple 001s (marc-multi001.xml)...">
-      <x:context href="data/marc-multi001.xml"/>
+      <x:context href="data/validation/marc-multi001.xml"/>
       <x:expect label="should return an error" test="//comment() = 'Multiple 001 tags in record 1'"/>
     </x:scenario>
 
     <x:scenario label="Error in collection (marc-collection-no001.xml)...">
-      <x:context href="data/marc-collection-no001.xml"/>
+      <x:context href="data/validation/marc-collection-no001.xml"/>
       <x:expect label="should return an error at the right position in the file" test="//comment() = 'No 001 tag in record 3'"/>
     </x:scenario>
 

@@ -1,0 +1,49 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="245" ind1="0" ind2="3">
+      <subfield code="a">Le Bureau</subfield>
+      <subfield code="h">[filmstrip] =</subfield>
+      <subfield code="b">La Oficina = Das Büro.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act.</subfield>
+      <subfield code="n">Part II,</subfield>
+      <subfield code="p">Labour unions =</subfield>
+      <subfield code="b">Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l'empire et des syndicates ouvriers.</subfield>
+      <subfield code="n">Partie II,</subfield>
+      <subfield code="p">Syndicats ouvriers.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="245" ind1="0" ind2="4">
+      <subfield code="a">The plays of Oscar Wilde /</subfield>
+      <subfield code="c">Alan Bird.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Short-Harrison-Symmes family papers,</subfield>
+      <subfield code="f">1760-1878.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">5</controlfield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Employment applications</subfield>
+      <subfield code="g">Jan.-Dec. 1985.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">The New Lost City Ramblers with Cousin Emmy</subfield>
+      <subfield code="h">[sound recording].</subfield>
+    </datafield>
+  </record>
+</collection>

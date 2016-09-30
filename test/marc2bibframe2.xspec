@@ -12,16 +12,23 @@
   
   <x:import href="entities.xspec"/>
 
+  <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
+
   <x:scenario label="Trival tests">
 
     <x:scenario label="Single record (marc.xml)...">
       <x:context href="data/marc.xml"/>
-      <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1" />
-      <x:expect label="and at least one Work node" test="count(/rdf:RDF/bf:Work) >= 1" />
-      <x:expect label="and at least one Instance node" test="count(/rdf:RDF/bf:Instance) >= 1" />
-      <x:expect label="one Work should have control number as rdf:about" test="count(rdf:RDF/bf:Work[@rdf:about='http://example.org/13600108']) = 1"/>
+      <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1"/>
+      <x:expect label="and one Work node" test="count(/rdf:RDF/bf:Work) = 1"/>
+      <x:expect label="and one Instance node" test="count(/rdf:RDF/bf:Instance) = 1"/>
+      <x:expect label="Work should have control number as rdf:about" test="/rdf:RDF/bf:Work/@rdf:about = 'http://example.org/13600108work'"/>
+      <x:expect label="Instance should have control number as rdf:about" test="/rdf:RDF/bf:Instance/@rdf:about = 'http://example.org/13600108instance'"/>
     </x:scenario>
 
+    <!--
+        for this test to pass, need to increase the node limit for creating
+        files in xspec source: src/compiler/generate-tests-utils.xsl line 572
+    -->
     <x:scenario label="Collection of records (../dataset/loc_general.xml)...">
       <x:context href="../dataset/loc_general.xml"/>
       <x:expect label="should also return one RDF node" test="count(/rdf:RDF) = 1" />

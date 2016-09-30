@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
+
+  <x:scenario label="245 - TITLE STATEMENT">
+    <x:scenario label="Indicator 0">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title245']) = 0"/>
+      <x:expect label="should not create a title property in Work" test="count(/rdf:RDF/bf:Work[1]/bf:title) = 0"/>
+      <x:expect label="should create a title property in Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:title) = 1"/>
+      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title/@rdf:resource)"/>
+    </x:scenario>
+    <x:scenario label="Indicator 1">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="$a $n $p in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title/bf:Title/bf:mainTitle = 'Le Bureau'"/>
+    </x:scenario>
+    <x:scenario label="$b">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$c">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes the Instance responsibility statement" test="//bf:Instance[3]/bf:responsibilityStatement = 'Alan Bird.'"/>
+    </x:scenario>
+    <x:scenario label="$f">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes a Work originDate" test="//bf:Work[4]/bf:originDate = '1760-1878.'"/>
+    </x:scenario>
+    <x:scenario label="$g">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes a Work originDate" test="//bf:Work[5]/bf:originDate = 'Jan.-Dec. 1985.'"/>
+    </x:scenario>
+    <x:scenario label="$h">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="creates a GenreForm entity in a genreForm property" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = '[sound recording].'"/>
+    </x:scenario>
+    <x:scenario label="$n">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II,'"/>
+    </x:scenario>
+    <x:scenario label="$p">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc.xml"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers.'"/>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>
