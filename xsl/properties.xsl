@@ -228,4 +228,52 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- bf:Title properties from MARC 247 -->
+  <xsl:template match="marc:datafield[@tag='247']" mode="title247">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdf:type>bf:VariantTitle</rdf:type>
+        <bf:variantType>former</bf:variantType>
+        <xsl:variable name="label">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
+                                                                 @code='d' or
+                                                                 @code='e' or
+                                                                 @code='n' or
+                                                                 @code='p']"/>
+        </xsl:variable>
+        <xsl:if test="$label != ''">
+          <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+          <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='f']">
+          <bf:date><xsl:value-of select="."/></bf:date>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='g']">
+          <bf:qualifier><xsl:value-of select="."/></bf:qualifier>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='n']">
+          <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='p']">
+          <bf:partName><xsl:value-of select="."/></bf:partName>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='x']">
+          <bf:identifiedBy>
+            <bf:Identifier>
+              <rdf:type>bf:Issn</rdf:type>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+            </bf:Identifier>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

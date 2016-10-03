@@ -241,4 +241,53 @@
     </x:scenario>
   </x:scenario>
 
+  <x:scenario label="247 - FORMER TITLE">
+    <x:scenario label="multiple 247s">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="should make multiple Titles" test="//bf:Title[contains(@rdf:about,'1title247-')] and //bf:Instance[1]/bf:title[3]/bf:Title"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 4"/>
+    </x:scenario>
+    <x:scenario label="@ind1 = 0">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'1title247-4')]) = 0"/>
+      <x:expect label="should create a blank node title property in Instance" test="count(//bf:Instance[1]/bf:title[3]/bf:Title) = 1"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="$a $d $e $n $p in record order" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Title[@rdf:about='http://example.org/1title247-3']/bf:mainTitle = 'Everywoman''s magazine'"/>
+    </x:scenario>
+    <x:scenario label="$b">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:subtitle = 'orders, suborders, and great groups : National Soil Survey Classification of 1967.'"/>
+    </x:scenario>
+    <x:scenario label="$f">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes the date" test="//bf:Title[@rdf:about='http://example.org/1title247-3']/bf:date = 'v. 1-24, Jan. 1948-57.'"/>
+    </x:scenario>
+    <x:scenario label="$g">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes a qualifier" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:qualifier = '(varies slightly)'"/>
+    </x:scenario>
+    <x:scenario label="$n">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:partNumber = 'Serie A,'"/>
+    </x:scenario>
+    <x:scenario label="$p">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:partName = 'Meteorology and geophysics'"/>
+    </x:scenario>
+    <x:scenario label="$x">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="becomes the identifiedBy Issn" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:identifiedBy/bf:Identifier/rdf:value = '1234-5678'"/>
+    </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
+  </x:scenario>
+
 </x:description>
