@@ -71,6 +71,43 @@
     </xsl:choose>
   </xsl:template>    
 
+  <!-- bf:Title properties from MARC 242 -->
+  <xsl:template match="marc:datafield[@tag='242']" mode="title242">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdf:type>bf:VariantTitle</rdf:type>
+        <bf:variantType>translated</bf:variantType>
+        <xsl:variable name="label">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+        </xsl:variable>
+        <xsl:if test="$label != ''">
+          <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+          <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='n']">
+          <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='p']">
+          <bf:partName><xsl:value-of select="."/></bf:partName>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='y']">
+          <bf:language>
+            <bf:Language>
+              <bf:code><xsl:value-of select="."/></bf:code>
+            </bf:Language>
+          </bf:language>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <!-- bf:Title properties from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245']" mode="title245">
     <xsl:param name="serialization"/>

@@ -45,6 +45,23 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='242']" mode="entities">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization"/>
+    <xsl:if test="@ind1 = 1">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:Title>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title242-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:apply-templates mode="title242" select=".">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Title>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='245']" mode="entities">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization"/>

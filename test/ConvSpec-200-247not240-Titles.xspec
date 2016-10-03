@@ -39,6 +39,10 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
       <x:expect label="becomes the source" test="//bf:Title[@rdf:about='http://example.org/1title210-2']/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
     </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
   </x:scenario>
 
   <x:scenario label="222 - KEY TITLE">
@@ -63,8 +67,58 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
       <x:expect label="becomes the qualifier" test="//bf:Title[@rdf:about='http://example.org/1title222-2']/bf:qualifier = '(London)'"/>
     </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
   </x:scenario>
 
+  <x:scenario label="242 - TRANSLATION OF TITLE BY CATALOGING AGENCY">
+    <x:scenario label="multiple 242s">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="should make multiple Titles" test="//bf:Instance[1]/bf:title[1]/bf:Title and //bf:Title[@rdf:about='http://example.org/1title242-3']"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
+    </x:scenario>
+    <x:scenario label="@ind1 != 1">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title242-2']) = 0"/>
+      <x:expect label="should create a title property in Instance" test="count(//bf:Instance[1]/bf:title[1]/bf:Title) = 1"/>
+      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title[1]/@rdf:resource)"/>
+    </x:scenario>
+    <x:scenario label="@ind2">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="$a $n $p in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title/bf:Title/bf:mainTitle = 'Le Bureau'"/>
+    </x:scenario>
+    <x:scenario label="$b">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$n">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II,'"/>
+    </x:scenario>
+    <x:scenario label="$p">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers.'"/>
+    </x:scenario>
+    <x:scenario label="$y">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/bf:Language/bf:code = 'fre'"/>
+    </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
+  </x:scenario>
+  
   <x:scenario label="245 - TITLE STATEMENT">
     <x:scenario label="@ind1 != 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
@@ -116,6 +170,10 @@
     <x:scenario label="$s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release.'"/>
+    </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>
 

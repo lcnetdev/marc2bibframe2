@@ -1,0 +1,24 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="242" ind1="0" ind2="3">
+      <subfield code="a">Le Bureau</subfield>
+      <subfield code="y">fre</subfield>
+    </datafield>
+    <datafield tag="242" ind1="1" ind2="4">
+      <subfield code="a">The Office</subfield>
+      <subfield code="y">eng</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="242" ind1="0" ind2="0">
+      <subfield code="a">Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act.</subfield>
+      <subfield code="n">Part II,</subfield>
+      <subfield code="p">Labour unions =</subfield>
+      <subfield code="b">Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l'empire et des syndicates ouvriers.</subfield>
+      <subfield code="n">Partie II,</subfield>
+      <subfield code="p">Syndicats ouvriers.</subfield>
+    </datafield>
+  </record>
+</collection>
