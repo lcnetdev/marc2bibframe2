@@ -41,11 +41,21 @@
             <bf:title>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title245</xsl:attribute>
             </bf:title>
+            <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
+              <bf:originDate><xsl:value-of select="."/></bf:originDate>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='h']">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='s']">
+              <bf:version><xsl:value-of select="."/></bf:version>
+            </xsl:for-each>
           </xsl:when>
         </xsl:choose>
-        <xsl:apply-templates mode="work245" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
       </xsl:if>
     </xsl:if>
   </xsl:template>

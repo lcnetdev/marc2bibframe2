@@ -16,7 +16,6 @@
   <xsl:template match="marc:record" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization"/>
-
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Instance>
@@ -36,9 +35,7 @@
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-
     <xsl:choose>
-
       <xsl:when test="@ind1 = 1">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -48,7 +45,6 @@
           </xsl:when>
         </xsl:choose>
       </xsl:when>
-
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -62,14 +58,12 @@
           </xsl:when>
         </xsl:choose>
       </xsl:otherwise>
-      
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='222']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
@@ -77,15 +71,12 @@
         </bf:title>
       </xsl:when>
     </xsl:choose>
-
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-
     <xsl:choose>
-
       <xsl:when test="@ind1 = 1">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -95,7 +86,6 @@
           </xsl:when>
         </xsl:choose>
       </xsl:when>
-
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -110,37 +100,21 @@
         </xsl:choose>
       </xsl:otherwise>      
     </xsl:choose>
-
-    <xsl:apply-templates mode="instance245">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:subfield[@code='c']" mode="instance245">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-
     <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:responsibilityStatement><xsl:value-of select="."/></bf:responsibilityStatement>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='c']">
+          <bf:responsibilityStatement><xsl:value-of select="."/></bf:responsibilityStatement>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='h']">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
-  <xsl:template match="marc:subfield[@code='h']" mode="instance245">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:genreForm>
-          <bf:GenreForm>
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
-          </bf:GenreForm>
-        </bf:genreForm>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="text()" mode="instance245"/>
 
   <!-- suppress text from unmatched nodes -->
   <xsl:template match="text()" mode="instance"/>

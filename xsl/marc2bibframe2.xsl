@@ -22,23 +22,17 @@
 
   <xsl:template match="/">
 
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
+    <!-- RDF/XML document frame -->
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+             xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+             xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
 
-        <!-- RDF/XML document frame -->
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
-
-          <xsl:apply-templates>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-          
-        </rdf:RDF>
-
-      </xsl:when>
-    </xsl:choose>
+      <xsl:apply-templates>
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+      
+    </rdf:RDF>
     
   </xsl:template>
 

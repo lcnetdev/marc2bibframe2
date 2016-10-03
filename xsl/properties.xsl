@@ -9,7 +9,7 @@
 
   <!-- Templates to build BIBFRAME 2.0 properties for entities -->
 
-  <!-- build the properties of a bf:Title from a 210 field -->
+  <!-- bf:Title properties from MARC 210 -->
   <xsl:template match="marc:datafield[@tag='210']" mode="title210">
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -47,7 +47,7 @@
     </xsl:choose>
   </xsl:template>    
 
-  <!-- build the properties of a bf:Title from a 222 field -->
+  <!-- bf:Title properties from MARC 222 -->
   <xsl:template match="marc:datafield[@tag='222']" mode="title222">
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -71,7 +71,7 @@
     </xsl:choose>
   </xsl:template>    
 
-  <!-- build the properties of a bf:Title from a 245 field -->
+  <!-- bf:Title properties from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245']" mode="title245">
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -95,28 +95,6 @@
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='p']">
           <bf:partName><xsl:value-of select="."/></bf:partName>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
-  <!-- build the properties of a bf:Work from a 245 field -->
-  <xsl:template match="marc:datafield[@tag='245']" mode="work245">
-    <xsl:param name="serialization"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
-          <bf:originDate><xsl:value-of select="."/></bf:originDate>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='h']">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='s']">
-          <bf:version><xsl:value-of select="."/></bf:version>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
