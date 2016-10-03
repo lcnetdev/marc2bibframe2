@@ -82,6 +82,23 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='246']" mode="entities">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization"/>
+    <xsl:if test="(@ind1 = 1) or (@ind1 = 3)">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:Title>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title246-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:apply-templates mode="title246" select=".">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Title>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
   <!-- suppress text from unmatched nodes -->
   <xsl:template match="text()" mode="entities"/>
 

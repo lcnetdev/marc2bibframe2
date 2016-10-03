@@ -170,4 +170,62 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- bf:Title properties from MARC 246 -->
+  <xsl:template match="marc:datafield[@tag='246']" mode="title246">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdf:type>bf:VariantTitle</rdf:type>
+        <xsl:choose>
+          <xsl:when test="@ind2 = '0'">
+            <bf:variantType>portion</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '1'">
+            <rdf:type>bf:ParallelTitle</rdf:type>
+          </xsl:when>
+          <xsl:when test="@ind2 = '2'">
+            <bf:variantType>distinctive</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '4'">
+            <bf:variantType>cover</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '5'">
+            <bf:variantType>added title page</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '6'">
+            <bf:variantType>caption</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '7'">
+            <bf:variantType>running</bf:variantType>
+          </xsl:when>
+          <xsl:when test="@ind2 = '8'">
+            <bf:variantType>spine</bf:variantType>
+          </xsl:when>
+        </xsl:choose>
+        <xsl:variable name="label">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+        </xsl:variable>
+        <xsl:if test="$label != ''">
+          <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+          <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='f']">
+          <bf:date><xsl:value-of select="."/></bf:date>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='n']">
+          <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='p']">
+          <bf:partName><xsl:value-of select="."/></bf:partName>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

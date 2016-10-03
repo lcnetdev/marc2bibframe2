@@ -187,7 +187,56 @@
       <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release.'"/>
     </x:scenario>
     <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
+  </x:scenario>
+
+  <x:scenario label="246 - VARYING FORM OF TITLE">
+    <x:scenario label="multiple 246s">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="should make multiple Titles" test="count(//bf:Title[contains(@rdf:about,'1title246')]) = 2"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title[contains(@rdf:resource,'title246')]) = 2"/>
+    </x:scenario>
+    <x:scenario label="@ind1 = 0 or @ind1 = 2">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'2title246')]) = 0"/>
+      <x:expect label="should create a blank node title property in Instance" test="count(//bf:Instance[2]/bf:title[2]/bf:Title) = 1"/>
+    </x:scenario>
+    <x:scenario label="@ind2 = 1">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="should create a ParallelTitle" test="count(//bf:Title[contains(@rdf:about,'1title246')]/rdf:type[text()='bf:ParallelTitle']) = 2"/>
+    </x:scenario>
+    <x:scenario label="other @ind2 value">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="should become the variantType" test="//bf:Title[contains(@rdf:about,'3title246')]/bf:variantType = 'portion'"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="$a $n $p in record order" test="//bf:Title[contains(@rdf:about,'4title246')]/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Title[1]/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
+    </x:scenario>
+    <x:scenario label="$b">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title[2]/bf:Title/bf:subtitle = 'an engrossing read'"/>
+    </x:scenario>
+    <x:scenario label="$f">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes the date" test="//bf:Title[contains(@rdf:about,'3title246')]/bf:date = 'Juli 1976-'"/>
+    </x:scenario>
+    <x:scenario label="$n">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes a partNumber" test="//bf:Title[contains(@rdf:about,'4title246')]/bf:partNumber = 'Serie A,'"/>
+    </x:scenario>
+    <x:scenario label="$p">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes a partName" test="//bf:Title[contains(@rdf:about,'4title246')]/bf:partName = 'Meteorology and geophysics'"/>
+    </x:scenario>
+    <x:scenario label="$6">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>

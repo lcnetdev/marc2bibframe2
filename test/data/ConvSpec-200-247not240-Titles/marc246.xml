@@ -1,0 +1,43 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Modern problems of pharmacopsychiatry =</subfield>
+      <subfield code="b">Moderne Probleme der Pharmakopsychiatrie = Problèmes actuels de pharmacopsychiatrie.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="1">
+      <subfield code="a">Moderne Probleme der Pharmakopsychiatrie</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="1">
+      <subfield code="a">Problèmes actuels de pharmacopsychiatrie</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">ALA bulletin.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="2" ind2=" ">
+      <subfield code="a">American Library Association bulletin</subfield>
+      <subfield code="b">an engrossing read</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Fresenius' Zeitschrift für analytische Chemie.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="a">Zeitschrift für analytische Chemie</subfield>
+      <subfield code="f">Juli 1976-</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
+    <datafield tag="246" ind1="3" ind2="1">
+      <subfield code="a">Archives for meteorology, geophysics, and bioclimatology.</subfield>
+      <subfield code="n">Serie A,</subfield>
+      <subfield code="p">Meteorology and geophysics</subfield>
+    </datafield>
+  </record>
+</collection>
