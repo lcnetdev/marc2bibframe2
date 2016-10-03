@@ -119,6 +119,21 @@
     </x:scenario>
   </x:scenario>
   
+  <x:scenario label="243 - COLLECTIVE UNIFORM TITLE">
+    <x:scenario label="@ind2">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Work[1]/bf:title/bf:Title/bflc:titleSortKey = 'Compleat works of William Shakespeare, Abridged. Selections'"/>
+    </x:scenario>
+    <x:scenario label="rdfs:label for Title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
+      <x:expect label="$adfgklmnoprs in record order" test="//bf:Work[1]/bf:title/bf:Title/rdfs:label = 'The Compleat works of William Shakespeare, Abridged. Selections'"/>
+    </x:scenario>
+    <x:scenario label="$a">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Compleat works of William Shakespeare,'"/>
+    </x:scenario>
+  </x:scenario>
+
   <x:scenario label="245 - TITLE STATEMENT">
     <x:scenario label="@ind1 != 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>

@@ -108,6 +108,39 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- bf:Title properties from MARC 243 -->
+  <xsl:template match="marc:datafield[@tag='243']" mode="title243">
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdf:type>bf:VariantTitle</rdf:type>
+        <rdf:type>bf:CollectiveTitle</rdf:type>
+        <xsl:variable name="label">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='d' or
+                                       @code='f' or
+                                       @code='g' or
+                                       @code='k' or
+                                       @code='l' or
+                                       @code='m' or
+                                       @code='n' or
+                                       @code='o' or
+                                       @code='p' or
+                                       @code='r' or
+                                       @code='s']"/>
+        </xsl:variable>
+        <xsl:if test="$label != ''">
+          <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
+          <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <!-- bf:Title properties from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245']" mode="title245">
     <xsl:param name="serialization"/>
