@@ -47,30 +47,4 @@
       <subfield code="h">[sound recording].</subfield>
     </datafield>
   </record>
-  <record>
-    <controlfield tag="001">7</controlfield>
-    <datafield tag="210" ind1="1" ind2="0">
-      <subfield code="a">Acta Cytol</subfield>
-      <subfield code="2">DNLM</subfield>
-    </datafield>
-    <datafield tag="210" ind1="1" ind2="0">
-      <subfield code="a">Acta Cytol.</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">8</controlfield>
-    <datafield tag="210" ind1="0" ind2=" ">
-      <subfield code="a">Idler</subfield>
-      <subfield code="b">(Lond.)</subfield>
-    </datafield>
-    <datafield tag="222" ind1=" " ind2="0">
-      <subfield code="a">Idler</subfield>
-      <subfield code="b">(London)</subfield>
-    </datafield>
-    <datafield tag="222" ind1=" " ind2="4">
-      <subfield code="a">The Vagrant</subfield>
-      <subfield code="b">(London)</subfield>
-    </datafield>
-  </record>
-    
 </collection>

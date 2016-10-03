@@ -1,0 +1,13 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="222" ind1=" " ind2="0">
+      <subfield code="a">Idler</subfield>
+      <subfield code="b">(London)</subfield>
+    </datafield>
+    <datafield tag="222" ind1=" " ind2="4">
+      <subfield code="a">The Vagrant</subfield>
+      <subfield code="b">(London)</subfield>
+    </datafield>
+  </record>
+</collection>
