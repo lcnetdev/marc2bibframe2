@@ -31,6 +31,94 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:leader" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:adminMetadata>
+          <bf:AdminMetadata>
+            <xsl:choose>
+              <xsl:when test="substring(.,6,1) = 'a'">
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>c</bf:code>
+                  </bf:Status>
+                </bf:status>
+              </xsl:when>
+              <xsl:when test="substring(.,6,1) = 'c'">
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>c</bf:code>
+                  </bf:Status>
+                </bf:status>
+              </xsl:when>
+              <xsl:when test="substring(.,6,1) = 'n'">
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>n</bf:code>
+                  </bf:Status>
+                </bf:status>
+              </xsl:when>
+              <xsl:when test="substring(.,6,1) = 'p'">
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>p</bf:code>
+                  </bf:Status>
+                </bf:status>
+              </xsl:when>
+            </xsl:choose>
+            <bflc:encodingLevel>
+              <bflc:EncodingLevel>
+                <bf:code>
+                  <xsl:choose>
+                    <xsl:when test="substring(.,18,1) = ' '">f</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '1'">1</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '2'">7</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '3'">3</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '4'">4</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '5'">5</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '7'">7</xsl:when>
+                    <xsl:when test="substring(.,18,1) = '8'">8</xsl:when>
+                    <xsl:otherwise>u</xsl:otherwise>
+                  </xsl:choose>
+                </bf:code>
+              </bflc:EncodingLevel>
+            </bflc:encodingLevel>
+            <bf:descriptionConventions>
+              <bf:DescriptionConventions>
+                <bf:code>
+                  <xsl:choose>
+                    <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
+                    <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
+                    <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
+                    <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
+                    <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
+                    <xsl:otherwise>unknown</xsl:otherwise>
+                  </xsl:choose>
+                </bf:code>
+              </bf:DescriptionConventions>
+            </bf:descriptionConventions>
+          </bf:AdminMetadata>
+        </bf:adminMetadata>
+        <xsl:choose>
+          <xsl:when test="substring(.,7,1) = 'a'"><rdf:type>Text</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'c'"><rdf:type>NotatedMusic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>NotatedMusic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'e'"><rdf:type>Cartography</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>Cartography</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'g'"><rdf:type>MovingImage</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'i'"><rdf:type>Audio</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'j'"><rdf:type>Audio</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'k'"><rdf:type>StillImage</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'o'"><rdf:type>MixedMaterial</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'p'"><rdf:type>MixedMaterial</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'r'"><rdf:type>Object</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>Text</rdf:type></xsl:when>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='243']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

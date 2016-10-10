@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="LDR">
+    <x:context href="data/ConvSpec-LDR/marc.xml"/>
+    <x:expect label="pos 5 should set the status in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/bf:code = 'c'"/>
+    <x:expect label="pos 6 should set the rdf:type of the Work" test="//bf:Work[2]/rdf:type = 'NotatedMusic'"/>
+    <x:expect label="pos 6 can also set the rdf:type of the Instance" test="//bf:Instance[2]/rdf:type = 'Manuscript'"/>
+    <x:expect label="pos 7 should set the issuance of the Instance" test="//bf:Instance[1]/bf:issuance/bf:Issuance/bf:code = 'm'"/>
+    <x:expect label="pos 7 can also set the rdf:type of the Instance" test="//bf:Instance[3]/rdf:type = 'Collection'"/>
+    <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type = 'Archival'"/>
+    <x:expect label="pos 17 should set the encodingLevel in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/bf:code = 'f'"/>
+    <x:expect label="pos 18 should set the descriptionConventions in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/bf:code = 'aacr'"/>
+  </x:scenario>
+  
+</x:description>

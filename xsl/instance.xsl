@@ -32,6 +32,66 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:leader" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'm'"><rdf:type>Electronic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>Manuscript</rdf:type></xsl:when>
+        </xsl:choose>
+        <xsl:choose>
+          <xsl:when test="substring(.,8,1) = 'a'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'b'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>s</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'c'"><rdf:type>Collection</rdf:type></xsl:when>
+          <xsl:when test="substring(.,8,1) = 'd'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>d</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'i'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>i</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'm'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 's'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>s</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+        </xsl:choose>
+        <xsl:if test="substring(.,9,1) = 'a'"><rdf:type>Archival</rdf:type></xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
