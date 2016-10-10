@@ -35,7 +35,8 @@
   <record>
     <controlfield tag="001">4</controlfield>
     <datafield tag="246" ind1="3" ind2="1">
-      <subfield code="a">Archives for meteorology, geophysics, and bioclimatology.</subfield>
+      <subfield code="a">Archives for meteorology, geophysics, and bioclimatology :</subfield>
+      <subfield code="b">an engrossing read</subfield>
       <subfield code="n">Serie A,</subfield>
       <subfield code="p">Meteorology and geophysics</subfield>
     </datafield>

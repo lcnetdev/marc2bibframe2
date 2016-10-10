@@ -79,7 +79,12 @@
         <rdf:type>bf:VariantTitle</rdf:type>
         <bf:variantType>translated</bf:variantType>
         <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
+                                                                 @code='b' or
+                                                                 @code='c' or
+                                                                 @code='h' or
+                                                                 @code='n' or
+                                                                 @code='p']"/>
         </xsl:variable>
         <xsl:if test="$label != ''">
           <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -100,7 +105,7 @@
         <xsl:for-each select="marc:subfield[@code='y']">
           <bf:language>
             <bf:Language>
-              <bf:code><xsl:value-of select="."/></bf:code>
+              <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/languages/<xsl:value-of select="."/></xsl:attribute>
             </bf:Language>
           </bf:language>
         </xsl:for-each>
@@ -148,7 +153,15 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <rdf:type>bf:InstanceTitle</rdf:type>
         <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='b' or
+                                       @code='f' or 
+                                       @code='g' or
+                                       @code='k' or
+                                       @code='n' or
+                                       @code='p' or
+                                       @code='s']"/>
         </xsl:variable>
         <xsl:if test="$label != ''">
           <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -203,7 +216,12 @@
           </xsl:when>
         </xsl:choose>
         <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='n' or @code='p']"/>
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='b' or
+                                       @code='g' or
+                                       @code='n' or
+                                       @code='p']"/>
         </xsl:variable>
         <xsl:if test="$label != ''">
           <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -236,11 +254,12 @@
         <rdf:type>bf:VariantTitle</rdf:type>
         <bf:variantType>former</bf:variantType>
         <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
-                                                                 @code='d' or
-                                                                 @code='e' or
-                                                                 @code='n' or
-                                                                 @code='p']"/>
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='b' or
+                                       @code='g' or
+                                       @code='n' or
+                                       @code='p']"/>
         </xsl:variable>
         <xsl:if test="$label != ''">
           <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
@@ -266,10 +285,9 @@
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='x']">
           <bf:identifiedBy>
-            <bf:Identifier>
-              <rdf:type>bf:Issn</rdf:type>
+            <bf:Issn>
               <rdf:value><xsl:value-of select="."/></rdf:value>
-            </bf:Identifier>
+            </bf:Issn>
           </bf:identifiedBy>
         </xsl:for-each>
       </xsl:when>

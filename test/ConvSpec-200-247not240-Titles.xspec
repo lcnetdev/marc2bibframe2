@@ -91,7 +91,7 @@
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="$a $n $p in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="$abchnp in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -111,7 +111,7 @@
     </x:scenario>
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/bf:Language/bf:code = 'fre'"/>
+      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/bf:Language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     </x:scenario>
     <x:scenario label="$6">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -144,11 +144,11 @@
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau La Oficina = Das Büro.'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="$a $n $p in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="$abfgknps in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
@@ -213,7 +213,7 @@
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="$a $n $p in record order" test="//bf:Title[contains(@rdf:about,'4title246')]/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics'"/>
+      <x:expect label="$abgnp in record order" test="//bf:Title[contains(@rdf:about,'4title246')]/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
@@ -235,13 +235,17 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="becomes a partName" test="//bf:Title[contains(@rdf:about,'4title246')]/bf:partName = 'Meteorology and geophysics'"/>
     </x:scenario>
+    <x:scenario label="$5">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="placeholder - should fail" test="1 = 2"/>
+    </x:scenario>
     <x:scenario label="$6">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>
 
-  <x:scenario label="247 - FORMER TITLE">
+  <x:scenario label="247 - FORMER TITLE" focus="testing 247">
     <x:scenario label="multiple 247s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
       <x:expect label="should make multiple Titles" test="//bf:Title[contains(@rdf:about,'1title247-')] and //bf:Instance[1]/bf:title[3]/bf:Title"/>
@@ -254,7 +258,7 @@
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="$a $d $e $n $p in record order" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics'"/>
+      <x:expect label="$abgnp in record order" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics (varies slightly)'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
@@ -282,7 +286,7 @@
     </x:scenario>
     <x:scenario label="$x">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes the identifiedBy Issn" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:identifiedBy/bf:Identifier/rdf:value = '1234-5678'"/>
+      <x:expect label="becomes the identifiedBy Issn" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
     </x:scenario>
     <x:scenario label="$6">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
