@@ -242,6 +242,13 @@
         <xsl:for-each select="marc:subfield[@code='p']">
           <bf:partName><xsl:value-of select="."/></bf:partName>
         </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='5']">
+          <bflc:applicableInstitution>
+            <bf:Agent>
+              <bf:code><xsl:value-of select="."/></bf:code>
+            </bf:Agent>
+          </bflc:applicableInstitution>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
