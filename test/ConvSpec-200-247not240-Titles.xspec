@@ -17,7 +17,7 @@
     <x:scenario label="@ind1 != 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
       <x:expect label="should not create a Title entity" test="not(//bf:Title[@rdf:about='http://example.org/2title210-2'])"/>
-      <x:expect label="should create a blank node title property in Instance" test="count(/rdf:RDF/bf:Instance[2]/bf:title/bf:Title) = 1"/>
+      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[2]/bf:title[1]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2 = ' '">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
@@ -45,7 +45,7 @@
     <x:scenario label="multiple 222s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
       <x:expect label="should make multiple Titles" test="//bf:Title[@rdf:about='http://example.org/1title222-2'] and //bf:Title[@rdf:about='http://example.org/1title222-3']"/>
-      <x:expect label="should create title properties in Instance" test="//bf:Instance[1]/bf:title[@rdf:resource='http://example.org/1title222-2'] and //bf:Instance[1]/bf:title[@rdf:resource='http://example.org/1title222-3']"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
@@ -75,7 +75,7 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
       <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title242-2']) = 0"/>
       <x:expect label="should create a title property in Instance" test="count(//bf:Instance[1]/bf:title[1]/bf:Title) = 1"/>
-      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title[1]/@rdf:resource)"/>
+      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title[1]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -128,7 +128,7 @@
       <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1title245']) = 0"/>
       <x:expect label="should not create a title property in Work" test="count(/rdf:RDF/bf:Work[1]/bf:title) = 0"/>
       <x:expect label="should create a title property in Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:title) = 1"/>
-      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title/@rdf:resource)"/>
+      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
@@ -180,12 +180,12 @@
     <x:scenario label="multiple 246s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="should make multiple Titles" test="count(//bf:Title[contains(@rdf:about,'1title246')]) = 2"/>
-      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title[contains(@rdf:resource,'title246')]) = 2"/>
+      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 3"/>
     </x:scenario>
     <x:scenario label="@ind1 = 0 or @ind1 = 2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'2title246')]) = 0"/>
-      <x:expect label="should create a blank node title property in Instance" test="count(//bf:Instance[2]/bf:title[2]/bf:Title) = 1"/>
+      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[2]/bf:title[2]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2 = 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
@@ -234,7 +234,7 @@
     <x:scenario label="@ind1 = 0">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
       <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'1title247-4')]) = 0"/>
-      <x:expect label="should create a blank node title property in Instance" test="count(//bf:Instance[1]/bf:title[3]/bf:Title) = 1"/>
+      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[1]/bf:title[3]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>

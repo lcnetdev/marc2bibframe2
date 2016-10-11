@@ -15,10 +15,9 @@
 
   <xsl:include href="utils.xsl"/>
   <xsl:include href="validate.xsl"/>
-  <xsl:include href="properties.xsl"/>
-  <xsl:include href="entities.xsl"/>
   <xsl:include href="work.xsl"/>
   <xsl:include href="instance.xsl"/>
+  <xsl:include href="properties.xsl"/>
 
   <xsl:template match="/">
 
@@ -62,13 +61,6 @@
           <xsl:value-of select="$baseuri"/><xsl:value-of select="marc:controlfield[@tag='001']"/>
         </xsl:variable>
 
-
-        <!-- generate entities -->
-        <xsl:apply-templates mode="entities">
-          <xsl:with-param name="recordid" select="$recordid"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-        
         <!-- generate main Work entity -->
         <xsl:apply-templates mode="work" select=".">
           <xsl:with-param name="recordid" select="$recordid"/>
