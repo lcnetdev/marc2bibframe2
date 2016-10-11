@@ -10,7 +10,7 @@
   <!-- Templates to build BIBFRAME 2.0 properties for entities -->
 
   <!-- bf:Title properties from MARC 210 -->
-  <xsl:template match="marc:datafield[@tag='210']" mode="title210">
+  <xsl:template match="marc:datafield[@tag = '210' or @tag = '880']" mode="title210">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -48,7 +48,7 @@
   </xsl:template>    
 
   <!-- bf:Title properties from MARC 222 -->
-  <xsl:template match="marc:datafield[@tag='222']" mode="title222">
+  <xsl:template match="marc:datafield[@tag = '222' or @tag = '880']" mode="title222">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -72,7 +72,7 @@
   </xsl:template>    
 
   <!-- bf:Title properties from MARC 242 -->
-  <xsl:template match="marc:datafield[@tag='242']" mode="title242">
+  <xsl:template match="marc:datafield[@tag='242' or @tag='880']" mode="title242">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -114,7 +114,7 @@
   </xsl:template>
 
   <!-- bf:Title properties from MARC 243 -->
-  <xsl:template match="marc:datafield[@tag='243']" mode="title243">
+  <xsl:template match="marc:datafield[@tag='243' or @tag='880']" mode="title243">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -147,7 +147,7 @@
   </xsl:template>
 
   <!-- bf:Title properties from MARC 245 -->
-  <xsl:template match="marc:datafield[@tag='245']" mode="title245">
+  <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="title245">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -184,7 +184,7 @@
   </xsl:template>
 
   <!-- bf:Title properties from MARC 246 -->
-  <xsl:template match="marc:datafield[@tag='246']" mode="title246">
+  <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="title246">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -254,7 +254,7 @@
   </xsl:template>
 
   <!-- bf:Title properties from MARC 247 -->
-  <xsl:template match="marc:datafield[@tag='247']" mode="title247">
+  <xsl:template match="marc:datafield[@tag='247' or @tag='880']" mode="title247">
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">

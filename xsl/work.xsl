@@ -143,7 +143,7 @@
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:title>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title245</xsl:attribute>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             </bf:title>
             <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
               <bf:originDate><xsl:value-of select="."/></bf:originDate>
@@ -164,6 +164,52 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='880']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'243')">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:title>
+              <bf:Title>
+                <xsl:apply-templates mode="title243" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </bf:title>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'245')">
+        <xsl:if test="@ind1 = 1">
+          <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+            <xsl:choose>
+              <xsl:when test="$serialization = 'rdfxml'">
+                <bf:title>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                </bf:title>
+                <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
+                  <bf:originDate><xsl:value-of select="."/></bf:originDate>
+                </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code='h']">
+                  <bf:genreForm>
+                    <bf:GenreForm>
+                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                    </bf:GenreForm>
+                  </bf:genreForm>
+                </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code='s']">
+                  <bf:version><xsl:value-of select="."/></bf:version>
+                </xsl:for-each>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:if>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+        
   <!-- suppress text from unmatched nodes -->
   <xsl:template match="text()" mode="work"/>
 

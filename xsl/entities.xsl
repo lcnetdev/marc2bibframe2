@@ -20,7 +20,7 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:Title>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title210-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             <xsl:apply-templates mode="title210" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -36,7 +36,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title222-<xsl:value-of select="position()"/></xsl:attribute>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
           <xsl:apply-templates mode="title222" select=".">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
@@ -52,7 +52,7 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:Title>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title242-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             <xsl:apply-templates mode="title242" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -69,7 +69,7 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:Title>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title245</xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
               <rdf:type>bf:WorkTitle</rdf:type>
             </xsl:if>
@@ -89,7 +89,7 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:Title>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title246-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             <xsl:apply-templates mode="title246" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -106,7 +106,7 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:Title>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title247-<xsl:value-of select="position()"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
             <xsl:apply-templates mode="title247" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -114,6 +114,98 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='880']" mode="entities">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization"/>
+    <xsl:choose>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'210')">
+        <xsl:if test="@ind1 = 1">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:Title>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                <xsl:apply-templates mode="title210" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'222')">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:Title>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+              <xsl:apply-templates mode="title222" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:Title>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'242')">
+        <xsl:if test="@ind1 = 1">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:Title>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                <xsl:apply-templates mode="title242" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'245')">
+        <xsl:if test="@ind1 = 1">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:Title>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+                  <rdf:type>bf:WorkTitle</rdf:type>
+                </xsl:if>
+                <xsl:apply-templates mode="title245" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'246')">
+        <xsl:if test="(@ind1 = 1) or (@ind1 = 3)">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:Title>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                <xsl:apply-templates mode="title246" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'247')">
+        <xsl:if test="@ind1 = 1">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:Title>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:attribute>
+                <xsl:apply-templates mode="title247" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Title>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!-- suppress text from unmatched nodes -->

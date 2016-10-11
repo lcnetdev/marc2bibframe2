@@ -11,6 +11,7 @@
   <x:import href="validation.xspec"/>
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
+  <x:import href="ConvSpec-880.xspec"/>
 
   <x:scenario label="Trival tests">
 

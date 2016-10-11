@@ -39,10 +39,6 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
       <x:expect label="becomes the source" test="//bf:Title[@rdf:about='http://example.org/1title210-2']/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
     </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
-    </x:scenario>
   </x:scenario>
 
   <x:scenario label="222 - KEY TITLE">
@@ -66,10 +62,6 @@
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
       <x:expect label="becomes the qualifier" test="//bf:Title[@rdf:about='http://example.org/1title222-2']/bf:qualifier = '(London)'"/>
-    </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>
 
@@ -112,10 +104,6 @@
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
       <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/bf:Language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
-    </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>
   
@@ -186,10 +174,6 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release.'"/>
     </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
-    </x:scenario>
   </x:scenario>
 
   <x:scenario label="246 - VARYING FORM OF TITLE">
@@ -239,10 +223,6 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="becomes the applicableInstitution" test="//bf:Title[contains(@rdf:about,'4title246')]/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
     </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
-    </x:scenario>
   </x:scenario>
 
   <x:scenario label="247 - FORMER TITLE">
@@ -287,10 +267,6 @@
     <x:scenario label="$x">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
       <x:expect label="becomes the identifiedBy Issn" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
-    </x:scenario>
-    <x:scenario label="$6">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="placeholder - should fail" test="1 = 2"/>
     </x:scenario>
   </x:scenario>
 
