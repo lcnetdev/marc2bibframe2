@@ -18,13 +18,13 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Work>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>work</xsl:attribute>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           <xsl:apply-templates mode="work">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="'rdfxml'"/>
           </xsl:apply-templates>
           <bf:hasInstance>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>instance</xsl:attribute>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           </bf:hasInstance>
         </bf:Work>
       </xsl:when>
@@ -130,7 +130,7 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-      <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title245-<xsl:value-of select="position()"/></xsl:variable>
+      <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:apply-templates mode="work245" select=".">
         <xsl:with-param name="titleiri" select="$titleiri"/>
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -149,7 +149,7 @@
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'245')">
         <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-          <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>
+          <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
           <xsl:apply-templates mode="work245" select=".">
             <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>

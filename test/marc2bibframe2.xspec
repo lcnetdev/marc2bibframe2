@@ -8,33 +8,161 @@
                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
-  <x:import href="validation.xspec"/>
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
 
-  <x:scenario label="Trival tests">
-
-    <x:scenario label="Single record (marc.xml)...">
+  <x:scenario label="Regression">
+    <x:scenario label="Simple transform">
       <x:context href="data/marc.xml"/>
-      <x:expect label="should return one RDF node" test="count(/rdf:RDF) = 1"/>
-      <x:expect label="and one Work node" test="count(/rdf:RDF/bf:Work) = 1"/>
-      <x:expect label="and one Instance node" test="count(/rdf:RDF/bf:Instance) = 1"/>
-      <x:expect label="Work should have control number as rdf:about" test="/rdf:RDF/bf:Work/@rdf:about = 'http://example.org/13600108work'"/>
-      <x:expect label="Instance should have control number as rdf:about" test="/rdf:RDF/bf:Instance/@rdf:about = 'http://example.org/13600108instance'"/>
+      <x:expect label="should match expected">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+          <bf:Work rdf:about="http://example.org/13600108#Work">
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>c</bf:code>
+                  </bf:Status>
+                </bf:status>
+                <bflc:encodingLevel>
+                  <bflc:EncodingLevel>
+                    <bf:code>f</bf:code>
+                  </bflc:EncodingLevel>
+                </bflc:encodingLevel>
+                <bf:descriptionConventions>
+                  <bf:DescriptionConventions>
+                    <bf:code>aacr</bf:code>
+                  </bf:DescriptionConventions>
+                </bf:descriptionConventions>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <rdf:type>Text</rdf:type>
+            <bf:title>
+              <bf:Title rdf:about="http://example.org/13600108#Title245-13">
+                <rdf:type>bf:WorkTitle</rdf:type>
+                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdfs:label>Ole Lukøie /</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <bf:mainTitle>Ole Lukøie /</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
+          </bf:Work>
+          <bf:Instance rdf:about="http://example.org/13600108#Instance">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+            <bf:title rdf:resource="http://example.org/13600108#Title245-13"/>
+            <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss.</bf:responsibilityStatement>
+            <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
+          </bf:Instance>
+        </rdf:RDF>
+      </x:expect>
     </x:scenario>
-
-    <!--
-        for this test to pass, need to increase the node limit for creating
-        files in xspec source: src/compiler/generate-tests-utils.xsl line 572
-    -->
-    <x:scenario label="Collection of records (../dataset/loc_general.xml)...">
-      <x:context href="../dataset/loc_general.xml"/>
-      <x:expect label="should also return one RDF node" test="count(/rdf:RDF) = 1" />
-      <x:expect label="with at least 99 Work nodes" test="count(/rdf:RDF/bf:Work) >= 99" />
-      <x:expect label="and at least 99 Instance nodes" test="count(/rdf:RDF/bf:Instance) >= 99" />
+    <x:scenario label="Simple collection transform">
+      <x:context href="data/collection.xml"/>
+      <x:expect label="should match expected">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+          <bf:Work rdf:about="http://example.org/5637241#Work">
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>n</bf:code>
+                  </bf:Status>
+                </bf:status>
+                <bflc:encodingLevel>
+                  <bflc:EncodingLevel>
+                    <bf:code>7</bf:code>
+                  </bflc:EncodingLevel>
+                </bflc:encodingLevel>
+                <bf:descriptionConventions>
+                  <bf:DescriptionConventions>
+                    <bf:code>aacr</bf:code>
+                  </bf:DescriptionConventions>
+                </bf:descriptionConventions>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <rdf:type>Audio</rdf:type>
+            <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
+          </bf:Work>
+          <bf:Instance rdf:about="http://example.org/5637241#Instance">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+            <bf:title>
+              <bf:Title>
+                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdfs:label>The Great Ray Charles</rdfs:label>
+                <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
+                <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:genreForm>
+              <bf:GenreForm>
+                <rdfs:label>[sound recording].</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+            <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
+          </bf:Instance>
+          <bf:Work rdf:about="http://example.org/12149120#Work">
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status>
+                    <bf:code>c</bf:code>
+                  </bf:Status>
+                </bf:status>
+                <bflc:encodingLevel>
+                  <bflc:EncodingLevel>
+                    <bf:code>f</bf:code>
+                  </bflc:EncodingLevel>
+                </bflc:encodingLevel>
+                <bf:descriptionConventions>
+                  <bf:DescriptionConventions>
+                    <bf:code>aacr</bf:code>
+                  </bf:DescriptionConventions>
+                </bf:descriptionConventions>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
+          </bf:Work>
+          <bf:Instance rdf:about="http://example.org/12149120#Instance">
+            <rdf:type>Electronic</rdf:type>
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+            <rdf:type>Archival</rdf:type>
+            <bf:title>
+              <bf:Title>
+                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdfs:label>The White House</rdfs:label>
+                <bflc:titleSortKey>White House</bflc:titleSortKey>
+                <bf:mainTitle>The White House</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:genreForm>
+              <bf:GenreForm>
+                <rdfs:label>[computer file].</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+            <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
+          </bf:Instance>
+        </rdf:RDF>
+      </x:expect>
     </x:scenario>
-
   </x:scenario>
-  
+
+  <x:scenario label="Record ID">
+    <x:context href="data/marc.xml"/>
+    <x:expect label="by default value of MARC control field 001" test="//bf:Work/@rdf:about = 'http://example.org/13600108#Work'"/>
+  </x:scenario>
+
 </x:description>

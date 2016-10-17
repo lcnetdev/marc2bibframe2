@@ -19,13 +19,13 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Instance>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>instance</xsl:attribute>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           <xsl:apply-templates mode="instance">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="'rdfxml'"/>
           </xsl:apply-templates>
           <bf:instanceOf>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>work</xsl:attribute>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           </bf:instanceOf>
         </bf:Instance>
       </xsl:when>
@@ -95,7 +95,7 @@
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title210-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title210-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance210" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -105,7 +105,7 @@
   <xsl:template match="marc:datafield[@tag='222']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title222-<xsl:value-of select="position()"/></xsl:variable>      
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title222-<xsl:value-of select="position()"/></xsl:variable>      
     <xsl:apply-templates mode="instance222" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -115,7 +115,7 @@
   <xsl:template match="marc:datafield[@tag='242']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title242-<xsl:value-of select="position()"/></xsl:variable>      
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title242-<xsl:value-of select="position()"/></xsl:variable>      
     <xsl:apply-templates mode="instance242" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -125,7 +125,7 @@
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title245-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance245" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -135,7 +135,7 @@
   <xsl:template match="marc:datafield[@tag='246']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title246-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title246-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance246" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -145,7 +145,7 @@
   <xsl:template match="marc:datafield[@tag='247']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title247-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title247-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance247" select=".">
       <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -157,42 +157,42 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'210')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="instance210" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'222')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>      
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>      
         <xsl:apply-templates mode="instance222" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'242')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>      
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>      
         <xsl:apply-templates mode="instance242" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'245')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="instance245" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'246')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="instance246" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="starts-with(marc:subfield[@code='6'],'247')">
-        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>title880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="instance247" select=".">
           <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
