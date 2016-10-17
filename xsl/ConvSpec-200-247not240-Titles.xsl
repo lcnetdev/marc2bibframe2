@@ -5,11 +5,24 @@
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="xsl marc">
 
-  <!-- Templates to build BIBFRAME 2.0 properties for entities -->
+  <!--
+      Conversion specs for bib title fields 210-247 (not 240)
+  -->
 
   <!-- bf:Instance properties from MARC 210 -->
+  <xsl:template match="marc:datafield[@tag='210']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title210-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="instance210" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='210' or @tag='880']" mode="instance210">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -26,7 +39,7 @@
   </xsl:template>
 
   <!-- bf:Title from MARC 210 -->
-  <xsl:template match="marc:datafield[@tag = '210' or @tag = '880']" mode="title210">
+  <xsl:template match="marc:datafield[@tag='210' or @tag='880']" mode="title210">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -70,6 +83,16 @@
   </xsl:template>    
 
   <!-- bf:Instance properties from MARC 222 -->
+  <xsl:template match="marc:datafield[@tag='222']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title222-<xsl:value-of select="position()"/></xsl:variable>      
+    <xsl:apply-templates mode="instance222" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='222' or @tag='880']" mode="instance222">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -86,7 +109,7 @@
   </xsl:template>
 
   <!-- bf:Title from MARC 222 -->
-  <xsl:template match="marc:datafield[@tag = '222' or @tag = '880']" mode="title222">
+  <xsl:template match="marc:datafield[@tag='222' or @tag='880']" mode="title222">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -114,6 +137,16 @@
   </xsl:template>    
 
   <!-- bf:Instance properties from MARC 242 -->
+  <xsl:template match="marc:datafield[@tag='242']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title242-<xsl:value-of select="position()"/></xsl:variable>      
+    <xsl:apply-templates mode="instance242" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='242' or @tag='880']" mode="instance242">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -178,6 +211,13 @@
   </xsl:template>
 
   <!-- bf:Work properties from MARC 243 -->
+  <xsl:template match="marc:datafield[@tag='243']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work243" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='243' or @tag='880']" mode="work243">
     <xsl:param name="serialization"/>
     <xsl:choose>
@@ -227,6 +267,18 @@
   </xsl:template>
 
   <!-- bf:Work properties from MARC 245 -->
+  <xsl:template match="marc:datafield[@tag='245']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+      <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
+      <xsl:apply-templates mode="work245" select=".">
+        <xsl:with-param name="titleiri" select="$titleiri"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -256,6 +308,16 @@
   </xsl:template>
   
   <!-- bf:Instance properties from MARC 245 -->
+  <xsl:template match="marc:datafield[@tag='245']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="instance245" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="instance245">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -335,6 +397,16 @@
   </xsl:template>
 
   <!-- bf:Instance properties from MARC 246 -->
+  <xsl:template match="marc:datafield[@tag='246']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title246-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="instance246" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="instance246">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
@@ -427,6 +499,16 @@
   </xsl:template>
 
   <!-- bf:Instance properties from MARC 247 -->
+  <xsl:template match="marc:datafield[@tag='247']" mode="instance">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title247-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="instance247" select=".">
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='247' or @tag='880']" mode="instance247">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>

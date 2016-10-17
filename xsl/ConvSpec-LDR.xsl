@@ -5,31 +5,12 @@
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="xsl marc">
 
   <!--
-      Templates for building a BIBFRAME 2.0 Work Resource from MARCXML
-      All templates should have the mode "work"
+      Conversion specs for LDR
   -->
-  
-  <xsl:template match="marc:record" mode="work">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Work>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-          <xsl:apply-templates mode="work">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="'rdfxml'"/>
-          </xsl:apply-templates>
-          <bf:hasInstance>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-          </bf:hasInstance>
-        </bf:Work>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
 
   <xsl:template match="marc:leader" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -119,47 +100,64 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='243']" mode="work">
+  <xsl:template match="marc:leader" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work243" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='245']" mode="work">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-      <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
-      <xsl:apply-templates mode="work245" select=".">
-        <xsl:with-param name="titleiri" select="$titleiri"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='880']" mode="work">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization"/>
     <xsl:choose>
-      <xsl:when test="starts-with(marc:subfield[@code='6'],'243')">
-        <xsl:apply-templates mode="work243" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="starts-with(marc:subfield[@code='6'],'245')">
-        <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-          <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
-          <xsl:apply-templates mode="work245" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </xsl:if>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'm'"><rdf:type>Electronic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>Manuscript</rdf:type></xsl:when>
+        </xsl:choose>
+        <xsl:choose>
+          <xsl:when test="substring(.,8,1) = 'a'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'b'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>s</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'c'"><rdf:type>Collection</rdf:type></xsl:when>
+          <xsl:when test="substring(.,8,1) = 'd'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>d</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'i'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>i</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 'm'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>m</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="substring(.,8,1) = 's'">
+            <bf:issuance>
+              <bf:Issuance>
+                <bf:code>s</bf:code>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:when>
+        </xsl:choose>
+        <xsl:if test="substring(.,9,1) = 'a'"><rdf:type>Archival</rdf:type></xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-        
-  <!-- suppress text from unmatched nodes -->
-  <xsl:template match="text()" mode="work"/>
-
+  
 </xsl:stylesheet>

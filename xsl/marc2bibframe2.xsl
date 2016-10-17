@@ -16,23 +16,27 @@
   <xsl:param name="serialization" select="'rdfxml'"/>
 
   <xsl:include href="utils.xsl"/>
-  <xsl:include href="work.xsl"/>
-  <xsl:include href="instance.xsl"/>
-  <xsl:include href="properties.xsl"/>
+  <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
+  <xsl:include href="ConvSpec-880.xsl"/>
+  <xsl:include href="ConvSpec-LDR.xsl"/>
 
   <xsl:template match="/">
 
     <!-- RDF/XML document frame -->
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-             xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-             xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
 
-      <xsl:apply-templates>
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-      
-    </rdf:RDF>
+          <xsl:apply-templates>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          
+        </rdf:RDF>
+      </xsl:when>
+    </xsl:choose>
     
   </xsl:template>
 
@@ -60,24 +64,49 @@
     </xsl:variable>
     
     <!-- generate main Work entity -->
-    <xsl:apply-templates mode="work" select=".">
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Work>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+          <!-- pass fields through conversion specs for Work properties -->
+          <xsl:apply-templates mode="work">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="serialization" select="'rdfxml'"/>
+          </xsl:apply-templates>
+          <bf:hasInstance>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
+          </bf:hasInstance>
+        </bf:Work>
+      </xsl:when>
+    </xsl:choose>
     
     <!-- generate main Instance entity -->
-    <xsl:apply-templates mode="instance" select=".">
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-    
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Instance>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
+          <!-- pass fields through conversion specs for Instance properties -->
+          <xsl:apply-templates mode="instance">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="serialization" select="'rdfxml'"/>
+          </xsl:apply-templates>
+          <bf:instanceOf>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+          </bf:instanceOf>
+        </bf:Instance>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
+
+  <!-- suppress text from unmatched nodes -->
+  <xsl:template match="text()" mode="work"/>
+  <xsl:template match="text()" mode="instance"/>
 
   <!-- warn about other elements -->
   <xsl:template match="*">
 
     <xsl:message terminate="no">
-      WARNING: Unmatched element: <xsl:value-of select="name()"/>
+      <xsl:text>WARNING: Unmatched element: </xsl:text><xsl:value-of select="name()"/>
     </xsl:message>
 
     <xsl:apply-templates/>
