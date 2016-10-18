@@ -30,6 +30,13 @@
           </xsl:apply-templates>
         </xsl:if>
       </xsl:when>
+      <xsl:when test="starts-with(marc:subfield[@code='6'],'130') or starts-with(marc:subfield[@code='6'],'240')">
+        <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates mode="workUnifTitle" select=".">
+          <xsl:with-param name="titleiri" select="$titleiri"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
