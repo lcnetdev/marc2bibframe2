@@ -3,7 +3,6 @@
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
-                xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <!-- Utility templates -->
@@ -60,33 +59,11 @@
   </xsl:template>
 
   <!--
-      create a bf:identifiedBy property from a subfield $0 or $w
+      generate a marcKey for the subfields of a marc:datafield
+      of the form $[code][text]$[code][text] etc.
   -->
-  <xsl:template match="marc:subfield" mode="subfield0orw">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="source" select="substring(substring-after(text(),'('),1,string-length(substring-before(text(),')'))-1)"/>
-    <xsl:variable name="value">
-      <xsl:choose>
-        <xsl:when test="$source != ''"><xsl:value-of select="substring-after(text(),')')"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization='rdfxml'">
-        <bf:identifiedBy>
-          <bf:Identifier>
-            <rdf:value><xsl:value-of select="$value"/></rdf:value>
-            <xsl:if test="$source != ''">
-              <bf:source>
-                <rdf:Description>
-                  <rdfs:label><xsl:value-of select="$source"/></rdfs:label>
-                </rdf:Description>
-              </bf:source>
-            </xsl:if>
-          </bf:Identifier>
-        </bf:identifiedBy>
-      </xsl:when>
-    </xsl:choose>
+  <xsl:template match="marc:subfield" mode="marcKey">
+    <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
   </xsl:template>
-
+  
 </xsl:stylesheet>

@@ -486,13 +486,9 @@
           <xsl:for-each select="marc:subfield[@code='p']">
             <bf:partName><xsl:value-of select="."/></bf:partName>
           </xsl:for-each>
-          <xsl:for-each select="marc:subfield[@code='5']">
-            <bflc:applicableInstitution>
-              <bf:Agent>
-                <bf:code><xsl:value-of select="."/></bf:code>
-              </bf:Agent>
-            </bflc:applicableInstitution>
-          </xsl:for-each>
+          <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
         </bf:Title>
       </xsl:when>
     </xsl:choose>

@@ -16,7 +16,7 @@
   <xsl:param name="serialization" select="'rdfxml'"/>
 
   <xsl:include href="utils.xsl"/>
-  <xsl:include href="naco-normalize.xsl"/>
+  <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-LDR.xsl"/>
