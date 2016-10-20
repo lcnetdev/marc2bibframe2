@@ -1,10 +1,21 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
-    <datafield tag="130" ind1="0" ind2=" ">
-      <subfield code="a">Encyclopedia of Latin American history and culture.</subfield>
+    <datafield tag="130" ind1="4" ind2=" ">
+      <subfield code="a">The Encyclopedia of Latin American history and culture.</subfield>
+      <subfield code="d">(1952).</subfield>
+      <subfield code="f">[between 1775 and 1800].</subfield>
+      <subfield code="g">Manuscripts, Latin.</subfield>
+      <subfield code="h">Sound recording.</subfield>
+      <subfield code="l">French</subfield>
+      <subfield code="m">violin, viola,</subfield>
+      <subfield code="r">D major.</subfield>
+      <subfield code="o">arr.</subfield>
+      <subfield code="p">O.T.</subfield>
+      <subfield code="n">Book 4.</subfield>
       <subfield code="k">Selections.</subfield>
       <subfield code="0">(ID)0001</subfield>
+      <subfield code="w">(ID)0002</subfield>
     </datafield>
     <datafield tag="245" ind1="1" ind2="0">
       <subfield code="a">Latin American lives :</subfield>

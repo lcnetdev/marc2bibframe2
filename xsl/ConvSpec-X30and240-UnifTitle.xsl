@@ -24,7 +24,7 @@
   </xsl:template>
 
   <!-- can be applied by template above or by name/subject/series templates -->
-  <xsl:template match="*" mode="workUnifTitle">
+  <xsl:template match="marc:datafield" mode="workUnifTitle">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag">
@@ -121,7 +121,7 @@
            </bf:identifiedBy>
          </xsl:for-each>
         </xsl:if>
-        <xsl:for-each select="marc:subfield[@code='0' or code='w']">
+        <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
           <xsl:apply-templates mode="subfield0orw" select=".">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
@@ -130,7 +130,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="*" mode="titleUnifTitle">
+  <xsl:template match="marc:datafield" mode="titleUnifTitle">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag">
@@ -224,37 +224,39 @@
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
               <xsl:if test="$label != ''">
-                <bflc:title00MatchKey><xsl:value-of select="$label"/></bflc:title00MatchKey>
+                <bflc:title00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title00MatchKey>
               </xsl:if>
               <bflc:title00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title00MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
-                <bflc:title10MatchKey><xsl:value-of select="$label"/></bflc:title10MatchKey>
+                <bflc:title10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title10MatchKey>
               </xsl:if>
               <bflc:title10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title10MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
-                <bflc:title11MatchKey><xsl:value-of select="$label"/></bflc:title11MatchKey>
+                <bflc:title11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title11MatchKey>
               </xsl:if>
               <bflc:title11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title11MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
               <xsl:if test="$label != ''">
-                <bflc:title30MatchKey><xsl:value-of select="$label"/></bflc:title30MatchKey>
+                <bflc:title30MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title30MatchKey>
               </xsl:if>
               <bflc:title30MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title30MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
               <xsl:if test="$label != ''">
-                <bflc:title40MatchKey><xsl:value-of select="$label"/></bflc:title40MatchKey>
+                <bflc:title40MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title40MatchKey>
               </xsl:if>
               <bflc:title40MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title40MarcKey>
             </xsl:when>
           </xsl:choose>
-          <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
-          <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,$nfi+1))"/></bflc:titleSortKey>
+          <xsl:if test="$label != ''">
+            <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
+            <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,$nfi+1))"/></bflc:titleSortKey>
+          </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a' or @code='t']">
             <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
           </xsl:for-each>
@@ -269,7 +271,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="*" mode="titleMarcKey">
+  <xsl:template match="marc:subfield" mode="titleMarcKey">
     <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
   </xsl:template>
   

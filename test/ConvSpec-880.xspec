@@ -9,7 +9,7 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
 
-  <x:scenario label="MARC tag 880" focus="testing 880">
+  <x:scenario label="MARC tag 880">
     <x:context href="data/ConvSpec-880/marc.xml"/>
     <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:Title/rdf:type[2] = 'bf:AbbreviatedTitle'"/>
     <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Title[1]/rdf:type[2] = 'bf:KeyTitle'"/>
@@ -18,7 +18,7 @@
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdf:type = 'bf:InstanceTitle'"/>
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Instance[1]/bf:title[5]/bf:Title/rdf:type[1] = 'bf:VariantTitle'"/>
     <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[6]/bf:Title/bf:variantType = 'former'"/>
-    <x:expect label="$6 X30-xx/240-xx should make a Title" test="1=2"/>
+    <x:expect label="$6 X30-xx/240-xx should make a Title" test="//bf:Work[1]/bf:title[2]/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
   </x:scenario>
 
 </x:description>
