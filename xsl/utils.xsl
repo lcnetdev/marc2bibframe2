@@ -6,8 +6,6 @@
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <xsl:include href="str.replace.template.xsl"/>
-
   <!-- Utility templates -->
 
   <!--
@@ -62,26 +60,14 @@
   </xsl:template>
 
   <!--
-      placeholder template to normalize strings
-      uses str:replace template from EXSLT (requires node-set extension)
-  -->
-  <xsl:template name="simple-normalize">
-    <xsl:param name="str"/>
-    <xsl:variable name="lc" select="'abcdefghijklmnopqrstuvwxyz'"/>
-    <xsl:variable name="uc" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
-    
-    <xsl:value-of select="normalize-space(translate($str,$lc,$uc))"/>
-  </xsl:template>
-
-  <!--
       create a bf:identifiedBy property from a subfield $0 or $w
   -->
   <xsl:template match="marc:subfield" mode="subfield0orw">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="assigner" select="substring(substring-after(text(),'('),1,string-length(substring-before(text(),')'))-1)"/>
+    <xsl:variable name="source" select="substring(substring-after(text(),'('),1,string-length(substring-before(text(),')'))-1)"/>
     <xsl:variable name="value">
       <xsl:choose>
-        <xsl:when test="$assigner != ''"><xsl:value-of select="substring-after(text(),')')"/></xsl:when>
+        <xsl:when test="$source != ''"><xsl:value-of select="substring-after(text(),')')"/></xsl:when>
         <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -90,12 +76,12 @@
         <bf:identifiedBy>
           <bf:Identifier>
             <rdf:value><xsl:value-of select="$value"/></rdf:value>
-            <xsl:if test="$assigner != ''">
-              <bf:assigner>
-                <rdf:Resource>
-                  <rdfs:label><xsl:value-of select="$assigner"/></rdfs:label>
-                </rdf:Resource>
-              </bf:assigner>
+            <xsl:if test="$source != ''">
+              <bf:source>
+                <rdf:Description>
+                  <rdfs:label><xsl:value-of select="$source"/></rdfs:label>
+                </rdf:Description>
+              </bf:source>
             </xsl:if>
           </bf:Identifier>
         </bf:identifiedBy>
