@@ -22,4 +22,24 @@
       <subfield code="b">selected biographies from the five-volume Encyclopedia of Latin American history and culture.</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Tarjamat al-Zabūr al-sharīf.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="2" tag="730">
+      <subfield code="3">1980:</subfield>
+      <subfield code="a">Bible.</subfield>
+      <subfield code="p">O.T.</subfield>
+      <subfield code="p">Psalms.</subfield>
+      <subfield code="s">Codex Sinaiticus.</subfield>
+    </datafield>
+    <datafield tag="730" ind1="0" ind2=" ">
+      <subfield code="i">Parody of (work):</subfield>
+      <subfield code="a">[Motets].</subfield>
+      <subfield code="h">Sound recording</subfield>
+      <subfield code="x">1234-5678</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+  </record>
 </collection>

@@ -23,7 +23,54 @@
     </xsl:apply-templates>
   </xsl:template>
 
-  <!-- can be applied by template above or by name/subject/series templates -->
+  <xsl:template match="marc:datafield[@tag='730']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work730-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title730-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="@ind2='2'">
+            <bf:hasPart>
+              <bf:Work>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                <xsl:apply-templates select="." mode="workUnifTitle">
+                  <xsl:with-param name="titleiri" select="$titleiri"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Work>
+            </bf:hasPart>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:relatedTo>
+              <bf:Work>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                <xsl:apply-templates select="." mode="workUnifTitle">
+                  <xsl:with-param name="titleiri" select="$titleiri"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Work>
+            </bf:relatedTo>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="marc:subfield[@code='i']">
+          <bflc:relationship>
+            <bflc:Relationship>
+              <bflc:relation>
+                <rdf:Description>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </rdf:Description>
+              </bflc:relation>
+              <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
+            </bflc:Relationship>
+          </bflc:relationship>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
+  <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -114,18 +161,6 @@
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='r']">
           <bf:musicKey><xsl:value-of select="."/></bf:musicKey>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='i']">
-          <bf:relationship>
-            <bf:Relationship>
-              <bf:relation>
-                <rdf:Description>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </rdf:Description>
-              </bf:relation>
-              <bf:relatedTo><xsl:value-of select="concat(substring-before($titleiri,'#'),'#Work')"/></bf:relatedTo>
-            </bf:Relationship>
-          </bf:relationship>
         </xsl:for-each>
         <xsl:if test="substring($tag,1,1)='8'">
           <xsl:for-each select="marc:subfield[@code='v']">
