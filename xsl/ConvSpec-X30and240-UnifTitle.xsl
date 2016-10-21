@@ -70,6 +70,26 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='830']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work830-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title830-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:hasSeries>
+          <bf:Work>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+            <xsl:apply-templates mode="workUnifTitle" select=".">
+              <xsl:with-param name="titleiri" select="$titleiri"/>
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Work>
+        </bf:hasSeries>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+        
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">
     <xsl:param name="titleiri"/>
@@ -191,6 +211,11 @@
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
+        <xsl:if test="$tag='830'">
+          <xsl:apply-templates mode="subfield7" select="marc:subfield[@code='7']">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -213,7 +238,7 @@
         <xsl:when test="$tag='130' or $tag='630' or $tag='730'">
           <xsl:value-of select="@ind1"/>
         </xsl:when>
-        <xsl:when test="$tag='240'">
+        <xsl:when test="$tag='240' or $tag='830'">
           <xsl:value-of select="@ind2"/>
         </xsl:when>
         <xsl:otherwise>0</xsl:otherwise>

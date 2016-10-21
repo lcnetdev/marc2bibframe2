@@ -71,4 +71,52 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      create rdf:type and bf:issuance properties from a subfield $7
+  -->
+  <xsl:template match="marc:subfield" mode="subfield7">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="type">
+      <xsl:choose>
+        <xsl:when test="substring(.,1,1) = 'a'">Text</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'c'">NotatedMusic</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'd'">NotatedMusic</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'e'">Cartography</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'f'">Cartography</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'g'">MovingImage</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'i'">Audio</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'j'">Audio</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'k'">StillImage</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'o'">MixedMaterial</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'p'">MixedMaterial</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'r'">Object</xsl:when>
+        <xsl:when test="substring(.,1,1) = 't'">Text</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="issuance">
+      <xsl:choose>
+        <xsl:when test="substring(.,2,1) = 'a'">m</xsl:when>
+        <xsl:when test="substring(.,2,1) = 'b'">s</xsl:when>
+        <xsl:when test="substring(.,2,1) = 'd'">d</xsl:when>
+        <xsl:when test="substring(.,2,1) = 'i'">i</xsl:when>
+        <xsl:when test="substring(.,2,1) = 'm'">m</xsl:when>
+        <xsl:when test="substring(.,2,1) = 's'">s</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:if test="$type != ''">
+          <rdf:type><xsl:value-of select="$type"/></rdf:type>
+        </xsl:if>
+        <xsl:if test="$issuance != ''">
+          <bf:issuance>
+            <bf:Issuance>
+              <bf:code><xsl:value-of select="$issuance"/></bf:code>
+            </bf:Issuance>
+          </bf:issuance>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>  
