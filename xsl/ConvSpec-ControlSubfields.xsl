@@ -48,7 +48,13 @@
       <xsl:when test="$serialization='rdfxml'">
         <bflc:appliesTo>
           <bflc:AppliesTo>
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <rdfs:label>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </rdfs:label>
           </bflc:AppliesTo>
         </bflc:appliesTo>
       </xsl:when>
