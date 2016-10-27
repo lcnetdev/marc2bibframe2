@@ -92,6 +92,15 @@
             </xsl:apply-templates>
           </bf:Work>
         </bf:hasSeries>
+        <xsl:for-each select="marc:subfield[@code='v']">
+          <bf:seriesEnumeration>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString">
+                <xsl:value-of select="."/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </bf:seriesEnumeration>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -272,17 +281,6 @@
             </xsl:call-template>
           </bf:musicKey>
         </xsl:for-each>
-        <xsl:if test="substring($tag,1,1)='8'">
-          <xsl:for-each select="marc:subfield[@code='v']">
-            <bf:seriesEnumeration>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
-              </xsl:call-template>
-            </bf:seriesEnumeration>
-          </xsl:for-each>
-        </xsl:if>
         <xsl:if test="substring($tag,1,1)='7' or substring($tag,1,1)='8'">
          <xsl:for-each select="marc:subfield[@code='x']">
            <bf:identifiedBy>
