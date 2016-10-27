@@ -33,7 +33,7 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Instance[2]/bf:title/bf:Title/bf:qualifier = '(Lond.)'"/>
+      <x:expect label="becomes the qualifier" test="//bf:Instance[2]/bf:title/bf:Title/bf:qualifier = 'Lond.'"/>
     </x:scenario>
     <x:scenario label="$2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
@@ -61,7 +61,7 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2']/bf:qualifier = '(London)'"/>
+      <x:expect label="becomes the qualifier" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2']/bf:qualifier = 'London'"/>
     </x:scenario>
   </x:scenario>
 
@@ -91,15 +91,15 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers.'"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II,'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers.'"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers'"/>
     </x:scenario>
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -118,7 +118,7 @@
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Compleat works of William Shakespeare,'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Compleat works of William Shakespeare'"/>
     </x:scenario>
   </x:scenario>
 
@@ -144,35 +144,35 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers.'"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
     </x:scenario>
     <x:scenario label="$c">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes the Instance responsibility statement" test="//bf:Instance[3]/bf:responsibilityStatement = 'Alan Bird.'"/>
+      <x:expect label="becomes the Instance responsibility statement" test="//bf:Instance[3]/bf:responsibilityStatement = 'Alan Bird'"/>
     </x:scenario>
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes a Work originDate" test="//bf:Work[4]/bf:originDate = '1760-1878.'"/>
+      <x:expect label="becomes a Work originDate" test="//bf:Work[4]/bf:originDate = '1760-1878'"/>
     </x:scenario>
     <x:scenario label="$g">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes a Work originDate" test="//bf:Work[5]/bf:originDate = 'Jan.-Dec. 1985.'"/>
+      <x:expect label="becomes a Work originDate" test="//bf:Work[5]/bf:originDate = 'Jan.-Dec. 1985'"/>
     </x:scenario>
     <x:scenario label="$h">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="creates a GenreForm entity in a genreForm property" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = '[sound recording].'"/>
+      <x:expect label="creates a GenreForm entity in a genreForm property" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = 'sound recording'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II,'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers.'"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers'"/>
     </x:scenario>
     <x:scenario label="$s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release.'"/>
+      <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release'"/>
     </x:scenario>
   </x:scenario>
 
@@ -213,7 +213,7 @@
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Title[contains(@rdf:about,'4#Title246')]/bf:partNumber = 'Serie A,'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Title[contains(@rdf:about,'4#Title246')]/bf:partNumber = 'Serie A'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
@@ -246,19 +246,19 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:subtitle = 'orders, suborders, and great groups : National Soil Survey Classification of 1967.'"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:subtitle = 'orders, suborders, and great groups : National Soil Survey Classification of 1967'"/>
     </x:scenario>
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes the date" test="//bf:Title[@rdf:about='http://example.org/1#Title247-3']/bf:date = 'v. 1-24, Jan. 1948-57.'"/>
+      <x:expect label="becomes the date" test="//bf:Title[@rdf:about='http://example.org/1#Title247-3']/bf:date = 'v. 1-24, Jan. 1948-57'"/>
     </x:scenario>
     <x:scenario label="$g">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes a qualifier" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:qualifier = '(varies slightly)'"/>
+      <x:expect label="becomes a qualifier" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:qualifier = 'varies slightly'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:partNumber = 'Serie A,'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[1]/bf:title[4]/bf:Title/bf:partNumber = 'Serie A'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>

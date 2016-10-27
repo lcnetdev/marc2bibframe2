@@ -68,7 +68,13 @@
             <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:qualifier><xsl:value-of select="."/></bf:qualifier>
+            <bf:qualifier>
+              <xsl:call-template name="chopParens">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:qualifier>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='2']">
             <bf:source>
@@ -126,10 +132,22 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:qualifier><xsl:value-of select="."/></bf:qualifier>
+            <bf:qualifier>
+              <xsl:call-template name="chopParens">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:qualifier>
           </xsl:for-each>
         </bf:Title>
       </xsl:when>
@@ -187,16 +205,40 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+            <bf:subtitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:subtitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
-            <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+            <bf:partNumber>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partNumber>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='p']">
-            <bf:partName><xsl:value-of select="."/></bf:partName>
+            <bf:partName>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partName>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='y']">
             <bf:language>
@@ -259,7 +301,13 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
         </bf:Title>
       </xsl:when>
@@ -291,17 +339,39 @@
           </xsl:apply-templates>
         </bf:title>
         <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
-          <bf:originDate><xsl:value-of select="."/></bf:originDate>
+          <bf:originDate>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString">
+                <xsl:value-of select="."/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </bf:originDate>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='h']">
           <bf:genreForm>
             <bf:GenreForm>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString">
+                    <xsl:call-template name="chopBrackets">
+                      <xsl:with-param name="chopString">
+                        <xsl:value-of select="."/>
+                      </xsl:with-param>
+                    </xsl:call-template>
+                  </xsl:with-param>
+                </xsl:call-template>
+              </rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='s']">
-          <bf:version><xsl:value-of select="."/></bf:version>
+          <bf:version>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString">
+                <xsl:value-of select="."/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </bf:version>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -337,12 +407,28 @@
           </xsl:choose>
         </bf:title>
         <xsl:for-each select="marc:subfield[@code='c']">
-          <bf:responsibilityStatement><xsl:value-of select="."/></bf:responsibilityStatement>
+          <bf:responsibilityStatement>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString">
+                <xsl:value-of select="."/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </bf:responsibilityStatement>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='h']">
           <bf:genreForm>
             <bf:GenreForm>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString">
+                    <xsl:call-template name="chopBrackets">
+                      <xsl:with-param name="chopString">
+                        <xsl:value-of select="."/>
+                      </xsl:with-param>
+                    </xsl:call-template>
+                  </xsl:with-param>
+                </xsl:call-template>
+              </rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:for-each>
@@ -380,16 +466,40 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+            <bf:subtitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:subtitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
-            <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+            <bf:partNumber>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partNumber>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='p']">
-            <bf:partName><xsl:value-of select="."/></bf:partName>
+            <bf:partName>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partName>
           </xsl:for-each>
         </bf:Title>
       </xsl:when>
@@ -472,19 +582,49 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+            <bf:subtitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:subtitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='f']">
-            <bf:date><xsl:value-of select="."/></bf:date>
+            <bf:date>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:date>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
-            <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+            <bf:partNumber>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partNumber>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='p']">
-            <bf:partName><xsl:value-of select="."/></bf:partName>
+            <bf:partName>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partName>
           </xsl:for-each>
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -545,27 +685,73 @@
             <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle><xsl:value-of select="."/></bf:mainTitle>
+            <bf:mainTitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='b']">
-            <bf:subtitle><xsl:value-of select="."/></bf:subtitle>
+            <bf:subtitle>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:subtitle>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='f']">
-            <bf:date><xsl:value-of select="."/></bf:date>
+            <bf:date>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:date>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='g']">
-            <bf:qualifier><xsl:value-of select="."/></bf:qualifier>
+            <bf:qualifier>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:qualifier>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
-            <bf:partNumber><xsl:value-of select="."/></bf:partNumber>
+            <bf:partNumber>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partNumber>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='p']">
-            <bf:partName><xsl:value-of select="."/></bf:partName>
+            <bf:partName>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:partName>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='x']">
             <bf:identifiedBy>
               <bf:Issn>
-                <rdf:value><xsl:value-of select="."/></rdf:value>
+                <rdf:value>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </rdf:value>
               </bf:Issn>
             </bf:identifiedBy>
           </xsl:for-each>

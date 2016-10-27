@@ -45,7 +45,7 @@
                 <rdf:type>bf:InstanceTitle</rdf:type>
                 <rdfs:label>Ole Lukøie /</rdfs:label>
                 <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
-                <bf:mainTitle>Ole Lukøie /</bf:mainTitle>
+                <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
@@ -57,7 +57,7 @@
               </bf:Issuance>
             </bf:issuance>
             <bf:title rdf:resource="http://example.org/13600108#Title245-13"/>
-            <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss.</bf:responsibilityStatement>
+            <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
           </bf:Instance>
         </rdf:RDF>
@@ -106,7 +106,7 @@
             </bf:title>
             <bf:genreForm>
               <bf:GenreForm>
-                <rdfs:label>[sound recording].</rdfs:label>
+                <rdfs:label>sound recording</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
@@ -151,7 +151,7 @@
             </bf:title>
             <bf:genreForm>
               <bf:GenreForm>
-                <rdfs:label>[computer file].</rdfs:label>
+                <rdfs:label>computer file</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>

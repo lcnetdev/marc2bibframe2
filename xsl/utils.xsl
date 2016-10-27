@@ -8,6 +8,69 @@
   <!-- Utility templates -->
 
   <!--
+      Chop [ ] from beginning and end of a string
+      From MARC21slim2MODS.xsl
+  -->
+  <xsl:template name="chopBrackets">
+    <xsl:param name="chopString"/>
+    <xsl:variable name="string">
+      <xsl:call-template name="chopPunctuation">
+	<xsl:with-param name="chopString" select="$chopString"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="substring($string, 1,1)='['">
+      <xsl:value-of select="substring($string,2, string-length($string)-2)"/>
+    </xsl:if>
+    <xsl:if test="substring($string, 1,1)!='['">
+      <xsl:value-of select="$string"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+      Chop ( ) from beginning and end of a string
+  -->
+  <xsl:template name="chopParens">
+    <xsl:param name="chopString"/>
+    <xsl:variable name="string">
+      <xsl:call-template name="chopPunctuation">
+	<xsl:with-param name="chopString" select="$chopString"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:if test="substring($string, 1,1)='('">
+      <xsl:value-of select="substring($string,2, string-length($string)-2)"/>
+    </xsl:if>
+    <xsl:if test="substring($string, 1,1)!='('">
+      <xsl:value-of select="$string"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+      Chop trailing punctuation
+      .:,;/ and space
+      From MARC21slimUtils.xsl
+  -->
+  <xsl:template name="chopPunctuation">
+    <xsl:param name="chopString"/>
+    <xsl:param name="punctuation">
+      <xsl:text>.:,;/ </xsl:text>
+    </xsl:param>
+    <xsl:variable name="length" select="string-length($chopString)"/>
+    <xsl:choose>
+      <xsl:when test="$length=0"/>
+      <xsl:when test="contains($punctuation, substring($chopString,$length,1))">
+	<xsl:call-template name="chopPunctuation">
+	  <xsl:with-param name="chopString" select="substring($chopString,1,$length - 1)"/>
+	  <xsl:with-param name="punctuation" select="$punctuation"/>
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:when test="not($chopString)"/>
+      <xsl:otherwise>
+	<xsl:value-of select="$chopString"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       generate a recordid base from user config
   -->
   <xsl:template match="marc:record" mode="recordid">
