@@ -5,6 +5,7 @@
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="xsl marc">
 
@@ -17,6 +18,7 @@
 
   <xsl:include href="utils.xsl"/>
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
+  <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-LDR.xsl"/>

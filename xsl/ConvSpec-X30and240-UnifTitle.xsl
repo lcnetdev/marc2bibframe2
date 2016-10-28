@@ -314,6 +314,7 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- build a bf:Title entity -->
   <xsl:template match="marc:datafield" mode="titleUnifTitle">
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

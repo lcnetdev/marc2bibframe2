@@ -82,19 +82,19 @@
           </bf:AdminMetadata>
         </bf:adminMetadata>
         <xsl:choose>
-          <xsl:when test="substring(.,7,1) = 'a'"><rdf:type>Text</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'c'"><rdf:type>NotatedMusic</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>NotatedMusic</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'e'"><rdf:type>Cartography</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>Cartography</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'g'"><rdf:type>MovingImage</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'i'"><rdf:type>Audio</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'j'"><rdf:type>Audio</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'k'"><rdf:type>StillImage</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'o'"><rdf:type>MixedMaterial</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'p'"><rdf:type>MixedMaterial</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'r'"><rdf:type>Object</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>Text</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'a'"><rdf:type>bf:Text</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'c'"><rdf:type>bf:NotatedMusic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>bf:NotatedMusic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'e'"><rdf:type>bf:Cartography</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>bf:Cartography</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'g'"><rdf:type>bf:MovingImage</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'i'"><rdf:type>bf:Audio</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'j'"><rdf:type>bf:Audio</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'k'"><rdf:type>bf:StillImage</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'o'"><rdf:type>bf:MixedMaterial</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'p'"><rdf:type>bf:MixedMaterial</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'r'"><rdf:type>bf:Object</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>bf:Text</rdf:type></xsl:when>
         </xsl:choose>
       </xsl:when>
     </xsl:choose>
@@ -105,10 +105,10 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
-          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>Manuscript</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>Manuscript</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 'm'"><rdf:type>Electronic</rdf:type></xsl:when>
-          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'd'"><rdf:type>bf:Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'f'"><rdf:type>bf:Manuscript</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 'm'"><rdf:type>bf:Electronic</rdf:type></xsl:when>
+          <xsl:when test="substring(.,7,1) = 't'"><rdf:type>bf:Manuscript</rdf:type></xsl:when>
         </xsl:choose>
         <xsl:choose>
           <xsl:when test="substring(.,8,1) = 'a'">
@@ -125,7 +125,7 @@
               </bf:Issuance>
             </bf:issuance>
           </xsl:when>
-          <xsl:when test="substring(.,8,1) = 'c'"><rdf:type>Collection</rdf:type></xsl:when>
+          <xsl:when test="substring(.,8,1) = 'c'"><rdf:type>bf:Collection</rdf:type></xsl:when>
           <xsl:when test="substring(.,8,1) = 'd'">
             <bf:issuance>
               <bf:Issuance>
@@ -155,7 +155,7 @@
             </bf:issuance>
           </xsl:when>
         </xsl:choose>
-        <xsl:if test="substring(.,9,1) = 'a'"><rdf:type>Archival</rdf:type></xsl:if>
+        <xsl:if test="substring(.,9,1) = 'a'"><rdf:type>bf:Archival</rdf:type></xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

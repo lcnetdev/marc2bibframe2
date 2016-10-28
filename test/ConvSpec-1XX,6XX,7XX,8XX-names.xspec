@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="Process 0 - names/titles"/>
+
+  <x:scenario label="Process 1 - names"/>
+
+  <x:scenario label="100, 600, 700, 800 - PERSONAL NAME"/>
+
+  <x:scenario label="110, 610, 710, 810 - CORPORATE NAME"/>
+
+  <x:scenario label="111, 611, 711, 811 - MEETING NAME"/>
+
+  <x:scenario label="6XX, 7XX, 8XX with $t - NAME/UNIFORM TITLE"/>
+
+</x:description>
