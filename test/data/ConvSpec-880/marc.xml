@@ -1,6 +1,14 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">130-01/r</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="880">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">東海道五十三次絵卷.</subfield>
+    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">210-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>
@@ -30,7 +38,20 @@
       <subfield code="a">東海道五十三次絵卷.</subfield>
     </datafield>
     <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">130-01/r</subfield>
+      <subfield code="6">700-01/r</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">730-01/r</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">800-01/r</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+      <subfield code="t">東海道五十三次絵卷.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">830-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
   </record>

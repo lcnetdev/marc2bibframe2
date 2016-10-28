@@ -64,7 +64,7 @@
         <xsl:apply-templates mode="work730" select=".">
           <xsl:with-param name="workiri" select="$workiri"/>
           <xsl:with-param name="titleiri" select="$titleiri"/>
-          <xsl:with-param name="serialization" select="serialization"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='800' or $tag='810' or $tag='811'">

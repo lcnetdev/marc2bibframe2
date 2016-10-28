@@ -21,9 +21,19 @@
       <subfield code="a">Latin American lives :</subfield>
       <subfield code="b">selected biographies from the five-volume Encyclopedia of Latin American history and culture.</subfield>
     </datafield>
+    <datafield tag="700" ind1="1" ind2="2">
+      <subfield code="a">Cendrars, Blaise, 1887-1961.</subfield>
+      <subfield code="t">Selections.</subfield>
+      <subfield code="f">1987.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">2</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Cendrars, Blaise, 1887-1961.</subfield>
+      <subfield code="t">Selections.</subfield>
+      <subfield code="f">1987.</subfield>
+    </datafield>
     <datafield ind1="1" ind2="0" tag="245">
       <subfield code="a">Tarjamat al-Zabūr al-sharīf.</subfield>
     </datafield>

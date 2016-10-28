@@ -31,7 +31,7 @@
     <xsl:apply-templates mode="work730" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
       <xsl:with-param name="titleiri" select="$titleiri"/>
-      <xsl:with-param name="serialization" select="serialization"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
   
@@ -39,6 +39,7 @@
     <xsl:param name="workiri"/>
     <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <bflc:test>hello</bflc:test>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
@@ -312,11 +313,14 @@
            </bf:identifiedBy>
          </xsl:for-each>
         </xsl:if>
-        <xsl:if test="substring($tag,2,2)='30' or $tag='240'">
-          <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='0' or @code='w']">
+        <xsl:if test="substring($tag,2,2)='30' or $tag='240' or marc:subfield[@code='t']">
+          <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='0']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
+        <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='w']">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
         <xsl:if test="$tag='630' or $tag='730' or $tag='830'">
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -464,15 +468,30 @@
             <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
             <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,$nfi+1))"/></bflc:titleSortKey>
           </xsl:if>
-          <xsl:for-each select="marc:subfield[@code='a' or @code='t']">
-            <bf:mainTitle>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
-              </xsl:call-template>
-            </bf:mainTitle>
-          </xsl:for-each>
+          <xsl:choose>
+            <xsl:when test="substring($tag,2,2)='30' or $tag='240'">
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:for-each select="marc:subfield[@code='t']">
+                <bf:mainTitle>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2) = '11'">
               <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='n']">

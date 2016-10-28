@@ -12,11 +12,11 @@
   <x:scenario label="LDR">
     <x:context href="data/ConvSpec-LDR/marc.xml"/>
     <x:expect label="pos 5 should set the status in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/bf:code = 'c'"/>
-    <x:expect label="pos 6 should set the rdf:type of the Work" test="//bf:Work[2]/rdf:type = 'NotatedMusic'"/>
-    <x:expect label="pos 6 can also set the rdf:type of the Instance" test="//bf:Instance[2]/rdf:type = 'Manuscript'"/>
+    <x:expect label="pos 6 should set the rdf:type of the Work" test="//bf:Work[2]/rdf:type = 'bf:NotatedMusic'"/>
+    <x:expect label="pos 6 can also set the rdf:type of the Instance" test="//bf:Instance[2]/rdf:type = 'bf:Manuscript'"/>
     <x:expect label="pos 7 should set the issuance of the Instance" test="//bf:Instance[1]/bf:issuance/bf:Issuance/bf:code = 'm'"/>
-    <x:expect label="pos 7 can also set the rdf:type of the Instance" test="//bf:Instance[3]/rdf:type = 'Collection'"/>
-    <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type = 'Archival'"/>
+    <x:expect label="pos 7 can also set the rdf:type of the Instance" test="//bf:Instance[3]/rdf:type = 'bf:Collection'"/>
+    <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type = 'bf:Archival'"/>
     <x:expect label="pos 17 should set the encodingLevel in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/bf:code = 'f'"/>
     <x:expect label="pos 18 should set the descriptionConventions in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/bf:code = 'aacr'"/>
   </x:scenario>

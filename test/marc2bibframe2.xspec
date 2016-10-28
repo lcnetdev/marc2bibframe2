@@ -6,9 +6,11 @@
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:import href="ConvSpec-LDR.xspec"/>
+  <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-X30and240-UnifTitle.xspec"/>
@@ -38,7 +40,15 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type>Text</rdf:type>
+            <rdf:type>bf:Text</rdf:type>
+            <bf:contributor>
+              <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
+                <rdf:type>bf:Person</rdf:type>
+                <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
+                <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
+                <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
+              </bf:Agent>
+            </bf:contributor>
             <bf:title>
               <bf:Title rdf:about="http://example.org/13600108#Title245-13">
                 <rdf:type>bf:WorkTitle</rdf:type>
@@ -48,6 +58,23 @@
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
+                    <rdf:type>bf:Person</rdf:type>
+                    <bflc:name00MatchKey>Dickmeiss, Otto,</bflc:name00MatchKey>
+                    <bflc:name00MarcKey>7001 $aDickmeiss, Otto,$eill.</bflc:name00MarcKey>
+                    <rdfs:label>Dickmeiss, Otto,</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:role>
+                  <bf:Role>
+                    <rdfs:label>ill.</rdfs:label>
+                  </bf:Role>
+                </bf:role>
+              </bf:Contribution>
+            </bf:contribution>
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
@@ -87,7 +114,20 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type>Audio</rdf:type>
+            <rdf:type>bf:Audio</rdf:type>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/5637241#Agent700-19">
+                    <rdf:type>bf:Person</rdf:type>
+                    <bflc:name00MatchKey>Charles, Ray, 1930-</bflc:name00MatchKey>
+                    <bflc:name00MarcKey>7001 $aCharles, Ray,$d1930-$4prf</bflc:name00MarcKey>
+                    <rdfs:label>Charles, Ray, 1930-</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:role rdf:resource="http://id.loc.gov/vocabulary/relators/prf"/>
+              </bf:Contribution>
+            </bf:contribution>
             <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
@@ -131,16 +171,24 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
+            <bf:contributor>
+              <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
+                <rdf:type>bf:Organization</rdf:type>
+                <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
+                <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
+                <rdfs:label>White House Web Team.</rdfs:label>
+              </bf:Agent>
+            </bf:contributor>
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
-            <rdf:type>Electronic</rdf:type>
+            <rdf:type>bf:Electronic</rdf:type>
             <bf:issuance>
               <bf:Issuance>
                 <bf:code>m</bf:code>
               </bf:Issuance>
             </bf:issuance>
-            <rdf:type>Archival</rdf:type>
+            <rdf:type>bf:Archival</rdf:type>
             <bf:title>
               <bf:Title>
                 <rdf:type>bf:InstanceTitle</rdf:type>

@@ -1,0 +1,41 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Beethoven, Ludwig van,</subfield>
+      <subfield code="d">1770-1827</subfield>
+      <subfield code="c">(Spirit)</subfield>
+      <subfield code="0">(DE-101c)310008891</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="i">Parody of (work):</subfield>
+      <subfield code="a">Carroll, Lewis,</subfield>
+      <subfield code="d">1832-1898.</subfield>
+      <subfield code="t">Alice's adventures in Wonderland</subfield>
+      <subfield code="0">(isni)0000000121358464</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2="2">
+      <subfield code="a">Voltaire,</subfield>
+      <subfield code="d">1694-1778.</subfield>
+      <subfield code="t">Correspondence.</subfield>
+      <subfield code="k">Selections.</subfield>
+      <subfield code="f">1777.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Hecht, Ben,</subfield>
+      <subfield code="d">1893-1964,</subfield>
+      <subfield code="e">writing, direction, and production.</subfield>
+      <subfield code="u">Chemistry Dept., American University.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Galway, James.</subfield>
+      <subfield code="4">prf</subfield>
+      <subfield code="4">cnd</subfield>
+    </datafield>
+    <datafield tag="800" ind1="1" ind2=" ">
+      <subfield code="a">Fernando, A. Denis N.</subfield>
+      <subfield code="t">Resource maps of Sri Lanka ;</subfield>
+      <subfield code="v">pt. 2.</subfield>
+    </datafield>
+  </record>
+</collection>

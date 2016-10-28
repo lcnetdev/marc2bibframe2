@@ -266,45 +266,51 @@
     <xsl:param name="roleString"/>
     <xsl:choose>
       <xsl:when test="contains($roleString,',')">
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <bf:role>
-              <bf:Role>
-                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,','))"/></rdfs:label>
-              </bf:Role>
-            </bf:role>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:if test="string-length(normalize-space(substring-before($roleString,','))) &gt; 0">
+          <xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <bf:role>
+                <bf:Role>
+                  <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,','))"/></rdfs:label>
+                </bf:Role>
+              </bf:role>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
         <xsl:call-template name="splitRole">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="roleString" select="substring-after($roleString,',')"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="contains($roleString,' and')">
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <bf:role>
-              <bf:Role>
-                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
-              </bf:Role>
-            </bf:role>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:if test="string-length(normalize-space(substring-before($roleString,' and'))) &gt; 0">
+          <xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <bf:role>
+                <bf:Role>
+                  <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
+                </bf:Role>
+              </bf:role>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
         <xsl:call-template name="splitRole">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="roleString" select="substring-after($roleString,' and')"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="contains($roleString,'&amp;')">
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <bf:role>
-              <bf:Role>
-                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
-              </bf:Role>
-            </bf:role>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:if test="string-length(normalize-space(substring-before($roleString,'&amp;'))) &gt; 0">
+          <xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <bf:role>
+                <bf:Role>
+                  <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
+                </bf:Role>
+              </bf:role>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
         <xsl:call-template name="splitRole">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="roleString" select="substring-after($roleString,'&amp;')"/>
