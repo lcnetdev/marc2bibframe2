@@ -28,6 +28,17 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work730-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title730-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="work730" select=".">
+      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield" mode="work730">
+    <xsl:param name="workiri"/>
+    <xsl:param name="titleiri"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
@@ -75,12 +86,23 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
+
   <xsl:template match="marc:datafield[@tag='830']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work830-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title830-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="work830" select=".">
+      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="work830">
+    <xsl:param name="workiri"/>
+    <xsl:param name="titleiri"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:hasSeries>
@@ -103,7 +125,7 @@
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template>    
         
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">

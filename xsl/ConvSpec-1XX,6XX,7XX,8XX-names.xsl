@@ -18,6 +18,160 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="workName" select=".">
+      <xsl:with-param name="agentiri" select="$agentiri"/>
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='700' or @tag='710' or @tag='711']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="work7XX" select=".">
+      <xsl:with-param name="agentiri" select="$agentiri"/>
+      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="work7XX">
+    <xsl:param name="agentiri"/>
+    <xsl:param name="workiri"/>
+    <xsl:param name="titleiri"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="marc:subfield[@code='t']">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:choose>
+              <xsl:when test="@ind2='2'">
+                <bf:hasPart>
+                  <bf:Work>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                    <xsl:apply-templates mode="workName" select=".">
+                      <xsl:with-param name="agentiri" select="$agentiri"/>
+                      <xsl:with-param name="titleiri" select="$titleiri"/>
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </bf:Work>
+                </bf:hasPart>
+              </xsl:when>
+              <xsl:otherwise>
+                <bf:relatedTo>
+                  <bf:Work>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                    <xsl:apply-templates mode="workName" select=".">
+                      <xsl:with-param name="agentiri" select="$agentiri"/>
+                      <xsl:with-param name="titleiri" select="$titleiri"/>
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </bf:Work>
+                </bf:relatedTo>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:for-each select="marc:subfield[@code='i']">
+              <bflc:relationship>
+                <bflc:Relationship>
+                  <bflc:relation>
+                    <rdf:Description>
+                      <rdfs:label>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString">
+                            <xsl:value-of select="."/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </rdfs:label>
+                    </rdf:Description>
+                  </bflc:relation>
+                  <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
+                </bflc:Relationship>
+              </bflc:relationship>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="workName" select=".">
+          <xsl:with-param name="agentiri" select="$agentiri"/>
+          <xsl:with-param name="titleiri" select="$titleiri"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+        <xsl:for-each select="marc:subfield[@code='i']">
+          <bflc:relationship>
+            <bflc:Relationship>
+              <bflc:relation>
+                <rdf:Description>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString">
+                        <xsl:value-of select="."/>
+                      </xsl:with-param>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </rdf:Description>
+              </bflc:relation>
+              <bf:relatedTo><xsl:value-of select="$agentiri"/></bf:relatedTo>
+            </bflc:Relationship>
+          </bflc:relationship>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811']" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:apply-templates mode="work8XX" select=".">
+      <xsl:with-param name="agentiri" select="$agentiri"/>
+      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="work8XX">
+    <xsl:param name="agentiri"/>
+    <xsl:param name="workiri"/>
+    <xsl:param name="titleiri"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:hasSeries>
+          <bf:Work>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+            <xsl:apply-templates mode="workName" select=".">
+              <xsl:with-param name="agentiri" select="$agentiri"/>
+              <xsl:with-param name="titleiri" select="$titleiri"/>
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Work>
+        </bf:hasSeries>
+        <xsl:for-each select="marc:subfield[@code='v']">
+          <bf:seriesEnumeration>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString">
+                <xsl:value-of select="."/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </bf:seriesEnumeration>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="workName">
+    <xsl:param name="agentiri"/>
+    <xsl:param name="titleiri"/>
+    <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='e' or @code='j' or @code='4']">
         <xsl:choose>
@@ -46,8 +200,14 @@
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:if test="marc:subfield[@code='t']">
+      <xsl:apply-templates mode="workUnifTitle" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="titleiri" select="$titleiri"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
-
+  
   <!-- bf:Contribution properties from name fields -->
   <xsl:template match="marc:datafield" mode="agentContribution">
     <xsl:param name="agentiri"/>
@@ -87,17 +247,6 @@
             <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="."/></xsl:attribute>
           </bf:role>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='u']">
-          <bflc:affiliation>
-            <madsrdf:Affiliation>
-              <rdfs:label>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </rdfs:label>
-            </madsrdf:Affiliation>
-          </bflc:affiliation>
-        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -121,11 +270,7 @@
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
               <bf:Role>
-                <rdfs:label>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="substring-before($roleString,',')"/>
-                  </xsl:call-template>
-                </rdfs:label>
+                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,','))"/></rdfs:label>
               </bf:Role>
             </bf:role>
           </xsl:when>
@@ -140,11 +285,7 @@
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
               <bf:Role>
-                <rdfs:label>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="substring-before($roleString,' and')"/>
-                  </xsl:call-template>
-                </rdfs:label>
+                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
               </bf:Role>
             </bf:role>
           </xsl:when>
@@ -159,11 +300,7 @@
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
               <bf:Role>
-                <rdfs:label>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="substring-before($roleString,'&amp;')"/>
-                  </xsl:call-template>
-                </rdfs:label>
+                <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
               </bf:Role>
             </bf:role>
           </xsl:when>
@@ -178,11 +315,7 @@
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
               <bf:Role>
-                <rdfs:label>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="$roleString"/>
-                  </xsl:call-template>
-                </rdfs:label>
+                <rdfs:label><xsl:value-of select="normalize-space($roleString)"/></rdfs:label>
               </bf:Role>
             </bf:role>
           </xsl:when>
@@ -316,6 +449,17 @@
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
           </xsl:if>
+          <xsl:for-each select="marc:subfield[@code='u']">
+            <bflc:affiliation>
+              <madsrdf:Affiliation>
+                <rdfs:label>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </rdfs:label>
+              </madsrdf:Affiliation>
+            </bflc:affiliation>
+          </xsl:for-each>
         </bf:Agent>
       </xsl:when>
     </xsl:choose>
