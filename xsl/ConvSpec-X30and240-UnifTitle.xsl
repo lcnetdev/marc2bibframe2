@@ -88,11 +88,11 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='830']" mode="work">
+  <xsl:template match="marc:datafield[@tag='830' or @tag='440']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work830-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title830-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work830" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
       <xsl:with-param name="titleiri" select="$titleiri"/>
@@ -166,7 +166,7 @@
               </bf:legalDate>
             </xsl:for-each>
           </xsl:when>
-          <xsl:when test="substring($tag,2,2)='30' or $tag='240'">
+          <xsl:when test="substring($tag,2,2)='30' or substring($tag,2,2)='40'">
             <xsl:for-each select="marc:subfield[@code='d']">
               <bf:legalDate>
                 <xsl:call-template name="chopPunctuation">
@@ -192,7 +192,7 @@
           </bf:originDate>
         </xsl:for-each>
         <xsl:choose>
-          <xsl:when test="substring($tag,2,2)='30' or $tag='240'">
+          <xsl:when test="substring($tag,2,2)='30' or substring($tag,2,2)='40'">
             <xsl:for-each select="marc:subfield[@code='g']">
               <bf:genreForm>
                 <bf:GenreForm>
@@ -359,7 +359,7 @@
         <xsl:when test="$tag='130' or $tag='630' or $tag='730'">
           <xsl:value-of select="@ind1"/>
         </xsl:when>
-        <xsl:when test="$tag='240' or $tag='830'">
+        <xsl:when test="$tag='240' or $tag='830' or $tag='440'">
           <xsl:value-of select="@ind2"/>
         </xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
@@ -471,7 +471,7 @@
             <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,$nfi+1))"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:choose>
-            <xsl:when test="substring($tag,2,2)='30' or $tag='240'">
+            <xsl:when test="substring($tag,2,2)='30' or substring($tag,2,2)='40'">
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:mainTitle>
                   <xsl:call-template name="chopPunctuation">

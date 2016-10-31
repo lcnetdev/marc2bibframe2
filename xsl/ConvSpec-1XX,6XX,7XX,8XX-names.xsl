@@ -124,7 +124,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811']" mode="work">
+  <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='400' or @tag='410' or @tag='411']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
