@@ -46,7 +46,7 @@
     <x:expect label="$w becomes an identifiedBy" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:identifiedBy[2]/bf:Identifier/rdf:value = '0002'"/>
     <x:expect label="$3 becomes a bflc:appliesTo" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1980'"/>
     <x:expect label="$5 becomes a bflc:applicableInstitution" test="//bf:Work[@rdf:about='http://example.org/2#Work730-5']/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
-    <x:expect label="$7 sets the rdf:type of the Work" test="//bf:Work[@rdf:about='http://example.org/3#Work830-3']/rdf:type = 'Text'"/>
+    <x:expect label="$7 sets the rdf:type of the Work" test="//bf:Work[@rdf:about='http://example.org/3#Work830-3']/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Text'"/>
     <x:expect label="$7 sets the issuance of the Work" test="//bf:Work[@rdf:about='http://example.org/3#Work830-3']/bf:issuance/bf:Issuance/bf:code = 's'"/>
   </x:scenario>
 

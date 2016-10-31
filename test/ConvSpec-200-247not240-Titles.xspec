@@ -189,7 +189,7 @@
     </x:scenario>
     <x:scenario label="@ind2 = 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should create a ParallelTitle" test="count(//bf:Title[contains(@rdf:about,'1#Title246')]/rdf:type[text()='bf:ParallelTitle']) = 2"/>
+      <x:expect label="should create a ParallelTitle" test="count(//bf:Title[contains(@rdf:about,'1#Title246')]/rdf:type[@rdf:resource='http://id.loc.gov/ontologies/bibframe/ParallelTitle']) = 2"/>
     </x:scenario>
     <x:scenario label="other @ind2 value">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>

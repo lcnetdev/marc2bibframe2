@@ -48,8 +48,12 @@
           <xsl:if test="@ind1 = 1">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           </xsl:if>
-          <rdf:type>bf:VariantTitle</rdf:type>
-          <rdf:type>bf:AbbreviatedTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>AbbreviatedTitle</xsl:attribute>
+          </rdf:type>
           <xsl:if test="@ind2 = ' '">
             <bf:source>
               <bf:Source>
@@ -122,8 +126,12 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          <rdf:type>bf:VariantTitle</rdf:type>
-          <rdf:type>bf:KeyTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>KeyTitle</xsl:attribute>
+          </rdf:type>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
           </xsl:variable>
@@ -190,7 +198,9 @@
           <xsl:if test="@ind1 = 1">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           </xsl:if>
-          <rdf:type>bf:VariantTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
           <bf:variantType>translated</bf:variantType>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
@@ -279,8 +289,12 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <rdf:type>bf:VariantTitle</rdf:type>
-          <rdf:type>bf:CollectiveTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>CollectiveTitle</xsl:attribute>
+          </rdf:type>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space"
                                  select="marc:subfield[@code='a' or
@@ -447,9 +461,13 @@
             <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           </xsl:if>
           <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-            <rdf:type>bf:WorkTitle</rdf:type>
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>WorkTitle</xsl:attribute>
+            </rdf:type>
           </xsl:if>
-          <rdf:type>bf:InstanceTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>InstanceTitle</xsl:attribute>
+          </rdf:type>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space"
                                  select="marc:subfield[@code='a' or
@@ -542,13 +560,17 @@
           <xsl:if test="(@ind1 = 1) or (@ind1 = 3)">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           </xsl:if>
-          <rdf:type>bf:VariantTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
           <xsl:choose>
             <xsl:when test="@ind2 = '0'">
               <bf:variantType>portion</bf:variantType>
             </xsl:when>
             <xsl:when test="@ind2 = '1'">
-              <rdf:type>bf:ParallelTitle</rdf:type>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>ParallelTitle</xsl:attribute>
+              </rdf:type>
             </xsl:when>
             <xsl:when test="@ind2 = '2'">
               <bf:variantType>distinctive</bf:variantType>
@@ -670,7 +692,9 @@
           <xsl:if test="@ind1 = 1">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           </xsl:if>
-          <rdf:type>bf:VariantTitle</rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
+          </rdf:type>
           <bf:variantType>former</bf:variantType>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space"

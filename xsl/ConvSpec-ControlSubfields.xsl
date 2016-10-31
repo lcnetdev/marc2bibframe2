@@ -112,7 +112,9 @@
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:if test="$type != ''">
-          <rdf:type><xsl:value-of select="$type"/></rdf:type>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/><xsl:value-of select="$type"/></xsl:attribute>
+          </rdf:type>
         </xsl:if>
         <xsl:if test="$issuance != ''">
           <bf:issuance>

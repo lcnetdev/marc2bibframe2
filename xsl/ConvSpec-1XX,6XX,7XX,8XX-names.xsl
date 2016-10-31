@@ -414,8 +414,12 @@
             <xsl:choose>
               <xsl:when test="substring($tag,2,2)='00'">
                 <xsl:choose>
-                  <xsl:when test="@ind1='3'">bf:Family</xsl:when>
-                  <xsl:otherwise>bf:Person</xsl:otherwise>
+                  <xsl:when test="@ind1='3'">
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Family</xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Person</xsl:attribute>
+                  </xsl:otherwise>
                 </xsl:choose>
               </xsl:when>
               <xsl:when test="substring($tag,2,2)='10'">

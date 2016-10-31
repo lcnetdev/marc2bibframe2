@@ -40,10 +40,10 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type>bf:Text</rdf:type>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
             <bf:contributor>
               <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
-                <rdf:type>bf:Person</rdf:type>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
                 <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
                 <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
                 <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
@@ -51,8 +51,8 @@
             </bf:contributor>
             <bf:title>
               <bf:Title rdf:about="http://example.org/13600108#Title245-13">
-                <rdf:type>bf:WorkTitle</rdf:type>
-                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/WorkTitle"/>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
                 <rdfs:label>Ole Lukøie /</rdfs:label>
                 <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
@@ -62,7 +62,7 @@
               <bf:Contribution>
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
-                    <rdf:type>bf:Person</rdf:type>
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
                     <bflc:name00MatchKey>Dickmeiss, Otto,</bflc:name00MatchKey>
                     <bflc:name00MarcKey>7001 $aDickmeiss, Otto,$eill.</bflc:name00MarcKey>
                     <rdfs:label>Dickmeiss, Otto,</rdfs:label>
@@ -114,12 +114,12 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type>bf:Audio</rdf:type>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/5637241#Agent700-19">
-                    <rdf:type>bf:Person</rdf:type>
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
                     <bflc:name00MatchKey>Charles, Ray, 1930-</bflc:name00MatchKey>
                     <bflc:name00MarcKey>7001 $aCharles, Ray,$d1930-$4prf</bflc:name00MarcKey>
                     <rdfs:label>Charles, Ray, 1930-</rdfs:label>
@@ -138,7 +138,7 @@
             </bf:issuance>
             <bf:title>
               <bf:Title>
-                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
                 <rdfs:label>The Great Ray Charles</rdfs:label>
                 <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
@@ -182,16 +182,16 @@
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
-            <rdf:type>bf:Electronic</rdf:type>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
             <bf:issuance>
               <bf:Issuance>
                 <bf:code>m</bf:code>
               </bf:Issuance>
             </bf:issuance>
-            <rdf:type>bf:Archival</rdf:type>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:title>
               <bf:Title>
-                <rdf:type>bf:InstanceTitle</rdf:type>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
                 <rdfs:label>The White House</rdfs:label>
                 <bflc:titleSortKey>White House</bflc:titleSortKey>
                 <bf:mainTitle>The White House</bf:mainTitle>
