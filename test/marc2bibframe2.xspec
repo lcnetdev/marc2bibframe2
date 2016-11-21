@@ -78,11 +78,7 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
-            <bf:issuance>
-              <bf:Issuance>
-                <bf:code>m</bf:code>
-              </bf:Issuance>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
             <bf:title rdf:resource="http://example.org/13600108#Title245-13"/>
             <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
@@ -131,11 +127,7 @@
             <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
-            <bf:issuance>
-              <bf:Issuance>
-                <bf:code>m</bf:code>
-              </bf:Issuance>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
             <bf:title>
               <bf:Title>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
@@ -183,11 +175,7 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
-            <bf:issuance>
-              <bf:Issuance>
-                <bf:code>m</bf:code>
-              </bf:Issuance>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:title>
               <bf:Title>

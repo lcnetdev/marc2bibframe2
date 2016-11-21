@@ -109,6 +109,7 @@
 
   <xsl:template match="marc:leader" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="issuanceUri">http://id.lc.gov/vocabulary/issuance/</xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="instanceType">
@@ -127,16 +128,12 @@
         <xsl:choose>
           <xsl:when test="substring(.,8,1) = 'a'">
             <bf:issuance>
-              <bf:Issuance>
-                <bf:code>m</bf:code>
-              </bf:Issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>mono</xsl:attribute>
             </bf:issuance>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 'b'">
             <bf:issuance>
-              <bf:Issuance>
-                <bf:code>s</bf:code>
-              </bf:Issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>serl</xsl:attribute>
             </bf:issuance>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 'c'">
@@ -145,31 +142,23 @@
             </rdf:type>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 'd'">
-            <bf:issuance>
-              <bf:Issuance>
-                <bf:code>d</bf:code>
-              </bf:Issuance>
-            </bf:issuance>
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Collection</xsl:attribute>
+            </rdf:type>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 'i'">
             <bf:issuance>
-              <bf:Issuance>
-                <bf:code>i</bf:code>
-              </bf:Issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>intg</xsl:attribute>
             </bf:issuance>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 'm'">
             <bf:issuance>
-              <bf:Issuance>
-                <bf:code>m</bf:code>
-              </bf:Issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>mono</xsl:attribute>
             </bf:issuance>
           </xsl:when>
           <xsl:when test="substring(.,8,1) = 's'">
             <bf:issuance>
-              <bf:Issuance>
-                <bf:code>s</bf:code>
-              </bf:Issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>serl</xsl:attribute>
             </bf:issuance>
           </xsl:when>
         </xsl:choose>
@@ -177,6 +166,11 @@
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Archival</xsl:attribute>
           </rdf:type>
+        </xsl:if>
+        <xsl:if test="substring(.,20,1) = 'a'">
+          <bf:issuance>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/>sers</xsl:attribute>
+          </bf:issuance>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
