@@ -18,10 +18,8 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="workName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
@@ -30,12 +28,10 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work7XX" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
@@ -43,7 +39,6 @@
   <xsl:template match="marc:datafield" mode="work7XX">
     <xsl:param name="agentiri"/>
     <xsl:param name="workiri"/>
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='t']">
@@ -56,7 +51,6 @@
                     <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
-                      <xsl:with-param name="titleiri" select="$titleiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
                   </bf:Work>
@@ -68,7 +62,6 @@
                     <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
-                      <xsl:with-param name="titleiri" select="$titleiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
                   </bf:Work>
@@ -89,7 +82,9 @@
                       </rdfs:label>
                     </rdf:Description>
                   </bflc:relation>
-                  <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
+                  <bf:relatedTo>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
+                  </bf:relatedTo>
                 </bflc:Relationship>
               </bflc:relationship>
             </xsl:for-each>
@@ -99,7 +94,6 @@
       <xsl:otherwise>
         <xsl:apply-templates mode="workName" select=".">
           <xsl:with-param name="agentiri" select="$agentiri"/>
-          <xsl:with-param name="titleiri" select="$titleiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
         <xsl:for-each select="marc:subfield[@code='i']">
@@ -128,12 +122,10 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work8XX" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
@@ -141,7 +133,6 @@
   <xsl:template match="marc:datafield" mode="work8XX">
     <xsl:param name="agentiri"/>
     <xsl:param name="workiri"/>
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
@@ -150,7 +141,6 @@
             <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
             <xsl:apply-templates mode="workName" select=".">
               <xsl:with-param name="agentiri" select="$agentiri"/>
-              <xsl:with-param name="titleiri" select="$titleiri"/>
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
           </bf:Work>
@@ -170,7 +160,6 @@
 
   <xsl:template match="marc:datafield" mode="workName">
     <xsl:param name="agentiri"/>
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='e' or @code='j' or @code='4']">
@@ -203,7 +192,6 @@
     <xsl:if test="marc:subfield[@code='t']">
       <xsl:apply-templates mode="workUnifTitle" select=".">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="titleiri" select="$titleiri"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>

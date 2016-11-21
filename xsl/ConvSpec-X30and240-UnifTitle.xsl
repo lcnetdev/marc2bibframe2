@@ -16,9 +16,7 @@
   <xsl:template match="marc:datafield[@tag='130' or @tag='240']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="workUnifTitle" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
@@ -27,19 +25,15 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work730-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title730-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work730" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
   
   <xsl:template match="marc:datafield" mode="work730">
     <xsl:param name="workiri"/>
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <bflc:test>hello</bflc:test>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
@@ -48,7 +42,6 @@
               <bf:Work>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
                 <xsl:apply-templates select="." mode="workUnifTitle">
-                  <xsl:with-param name="titleiri" select="$titleiri"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Work>
@@ -59,7 +52,6 @@
               <bf:Work>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
                 <xsl:apply-templates select="." mode="workUnifTitle">
-                  <xsl:with-param name="titleiri" select="$titleiri"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Work>
@@ -92,17 +84,14 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work830" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="work830">
     <xsl:param name="workiri"/>
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -110,7 +99,6 @@
           <bf:Work>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
             <xsl:apply-templates mode="workUnifTitle" select=".">
-              <xsl:with-param name="titleiri" select="$titleiri"/>
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
           </bf:Work>
@@ -130,7 +118,6 @@
         
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag">
       <xsl:choose>
@@ -142,12 +129,74 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="label">
+      <xsl:choose>
+        <xsl:when test="substring($tag,2,2)='00'">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='t'] |
+                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
+                                         @code='g' or 
+                                         @code='k' or
+                                         @code='l' or
+                                         @code='m' or
+                                         @code='n' or
+                                         @code='o' or
+                                         @code='p' or
+                                         @code='r' or
+                                         @code='s']"/>
+        </xsl:when>
+        <xsl:when test="substring($tag,2,2)='10'">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='t'] |
+                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d' or
+                                         @code='f' or
+                                         @code='g' or
+                                         @code='k' or
+                                         @code='l' or
+                                         @code='m' or
+                                         @code='n' or
+                                         @code='o' or
+                                         @code='p' or
+                                         @code='r' or
+                                         @code='s']"/>
+        </xsl:when>
+        <xsl:when test="substring($tag,2,2)='11'">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='t'] |
+                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
+                                         @code='g' or
+                                         @code='k' or
+                                         @code='l' or
+                                         @code='n' or
+                                         @code='p' or
+                                         @code='s']"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                   @code='d' or
+                                   @code='f' or
+                                   @code='g' or 
+                                   @code='k' or
+                                   @code='l' or
+                                   @code='m' or
+                                   @code='n' or
+                                   @code='o' or
+                                   @code='p' or
+                                   @code='r' or
+                                   @code='s']"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$label != ''">
+          <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
+        </xsl:if>
         <bf:title>
           <xsl:apply-templates mode="titleUnifTitle" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="label" select="$label"/>
           </xsl:apply-templates>
         </bf:title>
         <xsl:choose>
@@ -342,8 +391,8 @@
 
   <!-- build a bf:Title entity -->
   <xsl:template match="marc:datafield" mode="titleUnifTitle">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="label"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -365,72 +414,12 @@
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="label">
-      <xsl:choose>
-        <xsl:when test="substring($tag,2,2)='00'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                         @code='g' or 
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:when test="substring($tag,2,2)='10'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d' or
-                                         @code='f' or
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:when test="substring($tag,2,2)='11'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='n' or
-                                         @code='p' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                   @code='d' or
-                                   @code='f' or
-                                   @code='g' or 
-                                   @code='k' or
-                                   @code='l' or
-                                   @code='m' or
-                                   @code='n' or
-                                   @code='o' or
-                                   @code='p' or
-                                   @code='r' or
-                                   @code='s']"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:variable name="marckey">
       <xsl:apply-templates mode="marcKey"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>WorkTitle</xsl:attribute>
           </rdf:type>

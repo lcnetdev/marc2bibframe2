@@ -50,10 +50,10 @@
                 <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
               </bf:Agent>
             </bf:contributor>
+            <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
-              <bf:Title rdf:about="http://example.org/13600108#Title245-13">
+              <bf:Title>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/WorkTitle"/>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
                 <rdfs:label>Ole Lukøie /</rdfs:label>
                 <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
@@ -80,7 +80,15 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
             <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
-            <bf:title rdf:resource="http://example.org/13600108#Title245-13"/>
+            <rdfs:label>Ole Lukøie /</rdfs:label>
+            <bf:title>
+              <bf:Title>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
+                <rdfs:label>Ole Lukøie /</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <bf:mainTitle>Ole Lukøie</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
             <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
           </bf:Instance>
@@ -112,6 +120,20 @@
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
+            <rdfs:label>The Great Ray Charles</rdfs:label>
+            <bf:title>
+              <bf:Title>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/WorkTitle"/>
+                <rdfs:label>The Great Ray Charles</rdfs:label>
+                <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
+                <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:genreForm>
+              <bf:GenreForm>
+                <rdfs:label>sound recording</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>
@@ -129,6 +151,7 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
             <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
+            <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>
@@ -164,6 +187,20 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
+            <rdfs:label>The White House</rdfs:label>
+            <bf:title>
+              <bf:Title>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/WorkTitle"/>
+                <rdfs:label>The White House</rdfs:label>
+                <bflc:titleSortKey>White House</bflc:titleSortKey>
+                <bf:mainTitle>The White House</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:genreForm>
+              <bf:GenreForm>
+                <rdfs:label>computer file</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
             <bf:contributor>
               <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
                 <rdf:type>bf:Organization</rdf:type>
@@ -178,6 +215,7 @@
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
             <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
+            <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/InstanceTitle"/>

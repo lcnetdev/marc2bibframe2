@@ -19,7 +19,7 @@
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Alice''s adventures in Wonderland'"/>
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence'"/>
     <x:expect label="8XX creates a bf:hasSeries" test="//bf:Work[1]/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
-    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Title[@rdf:about='http://example.org/1#Title700-3']) = 1"/>
+    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]/bf:title) = 3"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891'"/>

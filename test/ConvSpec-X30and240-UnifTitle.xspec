@@ -9,6 +9,7 @@
 
   <x:scenario label="Uniform title bf:Title creation">
     <x:context href="data/ConvSpec-X30and240-UnifTitle/marc.xml"/>
+    <x:expect label="Work rdfs:label generation" test="//bf:Work[1]/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. French violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
     <x:expect label="title match key generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:title30MatchKey = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. French violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
     <x:expect label="title marc key generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:title30MarcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$lFrench$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001$w(ID)0002'"/>
     <x:expect label="rdfs:label generation" test="//bf:Work[1]/bf:title/bf:Title/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. French violin, viola, D major. arr. O.T. Book 4. Selections.'"/>

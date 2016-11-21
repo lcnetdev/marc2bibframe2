@@ -16,21 +16,17 @@
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title210-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance210" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='210' or @tag='880']" mode="instance210">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <xsl:apply-templates mode="title210" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -40,14 +36,10 @@
 
   <!-- bf:Title from MARC 210 -->
   <xsl:template match="marc:datafield[@tag='210' or @tag='880']" mode="title210">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="@ind1 = 1">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          </xsl:if>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
           </rdf:type>
@@ -96,21 +88,17 @@
   <xsl:template match="marc:datafield[@tag='222']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title222-<xsl:value-of select="position()"/></xsl:variable>      
     <xsl:apply-templates mode="instance222" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='222' or @tag='880']" mode="instance222">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <xsl:apply-templates mode="title222" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -120,12 +108,10 @@
 
   <!-- bf:Title from MARC 222 -->
   <xsl:template match="marc:datafield[@tag='222' or @tag='880']" mode="title222">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
           </rdf:type>
@@ -166,21 +152,17 @@
   <xsl:template match="marc:datafield[@tag='242']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title242-<xsl:value-of select="position()"/></xsl:variable>      
     <xsl:apply-templates mode="instance242" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='242' or @tag='880']" mode="instance242">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <xsl:apply-templates mode="title242" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -190,14 +172,10 @@
 
   <!-- bf:Title from MARC 242 -->
   <xsl:template match="marc:datafield[@tag='242' or @tag='880']" mode="title242">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="@ind1 = 1">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          </xsl:if>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
           </rdf:type>
@@ -332,23 +310,37 @@
   <xsl:template match="marc:datafield[@tag='245']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-      <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+      <xsl:variable name="label">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='a' or
+                                     @code='b' or
+                                     @code='f' or 
+                                     @code='g' or
+                                     @code='k' or
+                                     @code='n' or
+                                     @code='p' or
+                                     @code='s']"/>
+      </xsl:variable>
       <xsl:apply-templates mode="work245" select=".">
-        <xsl:with-param name="titleiri" select="$titleiri"/>
+        <xsl:with-param name="label" select="$label"/>
         <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
-    <xsl:param name="titleiri"/>
+    <xsl:param name="label"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$label != '' and @tag='245'">
+          <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
+        </xsl:if>
         <bf:title>
           <xsl:apply-templates mode="title245" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
+            <xsl:with-param name="label" select="$label"/>
+            <xsl:with-param name="class" select="concat($bf,'WorkTitle')"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -395,30 +387,37 @@
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title245-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="label">
+      <xsl:apply-templates mode="concat-nodes-space"
+                           select="marc:subfield[@code='a' or
+                                   @code='b' or
+                                   @code='f' or 
+                                   @code='g' or
+                                   @code='k' or
+                                   @code='n' or
+                                   @code='p' or
+                                   @code='s']"/>
+    </xsl:variable>
     <xsl:apply-templates mode="instance245" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
+      <xsl:with-param name="label" select="$label"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="instance245">
-    <xsl:param name="titleiri"/>
+    <xsl:param name="label"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$label != '' and @tag='245'">
+          <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
+        </xsl:if>
         <bf:title>
-          <xsl:choose>
-            <xsl:when test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="$titleiri"/></xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates mode="title245" select=".">
-                <xsl:with-param name="titleiri" select="$titleiri"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:apply-templates mode="title245" select=".">
+            <xsl:with-param name="label" select="$label"/>
+            <xsl:with-param name="class" select="concat($bf,'InstanceTitle')"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
         </bf:title>
         <xsl:for-each select="marc:subfield[@code='c']">
           <bf:responsibilityStatement>
@@ -452,33 +451,18 @@
 
   <!-- bf:Title from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="title245">
-    <xsl:param name="titleiri"/>
+    <xsl:param name="label"/>
+    <xsl:param name="class"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="@ind1 = 1">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          </xsl:if>
-          <xsl:if test="@ind1 = 1 and not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
+          <xsl:if test="$class != ''">
             <rdf:type>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>WorkTitle</xsl:attribute>
+              <xsl:attribute name="rdf:resource"><xsl:value-of
+              select="$class"/></xsl:attribute>
             </rdf:type>
           </xsl:if>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>InstanceTitle</xsl:attribute>
-          </rdf:type>
-          <xsl:variable name="label">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='b' or
-                                         @code='f' or 
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='n' or
-                                         @code='p' or
-                                         @code='s']"/>
-          </xsl:variable>
           <xsl:if test="$label != ''">
             <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
@@ -528,21 +512,17 @@
   <xsl:template match="marc:datafield[@tag='246']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title246-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance246" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="instance246">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <xsl:apply-templates mode="title246" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -552,14 +532,10 @@
 
   <!-- bf:Title from MARC 246 -->
   <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="title246">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="(@ind1 = 1) or (@ind1 = 3)">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          </xsl:if>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
           </rdf:type>
@@ -660,21 +636,17 @@
   <xsl:template match="marc:datafield[@tag='247']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="titleiri"><xsl:value-of select="$recordid"/>#Title247-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="instance247" select=".">
-      <xsl:with-param name="titleiri" select="$titleiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='247' or @tag='880']" mode="instance247">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <xsl:apply-templates mode="title247" select=".">
-            <xsl:with-param name="titleiri" select="$titleiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -684,14 +656,10 @@
 
   <!-- bf:Title from MARC 247 -->
   <xsl:template match="marc:datafield[@tag='247' or @tag='880']" mode="title247">
-    <xsl:param name="titleiri"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="@ind1 = 1">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$titleiri"/></xsl:attribute>
-          </xsl:if>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
           </rdf:type>

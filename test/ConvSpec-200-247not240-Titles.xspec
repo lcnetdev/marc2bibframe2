@@ -11,13 +11,7 @@
   <x:scenario label="210 - ABBREVIATED TITLE">
     <x:scenario label="multiple 210s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="should make multiple Titles" test="//bf:Title[@rdf:about='http://example.org/1#Title210-2'] and //bf:Title[@rdf:about='http://example.org/1#Title210-3']"/>
       <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
-    </x:scenario>
-    <x:scenario label="@ind1 != 1">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="should not create a Title entity" test="not(//bf:Title[@rdf:about='http://example.org/2#Title210-2'])"/>
-      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[2]/bf:title[1]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2 = ' '">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
@@ -37,45 +31,37 @@
     </x:scenario>
     <x:scenario label="$2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="becomes the source" test="//bf:Title[@rdf:about='http://example.org/1#Title210-2']/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
+      <x:expect label="becomes the source" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
     </x:scenario>
   </x:scenario>
 
   <x:scenario label="222 - KEY TITLE">
     <x:scenario label="multiple 222s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should make multiple Titles" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2'] and //bf:Title[@rdf:about='http://example.org/1#Title222-3']"/>
       <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Title[@rdf:about='http://example.org/1#Title222-3']/bflc:titleSortKey = 'Vagrant (London)'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance/bf:title[2]/bf:Title/bflc:titleSortKey = 'Vagrant (London)'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="$a $b in record order" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2']/rdfs:label = 'Idler (London)'"/>
+      <x:expect label="$a $b in record order" test="//bf:Instance/bf:title[1]/bf:Title/rdfs:label = 'Idler (London)'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2']/bf:mainTitle = 'Idler'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance/bf:title[1]/bf:Title/bf:mainTitle = 'Idler'"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Title[@rdf:about='http://example.org/1#Title222-2']/bf:qualifier = 'London'"/>
+      <x:expect label="becomes the qualifier" test="//bf:Instance/bf:title[1]/bf:Title/bf:qualifier = 'London'"/>
     </x:scenario>
   </x:scenario>
 
   <x:scenario label="242 - TRANSLATION OF TITLE BY CATALOGING AGENCY">
     <x:scenario label="multiple 242s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="should make multiple Titles" test="//bf:Instance[1]/bf:title[1]/bf:Title and //bf:Title[@rdf:about='http://example.org/1#Title242-3']"/>
       <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
-    </x:scenario>
-    <x:scenario label="@ind1 != 1">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1#Title242-2']) = 0"/>
-      <x:expect label="should create a title property in Instance" test="count(//bf:Instance[1]/bf:title[1]/bf:Title) = 1"/>
-      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title[1]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -123,20 +109,15 @@
   </x:scenario>
 
   <x:scenario label="245 - TITLE STATEMENT">
-    <x:scenario label="@ind1 != 1">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="should not create a Title entity" test="count(/rdf:RDF/bf:Title[@rdf:about='http://example.org/1#Title245']) = 0"/>
-      <x:expect label="should not create a title property in Work" test="count(/rdf:RDF/bf:Work[1]/bf:title) = 0"/>
-      <x:expect label="should create a title property in Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:title) = 1"/>
-      <x:expect label="and it should be a blank node" test="not(/rdf:RDF/bf:Instance[1]/bf:title/bf:Title/@rdf:about)"/>
-    </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau La Oficina = Das Büro.'"/>
     </x:scenario>
-    <x:scenario label="rdfs:label for Title">
+    <x:scenario label="rdfs:label">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="$abfgknps in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="rdfs:label for Work" test="//bf:Work[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="rdfs:label for Instance" test="//bf:Instance[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
@@ -179,29 +160,23 @@
   <x:scenario label="246 - VARYING FORM OF TITLE">
     <x:scenario label="multiple 246s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should make multiple Titles" test="count(//bf:Title[contains(@rdf:about,'1#Title246')]) = 2"/>
       <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 3"/>
-    </x:scenario>
-    <x:scenario label="@ind1 = 0 or @ind1 = 2">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'2#Title246')]) = 0"/>
-      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[2]/bf:title[2]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="@ind2 = 1">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should create a ParallelTitle" test="count(//bf:Title[contains(@rdf:about,'1#Title246')]/rdf:type[@rdf:resource='http://id.loc.gov/ontologies/bibframe/ParallelTitle']) = 2"/>
+      <x:expect label="should create a ParallelTitle" test="//bf:Instance[1]/bf:title[2]/bf:Title/rdf:type/@rdf:resource ='http://id.loc.gov/ontologies/bibframe/ParallelTitle'"/>
     </x:scenario>
     <x:scenario label="other @ind2 value">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should become the variantType" test="//bf:Title[contains(@rdf:about,'3#Title246')]/bf:variantType = 'portion'"/>
+      <x:expect label="should become the variantType" test="//bf:Instance[3]/bf:title[2]/bf:Title/bf:variantType = 'portion'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="$abgnp in record order" test="//bf:Title[contains(@rdf:about,'4#Title246')]/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
+      <x:expect label="$abgnp in record order" test="//bf:Instance[4]/bf:title/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Title[1]/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title[2]/bf:Title/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
@@ -209,40 +184,34 @@
     </x:scenario>
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the date" test="//bf:Title[contains(@rdf:about,'3#Title246')]/bf:date = 'Juli 1976-'"/>
+      <x:expect label="becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:Title/bf:date = 'Juli 1976-'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Title[contains(@rdf:about,'4#Title246')]/bf:partNumber = 'Serie A'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[4]/bf:title/bf:Title/bf:partNumber = 'Serie A'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a partName" test="//bf:Title[contains(@rdf:about,'4#Title246')]/bf:partName = 'Meteorology and geophysics'"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[4]/bf:title/bf:Title/bf:partName = 'Meteorology and geophysics'"/>
     </x:scenario>
     <x:scenario label="$5">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the applicableInstitution" test="//bf:Title[contains(@rdf:about,'4#Title246')]/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+      <x:expect label="becomes the applicableInstitution" test="//bf:Instance[4]/bf:title/bf:Title/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
     </x:scenario>
   </x:scenario>
 
   <x:scenario label="247 - FORMER TITLE">
     <x:scenario label="multiple 247s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="should make multiple Titles" test="//bf:Title[contains(@rdf:about,'1#Title247-')] and //bf:Instance[1]/bf:title[3]/bf:Title"/>
       <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 4"/>
-    </x:scenario>
-    <x:scenario label="@ind1 = 0">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="should not create a Title entity" test="count(//bf:Title[contains(@rdf:about,'1#Title247-4')]) = 0"/>
-      <x:expect label="should create a blank node title property in Instance" test="not(//bf:Instance[1]/bf:title[3]/bf:Title/@rdf:about)"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="$abgnp in record order" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics (varies slightly)'"/>
+      <x:expect label="$abgnp in record order" test="//bf:Instance/bf:title[4]/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology. Serie A, Meteorology and geophysics (varies slightly)'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Title[@rdf:about='http://example.org/1#Title247-3']/bf:mainTitle = 'Everywoman''s magazine'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance/bf:title[2]/bf:Title/bf:mainTitle = 'Everywoman''s magazine'"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
@@ -250,7 +219,7 @@
     </x:scenario>
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="becomes the date" test="//bf:Title[@rdf:about='http://example.org/1#Title247-3']/bf:date = 'v. 1-24, Jan. 1948-57'"/>
+      <x:expect label="becomes the date" test="//bf:Instance/bf:title[2]/bf:Title/bf:date = 'v. 1-24, Jan. 1948-57'"/>
     </x:scenario>
     <x:scenario label="$g">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
