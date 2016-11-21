@@ -244,7 +244,7 @@
         </xsl:choose>
         <xsl:for-each select="marc:subfield[@code='4']">
           <bf:role>
-            <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="."/></xsl:attribute>
+            <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
           </bf:role>
         </xsl:for-each>
       </xsl:when>
@@ -435,6 +435,9 @@
             <xsl:when test="substring($tag,2,2)='00'">
               <xsl:if test="$label != ''">
                 <bflc:name00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name00MatchKey>
+                <xsl:if test="substring($tag,1,1) = '1'">
+                  <bflc:primaryContributorName00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName00MatchKey>
+                </xsl:if>
               </xsl:if>
               <bflc:name00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name00MarcKey>
             </xsl:when>
@@ -443,12 +446,18 @@
                 <bflc:name10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name10MatchKey>
               </xsl:if>
               <bflc:name10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name10MarcKey>
+                <xsl:if test="substring($tag,1,1) = '1'">
+                  <bflc:primaryContributorName10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName10MatchKey>
+                </xsl:if>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
                 <bflc:name11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name11MatchKey>
               </xsl:if>
               <bflc:name11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name11MarcKey>
+                <xsl:if test="substring($tag,1,1) = '1'">
+                  <bflc:primaryContributorName11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName11MatchKey>
+                </xsl:if>
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$label != ''">
@@ -459,17 +468,6 @@
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
           </xsl:if>
-          <xsl:for-each select="marc:subfield[@code='u']">
-            <bflc:affiliation>
-              <madsrdf:Affiliation>
-                <rdfs:label>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="."/>
-                  </xsl:call-template>
-                </rdfs:label>
-              </madsrdf:Affiliation>
-            </bflc:affiliation>
-          </xsl:for-each>
         </bf:Agent>
       </xsl:when>
     </xsl:choose>

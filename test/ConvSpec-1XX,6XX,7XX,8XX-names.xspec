@@ -21,11 +21,11 @@
     <x:expect label="8XX creates a bf:hasSeries" test="//bf:Work[1]/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
     <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Title[@rdf:about='http://example.org/1#Title700-3']) = 1"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
+    <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891'"/>
     <x:expect label="bf:Agent/rdfs:label generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="$0 becomes a bf:identifiedBy property for the bf:Agent" test="//bf:Agent[@rdf:about='http://example.org/1#Agent100-2']/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
     <x:expect label="...unless there is a $t, in which case it's the bf:identifier for the bf:Work" test="//bf:Work[@rdf:about='http://example.org/1#Work700-3']/bf:identifiedBy/bf:Identifier/rdf:value = '0000000121358464'"/>
-    <x:expect label="$u becomes a bflc:affliation property" test="//bf:Agent[@rdf:about='http://example.org/1#Agent700-5']/bflc:affiliation/madsrdf:Affiliation/rdfs:label = 'Chemistry Dept., American University'"/>
   </x:scenario>
 
 </x:description>
