@@ -28,7 +28,10 @@
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
   <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
-
+  <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
+  <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
+  <xsl:variable name="mmatrial">http://id.loc.gov/vocabulary/mmatrial/</xsl:variable>
+  <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>
 
   <xsl:template match="/">
 
