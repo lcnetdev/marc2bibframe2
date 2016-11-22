@@ -161,45 +161,6 @@
   <xsl:template match="marc:datafield" mode="workName">
     <xsl:param name="agentiri"/>
     <xsl:param name="serialization"/>
-    <xsl:choose>
-      <xsl:when test="marc:subfield[@code='e' or @code='j' or @code='4']">
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <bf:contribution>
-              <bf:Contribution>
-                <xsl:apply-templates mode="agentContribution" select=".">
-                  <xsl:with-param name="agentiri" select="$agentiri"/>
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:Contribution>
-            </bf:contribution>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <bf:contributor>
-              <xsl:apply-templates mode="agent" select=".">
-                <xsl:with-param name="agentiri" select="$agentiri"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:contributor>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:if test="marc:subfield[@code='t']">
-      <xsl:apply-templates mode="workUnifTitle" select=".">
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>
-  
-  <!-- bf:Contribution properties from name fields -->
-  <xsl:template match="marc:datafield" mode="agentContribution">
-    <xsl:param name="agentiri"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -212,33 +173,42 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:agent>
-          <xsl:apply-templates mode="agent" select=".">
-            <xsl:with-param name="agentiri" select="$agentiri"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </bf:agent>
-        <xsl:choose>
-          <xsl:when test="substring($tag,2,2)='11'">
-            <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:for-each select="marc:subfield[@code='4']">
-          <bf:role>
-            <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
-          </bf:role>
-        </xsl:for-each>
+        <bf:contribution>
+          <bf:Contribution>
+            <bf:agent>
+              <xsl:apply-templates mode="agent" select=".">
+                <xsl:with-param name="agentiri" select="$agentiri"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:agent>
+            <xsl:choose>
+              <xsl:when test="substring($tag,2,2)='11'">
+                <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:for-each select="marc:subfield[@code='4']">
+              <bf:role>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
+              </bf:role>
+            </xsl:for-each>
+          </bf:Contribution>
+        </bf:contribution>
       </xsl:when>
     </xsl:choose>
+    <xsl:if test="marc:subfield[@code='t']">
+      <xsl:apply-templates mode="workUnifTitle" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
-
+  
   <!-- build bf:role properties -->
   <xsl:template match="marc:subfield" mode="contributionRole">
     <xsl:param name="serialization" select="'rdfxml'"/>

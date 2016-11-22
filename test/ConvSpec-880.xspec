@@ -11,7 +11,7 @@
 
   <x:scenario label="MARC tag 880">
     <x:context href="data/ConvSpec-880/marc.xml"/>
-    <x:expect label="$6 1XX should make an Agent" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/rdfs:label = '東海道五十三次絵卷.'"/>
+    <x:expect label="$6 1XX should make an Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 X30-xx/240-xx should make a Title" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/AbbreviatedTitle'"/>
     <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Instance[1]/bf:title[2]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/KeyTitle'"/>
@@ -20,7 +20,7 @@
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/InstanceTitle'"/>
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Instance[1]/bf:title[5]/bf:Title/rdf:type[1]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/VariantTitle'"/>
     <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[6]/bf:Title/bf:variantType = 'former'"/>
-    <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contributor[2]/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
+    <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 830 should make a series Work" test="//bf:Work[1]/bf:hasSeries[2]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>

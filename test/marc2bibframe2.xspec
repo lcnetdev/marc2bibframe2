@@ -41,15 +41,19 @@
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
-            <bf:contributor>
-              <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
-                <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:primaryContributorName00MatchKey>
-                <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
-                <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
-              </bf:Agent>
-            </bf:contributor>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
+                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:primaryContributorName00MatchKey>
+                    <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
+                    <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Contribution>
+            </bf:contribution>
             <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -201,14 +205,18 @@
                 <rdfs:label>computer file</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
-            <bf:contributor>
-              <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
-                <rdf:type>bf:Organization</rdf:type>
-                <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
-                <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
-                <rdfs:label>White House Web Team.</rdfs:label>
-              </bf:Agent>
-            </bf:contributor>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
+                    <rdf:type>bf:Organization</rdf:type>
+                    <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
+                    <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
+                    <rdfs:label>White House Web Team.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Contribution>
+            </bf:contribution>
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">

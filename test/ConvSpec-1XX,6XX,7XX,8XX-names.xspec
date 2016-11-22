@@ -11,19 +11,19 @@
 
   <x:scenario label="Process 1 - names">
     <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc.xml"/>
-    <x:expect label="Name field with $e, $j, or $4 becomes a bf:Contribution" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Hecht, Ben, 1893-1964,'"/>
-    <x:expect label="...$e/$j become bf:role properties with blank bf:Role node" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role) = 3"/>
-    <x:expect label="...$4 becomes bf:role property with rdf:resource" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role[1]/@rdf:resource = 'http://id.loc.gov/vocabulary/relators/prf'"/>
-    <x:expect label="...otherwise it becomes a bf:contributor/bf:Agent" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
+    <x:expect label="Name field with $e, $j, or $4 becomes a bf:Contribution" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Hecht, Ben, 1893-1964,'"/>
+    <x:expect label="...$e/$j become bf:role properties with blank bf:Role node" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role) = 3"/>
+    <x:expect label="...$4 becomes bf:role property with rdf:resource" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:role[1]/@rdf:resource = 'http://id.loc.gov/vocabulary/relators/prf'"/>
+    <x:expect label="...otherwise name becomes a bf:Contribution with no bf:role" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role) = 0"/>
     <x:expect label="6XX creates a bf:subject" test="1=2"/>
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Alice''s adventures in Wonderland'"/>
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence'"/>
     <x:expect label="8XX creates a bf:hasSeries" test="//bf:Work[1]/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
     <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]/bf:title) = 3"/>
-    <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
-    <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
-    <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891'"/>
-    <x:expect label="bf:Agent/rdfs:label generation" test="//bf:Work[1]/bf:contributor[1]/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
+    <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
+    <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
+    <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891'"/>
+    <x:expect label="bf:Agent/rdfs:label generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="$0 becomes a bf:identifiedBy property for the bf:Agent" test="//bf:Agent[@rdf:about='http://example.org/1#Agent100-2']/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
     <x:expect label="...unless there is a $t, in which case it's the bf:identifier for the bf:Work" test="//bf:Work[@rdf:about='http://example.org/1#Work700-3']/bf:identifiedBy/bf:Identifier/rdf:value = '0000000121358464'"/>
   </x:scenario>
