@@ -10,6 +10,7 @@
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:import href="ConvSpec-LDR.xspec"/>
+  <x:import href="ConvSpec-001-007.xspec"/>
   <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
@@ -38,6 +39,12 @@
                     <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
+                <bf:identifiedBy>
+                  <bf:Local>
+                    <rdf:value>13600108</rdf:value>
+                  </bf:Local>
+                </bf:identifiedBy>
+                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -121,6 +128,17 @@
                     <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
+                <bf:identifiedBy>
+                  <bf:Local>
+                    <rdf:value>5637241</rdf:value>
+                  </bf:Local>
+                </bf:identifiedBy>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>DLC</bf:code>
+                  </bf:Source>
+                </bf:source>
+                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
@@ -189,6 +207,12 @@
                     <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
+                <bf:identifiedBy>
+                  <bf:Local>
+                    <rdf:value>12149120</rdf:value>
+                  </bf:Local>
+                </bf:identifiedBy>
+                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdfs:label>The White House</rdfs:label>

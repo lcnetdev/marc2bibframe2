@@ -12,75 +12,79 @@
       Conversion specs for LDR
   -->
 
+  <xsl:template match="marc:leader" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="substring(.,6,1) = 'a'">
+            <bf:status>
+              <bf:Status>
+                <bf:code>c</bf:code>
+              </bf:Status>
+            </bf:status>
+          </xsl:when>
+          <xsl:when test="substring(.,6,1) = 'c'">
+            <bf:status>
+              <bf:Status>
+                <bf:code>c</bf:code>
+              </bf:Status>
+            </bf:status>
+          </xsl:when>
+          <xsl:when test="substring(.,6,1) = 'n'">
+            <bf:status>
+              <bf:Status>
+                <bf:code>n</bf:code>
+              </bf:Status>
+            </bf:status>
+          </xsl:when>
+          <xsl:when test="substring(.,6,1) = 'p'">
+            <bf:status>
+              <bf:Status>
+                <bf:code>p</bf:code>
+              </bf:Status>
+            </bf:status>
+          </xsl:when>
+        </xsl:choose>
+        <bflc:encodingLevel>
+          <bflc:EncodingLevel>
+            <bf:code>
+              <xsl:choose>
+                <xsl:when test="substring(.,18,1) = ' '">f</xsl:when>
+                <xsl:when test="substring(.,18,1) = '1'">1</xsl:when>
+                <xsl:when test="substring(.,18,1) = '2'">7</xsl:when>
+                <xsl:when test="substring(.,18,1) = '3'">3</xsl:when>
+                <xsl:when test="substring(.,18,1) = '4'">4</xsl:when>
+                <xsl:when test="substring(.,18,1) = '5'">5</xsl:when>
+                <xsl:when test="substring(.,18,1) = '7'">7</xsl:when>
+                <xsl:when test="substring(.,18,1) = '8'">8</xsl:when>
+                <xsl:otherwise>u</xsl:otherwise>
+              </xsl:choose>
+            </bf:code>
+          </bflc:EncodingLevel>
+        </bflc:encodingLevel>
+        <bf:descriptionConventions>
+          <bf:DescriptionConventions>
+            <bf:code>
+              <xsl:choose>
+                <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
+                <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
+                <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
+                <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
+                <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
+                <xsl:otherwise>unknown</xsl:otherwise>
+              </xsl:choose>
+            </bf:code>
+          </bf:DescriptionConventions>
+        </bf:descriptionConventions>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:leader" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:adminMetadata>
-          <bf:AdminMetadata>
-            <xsl:choose>
-              <xsl:when test="substring(.,6,1) = 'a'">
-                <bf:status>
-                  <bf:Status>
-                    <bf:code>c</bf:code>
-                  </bf:Status>
-                </bf:status>
-              </xsl:when>
-              <xsl:when test="substring(.,6,1) = 'c'">
-                <bf:status>
-                  <bf:Status>
-                    <bf:code>c</bf:code>
-                  </bf:Status>
-                </bf:status>
-              </xsl:when>
-              <xsl:when test="substring(.,6,1) = 'n'">
-                <bf:status>
-                  <bf:Status>
-                    <bf:code>n</bf:code>
-                  </bf:Status>
-                </bf:status>
-              </xsl:when>
-              <xsl:when test="substring(.,6,1) = 'p'">
-                <bf:status>
-                  <bf:Status>
-                    <bf:code>p</bf:code>
-                  </bf:Status>
-                </bf:status>
-              </xsl:when>
-            </xsl:choose>
-            <bflc:encodingLevel>
-              <bflc:EncodingLevel>
-                <bf:code>
-                  <xsl:choose>
-                    <xsl:when test="substring(.,18,1) = ' '">f</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '1'">1</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '2'">7</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '3'">3</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '4'">4</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '5'">5</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '7'">7</xsl:when>
-                    <xsl:when test="substring(.,18,1) = '8'">8</xsl:when>
-                    <xsl:otherwise>u</xsl:otherwise>
-                  </xsl:choose>
-                </bf:code>
-              </bflc:EncodingLevel>
-            </bflc:encodingLevel>
-            <bf:descriptionConventions>
-              <bf:DescriptionConventions>
-                <bf:code>
-                  <xsl:choose>
-                    <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
-                    <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
-                    <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
-                    <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
-                    <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
-                    <xsl:otherwise>unknown</xsl:otherwise>
-                  </xsl:choose>
-                </bf:code>
-              </bf:DescriptionConventions>
-            </bf:descriptionConventions>
-          </bf:AdminMetadata>
-        </bf:adminMetadata>
         <xsl:variable name="workType">
           <xsl:choose>
             <xsl:when test="substring(.,7,1) = 'a'">Text</xsl:when>

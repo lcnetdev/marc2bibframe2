@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="001 - CONTROL NUMBER">
+    <x:context href="data/ConvSpec-001-007/marc.xml"/>
+    <x:expect label="001 should set the AdminMetadata identifiedBy property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/rdf:value = '13600108'"/>
+  </x:scenario>
+
+  <x:scenario label="003 - CONTROL NUMBER IDENTIFIER">
+    <x:context href="data/ConvSpec-001-007/marc.xml"/>
+    <x:expect label="003 should set the AdminMetadata source property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Source/bf:code = 'DE-101'"/>
+  </x:scenario>
+
+  <x:scenario label="005 - DATE AND TIME OF LAST TRANSACTION">
+    <x:context href="data/ConvSpec-001-007/marc.xml"/>
+    <x:expect label="005 should set the AdminMetadata changeDate property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:changeDate[@rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime']  = '2011-07-13T21:24:05'"/>
+  </x:scenario>
+</x:description>

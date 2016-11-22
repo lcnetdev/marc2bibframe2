@@ -18,14 +18,17 @@
 
   <xsl:include href="utils.xsl"/>
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
+  <xsl:include href="ConvSpec-LDR.xsl"/>
+  <xsl:include href="ConvSpec-001-007.xsl"/>
   <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
+  <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
-  <xsl:include href="ConvSpec-LDR.xsl"/>
-  <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
 
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
+  <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
+
 
   <xsl:template match="/">
 
@@ -75,6 +78,14 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Work>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+          <bf:adminMetadata>
+            <bf:AdminMetadata>
+              <!-- pass fields through conversion specs for AdminMetadata properties -->
+              <xsl:apply-templates mode="adminmetadata">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:AdminMetadata>
+          </bf:adminMetadata>
           <!-- pass fields through conversion specs for Work properties -->
           <xsl:apply-templates mode="work">
             <xsl:with-param name="recordid" select="$recordid"/>
@@ -106,6 +117,7 @@
   </xsl:template>
 
   <!-- suppress text from unmatched nodes -->
+  <xsl:template match="text()" mode="adminmetadata"/>
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
 

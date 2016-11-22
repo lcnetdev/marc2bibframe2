@@ -1,0 +1,8 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>01094cam a2200229 a 4500</leader>
+    <controlfield tag="001">13600108</controlfield>
+    <controlfield tag="003">DE-101</controlfield>
+    <controlfield tag="005">20110713212405.0</controlfield>
+  </record>
+</collection>
