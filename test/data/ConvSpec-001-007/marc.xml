@@ -7,8 +7,15 @@
     <controlfield tag="007">ay cafbm</controlfield>
   </record>
   <record>
-    <leader>01094cam a2200229 a 4500</leader>
     <controlfield tag="001">2</controlfield>
     <controlfield tag="007">co cgammmaadda</controlfield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <controlfield tag="007">dc cef</controlfield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
+    <controlfield tag="007">gs cjbdjd</controlfield>
   </record>
 </collection>

@@ -25,6 +25,7 @@
   </x:scenario>
 
   <x:scenario label="007 - PHYSICAL DESCRIPTION FIXED FIELD">
+
     <x:scenario label="MAP">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
@@ -35,6 +36,7 @@
       <x:expect label="pos 6 sets another generation property of the Instance" test="//bf:Instance[1]/bf:generation[2]/bf:Generation/rdfs:label = 'photocopy'"/>
       <x:expect label="pos 7 sets the polarity property of the Instance" test="//bf:Instance[1]/bf:polarity/bf:Polarity/rdfs:label = 'mixed polarity'"/>
     </x:scenario>
+
     <x:scenario label="ELECTRONIC RESOURCE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'c' sets Instance rdf:type to 'Electronic'" test="count(//bf:Instance[2]/rdf:type/@rdf:resource[contains(.,'Electronic')]) = 1"/>
@@ -46,6 +48,30 @@
       <x:expect label="pos 6-8 creates an ImageBitDepth digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[1]/bf:DigitalCharacteristic/rdfs:label = 'multiple'"/>
       <x:expect label="pos 9 creates an EncodingFormat digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[2]/bf:DigitalCharacteristic/rdfs:label = 'one file format'"/>
     </x:scenario>
+
+    <x:scenario label="GLOBE">
+      <x:context href="data/ConvSpec-001-007/marc.xml"/>
+      <x:expect label="pos 0 = 'd' sets Work rdf:type to 'Cartography'" test="count(//bf:Work[3]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
+      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'globe'"/>
+      <x:expect label="pos 1 creates a genreForm property of the Work" test="//bf:Work[3]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'terrestrial globe'"/>
+      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[3]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[3]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'synthetic'"/>
+      <x:expect label="pos 5 creates a generation property of the Instance" test="//bf:Instance[3]/bf:generation/bf:Generation/rdfs:label = 'facsimile'"/>
+    </x:scenario>
+
+    <x:scenario label="PROJECTED GRAPHIC">
+      <x:context href="data/ConvSpec-001-007/marc.xml"/>
+      <x:expect label="pos 0 = 'g' sets Work rdf:type to 'StillImage'" test="//bf:Work[4]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>
+      <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[4]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/g'"/>
+      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[4]/bf:carrier/bf:Carrier/rdfs:label = 'slide'"/>
+      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[4]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[4]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'safety film'"/>
+      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[4]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound separate from medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic property of the Instance" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label = 'sound disc'"/>
+      <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[4]/bf:dimensions = '2x2 in. or 5x5 cm.'"/>
+      <x:expect label="pos 8 creates a mount property of the Instance" test="//bf:Instance[4]/bf:mount/bf:Mount/rdfs:label = 'glass'"/>
+    </x:scenario>
+    
   </x:scenario>
   
 </x:description>
