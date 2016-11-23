@@ -247,6 +247,14 @@
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
             <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
+            <bf:media>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c"/>
+            </bf:media>
+            <bf:carrier>
+              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/cr">
+                <rdfs:label>online resource</rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>

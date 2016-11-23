@@ -169,6 +169,41 @@
           </xsl:when>
         </xsl:choose>
       </xsl:when>
+      <!-- electronic resource -->
+      <xsl:when test="substring(.,1,1) = 'c'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'">gray scale</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'gry')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>      
     </xsl:choose>
   </xsl:template>
 
@@ -230,6 +265,132 @@
                   <rdfs:label><xsl:value-of select="$polarity"/></rdfs:label>
                 </bf:Polarity>
               </bf:polarity>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- electronic resource -->
+      <xsl:when test="substring(.,1,1) = 'c'">
+        <xsl:variable name="carrier">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'">computer tape cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'">computer chip cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">computer disc cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">computer disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">computer disc cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'">computer tape cassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'">computer tape reel</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">computer disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">computer card</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'm'">computer disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'o'">computer disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">online resource</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'z'">other electronic carrier</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="carrierUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($carriers,'ca')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($carriers,'cb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($carriers,'ce')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'cd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($carriers,'ce')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($carriers,'cf')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($carriers,'ch')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($carriers,'ce')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($carriers,'ck')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'm'"><xsl:value-of select="concat($carriers,'cd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'o'"><xsl:value-of select="concat($carriers,'cd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($carriers,'cr')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'z'"><xsl:value-of select="concat($carriers,'cz')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="dimensions">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'a'">3 1/2 in.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'">12 in.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'">4 3/4 in. or 12 cm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'">1 1/8 x 2 3/8 in.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'">3 7/8 x 2 1/2 in.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'">5 1/4 in.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'u'">unknown</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'">8 in.</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound on medium</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="imageBitDepth">
+          <xsl:choose>
+            <xsl:when test="substring(.,7,3) = 'mmm'">multiple</xsl:when>
+            <xsl:when test="substring(.,7,3) = 'nnn'"/>
+            <xsl:when test="substring(.,7,3) = '---'"/>
+            <xsl:when test="substring(.,7,3) = '|||'"/>
+            <xsl:otherwise><xsl:value-of select="substring(.,7,3)"/></xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="encodingFormat">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'a'">one file format</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'">multiple file formats</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="substring(../marc:leader,7,1) != 'm'">
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:attribute>
+              </rdf:type>
+            </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
+              <bf:media>
+                <bf:Media>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/c</xsl:attribute>
+                </bf:Media>
+              </bf:media>
+            </xsl:if>
+            <xsl:if test="$carrier != ''">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:if test="$carrierUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
+            </xsl:if>
+            <xsl:if test="$dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+            <xsl:if test="$imageBitDepth != ''">
+              <bf:digitalCharacteristic>
+                <bf:DigitalCharacteristic>
+                  <rdf:type>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bflc,'ImageBitDepth')"/></xsl:attribute>
+                  </rdf:type>
+                  <rdfs:label><xsl:value-of select="$imageBitDepth"/></rdfs:label>
+                </bf:DigitalCharacteristic>
+              </bf:digitalCharacteristic>
+            </xsl:if>
+            <xsl:if test="$encodingFormat != ''">
+              <bf:digitalCharacteristic>
+                <bf:DigitalCharacteristic>
+                  <rdf:type>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'EncodingFormat')"/></xsl:attribute>
+                  </rdf:type>
+                  <rdfs:label><xsl:value-of select="$encodingFormat"/></rdfs:label>
+                </bf:DigitalCharacteristic>
+              </bf:digitalCharacteristic>
             </xsl:if>
           </xsl:when>
         </xsl:choose>

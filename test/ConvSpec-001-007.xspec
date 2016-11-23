@@ -25,7 +25,7 @@
   </x:scenario>
 
   <x:scenario label="007 - PHYSICAL DESCRIPTION FIXED FIELD">
-    <x:scenario label="Map">
+    <x:scenario label="MAP">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
       <x:expect label="pos 1 sets the genreForm property of the Work" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'map view'"/>
@@ -34,6 +34,17 @@
       <x:expect label="pos 5 sets the generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'facsimile'"/>
       <x:expect label="pos 6 sets another generation property of the Instance" test="//bf:Instance[1]/bf:generation[2]/bf:Generation/rdfs:label = 'photocopy'"/>
       <x:expect label="pos 7 sets the polarity property of the Instance" test="//bf:Instance[1]/bf:polarity/bf:Polarity/rdfs:label = 'mixed polarity'"/>
+    </x:scenario>
+    <x:scenario label="ELECTRONIC RESOURCE">
+      <x:context href="data/ConvSpec-001-007/marc.xml"/>
+      <x:expect label="pos 0 = 'c' sets Instance rdf:type to 'Electronic'" test="count(//bf:Instance[2]/rdf:type/@rdf:resource[contains(.,'Electronic')]) = 1"/>
+      <x:expect label="...and sets the media property of the Instance" test="//bf:Instance[2]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/c'"/>
+      <x:expect label="pos 1 sets the carrier property of the Instance" test="//bf:Instance[2]/bf:carrier/bf:Carrier/rdfs:label = 'computer disc'"/>
+      <x:expect label="pos 3 sets the colorContent property of the Work" test="//bf:Work[2]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 sets the dimensions property of the Instance" test="//bf:Instance[2]/bf:dimensions = '4 3/4 in. or 12 cm.'"/>
+      <x:expect label="pos 5 sets the soundContent property of the Instance" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 6-8 creates an ImageBitDepth digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[1]/bf:DigitalCharacteristic/rdfs:label = 'multiple'"/>
+      <x:expect label="pos 9 creates an EncodingFormat digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[2]/bf:DigitalCharacteristic/rdfs:label = 'one file format'"/>
     </x:scenario>
   </x:scenario>
   
