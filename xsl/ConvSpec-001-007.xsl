@@ -301,6 +301,37 @@
           </xsl:when>
         </xsl:choose>
       </xsl:when>
+      <!-- microform -->
+      <xsl:when test="substring(.,1,1) = 'h'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'c'">multicolored</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'">mixed</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -728,6 +759,162 @@
                   <rdfs:label><xsl:value-of select="$mount2"/></rdfs:label>
                 </bf:Mount>
               </bf:mount>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- microform -->
+      <xsl:when test="substring(.,1,1) = 'h'">
+        <xsl:variable name="carrierUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($carriers,'ha')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($carriers,'hb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($carriers,'hc')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'hd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($carriers,'he')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($carriers,'hf')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($carriers,'hg')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($carriers,'hh')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($carriers,'hj')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="polarity">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">positive</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">negative</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed polarity</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="polarityUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mpolarity,'pos')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mpolarity,'neg')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mpolarity,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="dimensions">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'a'">8 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">16 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'">35 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'">70 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'h'">105 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'l'">13x5 in. or 8x13 cm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'">4x6 in. or 11x15 cm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'">6x9 in. or 16x23 cm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'">3 1/4 x 7 3/8 in. or 9x19 cm.</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="reductionRatioNote">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = 'a'">low reduction range</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">normal reduction range</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'c'">high reduction range</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'd'">very high reduction range</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'e'">ultra high reduction range</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'v'">reduction rate varies</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="reductionRatio">
+          <xsl:choose>
+            <xsl:when test="substring(.,7,3) = '|||'"/>
+            <xsl:when test="substring(.,7,3) = '---'"/>
+            <xsl:otherwise><xsl:value-of select="substring(.,7,3)"/></xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="emulsion">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'a'">silver halide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'">diazo</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">vesicular</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">mixed emulsion</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="generation">
+          <xsl:choose>
+            <xsl:when test="substring(.,12,1) = 'a'">first generation (master)</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'b'">printing master</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'c'">service copy</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'm'">mixed generation</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="baseMaterial">
+          <xsl:choose>
+            <xsl:when test="substring(.,13,1) = 'a'">film base (not safety)</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'c'">acetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'">diacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'p'">polyester</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'r'">safety base, mixed</xsl:when>
+            <xsl:when test="substring(.,13,1) = 't'">safety base, triacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'i'">nitrate base</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety bas</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
+              <bf:media>
+                <bf:Media>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/h</xsl:attribute>
+                </bf:Media>
+              </bf:media>
+            </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
+              <xsl:if test="$carrierUri != ''">
+                <bf:carrier>
+                  <bf:Carrier>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  </bf:Carrier>
+                </bf:carrier>
+              </xsl:if>
+            </xsl:if>
+            <xsl:if test="$polarity != ''">
+              <bf:polarity>
+                <bf:Polarity>
+                  <xsl:if test="$polarityUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$polarityUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$polarity"/></rdfs:label>
+                </bf:Polarity>
+              </bf:polarity>
+            </xsl:if>
+            <xsl:if test="$dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            </xsl:if>
+            <xsl:if test="$reductionRatioNote != ''">
+              <bf:reductionRatio>
+                <bf:ReductionRatio>
+                  <bf:note>
+                    <bf:Note>
+                      <rdfs:label><xsl:value-of select="$reductionRatioNote"/></rdfs:label>
+                    </bf:Note>
+                  </bf:note>
+                  <xsl:if test="$reductionRatio != ''">
+                    <rdfs:label><xsl:value-of select="$reductionRatio"/></rdfs:label>
+                  </xsl:if>
+                </bf:ReductionRatio>
+              </bf:reductionRatio>
+            </xsl:if>
+            <xsl:if test="$emulsion != ''">
+              <bf:emulsion>
+                <bf:Emulsion>
+                  <rdfs:label><xsl:value-of select="$emulsion"/></rdfs:label>
+                </bf:Emulsion>
+              </bf:emulsion>
+            </xsl:if>
+            <xsl:if test="$generation != ''">
+              <bf:generation>
+                <bf:Generation>
+                  <rdfs:label><xsl:value-of select="$generation"/></rdfs:label>
+                </bf:Generation>
+              </bf:generation>
+            </xsl:if>
+            <xsl:if test="$baseMaterial != ''">
+              <bf:baseMaterial>
+                <bf:BaseMaterial>
+                  <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
+                </bf:BaseMaterial>
+              </bf:baseMaterial>
             </xsl:if>
           </xsl:when>
         </xsl:choose>
