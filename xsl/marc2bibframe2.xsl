@@ -34,6 +34,8 @@
   <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>
   <xsl:variable name="carriers">http://id.loc.gov/vocabulary/carriers/</xsl:variable>
   <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>
+  <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
+  <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
 
   <xsl:template match="/">
 

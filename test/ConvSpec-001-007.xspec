@@ -93,6 +93,26 @@
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[6]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'paper'"/>
       <x:expect label="pos 5 creates a mount property of the Instance" test="//bf:Instance[6]/bf:mount/bf:Mount/rdfs:label = 'paper'"/>
     </x:scenario>
+
+    <x:scenario label="MOTION PICTURE">
+      <x:context href="data/ConvSpec-001-007/marc.xml"/>
+      <x:expect label="pos 0 = 'm' sets Work rdf:type to 'MovingImage'" test="//bf:Work[7]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>
+      <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[7]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/g'"/>
+      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/mot'"/>
+      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[7]/bf:carrier/bf:Carrier/rdfs:label = 'film reel'"/>
+      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[7]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 creates a projectionCharacteristic property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:ProjectionCharacteristic/rdfs:label = 'standard sound aperture (reduced frame)'"/>
+      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'optical sound track on motion picture film'"/>
+      <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[7]/bf:dimensions = '16 mm.'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'monaural'"/>
+      <x:expect label="pos 9 creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'workprint'"/>
+      <x:expect label="pos 10 creates a polarity property of the Instance" test="//bf:Instance[7]/bf:polarity/bf:Polarity/rdfs:label = 'positive'"/>
+      <x:expect label="pos 11 creates a generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/rdfs:label = 'reference print, viewing copy'"/>
+      <x:expect label="pos 12 creates a baseMaterial property of the Instance" test="//bf:Instance[7]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'safety base, triacetate'"/>
+      <x:expect label="pos 16 creates a note property (completeness) of the Instance" test="//bf:Instance[7]/bf:note[1]/bf:Note/rdfs:label = 'complete'"/>
+      <x:expect label="pos 17-22 creates a note property (film inspection date) of the Instance" test="//bf:Instance[7]/bf:note[2]/bf:Note/rdfs:label = '1986-06'"/>
+    </x:scenario>      
     
   </x:scenario>
   
