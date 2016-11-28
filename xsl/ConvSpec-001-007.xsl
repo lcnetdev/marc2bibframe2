@@ -280,7 +280,7 @@
             <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
             <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
             <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
             <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
@@ -1597,8 +1597,8 @@
             <xsl:when test="substring(.,11,1) = 'i'">aluminum with lacquer</xsl:when>
             <xsl:when test="substring(.,11,1) = 'r'">paper with lacquer or ferrous oxide</xsl:when>
             <xsl:when test="substring(.,11,1) = 'l'">metal</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'm'">plastic</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'p'">lacquer coating</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">plastic with metal</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'p'">plastic</xsl:when>
             <xsl:when test="substring(.,11,1) = 's'">shellac</xsl:when>
             <xsl:when test="substring(.,11,1) = 'w'">wax</xsl:when>
           </xsl:choose>
