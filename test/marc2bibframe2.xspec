@@ -173,6 +173,40 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
             <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
+            <bf:media>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s"/>
+            </bf:media>
+            <bf:carrier>
+              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/sd">
+                <rdfs:label>sound disc</rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
+            <bf:soundCharacteristic>
+              <bf:PlayingSpeed>
+                <rdfs:label>13 1/3 rpm</rdfs:label>
+              </bf:PlayingSpeed>
+            </bf:soundCharacteristic>
+            <bf:soundCharacteristic>
+              <bf:GrooveCharacteristic>
+                <rdfs:label>microgroove/fine</rdfs:label>
+              </bf:GrooveCharacteristic>
+            </bf:soundCharacteristic>
+            <bf:dimensions>12 in.</bf:dimensions>
+            <bf:generation>
+              <bf:Generation>
+                <rdfs:label>mass produced</rdfs:label>
+              </bf:Generation>
+            </bf:generation>
+            <bf:baseMaterial>
+              <bf:BaseMaterial>
+                <rdfs:label>lacquer coating</rdfs:label>
+              </bf:BaseMaterial>
+            </bf:baseMaterial>
+            <bf:soundCharacteristic>
+              <bf:GrooveCharacteristic>
+                <rdfs:label>lateral or combined cutting</rdfs:label>
+              </bf:GrooveCharacteristic>
+            </bf:soundCharacteristic>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>

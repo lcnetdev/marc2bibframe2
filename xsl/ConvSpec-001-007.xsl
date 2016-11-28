@@ -60,6 +60,7 @@
         <xsl:when test="substring(.,1,1) = 'g'">StillImage</xsl:when>
         <xsl:when test="substring(.,1,1) = 'k'">StillImage</xsl:when>
         <xsl:when test="substring(.,1,1) = 'm'">MovingImage</xsl:when>
+        <xsl:when test="substring(.,1,1) = 's'">Audio</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -493,6 +494,18 @@
                   <rdfs:label><xsl:value-of select="$genreForm2"/></rdfs:label>
                 </bf:GenreForm>
               </bf:genreForm>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- sound recording -->
+      <xsl:when test="substring(.,1,1) = 's'">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="substring(../marc:leader,7,1) != 'i' and substring(../marc:leader,7,1) != 'j'">
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
+              </rdf:type>
             </xsl:if>
           </xsl:when>
         </xsl:choose>
@@ -1335,15 +1348,17 @@
                 </bf:Media>
               </bf:media>
             </xsl:if>
-            <xsl:if test="$carrier != ''">
-              <bf:carrier>
-                <bf:Carrier>
-                  <xsl:if test="$carrierUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                </bf:Carrier>
-              </bf:carrier>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
+              <xsl:if test="$carrier != ''">
+                <bf:carrier>
+                  <bf:Carrier>
+                    <xsl:if test="$carrierUri != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                    </xsl:if>
+                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                  </bf:Carrier>
+                </bf:carrier>
+              </xsl:if>
             </xsl:if>
             <xsl:if test="$projectionCharacteristic != ''">
               <bf:projectionCharacteristic>
@@ -1421,6 +1436,238 @@
                   </rdfs:label>
                 </bf:Note>
               </bf:note>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- sound recording -->
+      <xsl:when test="substring(.,1,1) = 's'">
+        <xsl:variable name="carrier">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'd'">sound disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">cylinder</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">sound cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'">sound-track film</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'">roll</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">remote</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">sound cassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 't'">sound-tape reel</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'w'">wire recording</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="carrierUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'sd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($carriers,'se')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($carriers,'sg')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($carriers,'si')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($carriers,'sq')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($carriers,'cr')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($carriers,'sg')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 't'"><xsl:value-of select="concat($carriers,'st')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'w'"><xsl:value-of select="concat($carriers,'sw')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playingSpeed">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">16 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">13 1/3 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">45 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'd'">78 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'e'">8 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'f'">1.4 m. per sec.</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'">120 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'i'">160 rpm</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'k'">15/16 ips</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'l'">1 7/8 ips</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">3 3/4 ips</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'o'">7 1/2 ips</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'p'">15 ips</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'r'">30 ips</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playbackChannels">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'm'">monaural</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'q'">quadraphonic, multichannel or surround</xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'">stereophonic</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playbackUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mplayback,'mon')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'q'"><xsl:value-of select="concat($mplayback,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mplayback,'ste')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="grooveCharacteristic">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = 'm'">microgroove/fine</xsl:when>
+            <xsl:when test="substring(.,6,1) = 's'">coarse/standard</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="dimensions">
+          <xsl:choose>
+            <xsl:when test="substring(.,7,1) = 'a'">3 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">5 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">7 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">10 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">12 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">16 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">4 3/4 in. or 12 cm.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'j'">3 7/8 x 2 1/2 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'o'">5 1/4 x 3 7/8 in.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 's'">2 3/4 x 4 in.</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="tapeWidth">
+          <xsl:choose>
+            <xsl:when test="substring(.,8,1) = 'l'">1/8 in. tape width</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'm'">1/4 in. tape width</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'o'">1/2 in. tape width</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'p'">1 in. tape width</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="tapeConfig">
+          <xsl:choose>
+            <xsl:when test="substring(.,9,1) = 'a'">full (1)</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'b'">half (2)</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'c'">quarter (4)</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'd'">8</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'e'">12</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'f'">16</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="generation">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'a'">master tape</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'b'">tape duplication master</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'd'">disc master (negative)</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'i'">instantaneous (recorded on the spot)</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'">mass produced</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'r'">mother (positive)</xsl:when>
+            <xsl:when test="substring(.,10,1) = 's'">stamper (negative)</xsl:when>
+            <xsl:when test="substring(.,10,1) = 't'">test pressing</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="baseMaterial">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'a'">lacquer coating</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'">cellulose nitrate</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">acetate tape with ferrous oxide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'g'">glass with lacquer</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'i'">aluminum with lacquer</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'r'">paper with lacquer or ferrous oxide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'l'">metal</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">plastic</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'p'">lacquer coating</xsl:when>
+            <xsl:when test="substring(.,11,1) = 's'">shellac</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'w'">wax</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="cutting">
+          <xsl:choose>
+            <xsl:when test="substring(.,12,1) = 'h'">hill-and-dale cutting</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'l'">lateral or combined cutting</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playbackCharacteristic">
+          <xsl:choose>
+            <xsl:when test="substring(.,13,1) = 'a'">NAB standard</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'b'">CCIR standard</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'c'">Dolby-B encoded</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'">dbx encoded</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'e'">digital recording</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'f'">Dolby-A encoded</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'g'">Dolby-C encoded</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'h'">CX encoded</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
+              <bf:media>
+                <bf:Media>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/s</xsl:attribute>
+                </bf:Media>
+              </bf:media>
+            </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
+              <xsl:if test="$carrier != ''">
+                <bf:carrier>
+                  <bf:Carrier>
+                    <xsl:if test="$carrierUri != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                    </xsl:if>
+                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                  </bf:Carrier>
+                </bf:carrier>
+              </xsl:if>
+            </xsl:if>
+            <xsl:if test="$playingSpeed != ''">
+              <bf:soundCharacteristic>
+                <bf:PlayingSpeed>
+                  <rdfs:label><xsl:value-of select="$playingSpeed"/></rdfs:label>
+                </bf:PlayingSpeed>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$playbackChannels != ''">
+              <bf:soundCharacteristic>
+                <bf:PlaybackChannels>
+                  <xsl:if test="$playbackUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$playbackChannels"/></rdfs:label>
+                </bf:PlaybackChannels>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$grooveCharacteristic != ''">
+              <bf:soundCharacteristic>
+                <bf:GrooveCharacteristic>
+                  <rdfs:label><xsl:value-of select="$grooveCharacteristic"/></rdfs:label>
+                </bf:GrooveCharacteristic>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            </xsl:if>
+            <xsl:if test="$tapeWidth != ''">
+              <bf:dimensions><xsl:value-of select="$tapeWidth"/></bf:dimensions>
+            </xsl:if>
+            <xsl:if test="$tapeConfig != ''">
+              <bf:soundCharacteristic>
+                <bf:TapeConfig>
+                  <rdfs:label><xsl:value-of select="$tapeConfig"/></rdfs:label>
+                </bf:TapeConfig>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$generation != ''">
+              <bf:generation>
+                <bf:Generation>
+                  <rdfs:label><xsl:value-of select="$generation"/></rdfs:label>
+                </bf:Generation>
+              </bf:generation>
+            </xsl:if>
+            <xsl:if test="$baseMaterial != ''">
+              <bf:baseMaterial>
+                <bf:BaseMaterial>
+                  <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
+                </bf:BaseMaterial>
+              </bf:baseMaterial>
+            </xsl:if>
+            <xsl:if test="$cutting != ''">
+              <bf:soundCharacteristic>
+                <bf:GrooveCharacteristic>
+                  <rdfs:label><xsl:value-of select="$cutting"/></rdfs:label>
+                </bf:GrooveCharacteristic>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$playbackCharacteristic != ''">
+              <bf:soundCharacteristic>
+                <bf:PlaybackCharacteristic>
+                  <rdfs:label><xsl:value-of select="$playbackCharacteristic"/></rdfs:label>
+                </bf:PlaybackCharacteristic>
+              </bf:soundCharacteristic>
             </xsl:if>
           </xsl:when>
         </xsl:choose>
