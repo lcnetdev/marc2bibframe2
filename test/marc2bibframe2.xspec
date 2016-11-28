@@ -11,6 +11,7 @@
 
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-001-007.xspec"/>
+  <x:import href="ConvSpec-006,008.xspec"/>
   <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
@@ -45,9 +46,13 @@
                   </bf:Local>
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
+                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:creationDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
+            <bf:language>
+              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/dan"/>
+            </bf:language>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>
@@ -89,7 +94,18 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
-            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
+            <bf:issuance>
+              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+            </bf:issuance>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">2001</bf:date>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dk"/>
+                </bf:place>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
             <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -137,9 +153,13 @@
                   </bf:Source>
                 </bf:source>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
+                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
+            <bf:language>
+              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
+            </bf:language>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -169,7 +189,9 @@
             <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
-            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
+            <bf:issuance>
+              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+            </bf:issuance>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s"/>
             </bf:media>
@@ -204,6 +226,15 @@
                 <rdfs:label>lateral or combined cutting</rdfs:label>
               </bf:GrooveCharacteristic>
             </bf:soundCharacteristic>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">1957</bf:date>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/nyu"/>
+                </bf:place>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -243,8 +274,12 @@
                   </bf:Local>
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
+                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
               </bf:AdminMetadata>
             </bf:adminMetadata>
+            <bf:language>
+              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
+            </bf:language>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -274,7 +309,9 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
-            <bf:issuance rdf:resource="http://id.lc.gov/vocabulary/issuance/mono"/>
+            <bf:issuance>
+              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+            </bf:issuance>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c"/>
@@ -284,6 +321,15 @@
                 <rdfs:label>online resource</rdfs:label>
               </bf:Carrier>
             </bf:carrier>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">1994/9999</bf:date>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dcu"/>
+                </bf:place>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>

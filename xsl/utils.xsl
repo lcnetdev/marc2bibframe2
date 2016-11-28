@@ -128,5 +128,25 @@
   <xsl:template match="marc:subfield" mode="marcKey">
     <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
   </xsl:template>
+
+  <!--
+      convert "u" or "U" to "X" for dates
+  -->
+  <xsl:template name="u2x">
+    <xsl:param name="dateString"/>
+    <xsl:choose>
+      <xsl:when test="contains($dateString,'u')">
+        <xsl:call-template name="u2x">
+          <xsl:with-param name="dateString" select="concat(substring-before($dateString,'u'),'X',substring-after($dateString,'u'))"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="contains($dateString,'U')">
+        <xsl:call-template name="u2x">
+          <xsl:with-param name="dateString" select="concat(substring-before($dateString,'U'),'X',substring-after($dateString,'U'))"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$dateString"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   
 </xsl:stylesheet>

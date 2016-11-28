@@ -20,6 +20,7 @@
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
   <xsl:include href="ConvSpec-LDR.xsl"/>
   <xsl:include href="ConvSpec-001-007.xsl"/>
+  <xsl:include href="ConvSpec-006,008.xsl"/>
   <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
@@ -28,6 +29,10 @@
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
   <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
+  <xsl:variable name="edtf">http://www.loc.gov/standards/datetime#</xsl:variable>
+  <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
+  <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
+  <xsl:variable name="issuance">http://id.lc.gov/vocabulary/issuance/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
   <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
   <xsl:variable name="mmatrial">http://id.loc.gov/vocabulary/mmatrial/</xsl:variable>
