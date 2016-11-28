@@ -510,6 +510,44 @@
           </xsl:when>
         </xsl:choose>
       </xsl:when>
+      <!-- videorecording -->
+      <xsl:when test="substring(.,1,1) = 'v'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/genreForms/gf2011026723</xsl:attribute>
+              </bf:GenreForm>
+            </bf:genreForm>
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -1667,6 +1705,148 @@
                 <bf:PlaybackCharacteristic>
                   <rdfs:label><xsl:value-of select="$playbackCharacteristic"/></rdfs:label>
                 </bf:PlaybackCharacteristic>
+              </bf:soundCharacteristic>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- videorecording -->
+      <xsl:when test="substring(.,1,1) = 'v'">
+        <xsl:variable name="carrier">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'c'">videocartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">videodisc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'">videocassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">videotape reel</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="carrierUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($carriers,'vc')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'vd')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($carriers,'vf')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($carriers,'vr')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="videoFormat">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'a'">Beta (1/2 in.videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'">VHS (1/2 in.videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'c'">U-matic  (3/4 in.videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">EIAJ (1/2 in.reel)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'">Type C  (1 in.reel)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'">Quadruplex (1 in.or 2 in. reel)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'">Laserdisc</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'h'">CED (Capacitance Electronic Disc)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'">Betacam (1/2 in., videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'">Betacam SP (1/2 in., videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'k'">Super-VHS (1/2 in. videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'">M-II (1/2 in., videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'">D-2 (3/4 in., videocassette)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'">8 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'q'">Hi-8 mm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'">Blu-ray disc</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'">DVD</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = 'a'">sound on medium</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound separate from medium</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="recordingMedium">
+          <xsl:choose>
+            <xsl:when test="substring(.,7,1) = 'a'">optical sound track on motion picture film</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">magnetic sound track on motion picture film</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">magnetic audio tape in cartridge</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">sound disc</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">magnetic audio tape on reel</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">magnetic audio tape in cassette</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">optical and magnetic sound track on motion picture film</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'h'">videotape</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'i'">videodisc</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="dimensions">
+          <xsl:choose>
+            <xsl:when test="substring(.,8,1) = 'a'">8 mm.</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'm'">1/4 in.</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'o'">1/2 in.</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'p'">1 in.</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'q'">2 in.</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'r'">3/4 in.</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playbackChannels">
+          <xsl:choose>
+            <xsl:when test="substring(.,9,1) = 'k'">mixed</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'm'">monaural</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'q'">quadraphonic, multichannel or surround</xsl:when>
+            <xsl:when test="substring(.,9,1) = 's'">stereophonic</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="playbackUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,9,1) = 'k'"><xsl:value-of select="concat($mplayback,'mix')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'm'"><xsl:value-of select="concat($mplayback,'mon')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'q'"><xsl:value-of select="concat($mplayback,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 's'"><xsl:value-of select="concat($mplayback,'ste')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
+              <bf:media>
+                <bf:Media>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/v</xsl:attribute>
+                </bf:Media>
+              </bf:media>
+            </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
+              <xsl:if test="$carrier != ''">
+                <bf:carrier>
+                  <bf:Carrier>
+                    <xsl:if test="$carrierUri != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                    </xsl:if>
+                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                  </bf:Carrier>
+                </bf:carrier>
+              </xsl:if>
+            </xsl:if>
+            <xsl:if test="$videoFormat != ''">
+              <bf:videoCharacteristic>
+                <bf:VideoFormat>
+                  <rdfs:label><xsl:value-of select="$videoFormat"/></rdfs:label>
+                </bf:VideoFormat>
+              </bf:videoCharacteristic>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+            <xsl:if test="$recordingMedium != ''">
+              <bf:soundCharacteristic>
+                <bf:RecordingMedium>
+                  <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
+                </bf:RecordingMedium>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            </xsl:if>
+            <xsl:if test="$playbackChannels != ''">
+              <bf:soundCharacteristic>
+                <bf:PlaybackChannels>
+                  <xsl:if test="$playbackUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$playbackChannels"/></rdfs:label>
+                </bf:PlaybackChannels>
               </bf:soundCharacteristic>
             </xsl:if>
           </xsl:when>

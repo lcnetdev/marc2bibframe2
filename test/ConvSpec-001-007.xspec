@@ -131,6 +131,19 @@
       <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
     </x:scenario>
 
+    <x:scenario label="VIDEORECORDING">
+      <x:context href="data/ConvSpec-001-007/marc.xml"/>
+      <x:expect label="pos 0 = 'v' creates a media property of the Instance" test="//bf:Instance[9]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/v'"/>
+      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[9]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026723'"/>
+      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[9]/bf:carrier/bf:Carrier/rdfs:label = 'videocassette'"/>
+      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[9]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[9]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label = 'Beta (1/2 in.videocassette)'"/>
+      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[9]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'videotape'"/>
+      <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions = '1/2 in.'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereophonic'"/>
+    </x:scenario>
+    
   </x:scenario>
   
 </x:description>
