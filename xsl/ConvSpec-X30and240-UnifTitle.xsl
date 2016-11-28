@@ -420,9 +420,6 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>WorkTitle</xsl:attribute>
-          </rdf:type>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
               <xsl:if test="$label != ''">

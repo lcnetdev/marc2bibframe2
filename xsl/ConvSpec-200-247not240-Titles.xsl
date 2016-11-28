@@ -340,7 +340,6 @@
         <bf:title>
           <xsl:apply-templates mode="title245" select=".">
             <xsl:with-param name="label" select="$label"/>
-            <xsl:with-param name="class" select="concat($bf,'WorkTitle')"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -415,7 +414,6 @@
         <bf:title>
           <xsl:apply-templates mode="title245" select=".">
             <xsl:with-param name="label" select="$label"/>
-            <xsl:with-param name="class" select="concat($bf,'InstanceTitle')"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </bf:title>
@@ -452,17 +450,10 @@
   <!-- bf:Title from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="title245">
     <xsl:param name="label"/>
-    <xsl:param name="class"/>
     <xsl:param name="serialization"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:if test="$class != ''">
-            <rdf:type>
-              <xsl:attribute name="rdf:resource"><xsl:value-of
-              select="$class"/></xsl:attribute>
-            </rdf:type>
-          </xsl:if>
           <xsl:if test="$label != ''">
             <rdfs:label><xsl:value-of select="substring($label,1,string-length($label)-1)"/></rdfs:label>
             <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
