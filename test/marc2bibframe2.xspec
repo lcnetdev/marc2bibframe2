@@ -65,6 +65,7 @@
             </bf:genreForm>
             <bf:contribution>
               <bf:Contribution>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/lc-extensions/PrimaryContribution"/>
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
@@ -75,7 +76,7 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
@@ -98,9 +99,9 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bflc:Role>
+                  <bf:Role>
                     <rdfs:label>ill.</rdfs:label>
-                  </bflc:Role>
+                  </bf:Role>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
@@ -202,7 +203,7 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/prf"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/prf"/>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
@@ -324,7 +325,7 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>

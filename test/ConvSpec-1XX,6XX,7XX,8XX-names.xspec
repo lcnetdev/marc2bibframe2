@@ -11,10 +11,11 @@
 
   <x:scenario label="Process 1 - names">
     <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc.xml"/>
+    <x:expect label="1XX creates a bflc:PrimaryContribution" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/lc-extensions/PrimaryContribution'"/>
     <x:expect label="Name field with $e, $j, or $4 becomes a bf:Contribution" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Hecht, Ben, 1893-1964,'"/>
     <x:expect label="...$e/$j become bf:role properties with blank bf:Role node" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role) = 3"/>
-    <x:expect label="...$4 becomes bf:role/bflc:Role property with URI" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:role[1]/bflc:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/prf'"/>
-    <x:expect label="...otherwise role of  bf:Contribution is ctb" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role/bflc:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/ctb'"/>
+    <x:expect label="...$4 becomes bf:role/bf:Role property with URI" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:role[1]/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/prf'"/>
+    <x:expect label="...otherwise role of  bf:Contribution is ctb" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/ctb'"/>
     <x:expect label="6XX creates a bf:subject" test="1=2"/>
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Alice''s adventures in Wonderland'"/>
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence'"/>

@@ -192,6 +192,11 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:contribution>
           <bf:Contribution>
+            <xsl:if test="substring($tag,1,1) = '1'">
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bflc,'PrimaryContribution')"/></xsl:attribute>
+              </rdf:type>
+            </xsl:if>
             <bf:agent>
               <xsl:apply-templates mode="agent" select=".">
                 <xsl:with-param name="agentiri" select="$agentiri"/>
@@ -206,9 +211,9 @@
               </xsl:when>
               <xsl:otherwise>
                 <bf:role>
-                  <bflc:Role>
+                  <bf:Role>
                     <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/relators/ctb</xsl:attribute>
-                  </bflc:Role>
+                  </bf:Role>
                 </bf:role>
               </xsl:otherwise>
             </xsl:choose>
@@ -229,9 +234,9 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:role>
-          <bflc:Role>
+          <bf:Role>
             <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
-          </bflc:Role>
+          </bf:Role>
         </bf:role>
       </xsl:when>
     </xsl:choose>
@@ -256,9 +261,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bflc:Role>
+                <bf:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,','))"/></rdfs:label>
-                </bflc:Role>
+                </bf:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -273,9 +278,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bflc:Role>
+                <bf:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
-                </bflc:Role>
+                </bf:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -290,9 +295,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bflc:Role>
+                <bf:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
-                </bflc:Role>
+                </bf:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -306,9 +311,9 @@
         <xsl:choose>
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
-              <bflc:Role>
+              <bf:Role>
                 <rdfs:label><xsl:value-of select="normalize-space($roleString)"/></rdfs:label>
-              </bflc:Role>
+              </bf:Role>
             </bf:role>
           </xsl:when>
         </xsl:choose>
