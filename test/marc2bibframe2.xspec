@@ -64,6 +64,9 @@
                     <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
+                <bf:role>
+                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                </bf:role>
               </bf:Contribution>
             </bf:contribution>
             <rdfs:label>Ole Lukøie /</rdfs:label>
@@ -85,9 +88,9 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bf:Role>
+                  <bflc:Role>
                     <rdfs:label>ill.</rdfs:label>
-                  </bf:Role>
+                  </bflc:Role>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
@@ -183,7 +186,9 @@
                     <rdfs:label>Charles, Ray, 1930-</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
-                <bf:role rdf:resource="http://id.loc.gov/vocabulary/relators/prf"/>
+                <bf:role>
+                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/prf"/>
+                </bf:role>
               </bf:Contribution>
             </bf:contribution>
             <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
@@ -303,6 +308,9 @@
                     <rdfs:label>White House Web Team.</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
+                <bf:role>
+                  <bflc:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                </bf:role>
               </bf:Contribution>
             </bf:contribution>
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>

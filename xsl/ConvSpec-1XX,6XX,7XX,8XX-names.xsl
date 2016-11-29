@@ -171,6 +171,23 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="rolesFromSubfields">
+      <xsl:choose>
+        <xsl:when test="substring($tag,2,2)='11'">
+          <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="marc:subfield[@code='4']" mode="contributionRoleCode">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:contribution>
@@ -182,22 +199,19 @@
               </xsl:apply-templates>
             </bf:agent>
             <xsl:choose>
-              <xsl:when test="substring($tag,2,2)='11'">
-                <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
+              <xsl:when test="(substring($tag,3,1) = '0' and marc:subfield[@code='e']) or
+                              (substring($tag,3,1) = '1' and marc:subfield[@code='j']) or
+                              marc:subfield[@code='4']">
+                <xsl:copy-of select="$rolesFromSubfields"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
+                <bf:role>
+                  <bflc:Role>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/relators/ctb</xsl:attribute>
+                  </bflc:Role>
+                </bf:role>
               </xsl:otherwise>
             </xsl:choose>
-            <xsl:for-each select="marc:subfield[@code='4']">
-              <bf:role>
-                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
-              </bf:role>
-            </xsl:for-each>
           </bf:Contribution>
         </bf:contribution>
       </xsl:when>
@@ -209,7 +223,21 @@
     </xsl:if>
   </xsl:template>
   
-  <!-- build bf:role properties -->
+  <!-- build bf:role properties from $4 -->
+  <xsl:template match="marc:subfield[@code='4']" mode="contributionRoleCode">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:role>
+          <bflc:Role>
+            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/relators/<xsl:value-of select="substring(.,1,3)"/></xsl:attribute>
+          </bflc:Role>
+        </bf:role>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- build bf:role properties from $e or $j -->
   <xsl:template match="marc:subfield" mode="contributionRole">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:call-template name="splitRole">
@@ -228,9 +256,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bf:Role>
+                <bflc:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,','))"/></rdfs:label>
-                </bf:Role>
+                </bflc:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -245,9 +273,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bf:Role>
+                <bflc:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
-                </bf:Role>
+                </bflc:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -262,9 +290,9 @@
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:role>
-                <bf:Role>
+                <bflc:Role>
                   <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
-                </bf:Role>
+                </bflc:Role>
               </bf:role>
             </xsl:when>
           </xsl:choose>
@@ -278,9 +306,9 @@
         <xsl:choose>
           <xsl:when test="$serialization='rdfxml'">
             <bf:role>
-              <bf:Role>
+              <bflc:Role>
                 <rdfs:label><xsl:value-of select="normalize-space($roleString)"/></rdfs:label>
-              </bf:Role>
+              </bflc:Role>
             </bf:role>
           </xsl:when>
         </xsl:choose>
