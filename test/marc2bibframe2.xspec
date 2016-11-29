@@ -53,6 +53,16 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/dan"/>
             </bf:language>
+            <bf:intendedAudience>
+              <bf:IntendedAudience rdf:about="http://id.loc.gov/vocabulary/maudience/juv">
+                <rdfs:label>juvenile</rdfs:label>
+              </bf:IntendedAudience>
+            </bf:intendedAudience>
+            <bf:genreForm>
+              <bf:GenreForm rdf:about="http://id.loc.gov/vocabulary/marcgt/fic">
+                <rdfs:label>fiction</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>
@@ -109,6 +119,11 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:illustrativeContent>
+              <bf:Illustration rdf:about="http://id.loc.gov/vocabulary/millus/ill">
+                <rdfs:label>illustrations</rdfs:label>
+              </bf:Illustration>
+            </bf:illustrativeContent>
             <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
               <bf:Title>

@@ -1,6 +1,17 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
+    <leader>01094cam a2200229 a 4500</leader>
     <controlfield tag="001">1</controlfield>
-    <controlfield tag="008">040520s200u    dk a   j      000 1 dan  </controlfield>
+    <controlfield tag="008">040520s200u    dk ab  js6   a111 1adan  </controlfield>
+  </record>
+  <record>
+    <leader>01094cam a2200229 a 4500</leader>
+    <controlfield tag="001">2</controlfield>
+    <controlfield tag="008">040520s200u    dk ab  jd     000 1 dan  </controlfield>
+  </record>
+  <record>
+    <leader>01094cam a2200229 a 4500</leader>
+    <controlfield tag="001">3</controlfield>
+    <controlfield tag="008">040520s200u    dk ab  jf     000 1 dan  </controlfield>
   </record>
 </collection>

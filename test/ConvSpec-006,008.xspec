@@ -19,6 +19,22 @@
       <x:expect label="pos 35-37 should set the language property of the Work" test="//bf:Work[1]/bf:language/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/dan'"/>
     </x:scenario>
 
+    <x:scenario label="BOOKS">
+      <x:context href="data/ConvSpec-006,008/marc.xml"/>
+      <x:expect label="pos 18-21 create illustrativeContent properties of the Instance" test="//bf:Instance[1]/bf:illustrativeContent/bf:Illustration/rdfs:label = 'illustrations'"/>
+      <x:expect label="pos 22 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience/bf:IntendedAudience/rdfs:label = 'juvenile'"/>
+      <x:expect label="pos 23 may create a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier/bf:Carrier/rdfs:label = 'electronic'"/>
+      <x:expect label="...or a fontSize property" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/rdfs:label = 'large print'"/>
+      <x:expect label="...or a notation" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/rdfs:label = 'braille'"/>
+      <x:expect label="pos 24-27 create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'comic or graphic novel'"/>
+      <x:expect label="pos 28 creates a genreForm for a gov doc" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'autonomous or semi-autonomous government publication'"/>
+      <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'conference publication'"/>
+      <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/rdfs:label = 'festschrift'"/>
+      <x:expect label="pos 31 creates a supplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent/bf:SupplementaryContent/rdfs:label = 'Index present'"/>
+      <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
+      <x:expect label="pos 33 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiography'"/>
+    </x:scenario>
+    
   </x:scenario>
 
 </x:description>
