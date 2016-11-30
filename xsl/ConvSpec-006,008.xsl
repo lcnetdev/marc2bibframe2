@@ -5,16 +5,16 @@
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
-                xmlns:lcvocab="http://id.loc.gov/vocabulary/"
+                xmlns:local="local:"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                exclude-result-prefixes="xsl marc lcvocab">
+                exclude-result-prefixes="xsl marc local">
 
   <!--
       Conversion specs for 006,008
   -->
 
   <!-- Lookup tables -->
-  <lcvocab:millus>
+  <local:millus>
     <a href="http://id.loc.gov/vocabulary/millus/ill">illustrations</a>
     <b href="http://id.loc.gov/vocabulary/millus/map">maps</b>
     <c href="http://id.loc.gov/vocabulary/millus/por">portraits</c>
@@ -30,9 +30,9 @@
     <m href="http://id.loc.gov/vocabulary/millus/pho">phonodisc, phonowire</m>
     <o href="http://id.loc.gov/vocabulary/millus/pht">photographs</o>
     <p href="http://id.loc.gov/vocabulary/millus/ilm">illuminations</p>
-  </lcvocab:millus>
+  </local:millus>
 
-  <lcvocab:maudience>
+  <local:maudience>
     <a href="http://id.loc.gov/vocabulary/maudience/pre">preschool</a>
     <b href="http://id.loc.gov/vocabulary/maudience/pri">primary</b>
     <c href="http://id.loc.gov/vocabulary/maudience/pad">pre-adolescent</c>
@@ -41,9 +41,9 @@
     <f href="http://id.loc.gov/vocabulary/maudience/spe">specialized</f>
     <g href="http://id.loc.gov/vocabulary/maudience/gen">general</g>
     <j href="http://id.loc.gov/vocabulary/maudience/juv">juvenile</j>
-  </lcvocab:maudience>
+  </local:maudience>
 
-  <lcvocab:carrier>
+  <local:carrier>
     <a href="http://id.loc.gov/vocabulary/mediaTypes/h">microfilm</a>
     <b href="http://id.loc.gov/vocabulary/carriers/he">microfiche</b>
     <c href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</c>
@@ -51,9 +51,9 @@
     <q>direct electronic</q>
     <r>regular print reproduction</r>
     <s>electronic</s>
-  </lcvocab:carrier>
+  </local:carrier>
 
-  <lcvocab:marcgt>
+  <local:marcgt>
     <a href="http://id.loc.gov/vocabulary/marcgt/abs">abstract or summary</a>
     <b href="http://id.loc.gov/vocabulary/marcgt/bib">bibliography</b>
     <c href="http://id.loc.gov/vocabulary/marcgt/cat">catalog</c>
@@ -82,9 +82,9 @@
     <x2 href="http://id.loc.gov/vocabulary/marcgt/off">offprint</x2>
     <x5 href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</x5>
     <x6 href="http://id.loc.gov/vocabulary/marcgt/cgn">comic or graphic novel</x6>
-  </lcvocab:marcgt>
+  </local:marcgt>
 
-  <lcvocab:litform>
+  <local:litform>
     <x1 href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</x1>
     <d href="http://id.loc.gov/vocabulary/marcgt/fic">drama</d>
     <e href="http://id.loc.gov/vocabulary/marcgt/fic">essay</e>
@@ -95,16 +95,16 @@
     <m href="http://id.loc.gov/vocabulary/marcgt/fic">mixed fiction</m>
     <p href="http://id.loc.gov/vocabulary/marcgt/fic">poetry</p>
     <s href="http://id.loc.gov/vocabulary/marcgt/fic">speech</s>
-  </lcvocab:litform>
+  </local:litform>
 
-  <lcvocab:bioform>
+  <local:bioform>
     <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
     <b href="http://id.loc.gov/vocabulary/marcgt/bio">individual biography</b>
     <c href="http://id.loc.gov/vocabulary/marcgt/bio">collective biography</c>
     <d href="http://id.loc.gov/vocabulary/marcgt/bio">contains biographical information</d>
-  </lcvocab:bioform>
+  </local:bioform>
 
-  <lcvocab:computerFileType>
+  <local:computerFileType>
     <a href="http://id.loc.gov/vocabulary/marcgt/num">numeric data</a>
     <b href="http://id.loc.gov/vocabulary/marcgt/com">computer program</b>
     <c href="http://id.loc.gov/vocabulary/marcgt/rep">representational</c>
@@ -116,7 +116,28 @@
     <i href="http://id.loc.gov/vocabulary/marcgt/inm">interactive multimedia</i>
     <j href="http://id.loc.gov/vocabulary/marcgt/ons">online system or service</j>
     <m>computer file combination</m>
-  </lcvocab:computerFileType>    
+  </local:computerFileType>
+
+  <local:carttype>
+    <a prop="issuance">single map</a>
+    <b prop="issuance">map series</b>
+    <c prop="issuance">map serial</c>
+    <d prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/glo">globe</d>
+    <e prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/atl">atlas</e>
+    <f prop="issuance">map supplement to another work</f>
+    <g prop="issuance">map bound as part of another work</g>
+  </local:carttype>
+
+  <local:mapform>
+    <e href="http://id.loc.gov/vocabulary/marcgt/man">manuscript</e>
+    <j href="http://id.loc.gov/vocabulary/marcgt/pos">picture card, post card</j>
+    <k href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</k>
+    <l href="http://id.loc.gov/vocabulary/marcgt/puz">puzzle</l>
+    <n href="http://id.loc.gov/vocabulary/marcgt/gam">game</n>
+    <o href="http://id.loc.gov/vocabulary/marcgt/wal">wall map</o>
+    <p href="http://id.loc.gov/vocabulary/marcgt/pla">playing cards</p>
+    <r href="http://id.loc.gov/vocabulary/marcgt/loo">loose-leaf</r>
+  </local:mapform>
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -172,6 +193,13 @@
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- maps -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'e' or substring(../marc:leader,7,1) = 'f'">
+        <xsl:call-template name="work008maps">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -211,7 +239,7 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
-    <xsl:for-each select="document('')/*/lcvocab:litform/*">
+    <xsl:for-each select="document('')/*/local:litform/*">
       <xsl:if test="name() = substring($dataElements,16,1) or
                     name() = concat('x',substring($dataElements,16,1))">
         <xsl:choose>
@@ -226,7 +254,7 @@
         </xsl:choose>
       </xsl:if>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/lcvocab:bioform/*">
+    <xsl:for-each select="document('')/*/local:bioform/*">
       <xsl:if test="name() = substring($dataElements,17,1)">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -250,7 +278,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/lcvocab:computerFileType/*">
+    <xsl:for-each select="document('')/*/local:computerFileType/*">
       <xsl:if test="name() = substring($dataElements,9,1)">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -272,11 +300,25 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!-- data elements for maps -->
+  <xsl:template name="work008maps">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:call-template name="govdoc008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
+    </xsl:call-template>
+    <xsl:call-template name="mapform008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="form" select="substring($dataElements,16,2)"/>
+    </xsl:call-template>
+  </xsl:template>
+  
   <!-- create Work intendedAudience properties from 008 -->
   <xsl:template name="intendedAudience008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/lcvocab:maudience/*">
+    <xsl:for-each select="document('')/*/local:maudience/*">
       <xsl:if test="name() = $code">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -299,7 +341,7 @@
     <xsl:param name="contents"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/lcvocab:marcgt/*">
+      <xsl:for-each select="document('')/*/local:marcgt/*">
         <xsl:if test="name() = substring($contents,$i,1) or
                       name() = concat('x',substring($contents,$i,1))">
           <xsl:choose>
@@ -351,6 +393,34 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <!-- genreForm properties for maps - loop 2 times -->
+  <xsl:template name="mapform008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="form"/>
+    <xsl:param name="i" select="1"/>
+    <xsl:if test="$i &lt; 3">
+      <xsl:for-each select="document('')/*/local:mapform/*">
+        <xsl:if test="name() = substring($form,$i,1)">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:call-template name="mapform008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="form" select="$form"/>
+        <xsl:with-param name="i" select="$i + 1"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>    
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -534,6 +604,13 @@
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- maps -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'e' or substring(../marc:leader,7,1) = 'f'">
+        <xsl:call-template name="instance008maps">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -549,6 +626,10 @@
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+    </xsl:call-template>
+    <xsl:call-template name="supplementaryContent008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
     <xsl:variable name="instanceType">
       <xsl:choose>
@@ -581,13 +662,6 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$instanceType"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:if test="substring($dataElements,14,1) = '1'">
-          <bf:supplementaryContent>
-            <bf:SupplementaryContent>
-              <rdfs:label>Index present</rdfs:label>
-            </bf:SupplementaryContent>
-          </bf:supplementaryContent>
-        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -604,13 +678,115 @@
     </xsl:if>
   </xsl:template>  
 
+  <!-- data elements for maps -->
+  <xsl:template name="instance008maps">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:variable name="projection">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,5,2) = 'aa'">Aitoff</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ab'">Gnomic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ac'">Lambert's azimuthal equal area</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ad'">Orthographic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ae'">Azimuthal equidistant</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'af'">Stereographic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ag'">General vertical near-sided</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'am'">Modified stereographic for Alaska</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'an'">Chamberlin trimetric</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ap'">polar stereographic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'au'">Azimuthal, specific type unknown</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'az'">Azimuthal, other</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ba'">Gali</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bb'">Goode's homiographic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bc'">Lambert's cylindrical equal area</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bd'">Mercator</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'be'">Miller</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bf'">Mollweide</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bg'">Sinusoidal</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bh'">Transverse Mercator</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bi'">Gauss-Kruger</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bj'">Equirectangular</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bk'">Krovak</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bl'">Cassini-Soldner</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bo'">Oblique Mercator</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'br'">Robinson</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bs'">Space oblique Mercator</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bu'">Cylindrical, specific type unknown</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'bz'">Cylindrical, other</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ca'">Alber's equal area</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'cb'">Bonne</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'cc'">Lambert's conformal conic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'ce'">Equidistant conic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'cp'">Polyconic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'cu'">Conic, specific type unknown</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'cz'">Conic, other</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'da'">Armadillo</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'db'">Butterfly</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'dc'">Eckert</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'dd'">Goode's homolosine</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'de'">Miller's bipolar oblique conformal conic</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'df'">Van Der Grinten</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'dg'">Dimaxion</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'dh'">Cordiform</xsl:when>
+        <xsl:when test="substring($dataElements,5,2) = 'dl'">Lambert conformal</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="cartographicAttributes008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="relief" select="substring($dataElements,1,4)"/>
+    </xsl:call-template>
+    <xsl:call-template name="supplementaryContent008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
+    </xsl:call-template>
+    <xsl:for-each select="document('')/*/local:carttype/*">
+      <xsl:if test="name() = substring($dataElements,8,1)">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="@prop = 'genreForm'">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
+            <xsl:if test="@prop = 'issuance'">
+              <bf:issuance>
+                <bf:Issuance>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Issuance>
+              </bf:issuance>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:call-template name="carrier008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$projection != ''">
+          <bf:projection>
+            <bf:Cartographic>
+              <bf:code><xsl:value-of select="substring($dataElements,5,2)"/></bf:code>
+              <rdfs:label><xsl:value-of select="$projection"/></rdfs:label>
+            </bf:Cartographic>
+          </bf:projection>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <!-- illustrativeContent - loop over 4 times -->
   <xsl:template name="illustrativeContent008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/lcvocab:millus/*">
+      <xsl:for-each select="document('')/*/local:millus/*">
         <xsl:if test="name() = substring($illustrations,$i,1)">
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
@@ -635,7 +811,7 @@
   <xsl:template name="carrier008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/lcvocab:carrier/*">
+    <xsl:for-each select="document('')/*/local:carrier/*">
       <xsl:if test="name() = $code">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -651,6 +827,68 @@
         </xsl:choose>
       </xsl:if>
     </xsl:for-each>
-  </xsl:template>    
+  </xsl:template>
+
+  <!-- cartographicAttributes - loop over 4 characters -->
+  <xsl:template name="cartographicAttributes008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="relief"/>
+    <xsl:param name="i" select="1"/>
+    <xsl:if test="$i &lt; 5">
+      <xsl:variable name="note">
+        <xsl:choose>
+          <xsl:when test="substring($relief,$i,1) = 'a'">contours</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'b'">shading</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'c'">gradient and bathymetric tints</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'd'">hachures</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'e'">bathymetry/soundings</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'f'">form lines</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'g'">spot heights</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'i'">pictorially</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'j'">land forms</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'k'">bathymetry/isolines</xsl:when>
+          <xsl:when test="substring($relief,$i,1) = 'm'">rock drawings</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$note != ''">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:cartographicAttributes>
+              <bf:Cartographic>
+                <bf:note>
+                  <bf:Note>
+                    <bf:noteType>relief</bf:noteType>
+                    <rdfs:label><xsl:value-of select="$note"/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </bf:Cartographic>
+            </bf:cartographicAttributes>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:if>
+      <xsl:call-template name="cartographicAttributes008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="relief" select="$relief"/>
+        <xsl:with-param name="i" select="$i + 1"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="supplementaryContent008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="code"/>
+    <xsl:if test="$code = '1'">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:supplementaryContent>
+            <bf:SupplementaryContent>
+              <rdfs:label>Index present</rdfs:label>
+            </bf:SupplementaryContent>
+          </bf:supplementaryContent>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
 
 </xsl:stylesheet>
