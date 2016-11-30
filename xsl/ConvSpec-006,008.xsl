@@ -138,6 +138,27 @@
     <p href="http://id.loc.gov/vocabulary/marcgt/pla">playing cards</p>
     <r href="http://id.loc.gov/vocabulary/marcgt/loo">loose-leaf</r>
   </local:mapform>
+
+  <local:musicTextForm>
+    <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
+    <b href="http://id.loc.gov/vocabulary/marcgt/bio">biography</b>
+    <c href="http://id.loc.gov/vocabulary/marcgt/cpl">conference proceedings</c>
+    <d href="http://id.loc.gov/vocabulary/marcgt/dra">drama</d>
+    <e href="http://id.loc.gov/vocabulary/marcgt/ess">essays</e>
+    <f href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</f>
+    <g href="http://id.loc.gov/vocabulary/marcgt/rpt">reporting</g>
+    <h href="http://id.loc.gov/vocabulary/marcgt/his">history</h>
+    <i href="http://id.loc.gov/vocabulary/marcgt/ins">instruction</i>
+    <j href="http://id.loc.gov/vocabulary/marcgt/lan">language instruction</j>
+    <k href="http://id.loc.gov/vocabulary/marcgt/cod">comedy</k>
+    <l href="http://id.loc.gov/vocabulary/marcgt/spe">lectures, speeches</l>
+    <m href="http://id.loc.gov/vocabulary/marcgt/mem">memoirs</m>
+    <o href="http://id.loc.gov/vocabulary/marcgt/fol">folktales</o>
+    <p href="http://id.loc.gov/vocabulary/marcgt/poe">poetry</p>
+    <r href="http://id.loc.gov/vocabulary/marcgt/reh">rehearsals</r>
+    <s href="http://id.loc.gov/vocabulary/marcgt/sou">sounds</s>
+    <t href="http://id.loc.gov/vocabulary/marcgt/int">interviews</t>
+  </local:musicTextForm>
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -196,6 +217,16 @@
       <!-- maps -->
       <xsl:when test="substring(../marc:leader,7,1) = 'e' or substring(../marc:leader,7,1) = 'f'">
         <xsl:call-template name="work008maps">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- music -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'c' or
+                      substring(../marc:leader,7,1) = 'd' or
+                      substring(../marc:leader,7,1) = 'i' or
+                      substring(../marc:leader,7,1) = 'j'">
+        <xsl:call-template name="work008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
@@ -314,6 +345,132 @@
     </xsl:call-template>
   </xsl:template>
   
+  <!-- data elements for music -->
+  <xsl:template name="work008music">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:variable name="compform">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,1,2) = 'an'">anthems</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'bd'">ballads</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'bg'">bluegrass music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'bl'">blues</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'bt'">ballets</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ca'">chaconnes</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cb'">chants, other religions</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cc'">chant, Christian</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cg'">concerti grossi</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ch'">chorales</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cl'">chorale preludes</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cn'">canons and rounds</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cp'">chansons, polyphonic</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cr'">carols</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cs'">chance compositions</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ct'">cantatas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cy'">country music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'cz'">canzonas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'df'">dance forms</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'dv'">divertimentos, serenades, cassations, divertissements, notturni</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'fg'">fugues</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'fl'">flamenco</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'fm'">folk music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ft'">fantasias</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'gm'">gospel music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'hy'">hymns</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'jz'">jazz</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mc'">musical revues and comedies</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'md'">madrigals</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mi'">minuets</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mo'">motets</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mp'">motion picture music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mr'">marches</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ms'">masses</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mu'">multiple forms</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'mz'">mazurkas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'nc'">nocturnes</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'op'">operas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'or'">oratorios</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ov'">overtures</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pg'">program music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pm'">passion music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'po'">polonaises</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pp'">popular music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pr'">preludes</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ps'">passacaglias</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pt'">part-songs</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'pv'">pavans</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'rc'">rock music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'rd'">rondos</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'rg'">ragtime music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ri'">ricercars</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'rp'">rhapsodies</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'rq'">requiems</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'sd'">square dance music</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'sg'">songs</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'sn'">sonatas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'sp'">symphonic poems</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'st'">studies and exercises</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'su'">suites</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'sy'">symphonies</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'tc'">toccatas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'tl'">teatro lirico</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'ts'">trio-sonatas</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'vi'">villancicos</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'vr'">variations</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'wz'">waltzes</xsl:when>
+        <xsl:when test="substring($dataElements,1,2) = 'za'">arzuelas</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="musicformat">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,3,1) = 'a'">full score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'b'">full score, miniature or study size</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'c'">accompaniment reduced for keyboard</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'd'">voice score with accompaniment omitted</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'e'">condensed score or piano-conductor score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'g'">close score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'h'">chorus score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'i'">condensed score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'j'">performer-conducter part</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'k'">vocal score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'l'">score</xsl:when>
+        <xsl:when test="substring($dataElements,3,1) = 'm'">multiple score formats</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="intendedAudience008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
+    </xsl:call-template>
+    <xsl:call-template name="suppContentMusic008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="accomp" select="substring($dataElements,7,6)"/>
+    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$compform != ''">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <bf:code><xsl:value-of select="substring($dataElements,1,2)"/></bf:code>
+              <rdfs:label><xsl:value-of select="$compform"/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:if>
+        <xsl:if test="$musicformat != ''">
+          <bf:musicFormat>
+            <bf:MusicFormat>
+              <bf:code><xsl:value-of select="substring($dataElements,3,1)"/></bf:code>
+              <rdfs:label><xsl:value-of select="$musicformat"/></rdfs:label>
+            </bf:MusicFormat>
+          </bf:musicFormat>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:call-template name="musicTextForm008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="litform" select="substring($dataElements,13,2)"/>
+    </xsl:call-template>
+  </xsl:template>
+  
   <!-- create Work intendedAudience properties from 008 -->
   <xsl:template name="intendedAudience008">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -420,7 +577,77 @@
         <xsl:with-param name="i" select="$i + 1"/>
       </xsl:call-template>
     </xsl:if>
-  </xsl:template>    
+  </xsl:template>
+
+  <!-- supplementaryContent properties for music - loop 6 times -->
+  <xsl:template name="suppContentMusic008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="accomp"/>
+    <xsl:param name="i" select="1"/>
+    <xsl:if test="$i &lt; 7">
+      <xsl:variable name="supp">
+        <xsl:choose>
+          <xsl:when test="substring($accomp,$i,1) = 'a'">discography</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'b'">bibliography</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'c'">thematic index</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'd'">libretto or text</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'e'">biography of composer or author</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'f'">biography of performer or history of ensemble</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'g'">technical and/or historical information on instruments</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'h'">technical information on music</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'i'">historical information</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'k'">ethnological information</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 'r'">instructional materials</xsl:when>
+          <xsl:when test="substring($accomp,$i,1) = 's'">music</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$supp != ''">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent>
+                <bf:code><xsl:value-of select="substring($accomp,$i,1)"/></bf:code>
+                <rdfs:label><xsl:value-of select="$supp"/></rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:if>
+      <xsl:call-template name="suppContentMusic008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="accomp" select="$accomp"/>
+        <xsl:with-param name="i" select="$i + 1"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- genreForm properties for text accompanying music - loop 2 times -->
+  <xsl:template name="musicTextForm008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="litform"/>
+    <xsl:param name="i" select="1"/>
+    <xsl:if test="$i &lt; 3">
+      <xsl:for-each select="document('')/*/local:musicTextForm/*">
+        <xsl:if test="name() = substring($litform,$i,1)">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:call-template name="musicTextForm008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="litform" select="$litform"/>
+        <xsl:with-param name="i" select="$i + 1"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -611,6 +838,16 @@
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- music -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'c' or
+                      substring(../marc:leader,7,1) = 'd' or
+                      substring(../marc:leader,7,1) = 'i' or
+                      substring(../marc:leader,7,1) = 'j'">
+        <xsl:call-template name="instance008music">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -778,6 +1015,16 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+  
+  <!-- data elements for music -->
+  <xsl:template name="instance008music">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:call-template name="carrier008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+    </xsl:call-template>
   </xsl:template>
   
   <!-- illustrativeContent - loop over 4 times -->

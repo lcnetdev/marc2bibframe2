@@ -48,6 +48,14 @@
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'playing cards'"/>
     </x:scenario>
     
+    <x:scenario label="MUSIC">
+      <x:context href="data/ConvSpec-006,008/marc.xml"/>
+      <x:expect label="pos 18-19 creates a genreForm property of the Work" test="//bf:Work[6]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'hymns'"/>
+      <x:expect label="pos 20 creates a musicFormat property of the Work" test="//bf:Work[6]/bf:musicFormat/bf:MusicFormat/rdfs:label = 'full score'"/>
+      <x:expect label="pos 24-29 create supplementaryContent properties of the Work" test="//bf:Work[6]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'bibliography'"/>
+      <x:expect label="pos 30-31 create genreForm properties of the Work" test="//bf:Work[6]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'drama'"/>
+    </x:scenario>
+
   </x:scenario>
 
 </x:description>
