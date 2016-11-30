@@ -34,6 +34,11 @@
       <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
       <x:expect label="pos 33 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiography'"/>
     </x:scenario>
+
+    <x:scenario label="COMPUTER FILES">
+      <x:context href="data/ConvSpec-006,008/marc.xml"/>
+      <x:expect label="pos 26 creates a genreForm for the computer file type" test="//bf:Work[4]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'computer file combination'"/>
+    </x:scenario>
     
   </x:scenario>
 

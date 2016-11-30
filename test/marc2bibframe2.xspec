@@ -301,6 +301,16 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
+            <bf:intendedAudience>
+              <bf:IntendedAudience rdf:about="http://id.loc.gov/vocabulary/maudience/gen">
+                <rdfs:label>general</rdfs:label>
+              </bf:IntendedAudience>
+            </bf:intendedAudience>
+            <bf:genreForm>
+              <bf:GenreForm>
+                <rdfs:label>computer file combination</rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
