@@ -9,6 +9,11 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
 
+  <x:scenario label="006 - FIXED-LENGTH DATA ELEMENTS-- ADDITIONAL MATERIAL CHARACTERISTICS">
+    <x:context href="data/ConvSpec-006,008/marc.xml"/>
+    <x:expect label="pos 1-17 processed as 008/18-34" test="//bf:Instance[9]/bf:illustrativeContent/bf:Illustration/rdfs:label = 'maps'"/>
+  </x:scenario>
+
   <x:scenario label="008 - FIXED-LENGTH DATA ELEMENTS--GENERAL INFORMATION">
 
     <x:scenario label="ALL MATERIALS">

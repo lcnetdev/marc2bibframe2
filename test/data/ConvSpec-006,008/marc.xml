@@ -39,4 +39,11 @@
     <controlfield tag="001">8</controlfield>
     <controlfield tag="008">030311s2002    xxu161            mleng  </controlfield>
   </record>
+  <record>
+    <leader>01402nas a2200385 a 4500</leader>
+    <controlfield tag="001">9</controlfield>
+    <controlfield tag="006">ab   |||||||||||||</controlfield>
+    <controlfield tag="007">ta</controlfield>
+    <controlfield tag="008">000703d20002010enkfr p       0   a0eng  </controlfield>
+  </record>
 </collection>

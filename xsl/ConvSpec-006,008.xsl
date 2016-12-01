@@ -209,6 +209,17 @@
     <v href="http://id.loc.gov/vocabulary/marcgt/vid">videorecording</v>
     <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
   </local:visualtype>
+
+  <xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- continuing resources -->
+    <xsl:if test="substring(.,1,1) = 's'">
+      <xsl:call-template name="entryConvention008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring(.,18,1)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -227,6 +238,7 @@
         </bf:creationDate>
       </xsl:when>
     </xsl:choose>
+    <!-- continuing resources -->
     <xsl:if test="substring(../marc:leader,7,1) = 'a' and
                   (substring(../marc:leader,8,1) = 'b' or
                    substring(../marc:leader,8,1) = 'i' or
@@ -261,6 +273,63 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="marc:controlfield[@tag='006']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- select call appropriate 008 template based on pos 0 -->
+    <xsl:choose>
+      <!-- books -->
+      <xsl:when test="substring(.,1,1) = 'a' or
+                      substring(.,1,1) = 't'">
+        <xsl:call-template name="work008books">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- computer files -->
+      <xsl:when test="substring(.,1,1) = 'm'">
+        <xsl:call-template name="work008computerfiles">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- maps -->
+      <xsl:when test="substring(.,1,1) = 'e' or
+                      substring(.,1,1) = 'f'">
+        <xsl:call-template name="work008maps">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- music -->
+      <xsl:when test="substring(.,1,1) = 'c' or
+                      substring(.,1,1) = 'd' or
+                      substring(.,1,1) = 'i' or
+                      substring(.,1,1) = 'j'">
+        <xsl:call-template name="work008music">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- continuing resources -->
+      <xsl:when test="substring(.,1,1) = 's'">
+        <xsl:call-template name="work008cr">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- visual materials -->
+      <xsl:when test="substring(.,1,1) = 'g' or
+                      substring(.,1,1) = 'k' or
+                      substring(.,1,1) = 'o' or
+                      substring(.,1,1) = 'r'">
+        <xsl:call-template name="work008visual">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="work">
@@ -862,6 +931,70 @@
         <xsl:with-param name="i" select="$i + 1"/>
       </xsl:call-template>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="marc:controlfield[@tag='006']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- select call appropriate 008 template based on pos 0 -->
+    <xsl:choose>
+      <!-- books -->
+      <xsl:when test="substring(.,1,1) = 'a' or
+                      substring(.,1,1) = 't'">
+        <xsl:call-template name="instance008books">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- computer files -->
+      <xsl:when test="substring(.,1,1) = 'm'">
+        <xsl:call-template name="instance008computerfiles">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- maps -->
+      <xsl:when test="substring(.,1,1) = 'e' or
+                      substring(.,1,1) = 'f'">
+        <xsl:call-template name="instance008maps">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- mixed materials -->
+      <xsl:when test="substring(.,1,1) = 'p'">
+        <xsl:call-template name="instance008mixed">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- music -->
+      <xsl:when test="substring(.,1,1) = 'c' or
+                      substring(.,1,1) = 'd' or
+                      substring(.,1,1) = 'i' or
+                      substring(.,1,1) = 'j'">
+        <xsl:call-template name="instance008music">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- continuing resources -->
+      <xsl:when test="substring(.,1,1) = 's'">
+        <xsl:call-template name="instance008cr">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- visual materials -->
+      <xsl:when test="substring(.,1,1) = 'g' or
+                      substring(.,1,1) = 'k' or
+                      substring(.,1,1) = 'o' or
+                      substring(.,1,1) = 'r'">
+        <xsl:call-template name="instance008visual">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
