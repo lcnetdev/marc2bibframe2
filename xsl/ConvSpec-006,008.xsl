@@ -1083,6 +1083,13 @@
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- mixed materials -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'p'">
+        <xsl:call-template name="instance008mixed">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -1362,6 +1369,16 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+  
+  <!-- data elements for mixed materials -->
+  <xsl:template name="instance008mixed">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:call-template name="carrier008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+    </xsl:call-template>
   </xsl:template>
   
   <!-- illustrativeContent - loop over 4 times -->
