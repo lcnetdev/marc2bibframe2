@@ -1374,6 +1374,7 @@
         <xsl:variable name="inspectionDate">
           <xsl:choose>
             <xsl:when test="substring(.,18,6) = '||||||'"/>
+            <xsl:when test="substring(.,18,6) = '------'"/>
             <xsl:otherwise><xsl:value-of select="concat(substring(.,18,4),'-',substring(.,22,2))"/></xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
