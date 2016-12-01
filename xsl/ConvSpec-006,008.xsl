@@ -187,6 +187,28 @@
     <p href="http://id.loc.gov/vocabulary/marcgt/per">periodical</p>
     <w href="http://id.loc.gov/vocabulary/marcgt/web">updating web site</w>
   </local:crtype>
+
+  <local:visualtype>
+    <a href="http://id.loc.gov/vocabulary/marcgt/aro">art original</a>
+    <b href="http://id.loc.gov/vocabulary/marcgt/kit">kit</b>
+    <c href="http://id.loc.gov/vocabulary/marcgt/art">art reproduction</c>
+    <d href="http://id.loc.gov/vocabulary/marcgt/dio">diorama</d>
+    <f href="http://id.loc.gov/vocabulary/marcgt/fls">filmstrip</f>
+    <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
+    <i href="http://id.loc.gov/vocabulary/marcgt/pic">picture</i>
+    <k href="http://id.loc.gov/vocabulary/marcgt/gra">graphic</k>
+    <l href="http://id.loc.gov/vocabulary/marcgt/ted">technical drawing</l>
+    <m href="http://id.loc.gov/vocabulary/marcgt/mot">motion picture</m>
+    <n href="http://id.loc.gov/vocabulary/marcgt/cha">chart</n>
+    <o href="http://id.loc.gov/vocabulary/marcgt/fla">flash card</o>
+    <p href="http://id.loc.gov/vocabulary/marcgt/mic">microscope slide</p>
+    <q href="http://id.loc.gov/vocabulary/marcgt/mod">model</q>
+    <r href="http://id.loc.gov/vocabulary/marcgt/rea">realia</r>
+    <s href="http://id.loc.gov/vocabulary/marcgt/sli">slide</s>
+    <t href="http://id.loc.gov/vocabulary/marcgt/tra">transparency</t>
+    <v href="http://id.loc.gov/vocabulary/marcgt/vid">videorecording</v>
+    <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
+  </local:visualtype>
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -299,6 +321,16 @@
                         substring(../marc:leader,8,1) = 'i' or
                         substring(../marc:leader,8,1) = 's')">
         <xsl:call-template name="work008cr">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <!-- visual materials -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'g' or
+                      substring(../marc:leader,7,1) = 'k' or
+                      substring(../marc:leader,7,1) = 'o' or
+                      substring(../marc:leader,7,1) = 'r'">
+        <xsl:call-template name="work008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
@@ -580,6 +612,57 @@
               <rdfs:label><xsl:value-of select="$script"/></rdfs:label>
             </bf:Script>
           </bf:notation>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- data elements for visual materials -->
+  <xsl:template name="work008visual">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:variable name="duration">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,1,3) = '000'">more than 999 minutes</xsl:when>
+        <xsl:when test="substring($dataElements,1,3) = '---'"/>
+        <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
+        <xsl:when test="substring($dataElements,1,3) = '|||'"/>
+        <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="intendedAudience008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
+    </xsl:call-template>
+    <xsl:call-template name="govdoc008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
+    </xsl:call-template>
+    <xsl:for-each select="document('')/*/local:visualtype/*">
+      <xsl:if test="name() = substring($dataElements,16,1)">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$duration != ''">
+          <bf:duration>
+            <xsl:choose>
+              <xsl:when test="substring($dataElements,1,3) != '000'">
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
+              </xsl:when>
+            </xsl:choose>
+            <xsl:value-of select="$duration"/>
+          </bf:duration>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
@@ -990,6 +1073,16 @@
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
+      <!-- visual materials -->
+      <xsl:when test="substring(../marc:leader,7,1) = 'g' or
+                      substring(../marc:leader,7,1) = 'k' or
+                      substring(../marc:leader,7,1) = 'o' or
+                      substring(../marc:leader,7,1) = 'r'">
+        <xsl:call-template name="instance008visual">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -1242,6 +1335,35 @@
     </xsl:choose>
   </xsl:template>
   
+  <!-- data elements for visual materials -->
+  <xsl:template name="instance008visual">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="dataElements"/>
+    <xsl:variable name="technique">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,17,1) = 'a'">animation</xsl:when>
+        <xsl:when test="substring($dataElements,17,1) = 'c'">animation and live action</xsl:when>
+        <xsl:when test="substring($dataElements,17,1) = 'l'">live action</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="carrier008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$technique != ''">
+          <bf:note>
+            <bf:Note>
+              <bf:noteType>technique</bf:noteType>
+              <rdfs:label><xsl:value-of select="$technique"/></rdfs:label>
+            </bf:Note>
+          </bf:note>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <!-- illustrativeContent - loop over 4 times -->
   <xsl:template name="illustrativeContent008">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -1351,6 +1473,5 @@
       </xsl:choose>
     </xsl:if>
   </xsl:template>
-
 
 </xsl:stylesheet>

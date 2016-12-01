@@ -65,6 +65,14 @@
       <x:expect label="pos 33 creates a notation property of the Work" test="//bf:Work[7]/bf:notation/bf:Script/rdfs:label = 'basic roman'"/>
       <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note/rdfs:label = '0 - successive'"/>
     </x:scenario>
+
+    <x:scenario label="VISUAL MATERIALS">
+      <x:context href="data/ConvSpec-006,008/marc.xml"/>
+      <x:expect label="pos 18-21 create a duration property of the Work" test="//bf:Work[8]/bf:duration = '161'"/>
+      <x:expect label="pos 33 creates a genreForm property of the Work" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'motion picture'"/>
+      <x:expect label="pos 34 creates a note property of the Instance" test="//bf:Instance[8]/bf:note/bf:Note/rdfs:label = 'live action'"/>
+    </x:scenario>
+
   </x:scenario>
 
 </x:description>
