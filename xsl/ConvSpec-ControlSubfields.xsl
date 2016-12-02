@@ -39,6 +39,20 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- create a bf:source property from a subfield $2 -->
+  <xsl:template match="marc:subfield" mode="subfield2">
+    <xsl:param name="serialization" select="'rdfxsml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:source>
+          <bf:Source>
+            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+          </bf:Source>
+        </bf:source>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <!--
       create a bflc:appliesTo property from a subfield $3
   -->

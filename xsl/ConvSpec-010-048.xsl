@@ -45,13 +45,9 @@
               <xsl:if test="following-sibling::marc:subfield[position() = 1][@code = 'q']">
                 <bf:qualifier><xsl:value-of select="following-sibling::marc:subfield[position() = 1][@code = 'q']"/></bf:qualifier>
               </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='2']">
-                <bf:source>
-                  <bf:Source>
-                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  </bf:Source>
-                </bf:source>
-              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
             </bf:Nbn>
           </bf:identifiedBy>
         </xsl:for-each>
@@ -79,13 +75,9 @@
                   </bf:source>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:for-each select="../marc:subfield[@code='2']">
-                    <bf:source>
-                      <bf:Source>
-                        <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:for-each>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
             </bf:Nban>
