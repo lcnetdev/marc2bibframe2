@@ -439,34 +439,30 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
-    <xsl:for-each select="document('')/*/local:litform/*">
-      <xsl:if test="name() = substring($dataElements,16,1) or
-                    name() = concat('x',substring($dataElements,16,1))">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:litform/*[name() = substring($dataElements,16,1)] |
+                          document('')/*/local:litform/*[name() = concat('x',substring($dataElements,16,1))]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:bioform/*">
-      <xsl:if test="name() = substring($dataElements,17,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:bioform/*[name() = substring($dataElements,17,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
   </xsl:template>
 
@@ -478,21 +474,19 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:computerFileType/*">
-      <xsl:if test="name() = substring($dataElements,9,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:if test="@href">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                </xsl:if>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:computerFileType/*[name() = substring($dataElements,9,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:if test="@href">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
     <xsl:call-template name="govdoc008">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -707,19 +701,17 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:visualtype/*">
-      <xsl:if test="name() = substring($dataElements,16,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:visualtype/*[name() = substring($dataElements,16,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -741,19 +733,17 @@
   <xsl:template name="intendedAudience008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:maudience/*">
-      <xsl:if test="name() = $code">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:intendedAudience>
-              <bf:IntendedAudience>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:IntendedAudience>
-            </bf:intendedAudience>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:maudience/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:intendedAudience>
+            <bf:IntendedAudience>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:IntendedAudience>
+          </bf:intendedAudience>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
   </xsl:template>
 
@@ -764,20 +754,18 @@
     <xsl:param name="contents"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:marcgt/*">
-        <xsl:if test="name() = substring($contents,$i,1) or
-                      name() = concat('x',substring($contents,$i,1))">
-          <xsl:choose>
-            <xsl:when test="$serialization = 'rdfxml'">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:if>
+      <xsl:for-each select="document('')/*/local:marcgt/*[name() = substring($contents,$i,1)] |
+                            document('')/*/local:marcgt/*[name() = concat('x',substring($contents,$i,1))]">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+          </xsl:when>
+        </xsl:choose>
       </xsl:for-each>
       <xsl:call-template name="genreForm008">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -841,19 +829,17 @@
     <xsl:param name="form"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:mapform/*">
-        <xsl:if test="name() = substring($form,$i,1)">
-          <xsl:choose>
-            <xsl:when test="$serialization = 'rdfxml'">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:if>
+      <xsl:for-each select="document('')/*/local:mapform/*[name() = substring($form,$i,1)]">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+          </xsl:when>
+        </xsl:choose>
       </xsl:for-each>
       <xsl:call-template name="mapform008">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -911,19 +897,17 @@
     <xsl:param name="litform"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:musicTextForm/*">
-        <xsl:if test="name() = substring($litform,$i,1)">
-          <xsl:choose>
-            <xsl:when test="$serialization = 'rdfxml'">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:if>
+      <xsl:for-each select="document('')/*/local:musicTextForm/*[name() = substring($litform,$i,1)]">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+          </xsl:when>
+        </xsl:choose>
       </xsl:for-each>
       <xsl:call-template name="musicTextForm008">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -1351,28 +1335,26 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:carttype/*">
-      <xsl:if test="name() = substring($dataElements,8,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="@prop = 'genreForm'">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-            <xsl:if test="@prop = 'issuance'">
-              <bf:issuance>
-                <bf:Issuance>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Issuance>
-              </bf:issuance>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:carttype/*[name() = substring($dataElements,8,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:if test="@prop = 'genreForm'">
+            <bf:genreForm>
+              <bf:GenreForm>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:GenreForm>
+            </bf:genreForm>
+          </xsl:if>
+          <xsl:if test="@prop = 'issuance'">
+            <bf:issuance>
+              <bf:Issuance>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:Issuance>
+            </bf:issuance>
+          </xsl:if>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -1413,50 +1395,44 @@
         <xsl:when test="substring($dataElements,2,1) = 'x'">completely irregular</xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="document('')/*/local:frequency/*">
-      <xsl:if test="name() = substring($dataElements,1,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:frequency>
-              <bf:Frequency>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Frequency>
-            </bf:frequency>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:frequency/*[name() = substring($dataElements,1,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:frequency>
+            <bf:Frequency>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Frequency>
+          </bf:frequency>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:crtype/*">
-      <xsl:if test="name() = substring($dataElements,4,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:crtype/*[name() = substring($dataElements,4,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:carrier/*">
-      <xsl:if test="name() = substring($dataElements,5,1)">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:note>
-              <bf:Note>
-                <xsl:if test="@href">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                </xsl:if>
-                <bf:noteType>form of original item</bf:noteType>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Note>
-            </bf:note>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:carrier/*[name() = substring($dataElements,5,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:note>
+            <bf:Note>
+              <xsl:if test="@href">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <bf:noteType>form of original item</bf:noteType>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Note>
+          </bf:note>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -1520,19 +1496,17 @@
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:millus/*">
-        <xsl:if test="name() = substring($illustrations,$i,1)">
-          <xsl:choose>
-            <xsl:when test="$serialization = 'rdfxml'">
-              <bf:illustrativeContent>
-                <bf:Illustration>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Illustration>
-              </bf:illustrativeContent>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:if>
+      <xsl:for-each select="document('')/*/local:millus/*[name() = substring($illustrations,$i,1)]">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:illustrativeContent>
+              <bf:Illustration>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:Illustration>
+            </bf:illustrativeContent>
+          </xsl:when>
+        </xsl:choose>
       </xsl:for-each>
       <xsl:call-template name="illustrativeContent008">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -1545,21 +1519,19 @@
   <xsl:template name="carrier008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:carrier/*">
-      <xsl:if test="name() = $code">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:carrier>
-              <bf:Carrier>
-                <xsl:if test="@href">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                </xsl:if>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Carrier>
-            </bf:carrier>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+    <xsl:for-each select="document('')/*/local:carrier/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:carrier>
+            <bf:Carrier>
+              <xsl:if test="@href">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Carrier>
+          </bf:carrier>
+        </xsl:when>
+      </xsl:choose>
     </xsl:for-each>
   </xsl:template>
 
