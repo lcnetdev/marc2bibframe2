@@ -30,5 +30,15 @@
       <subfield code="b">U.S. Copyright Office</subfield>
       <subfield code="z">M444120-2006</subfield>
     </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">0877790086 :</subfield>
+      <subfield code="c">$10.00</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">0877790019</subfield>
+      <subfield code="q">black leather</subfield>
+      <subfield code="z">0877780116 :</subfield>
+      <subfield code="c">$14.00</subfield>
+    </datafield>
   </record>
 </collection>

@@ -39,5 +39,14 @@
     <x:expect label="$i creates a note property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:note/bf:Note/rdfs:label = 'Suppl. reg.'"/>
     <x:expect label="$z creates a CopyrightNumber with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:CopyrightNumber/rdfs:label = 'invalid'"/>
   </x:scenario>
+
+  <x:scenario label="INTERNATIONAL STANDARD BOOK NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="First 020/$a creates an identifiedBy/Isbn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/rdf:value = '0877790086'"/>
+    <x:expect label="Multiple 020s create new Instances" test="//bf:Instance[2]/bf:identifiedBy[1]/bf:Isbn/rdf:value = '0877790019'"/>
+    <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms = '$10.00'"/>
+    <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[2]/bf:identifiedBy[1]/bf:Isbn/bf:qualifier = 'black leather'"/>
+    <x:expect label="$z creates an Isbn with rdfs:label 'invalid'" test="//bf:Instance[2]/bf:identifiedBy[2]/bf:Isbn/rdfs:label = 'invalid'"/>
+  </x:scenario>
   
 </x:description>

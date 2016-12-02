@@ -134,4 +134,72 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- Only match the first 020, for subsequent 020s create new instance -->
+  <xsl:template match="marc:datafield[@tag='020'][not(preceding-sibling::marc:datafield[@tag='020'])]" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance020">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <!--
+      generate new Instances from multiple 020s
+  -->
+  <xsl:template match="marc:datafield[@tag='020'][preceding-sibling::marc:datafield[@tag='020']]" mode="newInstance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="recordid"/>
+    <xsl:variable name="instanceiri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Instance>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$instanceiri"/></xsl:attribute>
+          <xsl:apply-templates select="." mode="instance020">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          <bf:instanceOf>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+          </bf:instanceOf>
+        </bf:Instance>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="instance020">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
+          <bf:identifiedBy>
+            <bf:Isbn>
+              <rdf:value>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                </xsl:call-template>
+              </rdf:value>
+              <xsl:if test="@code = 'z'">
+                <rdfs:label>invalid</rdfs:label>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='q']">
+                <bf:qualifier>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
+            </bf:Isbn>
+          </bf:identifiedBy>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='c']">
+          <bf:acquisitionTerms>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </bf:acquisitionTerms>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

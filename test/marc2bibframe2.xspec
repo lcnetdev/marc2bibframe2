@@ -131,6 +131,11 @@
                 <rdf:value>  2004436018</rdf:value>
               </bf:Lccn>
             </bf:identifiedBy>
+            <bf:identifiedBy>
+              <bf:Isbn>
+                <rdf:value>8759517352</rdf:value>
+              </bf:Isbn>
+            </bf:identifiedBy>
             <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
               <bf:Title>

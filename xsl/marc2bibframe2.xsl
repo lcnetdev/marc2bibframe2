@@ -102,7 +102,7 @@
           <!-- pass fields through conversion specs for Work properties -->
           <xsl:apply-templates mode="work">
             <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="'rdfxml'"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
           <bf:hasInstance>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
@@ -119,7 +119,7 @@
           <!-- pass fields through conversion specs for Instance properties -->
           <xsl:apply-templates mode="instance">
             <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="'rdfxml'"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
           <bf:instanceOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
@@ -127,12 +127,20 @@
         </bf:Instance>
       </xsl:when>
     </xsl:choose>
+
+    <!-- generate secondary Instance entities -->
+    <xsl:apply-templates mode="newInstance">
+      <xsl:with-param name="recordid" select="$recordid"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+    
   </xsl:template>
 
   <!-- suppress text from unmatched nodes -->
   <xsl:template match="text()" mode="adminmetadata"/>
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
+  <xsl:template match="text()" mode="newInstance"/>
 
   <!-- warn about other elements -->
   <xsl:template match="*">
