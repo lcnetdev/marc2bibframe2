@@ -87,4 +87,51 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='017']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="date"><xsl:value-of select="marc:subfield[@code='d'][1]"/></xsl:variable>
+    <xsl:variable name="dateformatted"><xsl:value-of select="concat(substring($date,1,4),'-',substring($date,5,2),'-',substring($date,7,2))"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
+          <bf:identifiedBy>
+            <bf:CopyrightNumber>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+              <xsl:if test="@code = 'z'">
+                <rdfs:label>invalid</rdfs:label>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='b']">
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label><xsl:value-of select="normalize-space(.)"/></rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </xsl:for-each>
+              <xsl:if test="$date != ''">
+                <bf:date>
+                  <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
+                  <xsl:value-of select="$dateformatted"/>
+                </bf:date>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='i']">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                        <xsl:with-param name="chopString">
+                          <xsl:value-of select="."/>
+                        </xsl:with-param>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
+            </bf:CopyrightNumber>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

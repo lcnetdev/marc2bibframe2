@@ -19,5 +19,16 @@
       <subfield code="a">PTBN000004618</subfield>
       <subfield code="2">PoLiBN</subfield>
     </datafield>
+    <datafield tag="017" ind1=" " ind2="8">
+      <subfield code="i">Suppl. reg.:</subfield>
+      <subfield code="a">JP732</subfield>
+      <subfield code="b">U.S. Copyright Office</subfield>
+      <subfield code="d">19510504</subfield>
+    </datafield>
+    <datafield tag="017" ind1=" " ind2=" ">
+      <subfield code="a">M44120-2006 </subfield>
+      <subfield code="b">U.S. Copyright Office</subfield>
+      <subfield code="z">M444120-2006</subfield>
+    </datafield>
   </record>
 </collection>
