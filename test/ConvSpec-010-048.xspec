@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="010 - LIBRARY OF CONGRESS CONTROL NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/Lccn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Lccn/rdf:value = '  2004436018'"/>
+    <x:expect label="$z creates an Lccn with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/rdfs:label = 'invalid'"/>
+  </x:scenario>
+
+  <x:scenario label="015 - NATIONAL BIBLIOGRAPHY NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/Nbn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/rdf:value = '06,A29,1122'"/>
+    <x:expect label="$b creates a qualifier property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/bf:qualifier = 'pbk'"/>
+    <x:expect label="$z creates an Nbn with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/rdfs:label = 'invalid'"/>
+    <x:expect label="$2 creates a source property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:source/bf:Source/rdfs:label = 'dnb'"/>
+  </x:scenario>
+
+  <x:scenario label="016 - NATIONAL BIBLIOGRAPHIC AGENCY CONTROL NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="ind1=' ' creates a LAC source property of the Nban" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:Nban/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
+    <x:expect label="$a creates an identifiedBy/Nban property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:Nban/rdf:value=' 730032015  rev'"/>
+    <x:expect label="$z creates an Nban with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:Nban/rdfs:label = 'invalid'"/>
+    <x:expect label="$2 creates a source property of the Nban" test="//bf:Instance[1]/bf:identifiedBy[7]/bf:Nban/bf:source/bf:Source/rdfs:label = 'PoLiBN'"/>    
+  </x:scenario>
+  
+</x:description>

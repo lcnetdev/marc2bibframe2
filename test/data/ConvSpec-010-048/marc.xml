@@ -1,0 +1,23 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">  2004436018</subfield>
+      <subfield code="z">  2004436017</subfield>
+    </datafield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">06,A29,1122</subfield>
+      <subfield code="q">pbk</subfield>
+      <subfield code="z">05,N51,1204</subfield>
+      <subfield code="2">dnb</subfield>
+    </datafield>
+    <datafield tag="016" ind1=" " ind2=" ">
+      <subfield code="a"> 730032015  rev</subfield>
+      <subfield code="z"> 89000298  </subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="a">PTBN000004618</subfield>
+      <subfield code="2">PoLiBN</subfield>
+    </datafield>
+  </record>
+</collection>

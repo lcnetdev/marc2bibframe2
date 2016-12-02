@@ -12,6 +12,7 @@
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-001-007.xspec"/>
   <x:import href="ConvSpec-006,008.xspec"/>
+  <x:import href="ConvSpec-010-048.xspec"/>
   <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
@@ -125,6 +126,11 @@
                 <rdfs:label>illustrations</rdfs:label>
               </bf:Illustration>
             </bf:illustrativeContent>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>  2004436018</rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <rdfs:label>Ole Lukøie /</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -256,6 +262,11 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   91758335 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -364,6 +375,11 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   00530046 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>

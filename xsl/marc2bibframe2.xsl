@@ -21,6 +21,7 @@
   <xsl:include href="ConvSpec-LDR.xsl"/>
   <xsl:include href="ConvSpec-001-007.xsl"/>
   <xsl:include href="ConvSpec-006,008.xsl"/>
+  <xsl:include href="ConvSpec-010-048.xsl"/>
   <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
