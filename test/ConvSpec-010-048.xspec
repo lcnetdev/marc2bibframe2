@@ -49,4 +49,14 @@
     <x:expect label="$z creates an Isbn with rdfs:label 'invalid'" test="//bf:Instance[2]/bf:identifiedBy[2]/bf:Isbn/rdfs:label = 'invalid'"/>
   </x:scenario>
   
+  <x:scenario label="INTERNATIONAL STANDARD SERIAL NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/Issn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/rdf:value = '1234-1231'"/>
+    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:IssnL/rdf:value = '1234-1231'"/>
+    <x:expect label="$m creates an IssnL with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/rdfs:label = 'canceled'"/>
+    <x:expect label="$y creates an Issn with rdfs:label 'incorrect'" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Issn/rdfs:label = 'incorrect'"/>
+    <x:expect label="$z creates an Issn with rdfs:label 'canceled'" test="//bf:Instance[1]/bf:identifiedBy[14]/bf:Issn/rdfs:label = 'canceled'"/>
+    <x:expect label="$2 creates a source property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:source/bf:Source/rdfs:label = 'DEU-6'"/>
+  </x:scenario>
+  
 </x:description>

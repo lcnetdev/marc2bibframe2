@@ -13,6 +13,27 @@
       Conversion specs for 010-048
   -->
 
+  <xsl:template match="marc:datafield[@tag='022']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='l'] | marc:subfield[@code='m']">
+          <bf:identifiedBy>
+            <bf:IssnL>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+              <xsl:if test="@code = 'm'">
+                <rdfs:label>canceled</rdfs:label>
+              </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:IssnL>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='010']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -197,6 +218,30 @@
               <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
             </xsl:call-template>
           </bf:acquisitionTerms>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='022']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a'] | marc:subfield[@code='y'] | marc:subfield[@code='z']">
+          <bf:identifiedBy>
+            <bf:Issn>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+              <xsl:if test="@code = 'y'">
+                <rdfs:label>incorrect</rdfs:label>
+              </xsl:if>
+              <xsl:if test="@code = 'z'">
+                <rdfs:label>canceled</rdfs:label>
+              </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:Issn>
+          </bf:identifiedBy>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>

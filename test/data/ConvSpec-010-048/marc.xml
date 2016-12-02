@@ -40,5 +40,13 @@
       <subfield code="z">0877780116 :</subfield>
       <subfield code="c">$14.00</subfield>
     </datafield>
+    <datafield tag="022" ind1=" " ind2=" ">
+      <subfield code="a">1234-1231</subfield>
+      <subfield code="l">1234-1231</subfield>
+      <subfield code="m">1560-1560</subfield>
+      <subfield code="y">0046-2254</subfield>
+      <subfield code="z">0361-7106</subfield>
+      <subfield code="2">DEU-6</subfield>
+    </datafield>
   </record>
 </collection>
