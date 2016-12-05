@@ -63,9 +63,14 @@
               <xsl:if test="@code = 'z'">
                 <rdfs:label>invalid</rdfs:label>
               </xsl:if>
-              <xsl:if test="following-sibling::marc:subfield[position() = 1][@code = 'q']">
-                <bf:qualifier><xsl:value-of select="following-sibling::marc:subfield[position() = 1][@code = 'q']"/></bf:qualifier>
-              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='q']">
+                <bf:qualifier>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
