@@ -374,4 +374,39 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='026']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="parsed">
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']" mode="concat-nodes-space"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:identifiedBy>
+          <bf:Fingerprint>
+            <xsl:choose>
+              <xsl:when test="$parsed != ''">
+                <rdf:value><xsl:value-of select="normalize-space($parsed)"/></rdf:value>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:for-each select="marc:subfield[@code='e']">
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                </xsl:for-each>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:for-each select="marc:subfield[@code='2']">
+              <xsl:apply-templates select="." mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='5']">
+              <xsl:apply-templates select="." mode="subfield5">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:Fingerprint>
+        </bf:identifiedBy>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -77,5 +77,18 @@
     <datafield tag="025" ind1=" " ind2=" ">
       <subfield code="a">LACAP72-1719</subfield>
     </datafield>
+    <datafield tag="026" ind1=" " ind2=" ">
+      <subfield code="a">dete nkck</subfield>
+      <subfield code="b">vess lodo 3</subfield>
+      <subfield code="c">Anno Domini MDCXXXVI</subfield>
+      <subfield code="d">3</subfield>
+      <subfield code="2">fei</subfield>
+      <subfield code="5">UkCU</subfield>
+    </datafield>
+    <datafield tag="026" ind1=" " ind2=" ">
+      <subfield code="e">dete nkck vess lodo 3 Anno Domini MDCXXXVI 3</subfield>
+      <subfield code="2">fei</subfield>
+      <subfield code="5">UkCU</subfield>
+    </datafield>
   </record>
 </collection>
