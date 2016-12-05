@@ -409,4 +409,22 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='027']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a'] | marc:subfield[@code='z']">
+          <bf:identifiedBy>
+            <bf:Strn>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+              <xsl:if test="@code = 'z'">
+                <rdfs:label>invalid</rdfs:label>
+              </xsl:if>
+            </bf:Strn>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
