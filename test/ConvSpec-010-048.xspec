@@ -69,5 +69,10 @@
     <x:expect label="$z creates an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[16]/bf:Upc/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates an rdfs:label property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Identifier/rdfs:label = 'istc'"/>
   </x:scenario>
+
+  <x:scenario label="OVERSEAS ACQUISITION NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/LcOverseasAcq property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:LcOverseasAcq/rdf:value = 'LACAP72-1719'"/>
+  </x:scenario>
   
 </x:description>

@@ -74,5 +74,8 @@
     <datafield tag="024" ind1="8" ind2=" ">
       <subfield code="a">12345678</subfield>
     </datafield>
+    <datafield tag="025" ind1=" " ind2=" ">
+      <subfield code="a">LACAP72-1719</subfield>
+    </datafield>
   </record>
 </collection>
