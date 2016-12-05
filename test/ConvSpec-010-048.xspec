@@ -44,7 +44,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="First 020/$a creates an identifiedBy/Isbn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/rdf:value = '0877790086'"/>
     <x:expect label="Multiple 020s create new Instances" test="//bf:Instance[2]/bf:identifiedBy[1]/bf:Isbn/rdf:value = '0877790019'"/>
-    <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms = '$10.00'"/>
+    <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms[1] = '$10.00'"/>
     <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[2]/bf:identifiedBy[1]/bf:Isbn/bf:qualifier = 'black leather'"/>
     <x:expect label="$z creates an Isbn with rdfs:label 'invalid'" test="//bf:Instance[2]/bf:identifiedBy[2]/bf:Isbn/rdfs:label = 'invalid'"/>
   </x:scenario>
@@ -57,6 +57,17 @@
     <x:expect label="$y creates an Issn with rdfs:label 'incorrect'" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Issn/rdfs:label = 'incorrect'"/>
     <x:expect label="$z creates an Issn with rdfs:label 'canceled'" test="//bf:Instance[1]/bf:identifiedBy[14]/bf:Issn/rdfs:label = 'canceled'"/>
     <x:expect label="$2 creates a source property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:source/bf:Source/rdfs:label = 'DEU-6'"/>
+  </x:scenario>
+  
+  <x:scenario label="OTHER STANDARD IDENTIFIER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[15]/bf:Isrc) = 1"/>
+    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Isrc/rdf:value = 'NLC018413261'"/>
+    <x:expect label="$c creates an acquisitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms[2] = 'EUR28.50'"/>
+    <x:expect label="$d creates a note property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:Ean/bf:note/bf:Note/rdfs:label = '51000'"/>
+    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[17]/bf:Ismn/bf:qualifier[2] = 'sewn'"/>
+    <x:expect label="$z creates an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[16]/bf:Upc/rdfs:label = 'invalid'"/>
+    <x:expect label="$2 creates an rdfs:label property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Identifier/rdfs:label = 'istc'"/>
   </x:scenario>
   
 </x:description>

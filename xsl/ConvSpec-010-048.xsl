@@ -246,5 +246,112 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='024']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="@ind1 = '0'">
+            <bf:identifiedBy>
+              <bf:Isrc>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Isrc>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:when test="@ind1 = '1'">
+            <bf:identifiedBy>
+              <bf:Upc>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Upc>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:when test="@ind1 = '2'">
+            <bf:identifiedBy>
+              <bf:Ismn>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Ismn>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:when test="@ind1 = '3'">
+            <bf:identifiedBy>
+              <bf:Ean>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Ean>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:when test="@ind1 = '4'">
+            <bf:identifiedBy>
+              <bf:Sici>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Sici>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:identifiedBy>
+              <bf:Identifier>
+                <xsl:for-each select="marc:subfield[@code='2']">
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </xsl:for-each>
+                <xsl:apply-templates select="." mode="instance024">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Identifier>
+            </bf:identifiedBy>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:for-each select="marc:subfield[@code='c']">
+          <bf:acquisitionTerms>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </bf:acquisitionTerms>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="instance024">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a'] | marc:subfield[@code='z']">
+          <rdf:value><xsl:value-of select="."/></rdf:value>
+          <xsl:if test="@code = 'a'">
+            <xsl:for-each select="../marc:subfield[@code='d']">
+              <bf:note>
+                <bf:Note>
+                  <bf:noteType>additional codes</bf:noteType>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
+          </xsl:if>
+          <xsl:if test="@code = 'z'">
+            <rdfs:label>invalid</rdfs:label>
+          </xsl:if>
+          <xsl:for-each select="../marc:subfield[@code='q']">
+            <bf:qualifier>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+              </xsl:call-template>
+            </bf:qualifier>
+          </xsl:for-each>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
 </xsl:stylesheet>

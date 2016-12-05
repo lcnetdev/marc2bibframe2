@@ -48,5 +48,31 @@
       <subfield code="z">0361-7106</subfield>
       <subfield code="2">DEU-6</subfield>
     </datafield>
+    <datafield tag="024" ind1="0" ind2=" ">
+      <subfield code="a">NLC018413261</subfield>
+    </datafield>
+    <datafield tag="024" ind1="1" ind2=" ">
+      <subfield code="z">5539143515</subfield>
+    </datafield>
+    <datafield tag="024" ind1="2" ind2=" ">
+      <subfield code="a">M570406203</subfield>
+      <subfield code="q">score</subfield>
+      <subfield code="q">sewn</subfield>
+      <subfield code="c">EUR28.50</subfield>
+    </datafield>
+    <datafield tag="024" ind1="3" ind2=" ">
+      <subfield code="a">9780449906200</subfield>
+      <subfield code="d">51000</subfield>
+    </datafield>
+    <datafield tag="024" ind1="4" ind2=" ">
+      <subfield code="a">8756-2324(198603/04)65:2L.4:QTP:1-P</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">0A3200912B4A1057</subfield>
+      <subfield code="2">istc</subfield>
+    </datafield>
+    <datafield tag="024" ind1="8" ind2=" ">
+      <subfield code="a">12345678</subfield>
+    </datafield>
   </record>
 </collection>
