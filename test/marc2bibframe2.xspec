@@ -272,6 +272,16 @@
                 <rdf:value>   91758335 </rdf:value>
               </bf:Lccn>
             </bf:identifiedBy>
+            <bf:identifiedBy>
+              <bf:IssueNumber>
+                <rdf:value>1259</rdf:value>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>Atlantic</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </bf:IssueNumber>
+            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>

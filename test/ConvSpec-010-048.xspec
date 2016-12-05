@@ -31,7 +31,7 @@
     <x:expect label="$2 creates a source property of the Nban" test="//bf:Instance[1]/bf:identifiedBy[7]/bf:Nban/bf:source/bf:Source/rdfs:label = 'PoLiBN'"/>    
   </x:scenario>
   
-  <x:scenario label="COPYRIGHT OR LEGAL DEPOSIT NUMBER">
+  <x:scenario label="017 - COPYRIGHT OR LEGAL DEPOSIT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/rdf:value='JP732'"/>
     <x:expect label="$b creates a source property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:source/bf:Source/rdfs:label = 'U.S. Copyright Office'"/>
@@ -40,7 +40,7 @@
     <x:expect label="$z creates a CopyrightNumber with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:CopyrightNumber/rdfs:label = 'invalid'"/>
   </x:scenario>
 
-  <x:scenario label="INTERNATIONAL STANDARD BOOK NUMBER">
+  <x:scenario label="020 - INTERNATIONAL STANDARD BOOK NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="First 020/$a creates an identifiedBy/Isbn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/rdf:value = '0877790086'"/>
     <x:expect label="Multiple 020s create new Instances" test="//bf:Instance[2]/bf:identifiedBy[1]/bf:Isbn/rdf:value = '0877790019'"/>
@@ -49,7 +49,7 @@
     <x:expect label="$z creates an Isbn with rdfs:label 'invalid'" test="//bf:Instance[2]/bf:identifiedBy[2]/bf:Isbn/rdfs:label = 'invalid'"/>
   </x:scenario>
   
-  <x:scenario label="INTERNATIONAL STANDARD SERIAL NUMBER">
+  <x:scenario label="022 - INTERNATIONAL STANDARD SERIAL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Issn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/rdf:value = '1234-1231'"/>
     <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:IssnL/rdf:value = '1234-1231'"/>
@@ -59,7 +59,7 @@
     <x:expect label="$2 creates a source property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:source/bf:Source/rdfs:label = 'DEU-6'"/>
   </x:scenario>
   
-  <x:scenario label="OTHER STANDARD IDENTIFIER">
+  <x:scenario label="024 - OTHER STANDARD IDENTIFIER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[15]/bf:Isrc) = 1"/>
     <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Isrc/rdf:value = 'NLC018413261'"/>
@@ -70,12 +70,12 @@
     <x:expect label="$2 creates an rdfs:label property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Identifier/rdfs:label = 'istc'"/>
   </x:scenario>
 
-  <x:scenario label="OVERSEAS ACQUISITION NUMBER">
+  <x:scenario label="025 - OVERSEAS ACQUISITION NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/LcOverseasAcq property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:LcOverseasAcq/rdf:value = 'LACAP72-1719'"/>
   </x:scenario>
   
-  <x:scenario label="FINGERPRINT IDENTIFIER">
+  <x:scenario label="026 - FINGERPRINT IDENTIFIER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a $b $c $d create an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
     <x:expect label="$e creates an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
@@ -83,10 +83,18 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Fingerprint/bflc:applicableInstitution/bf:Agent/bf:code = 'UkCU'"/>
   </x:scenario>
 
-  <x:scenario label="STANDARD TECHNICAL REPORT NUMBER">
+  <x:scenario label="027 - STANDARD TECHNICAL REPORT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Strn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[25]/bf:Strn/rdf:value = 'METPRO/CB/TR--74/216+PR.ENVR.WI'"/>
     <x:expect label="$z creates an Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[26]/bf:Strn/rdfs:label = 'invalid'"/>
+  </x:scenario>
+
+  <x:scenario label="028 - PUBLISHER NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="ind1 determines the class of Identifier for the identifiedBy property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy[27]/bf:VideorecordingNumber) = 1"/>
+    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:VideorecordingNumber/rdf:value = '440 073 033-9'"/>
+    <x:expect label="$b creates a source property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:VideorecordingNumber/bf:source/bf:Source/rdfs:label = 'Deutsche Grammophon'"/>
+    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:VideorecordingNumber/bf:qualifier = '(disc 1)'"/>
   </x:scenario>
 
 </x:description>
