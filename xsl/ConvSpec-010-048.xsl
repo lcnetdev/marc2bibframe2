@@ -43,7 +43,9 @@
                                        marc:datafield[@tag='024'] |
                                        marc:datafield[@tag='025'] |
                                        marc:datafield[@tag='027'] |
-                                       marc:datafield[@tag='028']">
+                                       marc:datafield[@tag='028'] |
+                                       marc:datafield[@tag='030'] |
+                                       marc:datafield[@tag='032']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="@tag='010'">
@@ -134,6 +136,19 @@
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="@tag='030'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:Coden</xsl:with-param>
+          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="@tag='032'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:PostalRegistration</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
     </xsl:choose>
@@ -239,6 +254,20 @@
                   </xsl:for-each>
                 </xsl:if>
               </xsl:if>
+              <!-- special handling for 030 -->
+              <xsl:if test="../@tag='030'">
+                <xsl:if test="@code = 'z'">
+                  <bf:adminMetadata>
+                    <bf:AdminMetadata>
+                      <bf:status>
+                        <bf:Status>
+                          <rdfs:label>invalid</rdfs:label>
+                        </bf:Status>
+                      </bf:status>
+                    </bf:AdminMetadata>
+                  </bf:adminMetadata>
+                </xsl:if>
+              </xsl:if>
               <!-- special handling for source ($2) -->
               <xsl:choose>
                 <xsl:when test="../@tag='016'">
@@ -257,7 +286,7 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
-                <xsl:when test="../@tag='017' or ../@tag='028'">
+                <xsl:when test="../@tag='017' or ../@tag='028' or ../@tag='032'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
                       <bf:Source>

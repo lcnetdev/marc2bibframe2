@@ -99,5 +99,13 @@
       <subfield code="b">Deutsche Grammophon</subfield>
       <subfield code="q">(disc 1)</subfield>
     </datafield>
+    <datafield tag="030" ind1=" " ind2=" ">
+      <subfield code="a">ASIRAF</subfield>
+      <subfield code="z">ASITAF</subfield>
+    </datafield>
+    <datafield tag="032" ind1=" " ind2=" ">
+      <subfield code="a">686310</subfield>
+      <subfield code="b">USPS</subfield>
+    </datafield>
   </record>
 </collection>

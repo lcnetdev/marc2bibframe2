@@ -97,4 +97,17 @@
     <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:VideorecordingNumber/bf:qualifier = '(disc 1)'"/>
   </x:scenario>
 
+  <x:scenario label="030 - CODEN DESIGNATION">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/Coden property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Coden/rdf:value = 'ASIRAF'"/>
+    <x:expect label="$z creates a Coden with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:Coden/rdfs:label = 'invalid'"/>
+    <x:expect label="...and some adminMetadata on the Coden" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:Coden/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+  </x:scenario>
+  
+  <x:scenario label="032 - POSTAL REGISTRATION NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/PostalRegistration property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:PostalRegistration/rdf:value = '686310'"/>
+    <x:expect label="$b creates a source property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:PostalRegistration/bf:source/bf:Source/rdfs:label = 'USPS'"/>
+  </x:scenario>
+  
 </x:description>
