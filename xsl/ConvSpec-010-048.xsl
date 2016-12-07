@@ -124,6 +124,70 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='034']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vCartProp">
+      <xsl:choose>
+        <xsl:when test="@ind2 = 0">bf:outerGRing</xsl:when>
+        <xsl:when test="@ind2 = 1">bf:exclusionGRing</xsl:when>
+        <xsl:otherwise>bf:coordinates</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vCoordinates">
+      <xsl:apply-templates select="marc:subfield[@code='d' or @code='e' or @code='f' or @code='g']" mode="concat-nodes-space"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:cartographicAttributes>
+          <bf:Cartographic>
+            <xsl:element name="{$vCartProp}"><xsl:value-of select="normalize-space($vCoordinates)"/></xsl:element>
+            <xsl:for-each select="marc:subfield[@code='3']">
+              <xsl:apply-templates select="." mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:Cartographic>
+        </bf:cartographicAttributes>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <xsl:apply-templates mode="work034scale" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pScaleType">linear horizontal</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='c']">
+          <xsl:apply-templates mode="work034scale" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pScaleType">linear vertical</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:subfield" mode="work034scale">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pScaleType"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:scale>
+          <bf:Scale>
+            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label><xsl:value-of select="pScaleType"/></rdfs:label>
+              </bf:Note>
+            </bf:note>
+            <xsl:for-each select="../marc:subfield[@code='3']">
+              <xsl:apply-templates select="." mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:Scale>
+        </bf:scale>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |

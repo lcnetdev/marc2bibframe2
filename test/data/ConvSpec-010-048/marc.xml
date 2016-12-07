@@ -118,5 +118,15 @@
       <subfield code="p">Minneapolis City Hall-Hennepin County Courthouse (Minneapolis, Minn.)</subfield>
       <subfield code="2">lcsh</subfield>
     </datafield>
+    <datafield tag="034" ind1="1" ind2=" ">
+      <subfield code="a">a</subfield>
+      <subfield code="b">744000</subfield>
+      <subfield code="c">96000</subfield>
+      <subfield code="d">W1800000</subfield>
+      <subfield code="e">E1800000</subfield>
+      <subfield code="f">N0840000</subfield>
+      <subfield code="g">S0700000</subfield>
+      <subfield code="3">map</subfield>
+    </datafield>
   </record>
 </collection>
