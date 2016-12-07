@@ -148,5 +148,35 @@
       <xsl:otherwise><xsl:value-of select="$dateString"/></xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!--
+      convert a date string as from the 033 to an EDTF date
+      (https://www.loc.gov/standards/datetime/pre-submission.html)
+  -->
+  <xsl:template name="edtfFormat">
+    <xsl:param name="pDateString"/>
+    <!-- convert '-' to 'u' -->
+    <xsl:choose>
+      <xsl:when test="contains(substring($pDateString,1,12),'-')">
+        <xsl:call-template name="edtfFormat">
+          <xsl:with-param name="pDateString" select="concat(substring-before($pDateString,'-'),'u',substring-after($pDateString,'-'))"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>      
+        <xsl:variable name="vDatePart" select="concat(substring($pDateString,1,4),'-',substring($pDateString,5,2),'-',substring($pDateString,7,2))"/>
+        <xsl:variable name="vTimePart">
+          <xsl:if test="substring($pDateString,9,4) != ''">
+            <xsl:value-of select="concat('T',substring($pDateString,9,2),':',substring($pDateString,11,2),':00')"/>
+          </xsl:if>
+        </xsl:variable>
+        <xsl:variable name="vTimeDiff">
+          <xsl:if test="substring($pDateString,13,5) != ''">
+            <xsl:value-of select="concat(substring($pDateString,13,3),':',substring($pDateString,16,2))"/>
+          </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="concat($vDatePart,$vTimePart,$vTimeDiff)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   
 </xsl:stylesheet>

@@ -107,5 +107,16 @@
       <subfield code="a">686310</subfield>
       <subfield code="b">USPS</subfield>
     </datafield>
+    <datafield tag="033" ind1="2" ind2="1">
+      <subfield code="3">Horse</subfield>
+      <subfield code="a">197809102000-0400</subfield>
+      <subfield code="a">197809142000-0400</subfield>
+      <subfield code="b">6714</subfield>
+      <subfield code="c">R7</subfield>
+      <subfield code="b">6714</subfield>
+      <subfield code="c">V4</subfield>
+      <subfield code="p">Minneapolis City Hall-Hennepin County Courthouse (Minneapolis, Minn.)</subfield>
+      <subfield code="2">lcsh</subfield>
+    </datafield>
   </record>
 </collection>

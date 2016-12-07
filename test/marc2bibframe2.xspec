@@ -115,7 +115,7 @@
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">2001</bf:date>
+                <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">2001</bf:date>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dk"/>
                 </bf:place>
@@ -261,7 +261,7 @@
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">1957</bf:date>
+                <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1957</bf:date>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/nyu"/>
                 </bf:place>
@@ -384,7 +384,7 @@
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:date rdf:datatype="http://www.loc.gov/standards/datetime#edtf">1994/9999</bf:date>
+                <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1994/9999</bf:date>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dcu"/>
                 </bf:place>

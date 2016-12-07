@@ -30,7 +30,7 @@
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
   <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
-  <xsl:variable name="edtf">http://www.loc.gov/standards/datetime#</xsl:variable>
+  <xsl:variable name="edtf">http://id.loc.gov/datatypes/</xsl:variable>
   <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
   <xsl:variable name="issuance">http://id.lc.gov/vocabulary/issuance/</xsl:variable>

@@ -34,6 +34,96 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='033']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vDate">
+      <xsl:choose>
+        <xsl:when test="@ind1 = '0'">
+          <xsl:call-template name="edtfFormat">
+            <xsl:with-param name="pDateString" select="marc:subfield[@code='a']"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="@ind1 = '2'">
+          <xsl:variable name="vConcatDate">
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <xsl:variable name="vFormattedDate">
+                <xsl:call-template name="edtfFormat">
+                  <xsl:with-param name="pDateString" select="."/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:value-of select="concat('/',$vFormattedDate)"/>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:value-of select="substring-after($vConcatDate,'/')"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vNote">
+      <xsl:choose>
+        <xsl:when test="@ind2 = '1'">broadcast</xsl:when>
+        <xsl:when test="@ind2 = '2'">finding</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:capture>
+          <bf:Capture>
+            <xsl:if test="$vNote != ''">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label><xsl:value-of select="$vNote"/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:if>
+            <xsl:if test="$vDate != ''">
+              <bf:date>
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="$edtf"/>edtf</xsl:attribute>
+                <xsl:value-of select="$vDate"/>
+              </bf:date>
+            </xsl:if>
+            <xsl:if test="@ind1 = '1'">
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:date>
+                  <xsl:attribute name="rdf:datatype"><xsl:value-of select="$edtf"/>edtf</xsl:attribute>
+                  <xsl:call-template name="edtfFormat">
+                    <xsl:with-param name="pDateString" select="."/>
+                  </xsl:call-template>
+                </bf:date>
+              </xsl:for-each>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:place>
+                <bf:Place>
+                  <rdf:value><xsl:value-of select="normalize-space(concat(.,' ',following-sibling::*[position()=1][@code='c']))"/></rdf:value>
+                  <bf:source>
+                    <bf:Source>
+                      <rdfs:label>lcc-g</rdfs:label>
+                    </bf:Source>
+                  </bf:source>
+                </bf:Place>
+              </bf:place>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='p']">
+              <bf:place>
+                <bf:Place>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <xsl:apply-templates mode="subfield2" select="following-sibling::*[position()=1][@code='2']">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Place>
+              </bf:place>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='3']">
+              <xsl:apply-templates mode="subfield3" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:Capture>
+        </bf:capture>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |
