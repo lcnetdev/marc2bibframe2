@@ -199,7 +199,8 @@
                                        marc:datafield[@tag='027'] |
                                        marc:datafield[@tag='028'] |
                                        marc:datafield[@tag='030'] |
-                                       marc:datafield[@tag='032']">
+                                       marc:datafield[@tag='032'] |
+                                       marc:datafield[@tag='035']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="@tag='010'">
@@ -305,6 +306,13 @@
           <xsl:with-param name="pIdentifier">bf:PostalRegistration</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="@tag='035'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:Local</xsl:with-param>
+          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -342,17 +350,24 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='y' or @code='z']">
+          <xsl:variable name="vId">
+            <xsl:choose>
+              <!-- for 035, extract value after parentheses -->
+              <xsl:when test="../@tag='035' and contains(.,')')"><xsl:value-of select="substring-after(.,')')"/></xsl:when>
+              <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <bf:identifiedBy>
             <xsl:element name="{$pIdentifier}">
               <rdf:value>
                 <xsl:choose>
                   <xsl:when test="$pChopPunct">
                     <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                      <xsl:with-param name="chopString"><xsl:value-of select="$vId"/></xsl:with-param>
                     </xsl:call-template>
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="$vId"/>
                   </xsl:otherwise>
                 </xsl:choose>
               </rdf:value>
@@ -454,6 +469,16 @@
                     <xsl:for-each select="../marc:subfield[@code='2']">
                       <rdfs:label><xsl:value-of select="."/></rdfs:label>
                     </xsl:for-each>
+                  </xsl:if>
+                </xsl:when>
+                <xsl:when test="../@tag='035'">
+                  <xsl:variable name="vSource" select="substring-before(substring-after(.,'('),')')"/>
+                  <xsl:if test="$vSource != ''">
+                    <bf:source>
+                      <bf:Source>
+                        <rdfs:label><xsl:value-of select="$vSource"/></rdfs:label>
+                      </bf:Source>
+                    </bf:source>
                   </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>

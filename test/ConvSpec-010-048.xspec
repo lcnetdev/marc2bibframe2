@@ -130,4 +130,11 @@
     <x:expect label="$3 creates a bf:appliesTo property of the Scale and Cartographic" test="//bf:Work[1]/bf:scale[1]/bf:Scale/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'map'"/>
   </x:scenario>
   
+  <x:scenario label="035 - SYSTEM CONTROL NUMBER">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/rdf:value = '814782'"/>
+    <x:expect label="value in parens creates a source property of the Local" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/bf:source/bf:Source/rdfs:label = 'OCoLC'"/>
+    <x:expect label="$z creates an identifiedBy/Local property of the Instance with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:Local/rdf:value = '7374506'"/>
+  </x:scenario>
+  
 </x:description>

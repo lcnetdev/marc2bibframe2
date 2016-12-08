@@ -395,6 +395,16 @@
                 <rdf:value>   00530046 </rdf:value>
               </bf:Lccn>
             </bf:identifiedBy>
+            <bf:identifiedBy>
+              <bf:Local>
+                <rdf:value>ocm44279786</rdf:value>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>OCoLC</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </bf:Local>
+            </bf:identifiedBy>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
