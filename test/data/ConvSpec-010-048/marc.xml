@@ -132,5 +132,9 @@
       <subfield code="a">(OCoLC)814782</subfield>
       <subfield code="z">(OCoLC)7374506</subfield>
     </datafield>
+    <datafield tag="036" ind1=" " ind2=" ">
+      <subfield code="a">CNRS 84115</subfield>
+      <subfield code="b">Centre national de la recherche scientifique.</subfield>
+    </datafield>
   </record>
 </collection>

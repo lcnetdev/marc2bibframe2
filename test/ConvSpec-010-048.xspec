@@ -137,4 +137,10 @@
     <x:expect label="$z creates an identifiedBy/Local property of the Instance with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:Local/rdf:value = '7374506'"/>
   </x:scenario>
   
+  <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[33]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
+    <x:expect label="$b creates a source property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[33]/bf:StudyNumber/bf:source/bf:Source/rdfs:label = 'Centre national de la recherche scientifique'"/>
+  </x:scenario>
+  
 </x:description>

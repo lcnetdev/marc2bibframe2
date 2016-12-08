@@ -200,7 +200,8 @@
                                        marc:datafield[@tag='028'] |
                                        marc:datafield[@tag='030'] |
                                        marc:datafield[@tag='032'] |
-                                       marc:datafield[@tag='035']">
+                                       marc:datafield[@tag='035'] |
+                                       marc:datafield[@tag='036']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="@tag='010'">
@@ -311,6 +312,12 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Local</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="@tag='036'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:StudyNumber</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
     </xsl:choose>
@@ -455,11 +462,17 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
-                <xsl:when test="../@tag='017' or ../@tag='028' or ../@tag='032'">
+                <xsl:when test="../@tag='017' or ../@tag='028' or ../@tag='032' or ../@tag='036'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
                       <bf:Source>
-                        <rdfs:label><xsl:value-of select="normalize-space(.)"/></rdfs:label>
+                        <rdfs:label>
+                          <xsl:call-template name="chopPunctuation">
+                            <xsl:with-param name="chopString">
+                              <xsl:value-of select="."/>
+                            </xsl:with-param>
+                          </xsl:call-template>
+                        </rdfs:label>
                       </bf:Source>
                     </bf:source>
                   </xsl:for-each>
