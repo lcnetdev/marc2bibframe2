@@ -551,4 +551,94 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- 037 requires special handling -->
+  <xsl:template match="marc:datafield[@tag='037'][@ind1='3' or (@ind1=' ' and count(../marc:datafield[@tag='037'])=1)]" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance037">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <!-- create new instances from multiple 037s -->
+  <xsl:template match="marc:datafield[@tag='037'][@ind1='2' or (@ind1=' ' and count(../marc:datafield[@tag='037']) &gt; 1)]" mode="newInstance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="recordid"/>
+    <xsl:variable name="instanceiri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Instance>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$instanceiri"/></xsl:attribute>
+          <xsl:apply-templates select="." mode="instance037">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          <bf:instanceOf>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+          </bf:instanceOf>
+        </bf:Instance>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="instance037">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vAcqSource">
+      <xsl:choose>
+        <xsl:when test="@ind1 = '2'">intervening source</xsl:when>
+        <xsl:when test="@ind1 = '3'">current source</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:acquisitionSource>
+          <bf:AcquisitionSource>
+            <xsl:if test="$vAcqSource != ''">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label><xsl:value-of select="$vAcqSource"/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='3']">
+              <xsl:apply-templates select="." mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:identifiedBy>
+                <bf:StockNumber>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                </bf:StockNumber>
+              </bf:identifiedBy>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='g' or @code='n']">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='5']">
+              <xsl:apply-templates select="." mode="subfield5">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:AcquisitionSource>
+        </bf:acquisitionSource>
+        <xsl:for-each select="marc:subfield[@code='f']">
+          <bf:carrier>
+            <bf:Carrier>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Carrier>
+          </bf:carrier>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

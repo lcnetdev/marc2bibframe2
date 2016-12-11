@@ -136,5 +136,21 @@
       <subfield code="a">CNRS 84115</subfield>
       <subfield code="b">Centre national de la recherche scientifique.</subfield>
     </datafield>
+    <datafield tag="037" ind1="3" ind2=" ">
+      <subfield code="3">2014</subfield>
+      <subfield code="a">FSWEC-77/0420</subfield>
+      <subfield code="b">National Technical Information Service, Springfield, VA 22161</subfield>
+      <subfield code="f">Magnetic tape</subfield>
+      <subfield code="g">ASCII recording mode; available with no internal labels or with ANSI standard labels; logical record length is 1024 bytes; block size is a multiple of 1024 up to 31744 bytes; 1600 or 6250 characters per inch.</subfield>
+      <subfield code="n">Available only without color</subfield>
+      <subfield code="c">$175.00</subfield>
+      <subfield code="5">Uk</subfield>
+    </datafield>
+    <datafield tag="037" ind1=" " ind2=" ">
+      <subfield code="a">FOO_FSWEC-77/0420</subfield>
+      <subfield code="b">National Technical Information Service, Springfield, VA 22161</subfield>
+      <subfield code="f">Stone tablet</subfield>
+      <subfield code="5">Uk</subfield>
+    </datafield>
   </record>
 </collection>
