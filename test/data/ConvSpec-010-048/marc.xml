@@ -152,5 +152,8 @@
       <subfield code="f">Stone tablet</subfield>
       <subfield code="5">Uk</subfield>
     </datafield>
+    <datafield tag="038" ind1=" " ind2=" ">
+      <subfield code="a">Uk</subfield>
+    </datafield>
   </record>
 </collection>

@@ -157,4 +157,10 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource/bf:AcquisitionSource/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '2014'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource/bf:AcquisitionSource/bflc:applicableInstitution/bf:Agent/bf:code = 'Uk'"/>
   </x:scenario>
+
+  <x:scenario label="038 - RECORD CONTENT LICENSOR">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/rdfs:label = 'Uk'"/>
+  </x:scenario>
+
 </x:description>

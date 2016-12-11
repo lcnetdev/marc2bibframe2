@@ -13,6 +13,19 @@
       Conversion specs for 010-048
   -->
 
+  <xsl:template match="marc:datafield[@tag='038']" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bflc:metadataLicensor>
+            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+          </bflc:metadataLicensor>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='022']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
