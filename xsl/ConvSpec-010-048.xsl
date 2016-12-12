@@ -387,6 +387,47 @@
     </xsl:if>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='043']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
+          <bf:geographicCoverage>
+            <bf:GeographicCoverage>
+              <xsl:choose>
+                <xsl:when test="@code='a'">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,.)"/></xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@code='b' or @code='c'">
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <xsl:choose>
+                    <xsl:when test="@code='c'">
+                      <bf:source>
+                        <bf:Source>
+                          <rdfs:label>ISO 3166</rdfs:label>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:when>
+              </xsl:choose>
+              <xsl:for-each select="following-sibling::*[position()=1 or position()=2][@code='0']">
+                <xsl:apply-templates select="." mode="subfield0orw">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
+            </bf:GeographicCoverage>
+          </bf:geographicCoverage>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |

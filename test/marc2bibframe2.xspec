@@ -386,6 +386,12 @@
                 <rdfs:label>computer file combination</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:geographicCoverage>
+              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
+            </bf:geographicCoverage>
+            <bf:geographicCoverage>
+              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us---"/>
+            </bf:geographicCoverage>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>

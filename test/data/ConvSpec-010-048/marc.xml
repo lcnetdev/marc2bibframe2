@@ -177,5 +177,12 @@
       <subfield code="a">lc</subfield>
       <subfield code="a">nsdp</subfield>
     </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">s-bl---</subfield>
+      <subfield code="b">s-bl-ba</subfield>
+      <subfield code="0">(DE-101c)310008891</subfield>
+      <subfield code="2">BlRjBN</subfield>
+      <subfield code="c">us</subfield>
+    </datafield>
   </record>
 </collection>
