@@ -881,4 +881,41 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- 044 requires special handling -->
+  <xsl:template match="marc:datafield[@tag='044']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
+          <bf:place>
+            <bf:Place>
+              <xsl:choose>
+                <xsl:when test="@code='a'">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,.)"/></xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@code='b' or @code='c'">
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                  <xsl:choose>
+                    <xsl:when test="@code='c'">
+                      <bf:source>
+                        <bf:Source>
+                          <rdfs:label>ISO 3166</rdfs:label>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:when>
+              </xsl:choose>
+            </bf:Place>
+          </bf:place>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -184,5 +184,11 @@
       <subfield code="2">BlRjBN</subfield>
       <subfield code="c">us</subfield>
     </datafield>
+    <datafield tag="044" ind1=" " ind2=" ">
+      <subfield code="a">at</subfield>
+      <subfield code="b">xna</subfield>
+      <subfield code="2">ausmarc</subfield>
+      <subfield code="c">au</subfield>
+    </datafield>
   </record>
 </collection>
