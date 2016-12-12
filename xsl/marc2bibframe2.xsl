@@ -43,6 +43,7 @@
   <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
   <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
   <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
+  <xsl:variable name="marcauthen">http://id.loc.gov/vocabulary/marcauthen/</xsl:variable>
 
   <xsl:template match="/">
 

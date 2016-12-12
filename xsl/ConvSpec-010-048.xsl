@@ -83,6 +83,21 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='042']" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:descriptionAuthentication>
+            <bf:DescriptionAuthentication>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,.)"/></xsl:attribute>
+            </bf:DescriptionAuthentication>
+          </bf:descriptionAuthentication>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='022']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>

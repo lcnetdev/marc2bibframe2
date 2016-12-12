@@ -180,4 +180,9 @@
     <x:expect label="subfields other than $a create a part property of the Language" test="//bf:Work/bf:language[2]/bf:Language/bf:part = 'original'"/>
   </x:scenario>
   
+  <x:scenario label="042 - AUTHENTICATION CODE">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="042 create descriptionAuthentication properties of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[2]/bf:DescriptionAuthentication/@rdf:about = 'http://id.loc.gov/vocabulary/marcauthen/nsdp'"/>
+  </x:scenario>
+  
 </x:description>

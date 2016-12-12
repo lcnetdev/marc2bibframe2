@@ -173,5 +173,9 @@
       <subfield code="g">it</subfield>
       <subfield code="2">iso639-1</subfield>
     </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">lc</subfield>
+      <subfield code="a">nsdp</subfield>
+    </datafield>
   </record>
 </collection>
