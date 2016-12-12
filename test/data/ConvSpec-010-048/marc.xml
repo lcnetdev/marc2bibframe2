@@ -163,5 +163,15 @@
       <subfield code="e">NARS Staff Bulletin No. 16</subfield>
       <subfield code="e">appm</subfield>
     </datafield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">gerswe</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2="7">
+      <subfield code="a">en</subfield>
+      <subfield code="a">fr</subfield>
+      <subfield code="g">it</subfield>
+      <subfield code="2">iso639-1</subfield>
+    </datafield>
   </record>
 </collection>
