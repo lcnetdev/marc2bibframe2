@@ -13,6 +13,62 @@
       Conversion specs for 010-048
   -->
 
+  <!-- Lookup tables -->
+  <local:marctimeperiod>
+    <a0>-uuuu/-3000</a0>
+    <b0>-29uu</b0>
+    <b1>-28uu</b1>
+    <b2>-27uu</b2>
+    <b3>-26uu</b3>
+    <b4>-25uu</b4>
+    <b5>-24uu</b5>
+    <b6>-23uu</b6>
+    <b7>-22uu</b7>
+    <b8>-21uu</b8>
+    <b9>-20uu</b9>
+    <c0>-19uu</c0>
+    <c1>-18uu</c1>
+    <c2>-17uu</c2>
+    <c3>-16uu</c3>
+    <c4>-15uu</c4>
+    <c5>-14uu</c5>
+    <c6>-13uu</c6>
+    <c7>-12uu</c7>
+    <c8>-11uu</c8>
+    <c9>-10uu</c9>
+    <d0>-09uu</d0>
+    <d1>-08uu</d1>
+    <d2>-07uu</d2>
+    <d3>-06uu</d3>
+    <d4>-05uu</d4>
+    <d5>-04uu</d5>
+    <d6>-03uu</d6>
+    <d7>-02uu</d7>
+    <d8>-01uu</d8>
+    <d9>-00uu</d9>
+    <e>00</e>
+    <f>01</f>
+    <g>02</g>
+    <h>03</h>
+    <i>04</i>
+    <j>05</j>
+    <k>06</k>
+    <l>07</l>
+    <m>08</m>
+    <n>09</n>
+    <o>10</o>
+    <p>11</p>
+    <q>12</q>
+    <r>13</r>
+    <s>14</s>
+    <t>15</t>
+    <u>16</u>
+    <v>17</v>
+    <w>18</w>
+    <x>19</x>
+    <y>20</y>
+  </local:marctimeperiod>
+
   <xsl:template match="marc:datafield[@tag='038']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -427,7 +483,98 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
+
+  <xsl:template match="marc:datafield[@tag='045']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:temporalCoverage>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$edtf"/>edtf</xsl:attribute>
+            <xsl:call-template name="work045aDate">
+              <xsl:with-param name="pDate" select="."/>
+            </xsl:call-template>
+          </bf:temporalCoverage>
+        </xsl:for-each>
+        <xsl:choose>
+          <xsl:when test="@ind1 = '2'">
+            <xsl:variable name="vDate1">
+              <xsl:call-template name="work045bDate">
+                <xsl:with-param name="pDate" select="marc:subfield[@code='b'][1]"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="vDate2">
+              <xsl:call-template name="work045bDate">
+                <xsl:with-param name="pDate" select="marc:subfield[@code='b'][2]"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <bf:temporalCoverage>
+              <xsl:attribute name="rdf:datatype"><xsl:value-of select="$edtf"/>edtf</xsl:attribute>
+              <xsl:value-of select="concat($vDate1,'/',$vDate2)"/>
+            </bf:temporalCoverage>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:temporalCoverage>
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="$edtf"/>edtf</xsl:attribute>
+                <xsl:call-template name="work045bDate">
+                  <xsl:with-param name="pDate" select="."/>
+                </xsl:call-template>
+              </bf:temporalCoverage>
+            </xsl:for-each>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="work045aDate">
+    <xsl:param name="pDate"/>
+    <xsl:variable name="vDate1">
+      <xsl:choose>
+        <xsl:when test="substring($pDate,1,1) = 'a'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,1,1) = 'b'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,1,1) = 'c'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,1,1) = 'd'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,1,1) = 'e'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,1)],substring($pDate,2,1),'u')"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vDate2">
+      <xsl:choose>
+        <xsl:when test="substring($pDate,3,1) = 'a'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,3,1) = 'b'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,3,1) = 'c'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,3,1) = 'd'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
+        <xsl:when test="substring($pDate,3,1) = 'e'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,1)],substring($pDate,4,1),'u')"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$vDate1 = $vDate2"><xsl:value-of select="$vDate1"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="concat($vDate1,'/',$vDate2)"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="work045bDate">
+    <xsl:param name="pDate"/>
+    <xsl:variable name="vYear">
+      <xsl:choose>
+        <xsl:when test="substring($pDate,1,1) = 'c'"><xsl:value-of select="concat('-',substring($pDate,2,4))"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="substring($pDate,2,4)"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vMonth" select="substring($pDate,6,2)"/>
+    <xsl:variable name="vDay" select="substring($pDate,8,2)"/>
+    <xsl:variable name="vHour" select="substring($pDate,10,2)"/>
+    <xsl:choose>
+      <xsl:when test="$vHour != ''"><xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay,'T',$vHour)"/></xsl:when>
+      <xsl:when test="$vDay != ''"><xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay)"/></xsl:when>
+      <xsl:when test="$vMonth != ''"><xsl:value-of select="concat($vYear,'-',$vMonth)"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$vYear"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |

@@ -190,5 +190,10 @@
       <subfield code="2">ausmarc</subfield>
       <subfield code="c">au</subfield>
     </datafield>
+    <datafield tag="045" ind1="2" ind2=" ">
+      <subfield code="a">d7n6</subfield>
+      <subfield code="b">c0221</subfield>
+      <subfield code="b">d0960</subfield>
+    </datafield>
   </record>
 </collection>

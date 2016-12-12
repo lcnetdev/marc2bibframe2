@@ -204,4 +204,10 @@
     <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Instance[1]/bf:place[3]/bf:Place/bf:source/bf:Source/rdfs:label = 'ISO 3166'"/>
   </x:scenario>
   
+  <x:scenario label="045 - TIME PERIOD OF CONTENT">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$a creates a temporalCoverage property of the Work" test="//bf:Work/bf:temporalCoverage[1] = '-02uu/096u'"/>
+    <x:expect label="$b creates a temporalCoverage property of the Work" test="//bf:Work/bf:temporalCoverage[2] = '-0221/0960'"/>
+  </x:scenario>
+  
 </x:description>
