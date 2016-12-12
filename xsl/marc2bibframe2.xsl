@@ -42,6 +42,7 @@
   <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>
   <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
   <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
+  <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
 
   <xsl:template match="/">
 

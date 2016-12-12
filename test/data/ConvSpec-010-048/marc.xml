@@ -155,5 +155,13 @@
     <datafield tag="038" ind1=" " ind2=" ">
       <subfield code="a">Uk</subfield>
     </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DNA</subfield>
+      <subfield code="b">fre</subfield>
+      <subfield code="c">CtY</subfield>
+      <subfield code="d">CtY</subfield>
+      <subfield code="e">NARS Staff Bulletin No. 16</subfield>
+      <subfield code="e">appm</subfield>
+    </datafield>
   </record>
 </collection>

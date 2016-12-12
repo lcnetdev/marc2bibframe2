@@ -163,4 +163,12 @@
     <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/rdfs:label = 'Uk'"/>
   </x:scenario>
 
+  <x:scenario label="040 - CATALOGING SOURCE">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="040 creates a source property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdfs:label = 'DNA'"/>
+    <x:expect label="$b creates a descriptionLanguage property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionLanguage/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
+    <x:expect label="$c creates another source property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[2]/bf:Source/rdfs:label = 'CtY'"/>
+    <x:expect label="$d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier/bf:Agent/rdfs:label = 'CtY'"/>
+    <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdfs:label = 'NARS Staff Bulletin No. 16'"/>
+  </x:scenario>
 </x:description>

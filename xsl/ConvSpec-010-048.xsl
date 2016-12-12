@@ -26,6 +26,63 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='040']" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='c']">
+          <bf:source>
+            <bf:Source>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Agent')"/></xsl:attribute>
+              </rdf:type>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Source>
+          </bf:source>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:descriptionLanguage>
+            <bf:Language>
+              <xsl:choose>
+                <xsl:when test="string-length(.) = 3">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,.)"/></xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                </xsl:otherwise>
+              </xsl:choose>
+            </bf:Language>
+          </bf:descriptionLanguage>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='d']">
+          <bf:descriptionModifier>
+            <bf:Agent>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Agent>
+          </bf:descriptionModifier>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='e']">
+          <bf:descriptionConventions>
+            <bf:DescriptionConventions>
+              <xsl:choose>
+                <xsl:when test=
+                  "string-length(normalize-space(.))
+                  -
+                  string-length(translate(normalize-space(.),' ','')) +1
+                  = 1">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,.)"/></xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </xsl:otherwise>
+              </xsl:choose>
+            </bf:DescriptionConventions>
+          </bf:descriptionConventions>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='022']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
