@@ -195,5 +195,13 @@
       <subfield code="b">c0221</subfield>
       <subfield code="b">d0960</subfield>
     </datafield>
+    <datafield tag="047" ind1=" " ind2=" ">
+      <subfield code="a">or</subfield>
+      <subfield code="a">ct</subfield>
+    </datafield>
+    <datafield tag="047" ind1=" " ind2="7">
+      <subfield code="a">rgg</subfield>
+      <subfield code="2">iamlmf</subfield>
+    </datafield>
   </record>
 </collection>

@@ -575,6 +575,40 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='047']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:choose>
+                <xsl:when test="../@ind2 = ' '">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,.)"/></xsl:attribute>
+                  <bf:source>
+                    <bf:Source>
+                      <bf:code>marcmuscomp</bf:code>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                  <xsl:for-each select="../marc:subfield[@code='2']">
+                    <bf:source>
+                      <bf:Source>
+                        <bf:code><xsl:value-of select="."/></bf:code>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:for-each>
+                </xsl:otherwise>
+              </xsl:choose>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |

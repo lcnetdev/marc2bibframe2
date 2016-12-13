@@ -210,4 +210,12 @@
     <x:expect label="$b creates a temporalCoverage property of the Work" test="//bf:Work/bf:temporalCoverage[2] = '-0221/0960'"/>
   </x:scenario>
   
+  <x:scenario label="047 - FORM OF MUSICAL COMPOSITION CODE">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:code = 'rgg'"/>
+    <x:expect label="ind2 can set the source of the GenreForm" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/bf:source/bf:Source/bf:code = 'marcmuscomp'"/>
+    <x:expect label="...and set the URI for the GenreForm" test="//bf:Work/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/vocabulary/marcmuscomp/ct'"/>
+    <x:expect label="$2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/bf:code = 'iamlmf'"/>
+  </x:scenario>
+  
 </x:description>
