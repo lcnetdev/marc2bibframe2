@@ -156,13 +156,6 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Archival</xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:if test="substring(.,20,1) = 'a'">
-          <bf:issuance>
-            <bf:Issuance>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$issuance"/>sers</xsl:attribute>
-            </bf:Issuance>
-          </bf:issuance>
-        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

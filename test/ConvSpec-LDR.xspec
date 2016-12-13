@@ -19,7 +19,6 @@
     <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Archival'"/>
     <x:expect label="pos 17 should set the encodingLevel in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/bf:code = 'f'"/>
     <x:expect label="pos 18 should set the descriptionConventions in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/bf:code = 'aacr'"/>
-    <x:expect label="pos 19 can set the issuance of the Instance" test="//bf:Instance[3]/bf:issuance/bf:Issuance/@rdf:about = 'http://id.lc.gov/vocabulary/issuance/sers'"/>
   </x:scenario>
   
 </x:description>
