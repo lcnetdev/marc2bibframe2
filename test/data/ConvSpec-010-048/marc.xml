@@ -203,5 +203,13 @@
       <subfield code="a">rgg</subfield>
       <subfield code="2">iamlmf</subfield>
     </datafield>
+    <datafield tag="048" ind1=" " ind2=" ">
+      <subfield code="b">va02</subfield>
+      <subfield code="b">vc01</subfield>
+      <subfield code="b">vd01</subfield>
+      <subfield code="b">vf01</subfield>
+      <subfield code="a">ca04</subfield>
+      <subfield code="a">oc</subfield>
+    </datafield>
   </record>
 </collection>

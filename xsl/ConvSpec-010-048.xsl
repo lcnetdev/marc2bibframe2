@@ -69,6 +69,106 @@
     <y>20</y>
   </local:marctimeperiod>
 
+  <local:instrumentCode>
+    <ba property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>horn</rdfs:label></ba>
+    <bb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>trumpet</rdfs:label></bb>
+    <bc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>coronet</rdfs:label></bc>
+    <bd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>trombone</rdfs:label></bd>
+    <be property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>tuba</rdfs:label></be>
+    <bf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>baritone</rdfs:label></bf>
+    <bn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bn>
+    <bu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bu>
+    <by property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass, ethnic</bf:instrumentType></by>
+    <bz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bz>
+    <ea property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>electronic synthesizer</rdfs:label></ea>
+    <eb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>electronic tape</rdfs:label></eb>
+    <ec property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>computer</rdfs:label></ec>
+    <ed property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>ondes martinot</rdfs:label></ed>
+    <en property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></en>
+    <eu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></eu>
+    <ez property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></ez>
+    <ka property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>piano</rdfs:label></ka>
+    <kb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>organ</rdfs:label></kb>
+    <kc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>harpsichord</rdfs:label></kc>
+    <kd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>clavichord</rdfs:label></kd>
+    <ke property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>continuo</rdfs:label></ke>
+    <kf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>celeste</rdfs:label></kf>
+    <kn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kn>
+    <ku property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></ku>
+    <ky property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard, ethnic</bf:instrumentType></ky>
+    <kz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kz>
+    <pa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>timpani</rdfs:label></pa>
+    <pb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>xylophone</rdfs:label></pb>
+    <pc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>marimba</rdfs:label></pc>
+    <pd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>drum</rdfs:label></pd>
+    <pn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pn>
+    <pu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pu>
+    <py property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion, ethnic</bf:instrumentType></py>
+    <pz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pz>
+    <sa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>violin</rdfs:label></sa>
+    <sb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola</rdfs:label></sb>
+    <sc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>violoncello</rdfs:label></sc>
+    <sd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>double bass</rdfs:label></sd>
+    <se property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viol</rdfs:label></se>
+    <sf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola d'amore</rdfs:label></sf>
+    <sg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola da gamba</rdfs:label></sg>
+    <sn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sn>
+    <su property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></su>
+    <sy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed, ethnic</bf:instrumentType></sy>
+    <sz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sz>
+    <ta property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>harp</rdfs:label></ta>
+    <tb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>guitar</rdfs:label></tb>
+    <tc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>lute</rdfs:label></tc>
+    <td property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>mandolin</rdfs:label></td>
+    <tn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tn>
+    <tu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tu>
+    <ty property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked, ethnic</bf:instrumentType></ty>
+    <tz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tz>
+    <wa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>flute</rdfs:label></wa>
+    <wb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>oboe</rdfs:label></wb>
+    <wc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>clarinet</rdfs:label></wc>
+    <wd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>bassoon</rdfs:label></wd>
+    <we property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>piccolo</rdfs:label></we>
+    <wf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>English horn</rdfs:label></wf>
+    <wg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>bass clarinet</rdfs:label></wg>
+    <wh property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>recorder</rdfs:label></wh>
+    <wi property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>saxophone</rdfs:label></wi>
+    <wn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wn>
+    <wu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wu>
+    <wy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind, ethnic</bf:instrumentType></wy>
+    <wz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wz>
+    <oa property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>orchestra</rdfs:label></oa>
+    <ob property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>chamber orchestra</rdfs:label></ob>
+    <oc property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>string orchestra</rdfs:label></oc>
+    <od property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>band</rdfs:label></od>
+    <oe property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>dance orchestra</rdfs:label></oe>
+    <of property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>brass band</rdfs:label></of>
+    <on property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></on>
+    <ou property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></ou>
+    <oy property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental, ethnic</bf:ensembleType></oy>
+    <oz property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></oz>
+    <ca property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType><rdfs:label>mixed chorus</rdfs:label></ca>
+    <cb property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType><rdfs:label>female chorus</rdfs:label></cb>
+    <cc property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType><rdfs:label>male chorus</rdfs:label></cc>
+    <cd property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType><rdfs:label>children chorus</rdfs:label></cd>
+    <cn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cn>
+    <cu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cu>
+    <cy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus, ethnic</bf:voiceType></cy>
+    <va property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>soprano</rdfs:label></va>
+    <vb property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>mezzo soprano</rdfs:label></vb>
+    <vc property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>alto</rdfs:label></vc>
+    <vd property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>tenor</rdfs:label></vd>
+    <ve property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>baritone</rdfs:label></ve>
+    <vf property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>bass</rdfs:label></vf>
+    <vg property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>counter tenor</rdfs:label></vg>
+    <vh property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>high voice</rdfs:label></vh>
+    <vi property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>medium voice</rdfs:label></vi>
+    <vj property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>low voice</rdfs:label></vj>
+    <vn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vn>
+    <vu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vu>
+    <vy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice, ethnic</bf:voiceType></vy>
+  </local:instrumentCode>
+
   <xsl:template match="marc:datafield[@tag='038']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -609,6 +709,33 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='048']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- only attempt to code if ind2 = ' ' -->
+    <xsl:if test="@ind2 = ' '">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
+            <xsl:if test="document('')/*/local:instrumentCode/*[name() = substring(.,1,2)]">
+              <xsl:variable name="vCode" select="substring(.,1,2)"/>
+              <xsl:variable name="vCount" select="substring(.,3,2)"/>
+              <xsl:element name="{document('')/*/local:instrumentCode/*[name() = $vCode]/@property}">
+                <xsl:element name="{document('')/*/local:instrumentCode/*[name() = $vCode]/@entity}">
+                  <xsl:for-each select="document('')/*/local:instrumentCode/*[name() = $vCode]/*">
+                    <xsl:element name="{name()}"><xsl:value-of select="."/></xsl:element>
+                  </xsl:for-each>
+                  <xsl:if test="$vCount != ''">
+                    <bf:count><xsl:value-of select="number($vCount)"/></bf:count>
+                  </xsl:if>
+                </xsl:element>
+              </xsl:element>
+            </xsl:if>
+          </xsl:for-each>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+  
   <xsl:template mode="instance" match="marc:datafield[@tag='010'] |
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |

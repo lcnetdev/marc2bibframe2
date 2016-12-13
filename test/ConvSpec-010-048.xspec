@@ -218,4 +218,11 @@
     <x:expect label="$2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/bf:code = 'iamlmf'"/>
   </x:scenario>
   
+  <x:scenario label="048 - NUMBER OF MUSICAL INSTRUMENTS OR VOICES CODE">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="048 $a creates an instrument, ensemble, or voice property of the Work" test="//bf:Work/bf:voice[5]/bf:MusicVoice/rdfs:label = 'mixed chorus'"/>
+    <x:expect label="048 $b creates an instrument, ensemble, or voice property of the Work" test="//bf:Work/bf:voice[1]/bf:MusicVoice/rdfs:label = 'soprano'"/>
+    <x:expect label="position 2-3 of the subfield create a count property of the MusicInstrument, MusicEnsemble, or MusicVoice" test="//bf:Work/bf:voice[5]/bf:MusicVoice/bf:count = '4'"/>
+  </x:scenario>
+  
 </x:description>
