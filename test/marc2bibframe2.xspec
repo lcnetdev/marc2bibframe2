@@ -249,7 +249,9 @@
               <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
             <bf:media>
-              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s"/>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s">
+                <rdfs:label>audio</rdfs:label>
+              </bf:Media>
             </bf:media>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/sd">
@@ -273,7 +275,7 @@
               </bf:Generation>
             </bf:generation>
             <bf:baseMaterial>
-              <bf:BaseMaterial>
+              <bf:BaseMaterial rdf:about="http://id.loc.gov/vocabulary/mmaterial/pla">
                 <rdfs:label>plastic</rdfs:label>
               </bf:BaseMaterial>
             </bf:baseMaterial>
@@ -429,7 +431,9 @@
             </bf:issuance>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:media>
-              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c"/>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c">
+                <rdfs:label>computer</rdfs:label>
+              </bf:Media>
             </bf:media>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/cr">

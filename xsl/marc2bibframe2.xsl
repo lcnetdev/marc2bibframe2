@@ -36,7 +36,7 @@
   <xsl:variable name="issuance">http://id.lc.gov/vocabulary/issuance/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
   <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
-  <xsl:variable name="mmatrial">http://id.loc.gov/vocabulary/mmatrial/</xsl:variable>
+  <xsl:variable name="mmaterial">http://id.loc.gov/vocabulary/mmaterial/</xsl:variable>
   <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>
   <xsl:variable name="carriers">http://id.loc.gov/vocabulary/carriers/</xsl:variable>
   <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>

@@ -118,20 +118,20 @@
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmatrial,'pap')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmatrial,'wod')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmatrial,'sto')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmatrial,'ski')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmatrial,'tex')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmatrial,'pla')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmatrial,'gls')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmatrial,'vny')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmatrial,'vel')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmatrial,'plt')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmatrial,'lea')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmatrial,'par')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaterial,'wod')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmaterial,'sto')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmaterial,'ski')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmaterial,'tex')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmaterial,'vny')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmaterial,'vel')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmaterial,'plt')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmaterial,'lea')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmaterial,'par')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -693,6 +693,7 @@
               <bf:media>
                 <bf:Media>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/c</xsl:attribute>
+                  <rdfs:label>computer</rdfs:label>
                 </bf:Media>
               </bf:media>
             </xsl:if>
@@ -763,20 +764,20 @@
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmatrial,'pap')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmatrial,'wod')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmatrial,'sto')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmatrial,'ski')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmatrial,'tex')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmatrial,'pla')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmatrial,'gls')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmatrial,'vny')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmatrial,'vel')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmatrial,'plt')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmatrial,'lea')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmatrial,'par')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaterial,'wod')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmaterial,'sto')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmaterial,'ski')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmaterial,'tex')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmaterial,'vny')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmaterial,'vel')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmaterial,'plt')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmaterial,'lea')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmaterial,'par')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="generation">
@@ -838,6 +839,16 @@
             <xsl:when test="substring(.,5,1) = 'o'">paper</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="baseMaterialUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'k'"><xsl:value-of select="concat($mmaterial,'nsf')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="soundContent">
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
@@ -896,19 +907,19 @@
         </xsl:variable>
         <xsl:variable name="mountUri">
           <xsl:choose>
-            <xsl:when test="substring(.,9,1) = 'c'"><xsl:value-of select="concat($mmatrial,'crd')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'd'"><xsl:value-of select="concat($mmatrial,'gls')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'e'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'h'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'j'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'k'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'm'"><xsl:value-of select="concat($mmatrial,'mix')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'c'"><xsl:value-of select="concat($mmaterial,'crd')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'd'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'h'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'j'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'k'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="mountUri2">
           <xsl:choose>
-            <xsl:when test="substring(.,9,1) = 'j'"><xsl:value-of select="concat($mmatrial,'gls')"/></xsl:when>
-            <xsl:when test="substring(.,9,1) = 'k'"><xsl:value-of select="concat($mmatrial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'j'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
+            <xsl:when test="substring(.,9,1) = 'k'"><xsl:value-of select="concat($mmaterial,'gls')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -917,6 +928,7 @@
               <bf:media>
                 <bf:Media>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/g</xsl:attribute>
+                  <rdfs:label>projected</rdfs:label>
                 </bf:Media>
               </bf:media>
             </xsl:if>
@@ -935,6 +947,9 @@
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
+                  <xsl:if test="$baseMaterialUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
                 </bf:BaseMaterial>
               </bf:baseMaterial>
@@ -1046,6 +1061,14 @@
             <xsl:when test="substring(.,11,1) = 'm'">mixed emulsion</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="emulsionUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'a'"><xsl:value-of select="concat($mmaterial,'slh')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'"><xsl:value-of select="concat($mmaterial,'dia')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ves')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="generation">
           <xsl:choose>
             <xsl:when test="substring(.,12,1) = 'a'">first generation (master)</xsl:when>
@@ -1056,14 +1079,26 @@
         </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
-            <xsl:when test="substring(.,13,1) = 'a'">film base (not safety)</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'a'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'">acetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'd'">diacetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'">polyester</xsl:when>
             <xsl:when test="substring(.,13,1) = 'r'">safety base, mixed</xsl:when>
-            <xsl:when test="substring(.,13,1) = 't'">safety base, triacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 't'">triacetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'i'">nitrate base</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety bas</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety base</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="baseMaterialUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,13,1) = 'a'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'dia')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'p'"><xsl:value-of select="concat($mmaterial,'pol')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'r'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 't'"><xsl:value-of select="concat($mmaterial,'tri')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'i'"><xsl:value-of select="concat($mmaterial,'nit')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -1072,6 +1107,7 @@
               <bf:media>
                 <bf:Media>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/h</xsl:attribute>
+                  <rdfs:label>microform</rdfs:label>
                 </bf:Media>
               </bf:media>
             </xsl:if>
@@ -1114,6 +1150,9 @@
             <xsl:if test="$emulsion != ''">
               <bf:emulsion>
                 <bf:Emulsion>
+                  <xsl:if test="$emulsionUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$emulsionUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$emulsion"/></rdfs:label>
                 </bf:Emulsion>
               </bf:emulsion>
@@ -1128,6 +1167,9 @@
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
+                  <xsl:if test="$baseMaterialUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
                 </bf:BaseMaterial>
               </bf:baseMaterial>
@@ -1163,26 +1205,26 @@
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmatrial,'can')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmatrial,'brb')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmatrial,'crd')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmatrial,'gla')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmatrial,'ski')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmatrial,'tex')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'h'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmatrial,'pla')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmatrial,'vny')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mmatrial,'mix')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmatrial,'vel')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mmatrial,'pap')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmatrial,'plt')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'q'"><xsl:value-of select="concat($mmatrial,'hdb')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'r'"><xsl:value-of select="concat($mmatrial,'por')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mmatrial,'sto')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 't'"><xsl:value-of select="concat($mmatrial,'wod')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmatrial,'lea')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmatrial,'par')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'a'"><xsl:value-of select="concat($mmaterial,'can')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaterial,'brb')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'c'"><xsl:value-of select="concat($mmaterial,'crd')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaterial,'gla')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mmaterial,'ski')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'"><xsl:value-of select="concat($mmaterial,'tex')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'h'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'l'"><xsl:value-of select="concat($mmaterial,'vny')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'n'"><xsl:value-of select="concat($mmaterial,'vel')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mmaterial,'plt')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'q'"><xsl:value-of select="concat($mmaterial,'hdb')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'r'"><xsl:value-of select="concat($mmaterial,'por')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mmaterial,'sto')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 't'"><xsl:value-of select="concat($mmaterial,'wod')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mmaterial,'lea')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmaterial,'par')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="mount">
@@ -1211,26 +1253,26 @@
         </xsl:variable>
         <xsl:variable name="mountUri">
           <xsl:choose>
-            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($mmatrial,'can')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($mmatrial,'brb')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'c'"><xsl:value-of select="concat($mmatrial,'crd')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'd'"><xsl:value-of select="concat($mmatrial,'gla')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'e'"><xsl:value-of select="concat($mmatrial,'syn')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'f'"><xsl:value-of select="concat($mmatrial,'ski')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'g'"><xsl:value-of select="concat($mmatrial,'tex')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'h'"><xsl:value-of select="concat($mmatrial,'mtl')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'i'"><xsl:value-of select="concat($mmatrial,'pla')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'l'"><xsl:value-of select="concat($mmatrial,'vny')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'm'"><xsl:value-of select="concat($mmatrial,'mix')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'n'"><xsl:value-of select="concat($mmatrial,'vel')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'o'"><xsl:value-of select="concat($mmatrial,'pap')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'p'"><xsl:value-of select="concat($mmatrial,'plt')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'q'"><xsl:value-of select="concat($mmatrial,'hdb')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'r'"><xsl:value-of select="concat($mmatrial,'por')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 's'"><xsl:value-of select="concat($mmatrial,'sto')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 't'"><xsl:value-of select="concat($mmatrial,'wod')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'v'"><xsl:value-of select="concat($mmatrial,'lea')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'w'"><xsl:value-of select="concat($mmatrial,'par')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($mmaterial,'can')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($mmaterial,'brb')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'c'"><xsl:value-of select="concat($mmaterial,'crd')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'd'"><xsl:value-of select="concat($mmaterial,'gla')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'f'"><xsl:value-of select="concat($mmaterial,'ski')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'g'"><xsl:value-of select="concat($mmaterial,'tex')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'h'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'i'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'l'"><xsl:value-of select="concat($mmaterial,'vny')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'n'"><xsl:value-of select="concat($mmaterial,'vel')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'o'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'p'"><xsl:value-of select="concat($mmaterial,'plt')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'q'"><xsl:value-of select="concat($mmaterial,'hdb')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'r'"><xsl:value-of select="concat($mmaterial,'por')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 's'"><xsl:value-of select="concat($mmaterial,'sto')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 't'"><xsl:value-of select="concat($mmaterial,'wod')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'v'"><xsl:value-of select="concat($mmaterial,'lea')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'w'"><xsl:value-of select="concat($mmaterial,'par')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -1355,14 +1397,26 @@
         </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
-            <xsl:when test="substring(.,13,1) = 'a'">safety base, undetermined</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'c'">safety base, acetate undetermined</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'a'">safety base</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'c'">acetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'd'">diacetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'">polyester</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'r'">safety base, mixed</xsl:when>
-            <xsl:when test="substring(.,13,1) = 't'">safety base, triacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'r'">safety base</xsl:when>
+            <xsl:when test="substring(.,13,1) = 't'">triacetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'i'">nitrate base</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'm'">mixed base (nitrate and safety)</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety base</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="baseMaterialUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,13,1) = 'a'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'dia')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'p'"><xsl:value-of select="concat($mmaterial,'pol')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'r'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 't'"><xsl:value-of select="concat($mmaterial,'tri')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'i'"><xsl:value-of select="concat($mmaterial,'nit')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="completeness">
@@ -1384,6 +1438,7 @@
               <bf:media>
                 <bf:Media>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/g</xsl:attribute>
+                  <rdfs:label>projected</rdfs:label>
                 </bf:Media>
               </bf:media>
             </xsl:if>
@@ -1453,6 +1508,9 @@
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
+                  <xsl:if test="$baseMaterialUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
                 </bf:BaseMaterial>
               </bf:baseMaterial>
@@ -1591,17 +1649,48 @@
         </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'a'">lacquer coating</xsl:when>
             <xsl:when test="substring(.,11,1) = 'b'">cellulose nitrate</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'c'">acetate tape with ferrous oxide</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'g'">glass with lacquer</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'i'">aluminum with lacquer</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'r'">paper with lacquer or ferrous oxide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">acetate tape</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'g'">glass</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'i'">aluminum</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'r'">paper</xsl:when>
             <xsl:when test="substring(.,11,1) = 'l'">metal</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'm'">plastic with metal</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">plastic</xsl:when>
             <xsl:when test="substring(.,11,1) = 'p'">plastic</xsl:when>
             <xsl:when test="substring(.,11,1) = 's'">shellac</xsl:when>
             <xsl:when test="substring(.,11,1) = 'w'">wax</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="baseMaterialUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'b'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'g'"><xsl:value-of select="concat($mmaterial,'gla')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'i'"><xsl:value-of select="concat($mmaterial,'alu')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'r'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'l'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'p'"><xsl:value-of select="concat($mmaterial,'pla')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 's'"><xsl:value-of select="concat($mmaterial,'she')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'w'"><xsl:value-of select="concat($mmaterial,'wax')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="emulsion">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'a'">lacquer coating</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">ferrous oxide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'g'">lacquer</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'i'">lacquer</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">metal</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="emulsionUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,11,1) = 'a'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'"><xsl:value-of select="concat($mmaterial,'fer')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'g'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'i'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mtl')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="cutting">
@@ -1628,6 +1717,7 @@
               <bf:media>
                 <bf:Media>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/s</xsl:attribute>
+                  <rdfs:label>audio</rdfs:label>
                 </bf:Media>
               </bf:media>
             </xsl:if>
@@ -1690,9 +1780,22 @@
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
+                  <xsl:if test="$baseMaterialUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
                 </bf:BaseMaterial>
               </bf:baseMaterial>
+            </xsl:if>
+            <xsl:if test="$emulsion != ''">
+              <bf:emulsion>
+                <bf:Emulsion>
+                  <xsl:if test="$emulsionUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$emulsionUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$emulsion"/></rdfs:label>
+                </bf:Emulsion>
+              </bf:emulsion>
             </xsl:if>
             <xsl:if test="$cutting != ''">
               <bf:soundCharacteristic>
