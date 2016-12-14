@@ -17,6 +17,11 @@
     <xsl:param name="serialization"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:choose>
+      <xsl:when test="$tag='050'">
+        <xsl:apply-templates mode="work050" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='100' or $tag='110' or $tag='111'">
         <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="workName" select=".">
@@ -138,4 +143,19 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='880']" mode="newItem">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$tag='050'">
+        <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates mode="item050" select=".">
+          <xsl:with-param name="pItemUri" select="$vItemUri"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>  

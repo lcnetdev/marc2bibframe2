@@ -11,6 +11,8 @@
 
   <x:scenario label="MARC tag 880">
     <x:context href="data/ConvSpec-880/marc.xml"/>
+    <x:expect label="$6 050 should make a classification" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'ז7164.נ3'"/>
+    <x:expect label="...and a shelfMark" test="//bf:Item[1]/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'ז7164.נ3 ל34 ניט. 9'"/>
     <x:expect label="$6 1XX should make an Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 X30-xx/240-xx should make a Title" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/AbbreviatedTitle'"/>

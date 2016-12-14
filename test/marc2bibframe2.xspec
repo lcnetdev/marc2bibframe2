@@ -13,6 +13,7 @@
   <x:import href="ConvSpec-001-007.xspec"/>
   <x:import href="ConvSpec-006,008.xspec"/>
   <x:import href="ConvSpec-010-048.xspec"/>
+  <x:import href="ConvSpec-050-088.xspec"/>
   <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
@@ -76,6 +77,15 @@
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+                <bf:classificationPortion>PZ54</bf:classificationPortion>
+                <bf:itemPortion>.A498 2001</bf:itemPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
             <bf:contribution>
               <bf:Contribution>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/lc-extensions/PrimaryContribution"/>
@@ -159,6 +169,17 @@
             <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
           </bf:Instance>
+          <bf:Item rdf:about="http://example.org/13600108#Item050-11">
+            <bf:shelfMark>
+              <bf:ShelfMarkLcc>
+                <rdfs:label>PZ54.A498 2001</rdfs:label>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+              </bf:ShelfMarkLcc>
+            </bf:shelfMark>
+            <bf:itemOf rdf:resource="http://example.org/13600108#Instance"/>
+          </bf:Item>
         </rdf:RDF>
       </x:expect>
     </x:scenario>
@@ -214,6 +235,14 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+                <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -323,6 +352,17 @@
             </bf:genreForm>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
           </bf:Instance>
+          <bf:Item rdf:about="http://example.org/5637241#Item050-10">
+            <bf:shelfMark>
+              <bf:ShelfMarkLcc>
+                <rdfs:label>Atlantic 1259</rdfs:label>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+              </bf:ShelfMarkLcc>
+            </bf:shelfMark>
+            <bf:itemOf rdf:resource="http://example.org/5637241#Instance"/>
+          </bf:Item>
           <bf:Work rdf:about="http://example.org/12149120#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
@@ -394,6 +434,14 @@
             <bf:geographicCoverage>
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us---"/>
             </bf:geographicCoverage>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+                <bf:classificationPortion>F204.W5</bf:classificationPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -479,6 +527,17 @@
             </bf:genreForm>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
           </bf:Instance>
+          <bf:Item rdf:about="http://example.org/12149120#Item050-14">
+            <bf:shelfMark>
+              <bf:ShelfMarkLcc>
+                <rdfs:label>F204.W5</rdfs:label>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+              </bf:ShelfMarkLcc>
+            </bf:shelfMark>
+            <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
+          </bf:Item>
         </rdf:RDF>
       </x:expect>
     </x:scenario>

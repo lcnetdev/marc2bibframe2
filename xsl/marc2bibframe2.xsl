@@ -22,6 +22,7 @@
   <xsl:include href="ConvSpec-001-007.xsl"/>
   <xsl:include href="ConvSpec-006,008.xsl"/>
   <xsl:include href="ConvSpec-010-048.xsl"/>
+  <xsl:include href="ConvSpec-050-088.xsl"/>
   <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
@@ -137,6 +138,12 @@
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
+
+    <!-- generate Item entities -->
+    <xsl:apply-templates mode="newItem">
+      <xsl:with-param name="recordid" select="$recordid"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
     
   </xsl:template>
 
@@ -145,6 +152,7 @@
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
   <xsl:template match="text()" mode="newInstance"/>
+  <xsl:template match="text()" mode="newItem"/>
 
   <!-- warn about other elements -->
   <xsl:template match="*">
