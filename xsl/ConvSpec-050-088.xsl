@@ -142,6 +142,31 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='060']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:classification>
+          <bf:ClassificationNlm>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+            </xsl:for-each>
+            <xsl:if test="@ind2 = '0'">
+              <bf:source>
+                <bf:Source>
+                  <rdfs:label>National Library of Medicine</rdfs:label>
+                </bf:Source>
+              </bf:source>
+            </xsl:if>
+          </bf:ClassificationNlm>
+        </bf:classification>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
@@ -221,6 +246,24 @@
               </rdfs:label>
             </bf:ClassificationLcc>
           </bf:classification>
+        </bf:Item>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='060']" mode="newItem">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Item>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+          <bf:heldBy>
+            <bf:Agent>
+              <rdfs:label>National Library of Medicine</rdfs:label>
+            </bf:Agent>
+          </bf:heldBy>
         </bf:Item>
       </xsl:when>
     </xsl:choose>

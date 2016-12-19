@@ -25,5 +25,9 @@
       <subfield code="a">F5050 .2</subfield>
       <subfield code="b">T5</subfield>
     </datafield>
+    <datafield tag="060" ind1="0" ind2="0">
+      <subfield code="a">W 22 DC2.1</subfield>
+      <subfield code="b">B8M</subfield>
+    </datafield>
   </record>
 </collection>
