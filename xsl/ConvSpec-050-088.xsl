@@ -168,6 +168,29 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='070']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:classification>
+          <bf:Classification>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+            </xsl:for-each>
+            <bf:source>
+              <bf:Source>
+                <rdfs:label>National Agricultural Library</rdfs:label>
+              </bf:Source>
+            </bf:source>
+          </bf:Classification>
+        </bf:classification>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

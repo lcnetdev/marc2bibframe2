@@ -29,5 +29,9 @@
       <subfield code="a">W 22 DC2.1</subfield>
       <subfield code="b">B8M</subfield>
     </datafield>
+    <datafield tag="070" ind1="0" ind2=" ">
+      <subfield code="a">HD3492.H8</subfield>
+      <subfield code="b">L3</subfield>
+    </datafield>
   </record>
 </collection>

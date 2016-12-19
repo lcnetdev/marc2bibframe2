@@ -51,6 +51,14 @@
     <x:expect label="$b creates an itemPortion of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:itemPortion = 'B8M'"/>
     <x:expect label="ind1 = '0' creates an Item with a heldBy property" test="//bf:Item[contains(@rdf:about,'Item060-7')]/bf:heldBy/bf:Agent/rdfs:label = 'National Library of Medicine'"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:source/bf:Source/rdfs:label = 'National Library of Medicine'"/>
-  </x:scenario>  
+  </x:scenario>
+
+  <x:scenario label="070 - NATIONAL AGRICULTURAL LIBRARY CALL NUMBER">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="070 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 1"/>
+    <x:expect label="...with a source property" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:source/bf:Source/rdfs:label = 'National Agricultural Library'"/>
+    <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:classificationPortion = 'HD3492.H8'"/>
+    <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:itemPortion = 'L3'"/>
+  </x:scenario>
   
 </x:description>
