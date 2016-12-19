@@ -55,7 +55,7 @@
 
   <x:scenario label="070 - NATIONAL AGRICULTURAL LIBRARY CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="070 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 1"/>
+    <x:expect label="070 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
     <x:expect label="...with a source property" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:source/bf:Source/rdfs:label = 'National Agricultural Library'"/>
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:classificationPortion = 'HD3492.H8'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:itemPortion = 'L3'"/>
@@ -86,6 +86,15 @@
     <x:expect label="$q creates a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationDdc/bf:source/bf:Source/rdfs:label = 'DE-101b'"/>
     <x:expect label="ind1 creates an edition property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:edition[2] = 'full'"/>
     <x:expect label="ind2 can set a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+  </x:scenario>
+
+  <x:scenario label="084 - OTHER CLASSIFICATION NUMBER">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="084 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
+    <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
+    <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
+    <x:expect label="$q creates an adminMetadata/AdminMetadata/assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:adminMetadata/bf:AdminMetadata/bf:assigner/bf:Agent/rdf:value = 'DE-101'"/>
+    <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sdnb'"/>
   </x:scenario>
   
 </x:description>

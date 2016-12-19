@@ -32,6 +32,13 @@
       <subfield code="b">וואָר</subfield>
       <subfield code="2">22</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">084-01</subfield>
+      <subfield code="a">קב112.554</subfield>
+      <subfield code="b">ו62 1980</subfield>
+      <subfield code="q">DE-101</subfield>
+      <subfield code="2">sdnb</subfield>
+    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">100-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>

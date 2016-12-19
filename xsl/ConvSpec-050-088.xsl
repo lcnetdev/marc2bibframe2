@@ -228,6 +228,49 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='084']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work084" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='084' or @tag='880']" mode="work084">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:classification>
+            <bf:Classification>
+              <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="../marc:subfield[@code='q']">
+                <bf:adminMetadata>
+                  <bf:AdminMetadata>
+                    <xsl:for-each select="../marc:subfield[@code='q']">
+                      <bf:assigner>
+                        <bf:Agent>
+                          <rdf:value><xsl:value-of select="."/></rdf:value>
+                        </bf:Agent>
+                      </bf:assigner>
+                    </xsl:for-each>
+                  </bf:AdminMetadata>
+                </bf:adminMetadata>
+              </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="'rdfxml'"/>
+              </xsl:apply-templates>
+            </bf:Classification>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='082']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates mode="work082" select=".">
@@ -271,7 +314,7 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
+
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
   
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">

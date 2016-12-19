@@ -42,6 +42,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='084'">
+        <xsl:apply-templates mode="work084" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='100' or $tag='110' or $tag='111'">
         <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="workName" select=".">
