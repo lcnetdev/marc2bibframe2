@@ -9,7 +9,12 @@
       <subfield code="6">050-01</subfield>
       <subfield code="a">ז7164.נ3</subfield>
       <subfield code="b">ל34 ניט. 9</subfield>
-    </datafield>      
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="880">
+      <subfield code="6">052-01</subfield>
+      <subfield code="a">3800</subfield>
+      <subfield code="d">Нью-Йорк</subfield>
+    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">100-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>

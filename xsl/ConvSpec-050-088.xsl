@@ -47,6 +47,70 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='052']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work052" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='052' or @tag='880']" mode="work052">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='b']">
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:geographicCoverage>
+                <bf:Place>
+                  <xsl:apply-templates mode="place052" select="..">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pBpos" select="position()"/>
+                  </xsl:apply-templates>
+                </bf:Place>
+              </bf:geographicCoverage>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:geographicCoverage>
+              <bf:Place>
+                <xsl:apply-templates mode="place052" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Place>
+            </bf:geographicCoverage>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='052' or @tag='880']" mode="place052">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pBpos"/>
+    <xsl:variable name="vPlaceValue">
+      <xsl:choose>
+        <xsl:when test="$pBpos != ''"><xsl:value-of select="concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b'][position()=$pBpos])"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="marc:subfield[@code='a']"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdf:value><xsl:value-of select="$vPlaceValue"/></rdf:value>
+        <xsl:for-each select="marc:subfield[@code='d']">
+          <rdfs:label><xsl:value-of select="."/></rdfs:label>
+        </xsl:for-each>
+        <xsl:if test="@ind1 = ' '">
+          <bf:source>
+            <bf:Source>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($classSchemes,'lcc')"/></xsl:attribute>
+            </bf:Source>
+          </bf:source>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
