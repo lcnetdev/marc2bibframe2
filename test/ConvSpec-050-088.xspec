@@ -60,5 +60,13 @@
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:classificationPortion = 'HD3492.H8'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:itemPortion = 'L3'"/>
   </x:scenario>
+
+  <x:scenario label="072 - SUBJECT CATEGORY CODE">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="072 creates a subject property of the Work" test="count(//bf:Work[1]/bf:subject/rdfs:Resource) = 2"/>
+    <x:expect label="$ax becomes the rdf:value of the rdfs:Resource" test="//bf:Work[1]/bf:subject[2]/rdfs:Resource/rdf:value = 'Z1 .630'"/>
+    <x:expect label="$2 creates source property of the rdfs:Resource" test="//bf:Work[1]/bf:subject[2]/rdfs:Resource/bf:source/bf:Source/rdfs:label = 'mesh'"/>
+    <x:expect label="ind2 = '0' creates 'agricola' source property of the rdfs:Resource" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/bf:source/bf:Source/rdfs:label = 'agricola'"/>
+  </x:scenario>
   
 </x:description>

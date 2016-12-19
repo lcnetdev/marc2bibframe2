@@ -33,5 +33,13 @@
       <subfield code="a">HD3492.H8</subfield>
       <subfield code="b">L3</subfield>
     </datafield>
+    <datafield tag="072" ind1=" " ind2="0">
+      <subfield code="a">K800</subfield>
+    </datafield>
+    <datafield tag="072" ind1=" " ind2="7">
+      <subfield code="a">Z1</subfield>
+      <subfield code="x">.630</subfield>
+      <subfield code="2">mesh</subfield>
+    </datafield>
   </record>
 </collection>

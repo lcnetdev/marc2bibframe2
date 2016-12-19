@@ -20,6 +20,12 @@
       <subfield code="a">פ5050 .2</subfield>
       <subfield code="b">ט 5</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2="7">
+      <subfield code="6">072-01</subfield>
+      <subfield code="a">ז 1</subfield>
+      <subfield code="x">.630</subfield>
+      <subfield code="2">ייגל</subfield>
+    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">100-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>

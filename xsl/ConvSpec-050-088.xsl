@@ -191,6 +191,43 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='072']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work072" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='072' or @tag='880']" mode="work072">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vSubjectValue">
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='x']" mode="concat-nodes-space"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:subject>
+          <rdfs:Resource>
+            <rdf:value><xsl:value-of select="normalize-space($vSubjectValue)"/></rdf:value>
+            <xsl:choose>
+              <xsl:when test="@ind2 = '0'">
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>agricola</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:otherwise>
+            </xsl:choose>
+          </rdfs:Resource>
+        </bf:subject>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
