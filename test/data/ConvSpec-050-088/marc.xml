@@ -21,5 +21,9 @@
       <subfield code="a">BK</subfield>
       <subfield code="d">Mostar</subfield>
     </datafield>
+    <datafield tag="055" ind1="0" ind2="0">
+      <subfield code="a">F5050 .2</subfield>
+      <subfield code="b">T5</subfield>
+    </datafield>
   </record>
 </collection>

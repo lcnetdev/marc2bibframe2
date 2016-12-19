@@ -12,7 +12,7 @@
   <x:scenario label="050 - LIBRARY OF CONGRESS CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="050 creates an Item" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2'])= 1"/>
-    <x:expect label="...and classification properties of the Work" test="count(//bf:Work[1]/bf:classification) = 3"/>
+    <x:expect label="...and classification properties of the Work" test="count(//bf:Work[1]/bf:classification) = 4"/>
     <x:expect label="...and a shelfMark property of the Item" test="count(//bf:Item[1]/bf:shelfMark) = 1"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="...and a source of the ShelfMarkLcc" test="//bf:Item[1]/bf:shelfMark/bf:ShelfMarkLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
@@ -34,6 +34,14 @@
     <x:expect label="ind1 = ' ' creates a source property of the Place" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:Place/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/classSchemes/lcc'"/>
     <x:expect label="$ab creates an rdf:value property of the Place" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:Place/rdf:value = '4034 R8'"/>
     <x:expect label="$d creates an rdfs:label property of the Place" test="//bf:Work[1]/bf:geographicCoverage[3]/bf:Place/rdfs:label = 'Mostar'"/>
+  </x:scenario>
+
+  <x:scenario label="CLASSIFICATION NUMBERS ASSIGNED IN CANADA">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="055 creates a classification/ClassificationLcc property of the Work" test="count(//bf:Work[1]/bf:classification) = 4"/>
+    <x:expect label="$a creates the classificationPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:classificationPortion = 'F5050 .2'"/>
+    <x:expect label="$b creates an itemPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:itemPortion = 'T5'"/>
+    <x:expect label="ind2 = 0,1,2 creates a source of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
   </x:scenario>
   
 </x:description>

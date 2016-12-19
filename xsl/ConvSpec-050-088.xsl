@@ -111,6 +111,38 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='055']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work055" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='055' or @tag='880']" mode="work055">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+          <bf:classification>
+            <bf:ClassificationLcc>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+              </xsl:for-each>
+              <xsl:if test="@ind2 = '0' or @ind2 = '1' or @ind2 = '2'">
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>Library and Archives Canada</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </xsl:if>
+            </bf:ClassificationLcc>
+          </bf:classification>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
