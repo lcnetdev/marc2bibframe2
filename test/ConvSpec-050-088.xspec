@@ -11,7 +11,7 @@
 
   <x:scenario label="050 - LIBRARY OF CONGRESS CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="050 creates an Item" test="count(//bf:Item/bf:itemOf[@rdf:resource='http://example.org/1#Instance'])= 1"/>
+    <x:expect label="050 creates an Item" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2'])= 1"/>
     <x:expect label="...and classification properties of the Work" test="count(//bf:Work[1]/bf:classification) = 3"/>
     <x:expect label="...and a shelfMark property of the Item" test="count(//bf:Item[1]/bf:shelfMark) = 1"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
@@ -19,6 +19,13 @@
     <x:expect label="$a creates a classificationPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'Z7164.N3'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:itemPortion = 'L34 no. 9'"/>
     <x:expect label="$ab become the rdfs:label of the ShelfMark" test="//bf:Item[1]/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'Z7164.N3 L34 no. 9'"/>
+  </x:scenario>
+  
+  <x:scenario label="051 - LIBRARY OF CONGRESS COPY, ISSUE, OFFPRINT STATEMENT">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="051 creates an Item" test="count(//bf:Item[@rdf:about='http://example.org/1#Item051-3'])= 1"/>
+    <x:expect label="...with a classification property" test="count(//bf:Item[2]/bf:classification) = 1"/>
+    <x:expect label="...rdfs:label of the ClassificationLcc is $abc" test="//bf:Item[2]/bf:classification/bf:ClassificationLcc/rdfs:label = 'QE75.G4 2d set'"/>
   </x:scenario>
   
 </x:description>

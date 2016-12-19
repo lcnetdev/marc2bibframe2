@@ -7,5 +7,10 @@
       <subfield code="a">Z7165.R42</subfield>
       <subfield code="a">HC517.R42</subfield>
     </datafield>
+    <datafield tag="051" ind1=" " ind2=" ">
+      <subfield code="a">QE75</subfield>
+      <subfield code="b">.G4</subfield>
+      <subfield code="c">2d set.</subfield>
+    </datafield>
   </record>
 </collection>

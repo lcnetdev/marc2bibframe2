@@ -97,4 +97,37 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='051']" mode="newItem">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="vClassLabel">
+      <xsl:choose>
+        <xsl:when test="marc:subfield[@code='b']">
+          <xsl:choose>
+            <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:when>
+            <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Item>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+          <bf:classification>
+            <bf:ClassificationLcc>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="$vClassLabel"/></xsl:with-param>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:ClassificationLcc>
+          </bf:classification>
+        </bf:Item>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>
