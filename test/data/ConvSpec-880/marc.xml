@@ -26,6 +26,12 @@
       <subfield code="x">.630</subfield>
       <subfield code="2">ייגל</subfield>
     </datafield>
+    <datafield tag="880" ind1="0" ind2="0">
+      <subfield code="6">082-01</subfield>
+      <subfield code="a">975,5 / 4252/00222</subfield>
+      <subfield code="b">וואָר</subfield>
+      <subfield code="2">22</subfield>
+    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">100-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>

@@ -30,7 +30,7 @@
               <xsl:if test="../@ind2 = '0'">
                 <bf:source>
                   <bf:Source>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                   </bf:Source>
                 </bf:source>
               </xsl:if>
@@ -228,6 +228,50 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='082']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work082" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='082' or @tag='880']" mode="work082">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:classification>
+            <bf:ClassificationDdc>
+              <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='2']">
+                <bf:edition><xsl:value-of select="."/></bf:edition>
+              </xsl:for-each>
+              <xsl:choose>
+                <xsl:when test="../@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
+                <xsl:when test="../@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
+              </xsl:choose>
+              <xsl:apply-templates select="../marc:subfield[@code='q']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:source>
+                  <bf:Source>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Source>
+                </bf:source>
+              </xsl:if>
+            </bf:ClassificationDdc>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
   
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">

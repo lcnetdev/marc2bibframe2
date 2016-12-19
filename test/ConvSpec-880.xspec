@@ -16,6 +16,7 @@
     <x:expect label="$6 052 creates a geographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage/bf:Place/rdfs:label = 'Нью-Йорк'"/>
     <x:expect label="$6 055 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[2]/bf:ClassificationLcc/bf:classificationPortion = 'פ5050 .2'"/>
     <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/rdf:value = 'ז 1 .630'"/>
+    <x:expect label="$6 082 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[3]/bf:ClassificationDdc/bf:classificationPortion = '975,5 / 4252/00222'"/>
     <x:expect label="$6 1XX should make an Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 X30-xx/240-xx should make a Title" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/AbbreviatedTitle'"/>

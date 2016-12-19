@@ -45,5 +45,15 @@
       <subfield code="a">1022-A</subfield>
       <subfield code="z">1012-A</subfield>
     </datafield>
+    <datafield tag="082" ind1="0" ind2="0">
+      <subfield code="a">975.5/4252/00222</subfield>
+      <subfield code="b">Wor</subfield>
+      <subfield code="2">22</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">004</subfield>
+      <subfield code="2">22/ger</subfield>
+      <subfield code="q">DE-101b</subfield>
+    </datafield>
   </record>
 </collection>

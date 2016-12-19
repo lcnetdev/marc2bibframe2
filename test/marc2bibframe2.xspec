@@ -442,6 +442,16 @@
                 <bf:classificationPortion>F204.W5</bf:classificationPortion>
               </bf:ClassificationLcc>
             </bf:classification>
+            <bf:classification>
+              <bf:ClassificationDdc>
+                <bf:classificationPortion>975.3</bf:classificationPortion>
+                <bf:edition>13</bf:edition>
+                <bf:edition>abridged</bf:edition>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+              </bf:ClassificationDdc>
+            </bf:classification>
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
