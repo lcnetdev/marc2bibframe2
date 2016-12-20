@@ -135,12 +135,6 @@
       </xsl:when>
     </xsl:choose>
 
-    <!-- generate secondary Instance entities -->
-    <xsl:apply-templates mode="newInstance">
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-
     <!-- generate Item entities -->
     <xsl:apply-templates mode="newItem">
       <xsl:with-param name="recordid" select="$recordid"/>
@@ -153,7 +147,6 @@
   <xsl:template match="text()" mode="adminmetadata"/>
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
-  <xsl:template match="text()" mode="newInstance"/>
   <xsl:template match="text()" mode="newItem"/>
 
   <!-- warn about other elements -->

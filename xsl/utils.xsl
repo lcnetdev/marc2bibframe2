@@ -152,14 +152,15 @@
   <!--
       convert a date string as from the 033 to an EDTF date
       (https://www.loc.gov/standards/datetime/pre-submission.html)
+      with one difference - use 'X' for unspecified digits
   -->
   <xsl:template name="edtfFormat">
     <xsl:param name="pDateString"/>
-    <!-- convert '-' to 'u' -->
+    <!-- convert '-' to 'X' -->
     <xsl:choose>
       <xsl:when test="contains(substring($pDateString,1,12),'-')">
         <xsl:call-template name="edtfFormat">
-          <xsl:with-param name="pDateString" select="concat(substring-before($pDateString,'-'),'u',substring-after($pDateString,'-'))"/>
+          <xsl:with-param name="pDateString" select="concat(substring-before($pDateString,'-'),'X',substring-after($pDateString,'-'))"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>      

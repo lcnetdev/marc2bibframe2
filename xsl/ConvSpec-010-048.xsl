@@ -15,37 +15,37 @@
 
   <!-- Lookup tables -->
   <local:marctimeperiod>
-    <a0>-uuuu/-3000</a0>
-    <b0>-29uu</b0>
-    <b1>-28uu</b1>
-    <b2>-27uu</b2>
-    <b3>-26uu</b3>
-    <b4>-25uu</b4>
-    <b5>-24uu</b5>
-    <b6>-23uu</b6>
-    <b7>-22uu</b7>
-    <b8>-21uu</b8>
-    <b9>-20uu</b9>
-    <c0>-19uu</c0>
-    <c1>-18uu</c1>
-    <c2>-17uu</c2>
-    <c3>-16uu</c3>
-    <c4>-15uu</c4>
-    <c5>-14uu</c5>
-    <c6>-13uu</c6>
-    <c7>-12uu</c7>
-    <c8>-11uu</c8>
-    <c9>-10uu</c9>
-    <d0>-09uu</d0>
-    <d1>-08uu</d1>
-    <d2>-07uu</d2>
-    <d3>-06uu</d3>
-    <d4>-05uu</d4>
-    <d5>-04uu</d5>
-    <d6>-03uu</d6>
-    <d7>-02uu</d7>
-    <d8>-01uu</d8>
-    <d9>-00uu</d9>
+    <a0>-XXXX/-3000</a0>
+    <b0>-29XX</b0>
+    <b1>-28XX</b1>
+    <b2>-27XX</b2>
+    <b3>-26XX</b3>
+    <b4>-25XX</b4>
+    <b5>-24XX</b5>
+    <b6>-23XX</b6>
+    <b7>-22XX</b7>
+    <b8>-21XX</b8>
+    <b9>-20XX</b9>
+    <c0>-19XX</c0>
+    <c1>-18XX</c1>
+    <c2>-17XX</c2>
+    <c3>-16XX</c3>
+    <c4>-15XX</c4>
+    <c5>-14XX</c5>
+    <c6>-13XX</c6>
+    <c7>-12XX</c7>
+    <c8>-11XX</c8>
+    <c9>-10XX</c9>
+    <d0>-09XX</d0>
+    <d1>-08XX</d1>
+    <d2>-07XX</d2>
+    <d3>-06XX</d3>
+    <d4>-05XX</d4>
+    <d5>-04XX</d5>
+    <d6>-03XX</d6>
+    <d7>-02XX</d7>
+    <d8>-01XX</d8>
+    <d9>-00XX</d9>
     <e>00</e>
     <f>01</f>
     <g>02</g>
@@ -367,13 +367,6 @@
 
   <xsl:template match="marc:datafield[@tag='034']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vCartProp">
-      <xsl:choose>
-        <xsl:when test="@ind2 = 0">bf:outerGRing</xsl:when>
-        <xsl:when test="@ind2 = 1">bf:exclusionGRing</xsl:when>
-        <xsl:otherwise>bf:coordinates</xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:variable name="vCoordinates">
       <xsl:apply-templates select="marc:subfield[@code='d' or @code='e' or @code='f' or @code='g']" mode="concat-nodes-space"/>
     </xsl:variable>
@@ -381,7 +374,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:cartographicAttributes>
           <bf:Cartographic>
-            <xsl:element name="{$vCartProp}"><xsl:value-of select="normalize-space($vCoordinates)"/></xsl:element>
+            <bf:coordinates><xsl:value-of select="normalize-space($vCoordinates)"/></bf:coordinates>
             <xsl:for-each select="marc:subfield[@code='3']">
               <xsl:apply-templates select="." mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -572,11 +565,6 @@
                   </xsl:choose>
                 </xsl:when>
               </xsl:choose>
-              <xsl:for-each select="following-sibling::*[position()=1 or position()=2][@code='0']">
-                <xsl:apply-templates select="." mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </xsl:for-each>
             </bf:GeographicCoverage>
           </bf:geographicCoverage>
         </xsl:for-each>
@@ -637,7 +625,7 @@
         <xsl:when test="substring($pDate,1,1) = 'c'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
         <xsl:when test="substring($pDate,1,1) = 'd'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
         <xsl:when test="substring($pDate,1,1) = 'e'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,2)]"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,1)],substring($pDate,2,1),'u')"/></xsl:otherwise>
+        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,1,1)],substring($pDate,2,1),'X')"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vDate2">
@@ -647,7 +635,7 @@
         <xsl:when test="substring($pDate,3,1) = 'c'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
         <xsl:when test="substring($pDate,3,1) = 'd'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
         <xsl:when test="substring($pDate,3,1) = 'e'"><xsl:value-of select="document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,2)]"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,1)],substring($pDate,4,1),'u')"/></xsl:otherwise>
+        <xsl:otherwise><xsl:value-of select="concat(document('')/*/local:marctimeperiod/*[name() = substring($pDate,3,1)],substring($pDate,4,1),'X')"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -687,19 +675,15 @@
                   <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,.)"/></xsl:attribute>
                   <bf:source>
                     <bf:Source>
-                      <bf:code>marcmuscomp</bf:code>
+                      <rdfs:label>marcmuscomp</rdfs:label>
                     </bf:Source>
                   </bf:source>
                 </xsl:when>
                 <xsl:otherwise>
                   <bf:code><xsl:value-of select="."/></bf:code>
-                  <xsl:for-each select="../marc:subfield[@code='2']">
-                    <bf:source>
-                      <bf:Source>
-                        <bf:code><xsl:value-of select="."/></bf:code>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:for-each>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
             </bf:GenreForm>
@@ -740,7 +724,7 @@
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='016'] |
                                        marc:datafield[@tag='017'] |
-                                       marc:datafield[@tag='020'][not(preceding-sibling::marc:datafield[@tag='020'])] |
+                                       marc:datafield[@tag='020'] |
                                        marc:datafield[@tag='022'] |
                                        marc:datafield[@tag='024'] |
                                        marc:datafield[@tag='025'] |
@@ -887,31 +871,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <!--
-      generate new Instances from multiple 020s
-  -->
-  <xsl:template match="marc:datafield[@tag='020'][preceding-sibling::marc:datafield[@tag='020']]" mode="newInstance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="recordid"/>
-    <xsl:variable name="instanceiri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Instance>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$instanceiri"/></xsl:attribute>
-          <xsl:apply-templates select="." mode="instanceId">
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="pIdentifier">bf:Isbn</xsl:with-param>
-            <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
-            <xsl:with-param name="pChopPunct" select="true()"/>
-          </xsl:apply-templates>
-          <bf:instanceOf>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-          </bf:instanceOf>
-        </bf:Instance>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="marc:datafield" mode="instanceId">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pIdentifier" select="'bf:Identifier'"/>
@@ -948,6 +907,14 @@
               <xsl:if test="@code = 'y'">
                 <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
               </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='c']">
+                <bf:acquisitionTerms>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </bf:acquisitionTerms>
+              </xsl:for-each>
               <xsl:for-each select="../marc:subfield[@code='q']">
                 <bf:qualifier>
                   <xsl:call-template name="chopPunctuation">
@@ -992,20 +959,6 @@
                       </bf:Note>
                     </bf:note>
                   </xsl:for-each>
-                </xsl:if>
-              </xsl:if>
-              <!-- special handling for 030 -->
-              <xsl:if test="../@tag='030'">
-                <xsl:if test="@code = 'z'">
-                  <bf:adminMetadata>
-                    <bf:AdminMetadata>
-                      <bf:status>
-                        <bf:Status>
-                          <rdfs:label>invalid</rdfs:label>
-                        </bf:Status>
-                      </bf:status>
-                    </bf:AdminMetadata>
-                  </bf:adminMetadata>
                 </xsl:if>
               </xsl:if>
               <!-- special handling for source ($2) -->
@@ -1074,14 +1027,6 @@
             </xsl:element>
           </bf:identifiedBy>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='c']">
-          <bf:acquisitionTerms>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
-              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:acquisitionTerms>
-        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -1122,35 +1067,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- 037 requires special handling -->
-  <xsl:template match="marc:datafield[@tag='037'][@ind1='3' or (@ind1=' ' and count(../marc:datafield[@tag='037'])=1)]" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance037">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <!-- create new instances from multiple 037s -->
-  <xsl:template match="marc:datafield[@tag='037'][@ind1='2' or (@ind1=' ' and count(../marc:datafield[@tag='037']) &gt; 1)]" mode="newInstance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="recordid"/>
-    <xsl:variable name="instanceiri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Instance>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$instanceiri"/></xsl:attribute>
-          <xsl:apply-templates select="." mode="instance037">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-          <bf:instanceOf>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-          </bf:instanceOf>
-        </bf:Instance>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="instance037">
+  <xsl:template match="marc:datafield[@tag='037']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vAcqSource">
       <xsl:choose>
@@ -1187,6 +1104,13 @@
             <xsl:for-each select="marc:subfield[@code='c']">
               <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
             </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='f']">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='g' or @code='n']">
               <bf:note>
                 <bf:Note>
@@ -1201,13 +1125,6 @@
             </xsl:for-each>
           </bf:AcquisitionSource>
         </bf:acquisitionSource>
-        <xsl:for-each select="marc:subfield[@code='f']">
-          <bf:carrier>
-            <bf:Carrier>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:Carrier>
-          </bf:carrier>
-        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
