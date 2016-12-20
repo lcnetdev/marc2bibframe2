@@ -371,6 +371,8 @@
     </xsl:choose>
   </xsl:template>
   
+  <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
+
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

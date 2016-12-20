@@ -750,7 +750,8 @@
                                        marc:datafield[@tag='032'] |
                                        marc:datafield[@tag='035'] |
                                        marc:datafield[@tag='036'] |
-                                       marc:datafield[@tag='074']">
+                                       marc:datafield[@tag='074'] |
+                                       marc:datafield[@tag='088']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="@tag='010'">
@@ -873,6 +874,13 @@
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Identifier</xsl:with-param>
+          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="@tag='088'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:ReportNumber</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>

@@ -69,5 +69,9 @@
       <subfield code="a">HEU/G74.3C49</subfield>
       <subfield code="2">ordocs</subfield>
     </datafield>
+    <datafield tag="088" ind1=" " ind2=" ">
+      <subfield code="a">NASA-RP-1124-REV-3</subfield>
+      <subfield code="z">NASA-RP-1124-REV-2</subfield>
+    </datafield>
   </record>
 </collection>
