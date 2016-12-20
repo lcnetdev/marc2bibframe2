@@ -123,6 +123,11 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:choose>
+      <xsl:when test="$tag='086'">
+        <xsl:apply-templates mode="instance086" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='210'">
         <xsl:apply-templates mode="instance210" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>

@@ -61,5 +61,13 @@
       <subfield code="q">DE-101</subfield>
       <subfield code="2">sdnb</subfield>
     </datafield>
+    <datafield tag="086" ind1="0" ind2=" ">
+      <subfield code="a">A 1.1:</subfield>
+      <subfield code="z">A 1.1/3:984</subfield>
+    </datafield>
+    <datafield tag="086" ind1=" " ind2=" ">
+      <subfield code="a">HEU/G74.3C49</subfield>
+      <subfield code="2">ordocs</subfield>
+    </datafield>
   </record>
 </collection>

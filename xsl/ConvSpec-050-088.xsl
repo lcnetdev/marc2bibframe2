@@ -316,6 +316,60 @@
   </xsl:template>
 
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
+
+  <xsl:template match="marc:datafield[@tag='086']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance086">
+      <xsl:with-param name="serialization" select="'rdfxml'"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='086' or @tag='880']" mode="instance086">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
+          <bf:classification>
+            <bf:Classification>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:if test="@code='z'">
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>invalid</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
+              <xsl:choose>
+                <xsl:when test="../@ind1='0'">
+                  <bf:source>
+                    <bf:Source>
+                      <rdfs:label>sudocs</rdfs:label>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:when>
+                <xsl:when test="../@ind1='1'">
+                  <bf:source>
+                    <bf:Source>
+                      <rdfs:label>Government of Canada Publications</rdfs:label>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:for-each select="../marc:subfield[@code='2']">
+                    <bf:source>
+                      <bf:Source>
+                        <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:for-each>
+                </xsl:otherwise>
+              </xsl:choose>
+            </bf:Classification>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
