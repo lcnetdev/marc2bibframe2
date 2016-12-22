@@ -76,6 +76,12 @@
       <subfield code="6">247-07</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">250-01</subfield>
+      <subfield code="a">Третий проект /</subfield>
+      <subfield code="b">под редакцией Пола Уотсона.</subfield>
+      <subfield code="3">2000-2006</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
