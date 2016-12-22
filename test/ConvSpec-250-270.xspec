@@ -14,5 +14,9 @@
     <x:expect label="250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = '3rd draft / edited by Paul Watson'"/>
   </x:scenario>
   
+  <x:scenario label="254 - MUSICAL PRESENTATION STATEMENT">
+    <x:context href="data/ConvSpec-250-270/marc.xml"/>
+    <x:expect label="254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Full score'"/>
+  </x:scenario>
 
 </x:description>

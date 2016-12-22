@@ -6,5 +6,8 @@
       <subfield code="b">edited by Paul Watson.</subfield>
       <subfield code="3">2000-2006</subfield>
     </datafield>
+    <datafield tag="254" ind1=" " ind2=" ">
+      <subfield code="a">Full score.</subfield>
+    </datafield>
   </record>
 </collection>
