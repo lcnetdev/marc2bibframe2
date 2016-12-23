@@ -536,6 +536,12 @@
                 <rdfs:label>computer file</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>Computer file characteristics</bf:noteType>
+                <rdfs:label>Computer data</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/12149120#Item050-14">

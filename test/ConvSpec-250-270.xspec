@@ -31,4 +31,9 @@
     <x:expect label="$g creates an exclusionGRing property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:exclusionGRing = '-113.628304 -113.498001 47.009300 46.087225'"/>
   </x:scenario>
 
+  <x:scenario label="256 - COMPUTER FILE CHARACTERISTICS">
+    <x:context href="data/ConvSpec-250-270/marc.xml"/>
+    <x:expect label="256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Computer data (2 files : 876,000, 775,000 records)'"/>
+  </x:scenario>
+  
 </x:description>

@@ -18,5 +18,8 @@
       <subfield code="f">-113.628304 -113.498001 47.009300 46.087225</subfield>
       <subfield code="g">-113.628304 -113.498001 47.009300 46.087225</subfield>
     </datafield>
+    <datafield tag="256" ind1=" " ind2=" ">
+      <subfield code="a">Computer data (2 files : 876,000, 775,000 records).</subfield>
+    </datafield>
   </record>
 </collection>
