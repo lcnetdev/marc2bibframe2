@@ -36,4 +36,10 @@
     <x:expect label="256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Computer data (2 files : 876,000, 775,000 records)'"/>
   </x:scenario>
   
+  <x:scenario label="257 - COUNTRY OF PRODUCING ENTITY">
+    <x:context href="data/ConvSpec-250-270/marc.xml"/>
+    <x:expect label="257 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:Production/bf:place[1]/bf:Place/rdfs:label = 'France'"/>
+    <x:expect label="$2 creates a source property of the Place" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:Production/bf:place[1]/bf:Place/bf:source/bf:Source/rdfs:label = 'naf'"/>
+  </x:scenario>
+  
 </x:description>

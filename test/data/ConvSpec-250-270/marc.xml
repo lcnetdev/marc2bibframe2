@@ -21,5 +21,11 @@
     <datafield tag="256" ind1=" " ind2=" ">
       <subfield code="a">Computer data (2 files : 876,000, 775,000 records).</subfield>
     </datafield>
+    <datafield tag="257" ind1=" " ind2=" ">
+      <subfield code="a">France</subfield>
+      <subfield code="a">Germany</subfield>
+      <subfield code="a">Italy</subfield>
+      <subfield code="2">naf</subfield>
+    </datafield>
   </record>
 </collection>

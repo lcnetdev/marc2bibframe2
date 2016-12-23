@@ -182,4 +182,33 @@
     </xsl:choose>
   </xsl:template>    
 
+  <xsl:template match="marc:datafield[@tag='257']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance257">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='257' or @tag='880']" mode="instance257">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:provisionActivity>
+            <bf:Production>
+              <bf:place>
+                <bf:Place>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Place>
+              </bf:place>
+            </bf:Production>
+          </bf:provisionActivity>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

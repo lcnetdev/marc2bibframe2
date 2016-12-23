@@ -94,6 +94,10 @@
       <subfield code="6">256-01</subfield>
       <subfield code="a">Компьютерные данные (2 файлов: 876,000, 775,000 записей).</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">257-01</subfield>
+      <subfield code="a">Франция</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
