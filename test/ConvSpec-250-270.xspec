@@ -19,4 +19,16 @@
     <x:expect label="254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Full score'"/>
   </x:scenario>
 
+  <x:scenario label="255 - CARTOGRAPHIC MATHEMATICAL DATA">
+    <x:context href="data/ConvSpec-250-270/marc.xml"/>
+    <x:expect label="255 creates a cartographicAttributes/Cartographic property of the Instance" test="count(//bf:Instance[1]/bf:cartographicAttributes/bf:Cartographic) = 1"/>
+    <x:expect label="$a creates a scale property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:scale = 'Scale [ca. 1:500,000]'"/>
+    <x:expect label="$b creates a projection property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:projection = 'Conic proj.'"/>
+    <x:expect label="$c creates a coordinates property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:coordinates = 'E 72°--E 148°/N 13°--N 18°'"/>
+    <x:expect label="$d creates an ascensionAndDeclination property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:ascensionAndDeclination = 'RA 0 hr. to 24 hr./Decl. +90° to -90°'"/>
+    <x:expect label="$e creates an equinox property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:equinox = 'eq. 1980'"/>
+    <x:expect label="$f creates an outerGRing property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:outerGRing = '-113.628304 -113.498001 47.009300 46.087225'"/>
+    <x:expect label="$g creates an exclusionGRing property of the Cartographic" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:exclusionGRing = '-113.628304 -113.498001 47.009300 46.087225'"/>
+  </x:scenario>
+
 </x:description>

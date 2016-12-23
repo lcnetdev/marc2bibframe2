@@ -82,8 +82,13 @@
       <subfield code="b">под редакцией Пола Уотсона.</subfield>
       <subfield code="3">2000-2006</subfield>
     </datafield>
-    <datafield tag="254" ind1=" " ind2=" ">
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">254-01</subfield>
       <subfield code="a">Полный счет.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">255-01</subfield>
+      <subfield code="a">Масштаб не дано.</subfield>
     </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>

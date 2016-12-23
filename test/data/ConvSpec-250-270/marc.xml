@@ -9,5 +9,14 @@
     <datafield tag="254" ind1=" " ind2=" ">
       <subfield code="a">Full score.</subfield>
     </datafield>
+    <datafield tag="255" ind1=" " ind2=" ">
+      <subfield code="a">Scale [ca. 1:500,000] ;</subfield>
+      <subfield code="b">Conic proj.</subfield>
+      <subfield code="c">(E 72°--E 148°/N 13°--N 18°).</subfield>
+      <subfield code="d">(RA 0 hr. to 24 hr./Decl. +90° to -90° ;</subfield>
+      <subfield code="e">eq. 1980).</subfield>
+      <subfield code="f">-113.628304 -113.498001 47.009300 46.087225</subfield>
+      <subfield code="g">-113.628304 -113.498001 47.009300 46.087225</subfield>
+    </datafield>
   </record>
 </collection>
