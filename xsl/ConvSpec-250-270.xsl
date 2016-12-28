@@ -211,4 +211,123 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='260']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance260">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='260' or @tag='880']" mode="instance260">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vPubPlace"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
+    <xsl:variable name="vStatement">
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-space"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:if test="marc:subfield[@code='a' or @code='b' or @code='c']">
+          <bf:provisionActivity>
+            <bf:ProvisionActivity>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Publication')"/></xsl:attribute>
+              </rdf:type>
+              <xsl:if test="@ind1 = '3'">
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>current</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
+              <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:place>
+                  <bf:Place>
+                    <xsl:if test="normalize-space($vPubPlace) != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,normalize-space($vPubPlace))"/></xsl:attribute>
+                    </xsl:if>
+                    <rdfs:label>
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Place>
+                </bf:place>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='c']">
+                <bf:date>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:date>
+              </xsl:for-each>
+            </bf:ProvisionActivity>
+          </bf:provisionActivity>
+          <bf:provisionActivityStatement><xsl:value-of select="normalize-space($vStatement)"/></bf:provisionActivityStatement>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='e' or @code='f' or @code='g']">
+          <bf:provisionActivity>
+            <bf:ProvisionActivity>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Manufacture')"/></xsl:attribute>
+              </rdf:type>
+              <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:for-each select="marc:subfield[@code='e']">
+                <bf:place>
+                  <bf:Place>
+                    <rdfs:label>
+                      <xsl:call-template name="chopParens">
+                        <xsl:with-param name="chopString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Place>
+                </bf:place>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='f']">
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>
+                      <xsl:call-template name="chopParens">
+                        <xsl:with-param name="chopString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='g']">
+                <bf:date>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:date>
+              </xsl:for-each>
+            </bf:ProvisionActivity>
+          </bf:provisionActivity>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='d']">
+          <bf:identifiedBy>
+            <bf:PublisherNumber>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+            </bf:PublisherNumber>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

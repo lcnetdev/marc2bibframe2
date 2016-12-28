@@ -33,6 +33,7 @@
     <x:expect label="$6 255 creates a cartographicAttributes property of the Instance" test="//bf:Instance[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:scale = 'Масштаб не дано'"/>
     <x:expect label="$6 256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Компьютерные данные (2 файлов: 876,000, 775,000 записей)'"/>
     <x:expect label="$6 257 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:Production/bf:place/bf:Place/rdfs:label = 'Франция'"/>
+    <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Лондон'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>

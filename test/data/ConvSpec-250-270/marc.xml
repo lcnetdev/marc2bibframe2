@@ -1,6 +1,7 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">               xxk</controlfield>
     <datafield tag="250" ind1=" " ind2=" ">
       <subfield code="a">3rd draft /</subfield>
       <subfield code="b">edited by Paul Watson.</subfield>
@@ -26,6 +27,17 @@
       <subfield code="a">Germany</subfield>
       <subfield code="a">Italy</subfield>
       <subfield code="2">naf</subfield>
+    </datafield>
+    <datafield tag="260" ind1="3" ind2=" ">
+      <subfield code="3">1998-</subfield>
+      <subfield code="a">London ;</subfield>
+      <subfield code="a">Upton Snodsbury :</subfield>
+      <subfield code="b">Arts Council of Great Britain,</subfield>
+      <subfield code="c">&lt;1981- &gt;</subfield>
+      <subfield code="d">12345</subfield>
+      <subfield code="e">(Twickenham :</subfield>
+      <subfield code="f">CTD Printers,</subfield>
+      <subfield code="g">1974)</subfield>
     </datafield>
   </record>
 </collection>

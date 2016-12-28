@@ -98,6 +98,12 @@
       <subfield code="6">257-01</subfield>
       <subfield code="a">Франция</subfield>
     </datafield>
+    <datafield tag="880" ind1="3" ind2=" ">
+      <subfield code="6">260-01</subfield>
+      <subfield code="a">Лондон :</subfield>
+      <subfield code="b">Совет искусств Великобритании,</subfield>
+      <subfield code="c">1981</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

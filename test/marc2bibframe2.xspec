@@ -168,6 +168,23 @@
               </bf:Title>
             </bf:title>
             <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dk">
+                    <rdfs:label>[København?]</rdfs:label>
+                  </bf:Place>
+                </bf:place>
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>Lindhardt og Ringhof</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:date>c2001</bf:date>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
+            <bf:provisionActivityStatement>[København?] : Lindhardt og Ringhof, c2001.</bf:provisionActivityStatement>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/13600108#Item050-11">
@@ -351,6 +368,23 @@
                 <rdfs:label>sound recording</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/nyu">
+                    <rdfs:label>New York, N.Y</rdfs:label>
+                  </bf:Place>
+                </bf:place>
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>Atlantic</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:date>[1957?]</bf:date>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
+            <bf:provisionActivityStatement>New York, N.Y. : Atlantic, [1957?]</bf:provisionActivityStatement>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/5637241#Item050-10">
@@ -542,6 +576,23 @@
                 <rdfs:label>Computer data</rdfs:label>
               </bf:Note>
             </bf:note>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dcu">
+                    <rdfs:label>Washington, D.C</rdfs:label>
+                  </bf:Place>
+                </bf:place>
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>White House Web Team</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:date>1994-</bf:date>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
+            <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/12149120#Item050-14">

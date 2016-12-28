@@ -69,6 +69,9 @@
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>
                 </xsl:with-param>
+                <xsl:with-param name="punctuation">
+                  <xsl:text>:,;/ </xsl:text>
+                </xsl:with-param>
               </xsl:call-template>
             </bf:qualifier>
           </xsl:for-each>
