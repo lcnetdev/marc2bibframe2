@@ -125,6 +125,13 @@
       <subfield code="a">Сиэтл :</subfield>
       <subfield code="b">Айверсон компании</subfield>
     </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="6">300-01</subfield>
+      <subfield code="3">грампластинки</subfield>
+      <subfield code="a">1</subfield>
+      <subfield code="f">коробка</subfield>
+      <subfield code="g">2 x 4 x 3 1/2 ft.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

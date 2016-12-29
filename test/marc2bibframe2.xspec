@@ -17,6 +17,7 @@
   <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-250-270.xspec"/>
+  <x:import href="ConvSpec-3XX.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-X30and240-UnifTitle.xspec"/>
 
@@ -185,6 +186,18 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:provisionActivityStatement>[København?] : Lindhardt og Ringhof, c2001.</bf:provisionActivityStatement>
+            <bf:extent>
+              <bf:Extent>
+                <rdfs:label>1 v. (unpaged)</rdfs:label>
+              </bf:Extent>
+            </bf:extent>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>Physical details</bf:noteType>
+                <rdfs:label>col. ill.</rdfs:label>
+              </bf:Note>
+            </bf:note>
+            <bf:dimensions>23 cm.</bf:dimensions>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/13600108#Item050-11">
@@ -385,6 +398,18 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:provisionActivityStatement>New York, N.Y. : Atlantic, [1957?]</bf:provisionActivityStatement>
+            <bf:extent>
+              <bf:Extent>
+                <rdfs:label>1 sound disc</rdfs:label>
+              </bf:Extent>
+            </bf:extent>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>Physical details</bf:noteType>
+                <rdfs:label>analog, 33 1/3 rpm</rdfs:label>
+              </bf:Note>
+            </bf:note>
+            <bf:dimensions>12 in.</bf:dimensions>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/5637241#Item050-10">

@@ -1,0 +1,17 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="3">records</subfield>
+      <subfield code="a">1</subfield>
+      <subfield code="f">box</subfield>
+      <subfield code="g">2 x 4 x 3 1/2 ft.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">271 p. :</subfield>
+      <subfield code="b">ill. ;</subfield>
+      <subfield code="c">21 cm. +</subfield>
+      <subfield code="e">1 answer book</subfield>
+    </datafield>
+  </record>
+</collection>
