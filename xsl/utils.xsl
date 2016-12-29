@@ -9,21 +9,33 @@
 
   <!--
       Chop [ ] from beginning and end of a string
-      From MARC21slim2MODS.xsl
   -->
   <xsl:template name="chopBrackets">
     <xsl:param name="chopString"/>
+    <xsl:param name="punctuation">
+      <xsl:text>.:,;/ </xsl:text>
+    </xsl:param>
     <xsl:variable name="string">
       <xsl:call-template name="chopPunctuation">
 	<xsl:with-param name="chopString" select="$chopString"/>
+        <xsl:with-param name="punctuation" select="$punctuation"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:if test="substring($string, 1,1)='['">
-      <xsl:value-of select="substring($string,2, string-length($string)-2)"/>
-    </xsl:if>
-    <xsl:if test="substring($string, 1,1)!='['">
-      <xsl:value-of select="$string"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="substring($string,1,1)='['">
+        <xsl:call-template name="chopBrackets">
+          <xsl:with-param name="chopString" select="substring-after($string,'[')"/>
+          <xsl:with-param name="punctuation" select="$punctuation"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="substring($string,string-length($string),1) = ']'">
+        <xsl:call-template name="chopBrackets">
+          <xsl:with-param name="chopString" select="substring($string,1,string-length($string)-1)"/>
+          <xsl:with-param name="punctuation" select="$punctuation"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$string"/></xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!--

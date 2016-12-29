@@ -173,7 +173,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dk">
-                    <rdfs:label>[København?]</rdfs:label>
+                    <rdfs:label>København?</rdfs:label>
                   </bf:Place>
                 </bf:place>
                 <bf:agent>
@@ -373,7 +373,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/nyu">
-                    <rdfs:label>New York, N.Y</rdfs:label>
+                    <rdfs:label>New York, N.Y.</rdfs:label>
                   </bf:Place>
                 </bf:place>
                 <bf:agent>
@@ -581,7 +581,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:place>
                   <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dcu">
-                    <rdfs:label>Washington, D.C</rdfs:label>
+                    <rdfs:label>Washington, D.C.</rdfs:label>
                   </bf:Place>
                 </bf:place>
                 <bf:agent>

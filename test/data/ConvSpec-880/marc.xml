@@ -120,6 +120,11 @@
       <subfield code="6">263-01</subfield>
       <subfield code="a">1999--</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2="2">
+      <subfield code="6">264-01</subfield>
+      <subfield code="a">Сиэтл :</subfield>
+      <subfield code="b">Айверсон компании</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
