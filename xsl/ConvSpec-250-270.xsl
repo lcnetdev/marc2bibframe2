@@ -418,5 +418,31 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='263']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance263">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='263' or @tag='880']" mode="instance263">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vDate">
+      <xsl:call-template name="edtfFormat">
+        <xsl:with-param name="pDateString" select="marc:subfield[@code='a']"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$vDate != ''">
+          <bflc:projectedPubDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
+            <xsl:value-of select="$vDate"/>
+          </bflc:projectedPubDate>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
 </xsl:stylesheet>

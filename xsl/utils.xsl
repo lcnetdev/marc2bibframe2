@@ -163,7 +163,7 @@
   </xsl:template>
 
   <!--
-      convert a date string as from the 033 to an EDTF date
+      convert a date string as from the 033/263 to an EDTF date
       (https://www.loc.gov/standards/datetime/pre-submission.html)
       with one difference - use 'X' for unspecified digits
   -->
@@ -176,8 +176,17 @@
           <xsl:with-param name="pDateString" select="concat(substring-before($pDateString,'-'),'X',substring-after($pDateString,'-'))"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:otherwise>      
-        <xsl:variable name="vDatePart" select="concat(substring($pDateString,1,4),'-',substring($pDateString,5,2),'-',substring($pDateString,7,2))"/>
+      <xsl:otherwise>
+        <xsl:variable name="vDatePart">
+          <xsl:choose>
+            <xsl:when test="substring($pDateString,7,2) != ''">
+              <xsl:value-of select="concat(substring($pDateString,1,4),'-',substring($pDateString,5,2),'-',substring($pDateString,7,2))"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="concat(substring($pDateString,1,4),'-',substring($pDateString,5,2))"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="vTimePart">
           <xsl:if test="substring($pDateString,9,4) != ''">
             <xsl:value-of select="concat('T',substring($pDateString,9,2),':',substring($pDateString,11,2),':00')"/>

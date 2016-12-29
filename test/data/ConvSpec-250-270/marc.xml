@@ -56,5 +56,8 @@
       <subfield code="c">[1967]</subfield>
       <subfield code="k">LS 671.</subfield>
     </datafield>
+    <datafield tag="263" ind1=" " ind2=" ">
+      <subfield code="a">1999--</subfield>
+    </datafield>
   </record>
 </collection>

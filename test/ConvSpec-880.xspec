@@ -36,6 +36,7 @@
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Лондон'"/>
     <x:expect label="$6 261 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Coronet Фильмы'"/>
     <x:expect label="$6 262 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Луисвилл, Кентукки'"/>
+    <x:expect label="$6 263 creates a bflc:projectedPubDate property of the Instance" test="//bf:Instance[1]/bflc:projectedPubDate[1] = '1999-XX'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
