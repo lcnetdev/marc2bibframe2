@@ -24,5 +24,12 @@
       <subfield code="a">Semiannual,</subfield>
       <subfield code="b">1981-1982</subfield>
     </datafield>    
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">performed music</subfield>
+      <subfield code="b">prm</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/contentTypes/prm</subfield>
+      <subfield code="2">rdacontent</subfield>
+      <subfield code="3">record</subfield>
+    </datafield>
   </record>
 </collection>

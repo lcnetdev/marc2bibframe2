@@ -36,4 +36,14 @@
     <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:date = '1981-1982'"/>
   </x:scenario>
 
+  <x:scenario label="336 - CONTENT TYPE">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="336 creates a content property of the Work" test="count(//bf:Work[1]/bf:content) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/rdfs:label = 'performed music'"/>
+    <x:expect label="$b creates a code property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:code = 'prm'"/>
+    <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/rdfs:label = 'rdacontent'"/>
+    <x:expect label="$0 creates an identifiedBy property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:identifiedBy/bf:Identifier/rdf:value = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'record'"/>
+  </x:scenario>
+  
 </x:description>

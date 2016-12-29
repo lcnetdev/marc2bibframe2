@@ -143,6 +143,11 @@
       <subfield code="b">1981-1982</subfield>
     </datafield>    
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">336-01</subfield>
+      <subfield code="a">исполняемая музыка</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">306-01</subfield>
       <subfield code="a">002016</subfield>
     </datafield>    

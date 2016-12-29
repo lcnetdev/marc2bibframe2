@@ -42,6 +42,7 @@
     <x:expect label="$6 306 creates a duration property of the Instance" test="//bf:Instance[1]/bf:duration[1] = '002016'"/>
     <x:expect label="$6 310 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/rdfs:label = 'годовой'"/>
     <x:expect label="$6 321 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/rdfs:label = 'Полугодовой'"/>
+    <x:expect label="$6 336 creates a content property of the Work" test="//bf:Work[1]/bf:content[1]/bf:Content/rdfs:label = 'исполняемая музыка'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
