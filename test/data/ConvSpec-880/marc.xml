@@ -132,6 +132,10 @@
       <subfield code="f">коробка</subfield>
       <subfield code="g">2 x 4 x 3 1/2 ft.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">306-01</subfield>
+      <subfield code="a">002016</subfield>
+    </datafield>    
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

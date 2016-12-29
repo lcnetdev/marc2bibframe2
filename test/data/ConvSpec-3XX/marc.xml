@@ -13,5 +13,8 @@
       <subfield code="c">21 cm. +</subfield>
       <subfield code="e">1 answer book</subfield>
     </datafield>
+    <datafield tag="306" ind1=" " ind2=" ">
+      <subfield code="a">002016</subfield>
+    </datafield>    
   </record>
 </collection>

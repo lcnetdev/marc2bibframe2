@@ -19,4 +19,9 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Extent and the Notes" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'records'"/>
   </x:scenario>
 
+  <x:scenario label="306 - PLAYING TIME">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="306 creates a duration property of the Instance" test="//bf:Instance[1]/bf:duration[1] = '002016'"/>
+  </x:scenario>
+  
 </x:description>
