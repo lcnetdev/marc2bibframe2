@@ -30,4 +30,10 @@
     <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/bf:date = '1983-'"/>
   </x:scenario>
 
+  <x:scenario label="321 - FORMER PUBLICATION FREQ.">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="321 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/rdfs:label = 'Semiannual'"/>
+    <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:date = '1981-1982'"/>
+  </x:scenario>
+
 </x:description>

@@ -20,5 +20,9 @@
       <subfield code="a">Annual,</subfield>
       <subfield code="b">1983-</subfield>
     </datafield>    
+    <datafield tag="321" ind1=" " ind2=" ">
+      <subfield code="a">Semiannual,</subfield>
+      <subfield code="b">1981-1982</subfield>
+    </datafield>    
   </record>
 </collection>
