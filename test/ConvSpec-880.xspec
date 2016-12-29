@@ -40,6 +40,7 @@
     <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Сиэтл'"/>
     <x:expect label="$6 300 creates an extent property of the Instance" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/rdfs:label = '1 коробка 2 x 4 x 3 1/2 ft.'"/>
     <x:expect label="$6 306 creates a duration property of the Instance" test="//bf:Instance[1]/bf:duration[1] = '002016'"/>
+    <x:expect label="$6 310 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/rdfs:label = 'годовой'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>

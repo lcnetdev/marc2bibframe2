@@ -132,6 +132,11 @@
       <subfield code="f">коробка</subfield>
       <subfield code="g">2 x 4 x 3 1/2 ft.</subfield>
     </datafield>
+    <datafield tag="310" ind1=" " ind2=" ">
+      <subfield code="6">310-01</subfield>
+      <subfield code="a">годовой,</subfield>
+      <subfield code="b">1983-</subfield>
+    </datafield>    
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">306-01</subfield>
       <subfield code="a">002016</subfield>

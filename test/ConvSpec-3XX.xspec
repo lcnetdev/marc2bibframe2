@@ -24,4 +24,10 @@
     <x:expect label="306 creates a duration property of the Instance" test="//bf:Instance[1]/bf:duration[1] = '002016'"/>
   </x:scenario>
   
+  <x:scenario label="310 - CURRENT PUBLICATION FREQUENCY">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="310 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/rdfs:label = 'Annual'"/>
+    <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/bf:date = '1983-'"/>
+  </x:scenario>
+
 </x:description>

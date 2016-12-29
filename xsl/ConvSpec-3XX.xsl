@@ -89,4 +89,35 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='310']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance310">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='310' or @tag='880']" mode="instance310">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:frequency>
+            <bf:Frequency>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </rdfs:label>
+              <xsl:for-each select="../marc:subfield[@code='b']">
+                <bf:date><xsl:value-of select="."/></bf:date>
+              </xsl:for-each>
+            </bf:Frequency>
+          </bf:frequency>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
