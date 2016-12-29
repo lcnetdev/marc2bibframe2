@@ -104,6 +104,11 @@
       <subfield code="b">Совет искусств Великобритании,</subfield>
       <subfield code="c">1981</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">261-01</subfield>
+      <subfield code="a">Coronet Фильмы,</subfield>
+      <subfield code="d">1967.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

@@ -330,4 +330,83 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='261']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance261">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='261' or @tag='880']" mode="instance261">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vPubPlace"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
+    <xsl:variable name="vStatement">
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-space"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:provisionActivity>
+          <bf:ProvisionActivity>
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Production')"/></xsl:attribute>
+            </rdf:type>
+            <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='e']">
+              <bf:agent>
+                <bf:Agent>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Agent>
+              </bf:agent>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='d']">
+              <bf:date>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </bf:date>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='f']">
+              <bf:place>
+                <bf:Place>
+                  <xsl:if test="normalize-space($vPubPlace) != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,normalize-space($vPubPlace))"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Place>
+              </bf:place>
+            </xsl:for-each>
+          </bf:ProvisionActivity>
+        </bf:provisionActivity>
+        <bf:provisionActivityStatement><xsl:value-of select="normalize-space($vStatement)"/></bf:provisionActivityStatement>
+        <xsl:if test="marc:subfield[@code='e']">
+          <bf:provisionActivity>
+            <bf:ProvisionActivity>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Manufacture')"/></xsl:attribute>
+              </rdf:type>
+              <xsl:for-each select="marc:subfield[@code='e']">
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </xsl:for-each>
+            </bf:ProvisionActivity>
+          </bf:provisionActivity>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>
