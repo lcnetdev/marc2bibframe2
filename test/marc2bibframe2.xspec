@@ -381,7 +381,7 @@
                     <rdfs:label>Atlantic</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
-                <bf:date>[1957?]</bf:date>
+                <bf:date>1957?</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:provisionActivityStatement>New York, N.Y. : Atlantic, [1957?]</bf:provisionActivityStatement>

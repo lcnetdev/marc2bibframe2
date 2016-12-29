@@ -195,7 +195,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
-      <xsl:when test="$tag='260'">
+      <xsl:when test="$tag='260' or $tag='262'">
         <xsl:apply-templates mode="instance260" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>

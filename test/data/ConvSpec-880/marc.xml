@@ -109,6 +109,13 @@
       <subfield code="a">Coronet Фильмы,</subfield>
       <subfield code="d">1967.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">262-01</subfield>
+      <subfield code="a">Луисвилл, Кентукки.,</subfield>
+      <subfield code="b">Луисвилл оркестр,</subfield>
+      <subfield code="c">[1967]</subfield>
+      <subfield code="k">LS 671.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

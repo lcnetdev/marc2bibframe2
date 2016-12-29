@@ -211,15 +211,21 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='260']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='260' or @tag='262']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance260">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='260' or @tag='880']" mode="instance260">
+  <xsl:template match="marc:datafield[@tag='260' or @tag='262' or @tag='880']" mode="instance260">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="vPubPlace"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
     <xsl:variable name="vStatement">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-space"/>
@@ -232,16 +238,18 @@
               <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Publication')"/></xsl:attribute>
               </rdf:type>
-              <xsl:if test="@ind1 = '3'">
-                <bf:status>
-                  <bf:Status>
-                    <rdfs:label>current</rdfs:label>
-                  </bf:Status>
-                </bf:status>
+              <xsl:if test="$vTag = '260'">
+                <xsl:if test="@ind1 = '3'">
+                  <bf:status>
+                    <bf:Status>
+                      <rdfs:label>current</rdfs:label>
+                    </bf:Status>
+                  </bf:status>
+                </xsl:if>
+                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
               </xsl:if>
-              <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:place>
                   <bf:Place>
@@ -269,7 +277,7 @@
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:date>
-                  <xsl:call-template name="chopPunctuation">
+                  <xsl:call-template name="chopBrackets">
                     <xsl:with-param name="chopString" select="."/>
                   </xsl:call-template>
                 </bf:date>
@@ -278,7 +286,7 @@
           </bf:provisionActivity>
           <bf:provisionActivityStatement><xsl:value-of select="normalize-space($vStatement)"/></bf:provisionActivityStatement>
         </xsl:if>
-        <xsl:if test="marc:subfield[@code='e' or @code='f' or @code='g']">
+        <xsl:if test="$vTag = '260' and marc:subfield[@code='e' or @code='f' or @code='g']">
           <bf:provisionActivity>
             <bf:ProvisionActivity>
               <rdf:type>
@@ -319,13 +327,15 @@
             </bf:ProvisionActivity>
           </bf:provisionActivity>
         </xsl:if>
-        <xsl:for-each select="marc:subfield[@code='d']">
-          <bf:identifiedBy>
-            <bf:PublisherNumber>
-              <rdf:value><xsl:value-of select="."/></rdf:value>
-            </bf:PublisherNumber>
-          </bf:identifiedBy>
-        </xsl:for-each>
+        <xsl:if test="$vTag = '260'">
+          <xsl:for-each select="marc:subfield[@code='d']">
+            <bf:identifiedBy>
+              <bf:PublisherNumber>
+                <rdf:value><xsl:value-of select="."/></rdf:value>
+              </bf:PublisherNumber>
+            </bf:identifiedBy>
+          </xsl:for-each>
+        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

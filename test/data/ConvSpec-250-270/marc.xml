@@ -50,5 +50,11 @@
       <subfield code="b">Released in the U.S. by United Artists Corp.,</subfield>
       <subfield code="d">1957.</subfield>
     </datafield>
+    <datafield tag="262" ind1=" " ind2=" ">
+      <subfield code="a">Louisville, KY.,</subfield>
+      <subfield code="b">Louisville Orchestra,</subfield>
+      <subfield code="c">[1967]</subfield>
+      <subfield code="k">LS 671.</subfield>
+    </datafield>
   </record>
 </collection>
