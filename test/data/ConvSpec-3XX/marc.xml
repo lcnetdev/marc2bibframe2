@@ -89,5 +89,11 @@
       <subfield code="e">edge track</subfield>
       <subfield code="f">12 track</subfield>
     </datafield>
+    <datafield tag="345" ind1=" " ind2=" ">
+      <subfield code="3">filmstrip</subfield>
+      <subfield code="a">Cinerama</subfield>
+      <subfield code="b">24 fps</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
   </record>
 </collection>

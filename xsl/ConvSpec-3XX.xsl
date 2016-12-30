@@ -319,4 +319,29 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='345']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance345">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='345' or @tag='880']" mode="instance345">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:PresentationFormat</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:ProjectionSpeed</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>
