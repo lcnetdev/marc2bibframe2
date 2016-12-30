@@ -45,5 +45,29 @@
       <subfield code="2">rdacarrier</subfield>
       <subfield code="3">soundtrack</subfield>
     </datafield>
+    <datafield tag="340" ind1=" " ind2=" ">
+      <subfield code="3">self-portrait</subfield>
+      <subfield code="a">rice paper</subfield>
+      <subfield code="b">7" x 9"</subfield>
+      <subfield code="c">colored inks</subfield>
+      <subfield code="e">none</subfield>
+      <subfield code="h">between entry for April 7 and April 19, 1843.</subfield>
+    </datafield>
+    <datafield tag="340" ind1=" " ind2=" ">
+      <subfield code="3">case files</subfield>
+      <subfield code="a">aperture cards</subfield>
+      <subfield code="b">9 x 19 cm.</subfield>
+      <subfield code="d">microfilm</subfield>
+      <subfield code="f">48x</subfield>
+      <subfield code="i">Ibord Model 74 tape reader.</subfield>
+    </datafield>
+    <datafield tag="340" ind1=" " ind2=" ">
+      <subfield code="j">original</subfield>
+      <subfield code="k">double-sided</subfield>
+      <subfield code="m">folio</subfield>
+      <subfield code="n">giant print (36 point)</subfield>
+      <subfield code="o">positive</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
   </record>
 </collection>

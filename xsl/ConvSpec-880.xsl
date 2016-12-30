@@ -246,6 +246,11 @@
           <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='340'">
+        <xsl:apply-templates select="." mode="instance340">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

@@ -66,4 +66,21 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
   
+  <x:scenario label="340 - PHYSICAL MEDIUM">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a baseMaterial property of the Instance" test="//bf:Instance[1]/bf:baseMaterial[1]/bf:BaseMaterial/rdfs:label = 'rice paper'"/>
+    <x:expect label="$b creates a dimensions property of the Instance" test="//bf:Instance[1]/bf:dimensions[2] = '7&quot; x 9&quot;'"/>
+    <x:expect label="$c creates an appliedMaterial property of the Instance" test="//bf:Instance[1]/bf:appliedMaterial[1]/bf:AppliedMaterial/rdfs:label = 'colored inks'"/>
+    <x:expect label="$d creates a productionMethod property of the Instance" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/rdfs:label = 'microfilm'"/>
+    <x:expect label="$e creates a mount property of the Instance" test="//bf:Instance[1]/bf:mount[1]/bf:Mount/rdfs:label = 'none'"/>
+    <x:expect label="$f creates a reductionRatio property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:label = '48x'"/>
+    <x:expect label="$i creates a systemRequirements property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[1] = 'Ibord Model 74 tape reader.'"/>
+    <x:expect label="$j creates a generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'original'"/>
+    <x:expect label="$k creates a layout property of the Instance" test="//bf:Instance[1]/bf:layout[1]/bf:Layout/rdfs:label = 'double-sided'"/>
+    <x:expect label="$m creates a bookFormat property of the Instance" test="//bf:Instance[1]/bf:bookFormat[1]/bf:BookFormat/rdfs:label = 'folio'"/>
+    <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
+    <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
+    <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/rdfs:label = 'rda'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:baseMaterial[1]/bf:BaseMaterial/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'self-portrait'"/>
+  </x:scenario>
 </x:description>

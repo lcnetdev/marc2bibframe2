@@ -193,4 +193,75 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='340']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance340">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='340' or @tag='880']" mode="instance340">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:baseMaterial</xsl:with-param>
+          <xsl:with-param name="pResource">bf:BaseMaterial</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:dimensions><xsl:value-of select="."/></bf:dimensions>
+        </xsl:for-each>
+        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:appliedMaterial</xsl:with-param>
+          <xsl:with-param name="pResource">bf:AppliedMaterial</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:productionMethod</xsl:with-param>
+          <xsl:with-param name="pResource">bf:ProductionMethod</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:mount</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Mount</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:reductionRatio</xsl:with-param>
+          <xsl:with-param name="pResource">bf:ReductionRatio</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:for-each select="marc:subfield[@code='i']">
+          <bf:systemRequirements><xsl:value-of select="."/></bf:systemRequirements>
+        </xsl:for-each>
+        <xsl:apply-templates select="marc:subfield[@code='j']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:generation</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Generation</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='k']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:layout</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Layout</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='m']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:bookFormat</xsl:with-param>
+          <xsl:with-param name="pResource">bf:BookFormat</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='n']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:fontSize</xsl:with-param>
+          <xsl:with-param name="pResource">bf:FontSize</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='o']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:polarity</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Polarity</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
