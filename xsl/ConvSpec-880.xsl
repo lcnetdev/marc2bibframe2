@@ -239,6 +239,13 @@
           <xsl:with-param name="pResource">bf:Media</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='338'">
+        <xsl:apply-templates select="." mode="rdaResource">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

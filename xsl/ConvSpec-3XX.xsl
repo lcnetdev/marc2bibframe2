@@ -19,7 +19,7 @@
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='880']" mode="rdaResource">
+  <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
@@ -181,6 +181,15 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:media</xsl:with-param>
       <xsl:with-param name="pResource">bf:Media</xsl:with-param>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='338']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="rdaResource">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
+      <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 

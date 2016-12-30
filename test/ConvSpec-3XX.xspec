@@ -56,4 +56,14 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
   
+  <x:scenario label="338 - CARRIER TYPE">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="337 creates a carrier property of the Instance" test="count(//bf:Instance[1]/bf:carrier) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/rdfs:label = 'audio disc'"/>
+    <x:expect label="$b creates a code property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:code = 'sd'"/>
+    <x:expect label="$2 creates a source property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:source/bf:Source/rdfs:label = 'rdacarrier'"/>
+    <x:expect label="$0 creates an identifiedBy property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:identifiedBy/bf:Identifier/rdf:value = 'http://id.loc.gov/vocabulary/carriers/sd'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
+  </x:scenario>
+  
 </x:description>

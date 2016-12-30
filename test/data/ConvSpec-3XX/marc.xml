@@ -38,5 +38,12 @@
       <subfield code="2">rdamedia</subfield>
       <subfield code="3">soundtrack</subfield>
     </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">audio disc</subfield>
+      <subfield code="b">sd</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/carriers/sd</subfield>
+      <subfield code="2">rdacarrier</subfield>
+      <subfield code="3">soundtrack</subfield>
+    </datafield>
   </record>
 </collection>
