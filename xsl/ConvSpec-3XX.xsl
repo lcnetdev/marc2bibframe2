@@ -264,4 +264,59 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='344']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance344">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='344' or @tag='880']" mode="instance344">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:RecordingMethod</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:RecordingMedium</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:PlayingSpeed</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:GrooveCharacteristics</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:TrackConfig</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:TapeConfig</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='g']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:PlaybackChannels</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='h']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:PlaybackCharacteristic</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

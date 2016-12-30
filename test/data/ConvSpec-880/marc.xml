@@ -168,6 +168,11 @@
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">рисовая бумага</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">344-01</subfield>
+      <subfield code="3">аудиодиск</subfield>
+      <subfield code="a">цифровой</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

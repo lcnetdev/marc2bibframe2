@@ -69,5 +69,25 @@
       <subfield code="o">positive</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="3">audio disc</subfield>
+      <subfield code="a">digital</subfield>
+      <subfield code="b">optical</subfield>
+      <subfield code="g">surround</subfield>
+      <subfield code="h">Dolby Digital 5.1</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="3">record</subfield>
+      <subfield code="a">analog</subfield>
+      <subfield code="c">78 rpm</subfield>
+      <subfield code="d">coarse groove</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="3">audio tape</subfield>
+      <subfield code="a">analog</subfield>
+      <subfield code="e">edge track</subfield>
+      <subfield code="f">12 track</subfield>
+    </datafield>
   </record>
 </collection>
