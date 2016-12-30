@@ -31,5 +31,12 @@
       <subfield code="2">rdacontent</subfield>
       <subfield code="3">record</subfield>
     </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">audio</subfield>
+      <subfield code="b">s</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/mediaTypes/s</subfield>
+      <subfield code="2">rdamedia</subfield>
+      <subfield code="3">soundtrack</subfield>
+    </datafield>
   </record>
 </collection>

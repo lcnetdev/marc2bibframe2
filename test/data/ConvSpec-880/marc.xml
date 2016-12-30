@@ -148,6 +148,11 @@
       <subfield code="2">rdacontent</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">337-01</subfield>
+      <subfield code="a">аудио</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">306-01</subfield>
       <subfield code="a">002016</subfield>
     </datafield>    

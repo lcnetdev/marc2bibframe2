@@ -12,18 +12,22 @@
 
   <xsl:template match="marc:datafield[@tag='336']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work336">
+    <xsl:apply-templates select="." mode="rdaResource">
       <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pProp">bf:content</xsl:with-param>
+      <xsl:with-param name="pResource">bf:Content</xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='336' or @tag='880']" mode="work336">
+  <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pProp"/>
+    <xsl:param name="pResource"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:content>
-            <bf:Content>
+          <xsl:element name="{$pProp}">
+            <xsl:element name="{$pResource}">
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
               <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
@@ -37,8 +41,8 @@
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
-            </bf:Content>
-          </bf:content>
+            </xsl:element>
+          </xsl:element>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b'][count(preceding-sibling::marc:subfield[@code='a'][position()=1])=0]">
           <bf:content>
@@ -169,6 +173,15 @@
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='337']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="rdaResource">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pProp">bf:media</xsl:with-param>
+      <xsl:with-param name="pResource">bf:Media</xsl:with-param>
+    </xsl:apply-templates>
   </xsl:template>
 
 </xsl:stylesheet>

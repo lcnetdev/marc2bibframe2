@@ -84,8 +84,10 @@
         </xsl:if>
       </xsl:when>
       <xsl:when test="$tag='336'">
-        <xsl:apply-templates select="." mode="work336">
+        <xsl:apply-templates select="." mode="rdaResource">
           <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:content</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Content</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='700' or $tag='710' or $tag='711'">
@@ -228,6 +230,13 @@
       <xsl:when test="$tag='310' or $tag='321'">
         <xsl:apply-templates mode="instance310" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='337'">
+        <xsl:apply-templates select="." mode="rdaResource">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:media</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Media</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
     </xsl:choose>
