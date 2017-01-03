@@ -101,5 +101,15 @@
       <subfield code="b">PAL</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
+    <datafield tag="347" ind1=" " ind2=" ">
+      <subfield code="3">computer disc</subfield>
+      <subfield code="a">image file</subfield>
+      <subfield code="b">JPEG</subfield>
+      <subfield code="c">182 KB</subfield>
+      <subfield code="d">3.1 megapixels</subfield>
+      <subfield code="e">region 4</subfield>
+      <subfield code="f">32 kbps</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
   </record>
 </collection>

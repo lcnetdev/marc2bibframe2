@@ -369,4 +369,49 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='347']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance347">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='347' or @tag='880']" mode="instance347">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:FileType</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:EncodingFormat</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:FileSize</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Resolution</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:RegionalEncoding</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:EncodedBitrate</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

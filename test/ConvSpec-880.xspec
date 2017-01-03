@@ -50,6 +50,7 @@
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
     <x:expect label="$6 346 creates Instance videoCharacteristic properties" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/rdfs:label = 'Бета'"/>
+    <x:expect label="$6 347 creates Instance digitalCharacteristic properties" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/rdfs:label = 'файл изображения'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
