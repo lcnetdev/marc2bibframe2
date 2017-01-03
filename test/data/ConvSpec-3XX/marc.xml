@@ -95,5 +95,11 @@
       <subfield code="b">24 fps</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
+    <datafield tag="346" ind1=" " ind2=" ">
+      <subfield code="3">videotape</subfield>
+      <subfield code="a">Beta</subfield>
+      <subfield code="b">PAL</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
   </record>
 </collection>

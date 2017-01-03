@@ -344,4 +344,29 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='346']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance346">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='346' or @tag='880']" mode="instance346">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:videoCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:VideoFormat</xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:videoCharacteristic</xsl:with-param>
+          <xsl:with-param name="pResource">bf:BroadcastStandard</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
