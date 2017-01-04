@@ -414,4 +414,38 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='348']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance348">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='348' or @tag='880']" mode="instance348">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:musicFormat>
+            <bf:MusicFormat>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:MusicFormat>
+          </bf:musicFormat>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

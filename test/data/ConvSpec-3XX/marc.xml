@@ -111,5 +111,12 @@
       <subfield code="f">32 kbps</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
+    <datafield tag="348" ind1=" " ind2=" ">
+      <subfield code="3">enclosed score</subfield>
+      <subfield code="a">vocal score</subfield>
+      <subfield code="b">voc</subfield>
+      <subfield code="0">(foo)12345</subfield>
+      <subfield code="2">foo</subfield>
+    </datafield>
   </record>
 </collection>
