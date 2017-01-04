@@ -135,4 +135,10 @@
     <x:expect label="$2 creates a source property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:source/bf:Source/rdfs:label = 'foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'enclosed score'"/>
   </x:scenario>
+
+  <x:scenario label="350 - PRICE">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="350 creates an acquisitionSource/AcquisitionSource property of the Instance" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:acquisitionTerms = '$20.00'"/>
+  </x:scenario>
+  
 </x:description>

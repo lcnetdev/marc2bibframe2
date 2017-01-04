@@ -118,5 +118,8 @@
       <subfield code="0">(foo)12345</subfield>
       <subfield code="2">foo</subfield>
     </datafield>
+    <datafield tag="350" ind1=" " ind2=" ">
+      <subfield code="a">$20.00</subfield>
+    </datafield>
   </record>
 </collection>
