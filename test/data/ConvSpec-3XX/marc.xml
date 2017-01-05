@@ -182,5 +182,13 @@
       <subfield code="b">kid</subfield>
       <subfield code="2">ws</subfield>
     </datafield>
+    <datafield tag="386" ind1=" " ind2=" ">
+      <subfield code="3">Other stuff</subfield>
+      <subfield code="m">Gender group</subfield>
+      <subfield code="n">gen</subfield>
+      <subfield code="a">Females</subfield>
+      <subfield code="b">f</subfield>
+      <subfield code="2">ericd</subfield>
+    </datafield>
   </record>
 </collection>

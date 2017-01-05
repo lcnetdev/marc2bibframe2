@@ -222,6 +222,11 @@
       <subfield code="a">Дети</subfield>
       <subfield code="2">lcsh</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">386-01</subfield>
+      <subfield code="a">Дети</subfield>
+      <subfield code="2">lcsh</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

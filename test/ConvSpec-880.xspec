@@ -59,6 +59,7 @@
     <x:expect label="$6 380 creates genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Телевизионная программа'"/>
     <x:expect label="$6 383 creates music number properties of the Work" test="//bf:Work[1]/bf:musicSerialNumber[1] = '没有。 14'"/>
     <x:expect label="$6 385 creates intendedAudience properties of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Дети'"/>
+    <x:expect label="$6 386 creates creatorCharacteristic properties of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Дети'"/>
     <x:expect label="$6 creates musicMedium properties of the Work" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/rdfs:label = 'пианино'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>

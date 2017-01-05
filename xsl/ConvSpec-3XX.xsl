@@ -156,20 +156,38 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='385']" mode="work">
+  <xsl:template match="marc:datafield[@tag='385' or @tag='386']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work385">
+    <xsl:apply-templates select="." mode="work385or386">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='385' or @tag='880']" mode="work385">
+  <xsl:template match="marc:datafield[@tag='385' or @tag='386' or @tag='880']" mode="work385or386">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vProp">
+      <xsl:choose>
+        <xsl:when test="$vTag='385'">bf:intendedAudience</xsl:when>
+        <xsl:when test="$vTag='386'">bflc:creatorCharacteristic</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vResource">
+      <xsl:choose>
+        <xsl:when test="$vTag='385'">bf:IntendedAudience</xsl:when>
+        <xsl:when test="$vTag='386'">bflc:CreatorCharacteristic</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:intendedAudience>
-            <bf:IntendedAudience>
+          <xsl:element name="{$vProp}">
+            <xsl:element name="{$vResource}">
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
               <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
@@ -187,8 +205,8 @@
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
-            </bf:IntendedAudience>
-          </bf:intendedAudience>
+            </xsl:element>
+          </xsl:element>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
