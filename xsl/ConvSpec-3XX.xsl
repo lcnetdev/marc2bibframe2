@@ -156,6 +156,44 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='385']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work385">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='385' or @tag='880']" mode="work385">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:intendedAudience>
+            <bf:IntendedAudience>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='m' or @code='n']">
+                <bflc:demographicGroup>
+                  <bflc:DemographicGroup>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bflc:DemographicGroup>
+                </bflc:demographicGroup>
+              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:IntendedAudience>
+          </bf:intendedAudience>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>

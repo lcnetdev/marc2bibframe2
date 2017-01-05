@@ -189,4 +189,15 @@
     <x:expect label="$d creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber[2] = 'Fanna'"/>
   </x:scenario>
   
+  <x:scenario label="385 - AUDIENCE CHARACTERISTICS">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Children'"/>
+    <x:expect label="$b creates a code property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:code = 'kid'"/>
+    <x:expect label="$m creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Age group'"/>
+    <x:expect label="$m creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup[1]/bflc:DemographicGroup/rdfs:label = 'Age group'"/>
+    <x:expect label="$n creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup[2]/bflc:DemographicGroup/rdfs:label = 'age'"/>
+    <x:expect label="$2 creates a source property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/rdfs:label = 'ws'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nonsense'"/>
+  </x:scenario>
+  
 </x:description>
