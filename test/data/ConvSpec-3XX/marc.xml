@@ -121,5 +121,11 @@
     <datafield tag="350" ind1=" " ind2=" ">
       <subfield code="a">$20.00</subfield>
     </datafield>
+    <datafield tag="351" ind1=" " ind2=" ">
+      <subfield code="3">Records</subfield>
+      <subfield code="c">Series;</subfield>
+      <subfield code="a">Hierarchical;</subfield>
+      <subfield code="b">Arranged by form of material.</subfield>
+    </datafield>
   </record>
 </collection>

@@ -19,6 +19,49 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='351']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work351">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='351' or @tag='880']" mode="work351">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:arrangement>
+          <bf:Arrangement>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:hierarchicalLevel>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                </xsl:call-template>
+              </bf:hierarchicalLevel>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:organization>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                </xsl:call-template>
+              </bf:organization>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:pattern>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                </xsl:call-template>
+              </bf:pattern>
+            </xsl:for-each>
+          </bf:Arrangement>
+        </bf:arrangement>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>

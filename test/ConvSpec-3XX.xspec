@@ -141,4 +141,13 @@
     <x:expect label="350 creates an acquisitionSource/AcquisitionSource property of the Instance" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:acquisitionTerms = '$20.00'"/>
   </x:scenario>
   
+  <x:scenario label="351 - ORGANIZATION AND ARRANGEMENT OF MATERIALS">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="351 creates an arrangement/Arrangement property of the Work" test="count(//bf:Work[1]/bf:arrangement/bf:Arrangement) = 1"/>
+    <x:expect label="$a creates an organization property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:organization = 'Hierarchical'"/>
+    <x:expect label="$b creates a pattern property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:pattern = 'Arranged by form of material'"/>
+    <x:expect label="$c creates a hierarchicalLevel property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:hierarchicalLevel = 'Series'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
+  </x:scenario>
+  
 </x:description>
