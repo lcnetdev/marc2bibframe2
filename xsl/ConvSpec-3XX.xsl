@@ -127,6 +127,35 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='383']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work383">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='383' or @tag='880']" mode="work383">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:musicSerialNumber>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString" select="."/>
+              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </bf:musicSerialNumber>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:musicOpusNumber><xsl:value-of select="."/></bf:musicOpusNumber>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='c' or @code='d']">
+          <bf:musicThematicNumber><xsl:value-of select="."/></bf:musicThematicNumber>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>

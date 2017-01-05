@@ -181,4 +181,12 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
   </x:scenario>
 
+  <x:scenario label="383 - NUMERIC DESIGNATION OF MUSICAL WORK">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a musicSerialNumber property of the Work" test="//bf:Work[1]/bf:musicSerialNumber[1] = 'no. 14'"/>
+    <x:expect label="$b creates a musicOpusNumber property of the Work" test="//bf:Work[1]/bf:musicOpusNumber[1] = 'op. 27, no. 2'"/>
+    <x:expect label="$c creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber[1] = 'F. I, 22-25'"/>
+    <x:expect label="$d creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber[2] = 'Fanna'"/>
+  </x:scenario>
+  
 </x:description>

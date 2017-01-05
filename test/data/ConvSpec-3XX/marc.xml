@@ -165,5 +165,14 @@
       <subfield code="t">1</subfield>
       <subfield code="2">lcmpt</subfield>
     </datafield>
+    <datafield tag="383" ind1=" " ind2=" ">
+      <subfield code="a">no. 14,</subfield>
+      <subfield code="b">op. 27, no. 2</subfield>
+    </datafield>
+    <datafield tag="383" ind1=" " ind2=" ">
+      <subfield code="c">F. I, 22-25</subfield>
+      <subfield code="d">Fanna</subfield>
+      <subfield code="2">mlati</subfield>
+    </datafield>
   </record>
 </collection>
