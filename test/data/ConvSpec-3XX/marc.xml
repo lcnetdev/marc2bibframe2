@@ -127,5 +127,13 @@
       <subfield code="a">Hierarchical;</subfield>
       <subfield code="b">Arranged by form of material.</subfield>
     </datafield>
+    <datafield tag="352" ind1=" " ind2=" ">
+      <subfield code="a">Vector :</subfield>
+      <subfield code="b">Point</subfield>
+      <subfield code="c">(13671),</subfield>
+      <subfield code="b">string</subfield>
+      <subfield code="c">(20171) ;</subfield>
+      <subfield code="q">ARC/INFO export.</subfield>
+    </datafield>
   </record>
 </collection>

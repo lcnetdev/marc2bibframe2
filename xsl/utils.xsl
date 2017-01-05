@@ -227,11 +227,37 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
+    <xsl:param name="pProcess"/>
+    <xsl:param name="pPunctuation">
+      <xsl:text>.:,;/ </xsl:text>
+    </xsl:param>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$pProp}">
           <xsl:element name="{$pResource}">
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <rdfs:label>
+              <xsl:choose>
+                <xsl:when test="$pProcess='chopPunctuation'">
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$pProcess='chopParens'">
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$pProcess='chopBrackets'">
+                  <xsl:call-template name="chopBrackets">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+              </xsl:choose>
+            </rdfs:label>
             <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>

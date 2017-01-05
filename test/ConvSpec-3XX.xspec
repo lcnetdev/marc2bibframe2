@@ -150,4 +150,12 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
   </x:scenario>
   
+  <x:scenario label="352 - DIGITAL GRAPHIC REPRESENTATION">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a digitalCharacteristic/CartographicDataType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[7]/bf:CartographicDataType/rdfs:label = 'Vector'"/>
+    <x:expect label="$b creates a digitalCharacteristic/CartographicObjectType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[8]/bf:CartographicObjectType/rdfs:label = 'Point'"/>
+    <x:expect label="$c creates a digitalCharacteristic/ObjectCount property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[9]/bf:ObjectCount/rdfs:label = '13671'"/>
+    <x:expect label="$q creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[12]/bf:EncodingFormat/rdfs:label = 'ARC/INFO export'"/>
+  </x:scenario>
+  
 </x:description>

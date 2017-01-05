@@ -286,6 +286,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='352'">
+        <xsl:apply-templates select="." mode="instance352">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

@@ -513,4 +513,43 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='352']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance352">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='352' or @tag='880']" mode="instance352">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='q']">
+          <xsl:variable name="vResource">
+            <xsl:choose>
+              <xsl:when test="@code='a'">bf:CartographicDataType</xsl:when>
+              <xsl:when test="@code='b'">bf:CartographicObjectType</xsl:when>
+              <xsl:when test="@code='c'">bf:ObjectCount</xsl:when>
+              <xsl:when test="@code='q'">bf:EncodingFormat</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="vProcess">
+            <xsl:choose>
+              <xsl:when test="@code='a'">chopPunctuation</xsl:when>
+              <xsl:when test="@code='b'">chopPunctuation</xsl:when>
+              <xsl:when test="@code='c'">chopParens</xsl:when>
+              <xsl:when test="@code='q'">chopPunctuation</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:apply-templates select="." mode="generateProperty">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
+            <xsl:with-param name="pResource" select="$vResource"/>
+            <xsl:with-param name="pProcess" select="$vProcess"/>
+          </xsl:apply-templates>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
