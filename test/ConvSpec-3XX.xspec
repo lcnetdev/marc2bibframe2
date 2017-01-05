@@ -158,4 +158,10 @@
     <x:expect label="$q creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[12]/bf:EncodingFormat/rdfs:label = 'ARC/INFO export'"/>
   </x:scenario>
   
+  <x:scenario label="362 - DATES OF PUBLICATION AND/OR SEQUENTIAL DESIGNATION">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="ind1=0 creates a firstIssue/lastIssue property of the Instance" test="//bf:Instance[1]/bf:firstIssue = 'Vol. 1, no. 1 (Apr. 1983)' and //bf:Instance[1]/bf:lastIssue = 'v. 1, no. 3 (June 1983)'"/>
+    <x:expect label="ind1=1 creates a note property of the Instance with noteType 'Numbering'" test="//bf:Instance[1]/bf:note/bf:Note/bf:noteType[text()='Numbering']/parent::*/rdfs:label = '3 issues in vol. 1, ceased with 3 (1983)'"/>
+  </x:scenario>
+  
 </x:description>

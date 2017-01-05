@@ -55,6 +55,7 @@
     <x:expect label="$6 350 creates an acquisitionSource property of the Instance" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:acquisitionTerms = '$20.00'"/>
     <x:expect label="$6 351 creates an arrangement property of the Work" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:organization = 'SPSS системный файл'"/>
     <x:expect label="$6 352 creates a digitalCharacteristic property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:CartographicDataType = 'Вектор'"/>
+    <x:expect label="$6 362 creates a firstIssue/lastIssue or note property of the Instance" test="//bf:Instance[1]/bf:note/bf:Note/bf:noteType[text()='Numbering']/parent::*/rdfs:label = '3 выпуска в том. 1, прекратилось с 3 (1983)'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>

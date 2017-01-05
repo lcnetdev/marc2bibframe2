@@ -135,5 +135,11 @@
       <subfield code="c">(20171) ;</subfield>
       <subfield code="q">ARC/INFO export.</subfield>
     </datafield>
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">Vol. 1, no. 1 (Apr. 1983)-v. 1, no. 3 (June 1983)</subfield>
+    </datafield>
+    <datafield tag="362" ind1="1" ind2=" ">
+      <subfield code="a">3 issues in vol. 1, ceased with 3 (1983)</subfield>
+    </datafield>
   </record>
 </collection>

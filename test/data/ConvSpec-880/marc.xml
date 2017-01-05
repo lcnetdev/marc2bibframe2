@@ -201,6 +201,10 @@
       <subfield code="6">352-01</subfield>
       <subfield code="a">Вектор.</subfield>
     </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">362-01</subfield>
+      <subfield code="a">3 выпуска в том. 1, прекратилось с 3 (1983)</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

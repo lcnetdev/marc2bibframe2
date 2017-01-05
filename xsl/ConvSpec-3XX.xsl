@@ -552,4 +552,39 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='362']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance362">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='362' or @tag='880']" mode="instance362">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vFirstIssue"><xsl:value-of select="substring-before(marc:subfield[@code='a'],'-')"/></xsl:variable>
+    <xsl:variable name="vLastIssue"><xsl:value-of select="substring-after(marc:subfield[@code='a'],'-')"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:choose>
+          <xsl:when test="@ind1='0'">
+            <xsl:if test="$vFirstIssue != ''">
+              <bf:firstIssue><xsl:value-of select="$vFirstIssue"/></bf:firstIssue>
+            </xsl:if>
+            <xsl:if test="$vLastIssue != ''">
+              <bf:lastIssue><xsl:value-of select="$vLastIssue"/></bf:lastIssue>
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>Numbering</bf:noteType>
+                <rdfs:label><xsl:value-of select="marc:subfield[@code='a']"/></rdfs:label>
+              </bf:Note>
+            </bf:note>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
