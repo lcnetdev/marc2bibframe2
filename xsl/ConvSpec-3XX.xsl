@@ -82,6 +82,51 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='382']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work382">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='382' or @tag='880']" mode="work382">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='p']">
+          <bf:musicMedium>
+            <bf:MusicMedium>
+              <xsl:if test="@code='d'">
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>doubling</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
+              <xsl:if test="@code='p'">
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>alternative</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:for-each select="../marc:subfield[@code='n' or @code='e'][position()=1]">
+                <bf:count><xsl:value-of select="."/></bf:count>
+              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:MusicMedium>
+          </bf:musicMedium>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>

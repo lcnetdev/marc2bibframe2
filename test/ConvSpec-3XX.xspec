@@ -169,4 +169,16 @@
     <x:expect label="380 creates genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Play'"/>
   </x:scenario>
   
+  <x:scenario label="382 - MEDIUM OF PERFORMANCE">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']) = 1"/>
+    <x:expect label="$n creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']/parent::*/bf:count = '1'"/>
+    <x:expect label="$e creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='orchestra']/parent::*/bf:count = '1'"/>
+    <x:expect label="$b creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute']) = 1"/>
+    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='doubling']/parent::*/parent::*/parent::*/rdfs:label = 'synthesizer'"/>
+    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'alternative' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='alternative']/parent::*/parent::*/parent::*/rdfs:label = 'baritone horn'"/>
+    <x:expect label="$2 creates a source property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/rdfs:label = 'lcmpt'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
+  </x:scenario>
+
 </x:description>
