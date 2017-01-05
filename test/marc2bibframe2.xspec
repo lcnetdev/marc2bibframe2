@@ -199,6 +199,7 @@
             </bf:note>
             <bf:dimensions>23 cm.</bf:dimensions>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
+            <bf:hasItem rdf:resource="http://example.org/13600108#Item050-11"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/13600108#Item050-11">
             <bf:shelfMark>
@@ -411,6 +412,7 @@
             </bf:note>
             <bf:dimensions>12 in.</bf:dimensions>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
+            <bf:hasItem rdf:resource="http://example.org/5637241#Item050-10"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/5637241#Item050-10">
             <bf:shelfMark>
@@ -619,6 +621,7 @@
             </bf:provisionActivity>
             <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
+            <bf:hasItem rdf:resource="http://example.org/12149120#Item050-14"/>
           </bf:Instance>
           <bf:Item rdf:about="http://example.org/12149120#Item050-14">
             <bf:shelfMark>

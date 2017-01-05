@@ -133,6 +133,11 @@
           <bf:instanceOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           </bf:instanceOf>
+          <!-- generate hasItem properties -->
+          <xsl:apply-templates mode="hasItem">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
         </bf:Instance>
       </xsl:when>
     </xsl:choose>
@@ -149,6 +154,7 @@
   <xsl:template match="text()" mode="adminmetadata"/>
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
+  <xsl:template match="text()" mode="hasItem"/>
   <xsl:template match="text()" mode="newItem"/>
 
   <!-- warn about other elements -->

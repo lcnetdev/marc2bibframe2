@@ -12,6 +12,7 @@
   <x:scenario label="050 - LIBRARY OF CONGRESS CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="050 creates an Item" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2'])= 1"/>
+    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[1]/@rdf:resource='http://example.org/1#Item050-2'"/>
     <x:expect label="...and classification properties of the Work" test="count(//bf:Work[1]/bf:classification/bf:ClassificationLcc) = 4"/>
     <x:expect label="...and a shelfMark property of the Item" test="count(//bf:Item[1]/bf:shelfMark) = 1"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
@@ -24,6 +25,7 @@
   <x:scenario label="051 - LIBRARY OF CONGRESS COPY, ISSUE, OFFPRINT STATEMENT">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="051 creates an Item" test="count(//bf:Item[@rdf:about='http://example.org/1#Item051-3'])= 1"/>
+    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[2]/@rdf:resource='http://example.org/1#Item051-3'"/>
     <x:expect label="...with a classification property" test="count(//bf:Item[2]/bf:classification) = 1"/>
     <x:expect label="...rdfs:label of the ClassificationLcc is $abc" test="//bf:Item[2]/bf:classification/bf:ClassificationLcc/rdfs:label = 'QE75.G4 2d set'"/>
   </x:scenario>
@@ -50,6 +52,7 @@
     <x:expect label="$a creates the classificationPortion of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:classificationPortion = 'W 22 DC2.1'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:itemPortion = 'B8M'"/>
     <x:expect label="ind1 = '0' creates an Item with a heldBy property" test="//bf:Item[contains(@rdf:about,'Item060-7')]/bf:heldBy/bf:Agent/rdfs:label = 'National Library of Medicine'"/>
+    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[3]/@rdf:resource='http://example.org/1#Item060-7'"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:source/bf:Source/rdfs:label = 'National Library of Medicine'"/>
   </x:scenario>
 
