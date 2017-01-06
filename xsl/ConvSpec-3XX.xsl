@@ -111,7 +111,7 @@
                 </bf:status>
               </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="../marc:subfield[@code='n' or @code='e'][position()=1]">
+              <xsl:for-each select="following-sibling::marc:subfield[@code='n' or @code='e'][position()=1]">
                 <bf:count><xsl:value-of select="."/></bf:count>
               </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
@@ -189,7 +189,7 @@
           <xsl:element name="{$vProp}">
             <xsl:element name="{$vResource}">
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+              <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
               </xsl:for-each>
               <xsl:for-each select="../marc:subfield[@code='m' or @code='n']">
@@ -622,10 +622,10 @@
           <bf:musicFormat>
             <bf:MusicFormat>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+              <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
               </xsl:for-each>
-              <xsl:apply-templates select="../marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
