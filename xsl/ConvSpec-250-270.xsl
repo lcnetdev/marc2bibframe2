@@ -226,7 +226,6 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vPubPlace"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
     <xsl:variable name="vProvisionActivity">
       <xsl:choose>
         <xsl:when test="$vTag='264'">
@@ -271,9 +270,6 @@
                   <xsl:for-each select="marc:subfield[@code='a']">
                     <bf:place>
                       <bf:Place>
-                        <xsl:if test="$vTag != '264' and normalize-space($vPubPlace) != ''">
-                          <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,normalize-space($vPubPlace))"/></xsl:attribute>
-                        </xsl:if>
                         <rdfs:label>
                           <xsl:call-template name="chopBrackets">
                             <xsl:with-param name="chopString" select="."/>
@@ -371,7 +367,6 @@
 
   <xsl:template match="marc:datafield[@tag='261' or @tag='880']" mode="instance261">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vPubPlace"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
     <xsl:variable name="vStatement">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-space"/>
     </xsl:variable>
@@ -382,7 +377,7 @@
             <rdf:type>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Production')"/></xsl:attribute>
             </rdf:type>
-            <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='e']">
+            <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
               <bf:agent>
                 <bf:Agent>
                   <rdfs:label>
@@ -403,9 +398,6 @@
             <xsl:for-each select="marc:subfield[@code='f']">
               <bf:place>
                 <bf:Place>
-                  <xsl:if test="normalize-space($vPubPlace) != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,normalize-space($vPubPlace))"/></xsl:attribute>
-                  </xsl:if>
                   <rdfs:label>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString" select="."/>
