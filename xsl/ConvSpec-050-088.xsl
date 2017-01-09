@@ -254,7 +254,7 @@
                     <xsl:for-each select="../marc:subfield[@code='q']">
                       <bf:assigner>
                         <bf:Agent>
-                          <rdf:value><xsl:value-of select="."/></rdf:value>
+                          <rdf:label><xsl:value-of select="."/></rdf:label>
                         </bf:Agent>
                       </bf:assigner>
                     </xsl:for-each>
@@ -373,7 +373,7 @@
   
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='050' or @tag='051']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='050']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="hasItem050">
@@ -393,7 +393,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='050' or @tag='051' or @tag='060' or @tag='880']" mode="hasItem050">
+  <xsl:template match="marc:datafield[@tag='050' or @tag='060' or @tag='880']" mode="hasItem050">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pItemUri"/>
     <xsl:choose>
@@ -416,7 +416,7 @@
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='050' or @tag='880']" mode="item050">
+  <xsl:template match="marc:datafield[@tag='050']" mode="item050">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pItemUri"/>
@@ -447,6 +447,28 @@
               </xsl:if>
             </bf:ShelfMarkLcc>
           </bf:shelfMark>
+          <xsl:for-each select="../marc:datafield[@tag='051']">
+            <xsl:variable name="vClassLabel">
+              <xsl:choose>
+                <xsl:when test="marc:subfield[@code='b']">
+                  <xsl:choose>
+                    <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:when>
+                    <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+                  </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <rdfs:label>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vClassLabel"/></xsl:with-param>
+                  </xsl:call-template>
+                </rdfs:label>
+              </bf:ClassificationLcc>
+            </bf:classification>
+          </xsl:for-each>
           <bf:itemOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           </bf:itemOf>
@@ -455,39 +477,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='051']" mode="newItem">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="vClassLabel">
-      <xsl:choose>
-        <xsl:when test="marc:subfield[@code='b']">
-          <xsl:choose>
-            <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:when>
-            <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Item>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
-          <bf:classification>
-            <bf:ClassificationLcc>
-              <rdfs:label>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString"><xsl:value-of select="$vClassLabel"/></xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:ClassificationLcc>
-          </bf:classification>
-        </bf:Item>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-  
   <xsl:template match="marc:datafield[@tag='060']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>

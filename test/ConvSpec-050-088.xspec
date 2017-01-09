@@ -24,10 +24,8 @@
   
   <x:scenario label="051 - LIBRARY OF CONGRESS COPY, ISSUE, OFFPRINT STATEMENT">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="051 creates an Item" test="count(//bf:Item[@rdf:about='http://example.org/1#Item051-3'])= 1"/>
-    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[2]/@rdf:resource='http://example.org/1#Item051-3'"/>
-    <x:expect label="...with a classification property" test="count(//bf:Item[2]/bf:classification) = 1"/>
-    <x:expect label="...rdfs:label of the ClassificationLcc is $abc" test="//bf:Item[2]/bf:classification/bf:ClassificationLcc/rdfs:label = 'QE75.G4 2d set'"/>
+    <x:expect label="051 creates a a classification property of the Item" test="count(//bf:Item[1]/bf:classification) = 1"/>
+    <x:expect label="...rdfs:label of the ClassificationLcc is $abc" test="//bf:Item[1]/bf:classification[1]/bf:ClassificationLcc/rdfs:label = 'QE75.G4 2d set'"/>
   </x:scenario>
 
   <x:scenario label="052 - GEOGRAPHIC CLASSIFICATION">
@@ -52,7 +50,7 @@
     <x:expect label="$a creates the classificationPortion of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:classificationPortion = 'W 22 DC2.1'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:itemPortion = 'B8M'"/>
     <x:expect label="ind1 = '0' creates an Item with a heldBy property" test="//bf:Item[contains(@rdf:about,'Item060-7')]/bf:heldBy/bf:Agent/rdfs:label = 'National Library of Medicine'"/>
-    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[3]/@rdf:resource='http://example.org/1#Item060-7'"/>
+    <x:expect label="...and a hasItem property of the Instance" test="//bf:Instance[1]/bf:hasItem[2]/@rdf:resource='http://example.org/1#Item060-7'"/>
     <x:expect label="ind2 = '0' creates a source property of the ClassificationNlm" test="//bf:Work[1]/bf:classification[5]/bf:ClassificationNlm/bf:source/bf:Source/rdfs:label = 'National Library of Medicine'"/>
   </x:scenario>
 
@@ -96,7 +94,7 @@
     <x:expect label="084 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
-    <x:expect label="$q creates an adminMetadata/AdminMetadata/assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:adminMetadata/bf:AdminMetadata/bf:assigner/bf:Agent/rdf:value = 'DE-101'"/>
+    <x:expect label="$q creates an adminMetadata/AdminMetadata/assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:adminMetadata/bf:AdminMetadata/bf:assigner/bf:Agent/rdf:label = 'DE-101'"/>
     <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sdnb'"/>
   </x:scenario>
   
