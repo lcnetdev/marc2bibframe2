@@ -372,16 +372,31 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:cartographicAttributes>
-          <bf:Cartographic>
-            <bf:coordinates><xsl:value-of select="normalize-space($vCoordinates)"/></bf:coordinates>
-            <xsl:for-each select="marc:subfield[@code='3']">
-              <xsl:apply-templates select="." mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:for-each>
-          </bf:Cartographic>
-        </bf:cartographicAttributes>
+        <xsl:if test="$vCoordinates != ''">
+          <bf:cartographicAttributes>
+            <bf:Cartographic>
+              <bf:coordinates><xsl:value-of select="normalize-space($vCoordinates)"/></bf:coordinates>
+              <xsl:for-each select="marc:subfield[@code='3']">
+                <xsl:apply-templates select="." mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
+            </bf:Cartographic>
+          </bf:cartographicAttributes>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:if test="not(../marc:subfield[@code='b' or @code='c'])">
+            <bf:scale>
+              <bf:Scale>
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>Linear scale</rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </bf:Scale>
+            </bf:scale>
+          </xsl:if>
+        </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
           <xsl:apply-templates mode="work034scale" select=".">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -408,7 +423,7 @@
             <rdfs:label><xsl:value-of select="."/></rdfs:label>
             <bf:note>
               <bf:Note>
-                <rdfs:label><xsl:value-of select="pScaleType"/></rdfs:label>
+                <rdfs:label><xsl:value-of select="$pScaleType"/></rdfs:label>
               </bf:Note>
             </bf:note>
             <xsl:for-each select="../marc:subfield[@code='3']">

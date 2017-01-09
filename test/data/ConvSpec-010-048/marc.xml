@@ -128,6 +128,9 @@
       <subfield code="g">S0700000</subfield>
       <subfield code="3">map</subfield>
     </datafield>
+    <datafield tag="034" ind1="0" ind2=" ">
+      <subfield code="a">a</subfield>
+    </datafield>
     <datafield tag="035" ind1=" " ind2=" ">
       <subfield code="a">(OCoLC)814782</subfield>
       <subfield code="z">(OCoLC)7374506</subfield>

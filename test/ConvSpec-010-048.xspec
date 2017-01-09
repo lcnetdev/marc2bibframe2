@@ -122,10 +122,10 @@
   
   <x:scenario label="034 - CODED CARTOGRAPHIC MATHEMATICAL DATA">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="ind2 determines the properties of the Cartographic entity" test="count(//bf:Work[1]/bf:cartographicAttributes/bf:Cartographic/bf:coordinates) = 1"/>
+    <x:expect label="$a alone creates a scale property of the Work with a note 'Linear scale'" test="//bf:Work[1]/bf:scale[3]/bf:Scale/bf:note/bf:Note/rdfs:label = 'Linear scale'"/>
     <x:expect label="$b creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/rdfs:label = '744000'"/>
     <x:expect label="$c creates a scale property of the Work" test="//bf:Work[1]/bf:scale[2]/bf:Scale/rdfs:label = '96000'"/>
-    <x:expect label="$defg are the coordinates property of the Cartographic entity" test="//bf:Work[1]/bf:cartographicAttributes/bf:Cartographic/bf:coordinates = 'W1800000 E1800000 N0840000 S0700000'"/>
+    <x:expect label="$defg are the coordinates property of the Cartographic entity" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:coordinates = 'W1800000 E1800000 N0840000 S0700000'"/>
     <x:expect label="$3 creates a bf:appliesTo property of the Scale and Cartographic" test="//bf:Work[1]/bf:scale[1]/bf:Scale/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'map'"/>
   </x:scenario>
   
