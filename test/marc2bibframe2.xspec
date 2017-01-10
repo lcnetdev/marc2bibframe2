@@ -18,6 +18,7 @@
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-250-270.xspec"/>
   <x:import href="ConvSpec-3XX.xspec"/>
+  <x:import href="ConvSpec-490-510-530to535-Links.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-X30and240-UnifTitle.xspec"/>
 

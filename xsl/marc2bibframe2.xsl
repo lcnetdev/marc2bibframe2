@@ -28,6 +28,7 @@
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
+  <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
 
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
