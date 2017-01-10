@@ -6,5 +6,11 @@
       <subfield code="x">0071-8246 ;</subfield>
       <subfield code="v">no 123</subfield>
     </datafield>
+    <datafield tag="510" ind1="4" ind2=" ">
+      <subfield code="a">Index Medicus,</subfield>
+      <subfield code="x">0019-3879,</subfield>
+      <subfield code="c">p. 10, 50, and iii,</subfield>
+      <subfield code="b">v1n1, 1984-</subfield>
+    </datafield>
   </record>
 </collection>
