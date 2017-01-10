@@ -1,6 +1,10 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Ole Lukøie /</subfield>
+      <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
+    </datafield>
     <datafield tag="490" ind1="1" ind2=" ">
       <subfield code="a">Mémoire du BRGM,</subfield>
       <subfield code="x">0071-8246 ;</subfield>
@@ -11,6 +15,14 @@
       <subfield code="x">0019-3879,</subfield>
       <subfield code="c">p. 10, 50, and iii,</subfield>
       <subfield code="b">v1n1, 1984-</subfield>
+    </datafield>
+    <datafield tag="530" ind1=" " ind2=" ">
+      <subfield code="3">Dispatches from U.S. consuls in Batavia, Java, Netherlands East Indies, 1818-1906</subfield>
+      <subfield code="a">Available in microfilm;</subfield>
+      <subfield code="b">National Archives;</subfield>
+      <subfield code="d">M449;</subfield>
+      <subfield code="c">Standing order account required.</subfield>
+      <subfield code="u">http://www.bartleby.com/99/index.html</subfield>
     </datafield>
   </record>
 </collection>

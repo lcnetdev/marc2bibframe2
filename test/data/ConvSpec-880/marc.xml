@@ -232,6 +232,10 @@
       <subfield code="a">химический рефераты,</subfield>
       <subfield code="x">0009-2258</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">530-01</subfield>
+      <subfield code="a">Доступно на микрофиши.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
