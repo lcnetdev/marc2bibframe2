@@ -27,7 +27,7 @@
 
   <x:scenario label="530 - ADDITIONAL PHYSICAL FORM AVAILABLE NOTE">
     <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
-    <x:expect label="530 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 2"/>
+    <x:expect label="530 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
     <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/@rdf:about = 'http://example.org/1#Instance530-5'"/>
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
     <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie /'"/>
@@ -43,7 +43,7 @@
   
   <x:scenario label="533 - REPRODUCTION NOTE">
     <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
-    <x:expect label="533 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 2"/>
+    <x:expect label="533 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
     <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/@rdf:about = 'http://example.org/1#Instance533-6'"/>
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
     <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie /'"/>
@@ -62,4 +62,26 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bflc:applicableInstitution/bf:Agent/bf:code = 'ICU'"/>
   </x:scenario>
     
+  <x:scenario label="534 - ORIGINAL VERSION NOTE">
+    <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
+    <x:expect label="534 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
+    <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/@rdf:about = 'http://example.org/1#Instance534-7'"/>
+    <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
+    <x:expect label="534 creates an originalVersionOf property of the Instance" test="//bf:Instance[1]/bf:originalVersionOf/@rdf:resource = 'http://example.org/1#Instance534-7'"/>
+    <x:expect label="...and an originalVersion property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:originalVersion/@rdf:resource = 'http://example.org/1#Instance'"/>
+    <x:expect label="$a creates a contribution property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Frederick, John'"/>
+    <x:expect label="$b creates an editionStatement property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:editionStatement = '1st ed'"/>
+    <x:expect label="$c creates a provisionActivityStatement of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Berlin :Eulenspiegel, c1978'"/>
+    <x:expect label="$e creates an extent property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:extent/bf:Extent/rdfs:label = '1 art original : oil, col. ; 79 x 64 cm'"/>
+    <x:expect label="$f creates a seriesStatement property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:seriesStatement = 'International series of monographs on electromagnetic waves ; v. 4'"/>
+    <x:expect label="$k creates a title/KeyTitle property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[2]/bf:KeyTitle/rdfs:label = 'American journal of theology &amp; philosophy'"/>
+    <x:expect label="$m creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:note[2]/bf:Note/rdfs:label = 'at scale 1:50,000'"/>
+    <x:expect label="$n creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'under title'"/>
+    <x:expect label="$p creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'Reprint. Originally published'"/>
+    <x:expect label="$t creates a title/InstanceTitle property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[1]/bf:InstanceTitle/rdfs:label = 'Luck.'"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Issn/rdfs:label = '0228-913X'"/>
+    <x:expect label="$z creates an identifiedBy/Isbn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Isbn/rdfs:label = '0385061781 (v. 1)'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = 'vol. 2'"/>
+  </x:scenario>
+  
 </x:description>

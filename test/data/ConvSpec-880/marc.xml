@@ -240,6 +240,11 @@
       <subfield code="6">533-01</subfield>
       <subfield code="a">Микрофильмов.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">534-01</subfield>
+      <subfield code="p">Первоначально опубликовано:</subfield>
+      <subfield code="c">Нью-Йорк: Garland, 1987.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
