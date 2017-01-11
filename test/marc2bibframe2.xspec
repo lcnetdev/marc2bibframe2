@@ -135,7 +135,7 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
             <bf:issuance>
-              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
@@ -308,7 +308,7 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
             <bf:issuance>
-              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s">
@@ -548,7 +548,7 @@
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
             <bf:issuance>
-              <bf:Issuance rdf:about="http://id.lc.gov/vocabulary/issuance/mono"/>
+              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:media>

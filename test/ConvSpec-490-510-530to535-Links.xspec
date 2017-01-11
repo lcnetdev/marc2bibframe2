@@ -65,9 +65,9 @@
   <x:scenario label="534 - ORIGINAL VERSION NOTE">
     <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
     <x:expect label="534 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
-    <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/@rdf:about = 'http://example.org/1#Instance534-7'"/>
+    <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/@rdf:about = 'http://example.org/1#Instance534-8'"/>
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
-    <x:expect label="534 creates an originalVersionOf property of the Instance" test="//bf:Instance[1]/bf:originalVersionOf/@rdf:resource = 'http://example.org/1#Instance534-7'"/>
+    <x:expect label="534 creates an originalVersionOf property of the Instance" test="//bf:Instance[1]/bf:originalVersionOf/@rdf:resource = 'http://example.org/1#Instance534-8'"/>
     <x:expect label="...and an originalVersion property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:originalVersion/@rdf:resource = 'http://example.org/1#Instance'"/>
     <x:expect label="$a creates a contribution property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Frederick, John'"/>
     <x:expect label="$b creates an editionStatement property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:editionStatement = '1st ed'"/>
@@ -82,6 +82,17 @@
     <x:expect label="$x creates an identifiedBy/Issn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Issn/rdfs:label = '0228-913X'"/>
     <x:expect label="$z creates an identifiedBy/Isbn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Isbn/rdfs:label = '0385061781 (v. 1)'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = 'vol. 2'"/>
+  </x:scenario>
+
+  <x:scenario label="535 - LOCATION OF ORIGINALS/DUPLICATES NOTE">
+    <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
+    <x:expect label="ind1=1 creates a hasItem/Item property of the related 534 Instance" test="count(//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item) = 1"/>
+    <x:expect label="ind1=2 creates a hasItem/Item property of the related 533 Instance" test="count(//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item) = 1"/>
+    <x:expect label="$a/$b/$c/$d create a heldBy property of the Item" test="count(//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy) = 1"/>
+    <x:expect label="$a becomes the rdfs:label of the Agent" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'American Mining Congress'"/>
+    <x:expect label="$b/$c/$d create a place property of the Agent" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/bf:place/bf:Place/rdfs:label = 'Box 1603A Yale Station, New Haven, CT 06520; USA; 203-436-4564'"/>
+    <x:expect label="$g creates a place property of the Item" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item/bf:place/bf:Place/@rdf:about = 'http://id.loc.gov/vocabulary/countries/ctu'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Item" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'German notebook'"/>
   </x:scenario>
   
 </x:description>

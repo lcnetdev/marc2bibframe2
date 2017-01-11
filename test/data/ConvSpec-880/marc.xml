@@ -245,6 +245,13 @@
       <subfield code="p">Первоначально опубликовано:</subfield>
       <subfield code="c">Нью-Йорк: Garland, 1987.</subfield>
     </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">535-01</subfield>
+      <subfield code="3">Угольные отчеты</subfield>
+      <subfield code="a">Американский горный конгресс;</subfield>
+      <subfield code="b">1920 N St., NW, Washington, D.C. 20036;</subfield>
+      <subfield code="d">202-861-2800</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

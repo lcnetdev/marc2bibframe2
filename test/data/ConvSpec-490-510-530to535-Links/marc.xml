@@ -36,6 +36,14 @@
       <subfield code="n">Issues for 1853-1856 on reel with: Journal of the American Temperance Union and the New York prohibitionist, v. 21, no. 7 (July 1857)-v. 24 (1860).</subfield>
       <subfield code="5">ICU</subfield>
     </datafield>
+    <datafield tag="535" ind1="2" ind2=" ">
+      <subfield code="3">German notebook</subfield>
+      <subfield code="a">Yale University Library, Department of Manuscripts and Archives;</subfield>
+      <subfield code="b">Box 1603A Yale Station, New Haven, CT 06520;</subfield>
+      <subfield code="c">USA;</subfield>
+      <subfield code="d">203-436-4564</subfield>
+      <subfield code="g">ctu</subfield>
+    </datafield>
     <datafield tag="534" ind1=" " ind2=" ">
       <subfield code="3">vol. 2</subfield>
       <subfield code="p">Reprint. Originally published:</subfield>
@@ -50,6 +58,12 @@
       <subfield code="x">0228-913X.</subfield>
       <subfield code="z">0385061781 (v. 1)</subfield>
       <subfield code="m">at scale 1:50,000.</subfield>
+    </datafield>
+    <datafield tag="535" ind1="1" ind2=" ">
+      <subfield code="3">Coal reports</subfield>
+      <subfield code="a">American Mining Congress;</subfield>
+      <subfield code="b">1920 N St., NW, Washington, D.C. 20036;</subfield>
+      <subfield code="d">202-861-2800</subfield>
     </datafield>
   </record>
 </collection>
