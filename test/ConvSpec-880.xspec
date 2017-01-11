@@ -61,6 +61,7 @@
     <x:expect label="$6 386 creates creatorCharacteristic properties of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Дети'"/>
     <x:expect label="$6 510 creates a bflc:indexedIn property of the Instance" test="//bf:Instance[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'химический рефераты'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
+    <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>

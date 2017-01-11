@@ -24,5 +24,17 @@
       <subfield code="c">Standing order account required.</subfield>
       <subfield code="u">http://www.bartleby.com/99/index.html</subfield>
     </datafield>
+    <datafield tag="533" ind1=" " ind2=" ">
+      <subfield code="3">Correspondence files</subfield>
+      <subfield code="a">Microfilm.</subfield>
+      <subfield code="m">1962-1965.</subfield>
+      <subfield code="b">Middleton, Conn.,</subfield>
+      <subfield code="c">Wesleyan University Archives,</subfield>
+      <subfield code="d">1973</subfield>
+      <subfield code="e">35 mm. negative.</subfield>
+      <subfield code="f">(Current periodical series : publication no. 2313).</subfield>
+      <subfield code="n">Issues for 1853-1856 on reel with: Journal of the American Temperance Union and the New York prohibitionist, v. 21, no. 7 (July 1857)-v. 24 (1860).</subfield>
+      <subfield code="5">ICU</subfield>
+    </datafield>
   </record>
 </collection>
