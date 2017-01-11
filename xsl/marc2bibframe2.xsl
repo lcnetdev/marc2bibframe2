@@ -37,7 +37,7 @@
   <xsl:variable name="edtf">http://id.loc.gov/datatypes/</xsl:variable>
   <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
-  <xsl:variable name="issuance">http://id.lc.gov/vocabulary/issuance/</xsl:variable>
+  <xsl:variable name="issuance">http://id.loc.gov/vocabulary/issuance/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
   <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
   <xsl:variable name="mmaterial">http://id.loc.gov/vocabulary/mmaterial/</xsl:variable>
