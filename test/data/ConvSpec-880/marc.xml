@@ -269,6 +269,11 @@
       <subfield code="a">Джеки Гланвилл.</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">513-01</subfield>
+      <subfield code="a">Ежеквартальный отчет технический прогресс;</subfield>
+      <subfield code="b">Январь-апрель 1, 1977.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
     </datafield>

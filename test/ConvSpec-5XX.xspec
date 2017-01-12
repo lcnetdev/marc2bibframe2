@@ -68,4 +68,10 @@
     <x:expect label="511 creates a credits property of the Work, with display constant based on ind1" test="//bf:Work[1]/bf:credits[2] = 'Cast: Jackie Glanville.'"/>
   </x:scenario>
 
+  <x:scenario label="513 - TYPE OF REPORT AND PERIOD COVERED NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="513 creates a note/Note property of the Instance with noteType 'Report type'" test="//bf:Instance[1]/bf:note[4]/bf:Note/bf:noteType = 'Report type'"/>
+    <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Quarterly technical progress report; Jan.-Apr. 1, 1977.'"/>
+  </x:scenario>
+
 </x:description>
