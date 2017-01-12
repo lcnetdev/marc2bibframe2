@@ -17,14 +17,26 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='501']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instanceNote5XX">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pNoteType">with</xsl:with-param>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pNoteType"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:if test="$pNoteType != ''">
+                <bf:noteType><xsl:value-of select="$pNoteType"/></bf:noteType>
+              </xsl:if>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>

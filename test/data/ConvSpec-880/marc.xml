@@ -231,6 +231,10 @@
       <subfield code="6">500-01</subfield>
       <subfield code="a">Из работ семьи Chase.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">501-01</subfield>
+      <subfield code="a">С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>

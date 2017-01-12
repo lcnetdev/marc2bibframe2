@@ -6,5 +6,9 @@
       <subfield code="a">From the papers of the Chase family.</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <datafield tag="501" ind1=" " ind2=" ">
+      <subfield code="a">With: The reformed school / John Dury. London : Printed for R. Wasnothe, [1850]</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
   </record>
 </collection>

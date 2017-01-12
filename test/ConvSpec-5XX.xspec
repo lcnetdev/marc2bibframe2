@@ -16,4 +16,11 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[1]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
+  <x:scenario label="501 - WITH NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="501 creates a note/Note property of the Instance with noteType 'with'" test="//bf:Instance[1]/bf:note[2]/bf:Note/bf:noteType = 'with'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'With: The reformed school / John Dury. London : Printed for R. Wasnothe, [1850]'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[2]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+  </x:scenario>
+
 </x:description>
