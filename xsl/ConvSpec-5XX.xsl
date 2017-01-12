@@ -88,26 +88,17 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='500']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='500' or @tag='501' or @tag='504' or @tag='515']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='501']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instanceNote5XX">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pNoteType">with</xsl:with-param>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='504']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instanceNote5XX">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pNoteType">bibliography</xsl:with-param>
+      <xsl:with-param name="pNoteType">
+        <xsl:choose>
+          <xsl:when test="@tag='501'">with</xsl:when>
+          <xsl:when test="@tag='504'">bibliography</xsl:when>
+          <xsl:when test="@tag='515'">issuance information</xsl:when>
+        </xsl:choose>
+      </xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 

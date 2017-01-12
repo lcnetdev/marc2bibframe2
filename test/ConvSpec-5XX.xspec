@@ -74,4 +74,10 @@
     <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Quarterly technical progress report; Jan.-Apr. 1, 1977.'"/>
   </x:scenario>
 
+  <x:scenario label="515 - NUMBERING PECULIARITIES NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="515 creates a note/Note property of the Instance with noteType 'issuance information'" test="//bf:Instance[1]/bf:note[5]/bf:Note/bf:noteType = 'issuance information'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'Issued in parts.'"/>
+  </x:scenario>
+
 </x:description>

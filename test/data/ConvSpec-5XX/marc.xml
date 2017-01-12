@@ -55,5 +55,8 @@
       <subfield code="a">Quarterly technical progress report;</subfield>
       <subfield code="b">Jan.-Apr. 1, 1977.</subfield>
     </datafield>
+    <datafield tag="515" ind1=" " ind2=" ">
+      <subfield code="a">Issued in parts.</subfield>
+    </datafield>
   </record>
 </collection>
