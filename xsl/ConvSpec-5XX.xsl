@@ -105,6 +105,35 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='506']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance506">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='506' or @tag='880']" mode="instance506">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='f']"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:usageAndAccessPolicy>
+          <bf:UsageAndAccessPolicy>
+            <rdfs:label><xsl:value-of select="normalize-space($vLabel)"/></rdfs:label>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:UsageAndAccessPolicy>
+        </bf:usageAndAccessPolicy>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>

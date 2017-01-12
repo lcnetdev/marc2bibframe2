@@ -247,6 +247,10 @@
       <subfield code="6">505-01</subfield>
       <subfield code="a">Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">506-01</subfield>
+      <subfield code="a">Классифицированная информация.</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>

@@ -30,5 +30,16 @@
       <subfield code="g">(1:57) /</subfield>
       <subfield code="r">by Stephen Paulus.</subfield>
     </datafield>
+    <datafield tag="506" ind1=" " ind2=" ">
+      <subfield code="3">Office files of Under Secretary</subfield>
+      <subfield code="a">Restricted access;</subfield>
+      <subfield code="c">Written permission required;</subfield>
+      <subfield code="b">Donor;</subfield>
+      <subfield code="d">Members of donor's family;</subfield>
+      <subfield code="e">Title 50, chapter 401, U.S.C.</subfield>
+      <subfield code="f">Preview only</subfield>
+      <subfield code="u">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
+      <subfield code="5">MH</subfield>
+    </datafield>
   </record>
 </collection>

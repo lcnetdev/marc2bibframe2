@@ -46,4 +46,11 @@
     <x:expect label="505 creates a tableOfContents/TableOfContents property of the Instance" test="//bf:Instance[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
   </x:scenario>
   
+  <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="506 creates a usageAndAccessPolicy/UsageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label = 'Restricted access; Written permission required; Donor; Members of donor''s family; Title 50, chapter 401, U.S.C. Preview only'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
+  </x:scenario>
+  
 </x:description>
