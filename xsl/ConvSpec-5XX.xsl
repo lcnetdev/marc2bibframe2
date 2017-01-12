@@ -88,17 +88,10 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='500' or @tag='501' or @tag='504' or @tag='515']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='500' or @tag='501' or @tag='504' or @tag='515' or @tag='516']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pNoteType">
-        <xsl:choose>
-          <xsl:when test="@tag='501'">with</xsl:when>
-          <xsl:when test="@tag='504'">bibliography</xsl:when>
-          <xsl:when test="@tag='515'">issuance information</xsl:when>
-        </xsl:choose>
-      </xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -206,14 +199,22 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vNoteType">
+      <xsl:choose>
+        <xsl:when test="$vTag='501'">with</xsl:when>
+        <xsl:when test="$vTag='504'">bibliography</xsl:when>
+        <xsl:when test="$vTag='515'">issuance information</xsl:when>
+        <xsl:when test="$vTag='516'">type of computer data</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:if test="$pNoteType != ''">
-                <bf:noteType><xsl:value-of select="$pNoteType"/></bf:noteType>
+              <xsl:if test="$vNoteType != ''">
+                <bf:noteType><xsl:value-of select="$vNoteType"/></bf:noteType>
               </xsl:if>
               <!-- special handling for other subfields -->
               <xsl:choose>

@@ -80,4 +80,9 @@
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'Issued in parts.'"/>
   </x:scenario>
 
+  <x:scenario label="516 - TYPE OF COMPUTER FILE OR DATA NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="516 creates a note/Note property of the Instance with noteType 'type of computer data'" test="//bf:Instance[1]/bf:note[6]/bf:Note/bf:noteType = 'type of computer data'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Computer programs.'"/>
+  </x:scenario>
 </x:description>
