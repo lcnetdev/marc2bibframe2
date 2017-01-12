@@ -24,5 +24,11 @@
       <subfield code="a">"Literature cited": p. 67-68.</subfield>
       <subfield code="b">19</subfield>
     </datafield>
+    <datafield tag="505" ind1="0" ind2="0">
+      <subfield code="a">Quatrain II (16:35) --</subfield>
+      <subfield code="t">Water ways</subfield>
+      <subfield code="g">(1:57) /</subfield>
+      <subfield code="r">by Stephen Paulus.</subfield>
+    </datafield>
   </record>
 </collection>

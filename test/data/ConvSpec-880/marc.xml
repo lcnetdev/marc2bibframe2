@@ -243,6 +243,10 @@
       <subfield code="6">504-01</subfield>
       <subfield code="a">"Литература цитируется": стр. 67-68.</subfield>
     </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">505-01</subfield>
+      <subfield code="a">Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>

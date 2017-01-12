@@ -418,6 +418,11 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in.</bf:dimensions>
+            <bf:tableOfContents>
+              <bf:TableOfContents>
+                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
+              </bf:TableOfContents>
+            </bf:tableOfContents>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Brief record.</rdfs:label>
