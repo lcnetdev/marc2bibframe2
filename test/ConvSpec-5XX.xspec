@@ -58,4 +58,9 @@
     <x:expect label="506 creates a scale property of the Instance" test="//bf:Instance[1]/bf:scale[1] = 'Scale 1:500,000; 1 in. equals 8 miles.'"/>
   </x:scenario>
   
+  <x:scenario label="508 - CREATION/PRODUCTION CREDITS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="508 creates a credits property of the Work" test="//bf:Work[1]/bf:credits[1] = 'Music, Michael Fishbein ; camera, George Mo.'"/>
+  </x:scenario>
+  
 </x:description>

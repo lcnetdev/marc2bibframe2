@@ -45,5 +45,9 @@
       <subfield code="a">Scale 1:500,000;</subfield>
       <subfield code="b">1 in. equals 8 miles.</subfield>
     </datafield>
+    <datafield tag="508" ind1=" " ind2=" ">
+      <subfield code="a">Music, Michael Fishbein ; camera, George Mo.</subfield>
+    </datafield>
+    
   </record>
 </collection>

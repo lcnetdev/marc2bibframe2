@@ -255,6 +255,10 @@
       <subfield code="6">507-01</subfield>
       <subfield code="b">Перспектива карта не в масштабе.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">508-01</subfield>
+      <subfield code="a">Музыка, Майкл Фишбейн; камера, Джордж Mo.</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>
