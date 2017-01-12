@@ -227,6 +227,10 @@
       <subfield code="a">Дети</subfield>
       <subfield code="2">lcsh</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-01</subfield>
+      <subfield code="a">Из работ семьи Chase.</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>

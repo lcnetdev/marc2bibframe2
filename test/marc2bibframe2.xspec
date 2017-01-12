@@ -19,6 +19,7 @@
   <x:import href="ConvSpec-250-270.xspec"/>
   <x:import href="ConvSpec-3XX.xspec"/>
   <x:import href="ConvSpec-490-510-530to535-Links.xspec"/>
+  <x:import href="ConvSpec-5XX.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-X30and240-UnifTitle.xspec"/>
 
@@ -199,6 +200,11 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>23 cm.</bf:dimensions>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>Text based on the original work published under the title "H.C. Andersens eventyr / kritisk udgivet efter de originale eventyrhæfter med varianter ved Erik Dal og kommentarer ved Erling Nielsen": Copenhagen : Danske Sprog- og Litteraturselskab : C.A. Reitzel, 1990.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
             <bf:hasItem rdf:resource="http://example.org/13600108#Item050-11"/>
           </bf:Instance>
@@ -412,6 +418,11 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in.</bf:dimensions>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>Brief record.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
             <bf:hasItem rdf:resource="http://example.org/5637241#Item050-10"/>
           </bf:Instance>
@@ -621,6 +632,11 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>Title from home page as viewed on Aug. 19, 2000.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
             <bf:hasItem rdf:resource="http://example.org/12149120#Item050-14"/>
           </bf:Instance>
