@@ -115,8 +115,8 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
-      <xsl:when test="$tag='508'">
-        <xsl:apply-templates select="." mode="work508">
+      <xsl:when test="$tag='508' or $tag='511'">
+        <xsl:apply-templates select="." mode="workCreditsNote">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

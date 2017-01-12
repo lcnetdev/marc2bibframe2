@@ -295,6 +295,7 @@
                 <rdfs:label>sound recording</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>

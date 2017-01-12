@@ -264,6 +264,10 @@
       <subfield code="a">химический рефераты,</subfield>
       <subfield code="x">0009-2258</subfield>
     </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">511-01</subfield>
+      <subfield code="a">Джеки Гланвилл.</subfield>
+    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>

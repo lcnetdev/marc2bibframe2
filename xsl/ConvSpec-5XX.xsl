@@ -59,19 +59,30 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='508']" mode="work">
+  <xsl:template match="marc:datafield[@tag='508' or @tag='511']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work508">
+    <xsl:apply-templates select="." mode="workCreditsNote">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='508' or @tag='880']" mode="work508">
+  <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="workCreditsNote">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vDisplayConst">
+      <xsl:choose>
+        <xsl:when test="$vTag='511' and @ind1='1'">Cast: </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:credits><xsl:value-of select="."/></bf:credits>
+          <bf:credits><xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/></bf:credits>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -176,7 +187,7 @@
     <xsl:param name="pNoteType"/>
     <xsl:variable name="vTag">
       <xsl:choose>
-        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:datafield[@code='6'],1,3)"/></xsl:when>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
