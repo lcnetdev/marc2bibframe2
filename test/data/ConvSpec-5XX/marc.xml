@@ -20,5 +20,9 @@
       <subfield code="d">1965</subfield>
       <subfield code="o">U 58.4033.</subfield>
     </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">"Literature cited": p. 67-68.</subfield>
+      <subfield code="b">19</subfield>
+    </datafield>
   </record>
 </collection>

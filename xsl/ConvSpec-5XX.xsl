@@ -74,9 +74,23 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='504']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instanceNote5XX">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pNoteType">bibliography</xsl:with-param>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:datafield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -86,6 +100,14 @@
               <xsl:if test="$pNoteType != ''">
                 <bf:noteType><xsl:value-of select="$pNoteType"/></bf:noteType>
               </xsl:if>
+              <!-- special handling for other subfields -->
+              <xsl:choose>
+                <xsl:when test="$vTag='504'">
+                  <xsl:for-each select="../marc:subfield[@code='b']">
+                    <bf:count><xsl:value-of select="."/></bf:count>
+                  </xsl:for-each>
+                </xsl:when>
+              </xsl:choose>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>

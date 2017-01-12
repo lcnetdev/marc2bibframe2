@@ -34,4 +34,11 @@
     <x:expect label="$o creates an identifiedBy property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:identifiedBy/bf:DissertationIdentifier/rdf:value = 'U 58.4033.'"/>
   </x:scenario>
   
+  <x:scenario label="504 - BIBLIOGRAPHY, ETC. NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="504 creates a note/Note property of the Instance with noteType 'bibliography'" test="//bf:Instance[1]/bf:note[3]/bf:Note/bf:noteType = 'bibliography'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[3]/bf:Note/rdfs:label = '&quot;Literature cited&quot;: p. 67-68.'"/>
+    <x:expect label="$b creates a count property of the Note" test="//bf:Instance[1]/bf:note[3]/bf:Note/bf:count = '19'"/>
+  </x:scenario>
+    
 </x:description>
