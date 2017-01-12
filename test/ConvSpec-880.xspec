@@ -61,6 +61,7 @@
     <x:expect label="$6 386 creates creatorCharacteristic properties of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Дети'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
+    <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
     <x:expect label="$6 510 creates a bflc:indexedIn property of the Instance" test="//bf:Instance[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'химический рефераты'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>

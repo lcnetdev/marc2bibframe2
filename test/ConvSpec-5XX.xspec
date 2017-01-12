@@ -23,4 +23,15 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[2]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
+  <x:scenario label="502 - DISSERTATION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="502 creates a dissertation/Dissertation property of the Work" test="count(//bf:Work[1]/bf:dissertation/bf:Dissertation) = 2"/>
+    <x:expect label="$a creates an rdfs:label property of the Dissertation" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'Karl Schmidt''s thesis (doctoral)--Ludwig-Maximilians-Universität, Munich, 1965.'"/>
+    <x:expect label="$b creates a degree property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:degree = 'Doctoral'"/>
+    <x:expect label="$c creates a grantingInstitution property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:grantingInstitution/bf:Agent/rdfs:label = 'Ludwig-Maximilians-Universität, Munich'"/>
+    <x:expect label="$d creates a date property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:date = '1965'"/>
+    <x:expect label="$g creates a note property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:note/bf:Note/rdfs:label = 'Karl Schmidt''s thesis'"/>
+    <x:expect label="$o creates an identifiedBy property of the Dissertation" test="//bf:Work[1]/bf:dissertation[2]/bf:Dissertation/bf:identifiedBy/bf:DissertationIdentifier/rdf:value = 'U 58.4033.'"/>
+  </x:scenario>
+  
 </x:description>

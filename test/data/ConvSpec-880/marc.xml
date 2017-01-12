@@ -235,6 +235,10 @@
       <subfield code="6">501-01</subfield>
       <subfield code="a">С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">502-01</subfield>
+      <subfield code="a">тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.</subfield>
+    </datafield>
     <datafield tag="880" ind1="2" ind2=" ">
       <subfield code="6">510-01</subfield>
       <subfield code="a">химический рефераты,</subfield>

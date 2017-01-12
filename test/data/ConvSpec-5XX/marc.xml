@@ -10,5 +10,15 @@
       <subfield code="a">With: The reformed school / John Dury. London : Printed for R. Wasnothe, [1850]</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <datafield tag="502" ind1=" " ind2=" ">
+      <subfield code="a">Karl Schmidt's thesis (doctoral)--Ludwig-Maximilians-Universität, Munich, 1965.</subfield>
+    </datafield>
+    <datafield tag="502" ind1=" " ind2=" ">
+      <subfield code="g">Karl Schmidt's thesis</subfield>
+      <subfield code="b">Doctoral</subfield>
+      <subfield code="c">Ludwig-Maximilians-Universität, Munich</subfield>
+      <subfield code="d">1965</subfield>
+      <subfield code="o">U 58.4033.</subfield>
+    </datafield>
   </record>
 </collection>
