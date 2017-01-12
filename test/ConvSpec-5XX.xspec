@@ -53,4 +53,9 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
   </x:scenario>
   
+  <x:scenario label="507 - SCALE NOTE FOR GRAPHIC MATERIAL">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="506 creates a scale property of the Instance" test="//bf:Instance[1]/bf:scale[1] = 'Scale 1:500,000; 1 in. equals 8 miles.'"/>
+  </x:scenario>
+  
 </x:description>

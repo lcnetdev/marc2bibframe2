@@ -41,5 +41,9 @@
       <subfield code="u">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
       <subfield code="5">MH</subfield>
     </datafield>
+    <datafield tag="507" ind1=" " ind2=" ">
+      <subfield code="a">Scale 1:500,000;</subfield>
+      <subfield code="b">1 in. equals 8 miles.</subfield>
+    </datafield>
   </record>
 </collection>

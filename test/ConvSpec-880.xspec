@@ -65,6 +65,7 @@
     <x:expect label="$6 504 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
     <x:expect label="$6 505 creates a tableOfContents property of the Instance" test="//bf:Instance[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
     <x:expect label="$6 506 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label = 'Классифицированная информация.'"/>
+    <x:expect label="$6 507 creates a scale property of the Instance" test="//bf:Instance/bf:scale[1] = 'Перспектива карта не в масштабе.'"/>
     <x:expect label="$6 510 creates a bflc:indexedIn property of the Instance" test="//bf:Instance[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'химический рефераты'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
