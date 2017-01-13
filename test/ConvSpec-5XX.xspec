@@ -103,4 +103,12 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some other part'"/>
   </x:scenario>
   
+  <x:scenario label="521 - TARGET AUDIENCE NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="$a creates an intendedAudience/IntendedAudience property of the Instance" test="//bf:Instance[1]/bf:intendedAudience[2]/bf:IntendedAudience/rdfs:label = '4-6.'"/>
+    <x:expect label="ind1 can create a note property of the IntendedAudience" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:note/bf:Note/rdfs:label = 'interest grade level'"/>
+    <x:expect label="$b creates a source property of the IntendedAudience" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/rdfs:label = 'Follett Library Book Co.'"/>
+    <x:expect label="$c creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Puzzles'"/>
+  </x:scenario>
+  
 </x:description>

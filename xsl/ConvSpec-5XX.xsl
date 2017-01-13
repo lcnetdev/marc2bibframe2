@@ -257,6 +257,48 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='521']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance521">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='521' or @tag='880']" mode="instance521">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vNote">
+      <xsl:choose>
+        <xsl:when test="@ind1='0'">reading grade level</xsl:when>
+        <xsl:when test="@ind1='1'">interest age level</xsl:when>
+        <xsl:when test="@ind1='2'">interest grade level</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:intendedAudience>
+            <bf:IntendedAudience>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:if test="$vNote != ''">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="$vNote"/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='b']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:IntendedAudience>
+          </bf:intendedAudience>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>

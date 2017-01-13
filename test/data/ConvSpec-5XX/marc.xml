@@ -78,5 +78,11 @@
       <subfield code="u">http://www.mpaa.org</subfield>
       <subfield code="2">mpaa</subfield>
     </datafield>
+    <datafield tag="521" ind1="2" ind2=" ">
+      <subfield code="3">Puzzles</subfield>
+      <subfield code="a">K-3.</subfield>
+      <subfield code="a">4-6.</subfield>
+      <subfield code="b">Follett Library Book Co.</subfield>
+    </datafield>
   </record>
 </collection>

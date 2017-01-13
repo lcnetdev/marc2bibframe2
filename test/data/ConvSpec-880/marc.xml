@@ -289,6 +289,10 @@
       <subfield code="6">520-01</subfield>
       <subfield code="a">Иллюстрированный сборник потешек на музыку.</subfield>
     </datafield>
+    <datafield tag="880" ind1="4" ind2=" ">
+      <subfield code="6">521-01</subfield>
+      <subfield code="a">Умеренно мотивировано.</subfield>
+    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
