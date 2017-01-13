@@ -70,5 +70,13 @@
       <subfield code="p">Rome and Venice</subfield>
       <subfield code="d">1976 January through June.</subfield>
     </datafield>
+    <datafield tag="520" ind1="4" ind2=" ">
+      <subfield code="3">Some other part</subfield>
+      <subfield code="a">Contains swear words, sex scenes and violence,</subfield>
+      <subfield code="b">but otherwise it's ok.</subfield>
+      <subfield code="c">Central County Library</subfield>
+      <subfield code="u">http://www.mpaa.org</subfield>
+      <subfield code="2">mpaa</subfield>
+    </datafield>
   </record>
 </collection>

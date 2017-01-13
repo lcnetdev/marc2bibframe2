@@ -92,6 +92,47 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='520']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work520">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='520' or @tag='880']" mode="work520">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:summary>
+          <bf:Summary>
+            <xsl:if test="normalize-space($vLabel) != ''">
+              <rdfs:label><xsl:value-of select="normalize-space($vLabel)"/></rdfs:label>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='u']">
+              <bf:source>
+                <bf:Source>
+                  <rdfs:label>
+                    <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
+                </bf:Source>
+              </bf:source>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='c' or @code='2']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Summary>
+        </bf:summary>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="workCreditsNote">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
