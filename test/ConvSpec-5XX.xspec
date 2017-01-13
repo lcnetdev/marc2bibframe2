@@ -111,4 +111,9 @@
     <x:expect label="$c creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Puzzles'"/>
   </x:scenario>
   
+  <x:scenario label="522 - GEOGRAPHIC COVERAGE NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = 'Canada.'"/>
+  </x:scenario>
+  
 </x:description>

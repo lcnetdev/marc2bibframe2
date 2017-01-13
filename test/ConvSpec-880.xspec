@@ -11,7 +11,7 @@
 
   <x:scenario label="MARC tag 880">
     <x:context href="data/ConvSpec-880/marc.xml"/>
-    <x:expect label="$6 052 creates a geographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage/bf:Place/rdfs:label = 'Нью-Йорк'"/>
+    <x:expect label="$6 052 creates a geographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:Place/rdfs:label = 'Нью-Йорк'"/>
     <x:expect label="$6 055 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'פ5050 .2'"/>
     <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/rdf:value = 'ז 1 .630'"/>
     <x:expect label="$6 082 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[2]/bf:ClassificationDdc/bf:classificationPortion = '975,5 / 4252/00222'"/>
@@ -75,6 +75,7 @@
     <x:expect label="$6 518 creates a capture property of the Work" test="//bf:Work[1]/bf:capture/bf:Capture/rdfs:label = 'Работы по звуковым сопровождением диск записан 1955-1963 в различных местах.'"/>
     <x:expect label="$6 520 creates a summary property of the Work" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Иллюстрированный сборник потешек на музыку.'"/>
     <x:expect label="$6 521 creates an intendedAudience property of the Instance" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
+    <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>

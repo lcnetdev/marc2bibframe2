@@ -84,5 +84,8 @@
       <subfield code="a">4-6.</subfield>
       <subfield code="b">Follett Library Book Co.</subfield>
     </datafield>
+    <datafield tag="522" ind1=" " ind2=" ">
+      <subfield code="a">Canada.</subfield>
+    </datafield>
   </record>
 </collection>
