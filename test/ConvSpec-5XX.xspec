@@ -116,4 +116,9 @@
     <x:expect label="522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = 'Canada.'"/>
   </x:scenario>
   
+  <x:scenario label="524 - PREFERRED CITATION OF DESCRIBED MATERIALS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="524 creates a preferredCitation property of the Instance" test="//bf:Instance[1]/bf:preferredCitation[1] = 'James Hazen Hyde Papers, 1891-1941, New York Historical Society.'"/>
+  </x:scenario>
+
 </x:description>
