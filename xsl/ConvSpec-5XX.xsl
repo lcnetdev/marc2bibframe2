@@ -66,6 +66,32 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='518']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work518">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='518' or @tag='880']" mode="work518">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='d' or @code='o' or @code='p']"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:capture>
+          <bf:Capture>
+            <rdfs:label><xsl:value-of select="normalize-space($vLabel)"/></rdfs:label>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Capture>
+        </bf:capture>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="workCreditsNote">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">

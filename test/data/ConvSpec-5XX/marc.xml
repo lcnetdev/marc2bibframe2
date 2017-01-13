@@ -61,5 +61,14 @@
     <datafield tag="516" ind1=" " ind2=" ">
       <subfield code="a">Computer programs.</subfield>
     </datafield>
+    <datafield tag="518" ind1=" " ind2=" ">
+      <subfield code="a">Found on March 5, 1975, in Richmond, Tex.</subfield>
+    </datafield>
+    <datafield tag="518" ind1=" " ind2=" ">
+      <subfield code="3">Part of the work</subfield>
+      <subfield code="o">Filmed on location</subfield>
+      <subfield code="p">Rome and Venice</subfield>
+      <subfield code="d">1976 January through June.</subfield>
+    </datafield>
   </record>
 </collection>

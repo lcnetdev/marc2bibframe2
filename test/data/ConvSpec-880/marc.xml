@@ -282,6 +282,10 @@
       <subfield code="a">Компьютерные программы.</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">518-01</subfield>
+      <subfield code="a">Работы по звуковым сопровождением диск записан 1955-1963 в различных местах.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
     </datafield>

@@ -72,6 +72,7 @@
     <x:expect label="$6 513 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Ежеквартальный отчет технический прогресс; Январь-апрель 1, 1977.'"/>
     <x:expect label="$6 515 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Выпущенные в частях.'"/>
     <x:expect label="$6 516 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label = 'Компьютерные программы.'"/>
+    <x:expect label="$6 518 creates a capture property of the Work" test="//bf:Work[1]/bf:capture/bf:Capture/rdfs:label = 'Работы по звуковым сопровождением диск записан 1955-1963 в различных местах.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>

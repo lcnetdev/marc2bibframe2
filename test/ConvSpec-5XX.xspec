@@ -85,4 +85,12 @@
     <x:expect label="516 creates a note/Note property of the Instance with noteType 'type of computer data'" test="//bf:Instance[1]/bf:note[6]/bf:Note/bf:noteType = 'type of computer data'"/>
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Computer programs.'"/>
   </x:scenario>
+
+  <x:scenario label="518 - DATE/TIME AND PLACE OF AN EVENT NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="518 creates a capture/Capture property of the Work" test="count(//bf:Work[1]/bf:capture/bf:Capture) = 2"/>
+    <x:expect label="$adop create an rdfs:label property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/rdfs:label = 'Filmed on location Rome and Venice 1976 January through June.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Part of the work'"/>
+  </x:scenario>
+  
 </x:description>
