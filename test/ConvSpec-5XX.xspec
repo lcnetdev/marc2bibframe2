@@ -121,4 +121,9 @@
     <x:expect label="524 creates a preferredCitation property of the Instance" test="//bf:Instance[1]/bf:preferredCitation[1] = 'James Hazen Hyde Papers, 1891-1941, New York Historical Society.'"/>
   </x:scenario>
 
+  <x:scenario label="525 - SUPPLEMENT NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
+  </x:scenario>
+
 </x:description>

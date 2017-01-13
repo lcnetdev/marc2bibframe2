@@ -339,6 +339,28 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='525']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance525">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='525' or @tag='880']" mode="instance525">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:supplementaryContent>
+            <bf:SupplementaryContent>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:SupplementaryContent>
+          </bf:supplementaryContent>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>

@@ -302,6 +302,10 @@
       <subfield code="a">Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">525-01</subfield>
+      <subfield code="a">Имеет многочисленные добавки.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
     </datafield>
