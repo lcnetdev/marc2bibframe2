@@ -394,6 +394,67 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='540']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance540">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='540' or @tag='880']" mode="instance540">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:usageAndAccessPolicy>
+          <bf:UsePolicy>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:source>
+                <bf:Source>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Source>
+              </bf:source>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='d']">
+              <xsl:variable name="vLabel">
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </xsl:variable>
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label>Authorized users: <xsl:value-of select="$vLabel"/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='u']">
+              <rdfs:label>
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:UsePolicy>
+        </bf:usageAndAccessPolicy>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>

@@ -148,4 +148,15 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the SystemRequirements" test="//bf:Instance[1]/bf:systemRequirements[1]/bf:SystemRequirements/bflc:applicableInstitution/bf:Agent/bf:code = 'NIC'"/>
   </x:scenario>
   
+  <x:scenario label="540 - TERMS GOVERNING USE AND REPRODUCTION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="540 creates a usageAndAccessPolicy/UsePolicy property of the Instance" test="count(//bf:Instance[1]/bf:usageAndAccessPolicy/bf:UsePolicy) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[1] = 'Photocopying prohibited'"/>
+    <x:expect label="$c creates a source property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:source/bf:Source/rdfs:label = '50 Stat.88'"/>
+    <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/>
+    <x:expect label="$u creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[2] = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+  </x:scenario>
+  
 </x:description>

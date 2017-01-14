@@ -109,5 +109,13 @@
       <subfield code="u">http://www.diglib.org/standards/bmarkfin.htm</subfield>
       <subfield code="5">NIC</subfield>
     </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="3">Diaries</subfield>
+      <subfield code="a">Photocopying prohibited;</subfield>
+      <subfield code="c">50 Stat.88;</subfield>
+      <subfield code="d">Executor of estate.</subfield>
+      <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
   </record>
 </collection>

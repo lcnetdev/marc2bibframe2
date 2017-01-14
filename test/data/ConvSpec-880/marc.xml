@@ -333,6 +333,10 @@
       <subfield code="6">538-01</subfield>
       <subfield code="a">Режим доступа: Интернет.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">540-01</subfield>
+      <subfield code="a">Литературные права Carrie Chapman Кэтт были посвящены общественности.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
