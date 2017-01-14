@@ -103,5 +103,11 @@
       <subfield code="g">5H</subfield>
       <subfield code="h">WUAFGLILIR5H01</subfield>
     </datafield>
+    <datafield tag="538" ind1=" " ind2=" ">
+      <subfield code="3">v.1-49(1927-1975)</subfield>
+      <subfield code="a">Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.</subfield>
+      <subfield code="u">http://www.diglib.org/standards/bmarkfin.htm</subfield>
+      <subfield code="5">NIC</subfield>
+    </datafield>
   </record>
 </collection>

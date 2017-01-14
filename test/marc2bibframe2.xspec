@@ -643,6 +643,11 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
+            <bf:systemRequirements>
+              <bf:SystemRequirements>
+                <rdfs:label>Mode of access: Internet.</rdfs:label>
+              </bf:SystemRequirements>
+            </bf:systemRequirements>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Title from home page as viewed on Aug. 19, 2000.</rdfs:label>
