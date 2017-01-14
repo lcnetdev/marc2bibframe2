@@ -117,5 +117,14 @@
       <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <datafield tag="541" ind1=" " ind2=" ">
+      <subfield code="3">Materials scheduled for permanent retention</subfield>
+      <subfield code="n">25</subfield>
+      <subfield code="o">reels of microfilm</subfield>
+      <subfield code="a">U.S. Department of Transportation;</subfield>
+      <subfield code="c">Transfer under schedule;</subfield>
+      <subfield code="d">1980/01/10.</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
   </record>
 </collection>
