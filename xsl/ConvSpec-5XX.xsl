@@ -177,7 +177,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='500' or @tag='501' or @tag='504' or @tag='515' or @tag='516']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='500' or @tag='501' or @tag='504' or @tag='515' or @tag='516' or @tag='536']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -376,6 +376,7 @@
         <xsl:when test="$vTag='504'">bibliography</xsl:when>
         <xsl:when test="$vTag='515'">issuance information</xsl:when>
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
+        <xsl:when test="$vTag='536'">funding information</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -392,6 +393,20 @@
                 <xsl:when test="$vTag='504'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:count><xsl:value-of select="."/></bf:count>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="$vTag='536'">
+                  <xsl:for-each select="../marc:subfield[@code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='g' or @code='h']">
+                    <xsl:variable name="vDisplayConst">
+                      <xsl:choose>
+                        <xsl:when test="@code='c'">Grant: </xsl:when>
+                        <xsl:when test="@code='e'">Program element: </xsl:when>
+                        <xsl:when test="@code='f'">Project: </xsl:when>
+                        <xsl:when test="@code='g'">Task: </xsl:when>
+                        <xsl:when test="@code='h'">Work unit: </xsl:when>
+                      </xsl:choose>
+                    </xsl:variable>
+                    <rdfs:label><xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/></rdfs:label>
                   </xsl:for-each>
                 </xsl:when>
               </xsl:choose>

@@ -93,5 +93,15 @@
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
+    <datafield tag="536" ind1=" " ind2=" ">
+      <subfield code="a">Sponsored by the U.S. Air Force</subfield>
+      <subfield code="b">N00014-68-A-0245-0007</subfield>
+      <subfield code="c">EF-77-C-01-2556</subfield>
+      <subfield code="d">910 3450</subfield>
+      <subfield code="e">601101F</subfield>
+      <subfield code="f">1LIR</subfield>
+      <subfield code="g">5H</subfield>
+      <subfield code="h">WUAFGLILIR5H01</subfield>
+    </datafield>
   </record>
 </collection>

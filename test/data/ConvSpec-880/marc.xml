@@ -306,6 +306,10 @@
       <subfield code="a">Имеет многочисленные добавки.</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">536-01</subfield>
+      <subfield code="a">При поддержке Всемирной организации здравоохранения</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
     </datafield>

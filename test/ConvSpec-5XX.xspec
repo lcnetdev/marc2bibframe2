@@ -126,4 +126,16 @@
     <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
   </x:scenario>
 
+  <x:scenario label="536 - FUNDING INFORMATION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="536 creates a note/Note property of the Instance with noteType 'funding information'" test="//bf:Instance[1]/bf:note[7]/bf:Note/bf:noteType = 'funding information'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[1] = 'Sponsored by the U.S. Air Force'"/>
+    <x:expect label="$b creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[2] = 'N00014-68-A-0245-0007'"/>
+    <x:expect label="$c creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[3] = 'Grant: EF-77-C-01-2556'"/>
+    <x:expect label="$d creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[4] = '910 3450'"/>
+    <x:expect label="$e creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[5] = 'Program element: 601101F'"/>
+    <x:expect label="$f creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[6] = 'Project: 1LIR'"/>
+    <x:expect label="$g creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[7] = 'Task: 5H'"/>
+    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[8] = 'Work unit: WUAFGLILIR5H01'"/>
+  </x:scenario>
 </x:description>
