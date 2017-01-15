@@ -141,4 +141,20 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      create an rdfs:label property with datatype xs:anyURI from a
+      subfield u
+  -->
+  <xsl:template match="marc:subfield" mode="subfieldu">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <rdfs:label>
+          <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
+          <xsl:value-of select="."/>
+        </rdfs:label>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>  

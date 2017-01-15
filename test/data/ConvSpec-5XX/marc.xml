@@ -132,5 +132,10 @@
       <subfield code="e">Also located at;</subfield>
       <subfield code="a">State Historical Society of Wisconsin.</subfield>
     </datafield>
+    <datafield tag="545" ind1="0" ind2=" ">
+      <subfield code="a">Author and reformer.</subfield>
+      <subfield code="b">Born Harriet Elizabeth Beecher.</subfield>
+      <subfield code="u">https://www.harrietbeecherstowecenter.org/hbs/</subfield>
+    </datafield>
   </record>
 </collection>

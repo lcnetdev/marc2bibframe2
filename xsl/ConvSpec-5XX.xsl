@@ -114,10 +114,9 @@
             <xsl:for-each select="marc:subfield[@code='u']">
               <bf:source>
                 <bf:Source>
-                  <rdfs:label>
-                    <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-                    <xsl:value-of select="."/>
-                  </rdfs:label>
+                  <xsl:apply-templates select="." mode="subfieldu">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
                 </bf:Source>
               </bf:source>
             </xsl:for-each>
@@ -184,7 +183,8 @@
                                        marc:datafield[@tag='515'] |
                                        marc:datafield[@tag='516'] |
                                        marc:datafield[@tag='536'] |
-                                       marc:datafield[@tag='544']">
+                                       marc:datafield[@tag='544'] |
+                                       marc:datafield[@tag='545']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -357,14 +357,12 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:systemRequirements>
           <bf:SystemRequirements>
-            <xsl:for-each select="marc:subfield[@code='a' or @code='u']">
-              <rdfs:label>
-                <xsl:if test="@code='u'">
-                  <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="."/>
-              </rdfs:label>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -420,12 +418,9 @@
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='u']">
-              <rdfs:label>
-                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-                <xsl:value-of select="."/>
-              </rdfs:label>
-            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -449,14 +444,14 @@
     </xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:choose>
-        <xsl:when test="$vTag='513'">
+        <xsl:when test="$vTag='513' or $vTag='545'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
         </xsl:when>
         <xsl:when test="$vTag='544'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="marc:subfield[@code='a']"/>
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a']"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -469,6 +464,12 @@
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
         <xsl:when test="$vTag='536'">funding information</xsl:when>
         <xsl:when test="$vTag='544'">related material</xsl:when>
+        <xsl:when test="$vTag='545'">
+          <xsl:choose>
+            <xsl:when test="@ind1='0'">biographical data</xsl:when>
+            <xsl:when test="@ind1='1'">administrative history</xsl:when>
+          </xsl:choose>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -503,6 +504,9 @@
                 </xsl:for-each>
               </xsl:when>
             </xsl:choose>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>

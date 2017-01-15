@@ -174,4 +174,11 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Flamingo statues'"/>
   </x:scenario>
   
+  <x:scenario label="545 - BIOGRAPHICAL OR HISTORICAL DATA">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="545 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[9]/bf:Note/bf:noteType = 'biographical data'"/>
+    <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[1] = 'Author and reformer. Born Harriet Elizabeth Beecher.'"/>
+    <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[2] = 'https://www.harrietbeecherstowecenter.org/hbs/'"/>
+  </x:scenario>
+  
 </x:description>
