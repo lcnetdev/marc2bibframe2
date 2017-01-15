@@ -126,5 +126,11 @@
       <subfield code="d">1980/01/10.</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <datafield tag="544" ind1=" " ind2=" ">
+      <subfield code="3">Flamingo statues</subfield>
+      <subfield code="d">Burt Barnes papers;</subfield>
+      <subfield code="e">Also located at;</subfield>
+      <subfield code="a">State Historical Society of Wisconsin.</subfield>
+    </datafield>
   </record>
 </collection>

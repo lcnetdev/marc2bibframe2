@@ -70,7 +70,7 @@
 
   <x:scenario label="513 - TYPE OF REPORT AND PERIOD COVERED NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="513 creates a note/Note property of the Instance with noteType 'Report type'" test="//bf:Instance[1]/bf:note[4]/bf:Note/bf:noteType = 'Report type'"/>
+    <x:expect label="513 creates a note/Note property of the Instance with noteType 'report type'" test="//bf:Instance[1]/bf:note[4]/bf:Note/bf:noteType = 'report type'"/>
     <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Quarterly technical progress report; Jan.-Apr. 1, 1977.'"/>
   </x:scenario>
 
@@ -165,6 +165,13 @@
     <x:expect label="$abcdefhno creates an rdfs:label property of the ImmediateAcquistion" test="//bf:Item[1]/bf:immediateAcquisition[1]/bf:ImmediateAcquisition/rdfs:label = '25 reels of microfilm U.S. Department of Transportation; Transfer under schedule; 1980/01/10.'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the ImmediateAcquisition" test="//bf:Item[1]/bf:immediateAcquisition[1]/bf:ImmediateAcquisition/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Materials scheduled for permanent retention'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the ImmediateAcquisition" test="//bf:Item[1]/bf:immediateAcquisition[1]/bf:ImmediateAcquisition/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+  </x:scenario>
+  
+  <x:scenario label="544 - LOCATION OF OTHER ARCHIVAL MATERIALS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="544 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[8]/bf:Note/bf:noteType = 'related material'"/>
+    <x:expect label="$abcden create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Burt Barnes papers; Also located at; State Historical Society of Wisconsin.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Flamingo statues'"/>
   </x:scenario>
   
 </x:description>
