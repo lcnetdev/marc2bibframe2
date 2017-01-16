@@ -353,6 +353,10 @@
       <subfield code="6">547-01</subfield>
       <subfield code="a">Издание меняется: 1916, Нью-Йорк издания.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">550-01</subfield>
+      <subfield code="a">Орган клуба Потомак на стороне естествоиспытателей.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

@@ -194,4 +194,10 @@
     <x:expect label="547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Edition varies: 1916, New York edition.'"/>
   </x:scenario>
   
+  <x:scenario label="550 - ISSUING BODY NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="550 creates a note/Note property of the Instance with noteType 'issuing body'" test="//bf:Instance[1]/bf:note[11]/bf:Note/bf:noteType = 'issuing body'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Vols. for 1972- issued with: Bureau de recherches géologiques et minières.'"/>
+  </x:scenario>
+  
 </x:description>
