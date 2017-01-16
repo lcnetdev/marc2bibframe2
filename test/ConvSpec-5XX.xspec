@@ -208,4 +208,9 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Claims settled under Treaty of Washington, May 8, 1871'"/>
   </x:scenario>
   
+  <x:scenario label="556 - INFORMATION ABOUT DOCUMENTATION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.'"/>
+  </x:scenario>
+  
 </x:description>

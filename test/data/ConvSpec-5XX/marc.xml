@@ -154,5 +154,8 @@
       <subfield code="b">Available in NARS central search room.</subfield>
       <subfield code="u">http://hdl.loc.gov/loc.mss/eadmss.ms996001</subfield>
     </datafield>
+    <datafield tag="556" ind1=" " ind2=" ">
+      <subfield code="a">BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.</subfield>
+    </datafield>
   </record>
 </collection>
