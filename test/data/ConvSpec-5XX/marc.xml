@@ -137,5 +137,10 @@
       <subfield code="b">Born Harriet Elizabeth Beecher.</subfield>
       <subfield code="u">https://www.harrietbeecherstowecenter.org/hbs/</subfield>
     </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="3">Marriage certificate</subfield>
+      <subfield code="a">German;</subfield>
+      <subfield code="b">Fraktur.</subfield>
+    </datafield>
   </record>
 </collection>

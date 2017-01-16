@@ -181,4 +181,12 @@
     <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[2] = 'https://www.harrietbeecherstowecenter.org/hbs/'"/>
   </x:scenario>
   
+  <x:scenario label="546 - LANGUAGE NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="546 creates a language/Language/note/Note property of the Work" test="count(//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'German'"/>
+    <x:expect label="$b creates a notation property of the Note" test="//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note/bf:notation/bf:Notation/rdfs:label = 'Fraktur'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate'"/>
+  </x:scenario>
+  
 </x:description>

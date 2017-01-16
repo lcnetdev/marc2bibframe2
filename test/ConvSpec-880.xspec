@@ -86,6 +86,7 @@
     <x:expect label="$6 540 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label = 'Литературные права Carrie Chapman Кэтт были посвящены общественности'"/>
     <x:expect label="$6 544 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Департамент здравоохранения Fonds, Услуги здравоохранения Отдел файлов.'"/>
     <x:expect label="$6 545 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Автор и реформатор.'"/>
+    <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>

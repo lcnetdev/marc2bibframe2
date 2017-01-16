@@ -154,6 +154,50 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='546']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work546">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='546' or @tag='880']" mode="work546">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:language>
+          <bf:Language>
+            <bf:note>
+              <bf:Note>
+                <xsl:for-each select="marc:subfield[@code='a']">
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code='b']">
+                  <bf:notation>
+                    <bf:Notation>
+                      <rdfs:label>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString" select="."/>
+                        </xsl:call-template>
+                      </rdfs:label>
+                    </bf:Notation>
+                  </bf:notation>
+                </xsl:for-each>
+                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Note>
+            </bf:note>
+          </bf:Language>
+        </bf:language>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="workCreditsNote">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">

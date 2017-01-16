@@ -345,6 +345,10 @@
       <subfield code="6">545-01</subfield>
       <subfield code="a">Автор и реформатор.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">546-01</subfield>
+      <subfield code="a">На французском.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
