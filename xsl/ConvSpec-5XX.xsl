@@ -230,7 +230,8 @@
                                        marc:datafield[@tag='544'] |
                                        marc:datafield[@tag='545'] |
                                        marc:datafield[@tag='547'] |
-                                       marc:datafield[@tag='550']">
+                                       marc:datafield[@tag='550'] |
+                                       marc:datafield[@tag='555']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -496,6 +497,9 @@
         <xsl:when test="$vTag='544'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
         </xsl:when>
+        <xsl:when test="$vTag='555'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']"/>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a']"/>
         </xsl:otherwise>
@@ -517,6 +521,12 @@
           </xsl:choose>
         </xsl:when>
         <xsl:when test="$vTag='550'">issuing body</xsl:when>
+        <xsl:when test="$vTag='555'">
+          <xsl:choose>
+            <xsl:when test="@ind1=' '">index</xsl:when>
+            <xsl:when test="@ind1='0'">finding aid</xsl:when>
+          </xsl:choose>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>

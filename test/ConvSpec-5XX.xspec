@@ -200,4 +200,12 @@
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Vols. for 1972- issued with: Bureau de recherches géologiques et minières.'"/>
   </x:scenario>
   
+  <x:scenario label="555 - CUMULATIVE INDEX/FINDING AIDS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="555 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[12]/bf:Note/bf:noteType = 'finding aid'"/>
+    <x:expect label="$abcd create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label[1] = 'Preliminary inventory prepared in 1962; Available in NARS central search room.'"/>
+    <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label[2] = 'http://hdl.loc.gov/loc.mss/eadmss.ms996001'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Claims settled under Treaty of Washington, May 8, 1871'"/>
+  </x:scenario>
+  
 </x:description>

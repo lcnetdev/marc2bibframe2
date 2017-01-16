@@ -148,5 +148,11 @@
     <datafield tag="550" ind1=" " ind2=" ">
       <subfield code="a">Vols. for 1972- issued with: Bureau de recherches géologiques et minières.</subfield>
     </datafield>
+    <datafield tag="555" ind1="0" ind2=" ">
+      <subfield code="3">Claims settled under Treaty of Washington, May 8, 1871</subfield>
+      <subfield code="a">Preliminary inventory prepared in 1962;</subfield>
+      <subfield code="b">Available in NARS central search room.</subfield>
+      <subfield code="u">http://hdl.loc.gov/loc.mss/eadmss.ms996001</subfield>
+    </datafield>
   </record>
 </collection>
