@@ -157,5 +157,8 @@
     <datafield tag="556" ind1=" " ind2=" ">
       <subfield code="a">BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.</subfield>
     </datafield>
+    <datafield tag="561" ind1=" " ind2=" ">
+      <subfield code="a">On permanent loan from the collection of Paul Mellon.</subfield>
+    </datafield>
   </record>
 </collection>

@@ -213,4 +213,10 @@
     <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.'"/>
   </x:scenario>
   
+  <x:scenario label="561 - OWNERSHIP AND CUSTODIAL HISTORY">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="561 creates a custodialHistory property of an Item" test="//bf:Item/bf:custodialHistory = 'On permanent loan from the collection of Paul Mellon.'"/>
+  </x:scenario>
+  
 </x:description>
+  
