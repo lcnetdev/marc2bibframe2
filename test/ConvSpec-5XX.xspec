@@ -215,8 +215,13 @@
   
   <x:scenario label="561 - OWNERSHIP AND CUSTODIAL HISTORY">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="561 creates a custodialHistory property of an Item" test="//bf:Item/bf:custodialHistory = 'On permanent loan from the collection of Paul Mellon.'"/>
+    <x:expect label="561 creates a custodialHistory property of an Item" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:custodialHistory = 'On permanent loan from the collection of Paul Mellon.'"/>
   </x:scenario>
   
+  <x:scenario label="563 - BINDING INFORMATION">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="563 creates a note property of an Item" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/rdfs:label = 'Late 16th century blind-tooled centrepiece binding, dark brown calf.'"/>
+  </x:scenario>
+
 </x:description>
   

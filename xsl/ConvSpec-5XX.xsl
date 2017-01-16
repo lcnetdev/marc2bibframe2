@@ -667,4 +667,19 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='563']" mode="item5XX">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:note>
+            <bf:Note>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Note>
+          </bf:note>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
