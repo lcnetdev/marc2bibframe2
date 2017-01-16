@@ -163,5 +163,15 @@
     <datafield tag="563" ind1=" " ind2=" ">
       <subfield code="a">Late 16th century blind-tooled centrepiece binding, dark brown calf.</subfield>
     </datafield>
+    <datafield tag="583" ind1=" " ind2=" ">
+      <subfield code="a">downgraded</subfield>
+      <subfield code="c">19910110</subfield>
+      <subfield code="h">Joe Smith</subfield>
+      <subfield code="k">Thomas Swing</subfield>
+      <subfield code="l">mutilated</subfield>
+      <subfield code="u">http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl</subfield>
+      <subfield code="z">Institute for Museum and Library Services grant</subfield>
+      <subfield code="2">pda</subfield>
+    </datafield>
   </record>
 </collection>

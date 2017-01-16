@@ -682,4 +682,49 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='583']" mode="item5XX">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:note>
+          <bf:Note>
+            <bf:noteType>action</bf:noteType>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:date><xsl:value-of select="."/></bf:date>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='h']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='k']">
+              <bf:agent>
+                <bf:Agent>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Agent>
+              </bf:agent>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='l']">
+              <bf:status>
+                <bf:Status>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Status>
+              </bf:status>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='z']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Note>
+        </bf:note>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>

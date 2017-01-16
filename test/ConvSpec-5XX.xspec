@@ -223,5 +223,18 @@
     <x:expect label="563 creates a note property of an Item" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/rdfs:label = 'Late 16th century blind-tooled centrepiece binding, dark brown calf.'"/>
   </x:scenario>
 
+  <x:scenario label="583 - ACTION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="583 creates a note/Note property of an Item with a noteType 'action'" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:noteType = 'action'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[1] = 'downgraded'"/>
+    <x:expect label="$c creates a date property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:date = '19910110'"/>
+    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[2] = 'Joe Smith'"/>
+    <x:expect label="$k creates an agent property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:agent/bf:Agent/rdfs:label = 'Thomas Swing'"/>
+    <x:expect label="$l creates a status property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:status/bf:Status/rdfs:label = 'mutilated'"/>
+    <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[4] = 'http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl'"/>
+    <x:expect label="$z creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[3] = 'Institute for Museum and Library Services grant'"/>
+    <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:source/bf:Source/rdfs:label = 'pda'"/>
+  </x:scenario>
+
 </x:description>
   
