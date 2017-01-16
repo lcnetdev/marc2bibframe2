@@ -145,12 +145,6 @@
       </xsl:when>
     </xsl:choose>
 
-    <!-- generate Item entities -->
-    <xsl:apply-templates mode="newItem">
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-    
   </xsl:template>
 
   <!-- suppress text from unmatched nodes -->

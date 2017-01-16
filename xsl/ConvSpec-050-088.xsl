@@ -373,50 +373,24 @@
   
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='050']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='050' or @tag='060']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="hasItem050">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='060']" mode="hasItem">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@ind1='0'">
-      <xsl:apply-templates select="." mode="hasItem050">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='050' or @tag='060' or @tag='880']" mode="hasItem050">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pItemUri"/>
+    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$serialization='rdfxml'">
+      <xsl:when test="$serialization = 'rdfxml'">
         <bf:hasItem>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="$pItemUri"/></xsl:attribute>
+          <xsl:apply-templates select="." mode="newItem">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="pItemUri" select="$vItemUri"/>
+          </xsl:apply-templates>
         </bf:hasItem>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:apply-templates select="." mode="item050">
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pItemUri" select="$vItemUri"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='050']" mode="item050">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pItemUri"/>
@@ -480,12 +454,12 @@
   <xsl:template match="marc:datafield[@tag='060']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:param name="pItemUri"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="@ind1='0'">
           <bf:Item>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
             <bf:heldBy>
               <bf:Agent>
                 <rdfs:label>National Library of Medicine</rdfs:label>

@@ -584,7 +584,11 @@
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:hasItem>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+          <xsl:apply-templates select="." mode="newItem">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="pItemUri" select="$vItemUri"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
         </bf:hasItem>
       </xsl:when>
     </xsl:choose>
@@ -593,14 +597,14 @@
   <xsl:template match="marc:datafield[@tag='541']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:param name="pItemUri"/>
     <xsl:variable name="vLabel">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='h' or @code='n' or @code='o']" mode="concat-nodes-space"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Item>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
           <bf:immediateAcquisition>
             <bf:ImmediateAcquisition>
               <rdfs:label><xsl:value-of select="normalize-space($vLabel)"/></rdfs:label>
