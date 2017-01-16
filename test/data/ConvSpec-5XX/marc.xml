@@ -142,5 +142,8 @@
       <subfield code="a">German;</subfield>
       <subfield code="b">Fraktur.</subfield>
     </datafield>
+    <datafield tag="547" ind1=" " ind2=" ">
+      <subfield code="a">Edition varies: 1916, New York edition.</subfield>
+    </datafield>
   </record>
 </collection>

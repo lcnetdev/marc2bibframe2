@@ -228,7 +228,8 @@
                                        marc:datafield[@tag='516'] |
                                        marc:datafield[@tag='536'] |
                                        marc:datafield[@tag='544'] |
-                                       marc:datafield[@tag='545']">
+                                       marc:datafield[@tag='545'] |
+                                       marc:datafield[@tag='547']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>

@@ -349,7 +349,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
-      <xsl:when test="$tag='500' or $tag='501' or $tag='504' or $tag='513' or $tag='515' or $tag='516' or $tag='536' or $tag='544' or $tag='545'">
+      <xsl:when test="$tag='500' or $tag='501' or $tag='504' or $tag='513' or $tag='515' or $tag='516' or $tag='536' or $tag='544' or $tag='545' or $tag='547'">
         <xsl:apply-templates select="." mode="instanceNote5XX">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
