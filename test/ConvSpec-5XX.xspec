@@ -257,5 +257,12 @@
     <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
   
+  <x:scenario label="586 - AWARDS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="586 creates a note/Note property of the Instance with noteType 'award'" test="//bf:Instance[1]/bf:note[16]/bf:Note/bf:noteType = 'award'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'National Book Award, 1981'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Accompanying material'"/>
+  </x:scenario>
+  
 </x:description>
   

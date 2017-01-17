@@ -377,6 +377,10 @@
       <subfield code="6">585-01</subfield>
       <subfield code="a">Выставлены: "Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции", организованной Ворчестер художественного музея и Американской федерации искусств, 1982.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">585-01</subfield>
+      <subfield code="a">Национальная книжная премия, 1981</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

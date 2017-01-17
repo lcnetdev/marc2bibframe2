@@ -186,5 +186,9 @@
       <subfield code="a">Exhibited: "Le Brun à Versailles," sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <datafield tag="586" ind1=" " ind2=" ">
+      <subfield code="3">Accompanying material</subfield>
+      <subfield code="a">National Book Award, 1981</subfield>
+    </datafield>
   </record>
 </collection>

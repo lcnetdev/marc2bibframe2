@@ -94,6 +94,7 @@
     <x:expect label="$6 580 creates a note property of the Work" test="//bf:Work[1]/bf:note[1]/bf:Note/rdfs:label = 'Формы часть Frances Benjamin Johnston Collection.'"/>
     <x:expect label="$6 581 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Инвентаризация американской скульптуры: ксерокопия. 1982.'"/>
     <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
+    <x:expect label="$6 586 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[19]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
