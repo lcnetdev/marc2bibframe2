@@ -433,15 +433,15 @@
                 <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
-            <bf:classification>
-              <bf:ClassificationLcc>
+            <bf:shelfMark>
+              <bf:ShelfMarkLcc>
                 <rdfs:label>
                   <xsl:call-template name="chopPunctuation">
                     <xsl:with-param name="chopString"><xsl:value-of select="$vClassLabel"/></xsl:with-param>
                   </xsl:call-template>
                 </rdfs:label>
-              </bf:ClassificationLcc>
-            </bf:classification>
+              </bf:ShelfMarkLcc>
+            </bf:shelfMark>
           </xsl:for-each>
           <bf:itemOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
