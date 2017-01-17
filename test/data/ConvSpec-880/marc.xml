@@ -365,6 +365,10 @@
       <subfield code="6">556-01</subfield>
       <subfield code="a">BASIC ссылка. 3-е изд. Бока-Ратон, штат Флорида. : IBM, c1984. (Персональный компьютер аппаратные справочная библиотека); 6361132.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">580-01</subfield>
+      <subfield code="a">Формы часть Frances Benjamin Johnston Collection.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

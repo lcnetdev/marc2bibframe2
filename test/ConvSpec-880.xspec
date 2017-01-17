@@ -91,6 +91,7 @@
     <x:expect label="$6 550 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Орган клуба Потомак на стороне естествоиспытателей.'"/>
     <x:expect label="$6 555 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'Совокупный индекс с учетом включенных в каждом томе, -V. 29.'"/>
     <x:expect label="$6 556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'BASIC ссылка. 3-е изд. Бока-Ратон, штат Флорида. : IBM, c1984. (Персональный компьютер аппаратные справочная библиотека); 6361132.'"/>
+    <x:expect label="$6 580 creates a note property of the Work" test="//bf:Work[1]/bf:note[1]/bf:Note/rdfs:label = 'Формы часть Frances Benjamin Johnston Collection.'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
