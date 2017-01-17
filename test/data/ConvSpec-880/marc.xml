@@ -369,6 +369,14 @@
       <subfield code="6">580-01</subfield>
       <subfield code="a">Формы часть Frances Benjamin Johnston Collection.</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">581-01</subfield>
+      <subfield code="a">Инвентаризация американской скульптуры: ксерокопия. 1982.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">585-01</subfield>
+      <subfield code="a">Выставлены: "Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции", организованной Ворчестер художественного музея и Американской федерации искусств, 1982.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

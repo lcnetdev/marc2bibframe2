@@ -228,6 +228,14 @@
     <x:expect label="580 creates a note/Note property of the Work" test="//bf:Work[1]/bf:note[1]/bf:Note/rdfs:label = 'Forms part of the Frances Benjamin Johnston Collection.'"/>
   </x:scenario>
   
+  <x:scenario label="581 - PUBLICATIONS ABOUT DESCRIBED MATERIALS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="581 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[14]/bf:Note/bf:noteType = 'related material'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Reproduction: Antiques, June 1952, p. 76.'"/>
+    <x:expect label="$z creates an identifiedBy property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/bf:identifiedBy/bf:Isbn/rdf:value = '1234567890'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Preliminary reports'"/>
+  </x:scenario>
+  
   <x:scenario label="583 - ACTION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="583 creates a note/Note property of an Item with a noteType 'action'" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:noteType = 'action'"/>
@@ -241,5 +249,13 @@
     <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:source/bf:Source/rdfs:label = 'pda'"/>
   </x:scenario>
 
+  <x:scenario label="585 - EXHIBITIONS NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="585 creates a note/Note property of the Instance with noteType 'exhibition'" test="//bf:Instance[1]/bf:note[15]/bf:Note/bf:noteType = 'exhibition'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'Exhibited: &quot;Le Brun à Versailles,&quot; sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Color lithographs'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+  </x:scenario>
+  
 </x:description>
   

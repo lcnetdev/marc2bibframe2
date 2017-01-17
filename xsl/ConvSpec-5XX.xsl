@@ -242,19 +242,14 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template mode="instance" match="marc:datafield[@tag='500'] |
-                                       marc:datafield[@tag='501'] |
-                                       marc:datafield[@tag='504'] |
-                                       marc:datafield[@tag='513'] |
-                                       marc:datafield[@tag='515'] |
-                                       marc:datafield[@tag='516'] |
-                                       marc:datafield[@tag='536'] |
-                                       marc:datafield[@tag='544'] |
-                                       marc:datafield[@tag='545'] |
-                                       marc:datafield[@tag='547'] |
-                                       marc:datafield[@tag='550'] |
-                                       marc:datafield[@tag='555'] |
-                                       marc:datafield[@tag='556']">
+  <xsl:template mode="instance" match="marc:datafield[@tag='500'] | marc:datafield[@tag='501'] |
+                                       marc:datafield[@tag='504'] | marc:datafield[@tag='513'] |
+                                       marc:datafield[@tag='515'] | marc:datafield[@tag='516'] |
+                                       marc:datafield[@tag='536'] | marc:datafield[@tag='544'] |
+                                       marc:datafield[@tag='545'] | marc:datafield[@tag='547'] |
+                                       marc:datafield[@tag='550'] | marc:datafield[@tag='555'] |
+                                       marc:datafield[@tag='556'] | marc:datafield[@tag='581'] |
+                                       marc:datafield[@tag='585']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -536,7 +531,7 @@
         <xsl:when test="$vTag='515'">issuance information</xsl:when>
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
         <xsl:when test="$vTag='536'">funding information</xsl:when>
-        <xsl:when test="$vTag='544'">related material</xsl:when>
+        <xsl:when test="$vTag='544' or $vTag='581'">related material</xsl:when>
         <xsl:when test="$vTag='545'">
           <xsl:choose>
             <xsl:when test="@ind1='0'">biographical data</xsl:when>
@@ -550,6 +545,7 @@
             <xsl:when test="@ind1='0'">finding aid</xsl:when>
           </xsl:choose>
         </xsl:when>
+        <xsl:when test="$vTag='585'">exhibition</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -581,6 +577,15 @@
                     </xsl:choose>
                   </xsl:variable>
                   <rdfs:label><xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/></rdfs:label>
+                </xsl:for-each>
+              </xsl:when>
+              <xsl:when test="$vTag='581'">
+                <xsl:for-each select="marc:subfield[@code='z']">
+                  <bf:identifiedBy>
+                    <bf:Isbn>
+                      <rdf:value><xsl:value-of select="."/></rdf:value>
+                    </bf:Isbn>
+                  </bf:identifiedBy>
                 </xsl:for-each>
               </xsl:when>
             </xsl:choose>

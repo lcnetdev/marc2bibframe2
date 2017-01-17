@@ -166,6 +166,11 @@
     <datafield tag="580" ind1=" " ind2=" ">
       <subfield code="a">Forms part of the Frances Benjamin Johnston Collection.</subfield>
     </datafield>
+    <datafield tag="581" ind1=" " ind2=" ">
+      <subfield code="3">Preliminary reports</subfield>
+      <subfield code="a">Reproduction: Antiques, June 1952, p. 76.</subfield>
+      <subfield code="z">1234567890</subfield>
+    </datafield>
     <datafield tag="583" ind1=" " ind2=" ">
       <subfield code="a">downgraded</subfield>
       <subfield code="c">19910110</subfield>
@@ -175,6 +180,11 @@
       <subfield code="u">http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl</subfield>
       <subfield code="z">Institute for Museum and Library Services grant</subfield>
       <subfield code="2">pda</subfield>
+    </datafield>
+    <datafield tag="585" ind1=" " ind2=" ">
+      <subfield code="3">Color lithographs</subfield>
+      <subfield code="a">Exhibited: "Le Brun à Versailles," sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.</subfield>
+      <subfield code="5">DLC</subfield>
     </datafield>
   </record>
 </collection>
