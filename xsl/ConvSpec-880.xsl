@@ -359,7 +359,7 @@
                       $tag='536' or $tag='544' or $tag='545' or
                       $tag='547' or $tag='550' or $tag='555' or
                       $tag='556' or $tag='581' or $tag='585' or
-                      $tag='586'">
+                      $tag='586' or $tag='588'">
         <xsl:apply-templates select="." mode="instanceNote5XX">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>

@@ -264,5 +264,12 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Accompanying material'"/>
   </x:scenario>
   
+  <x:scenario label="588 - SOURCE OF DESCRIPTION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="588 creates a note/Note property of the Instance with noteType 'description source'" test="//bf:Instance[1]/bf:note[17]/bf:Note/bf:noteType = 'description source'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[17]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'EZB'"/>
+  </x:scenario>
+
 </x:description>
   

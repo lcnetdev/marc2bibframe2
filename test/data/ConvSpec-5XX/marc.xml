@@ -190,5 +190,9 @@
       <subfield code="3">Accompanying material</subfield>
       <subfield code="a">National Book Award, 1981</subfield>
     </datafield>
+    <datafield tag="588" ind1=" " ind2=" ">
+      <subfield code="a">Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.</subfield>
+      <subfield code="5">EZB</subfield>
+    </datafield>
   </record>
 </collection>

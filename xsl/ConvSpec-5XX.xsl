@@ -249,7 +249,8 @@
                                        marc:datafield[@tag='545'] | marc:datafield[@tag='547'] |
                                        marc:datafield[@tag='550'] | marc:datafield[@tag='555'] |
                                        marc:datafield[@tag='556'] | marc:datafield[@tag='581'] |
-                                       marc:datafield[@tag='585'] | marc:datafield[@tag='586']">
+                                       marc:datafield[@tag='585'] | marc:datafield[@tag='586'] |
+                                       marc:datafield[@tag='588']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -547,6 +548,7 @@
         </xsl:when>
         <xsl:when test="$vTag='585'">exhibition</xsl:when>
         <xsl:when test="$vTag='586'">award</xsl:when>
+        <xsl:when test="$vTag='588'">description source</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
