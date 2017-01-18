@@ -28,7 +28,7 @@
     <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[6]/bf:Title/bf:variantType = 'former'"/>
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Полный счет'"/>
-    <x:expect label="$6 255 $a creates a scale property of the Work" test="//bf:Work[1]/bf:scale = 'Масштаб не дано'"/>
+    <x:expect label="$6 255 $a creates a scale property of the Work" test="//bf:Work[1]/bf:scale/bf:Scale/rdfs:label = 'Масштаб не дано'"/>
     <x:expect label="$6 256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Компьютерные данные (2 файлов: 876,000, 775,000 записей)'"/>
     <x:expect label="$6 257 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:Production/bf:place/bf:Place/rdfs:label = 'Франция'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Лондон'"/>

@@ -63,9 +63,13 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:scale>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-            </xsl:call-template>
+            <bf:Scale>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:Scale>
           </bf:scale>
         </xsl:for-each>
         <bf:cartographicAttributes>
