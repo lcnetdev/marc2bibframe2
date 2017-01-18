@@ -40,8 +40,8 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="336 creates a content property of the Work" test="count(//bf:Work[1]/bf:content) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/rdfs:label = 'performed music'"/>
-    <x:expect label="$b creates a code property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:code = 'prm'"/>
-    <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/rdfs:label = 'rdacontent'"/>
+    <x:expect label="$b creates an rdf:about attribute of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentType/prm'"/>
+    <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/rdfs:label = 'rda'"/>
     <x:expect label="$0 creates an identifiedBy property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:identifiedBy/bf:Identifier/rdf:value = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'record'"/>
   </x:scenario>
@@ -50,8 +50,8 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="337 creates a media property of the Instance" test="count(//bf:Instance[1]/bf:media) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/rdfs:label = 'audio'"/>
-    <x:expect label="$b creates a code property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:code = 's'"/>
-    <x:expect label="$2 creates a source property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:source/bf:Source/rdfs:label = 'rdamedia'"/>
+    <x:expect label="$b creates an rdf:about attribute of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaType/s'"/>
+    <x:expect label="$2 creates a source property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:source/bf:Source/rdfs:label = 'rda'"/>
     <x:expect label="$0 creates an identifiedBy property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:identifiedBy/bf:Identifier/rdf:value = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
@@ -60,8 +60,8 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="337 creates a carrier property of the Instance" test="count(//bf:Instance[1]/bf:carrier) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/rdfs:label = 'audio disc'"/>
-    <x:expect label="$b creates a code property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:code = 'sd'"/>
-    <x:expect label="$2 creates a source property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:source/bf:Source/rdfs:label = 'rdacarrier'"/>
+    <x:expect label="$b creates an rdf:about attribute of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/@rdf:about = 'http://id.loc.gov/vocabulary/carriers/sd'"/>
+    <x:expect label="$2 creates a source property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:source/bf:Source/rdfs:label = 'rda'"/>
     <x:expect label="$0 creates an identifiedBy property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:identifiedBy/bf:Identifier/rdf:value = 'http://id.loc.gov/vocabulary/carriers/sd'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
@@ -81,7 +81,6 @@
     <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
     <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/rdfs:label = 'rda'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:baseMaterial[1]/bf:BaseMaterial/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'self-portrait'"/>
   </x:scenario>
 
   <x:scenario label="344 - SOUND CHARACTERISTICS">
@@ -153,9 +152,9 @@
   <x:scenario label="352 - DIGITAL GRAPHIC REPRESENTATION">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a digitalCharacteristic/CartographicDataType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[7]/bf:CartographicDataType/rdfs:label = 'Vector'"/>
-    <x:expect label="$b creates a digitalCharacteristic/CartographicObjectType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[8]/bf:CartographicObjectType/rdfs:label = 'Point'"/>
-    <x:expect label="$c creates a digitalCharacteristic/ObjectCount property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[9]/bf:ObjectCount/rdfs:label = '13671'"/>
-    <x:expect label="$q creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[12]/bf:EncodingFormat/rdfs:label = 'ARC/INFO export'"/>
+    <x:expect label="$b creates a digitalCharacteristic/CartographicObjectType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[9]/bf:CartographicObjectType/rdfs:label = 'Point'"/>
+    <x:expect label="$c creates a digitalCharacteristic/ObjectCount property of the CartographicObjectType" test="//bf:Instance[1]/bf:digitalCharacteristic[9]/bf:CartographicObjectType/bf:count = '13671'"/>
+    <x:expect label="$q creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[8]/bf:EncodingFormat/rdfs:label = 'ARC/INFO export'"/>
   </x:scenario>
   
   <x:scenario label="362 - DATES OF PUBLICATION AND/OR SEQUENTIAL DESIGNATION">
@@ -177,6 +176,8 @@
     <x:expect label="$b creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute']) = 1"/>
     <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='doubling']/parent::*/parent::*/parent::*/rdfs:label = 'synthesizer'"/>
     <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'alternative' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='alternative']/parent::*/parent::*/parent::*/rdfs:label = 'baritone horn'"/>
+    <x:expect label="$s creates a note property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:note[1]/bf:Note/rdfs:label = 'Total performers: 2'"/>
+    <x:expect label="$v creates a note property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:note[2]/bf:Note/rdfs:label = 'piano is prominent, but other instruments are not identified'"/>
     <x:expect label="$2 creates a source property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/rdfs:label = 'lcmpt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
   </x:scenario>

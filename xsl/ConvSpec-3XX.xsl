@@ -16,6 +16,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:content</xsl:with-param>
       <xsl:with-param name="pResource">bf:Content</xsl:with-param>
+      <xsl:with-param name="pUriStem"><xsl:value-of select="$contentType"/></xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -111,8 +112,18 @@
                 </bf:status>
               </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="following-sibling::marc:subfield[@code='n' or @code='e'][position()=1]">
-                <bf:count><xsl:value-of select="."/></bf:count>
+              <xsl:if test="following-sibling::marc:subfield[position()=1]/@code='n' or following-sibling::marc:subfield[position()=1]/@code='e'">
+                <bf:count><xsl:value-of select="following-sibling::marc:subfield[position()=1]"/></bf:count>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='s' or @code='v']">
+                <xsl:variable name="vDisplayConst">
+                  <xsl:if test="@code='s'">Total performers: </xsl:if>
+                </xsl:variable>
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="concat($vDisplayConst,.)"/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -216,42 +227,75 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
+    <xsl:param name="pUriStem"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
+        <xsl:for-each select="marc:subfield[@code='b']">
           <xsl:element name="{$pProp}">
             <xsl:element name="{$pResource}">
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
-                <bf:code><xsl:value-of select="."/></bf:code>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,.)"/></xsl:attribute>
+              <xsl:if test="preceding-sibling::marc:subfield[position()=1]/@code = 'a'">
+                <rdfs:label><xsl:value-of select="preceding-sibling::marc:subfield[position()=1]"/></rdfs:label>
+              </xsl:if>
+              <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = '0'">
+                <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='2']">
+                <xsl:choose>
+                  <xsl:when test="contains(.,'rda')">
+                    <bf:source>
+                      <bf:Source>
+                        <rdfs:label>rda</rdfs:label>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:apply-templates select="." mode="subfield2">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:for-each>
-              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </xsl:element>
           </xsl:element>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='b'][count(preceding-sibling::marc:subfield[@code='a'][position()=1])=0]">
-          <bf:content>
-            <bf:Content>
-              <bf:code><xsl:value-of select="."/></bf:code>
-              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:Content>
-          </bf:content>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:if test="following-sibling::marc:subfield[position()=1]/@code != 'b'">
+            <xsl:element name="{$pProp}">
+              <xsl:element name="{$pResource}">
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = '0'">
+                  <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+                <xsl:for-each select="../marc:subfield[@code='2']">
+                  <xsl:choose>
+                    <xsl:when test="contains(.,'rda')">
+                      <bf:source>
+                        <bf:Source>
+                          <rdfs:label>rda</rdfs:label>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates select="." mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:for-each>
+                <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:element>
+            </xsl:element>
+          </xsl:if>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -374,6 +418,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:media</xsl:with-param>
       <xsl:with-param name="pResource">bf:Media</xsl:with-param>
+      <xsl:with-param name="pUriStem"><xsl:value-of select="$mediaType"/></xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -383,6 +428,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
       <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
+      <xsl:with-param name="pUriStem"><xsl:value-of select="$carriers"/></xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -674,20 +720,16 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='q']">
+        <xsl:for-each select="marc:subfield[@code='a' or @code='q']">
           <xsl:variable name="vResource">
             <xsl:choose>
               <xsl:when test="@code='a'">bf:CartographicDataType</xsl:when>
-              <xsl:when test="@code='b'">bf:CartographicObjectType</xsl:when>
-              <xsl:when test="@code='c'">bf:ObjectCount</xsl:when>
               <xsl:when test="@code='q'">bf:EncodingFormat</xsl:when>
             </xsl:choose>
           </xsl:variable>
           <xsl:variable name="vProcess">
             <xsl:choose>
               <xsl:when test="@code='a'">chopPunctuation</xsl:when>
-              <xsl:when test="@code='b'">chopPunctuation</xsl:when>
-              <xsl:when test="@code='c'">chopParens</xsl:when>
               <xsl:when test="@code='q'">chopPunctuation</xsl:when>
             </xsl:choose>
           </xsl:variable>
@@ -697,6 +739,24 @@
             <xsl:with-param name="pResource" select="$vResource"/>
             <xsl:with-param name="pProcess" select="$vProcess"/>
           </xsl:apply-templates>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:digitalCharacteristic>
+            <bf:CartographicObjectType>
+              <rdfs:label>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+              <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = 'c'">
+                <bf:count>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="following-sibling::marc:subfield[position()=1]"/>
+                  </xsl:call-template>
+                </bf:count>
+              </xsl:if>
+            </bf:CartographicObjectType>
+          </bf:digitalCharacteristic>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
