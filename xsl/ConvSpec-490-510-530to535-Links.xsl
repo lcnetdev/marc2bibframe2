@@ -10,46 +10,6 @@
 
   <!-- Conversion specs for 490, 510, 530-535 - Other linking entries -->
 
-  <xsl:template match="marc:datafield[@tag='490']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:seriesStatement>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesStatement>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='v']">
-          <bf:seriesEnumeration>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesEnumeration>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='x']">
-          <bf:hasSeries>
-            <bf:Work>
-              <bf:identifiedBy>
-                <bf:Issn>
-                  <rdfs:label>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:Issn>
-              </bf:identifiedBy>
-            </bf:Work>
-          </bf:hasSeries>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="marc:datafield[@tag='530' or @tag='533' or @tag='534']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="recordid"/>
@@ -81,6 +41,24 @@
               <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
             </bf:instanceOf>
             <xsl:choose>
+              <xsl:when test="$vTag='533'">
+                <bf:title>
+                  <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="label">
+                      <xsl:apply-templates mode="concat-nodes-space"
+                                           select="../marc:datafield[@tag='245']/marc:subfield[@code='a' or
+                                                   @code='b' or
+                                                   @code='f' or 
+                                                   @code='g' or
+                                                   @code='k' or
+                                                   @code='n' or
+                                                   @code='p' or
+                                                   @code='s']"/>
+                    </xsl:with-param>
+                  </xsl:apply-templates>
+                </bf:title>
+              </xsl:when>                  
               <xsl:when test="$vTag='534' and marc:subfield[@code='t']">
                 <bf:title>
                   <bf:InstanceTitle>
@@ -221,11 +199,11 @@
         <xsl:for-each select="marc:subfield[@code='d']">
           <bf:identifiedBy>
             <bf:StockNumber>
-              <rdfs:label>
+              <rdf:value>
                 <xsl:call-template name="chopPunctuation">
                   <xsl:with-param name="chopString" select="."/>
                 </xsl:call-template>
-              </rdfs:label>
+              </rdf:value>
             </bf:StockNumber>
           </bf:identifiedBy>
         </xsl:for-each>
@@ -360,9 +338,9 @@
     <xsl:param name="recordid"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:originalVersion>
+        <bf:originalVersionOf>
           <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-        </bf:originalVersion>
+        </bf:originalVersionOf>
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:contribution>
             <bf:Contribution>
@@ -441,11 +419,11 @@
           </xsl:variable>
           <bf:identifiedBy>
             <xsl:element name="{$vIdentifier}">
-              <rdfs:label>
+              <rdf:value>
                 <xsl:call-template name="chopPunctuation">
                   <xsl:with-param name="chopString" select="."/>
                 </xsl:call-template>
-              </rdfs:label>
+              </rdf:value>
             </xsl:element>
           </bf:identifiedBy>
         </xsl:for-each>
@@ -514,13 +492,6 @@
                 </bf:Agent>
               </bf:heldBy>
             </xsl:if>
-            <xsl:for-each select="marc:subfield[@code='g']">
-              <bf:place>
-                <bf:Place>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,.)"/></xsl:attribute>
-                </bf:Place>
-              </bf:place>
-            </xsl:for-each>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -530,6 +501,46 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='490']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:seriesStatement>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString" select="."/>
+              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </bf:seriesStatement>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='v']">
+          <bf:seriesEnumeration>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString" select="."/>
+              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </bf:seriesEnumeration>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='x']">
+          <bf:hasSeries>
+            <bf:Instance>
+              <bf:identifiedBy>
+                <bf:Issn>
+                  <rdf:value>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </rdf:value>
+                </bf:Issn>
+              </bf:identifiedBy>
+            </bf:Instance>
+          </bf:hasSeries>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='510']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance510">
@@ -542,7 +553,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bflc:indexedIn>
-          <bf:Work>
+          <bf:Instance>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:title>
                 <bf:Title>
@@ -576,16 +587,16 @@
             <xsl:for-each select="marc:subfield[@code='x']">
               <bf:identifiedBy>
                 <bf:Issn>
-                  <rdfs:label>
+                  <rdf:value>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString" select="."/>
                       <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
                     </xsl:call-template>
-                  </rdfs:label>
+                  </rdf:value>
                 </bf:Issn>
               </bf:identifiedBy>
             </xsl:for-each>
-          </bf:Work>
+          </bf:Instance>
         </bflc:indexedIn>
       </xsl:when>
     </xsl:choose>
@@ -650,9 +661,9 @@
     <xsl:param name="pInstanceUri"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:originalVersionOf>
+        <bf:originalVersion>
           <xsl:attribute name="rdf:resource"><xsl:value-of select="$pInstanceUri"/></xsl:attribute>
-        </bf:originalVersionOf>
+        </bf:originalVersion>
       </xsl:when>
     </xsl:choose>
   </xsl:template>    
