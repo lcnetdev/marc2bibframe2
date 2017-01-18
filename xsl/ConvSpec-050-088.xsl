@@ -36,7 +36,7 @@
               </xsl:if>
               <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
               <xsl:if test="position() = 1">
-                <xsl:for-each select="../marc:subfield[@code='b']">
+                <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
                   <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
@@ -398,7 +398,7 @@
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='b']">
           <xsl:choose>
-            <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'][1],marc:subfield[@code='b']))"/></xsl:when>
+            <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'][1],marc:subfield[@code='b'][1]))"/></xsl:when>
             <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'][1],' ',marc:subfield[@code='b']))"/></xsl:otherwise>
           </xsl:choose>
         </xsl:when>
