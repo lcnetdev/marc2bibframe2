@@ -514,7 +514,7 @@
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
             </bf:geographicCoverage>
             <bf:geographicCoverage>
-              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us---"/>
+              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
             </bf:geographicCoverage>
             <bf:classification>
               <bf:ClassificationLcc>

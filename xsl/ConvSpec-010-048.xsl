@@ -564,7 +564,13 @@
             <bf:GeographicCoverage>
               <xsl:choose>
                 <xsl:when test="@code='a'">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,.)"/></xsl:attribute>
+                  <xsl:variable name="vCode">
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                      <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,$vCode)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:when test="@code='b' or @code='c'">
                   <rdfs:label><xsl:value-of select="."/></rdfs:label>
