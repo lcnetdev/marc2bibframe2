@@ -389,12 +389,12 @@
           </bf:cartographicAttributes>
         </xsl:if>
         <xsl:for-each select="marc:subfield[@code='a']">
-          <xsl:if test="not(../marc:subfield[@code='b' or @code='c'])">
+          <xsl:if test="text() = 'a' and not(../marc:subfield[@code='b' or @code='c'])">
             <bf:scale>
               <bf:Scale>
                 <bf:note>
                   <bf:Note>
-                    <rdfs:label>Linear scale</rdfs:label>
+                    <rdfs:label>linear scale</rdfs:label>
                   </bf:Note>
                 </bf:note>
               </bf:Scale>
