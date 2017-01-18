@@ -263,7 +263,11 @@
             <bf:IssnL>
               <rdf:value><xsl:value-of select="."/></rdf:value>
               <xsl:if test="@code = 'm'">
-                <rdfs:label>canceled</rdfs:label>
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>canceled</rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </xsl:if>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -917,10 +921,18 @@
                 </xsl:choose>
               </rdf:value>
               <xsl:if test="@code = 'z'">
-                <rdfs:label><xsl:value-of select="$pInvalidLabel"/></rdfs:label>
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label><xsl:value-of select="$pInvalidLabel"/></rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </xsl:if>
               <xsl:if test="@code = 'y'">
-                <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='c']">
                 <bf:acquisitionTerms>
