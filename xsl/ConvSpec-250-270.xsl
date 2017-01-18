@@ -10,6 +10,104 @@
 
   <!-- Conversion specs for 250-270 -->
 
+  <xsl:template match="marc:datafield[@tag='255']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work255">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='255' or @tag='880']" mode="work255">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vCoordinatesChopPunct">
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="chopString" select="marc:subfield[@code='c']"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="vCoordinates">
+      <xsl:call-template name="chopParens">
+        <xsl:with-param name="chopString" select="$vCoordinatesChopPunct"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <!-- because $d and $e can have matching parens across subfield boundary,
+         some monkey business is required -->
+    <xsl:variable name="vZoneChopPunct">
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="chopString" select="marc:subfield[@code='d']"/>
+        <xsl:with-param name="punctuation"><xsl:text>).:,;/ </xsl:text></xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="vZone">
+      <xsl:choose>
+        <xsl:when test="substring($vZoneChopPunct,1,1) = '('">
+          <xsl:value-of select="substring($vZoneChopPunct,2,string-length($vZoneChopPunct)-1)"/>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="$vZoneChopPunct"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vEquinoxChopPunct">
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="chopString" select="marc:subfield[@code='e']"/>
+        <xsl:with-param name="punctuation"><xsl:text>).:,;/ </xsl:text></xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="vEquinox">
+      <xsl:choose>
+        <xsl:when test="substring($vEquinoxChopPunct,1,1) = '('">
+          <xsl:value-of select="substring($vEquinoxChopPunct,2,string-length($vEquinoxChopPunct)-1)"/>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="$vEquinoxChopPunct"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:scale>
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString" select="."/>
+            </xsl:call-template>
+          </bf:scale>
+        </xsl:for-each>
+        <bf:cartographicAttributes>
+          <bf:Cartographic>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:projection>
+                <!-- leave trailing period for abbreviations -->
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </bf:projection>
+            </xsl:for-each>
+            <xsl:if test="$vCoordinates != ''">
+              <bf:coordinates><xsl:value-of select="$vCoordinates"/></bf:coordinates>
+            </xsl:if>
+            <xsl:if test="$vZone != ''">
+              <bf:ascensionAndDeclination><xsl:value-of select="$vZone"/></bf:ascensionAndDeclination>
+            </xsl:if>
+            <xsl:if test="$vEquinox != ''">
+              <bf:equinox><xsl:value-of select="$vEquinox"/></bf:equinox>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='f']">
+              <bf:outerGRing>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </bf:outerGRing>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='g']">
+              <bf:exclusionGRing>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </bf:exclusionGRing>
+            </xsl:for-each>
+          </bf:Cartographic>
+        </bf:cartographicAttributes>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='250']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance250">
@@ -58,104 +156,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>    
-
-  <xsl:template match="marc:datafield[@tag='255']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance255">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='255' or @tag='880']" mode="instance255">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vCoordinatesChopPunct">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="chopString" select="marc:subfield[@code='c']"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="vCoordinates">
-      <xsl:call-template name="chopParens">
-        <xsl:with-param name="chopString" select="$vCoordinatesChopPunct"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <!-- because $d and $e can have matching parens across subfield boundary,
-         some monkey business is required -->
-    <xsl:variable name="vZoneChopPunct">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="chopString" select="marc:subfield[@code='d']"/>
-        <xsl:with-param name="punctuation"><xsl:text>).:,;/ </xsl:text></xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="vZone">
-      <xsl:choose>
-        <xsl:when test="substring($vZoneChopPunct,1,1) = '('">
-          <xsl:value-of select="substring($vZoneChopPunct,2,string-length($vZoneChopPunct)-1)"/>
-        </xsl:when>
-        <xsl:otherwise><xsl:value-of select="$vZoneChopPunct"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vEquinoxChopPunct">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="chopString" select="marc:subfield[@code='e']"/>
-        <xsl:with-param name="punctuation"><xsl:text>).:,;/ </xsl:text></xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="vEquinox">
-      <xsl:choose>
-        <xsl:when test="substring($vEquinoxChopPunct,1,1) = '('">
-          <xsl:value-of select="substring($vEquinoxChopPunct,2,string-length($vEquinoxChopPunct)-1)"/>
-        </xsl:when>
-        <xsl:otherwise><xsl:value-of select="$vEquinoxChopPunct"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:cartographicAttributes>
-          <bf:Cartographic>
-            <xsl:for-each select="marc:subfield[@code='a']">
-              <bf:scale>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </bf:scale>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:projection>
-                <!-- leave trailing period for abbreviations -->
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                </xsl:call-template>
-              </bf:projection>
-            </xsl:for-each>
-            <xsl:if test="$vCoordinates != ''">
-              <bf:coordinates><xsl:value-of select="$vCoordinates"/></bf:coordinates>
-            </xsl:if>
-            <xsl:if test="$vZone != ''">
-              <bf:ascensionAndDeclination><xsl:value-of select="$vZone"/></bf:ascensionAndDeclination>
-            </xsl:if>
-            <xsl:if test="$vEquinox != ''">
-              <bf:equinox><xsl:value-of select="$vEquinox"/></bf:equinox>
-            </xsl:if>
-            <xsl:for-each select="marc:subfield[@code='f']">
-              <bf:outerGRing>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </bf:outerGRing>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='g']">
-              <bf:exclusionGRing>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </bf:exclusionGRing>
-            </xsl:for-each>
-          </bf:Cartographic>
-        </bf:cartographicAttributes>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='256']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
