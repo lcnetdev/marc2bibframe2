@@ -21,6 +21,12 @@
       <subfield code="a">Latin American lives :</subfield>
       <subfield code="b">selected biographies from the five-volume Encyclopedia of Latin American history and culture.</subfield>
     </datafield>
+    <datafield tag="630" ind1="0" ind2="0">
+      <subfield code="a">Ukrainian weekly</subfield>
+      <subfield code="e">depicted.</subfield>
+      <subfield code="v">Indexes</subfield>
+      <subfield code="v">Periodicals</subfield>
+    </datafield>
     <datafield tag="700" ind1="1" ind2="2">
       <subfield code="a">Cendrars, Blaise, 1887-1961.</subfield>
       <subfield code="t">Selections.</subfield>

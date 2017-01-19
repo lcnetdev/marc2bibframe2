@@ -96,7 +96,8 @@
     <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
     <x:expect label="$6 586 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[19]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
-    <x:expect label="$6 600,610,611 creates a subject/Agent or subject/Work property of the Instance" test="//bf:Work[1]/bf:subject[2]/bf:Agent/madsrdf:authoritativeLabel = 'семьи Кларк--Фантастика.'"/>
+    <x:expect label="$6 600,610,611 creates a subject/Agent or subject/Work property of the Work" test="//bf:Work[1]/bf:subject[2]/bf:Agent/madsrdf:authoritativeLabel = 'семьи Кларк--Фантастика.'"/>
+    <x:expect label="$6 630 creates a subject/Work property of the Work" test="//bf:Work[1]/bf:subject[3]/bf:Work/madsrdf:authoritativeLabel = 'украинский журнал'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
