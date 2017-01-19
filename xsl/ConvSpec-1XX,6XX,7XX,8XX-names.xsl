@@ -415,11 +415,17 @@
               </xsl:when>
               <xsl:when test="substring($tag,2,2)='10'">
                 <xsl:choose>
-                  <xsl:when test="@ind1='1'">bf:Jurisdiction</xsl:when>
-                  <xsl:otherwise>bf:Organization</xsl:otherwise>
+                  <xsl:when test="@ind1='1'">
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Jurisdiction')"/></xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Organization')"/></xsl:attribute>
+                  </xsl:otherwise>
                 </xsl:choose>
               </xsl:when>
-              <xsl:when test="substring($tag,2,2)='11'">bf:Meeting</xsl:when>
+              <xsl:when test="substring($tag,2,2)='11'">
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Meeting')"/></xsl:attribute>
+              </xsl:when>
             </xsl:choose>
           </rdf:type>
           <xsl:choose>

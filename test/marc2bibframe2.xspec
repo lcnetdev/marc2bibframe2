@@ -556,7 +556,7 @@
               <bf:Contribution>
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
-                    <rdf:type>bf:Organization</rdf:type>
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
                     <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
                     <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
                     <rdfs:label>White House Web Team.</rdfs:label>
