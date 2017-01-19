@@ -552,6 +552,70 @@
                 <rdfs:label>Features the White House. Highlights the Executive Office of the President, which includes senior policy advisors and offices responsible for the President's correspondence and communications, the Office of the Vice President, and the Office of the First Lady. Posts contact information via mailing address, telephone and fax numbers, and e-mail. Contains the Interactive Citizens' Handbook with information on health, travel and tourism, education and training, and housing. Provides a tour and the history of the White House. Links to White House for Kids.</rdfs:label>
               </bf:Summary>
             </bf:summary>
+            <bf:subject>
+              <bf:Agent rdf:about="http://example.org/12149120#Agent610-22">
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+                <madsrdf:authoritativeLabel xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">White House (Washington, D.C.)</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberofMADSScheme xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+                <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
+                <bflc:name10MarcKey>61020$aWhite House (Washington, D.C.)</bflc:name10MarcKey>
+                <rdfs:label>White House (Washington, D.C.)</rdfs:label>
+              </bf:Agent>
+            </bf:subject>
+            <bf:subject>
+              <bf:Agent rdf:about="http://example.org/12149120#Agent610-23">
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+                <madsrdf:authoritativeLabel xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">United States. Executive Office of the President.</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberofMADSScheme xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+                <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
+                <bflc:name10MarcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:name10MarcKey>
+                <rdfs:label>United States. Executive Office of the President.</rdfs:label>
+              </bf:Agent>
+            </bf:subject>
+            <bf:subject>
+              <bf:Agent rdf:about="http://example.org/12149120#Agent610-24">
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+                <madsrdf:authoritativeLabel xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">United States. Office of the Vice President.</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberofMADSScheme xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+                <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
+                <bflc:name10MarcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:name10MarcKey>
+                <rdfs:label>United States. Office of the Vice President.</rdfs:label>
+              </bf:Agent>
+            </bf:subject>
+            <bf:subject>
+              <bf:Agent rdf:about="http://example.org/12149120#Agent610-25">
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+                <madsrdf:authoritativeLabel xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">United States. Office of the First Lady.</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberofMADSScheme xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+                <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
+                <bflc:name10MarcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:name10MarcKey>
+                <rdfs:label>United States. Office of the First Lady.</rdfs:label>
+              </bf:Agent>
+            </bf:subject>
             <bf:contribution>
               <bf:Contribution>
                 <bf:agent>

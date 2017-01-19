@@ -62,7 +62,7 @@
           <bflc:relationship>
             <bflc:Relationship>
               <bflc:relation>
-                <rdf:Description>
+                <rdfs:Resource>
                   <rdfs:label>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString">
@@ -70,7 +70,7 @@
                       </xsl:with-param>
                     </xsl:call-template>
                   </rdfs:label>
-                </rdf:Description>
+                </rdfs:Resource>
               </bflc:relation>
               <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
             </bflc:Relationship>
@@ -130,63 +130,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="label">
-      <xsl:choose>
-        <xsl:when test="substring($tag,2,2)='00'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                         @code='g' or 
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:when test="substring($tag,2,2)='10'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d' or
-                                         @code='f' or
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:when test="substring($tag,2,2)='11'">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='t'] |
-                                       marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='n' or
-                                         @code='p' or
-                                         @code='s']"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                   @code='d' or
-                                   @code='f' or
-                                   @code='g' or 
-                                   @code='k' or
-                                   @code='l' or
-                                   @code='m' or
-                                   @code='n' or
-                                   @code='o' or
-                                   @code='p' or
-                                   @code='r' or
-                                   @code='s']"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates select="." mode="tTitleLabel"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -366,20 +310,16 @@
           <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='0']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-        </xsl:if>
-        <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='w']">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-        <xsl:if test="$tag='630' or $tag='730' or $tag='830'">
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-        </xsl:if>
-        <xsl:if test="$tag='730' or $tag='830'">
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
+        <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='w']">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
         <xsl:if test="$tag='830'">
           <xsl:apply-templates mode="subfield7" select="marc:subfield[@code='7']">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -515,6 +455,77 @@
           </xsl:for-each>
         </bf:Title>
       </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- can be applied by templates above or by name/subject templates -->
+  <xsl:template match="marc:datafield" mode="tTitleLabel">
+    <xsl:variable name="tag">
+      <xsl:choose>
+        <xsl:when test="@tag=880">
+          <xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@tag"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="substring($tag,2,2)='00'">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='t'] |
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
+                                     @code='g' or 
+                                     @code='k' or
+                                     @code='l' or
+                                     @code='m' or
+                                     @code='n' or
+                                     @code='o' or
+                                     @code='p' or
+                                     @code='r' or
+                                     @code='s']"/>
+      </xsl:when>
+      <xsl:when test="substring($tag,2,2)='10'">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='t'] |
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d' or
+                                     @code='f' or
+                                     @code='g' or
+                                     @code='k' or
+                                     @code='l' or
+                                     @code='m' or
+                                     @code='n' or
+                                     @code='o' or
+                                     @code='p' or
+                                     @code='r' or
+                                     @code='s']"/>
+      </xsl:when>
+      <xsl:when test="substring($tag,2,2)='11'">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='t'] |
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
+                                     @code='g' or
+                                     @code='k' or
+                                     @code='l' or
+                                     @code='n' or
+                                     @code='p' or
+                                     @code='s']"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='a' or
+                                     @code='d' or
+                                     @code='f' or
+                                     @code='g' or 
+                                     @code='k' or
+                                     @code='l' or
+                                     @code='m' or
+                                     @code='n' or
+                                     @code='o' or
+                                     @code='p' or
+                                     @code='r' or
+                                     @code='s']"/>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 

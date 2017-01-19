@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<!-- subject thesaurus map -->
+<subjectThesaurus>
+  <subject ind2='0'>
+    <code>lcsh</code>
+    <madsscheme>http://id.loc.gov/authorities/subjects</madsscheme>
+  </subject>
+  <subject ind2='1'>
+    <code>lcshac</code>
+    <madsscheme>http://id.loc.gov/authorities/subjects</madsscheme>
+    <madsscheme>http://id.loc.gov/authorities/childrensSubjects</madsscheme>
+  </subject>
+  <subject ind2='2'>
+    <code>mesh</code>
+  </subject>
+  <subject ind2='3'>
+    <code>nal</code>
+  </subject>
+  <subject ind2='5'>
+    <code>cash</code>
+  </subject>
+  <subject ind2='6'>
+    <code>rvm</code>
+  </subject>
+</subjectThesaurus>
+

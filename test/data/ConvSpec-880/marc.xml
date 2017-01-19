@@ -385,6 +385,11 @@
       <subfield code="6">588-01</subfield>
       <subfield code="a">Том 2.</subfield>
     </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">600-01</subfield>
+      <subfield code="a">семьи Кларк</subfield>
+      <subfield code="v">Фантастика.</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

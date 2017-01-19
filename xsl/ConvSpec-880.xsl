@@ -158,6 +158,16 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='600' or $tag='610' or $tag='611'">
+        <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates mode="work6XXName" select=".">
+          <xsl:with-param name="agentiri" select="$agentiri"/>
+          <xsl:with-param name="workiri" select="$workiri"/>
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='700' or $tag='710' or $tag='711'">
         <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>

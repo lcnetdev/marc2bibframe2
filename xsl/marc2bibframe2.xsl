@@ -36,7 +36,7 @@
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
   <xsl:variable name="edtf">http://id.loc.gov/datatypes/</xsl:variable>
-  <xsl:variable name="madsrdf">http:// www.loc.gov/mads/rdf/v1#</xsl:variable>
+  <xsl:variable name="madsrdf">http://www.loc.gov/mads/rdf/v1#</xsl:variable>
   <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
 
   <!-- id.loc.gov vocabulary stems -->
@@ -59,6 +59,10 @@
   <xsl:variable name="marcauthen">http://id.loc.gov/vocabulary/marcauthen/</xsl:variable>
   <xsl:variable name="marcmuscomp">http://id.loc.gov/vocabulary/marcmuscomp/</xsl:variable>
   <xsl:variable name="organizations">http://id.loc.gov/vocabulary/organizations/</xsl:variable>
+  <xsl:variable name="relators">http://id.loc.gov/vocabulary/relators/</xsl:variable>
+
+  <!-- subject thesaurus map -->
+  <xsl:variable name="subjectThesaurus" select="document('subjectThesaurus.xml')"/>
 
   <xsl:template match="/">
 

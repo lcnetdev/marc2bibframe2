@@ -7,6 +7,17 @@
       <subfield code="c">(Spirit)</subfield>
       <subfield code="0">(DE-101c)310008891</subfield>
     </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Nixon, Richard M.</subfield>
+      <subfield code="q">(Richard Milhouse),</subfield>
+      <subfield code="d">1913-</subfield>
+      <subfield code="x">Psychology.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Bellamy, Edward,</subfield>
+      <subfield code="b">1850-1898.</subfield>
+      <subfield code="t">Looking backward, 2000-1887.</subfield>
+    </datafield>
     <datafield tag="700" ind1="1" ind2=" ">
       <subfield code="i">Parody of (work):</subfield>
       <subfield code="a">Carroll, Lewis,</subfield>
