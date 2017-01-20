@@ -168,7 +168,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='700' or @tag='710' or @tag='711']" mode="work">
+  <xsl:template match="marc:datafield[@tag='700' or @tag='710' or @tag='711' or @tag='720']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
@@ -612,6 +612,11 @@
           <xsl:attribute name="rdf:about"><xsl:value-of select="$agentiri"/></xsl:attribute>
           <rdf:type>
             <xsl:choose>
+              <xsl:when test="$tag='720'">
+                <xsl:if test="@ind1='1'">
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Person</xsl:attribute>
+                </xsl:if>
+              </xsl:when>
               <xsl:when test="substring($tag,2,2)='00'">
                 <xsl:choose>
                   <xsl:when test="@ind1='3'">
@@ -747,6 +752,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
+      <xsl:when test="$tag='720'"><xsl:value-of select="marc:subfield[@code='a']"/></xsl:when>
       <xsl:when test="substring($tag,2,2)='00'">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or

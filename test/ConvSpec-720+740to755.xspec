@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="720 - ADDED ENTRY--UNCONTROLLED NAME">
+    <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
+    <x:expect label="720 creates a contribution/Contribution/agent/Agent property of the Work" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Theodore K. Hepburn'"/>
+    <x:expect label="ind1=1 adds the Person Class to the Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdf:type/@rdf:resource='http://id.loc.gov/ontologies/bibframe/Person'"/>
+  </x:scenario>
+
+  <x:scenario label="740 - ADDED ENTRY--UNCONTROLLED RELATED/ANALYTICAL TITLE">
+    <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
+    <x:expect label="740 I2=2 becomes a hasPart of the main Work" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Joint Legislative Committee on Matrimonial and Family Laws, proposed statute'"/>
+    <x:expect label="740 otherwise becomes a relatedTo of the main Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Manual del adivino'"/>
+  </x:scenario>
+
+  <x:scenario label="752 - ADDED ENTRY--HIERARCHICAL PLACE NAME">
+    <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
+    <x:expect label="752 creates a contribution/Contribution/place/Place property of the Work" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/rdfs:label = 'England--London'"/>
+    <x:expect label="...with a madsrdf:HierarchicalGeopgraphic Class" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
+    <x:expect label="$abcdfgh become part of the madsrdf:componentList of the Place" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/madsrdf:componentList/*[2]/rdfs:label = 'London'"/>
+  </x:scenario>
+  
+  <x:scenario label="753 - SYSTEM DETAILS ACCESS TO COMPUTER FILES">
+    <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
+    <x:expect label="$a creates a systemRequirements/bflc:MachineModel property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[1]/bflc:MachineModel/rdfs:label = 'IBM PC'"/>
+    <x:expect label="$b creates a systemRequirements/bflc:ProgrammingLanguage property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[2]/bflc:ProgrammingLanguage/rdfs:label = 'Pascal'"/>
+    <x:expect label="$c creates a systemRequirements/bflc:OperatingSystem property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[3]/bflc:OperatingSystem/rdfs:label = 'DOS 1.1'"/>
+  </x:scenario>
+  
+</x:description>

@@ -1,0 +1,27 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="720" ind1="1" ind2=" ">
+      <subfield code="a">Theodore K. Hepburn</subfield>
+      <subfield code="e">inventor</subfield>
+    </datafield>
+    <datafield tag="740" ind1="0" ind2="2">
+      <subfield code="a">Joint Legislative Committee on Matrimonial and Family Laws, proposed statute.</subfield>
+    </datafield>
+    <datafield tag="740" ind1="0" ind2=" ">
+      <subfield code="a">Manual del adivino.</subfield>
+    </datafield>
+    <datafield tag="752" ind1=" " ind2=" ">
+      <subfield code="a">England</subfield>
+      <subfield code="d">London</subfield>
+      <subfield code="e">publication place.</subfield>
+      <subfield code="4">pup</subfield>
+      <subfield code="2">tgn</subfield>
+    </datafield>
+    <datafield tag="753" ind1=" " ind2=" ">
+      <subfield code="a">IBM PC</subfield>
+      <subfield code="b">Pascal</subfield>
+      <subfield code="c">DOS 1.1</subfield>
+    </datafield>
+  </record>
+</collection>

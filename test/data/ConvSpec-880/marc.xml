@@ -426,20 +426,25 @@
       <subfield code="2">pemrecs</subfield>
     </datafield>
     <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">700-01/r</subfield>
+      <subfield code="6">700-01</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
     <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">730-01/r</subfield>
+      <subfield code="6">730-01</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
+    <datafield ind1=" " ind2=" " tag="880">
+      <subfield code="6">752-01</subfield>
+      <subfield code="a">Англия</subfield>
+      <subfield code="d">Лондон</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">800-01/r</subfield>
+      <subfield code="6">800-01</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
       <subfield code="t">東海道五十三次絵卷.</subfield>
     </datafield>
     <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">830-01/r</subfield>
+      <subfield code="6">830-01</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
   </record>

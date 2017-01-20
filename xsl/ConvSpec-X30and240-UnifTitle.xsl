@@ -125,10 +125,12 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='730']" mode="work">
+  <xsl:template match="marc:datafield[@tag='730' or @tag='740']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work730-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri">
+      <xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+    </xsl:variable>
     <xsl:apply-templates mode="work730" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -449,7 +451,7 @@
     </xsl:variable>
     <xsl:variable name="nfi">
       <xsl:choose>
-        <xsl:when test="$tag='130' or $tag='630' or $tag='730'">
+        <xsl:when test="$tag='130' or $tag='630' or $tag='730' or $tag='740'">
           <xsl:value-of select="@ind1"/>
         </xsl:when>
         <xsl:when test="$tag='240' or $tag='830' or $tag='440'">
@@ -489,7 +491,7 @@
               </xsl:if>
               <bflc:title30MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title30MarcKey>
             </xsl:when>
-            <xsl:when test="substring($tag,2,2)='40'">
+            <xsl:when test="substring($tag,2,2)='40' and $tag != '740'">
               <xsl:if test="$label != ''">
                 <bflc:title40MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title40MatchKey>
               </xsl:if>
