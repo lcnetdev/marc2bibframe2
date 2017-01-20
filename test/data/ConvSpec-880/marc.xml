@@ -394,6 +394,37 @@
       <subfield code="6">630-01</subfield>
       <subfield code="a">украинский журнал</subfield>
     </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">648-01</subfield>
+      <subfield code="a">Доисторические времена</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">650-01</subfield>
+      <subfield code="a">единороги</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">651-01</subfield>
+      <subfield code="a">Река Амазонка.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">653-01</subfield>
+      <subfield code="a">топливные элементы</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="2">
+      <subfield code="6">655-01</subfield>
+      <subfield code="a">сборник статей</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="7">
+      <subfield code="6">656-01</subfield>
+      <subfield code="a">Антропологи.</subfield>
+      <subfield code="2">nyet</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="">
+      <subfield code="6">662-01</subfield>
+      <subfield code="a">日本</subfield>
+      <subfield code="c">北海道</subfield>
+      <subfield code="2">pemrecs</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">700-01/r</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

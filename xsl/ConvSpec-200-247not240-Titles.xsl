@@ -6,6 +6,7 @@
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 exclude-result-prefixes="xsl marc">
 
   <!--

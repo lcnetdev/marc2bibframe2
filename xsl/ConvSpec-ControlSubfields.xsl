@@ -5,7 +5,9 @@
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="xsl marc">
 
   <!-- Templates for processing MARC control subfields -->
 

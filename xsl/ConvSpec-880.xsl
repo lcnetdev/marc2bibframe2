@@ -6,6 +6,7 @@
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 exclude-result-prefixes="xsl marc">
 
   <!--
@@ -174,6 +175,38 @@
           <xsl:with-param name="workiri" select="$workiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="recordid" select="$recordid"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="($tag='648' or $tag='650' or $tag='651') or ($tag='655' and @ind1=' ')">
+        <xsl:variable name="vTopicUri">
+          <xsl:choose>
+            <xsl:when test="$tag='655'">
+              <xsl:value-of select="$recordid"/>#GenreForm880-<xsl:value-of select="position()"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$recordid"/>#Topic880-<xsl:value-of select="position()"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:apply-templates select="." mode="work6XXAuth">
+          <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='653'">
+        <xsl:apply-templates select="." mode="work653">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='656'">
+        <xsl:apply-templates select="." mode="work656">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='662'">
+        <xsl:apply-templates select="." mode="work662">
+          <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='700' or $tag='710' or $tag='711'">

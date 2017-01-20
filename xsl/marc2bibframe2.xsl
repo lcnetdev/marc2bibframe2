@@ -30,6 +30,7 @@
   <xsl:include href="ConvSpec-3XX.xsl"/>
   <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
   <xsl:include href="ConvSpec-5XX.xsl"/>
+  <xsl:include href="ConvSpec-648-662.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
 
   <!-- namespace URIs -->
@@ -72,7 +73,8 @@
         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                  xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/">
+                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
 
           <xsl:apply-templates>
             <xsl:with-param name="serialization" select="$serialization"/>
