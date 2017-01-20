@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="850 - HOLDING INSTITUTION">
+    <x:context href="data/ConvSpec-841-887/marc.xml"/>
+    <x:expect label="850 $a create Items of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
+    <x:expect label="$a becomes the code property of the heldBy/Agent" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:heldBy/bf:Agent/bf:code = 'DLC'"/>
+  </x:scenario>
+  
+  <x:scenario label="852 - LOCATION">
+    <x:context href="data/ConvSpec-841-887/marc.xml"/>
+    <x:expect label="852 creates an Item of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
+    <x:expect label="$a becomes the code property of the heldBy/Agent" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:heldBy/bf:Agent/bf:code = 'CSf'"/>
+    <x:expect label="$b creates a subLocation property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:subLocation/bf:Sublocation/rdfs:label = 'Sci'"/>
+    <x:expect label="$u creates an electronicLocator property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://hdl.loc.gov/loc.pnp/pp.print'"/>
+    <x:expect label="$x creates a note property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:note[1]/bf:Note/rdfs:label = '1-54 on order in Microfiche'"/>
+    <x:expect label="$z creates a note property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:note[2]/bf:Note/rdfs:label = 'Signed by author'"/>
+  </x:scenario>
+
+  <x:scenario label="856 - ELECTRONIC LOCATION AND ACCESS">
+    <x:context href="data/ConvSpec-841-887/marc.xml"/>
+    <x:expect label="If Instance is Electronic, 856 creates an Item of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
+    <x:expect label="...otherwise, 856 creates a new Instance of the Work" test="count(//bf:Instance) = 2"/>
+    <x:expect label="...unless ind2=2, in which case it creates a supplementaryContent property of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent) = 1"/>
+    <x:expect label="$u with no $zy or $3 creates an electronicLocator property of the Item with rdf:resource = '$u'" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/@rdf:resource = 'http://www.jstor.org/journals/0277903x.html'"/>
+    <x:expect label="...otherwise it creates a blank node with a bflc:locator property from $u" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[6]/bf:Item/bf:electronicLocator/rdfs:Resource/bflc:locator/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
+    <x:expect label="...with notes generated from $z/y/3" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Finding aid'"/>
+  </x:scenario>
+
+</x:description>

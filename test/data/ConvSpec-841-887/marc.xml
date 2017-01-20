@@ -1,0 +1,32 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">American quarterly.</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+      <subfield code="a">AAP</subfield>
+      <subfield code="a">CU</subfield>
+      <subfield code="a">DLC</subfield>
+      <subfield code="a">MiU</subfield>
+    </datafield>
+    <datafield tag="852" ind1=" " ind2=" ">
+      <subfield code="a">CSf</subfield>
+      <subfield code="b">Sci</subfield>
+      <subfield code="u">http://hdl.loc.gov/loc.pnp/pp.print</subfield>
+      <subfield code="x">1-54 on order in Microfiche</subfield>
+      <subfield code="z">Signed by author</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="u">http://www.jstor.org/journals/0277903x.html</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">http://www.ref.oclc.org:2000</subfield>
+      <subfield code="z">Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="2">
+      <subfield code="3">Finding aid</subfield>
+      <subfield code="u">http://www.loc.gov/ammem/ead/jackson.sgm</subfield>
+    </datafield>
+  </record>
+</collection>

@@ -32,6 +32,7 @@
   <xsl:include href="ConvSpec-5XX.xsl"/>
   <xsl:include href="ConvSpec-648-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
+  <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
 
   <!-- namespace URIs -->
@@ -164,7 +165,6 @@
   <xsl:template match="text()" mode="work"/>
   <xsl:template match="text()" mode="instance"/>
   <xsl:template match="text()" mode="hasItem"/>
-  <xsl:template match="text()" mode="newItem"/>
 
   <!-- warn about other elements -->
   <xsl:template match="*">

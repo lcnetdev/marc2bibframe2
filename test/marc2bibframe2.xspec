@@ -22,6 +22,7 @@
   <x:import href="ConvSpec-5XX.xspec"/>
   <x:import href="ConvSpec-648-662.xspec"/>
   <x:import href="ConvSpec-720+740to755.xspec"/>
+  <x:import href="ConvSpec-841-887.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-X30and240-UnifTitle.xspec"/>
 
@@ -758,6 +759,27 @@
                     </bf:source>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
+                <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
+              </bf:Item>
+            </bf:hasItem>
+            <bf:hasItem>
+              <bf:Item rdf:about="http://example.org/12149120#Item856-27">
+                <bf:electronicLocator rdf:resource="http://www.whitehouse.gov"/>
+                <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
+              </bf:Item>
+            </bf:hasItem>
+            <bf:hasItem>
+              <bf:Item rdf:about="http://example.org/12149120#Item856-28">
+                <bf:electronicLocator>
+                  <rdfs:Resource>
+                    <bflc:locator rdf:resource="http://lcweb.loc.gov/staff/wpp/whitehouse.html"/>
+                    <bf:note>
+                      <bf:Note>
+                        <rdfs:label>Web site archive</rdfs:label>
+                      </bf:Note>
+                    </bf:note>
+                  </rdfs:Resource>
+                </bf:electronicLocator>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
               </bf:Item>
             </bf:hasItem>
