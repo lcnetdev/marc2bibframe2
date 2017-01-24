@@ -44,6 +44,7 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProp">
       <xsl:choose>
         <xsl:when test="$vTag='655'">bf:genreForm</xsl:when>
@@ -98,8 +99,18 @@
             <rdf:type>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
             </rdf:type>
-            <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
-            <madsrdf:authoritativeLabel><xsl:value-of select="$vLabel"/></madsrdf:authoritativeLabel>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$vLabel"/>
+            </rdfs:label>
+            <madsrdf:authoritativeLabel>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$vLabel"/>
+            </madsrdf:authoritativeLabel>
             <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
               <madsrdf:isMemberofMADSScheme>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
@@ -110,18 +121,33 @@
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:place>
                   <bf:Place>
-                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="."/>
+                    </rdfs:label>
                   </bf:Place>
                 </bf:place>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='d']">
-                <bf:date><xsl:value-of select="."/></bf:date>
+                <bf:date>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </bf:date>
               </xsl:for-each>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='g']">
               <bf:note>
                 <bf:Note>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
@@ -184,6 +210,7 @@
 
   <xsl:template match="marc:datafield" mode="work653">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="chopPunctuation">
         <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
@@ -198,7 +225,12 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:subject>
           <bf:Topic>
-            <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$vLabel"/>
+            </rdfs:label>
           </bf:Topic>
         </bf:subject>
       </xsl:when>
@@ -214,6 +246,7 @@
 
   <xsl:template match="marc:datafield" mode="work656">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="chopPunctuation">
         <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
@@ -231,7 +264,12 @@
             <rdf:type>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,'ComplexSubject')"/></xsl:attribute>
             </rdf:type>
-            <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$vLabel"/>
+            </rdfs:label>
             <madsrdf:componentList rdf:parseType="Collection">
               <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
                 <xsl:variable name="vResource">
@@ -242,6 +280,9 @@
                 </xsl:variable>
                 <xsl:element name="{$vResource}">
                   <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString" select="."/>
                     </xsl:call-template>
@@ -273,6 +314,7 @@
 
   <xsl:template match="marc:datafield" mode="work662">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="chopPunctuation">
         <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
@@ -290,7 +332,12 @@
             <rdf:type>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,'HierarchicalGeographic')"/></xsl:attribute>
             </rdf:type>
-            <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$vLabel"/>
+            </rdfs:label>
             <madsrdf:componentList rdf:parseType="Collection">
               <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='f' or @code='g' or @code='h']">
                 <xsl:variable name="vResource">
@@ -304,6 +351,9 @@
                 </xsl:variable>
                 <xsl:element name="{$vResource}">
                   <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString" select="."/>
                     </xsl:call-template>

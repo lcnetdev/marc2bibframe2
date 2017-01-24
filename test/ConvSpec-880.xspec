@@ -112,4 +112,9 @@
     <x:expect label="$6 830 should make a series Work" test="//bf:Work[1]/bf:hasSeries[2]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
   </x:scenario>
 
+  <x:scenario label="xml:lang attributes from 880">
+    <x:context href="data/ConvSpec-880/marc-lang.xml"/>
+    <x:expect label="Language from 008 and script from $6 create an xml:lang attribute of the Resource" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle/@xml:lang = 'da-arab'"/>
+  </x:scenario>    
+
 </x:description>

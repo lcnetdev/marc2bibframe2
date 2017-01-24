@@ -44,11 +44,17 @@
   <!-- create a bf:source property from a subfield $2 -->
   <xsl:template match="marc:subfield" mode="subfield2">
     <xsl:param name="serialization" select="'rdfxsml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:source>
           <bf:Source>
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="."/>
+            </rdfs:label>
           </bf:Source>
         </bf:source>
       </xsl:when>
@@ -60,11 +66,15 @@
   -->
   <xsl:template match="marc:subfield" mode="subfield3">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bflc:appliesTo>
           <bflc:AppliesTo>
             <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
               <xsl:call-template name="chopPunctuation">
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>

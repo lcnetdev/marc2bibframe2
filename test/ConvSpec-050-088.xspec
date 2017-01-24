@@ -94,7 +94,7 @@
     <x:expect label="084 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
-    <x:expect label="$q creates an adminMetadata/AdminMetadata/assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:adminMetadata/bf:AdminMetadata/bf:assigner/bf:Agent/rdf:label = 'DE-101'"/>
+    <x:expect label="$q creates an adminMetadata/AdminMetadata/assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:adminMetadata/bf:AdminMetadata/bf:assigner/bf:Agent/rdfs:label = 'DE-101'"/>
     <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sdnb'"/>
   </x:scenario>
   

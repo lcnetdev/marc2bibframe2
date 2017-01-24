@@ -29,6 +29,7 @@
   <xsl:template match="marc:datafield" mode="work752">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="recordid"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="chopPunctuation">
         <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
@@ -62,6 +63,9 @@
                     </xsl:variable>
                     <xsl:element name="{$vResource}">
                       <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
                         <xsl:call-template name="chopPunctuation">
                           <xsl:with-param name="chopString" select="."/>
                         </xsl:call-template>

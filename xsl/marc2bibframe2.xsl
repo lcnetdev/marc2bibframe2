@@ -67,6 +67,9 @@
   <!-- subject thesaurus map -->
   <xsl:variable name="subjectThesaurus" select="document('subjectThesaurus.xml')"/>
 
+  <!-- language map -->
+  <xsl:variable name="languageMap" select="document('languageCrosswalk.xml')"/>
+
   <xsl:template match="/">
 
     <!-- RDF/XML document frame -->

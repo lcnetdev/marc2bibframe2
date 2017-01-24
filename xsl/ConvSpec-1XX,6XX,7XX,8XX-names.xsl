@@ -48,6 +48,7 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
@@ -107,14 +108,19 @@
                 <rdf:type>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
                 </rdf:type>
-                <madsrdf:authoritativeLabel><xsl:value-of select="$vMADSLabel"/></madsrdf:authoritativeLabel>
+                <madsrdf:authoritativeLabel>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vMADSLabel"/>
+                </madsrdf:authoritativeLabel>
                 <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
                   <madsrdf:isMemberofMADSScheme>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                   </madsrdf:isMemberofMADSScheme>
                 </xsl:for-each>                  
                 <xsl:if test="$vSource != ''">
-                    <xsl:copy-of select="$vSource"/>
+                  <xsl:copy-of select="$vSource"/>
                 </xsl:if>
                 <xsl:choose>
                   <xsl:when test="substring($vTag,2,2)='11'">
@@ -184,6 +190,7 @@
     <xsl:param name="agentiri"/>
     <xsl:param name="workiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='t']">
         <xsl:choose>
@@ -218,6 +225,9 @@
                   <bflc:relation>
                     <rdfs:Resource>
                       <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
                         <xsl:call-template name="chopPunctuation">
                           <xsl:with-param name="chopString">
                             <xsl:value-of select="."/>
@@ -246,6 +256,9 @@
               <bflc:relation>
                 <rdfs:Resource>
                   <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
                     <xsl:call-template name="chopPunctuation">
                       <xsl:with-param name="chopString">
                         <xsl:value-of select="."/>
@@ -278,6 +291,7 @@
     <xsl:param name="agentiri"/>
     <xsl:param name="workiri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:hasSeries>
@@ -291,6 +305,9 @@
         </bf:hasSeries>
         <xsl:for-each select="marc:subfield[@code='v']">
           <bf:seriesEnumeration>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
             <xsl:call-template name="chopPunctuation">
               <xsl:with-param name="chopString">
                 <xsl:value-of select="."/>
@@ -403,11 +420,13 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pMode" select="'role'"/>
     <xsl:param name="pRelatedTo"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
     <xsl:call-template name="splitRole">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="roleString" select="."/>
       <xsl:with-param name="pMode" select="$pMode"/>
       <xsl:with-param name="pRelatedTo" select="$pRelatedTo"/>
+      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -417,6 +436,7 @@
     <xsl:param name="roleString"/>
     <xsl:param name="pMode" select="'role'"/>
     <xsl:param name="pRelatedTo"/>
+    <xsl:param name="pXmlLang"/>
     <xsl:choose>
       <xsl:when test="contains($roleString,',')">
         <xsl:if test="string-length(normalize-space(substring-before($roleString,','))) &gt; 0">
@@ -427,7 +447,12 @@
                 <xsl:when test="$pMode='role'">
                   <bf:role>
                     <bf:Role>
-                      <rdfs:label><xsl:value-of select="$vRole"/></rdfs:label>
+                      <rdfs:label>
+                        <xsl:if test="$pXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="$vRole"/>
+                      </rdfs:label>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -436,7 +461,12 @@
                     <bflc:Relationship>
                       <bflc:relation>
                         <rdfs:Resource>
-                          <rdfs:label><xsl:value-of select="$vRole"/></rdfs:label>
+                          <rdfs:label>
+                            <xsl:if test="$pXmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="$vRole"/>
+                          </rdfs:label>
                         </rdfs:Resource>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -465,7 +495,12 @@
                 <xsl:when test="$pMode='role'">
                   <bf:role>
                     <bf:Role>
-                      <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/></rdfs:label>
+                      <rdfs:label>
+                        <xsl:if test="$pXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/>
+                      </rdfs:label>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -474,7 +509,12 @@
                     <bflc:Relationship>
                       <bflc:relation>
                         <rdfs:Resource>
-                          <rdfs:label><xsl:value-of select="$vRole"/></rdfs:label>
+                          <rdfs:label>
+                            <xsl:if test="$pXmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="$vRole"/>
+                          </rdfs:label>
                         </rdfs:Resource>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -503,7 +543,12 @@
                 <xsl:when test="$pMode='role'">
                   <bf:role>
                     <bf:Role>
-                      <rdfs:label><xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/></rdfs:label>
+                      <rdfs:label>
+                        <xsl:if test="$pXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/>
+                      </rdfs:label>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -512,7 +557,12 @@
                     <bflc:Relationship>
                       <bflc:relation>
                         <rdfs:Resource>
-                          <rdfs:label><xsl:value-of select="$vRole"/></rdfs:label>
+                          <rdfs:label>
+                            <xsl:if test="$pXmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="$vRole"/>
+                          </rdfs:label>
                         </rdfs:Resource>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -539,7 +589,12 @@
               <xsl:when test="$pMode='role'">
                 <bf:role>
                   <bf:Role>
-                    <rdfs:label><xsl:value-of select="normalize-space($roleString)"/></rdfs:label>
+                    <rdfs:label>
+                      <xsl:if test="$pXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="normalize-space($roleString)"/>
+                    </rdfs:label>
                   </bf:Role>
                 </bf:role>
               </xsl:when>
@@ -548,7 +603,12 @@
                     <bflc:Relationship>
                       <bflc:relation>
                         <rdfs:Resource>
-                          <rdfs:label><xsl:value-of select="normalize-space($roleString)"/></rdfs:label>
+                          <rdfs:label>
+                            <xsl:if test="$pXmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="normalize-space($roleString)"/>
+                          </rdfs:label>
                         </rdfs:Resource>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -583,6 +643,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="label">
       <xsl:apply-templates select="." mode="tNameLabel"/>
     </xsl:variable>
@@ -648,7 +709,12 @@
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
               </rdf:type>
               <xsl:if test="$vMADSLabel != ''">
-                <madsrdf:authoritativeLabel><xsl:value-of select="$vMADSLabel"/></madsrdf:authoritativeLabel>
+                <madsrdf:authoritativeLabel>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vMADSLabel"/>
+                </madsrdf:authoritativeLabel>
               </xsl:if>
               <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
                 <madsrdf:isMemberofMADSScheme>
@@ -722,7 +788,12 @@
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$label != ''">
-            <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space($label)"/>
+            </rdfs:label>
           </xsl:if>
           <xsl:if test="not(marc:subfield[@code='t'])">
             <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='0']">

@@ -12,6 +12,37 @@
   <!-- Utility templates -->
 
   <!--
+      Determine the xml:lang code from $6
+  -->
+
+  <xsl:template match="marc:datafield" mode="xmllang">
+    <xsl:if test="marc:subfield[@code='6'] and ../marc:controlfield[@tag='008']">
+      <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
+      <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
+      <xsl:variable name="vScript6simple">
+        <xsl:choose>
+          <xsl:when test="contains(vScript6,'/')"><xsl:value-of select="substring-before($vScript6,'/')"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="$vScript6"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vLang"><xsl:value-of select="$languageMap/xml-langs/language/iso6392[text()=$vLang008]/parent::*/@xmllang"/></xsl:variable>
+      <xsl:variable name="vScript">
+        <xsl:choose>
+          <xsl:when test="$vScript6simple='(3'">arab</xsl:when>
+          <xsl:when test="$vScript6simple='(B'">latn</xsl:when>
+          <xsl:when test="$vScript6simple='$1' and $vLang008='kor'">hang</xsl:when>
+          <xsl:when test="$vScript6simple='$1' and $vLang008='chi'">hani</xsl:when>
+          <xsl:when test="$vScript6simple='$1' and $vLang008='jpn'">jpan</xsl:when>
+          <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
+          <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
+          <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:if test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:if>
+    </xsl:if>
+  </xsl:template>
+        
+  <!--
       Chop [ ] from beginning and end of a string
   -->
   <xsl:template name="chopBrackets">
