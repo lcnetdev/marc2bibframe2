@@ -1,0 +1,23 @@
+---
+# Role to set up a Metaproxy server
+- name: Add ID signing key
+  become: yes
+  apt_key: url=http://ftp.indexdata.dk/debian/indexdata.asc state=present
+
+- name: ID apt configuration
+  become: yes
+  template: src=indexdata.list.j2 dest=/etc/apt/sources.list.d/indexdata.list force=no
+  register: aptconf
+
+- name: Update apt cache
+  become: yes
+  apt: update_cache=yes
+
+- name: Install Metaproxy
+  become: yes
+  apt: name=metaproxy state=present
+
+- name: Install/start Metaproxy service
+  become: yes
+  service: name=metaproxy enabled=yes state=started
+

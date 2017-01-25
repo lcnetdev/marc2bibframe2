@@ -1,0 +1,35 @@
+---
+# Role to deploy the MARC to BIBFRAME conversion on a Metaproxy server
+# Assumes the marc2bibframe2 git repository is installed at {{ m2bf_home }}
+
+- name: Link in the cql2pqf.txt and explain.xml files
+  become: yes
+  file: state=link src={{ m2bf_home }}/metaproxy/{{ item }} dest=/etc/metaproxy/{{ item }}
+  with_items:
+    - cql2pqf.txt
+    - explain.xml
+  notify: Restart Metaproxy
+
+- name: Link SRU, Z39.50 and MARCXML filters from repo into filters-available
+  become: yes
+  file: state=link src={{ m2bf_home }}/metaproxy/filters-available/{{ item }} dest=/etc/metaproxy/filters-available/{{ item }}
+  with_items:
+    - z3950_client.xml
+    - marc2xml.xml
+    - sru.xml
+  notify: Restart Metaproxy
+
+- name: Process marc2bibframe2 template into filters-available
+  become: yes
+  template: src="../metaproxy/filters-available/marc2bibframe2.xml" dest=/etc/metaproxy/filters-available/marc2bibframe2.xml
+  notify: Restart Metaproxy
+
+- name: Link filters from filters_available into filters-enabled
+  become: yes
+  file: state=link src=/etc/metaproxy/filters-available/{{ item.file }} dest=/etc/metaproxy/filters-enabled/{{ item.index }}{{ item.file }}
+  with_items:
+    - { file: z3950_client.xml, index: 90 }
+    - { file: marc2xml.xml, index: 40 }
+    - { file: marc2bibframe2.xml, index: 30 }
+    - { file: sru.xml, index: 10 }
+  notify: Restart Metaproxy
