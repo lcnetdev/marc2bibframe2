@@ -1,0 +1,10 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">040520s2001    dk a   j      000 1 dan  </controlfield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">130-01/(3</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+  </record>
+</collection>

@@ -24,8 +24,8 @@
   <xsl:include href="ConvSpec-010-048.xsl"/>
   <xsl:include href="ConvSpec-050-088.xsl"/>
   <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
-  <xsl:include href="ConvSpec-X30and240-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
+  <xsl:include href="ConvSpec-240andX30-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
   <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
@@ -64,11 +64,13 @@
   <xsl:variable name="organizations">http://id.loc.gov/vocabulary/organizations/</xsl:variable>
   <xsl:variable name="relators">http://id.loc.gov/vocabulary/relators/</xsl:variable>
 
+  <!-- configuration files -->
+
   <!-- subject thesaurus map -->
-  <xsl:variable name="subjectThesaurus" select="document('subjectThesaurus.xml')"/>
+  <xsl:variable name="subjectThesaurus" select="document('../conf/subjectThesaurus.xml')"/>
 
   <!-- language map -->
-  <xsl:variable name="languageMap" select="document('languageCrosswalk.xml')"/>
+  <xsl:variable name="languageMap" select="document('../conf/languageCrosswalk.xml')"/>
 
   <xsl:template match="/">
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" ?>
-<!-- subject thesaurus map -->
 <subjectThesaurus>
+  <!--
+      subject thesaurus map used to generated the appropriate MADS
+      scheme and source code for MADSRDF elements. See template mode
+      "work6XXAuth" in the ConvSpec-648-662.xsl stylesheet
+  -->
   <subject ind2='0'>
     <code>lcsh</code>
     <madsscheme>http://id.loc.gov/authorities/subjects</madsscheme>
