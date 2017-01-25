@@ -1,0 +1,5 @@
+---
+# Playbook to deploy Metaproxy and MARC to BIBFRAME conversion to Debian 8 (Jessie)
+- hosts: default
+  roles:
+    - mp-bibframe

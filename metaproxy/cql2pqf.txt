@@ -1,0 +1,87 @@
+
+# Propeties file to drive org.z3950.zing.cql.CQLNode's toPQF()
+# back-end and the YAZ CQL-to-PQF converter.  This specifies the
+# interpretation of various CQL indexes, relations, etc. in terms
+# of Type-1 query attributes.
+#
+# This file is created from a valid ZeeRex Explain XML record using the 
+# XSLT transformation 'explain2cqlpqftxt.xsl'
+#
+# xsltproc explain2cqlpqf.xsl explain.xml
+    
+
+# Title: Metaproxy SRU explain record
+
+# Set info
+# Default set
+set = info:srw/cql-context-set/1/cql-v1.1
+
+set.bf = info:srw/cql-context-set/1/bibframe
+set.cql = info:srw/cql-context-set/1/cql-v1.1
+set.rec = info:srw/cql-context-set/2/rec-1.0
+set.dc = info:srw/cql-context-set/1/dc-v1.1
+set.bib1 = 1.2.840.10003.3.1
+
+# Index info
+index.bf.* = 1=bf.*
+index.cql.serverChoice = 1=1016 
+index.cql.all = 1=1016 
+index.rec.id = 1=12
+index.dc.title = 1=4 
+index.dc.creator = 1=1003 
+index.dc.subject = 1=21 
+index.dc.description = 1=62 
+index.dc.publisher = 1=1018 
+index.dc.contributor = 1=1003 
+index.dc.date = 1=30 
+index.dc.type = 1=1034 
+index.dc.format = 1=1013 
+index.dc.identifier = 1=7 
+index.dc.source = 1=1019 
+
+# Relation info
+relation.<  = 2=1
+relation.eq  = 2=3
+relation.>  = 2=5
+
+
+# Default Relation
+relation.scr = 2=3
+
+# RelationModifier info
+
+
+# Position attributes 
+position.first                          = 3=1 6=1
+position.any                            = 3=3 6=1
+position.last                           = 3=4 6=1
+position.firstAndLast                   = 3=3 6=3
+
+# Structure attributes may be specified for individual relations; a
+# default structure attribute my be specified by the pseudo-relation
+# "*", to be used whenever a relation not listed here occurs.
+#
+structure.exact                         = 4=108
+structure.all                           = 4=2
+structure.any                           = 4=2
+structure.*                             = 4=1
+structure.eq                            = 4=3
+
+# Truncation attributes used to implement CQL wildcard patterns.  The
+# simpler forms, left, right- and both-truncation will be used for the
+# simplest patterns, so that we produce PQF queries that conform more
+# closely to the Bath Profile.  However, when a more complex pattern
+# such as "foo*bar" is used, we fall back on Z39.58-style masking.
+#
+truncation.right                        = 5=1
+truncation.left                         = 5=2
+truncation.both                         = 5=3
+truncation.none                         = 5=100
+truncation.z3958                        = 5=104
+
+# Finally, any additional attributes that should always be included
+# with each term can be specified in the "always" property.
+#
+# always                                        = 6=1
+# 6=1: completeness = incomplete subfield
+    

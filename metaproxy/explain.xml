@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- this file configures the SRU/SRW explain response -->
+<!-- see: http://explain.z3950.org/dtd/commentary.html -->
+<!-- validate this using zeerex-2.0.xsd -->
+<!-- Extensions see: http://explain.z3950.org/dtd/extensions.html -->
+
+<explain xmlns="http://explain.z3950.org/dtd/2.0/">
+
+  <serverInfo protocol="SRU">
+    <host>foo.somehost.somewhere</host>
+    <port>9000</port>
+    <database>Default</database>
+  </serverInfo>
+
+  <databaseInfo>
+    <title lang="en" primary="true">BIBFRAME demo</title>
+    <description lang="en" primary="true">
+      BIBFRAME demo
+    </description>
+    <author>Index Data, http://www.indexdata.com</author>
+    <contact>Index Data, info(at)indexdata(dot)com</contact>
+  </databaseInfo>
+
+  <indexInfo>
+    <set name="cql" identifier="info:srw/cql-context-set/1/cql-v1.1">
+      <title>CQL Standard Set</title>
+    </set>
+    <set name="rec" identifier="info:srw/cql-context-set/2/rec-1.0">
+      <title>Record Standard Set</title>
+    </set>
+    <set name="dc" identifier="info:srw/cql-context-set/1/dc-v1.1">
+      <title>Dublin Core Set</title>
+    </set>
+    <set name="bib1" identifier="1.2.840.10003.3.1">
+      <title>BIB-1 Z39.50 Standard Set</title>
+    </set>
+
+    <!-- CQL standard index -->
+    <index search="true" scan="true" sort="false">
+      <title lang="en">CQL Server Choice</title>
+      <map><name set="cql">serverChoice</name></map>
+      <map>
+        <attr type="1" set="bib1">1010</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">CQL All</title>
+      <map><name set="cql">all</name></map>
+      <map>
+        <attr type="1" set="bib1">1010</attr>
+      </map>
+    </index>
+
+    <!-- Record ID index -->
+    <index search="true" scan="true" sort="false">
+      <title lang="en">Record ID</title>
+      <map><name set="rec">id</name></map>
+      <map>
+        <attr type="1" set="bib1">12</attr>
+        <attr type="4" set="bib1">3</attr>
+      </map>
+    </index>
+
+    <!-- Dublin Core Indexes -->
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Title</title>
+      <map><name set="dc">title</name></map>
+      <map>
+        <attr type="1" set="bib1">4</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Creator</title>
+      <map><name set="dc">creator</name></map>
+      <map>
+        <attr type="1" set="bib1">1003</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Subject</title>
+      <map><name set="dc">subject</name></map>
+      <map>
+        <attr type="1" set="bib1">47</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Description</title>
+      <map><name set="dc">description</name></map>
+      <map>
+        <attr type="1" set="bib1">62</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Publisher</title>
+      <map><name set="dc">publisher</name></map>
+      <map>
+        <attr type="1" set="bib1">1018</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Contributor</title>
+      <map><name set="dc">contributor</name></map>
+      <map>
+        <attr type="1" set="bib1">1003</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Date</title>
+      <map><name set="dc">date</name></map>
+      <map>
+        <attr type="1" set="bib1">30</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Type</title>
+      <map><name set="dc">type</name></map>
+      <map>
+        <attr type="1" set="bib1">1034</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Format</title>
+      <map><name set="dc">format</name></map>
+      <map>
+        <attr type="1" set="bib1">1013</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Identifier</title>
+      <map><name set="dc">identifier</name></map>
+      <map>
+        <attr type="1" set="bib1">7</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Source</title>
+      <map><name set="dc">source</name></map>
+      <map>
+        <attr type="1" set="bib1">1019</attr>
+      </map>
+    </index>
+    <!--
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Language</title>
+      <map><name set="dc">language</name></map>
+      <map>
+        <attr type="1" set="bib1">54</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Relation</title>
+      <map><name set="dc">relation</name></map>
+      <map>
+        <attr type="1" set="bib1">1026</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Coverage</title>
+      <map><name set="dc">coverage</name></map>
+      <map>
+        <attr type="1" set="bib1">58</attr>
+      </map>
+    </index>
+    <index search="true" scan="true" sort="false">
+      <title lang="en">DC Rights</title>
+      <map><name set="dc">rights</name></map>
+      <map>
+        <attr type="1" set="bib1">dc:rights</attr>
+      </map>
+    </index>
+    -->
+  </indexInfo>
+
+  <schemaInfo>
+    <schema identifier="http://www.loc.gov/zing/srw/bibframe"
+            name="bibframe"
+            retrieve="true">
+      <title lang="en">BIBFRAME</title>
+    </schema>
+    <schema identifier="info:srw/schema/1/marcxml-v1.1"
+            location="http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
+            name="marcxml"
+            retrieve="true">
+      <title lang="en">MARCXML</title>
+    </schema>
+  </schemaInfo>
+
+
+  <configInfo>
+
+    <!-- searchRetrieve settings -->
+    <default type="contextSet">cql</default>
+    <default type="index">all</default>
+    <default type="relation">=</default>
+    <supports type="relation">&lt;</supports> <!-- 2=1 OK -->
+    <supports type="relation">&lt;=</supports> <!-- 2=2 OK -->
+    <supports type="relation">=</supports> <!-- 2=3 OK -->
+    <supports type="relation">&gt;=</supports> <!-- 2=4 OK -->
+    <supports type="relation">&gt;</supports> <!-- 2=5 OK -->
+    <!--<supports type="relationModifier">relevant</supports> --><!-- 2=102 -->
+    <!--<supports type="relationModifier">phonetic</supports> --><!-- 2=100 -->
+    <!--<supports type="relationModifier">stem</supports> --><!-- 2=101  -->
+
+    <!-- <supports type="proximity"></supports> -->
+          <!-- title = (house prox/distance=1/unit=word  the) -->
+    <!-- proximity modifier supported by the server or index
+         (relation, distance, unit, ordering) -->
+    <!-- <supports type="proximityModifier"></supports> -->
+    <!-- boolean modifier supported by the server or index -->
+    <!-- <supports type="booleanModifier"></supports> -->
+    <supports type="maskingCharacter">*</supports>
+    <supports type="maskingCharacter">?</supports>
+    <supports type="emptyTerm"></supports>
+
+    <!-- sorting settings -->
+    <!-- <supports type="sort"></supports> -->
+    <!-- supported sortmodifier (ascending, missingValue, caseSensitive) -->
+    <!-- <supports type="sortModifier"></supports> -->
+
+    <!-- presentation settings -->
+    <default type="numberOfRecords">0</default>
+    <default type="retrieveSchema">dc</default>
+    <default type="recordPacking">xml</default>
+
+    <!-- <setting type="maximumRecords">1000</setting> -->
+    <!-- <supports type="resultSets"></supports>  -->
+
+    <!-- scan settings -->
+
+    <!-- scan operation supported -->
+    <supports type="scan"></supports>
+    <default type="numberOfTerms">20</default>
+
+    <!-- other server settings -->
+    <!-- <supports type="version">1.1</supports> -->
+    <setting type="resultSetTTL">0</setting>
+    <!-- <supports type="extraSearchData"></supports> -->
+    <!-- <supports type="extraExplainData"></supports> -->
+    <!-- <supports type="profile"></supports> -->
+  </configInfo>
+
+</explain>

@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  # Target platform is Debian/jessie
+  config.vm.box = "debian/contrib-jessie64"
+
+  # Share the project folder on /home/indexdata/mk2-cdlc
+  # Disable the default share
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "..", "/vagrant/marc2bibframe2"
+
+  # Port forwarding
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "mp-bibframe.yml"
+  end
+end

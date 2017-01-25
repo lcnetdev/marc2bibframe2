@@ -1,0 +1,15 @@
+<filters xmlns="http://indexdata.com/metaproxy" version="1.0">
+  <filter type="record_transform">
+    <retrievalinfo  xmlns="http://indexdata.com/yaz" version="1.0">
+      <retrieval syntax="usmarc"/>
+      <retrieval syntax="xml" name="marcxml"
+               identifier="info:srw/schema/1/marcxml-v1.1">
+        <backend syntax="usmarc" name="F">
+          <marc inputformat="marc" outputformat="marcxml"
+                inputcharset="marc-8" outputcharset="utf-8"/>
+        </backend>
+      </retrieval>
+      <retrieval syntax="xml"/>
+    </retrievalinfo>
+  </filter>
+</filters>

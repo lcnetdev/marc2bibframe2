@@ -1,0 +1,11 @@
+<filters xmlns="http://indexdata.com/metaproxy" version="1.0">
+  <filter type="sru_z3950">
+    <database name="Default">
+      <include src="explain.xml"/>
+    </database>
+  </filter>
+  <filter type="cql_rpn">
+    <conversion file="cql2pqf.txt"/>
+  </filter>
+</filters>
+

@@ -1,0 +1,28 @@
+<filters xmlns="http://indexdata.com/metaproxy" version="1.0">
+  <filter type="record_transform">
+    <retrievalinfo  xmlns="http://indexdata.com/yaz" version="1.0">
+      <retrieval syntax="xml" name="bibframe2" identifier="info:bibframe2">
+        <backend syntax="xml" name="marcxml">
+          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl"/>
+        </backend>
+      </retrieval>
+      <retrieval syntax="xml" name="rdf-lookup" identifier="info:bibframe2a">
+        <backend syntax="xml" name="marcxml">
+          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl"/>
+          <rdf-lookup debug="1">
+            <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/" />
+            <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bibframe/lc-extensions/"/>
+            <lookup xpath="//bf:contribution/bf:Contribution/bf:agent/bf:Agent">
+              <key field="bflc:name11MatchKey"/>
+              <key field="bflc:name00MatchKey"/>
+              <key field="bflc:name10MatchKey"/>
+              <server url="http://id.loc.gov/authorities/names/label/%s"/>
+            </lookup>
+          </rdf-lookup>
+        </backend>
+      </retrieval>
+      <retrieval syntax="xml"/>
+      <retrieval syntax="usmarc"/>
+    </retrievalinfo>
+  </filter>
+</filters>
