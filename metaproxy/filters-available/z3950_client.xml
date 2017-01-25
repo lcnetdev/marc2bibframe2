@@ -1,0 +1,13 @@
+<filters xmlns="http://indexdata.com/metaproxy" version="1.0">
+  <filter type="virt_db">
+     <pass-vhosts>true</pass-vhosts>
+     <virtual>
+        <database>Default</database>
+        <target>lx2.loc.gov/LCDB</target>
+     </virtual>
+  </filter>
+  <filter type="log"><message>B</message></filter>
+  <filter type="z3950_client">
+    <timeout>30</timeout>
+  </filter>
+</filters>
