@@ -177,7 +177,14 @@ configuration is in the [metaproxy](metaproxy) directory. With this
 filter configuration, an SRU request to the server like
 `http://metaproxy.mylibrary.org/?version=1.1&operation=searchRetrieve&query=rec.id%3D13600108&recordSchema=bibframe2&startRecord=1&maximumRecords=1`
 would retrieve and display the requested record converted into
-BIBFRAME triples in RDF/XML format.
+BIBFRAME triples in RDF/XML format. The
+[install-filters.sh](metaproxy/install-filters.sh) script in that
+directory would deploy the filters into a running Metaproxy
+configuration.
+
+In addition, we have provided a Vagrantfile and Ansible playbook to
+build a local Metaproxy VM using VirtualBox for testing, available in
+the [deploy](deploy) directory.
 
 ## Known issues
 - Dealing with punctuation embedded in cataloged bibliographic
@@ -221,7 +228,12 @@ BIBFRAME triples in RDF/XML format.
 
 ## Dependencies
 
-* [Metaproxy](http://www.indexdata.com/metaproxy) for Metaproxy integration
+* [Ansible](https://www.ansible.com) /
+  [Vagrant](https://www.vagrantup.com) /
+  [VirtualBox](https://www.virtualbox.org) for building a local VM
+  Metaproxy server
+* [Metaproxy](http://www.indexdata.com/metaproxy) for Metaproxy
+  integration
 * [XSpec](https://github.com/expath/xspec) for unit tests
 * [YAZ](http://www.indexdata.com/yaz) v5.20.0 or higher for active conversion
 
