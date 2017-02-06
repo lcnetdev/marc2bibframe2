@@ -1,6 +1,7 @@
 <filters xmlns="http://indexdata.com/metaproxy" version="1.0">
   <filter type="record_transform">
     <retrievalinfo  xmlns="http://indexdata.com/yaz" version="1.0">
+      <retrieval syntax="xml"/>
       <retrieval syntax="xml" name="bibframe2" identifier="info:bibframe2">
         <backend syntax="xml" name="marcxml">
           <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl"/>
@@ -21,7 +22,6 @@
           </rdf-lookup>
         </backend>
       </retrieval>
-      <retrieval syntax="xml"/>
       <retrieval syntax="usmarc"/>
       <retrieval syntax="opac"/>
     </retrievalinfo>
