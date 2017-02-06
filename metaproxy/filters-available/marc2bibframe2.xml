@@ -23,6 +23,7 @@
       </retrieval>
       <retrieval syntax="xml"/>
       <retrieval syntax="usmarc"/>
+      <retrieval syntax="opac"/>
     </retrievalinfo>
   </filter>
 </filters>
