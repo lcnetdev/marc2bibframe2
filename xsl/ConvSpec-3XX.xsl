@@ -286,22 +286,9 @@
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='2']">
-                <xsl:choose>
-                  <xsl:when test="contains(.,'rda')">
-                    <bf:source>
-                      <bf:Source>
-                        <rdfs:label>rda</rdfs:label>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:apply-templates select="." mode="subfield2">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
