@@ -48,7 +48,8 @@
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="506 creates a usageAndAccessPolicy/UsageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label = 'Restricted access; Written permission required; Donor; Members of donor''s family; Title 50, chapter 401, U.S.C. Preview only'"/>
+    <x:expect label="506 creates a usageAndAccessPolicy/UsageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label[1] = 'Restricted access; Written permission required; Donor; Members of donor''s family; Title 50, chapter 401, U.S.C. Preview only'"/>
+    <x:expect label="$u creates an rdfs:label property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label[2] = 'https://www.gnu.org/licenses/gpl-3.0.txt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
   </x:scenario>
@@ -99,7 +100,6 @@
     <x:expect label="$ab create an rdfs:label property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Contains swear words, sex scenes and violence, but otherwise it''s ok.'"/>
     <x:expect label="$c creates a source property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bf:source[2]/bf:Source/rdfs:label = 'Central County Library'"/>
     <x:expect label="$u creates a source property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bf:source[1]/bf:Source/rdfs:label = 'http://www.mpaa.org'"/>
-    <x:expect label="$2 creates a source property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bf:source[3]/bf:Source/rdfs:label = 'mpaa'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some other part'"/>
   </x:scenario>
   

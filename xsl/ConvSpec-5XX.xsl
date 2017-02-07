@@ -159,7 +159,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='c' or @code='2']" mode="subfield2">
+            <xsl:apply-templates select="marc:subfield[@code='c']" mode="subfield2">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
@@ -373,6 +373,9 @@
               </xsl:if>
               <xsl:value-of select="normalize-space($vLabel)"/>
             </rdfs:label>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
