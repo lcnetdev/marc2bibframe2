@@ -107,6 +107,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='p']">
+          <xsl:variable name="vNodeId" select="generate-id()"/>
           <bf:musicMedium>
             <bf:MusicMedium>
               <xsl:if test="@code='d'">
@@ -129,32 +130,56 @@
                 </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
-              <xsl:if test="following-sibling::marc:subfield[position()=1]/@code='n' or following-sibling::marc:subfield[position()=1]/@code='e'">
-                <bf:count>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="following-sibling::marc:subfield[position()=1]"/>
-                </bf:count>
-              </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='s' or @code='v']">
-                <xsl:variable name="vDisplayConst">
-                  <xsl:if test="@code='s'">Total performers: </xsl:if>
-                </xsl:variable>
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:value-of select="concat($vDisplayConst,.)"/>
-                    </rdfs:label>
-                  </bf:Note>
-                </bf:note>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p' or @code='r' or @code='s' or @code='t'][position()=1]/preceding-sibling::marc:subfield[@code='n' or @code='e']">
+                <xsl:if test="generate-id(preceding-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p'][position()=1])=$vNodeId">
+                  <bf:count>
+                    <xsl:value-of select="."/>
+                  </bf:count>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p' or @code='r' or @code='s' or @code='t'][position()=1]/preceding-sibling::marc:subfield[@code='v']">
+                <xsl:if test="generate-id(preceding-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p'][position()=1])=$vNodeId">
+                  <bf:note>
+                    <bf:Note>
+                      <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="."/>
+                      </rdfs:label>
+                    </bf:Note>
+                  </bf:note>
+                </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:MusicMedium>
+          </bf:musicMedium>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='r' or @code='s' or @code='t'] | marc:subfield[@code='v'][preceding-sibling::marc:subfield[@code='r' or @code='s' or @code='t']]">
+          <xsl:variable name="vDisplayConstant">
+            <xsl:choose>
+              <xsl:when test="@code='r'">Total performers alongside ensembles: </xsl:when>
+              <xsl:when test="@code='s'">Total performers: </xsl:when>
+              <xsl:when test="@code='t'">Total ensembles: </xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <bf:musicMedium>
+            <bf:MusicMedium>
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="concat($vDisplayConstant,.)"/>
+                  </rdfs:label>
+                </bf:Note>
+              </bf:note>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>

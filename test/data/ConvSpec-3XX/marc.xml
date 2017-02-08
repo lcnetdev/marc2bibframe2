@@ -148,12 +148,13 @@
       <subfield code="3">Nach Bach</subfield>
       <subfield code="a">piano</subfield>
       <subfield code="n">1</subfield>
+      <subfield code="v">played on altered piano</subfield>
       <subfield code="p">baritone horn</subfield>
-      <subfield code="n">1</subfield>
+      <subfield code="n">2</subfield>
       <subfield code="d">synthesizer</subfield>
       <subfield code="n">1</subfield>
       <subfield code="s">2</subfield>
-      <subfield code="v">piano is prominent, but other instruments are not identified</subfield>
+      <subfield code="v">piano is prominent, but not all other instruments are not identified</subfield>
       <subfield code="2">lcmpt</subfield>
     </datafield>
     <datafield tag="382" ind1=" " ind2=" ">
