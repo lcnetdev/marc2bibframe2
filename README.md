@@ -58,6 +58,16 @@ parameters. For xsltproc, the syntax is:
 
     xsltproc --stringparam baseuri http://mylibrary.org/ xsl/marc2bibframe2.xsl test/data/marc.xml
 
+For [Metaproxy integration](#metaproxy-integration), the converter
+parameters can be passed to the stylesheets using the `<param>`
+element in the YAZ configuration:
+
+```xml
+<xslt stylesheet="xsl/marc2bibframe2.xsl">
+  <param name="baseuri" value="http://mylibrary.org/"/>
+</xslt>
+```
+
 ### Converter configuration
 Some elements of the conversion can be configured using XML files in
 the [conf](conf) directory. Currently, this only includes language
