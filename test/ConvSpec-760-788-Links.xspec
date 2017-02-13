@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="760-788 LINKS">
+    <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
+    <x:expect label="760 creates a hasSeries property of the Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:hasSeries) = 1"/>
+    <x:expect label="762 creates a hasSubseries property of the Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:hasSubseries) = 1"/>
+    <x:expect label="765 creates a translationOf property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:translationOf) = 1"/>
+    <x:expect label="767 creates a translation property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:translation) = 1"/>
+    <x:expect label="770 creates a supplement property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:supplement) = 1"/>
+    <x:expect label="772 creates a supplementTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:supplementTo) = 1"/>
+    <x:expect label="773 creates a partOf property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:partOf) = 1"/>
+    <x:expect label="774 creates a hasPart property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:hasPart) = 1"/>
+    <x:expect label="775 creates an otherEdition property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:otherEdition) = 1"/>
+    <x:expect label="776 creates an otherPhysicalFormat property of the Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:otherPhysicalFormat) = 1"/>
+    <x:expect label="777 creates an issuedWith property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:issuedWith) = 1"/>
+    <x:expect label="780 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbed) = 1"/>
+    <x:expect label="785 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbedBy) = 1"/>
+    <x:expect label="786 creates a dataSource property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:dataSource) = 1"/>
+    <x:expect label="787 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 1"/>
+  </x:scenario>
+    
+  <x:scenario label="760-788 SUBFIELDS">
+    <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
+    <x:expect label="$a creates an agent property of the linked Work" test="/rdf:RDF/bf:Instance[1]/bf:hasSeries[1]/bf:Work/bf:agent/bf:Agent/rdfs:label = 'United States. Geological Survey.'"/>
+    <x:expect label="$b creates an editionStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:hasInstance/bf:Instance/bf:editionStatement = 'Havana ed.'"/>
+    <x:expect label="$c creates a title/Title/qualifier property of the title of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:title[1]/bf:Title/bf:qualifier = 'Original'"/>
+    <x:expect label="$d creates a provisionActivityStatement of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:provisionActivityStatement = 'Wallingford : Gem Publishing Company'"/>
+    <x:expect label="$e creates a language property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:language/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/eng'"/>
+    <x:expect label="$f creates a provisionActivity property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:hasInstance/bf:Instance/bf:provisionActivity/bf:ProvisionActivity/bf:place/bf:Place/@rdf:about= 'http://id.loc.gov/vocabulary/countries/cu'"/>
+    <x:expect label="$g creates a part property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:part = '1971'"/>
+    <x:expect label="$h creates an extent property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:extent/bf:Extent/rdfs:label = 'file on disc'"/>
+    <x:expect label="$i creates a bflc:relationship property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:relatedTo[1]/bf:Work/bflc:relationship/bflc:Relationship/rdfs:label = 'Related source work'"/>
+    <x:expect label="$k creates a seriesStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:seriesStatement = 'Wonders of man series.'"/>
+    <x:expect label="$m creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[2]/bf:Note/rdfs:label = '240 x 760px'"/>
+    <x:expect label="$n creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[1]/bf:Note/rdfs:label = '[DIAPimage]'"/>
+    <x:expect label="$r creates an identifiedBy/ReportNumber property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:supplement/bf:Work/bf:identifiedBy/bf:ReportNumber/rdf:value = 'APA 3011'"/>
+    <x:expect label="$s creates a title property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Publications.'"/>
+    <x:expect label="$t creates a title property of the linked Instance" test="/rdf:RDF/bf:Instance[1]/bf:hasSeries[1]/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/rdfs:label = 'Water supply papers'"/>
+    <x:expect label="$u creates an identifiedBy/Strn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Strn/rdf:value = 'MPC-387'"/>
+    <x:expect label="$v creates a note property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:dataSource[1]/bf:Work/bf:note/bf:Note/rdfs:label = 'Data for reformatting to DEM format'"/>
+    <x:expect label="$w creates an identifiedBy/Identifier property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:identifiedBy[1]/bf:Identifier/rdf:value = '   78648457 '"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:translation[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Issn/rdf:value = '0190-2709'"/>
+    <x:expect label="$y creates an identifiedBy/Coden property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Coden/rdf:value = 'FNMMA'"/>
+    <x:expect label="$z creates an identifiedBy/Isbn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Isbn/rdf:value = '0491001304'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Pamphlet'"/>
+  </x:scenario>
+
+  <x:scenario label="776 - ADDITIONAL PHYSICAL FORM ENTRY">
+    <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
+    <x:expect label="Processing for 776 places properties on an Instance, not a work" test="/rdf:RDF/bf:Instance[1]/bf:otherPhysicalFormat[1]/bf:Instance/bf:identifiedBy/bf:Identifier/rdf:value = '   24020326 '"/>
+  </x:scenario>
+
+</x:description>

@@ -32,6 +32,7 @@
   <xsl:include href="ConvSpec-5XX.xsl"/>
   <xsl:include href="ConvSpec-648-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
+  <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
 

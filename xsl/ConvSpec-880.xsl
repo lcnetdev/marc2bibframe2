@@ -231,6 +231,15 @@
           <xsl:with-param name="recordid" select="$recordid"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='765' or $tag='767' or $tag='770' or $tag='772' or $tag='773' or $tag='774' or $tag='775' or $tag='780' or $tag='785' or $tag='786' or $tag='787'">
+        <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates select="." mode="work7XXLinks">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+          <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
+        </xsl:apply-templates>
+      </xsl:when>        
       <xsl:when test="$tag='800' or $tag='810' or $tag='811'">
         <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
@@ -474,6 +483,24 @@
       <xsl:when test="$tag='540'">
         <xsl:apply-templates select="." mode="instance540">
           <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='760' or $tag='762'">
+        <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates select="." mode="instance7XXLinks">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+          <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='766'">
+        <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work</xsl:variable>
+        <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:apply-templates select="." mode="instance776">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+          <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>
     </xsl:choose>

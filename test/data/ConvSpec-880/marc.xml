@@ -438,6 +438,11 @@
       <subfield code="a">Англия</subfield>
       <subfield code="d">Лондон</subfield>
     </datafield>
+    <datafield ind1="0" ind2="6" tag="880">
+      <subfield code="6">780-01</subfield>
+      <subfield code="t">Графические уведомления и дополнительные данные</subfield>
+      <subfield code="w">(OCoLC)4276671</subfield>
+    </datafield>
     <datafield ind1="0" ind2=" " tag="880">
       <subfield code="6">800-01</subfield>
       <subfield code="a">ملحمة دانيال</subfield>

@@ -1,0 +1,91 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="760" ind1="0" ind2=" ">
+      <subfield code="a">United States. Geological Survey.</subfield>
+      <subfield code="t">Water supply papers</subfield>
+    </datafield>
+    <datafield tag="762" ind1="0" ind2=" ">
+      <subfield code="t">Quality of surface waters of the United States</subfield>
+    </datafield>
+    <datafield tag="765" ind1="0" ind2=" ">
+      <subfield code="c">Original</subfield>
+      <subfield code="t">Astrofizicheskie issledovaniíà</subfield>
+      <subfield code="w">(DLC)   78648457 </subfield>
+      <subfield code="w">(OCoLC)4798581</subfield>
+    </datafield>
+    <datafield tag="767" ind1="0" ind2=" ">
+      <subfield code="t">Astrofizicheskie issledovaniíà. English. Bulletin of the Special Astrophysical Observatory (North Caucasus)</subfield>
+      <subfield code="x">0190-2709</subfield>
+      <subfield code="w">(DLC)   86649325 </subfield>
+      <subfield code="w">(OCoLC)4698159</subfield>
+    </datafield>
+    <datafield tag="770" ind1="0" ind2=" ">
+      <subfield code="t">Journal of cellular biochemistry. Supplement</subfield>
+      <subfield code="r">APA 3011</subfield>
+      <subfield code="x">0733-1959</subfield>
+    </datafield>
+    <datafield tag="772" ind1="1" ind2=" ">
+      <subfield code="t">Statistiques pour l'économie normande</subfield>
+      <subfield code="g">1979-</subfield>
+      <subfield code="w">(OCoLC)6260766</subfield>
+    </datafield>
+    <datafield tag="773" ind1="0" ind2=" ">
+      <subfield code="3">Pamphlet</subfield>
+      <subfield code="t">Entomologists' monthly magazine</subfield>
+      <subfield code="p">ENTOMOL MON MAG</subfield>
+      <subfield code="k">Wonders of man series.</subfield>
+      <subfield code="d">Wallingford : Gem Publishing Company</subfield>
+      <subfield code="q">24:B:9&lt;235</subfield>
+      <subfield code="x">0013-8908</subfield>
+      <subfield code="y">FNMMA</subfield>
+    </datafield>
+    <datafield tag="774" ind1="0" ind2=" ">
+      <subfield code="o">NYDA.1993.010.00132.</subfield>
+      <subfield code="n">[DIAPimage]</subfield>
+      <subfield code="h">file on disc</subfield>
+      <subfield code="m">240 x 760px</subfield>
+      <subfield code="t">View SE from Mill Brook Houses on rooftop on Cypress Ave. Between 136th St. and 137th St.,</subfield>
+      <subfield code="d">93/05</subfield>
+    </datafield>
+    <datafield tag="775" ind1="0" ind2=" ">
+      <subfield code="t">Cuba economic news</subfield>
+      <subfield code="b">Havana ed.</subfield>
+      <subfield code="f">cu</subfield>
+      <subfield code="x">0590-2932</subfield>
+      <subfield code="e">eng</subfield>
+      <subfield code="w">(OCoLC)2259984</subfield>
+    </datafield>
+    <datafield tag="776" ind1="0" ind2=" ">
+      <subfield code="c">Original</subfield>
+      <subfield code="w">(DLC)   24020326 </subfield>
+    </datafield>
+    <datafield tag="777" ind1="0" ind2=" ">
+      <subfield code="t">Mythprint</subfield>
+      <subfield code="x">0146-9347</subfield>
+    </datafield>
+    <datafield tag="780" ind1="0" ind2="5">
+      <subfield code="a">American Society of International Law.</subfield>
+      <subfield code="s">Publications.</subfield>
+      <subfield code="t">Proceedings</subfield>
+      <subfield code="g">1971</subfield>
+      <subfield code="u">MPC-387</subfield>
+      <subfield code="z">0491001304</subfield>
+    </datafield>
+    <datafield tag="785" ind1="0" ind2="4">
+      <subfield code="t">Business week</subfield>
+      <subfield code="g">Oct. 1940</subfield>
+      <subfield code="x">0007-7135</subfield>
+      <subfield code="w">(DLC)   31006225 </subfield>
+    </datafield>
+    <datafield tag="786" ind1="0" ind2=" ">
+      <subfield code="a">United States. Defense Mapping Agency.</subfield>
+      <subfield code="t">Reno, NV-CA west digital terrain elevation data</subfield>
+      <subfield code="v">Data for reformatting to DEM format</subfield>
+    </datafield>
+    <datafield tag="787" ind1="1" ind2="8">
+      <subfield code="i">Related source work</subfield>
+      <subfield code="o">(istc)0A3200912B4A1057</subfield>
+    </datafield>
+  </record>
+</collection>

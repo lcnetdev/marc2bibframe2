@@ -23,6 +23,7 @@
   <x:import href="ConvSpec-5XX.xspec"/>
   <x:import href="ConvSpec-648-662.xspec"/>
   <x:import href="ConvSpec-720+740to755.xspec"/>
+  <x:import href="ConvSpec-760-788-Links.xspec"/>
   <x:import href="ConvSpec-841-887.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
 
