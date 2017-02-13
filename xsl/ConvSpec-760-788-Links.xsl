@@ -280,7 +280,7 @@
               <xsl:otherwise>
                 <bf:hasInstance>
                   <bf:Instance>
-                    <xsl:attribute name="rdf:about" select="$pInstanceUri"/>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$pInstanceUri"/></xsl:attribute>
                     <xsl:apply-templates select="." mode="link7XXinstance">
                       <xsl:with-param name="serialization" select="$serialization"/>
                       <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
@@ -322,7 +322,7 @@
             <bf:ProvisionActivity>
               <bf:place>
                 <bf:Place>
-                  <xsl:attribute name="rdf:about" select="concat($countries,.)"/>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,.)"/></xsl:attribute>
                 </bf:Place>
               </bf:place>
             </bf:ProvisionActivity>
@@ -396,7 +396,7 @@
           </bf:identifiedBy>
         </xsl:for-each>
         <bf:instanceOf>
-          <xsl:attribute name="rdf:resource" select="$pWorkUri"/>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="$pWorkUri"/></xsl:attribute>
         </bf:instanceOf>
       </xsl:when>
     </xsl:choose>
