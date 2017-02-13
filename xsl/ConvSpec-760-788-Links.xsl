@@ -395,6 +395,9 @@
             </xsl:element>
           </bf:identifiedBy>
         </xsl:for-each>
+        <bf:instanceOf>
+          <xsl:attribute name="rdf:resource" select="$pWorkUri"/>
+        </bf:instanceOf>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
