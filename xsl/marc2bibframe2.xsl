@@ -4,7 +4,7 @@
                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                 xmlns:marc="http://www.loc.gov/MARC21/slim"
                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-                xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+                xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="xsl marc">
@@ -37,7 +37,7 @@
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
-  <xsl:variable name="bflc">http://id.loc.gov/ontologies/bibframe/lc-extensions/</xsl:variable>
+  <xsl:variable name="bflc">http://id.loc.gov/ontologies/bflc/</xsl:variable>
   <xsl:variable name="edtf">http://id.loc.gov/datatypes/</xsl:variable>
   <xsl:variable name="madsrdf">http://www.loc.gov/mads/rdf/v1#</xsl:variable>
   <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
@@ -80,7 +80,7 @@
         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                  xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-                 xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                  xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
 
           <xsl:apply-templates>

@@ -4,7 +4,7 @@
                xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
-               xmlns:bflc="http://id.loc.gov/ontologies/bibframe/lc-extensions/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:scenario label="Uniform title bf:Title creation">

@@ -143,7 +143,7 @@ configuration looks like this:
   <xslt stylesheet="xsl/marc2bibframe2.xsl"/>
   <rdf-lookup debug=1>
     <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/" />
-    <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bibframe/lc-extensions/"/>
+    <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
     <lookup xpath="//bf:contribution/bf:Contribution/bf:agent/bf:Agent">
       <key field="bflc:name00MatchKey"/>
       <key field="bflc:name01MatchKey"/>
