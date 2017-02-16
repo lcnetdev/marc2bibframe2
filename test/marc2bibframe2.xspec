@@ -307,6 +307,14 @@
                 <rdfs:label>Jazz--1951-1960.</rdfs:label>
                 <madsrdf:authoritativeLabel>Jazz--1951-1960.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:componentList rdf:parseType="Collection">
+                  <madsrdf:Topic>
+                    <madsrdf:authoritativeLabel>Jazz</madsrdf:authoritativeLabel>
+                  </madsrdf:Topic>
+                  <madsrdf:Temporal>
+                    <madsrdf:authoritativeLabel>1951-1960</madsrdf:authoritativeLabel>
+                  </madsrdf:Temporal>
+                </madsrdf:componentList>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
