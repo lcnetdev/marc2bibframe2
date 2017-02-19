@@ -68,10 +68,10 @@
   <!-- configuration files -->
 
   <!-- subject thesaurus map -->
-  <xsl:variable name="subjectThesaurus" select="document('../conf/subjectThesaurus.xml')"/>
+  <xsl:variable name="subjectThesaurus" select="document('conf/subjectThesaurus.xml')"/>
 
   <!-- language map -->
-  <xsl:variable name="languageMap" select="document('../conf/languageCrosswalk.xml')"/>
+  <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
 
   <xsl:template match="/">
 
