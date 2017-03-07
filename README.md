@@ -112,11 +112,11 @@ Each of the specification documents in the [spec](spec) directory is
 represented in a corresponding test suite in the [test](test)
 directory, with test data in the [test/data](test/data) directory.
 
-The tests are written for the [XSpec](https://github.com/expath/xspec)
+The tests are written for the [XSpec](https://github.com/xspec/xspec)
 testing framework, a behavior driven development testing framework for
 XSLT and XQuery. To run the tests, you must install the Saxon XSLT and
 XQuery processor as well as XSpec. Installation instructions are
-available on the [XSpec wiki](https://github.com/expath/xspec/wiki).
+available on the [XSpec wiki](https://github.com/xspec/xspec/wiki).
 
 Once you have XSpec installed, you can run the entire test suite with
 the command (for Mac OS or Linux):

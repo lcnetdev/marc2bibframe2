@@ -1,3 +1,7 @@
+--- 1.0.0-SNAPSHOT
+
+Fix link to XSpec in README.md (https://github.com/lcnetdev/marc2bibframe2/issues/1)
+
 --- 0.1.0 2017/02/18
 
 First packaged release.
