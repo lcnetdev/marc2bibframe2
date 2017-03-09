@@ -30,6 +30,9 @@ of the application with Metaproxy to provide both a "static"
 conversion of MARC records and an "active" conversion that attempts to
 resolve identifiers for configured entities.
 
+The specification for the conversion has been published by the Library
+of Congress at http://www.loc.gov/bibframe/mtbf/.
+
 ## Using the converter
 In the simplest case, you can invoke an XSLT processor with the
 main stylesheet (`xsl/marc2bibframe2.xsl`) as the first argument, and
@@ -227,14 +230,12 @@ the [deploy](deploy) directory.
 
 ## Repository contents
 
-* conf - configuration files for the XSL transformation
 * dataset - sample records for exercising conversion
 * metaproxy - sample [Metaproxy](http://www.indexdata.com/metaproxy/)
   configuration for static and active conversion
-* spec - Specification documentation for the conversion
 * test - Unit tests for the [XSpec](https://github.com/expath/xspec)
   testing framework, and test data
-* xsl - XSLT 1.0 stylesheets for transformation 
+* xsl - XSLT 1.0 stylesheets for transformation, configuration in xsl/conf
 
 ## Dependencies
 
