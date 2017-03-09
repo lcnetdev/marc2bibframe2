@@ -94,7 +94,7 @@
       <subfield code="a">METPRO/CB/TR--74/216+PR.ENVR.WI</subfield>
       <subfield code="z">MPC-387</subfield>
     </datafield>
-    <datafield tag="028" ind1="4" ind2="2">
+    <datafield tag="028" ind1="0" ind2="2">
       <subfield code="a">440 073 033-9</subfield>
       <subfield code="b">Deutsche Grammophon</subfield>
       <subfield code="q">(disc 1)</subfield>

@@ -407,14 +407,14 @@
               </bf:Lccn>
             </bf:identifiedBy>
             <bf:identifiedBy>
-              <bf:IssueNumber>
+              <bf:AudioIssueNumber>
                 <rdf:value>1259</rdf:value>
                 <bf:source>
                   <bf:Source>
                     <rdfs:label>Atlantic</rdfs:label>
                   </bf:Source>
                 </bf:source>
-              </bf:IssueNumber>
+              </bf:AudioIssueNumber>
             </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
