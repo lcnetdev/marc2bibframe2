@@ -81,14 +81,18 @@
           <bf:Cartographic>
             <xsl:for-each select="marc:subfield[@code='b']">
               <bf:projection>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <!-- leave trailing period for abbreviations -->
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                </xsl:call-template>
+                <bf:Projection>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <!-- leave trailing period for abbreviations -->
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Projection>
               </bf:projection>
             </xsl:for-each>
             <xsl:if test="$vCoordinates != ''">
