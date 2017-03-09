@@ -845,7 +845,7 @@
             <xsl:when test="@ind1 = '1'">bf:MatrixNumber</xsl:when>
             <xsl:when test="@ind1 = '2'">bf:MusicPlate</xsl:when>
             <xsl:when test="@ind1 = '3'">bf:MusicPublisherNumber</xsl:when>
-            <xsl:when test="@ind1 = '4'">bf:VideorecordingNumber</xsl:when>
+            <xsl:when test="@ind1 = '4'">bf:VideoRecordingNumber</xsl:when>
             <xsl:otherwise>bf:PublisherNumber</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
