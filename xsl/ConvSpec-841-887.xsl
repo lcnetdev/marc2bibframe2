@@ -92,6 +92,15 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="vAddress">
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="chopString">
+          <xsl:for-each select="marc:subfield[@code='e' or @code='n']">
+            <xsl:value-of select="concat(.,', ')"/>
+          </xsl:for-each>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -100,17 +109,31 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
               <bf:heldBy>
                 <bf:Agent>
-                  <bf:code><xsl:value-of select="."/></bf:code>
+                  <xsl:choose>
+                    <xsl:when test="string-length(.) &lt; 10">
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,.)"/></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </bf:Agent>
               </bf:heldBy>
               <xsl:if test="../@tag='852'">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:subLocation>
-                    <bf:Sublocation>
+                    <bf:SubLocation>
                       <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                    </bf:Sublocation>
+                    </bf:SubLocation>
                   </bf:subLocation>
                 </xsl:for-each>
+                <xsl:if test="$vAddress != ''">
+                  <bf:subLocation>
+                    <bf:SubLocation>
+                      <rdfs:label><xsl:value-of select="$vAddress"/></rdfs:label>
+                    </bf:SubLocation>
+                  </bf:subLocation>
+                </xsl:if>
                 <xsl:for-each select="../marc:subfield[@code='u']">
                   <bf:electronicLocator>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
