@@ -24,16 +24,16 @@
 
   <x:scenario label="752 - ADDED ENTRY--HIERARCHICAL PLACE NAME">
     <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
-    <x:expect label="752 creates a contribution/Contribution/place/Place property of the Work" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/rdfs:label = 'England--London'"/>
-    <x:expect label="...with a madsrdf:HierarchicalGeopgraphic Class" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
-    <x:expect label="$abcdfgh become part of the madsrdf:componentList of the Place" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:place/bf:Place/madsrdf:componentList/*[2]/rdfs:label = 'London'"/>
+    <x:expect label="752 creates a place/Place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'England--London'"/>
+    <x:expect label="...with a madsrdf:HierarchicalGeopgraphic Class" test="//bf:Work[1]/bf:place[1]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
+    <x:expect label="$abcdfgh become part of the madsrdf:componentList of the Place" test="//bf:Work[1]/bf:place[1]/bf:Place/madsrdf:componentList/*[2]/rdfs:label = 'London'"/>
   </x:scenario>
   
   <x:scenario label="753 - SYSTEM DETAILS ACCESS TO COMPUTER FILES">
     <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
-    <x:expect label="$a creates a systemRequirements/bflc:MachineModel property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[1]/bflc:MachineModel/rdfs:label = 'IBM PC'"/>
-    <x:expect label="$b creates a systemRequirements/bflc:ProgrammingLanguage property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[2]/bflc:ProgrammingLanguage/rdfs:label = 'Pascal'"/>
-    <x:expect label="$c creates a systemRequirements/bflc:OperatingSystem property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[3]/bflc:OperatingSystem/rdfs:label = 'DOS 1.1'"/>
+    <x:expect label="$a creates a systemRequirement/bflc:MachineModel property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bflc:MachineModel/rdfs:label = 'IBM PC'"/>
+    <x:expect label="$b creates a systemRequirement/bflc:ProgrammingLanguage property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[2]/bflc:ProgrammingLanguage/rdfs:label = 'Pascal'"/>
+    <x:expect label="$c creates a systemRequirement/bflc:OperatingSystem property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[3]/bflc:OperatingSystem/rdfs:label = 'DOS 1.1'"/>
   </x:scenario>
   
 </x:description>
