@@ -107,13 +107,15 @@ stylesheet. Configuration information is read into variables using the
 `document()` function.
 
 As much as possible, templates representing each specification
-document in the [spec](spec) directory are contained in a stylesheet
-with the same name, for easier maintenance.
+document in the [specifications](http://www.loc.gov/bibframe/mtbf/)
+are contained in a stylesheet with the same name, for easier
+maintenance.
 
 ## Testing
-Each of the specification documents in the [spec](spec) directory is
-represented in a corresponding test suite in the [test](test)
-directory, with test data in the [test/data](test/data) directory.
+Each of the specification documents in the
+[specifications](http://www.loc.gov/bibframe/mtbf/) is represented in
+a corresponding test suite in the [test](test) directory, with test
+data in the [test/data](test/data) directory.
 
 The tests are written for the [XSpec](https://github.com/xspec/xspec)
 testing framework, a behavior driven development testing framework for
@@ -233,7 +235,7 @@ the [deploy](deploy) directory.
 * dataset - sample records for exercising conversion
 * metaproxy - sample [Metaproxy](http://www.indexdata.com/metaproxy/)
   configuration for static and active conversion
-* test - Unit tests for the [XSpec](https://github.com/expath/xspec)
+* test - Unit tests for the [XSpec](https://github.com/xspec/xspec)
   testing framework, and test data
 * xsl - XSLT 1.0 stylesheets for transformation, configuration in xsl/conf
 
@@ -245,6 +247,6 @@ the [deploy](deploy) directory.
   Metaproxy server
 * [Metaproxy](http://www.indexdata.com/metaproxy) for Metaproxy
   integration
-* [XSpec](https://github.com/expath/xspec) for unit tests
+* [XSpec](https://github.com/xspec/xspec) for unit tests
 * [YAZ](http://www.indexdata.com/yaz) v5.20.0 or higher for active conversion
 

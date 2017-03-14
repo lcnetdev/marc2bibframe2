@@ -36,7 +36,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_datadir}/marc2bibframe2
 %{_docdir}/marc2bibframe2
-%doc NEWS README.md
+%doc NEWS README.md LICENSE.md
 %docdir %{_docdir}/marc2bibframe2
 
 %changelog
