@@ -42,45 +42,43 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:contribution>
-          <bf:Contribution>
-            <bf:place>
-              <bf:Place>
-                <rdf:type>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,'HierarchicalGeographic')"/></xsl:attribute>
-                </rdf:type>
-                <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
-                <madsrdf:componentList rdf:parseType="Collection">
-                  <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='f' or @code='g' or @code='h']">
-                    <xsl:variable name="vResource">
-                      <xsl:choose>
-                        <xsl:when test="@code='a'">madsrdf:Country</xsl:when>
-                        <xsl:when test="@code='b'">madsrdf:County</xsl:when>
-                        <xsl:when test="@code='c'">madsrdf:State</xsl:when>
-                        <xsl:when test="@code='d'">madsrdf:City</xsl:when>
-                        <xsl:otherwise>madsrdf:Geographic</xsl:otherwise>
-                      </xsl:choose>
-                    </xsl:variable>
-                    <xsl:element name="{$vResource}">
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </xsl:element>
-                  </xsl:for-each>
-                </madsrdf:componentList>
-                <xsl:apply-templates select="marc:subfield[@code='0']" mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-                <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:Place>
-            </bf:place>
+        <bf:place>
+          <bf:Place>
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,'HierarchicalGeographic')"/></xsl:attribute>
+            </rdf:type>
+            <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
+            <madsrdf:componentList rdf:parseType="Collection">
+              <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='f' or @code='g' or @code='h']">
+                <xsl:variable name="vResource">
+                  <xsl:choose>
+                    <xsl:when test="@code='a'">madsrdf:Country</xsl:when>
+                    <xsl:when test="@code='b'">madsrdf:County</xsl:when>
+                    <xsl:when test="@code='c'">madsrdf:State</xsl:when>
+                    <xsl:when test="@code='d'">madsrdf:City</xsl:when>
+                    <xsl:when test="@code='f'">madsrdf:CitySection</xsl:when>
+                    <xsl:when test="@code='g'">madsrdf:Region</xsl:when>
+                    <xsl:when test="@code='h'">madsrdf:ExtraterrestrialArea</xsl:when>
+                  </xsl:choose>
+                </xsl:variable>
+                <xsl:element name="{$vResource}">
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </xsl:element>
+              </xsl:for-each>
+            </madsrdf:componentList>
+            <xsl:apply-templates select="marc:subfield[@code='0']" mode="subfield0orw">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
               <xsl:with-param name="pMode">relationship</xsl:with-param>
               <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
@@ -98,8 +96,8 @@
                 </bflc:Relationship>
               </bflc:relationship>
             </xsl:for-each>
-          </bf:Contribution>
-        </bf:contribution>
+          </bf:Place>
+        </bf:place>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -116,7 +114,7 @@
               <xsl:when test="@code='c'">bflc:OperatingSystem</xsl:when>
             </xsl:choose>
           </xsl:variable>
-          <bf:systemRequirements>
+          <bf:systemRequirement>
             <xsl:element name="{$vResource}">
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
               <xsl:if test="following-sibling::marc:subfield[position()=1]/@code='0'">
@@ -128,7 +126,7 @@
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </xsl:element>
-          </bf:systemRequirements>
+          </bf:systemRequirement>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>

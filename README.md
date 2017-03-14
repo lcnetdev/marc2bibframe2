@@ -30,6 +30,9 @@ of the application with Metaproxy to provide both a "static"
 conversion of MARC records and an "active" conversion that attempts to
 resolve identifiers for configured entities.
 
+The specification for the conversion has been published by the Library
+of Congress at http://www.loc.gov/bibframe/mtbf/.
+
 ## Using the converter
 In the simplest case, you can invoke an XSLT processor with the
 main stylesheet (`xsl/marc2bibframe2.xsl`) as the first argument, and
@@ -112,11 +115,11 @@ Each of the specification documents in the [spec](spec) directory is
 represented in a corresponding test suite in the [test](test)
 directory, with test data in the [test/data](test/data) directory.
 
-The tests are written for the [XSpec](https://github.com/expath/xspec)
+The tests are written for the [XSpec](https://github.com/xspec/xspec)
 testing framework, a behavior driven development testing framework for
 XSLT and XQuery. To run the tests, you must install the Saxon XSLT and
 XQuery processor as well as XSpec. Installation instructions are
-available on the [XSpec wiki](https://github.com/expath/xspec/wiki).
+available on the [XSpec wiki](https://github.com/xspec/xspec/wiki).
 
 Once you have XSpec installed, you can run the entire test suite with
 the command (for Mac OS or Linux):
@@ -227,14 +230,12 @@ the [deploy](deploy) directory.
 
 ## Repository contents
 
-* conf - configuration files for the XSL transformation
 * dataset - sample records for exercising conversion
 * metaproxy - sample [Metaproxy](http://www.indexdata.com/metaproxy/)
   configuration for static and active conversion
-* spec - Specification documentation for the conversion
 * test - Unit tests for the [XSpec](https://github.com/expath/xspec)
   testing framework, and test data
-* xsl - XSLT 1.0 stylesheets for transformation 
+* xsl - XSLT 1.0 stylesheets for transformation, configuration in xsl/conf
 
 ## Dependencies
 

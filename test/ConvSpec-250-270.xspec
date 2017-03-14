@@ -23,7 +23,7 @@
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="255 creates a cartographicAttributes/Cartographic property of the Work" test="count(//bf:Work[1]/bf:cartographicAttributes/bf:Cartographic) = 1"/>
     <x:expect label="$a creates a scale/Scale property of the Work" test="//bf:Work[1]/bf:scale/bf:Scale/rdfs:label = 'Scale [ca. 1:500,000]'"/>
-    <x:expect label="$b creates a projection property of the Cartographic" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:projection = 'Conic proj.'"/>
+    <x:expect label="$b creates a projection/Projection property of the Cartographic" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:projection/bf:Projection/rdfs:label = 'Conic proj.'"/>
     <x:expect label="$c creates a coordinates property of the Cartographic" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:coordinates = 'E 72°--E 148°/N 13°--N 18°'"/>
     <x:expect label="$d creates an ascensionAndDeclination property of the Cartographic" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:ascensionAndDeclination = 'RA 0 hr. to 24 hr./Decl. +90° to -90°'"/>
     <x:expect label="$e creates an equinox property of the Cartographic" test="//bf:Work[1]/bf:cartographicAttributes[1]/bf:Cartographic/bf:equinox = 'eq. 1980'"/>

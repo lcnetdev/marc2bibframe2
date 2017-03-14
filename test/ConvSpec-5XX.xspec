@@ -130,7 +130,7 @@
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="536 creates a note/Note property of the Instance with noteType 'funding information'" test="//bf:Instance[1]/bf:note[7]/bf:Note/bf:noteType = 'funding information'"/>
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[1] = 'Sponsored by the U.S. Air Force'"/>
-    <x:expect label="$b creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[2] = 'N00014-68-A-0245-0007'"/>
+    <x:expect label="$b creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[2] = 'Contract: N00014-68-A-0245-0007'"/>
     <x:expect label="$c creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[3] = 'Grant: EF-77-C-01-2556'"/>
     <x:expect label="$d creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[4] = '910 3450'"/>
     <x:expect label="$e creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[5] = 'Program element: 601101F'"/>
@@ -220,7 +220,8 @@
   
   <x:scenario label="563 - BINDING INFORMATION">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="563 creates a note property of an Item" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/rdfs:label = 'Late 16th century blind-tooled centrepiece binding, dark brown calf.'"/>
+    <x:expect label="563 creates a note/Note property of an Item with noteType 'binding'" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/bf:noteType = 'binding'"/>
+    <x:expect label="$a creates an rdfs:label property of the note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/rdfs:label = 'Late 16th century blind-tooled centrepiece binding, dark brown calf.'"/>
   </x:scenario>
 
   <x:scenario label="580 - LINKING ENTRY COMPLEXITY NOTE">
@@ -244,8 +245,8 @@
     <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[2] = 'Joe Smith'"/>
     <x:expect label="$k creates an agent property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:agent/bf:Agent/rdfs:label = 'Thomas Swing'"/>
     <x:expect label="$l creates a status property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:status/bf:Status/rdfs:label = 'mutilated'"/>
-    <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[4] = 'http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl'"/>
-    <x:expect label="$z creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[3] = 'Institute for Museum and Library Services grant'"/>
+    <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[3] = 'http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl'"/>
+    <x:expect label="$z creates a note/Note property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:note/bf:Note/rdfs:label = 'Institute for Museum and Library Services grant'"/>
     <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:source/bf:Source/rdfs:label = 'pda'"/>
   </x:scenario>
 

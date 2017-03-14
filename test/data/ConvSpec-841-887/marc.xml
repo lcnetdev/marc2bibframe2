@@ -8,12 +8,15 @@
       <subfield code="a">AAP</subfield>
       <subfield code="a">CU</subfield>
       <subfield code="a">DLC</subfield>
-      <subfield code="a">MiU</subfield>
+      <subfield code="a">University of Upper Toothache</subfield>
     </datafield>
     <datafield tag="852" ind1=" " ind2=" ">
       <subfield code="a">CSf</subfield>
       <subfield code="b">Sci</subfield>
       <subfield code="u">http://hdl.loc.gov/loc.pnp/pp.print</subfield>
+      <subfield code="e">10, rue du Général Camou</subfield>
+      <subfield code="e">75007 Paris</subfield>
+      <subfield code="n">fr</subfield>
       <subfield code="x">1-54 on order in Microfiche</subfield>
       <subfield code="z">Signed by author</subfield>
     </datafield>

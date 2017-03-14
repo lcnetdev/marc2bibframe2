@@ -699,6 +699,7 @@
                 <xsl:for-each select="marc:subfield[@code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='g' or @code='h']">
                   <xsl:variable name="vDisplayConst">
                     <xsl:choose>
+                      <xsl:when test="@code='b'">Contract: </xsl:when>
                       <xsl:when test="@code='c'">Grant: </xsl:when>
                       <xsl:when test="@code='e'">Program element: </xsl:when>
                       <xsl:when test="@code='f'">Project: </xsl:when>
@@ -836,6 +837,7 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
+              <bf:noteType>binding</bf:noteType>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Note>
           </bf:note>
@@ -875,7 +877,11 @@
               </bf:status>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='z']">
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
             </xsl:for-each>
             <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
               <xsl:with-param name="serialization" select="$serialization"/>

@@ -98,16 +98,16 @@
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
     <x:expect label="$6 600,610,611 creates a subject/Agent or subject/Work property of the Work" test="//bf:Work[1]/bf:subject[2]/bf:Agent/madsrdf:authoritativeLabel = 'семьи Кларк--Фантастика.'"/>
     <x:expect label="$6 630 creates a subject/Work property of the Work" test="//bf:Work[1]/bf:subject[3]/bf:Work/madsrdf:authoritativeLabel = 'украинский журнал'"/>
-    <x:expect label="$6 648 creates a subject/Topic property of the Work" test="//bf:Work[1]/bf:subject[4]/bf:Topic/rdfs:label = 'Доисторические времена'"/>
+    <x:expect label="$6 648 creates a subject/Temporal property of the Work" test="//bf:Work[1]/bf:subject[4]/bf:Temporal/rdfs:label = 'Доисторические времена'"/>
     <x:expect label="$6 650 creates a subject/Topic property of the Work" test="//bf:Work[1]/bf:subject[5]/bf:Topic/rdfs:label = 'единороги'"/>
-    <x:expect label="$6 651 creates a subject/Topic property of the Work" test="//bf:Work[1]/bf:subject[6]/bf:Topic/rdfs:label = 'Река Амазонка.'"/>
+    <x:expect label="$6 651 creates a subject/Place property of the Work" test="//bf:Work[1]/bf:subject[6]/bf:Place/rdfs:label = 'Река Амазонка.'"/>
     <x:expect label="$6 653 creates a subject/Topic property of the Work" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdfs:label = 'топливные элементы'"/>
     <x:expect label="$6 655 creates a genreForm/GenreForm property of the Work" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'сборник статей'"/>
     <x:expect label="$6 656 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[8]/bf:Topic/madsrdf:componentList/madsrdf:Occupation/rdfs:label = 'Антропологи'"/>
-    <x:expect label="$6 662 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[9]/bf:Topic/rdfs:label = '日本--北海道'"/>
+    <x:expect label="$6 662 creates a subject/Place property of the Work" test="//bf:Work[1]/bf:subject[9]/bf:Place/rdfs:label = '日本--北海道'"/>
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
-    <x:expect label="$6 752 creates a contribution property of the Work" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:place/bf:Place/rdfs:label = 'Англия--Лондон'"/>
+    <x:expect label="$6 752 creates a place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'Англия--Лондон'"/>
     <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/rdfs:label = 'Графические уведомления и дополнительные данные'"/>
     <x:expect label="$6 8XX should make a series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 830 should make a series Work" test="//bf:Work[1]/bf:hasSeries[2]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>

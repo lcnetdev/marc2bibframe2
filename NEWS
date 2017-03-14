@@ -1,0 +1,14 @@
+--- 1.0.0
+
+ConvSpec-760-788-Links-R2
+ConvSpec-5XX-R2
+ConvSpec-010-048-R5
+ConvSpec-841-887-R1
+ConvSpec-720,740to755-R1
+ConvSpec-250-270-R3
+Fix link to XSpec in README.md (https://github.com/lcnetdev/marc2bibframe2/issues/1)
+
+--- 0.1.0 2017/02/18
+
+First packaged release.
+
