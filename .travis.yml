@@ -8,6 +8,5 @@ before_script:
     - chmod +x ${SAXON_CP}
 
 script:
-    - cd /tmp/marc2bibframe
     - echo "execute XSpec unit tests"
     - /tmp/xspec/bin/xspec.sh test/marc2bibframe.xspec
