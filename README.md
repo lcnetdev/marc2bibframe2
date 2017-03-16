@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/lcnetdev/marc2bibframe2.svg?branch=master)](https://travis-ci.org/lcnetdev/marc2bibframe2)
+
 # marc2bibframe2
 
 XSLT-based conversion from
