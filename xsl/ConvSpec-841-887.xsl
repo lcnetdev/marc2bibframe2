@@ -111,7 +111,7 @@
                 <bf:Agent>
                   <xsl:choose>
                     <xsl:when test="string-length(.) &lt; 10">
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,.)"/></xsl:attribute>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,.)"/></xsl:attribute>
                     </xsl:when>
                     <xsl:otherwise>
                       <rdfs:label><xsl:value-of select="."/></rdfs:label>

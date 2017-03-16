@@ -13,14 +13,15 @@
   <x:scenario label="850 - HOLDING INSTITUTION">
     <x:context href="data/ConvSpec-841-887/marc.xml"/>
     <x:expect label="850 $a create Items of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
-    <x:expect label="if $a string-length &lt; 10, $a becomes URI of the heldBy/Agent of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:heldBy/bf:Agent/@rdf:resource = 'http://id.loc.gov/vocabulary/organizations/DLC'"/>
+    <x:expect label="itemOf created" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:itemOf[@rdf:resource='http://example.org/1#Instance']) = 1"/>
+    <x:expect label="if $a string-length &lt; 10, $a becomes URI of the heldBy/Agent of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:heldBy/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/DLC'"/>
     <x:expect label="...otherwise it is the rdfs:label property" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[4]/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'University of Upper Toothache'"/>
   </x:scenario>
-  
+
   <x:scenario label="852 - LOCATION">
     <x:context href="data/ConvSpec-841-887/marc.xml"/>
     <x:expect label="852 creates an Item of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
-    <x:expect label="$a becomes the heldBy/Agent property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:heldBy/bf:Agent/@rdf:resource = 'http://id.loc.gov/vocabulary/organizations/CSf'"/>
+    <x:expect label="$a becomes the heldBy/Agent property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:heldBy/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/CSf'"/>
     <x:expect label="$b creates a subLocation property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:subLocation[1]/bf:SubLocation/rdfs:label = 'Sci'"/>
     <x:expect label="$e$n create a subLocation property of the Item (concatenated, with commas)" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:subLocation[2]/bf:SubLocation/rdfs:label = '10, rue du Général Camou, 75007 Paris, fr'"/>
     <x:expect label="$u creates an electronicLocator property of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[5]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://hdl.loc.gov/loc.pnp/pp.print'"/>
