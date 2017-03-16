@@ -1,3 +1,7 @@
+--- 1.0.1-hotfix-issue4
+Fixed issue 4
+added TravisCI support
+
 --- 1.0.1-SNAPSHOT
 
 Documentation corrections
