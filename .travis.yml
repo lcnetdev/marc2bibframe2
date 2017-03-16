@@ -2,7 +2,7 @@ before_script:
     # install XSpec
     - git clone -b master https://github.com/xspec/xspec.git /tmp/xspec
     # install Saxon
-    - mkdir -p /tmp/saxon 
+    - mkdir -p /tmp/xspec/saxon 
     - export SAXON_CP=/tmp/xspec/saxon/saxon9he.jar
     - wget -O ${SAXON_CP} http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
     - chmod +x ${SAXON_CP}
