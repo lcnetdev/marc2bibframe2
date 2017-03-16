@@ -1,9 +1,7 @@
---- 1.0.1-hotfix-issue4
-Fixed issue 4
+--- 1.0.1
+
+Fixed invalid use of rdf:resource in 850 conversion (https://github.com/lcnetdev/marc2bibframe2/issues/4)
 added TravisCI support
-
---- 1.0.1-SNAPSHOT
-
 Documentation corrections
 Add LICENSE.md
 
