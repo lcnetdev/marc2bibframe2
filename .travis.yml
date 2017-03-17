@@ -10,4 +10,4 @@ before_script:
 script:
     - echo $TRAVIS_BUILD_DIR
     - echo "execute XSpec unit tests"
-    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/*.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-001-007.xspec
