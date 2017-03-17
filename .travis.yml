@@ -10,4 +10,20 @@ before_script:
 script:
     - echo $TRAVIS_BUILD_DIR
     - echo "execute XSpec unit tests"
-    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-001-007.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-001-007.xspec    
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-006,008.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-010-048.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-050-088.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-1XX,6XX,7XX,8XX-names.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-200-247not240-Titles.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-240andX30-UnifTitle.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-250-270.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-3XX.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-490-510-530to535-Links.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-5XX.xspec	ConvSpec-5XX-R2
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-648-662.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-720+740to755.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-760-788-Links.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-841-887.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-880.xspec
+    - /tmp/xspec/bin/xspec.sh $TRAVIS_BUILD_DIR/test/ConvSpec-LDR.xspec
