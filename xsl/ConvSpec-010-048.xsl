@@ -534,10 +534,12 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:language>
             <bf:Language>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,substring($pLang,$pStart,3))"/></xsl:attribute>
               <xsl:if test="$pPart != ''">
                 <bf:part><xsl:value-of select="$pPart"/></bf:part>
               </xsl:if>
+              <rdf:value>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,substring($pLang,$pStart,3))"/></xsl:attribute>
+              </rdf:value>
               <bf:source>
                 <bf:Source>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/languages</xsl:attribute>
