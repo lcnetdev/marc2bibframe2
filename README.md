@@ -129,7 +129,7 @@ available on the [XSpec wiki](https://github.com/xspec/xspec/wiki).
 Once you have XSpec installed, you can run the entire test suite with
 the command (for Mac OS or Linux):
 
-    xspec.sh test/marc2bibframe.xspec
+    xspec.sh test/marc2bibframe2.xspec
 
 Test reports will be output in the test/xspec directory.
 

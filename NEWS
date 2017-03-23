@@ -1,3 +1,8 @@
+--- 1.0.2-SNAPSHOT
+
+Fix problems with test suite (https://github.com/lcnetdev/marc2bibframe2/issues/9)
+More TravisCI configuration
+
 --- 1.0.1
 
 Fixed invalid use of rdf:resource in 850 conversion (https://github.com/lcnetdev/marc2bibframe2/issues/4)
