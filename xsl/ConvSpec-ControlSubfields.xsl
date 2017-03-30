@@ -38,6 +38,9 @@
           </bf:Identifier>
         </bf:identifiedBy>
       </xsl:when>
+      <xsl:when test="$serialization='asVariable'">
+        <xsl:value-of select="$source"/>~~<xsl:value-of select="$value"/>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
