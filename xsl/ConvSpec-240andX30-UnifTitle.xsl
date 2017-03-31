@@ -457,7 +457,11 @@
          <xsl:for-each select="marc:subfield[@code='x']">
            <bf:identifiedBy>
              <bf:Issn>
-               <rdf:value><xsl:value-of select="."/></rdf:value>
+               <rdf:value>
+                 <xsl:call-template name="chopPunctuation">
+                   <xsl:with-param name="chopString" select="."/>
+                 </xsl:call-template>
+               </rdf:value>
              </bf:Issn>
            </bf:identifiedBy>
          </xsl:for-each>
