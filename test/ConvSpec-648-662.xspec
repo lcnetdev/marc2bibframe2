@@ -33,6 +33,7 @@
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="651 creates a subject/Place property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Place) = 2"/>
     <x:expect label="...with a Class from MADSRDF" test="//bf:Work[1]/bf:subject[3]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#Geographic'"/>
+    <x:expect label="$0 with a URI sets the rdf:about property of the Place" test="//bf:Work[1]/bf:subject[3]/bf:Place/@rdf:about = 'http://id.loc.gov/authorities/names/n97057532'"/>
   </x:scenario>
   
   <x:scenario label="653 - INDEX TERM--UNCONTROLLED">
