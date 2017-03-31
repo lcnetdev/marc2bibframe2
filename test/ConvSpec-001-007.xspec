@@ -12,6 +12,8 @@
   <x:scenario label="001 - CONTROL NUMBER">
     <x:context href="data/ConvSpec-001-007/marc.xml"/>
     <x:expect label="001 should set the AdminMetadata identifiedBy property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/rdf:value = '13600108'"/>
+    <!-- to test setting the of the identifier, uncomment this test and set the stylesheet parameter "idsource" -->
+    <!-- <x:expect label="parameter idsource sets the source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/> -->
   </x:scenario>
 
   <x:scenario label="003 - CONTROL NUMBER IDENTIFIER">
