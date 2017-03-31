@@ -6,6 +6,7 @@
       <subfield code="b">L34 no. 9</subfield>
       <subfield code="a">Z7165.R42</subfield>
       <subfield code="a">HC517.R42</subfield>
+      <subfield code="a">123.45</subfield>
     </datafield>
     <datafield tag="051" ind1=" " ind2=" ">
       <subfield code="a">QE75</subfield>

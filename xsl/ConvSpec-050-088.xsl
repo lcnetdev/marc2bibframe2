@@ -26,33 +26,53 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:classification>
-            <bf:ClassificationLcc>
-              <xsl:if test="../@ind2 = '0'">
-                <bf:source>
-                  <bf:Source>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
-              <bf:classificationPortion>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+          <!-- rudimentary LCC validation -->
+          <xsl:variable name="vAlpha">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+          <xsl:variable name="vNumber">0123456789</xsl:variable>
+          <xsl:variable name="vValidLCC">
+            <xsl:if test="string-length(translate(substring(.,1,1),$vAlpha,''))=0">
+              <xsl:choose>
+                <xsl:when test="string-length(translate(substring(.,2,1),$vAlpha,''))=0">
+                  <xsl:choose>
+                    <xsl:when test="string-length(translate(substring(.,3,1),$vAlpha,''))=0">
+                      <xsl:if test="string-length(translate(substring(.,4,1),$vNumber,''))=0">true</xsl:if>
+                    </xsl:when>
+                    <xsl:when test="string-length(translate(substring(.,3,1),$vNumber,''))=0">true</xsl:when>
+                  </xsl:choose>
+                </xsl:when>
+                <xsl:when test="string-length(translate(substring(.,2,1),$vNumber,''))=0">true</xsl:when>
+              </xsl:choose>
+            </xsl:if>
+          </xsl:variable>
+          <xsl:if test="$vValidLCC='true'">
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <xsl:if test="../@ind2 = '0'">
+                  <bf:source>
+                    <bf:Source>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                    </bf:Source>
+                  </bf:source>
                 </xsl:if>
-                <xsl:value-of select="."/>
-              </bf:classificationPortion>
-              <xsl:if test="position() = 1">
-                <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
-                  <bf:itemPortion>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:value-of select="."/>
-                  </bf:itemPortion>
-                </xsl:for-each>
-              </xsl:if>
-            </bf:ClassificationLcc>
-          </bf:classification>
+                <bf:classificationPortion>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </bf:classificationPortion>
+                <xsl:if test="position() = 1">
+                  <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                    <bf:itemPortion>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="."/>
+                    </bf:itemPortion>
+                  </xsl:for-each>
+                </xsl:if>
+              </bf:ClassificationLcc>
+            </bf:classification>
+          </xsl:if>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
