@@ -167,6 +167,9 @@
     <xsl:param name="pElement"/>
     <xsl:param name="pWorkUri"/>
     <xsl:param name="pInstanceUri"/>
+    <xsl:variable name="vElementUri">
+      <xsl:apply-templates mode="generateUri" select="."/>
+    </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -174,6 +177,7 @@
           <xsl:element name="{$pElement}">
             <xsl:attribute name="rdf:about">
               <xsl:choose>
+                <xsl:when test="$vElementUri != ''"><xsl:value-of select="$vElementUri"/></xsl:when>
                 <xsl:when test="$pTag='776'"><xsl:value-of select="$pInstanceUri"/></xsl:when>
                 <xsl:otherwise><xsl:value-of select="$pWorkUri"/></xsl:otherwise>
               </xsl:choose>
@@ -265,9 +269,20 @@
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='w']" mode="subfield0orw">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
+            <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+              <xsl:if test="position() != 1">
+                <xsl:apply-templates mode="subfield0orw" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
+              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+                <xsl:apply-templates mode="subfield0orw" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
+            </xsl:for-each>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
