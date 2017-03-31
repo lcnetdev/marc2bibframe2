@@ -14,6 +14,12 @@
 
   <xsl:param name="baseuri" select="'http://example.org/'"/>
   <xsl:param name="idfield" select="'001'"/>
+  <xsl:param name="idsource"/>
+  <!--
+      to run test of idsource, comment out previous line, uncomment next
+      line and uncomment the test in test/ConvSpec-001-007.xspec
+  -->
+  <!-- <xsl:param name="idsource" select="'http://id.loc.gov/vocabulary/organizations/dlc'"/> -->
   <xsl:param name="serialization" select="'rdfxml'"/>
 
   <xsl:include href="utils.xsl"/>

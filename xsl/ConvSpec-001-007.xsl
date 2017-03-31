@@ -20,6 +20,13 @@
         <bf:identifiedBy>
           <bf:Local>
             <rdf:value><xsl:value-of select="."/></rdf:value>
+            <xsl:if test="$idsource != ''">
+              <bf:source>
+                <bf:Source>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$idsource"/></xsl:attribute>
+                </bf:Source>
+              </bf:source>
+            </xsl:if>
           </bf:Local>
         </bf:identifiedBy>
       </xsl:when>
