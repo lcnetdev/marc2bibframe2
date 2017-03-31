@@ -260,6 +260,11 @@
               </rdfs:label>
               <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
+                <xsl:if test="starts-with(substring-after(../marc:subfield[@code='0'][1],')'),'dg')">
+                  <bflc:demographicGroup>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,substring-after(../marc:subfield[@code='0'][1],')'))"/></xsl:attribute>
+                  </bflc:demographicGroup>
+                </xsl:if>
               </xsl:for-each>
               <xsl:for-each select="../marc:subfield[@code='m' or @code='n']">
                 <bflc:demographicGroup>
