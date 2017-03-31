@@ -184,6 +184,11 @@
       <subfield code="b">kid</subfield>
       <subfield code="2">ws</subfield>
     </datafield>
+    <datafield tag="385" ind1=" " ind2=" ">
+      <subfield code="a">Youngsters</subfield>
+      <subfield code="b">aaa</subfield>
+      <subfield code="0">(DLC)dg2015060010</subfield>
+    </datafield>
     <datafield tag="386" ind1=" " ind2=" ">
       <subfield code="3">Other stuff</subfield>
       <subfield code="m">Gender group</subfield>
@@ -191,6 +196,11 @@
       <subfield code="a">Females</subfield>
       <subfield code="b">f</subfield>
       <subfield code="2">ericd</subfield>
+    </datafield>
+    <datafield tag="386" ind1=" " ind2=" ">
+      <subfield code="a">Youngsters</subfield>
+      <subfield code="b">aaa</subfield>
+      <subfield code="0">(DLC)dg2015060010</subfield>
     </datafield>
   </record>
 </collection>

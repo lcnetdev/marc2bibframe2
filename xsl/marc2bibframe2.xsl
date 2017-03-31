@@ -48,6 +48,7 @@
   <xsl:variable name="classSchemes">http://id.loc.gov/vocabulary/classSchemes/</xsl:variable>
   <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentType/</xsl:variable>
   <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
+  <xsl:variable name="demographicTerms">http://id.loc.gov/authorities/demographicTerms/</xsl:variable>
   <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
   <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
   <xsl:variable name="geographicAreas">http://id.loc.gov/vocabulary/geographicAreas/</xsl:variable>
