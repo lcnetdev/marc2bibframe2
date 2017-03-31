@@ -26,6 +26,7 @@
       <subfield code="e">depicted.</subfield>
       <subfield code="v">Indexes</subfield>
       <subfield code="v">Periodicals</subfield>
+      <subfield code="0">(uri)http://example.org/9999#Work</subfield>
     </datafield>
     <datafield tag="700" ind1="1" ind2="2">
       <subfield code="a">Cendrars, Blaise, 1887-1961.</subfield>

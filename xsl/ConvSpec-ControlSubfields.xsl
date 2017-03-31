@@ -12,6 +12,56 @@
   <!-- Templates for processing MARC control subfields -->
 
   <!--
+      generate agent or work URI from 1XX, 6XX, 7XX, or 8XX, taking $0 or $w into account
+      generated URI will come from the first URI in a $0 or $w
+  -->
+  <xsl:template match="marc:datafield" mode="generateUri">
+    <xsl:param name="pDefaultUri"/>
+    <xsl:param name="pEntity"/>
+    <xsl:variable name="vGeneratedUri">
+      <xsl:choose>
+        <xsl:when test="marc:subfield[@code='t']">
+          <xsl:variable name="vIdentifier">
+            <xsl:choose>
+              <xsl:when test="$pEntity='bf:Agent'">
+                <xsl:value-of select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
+              </xsl:when>
+              <xsl:when test="$pEntity='bf:Work'">
+                <xsl:value-of select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="starts-with($vIdentifier,'(uri)')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'http')">
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="starts-with($vIdentifier,'(uri)')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'http')">
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$vGeneratedUri != ''"><xsl:value-of select="$vGeneratedUri"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$pDefaultUri"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       create a bf:identifiedBy property from a subfield $0 or $w
   -->
   <xsl:template match="marc:subfield" mode="subfield0orw">
@@ -37,9 +87,6 @@
             </xsl:if>
           </bf:Identifier>
         </bf:identifiedBy>
-      </xsl:when>
-      <xsl:when test="$serialization='asVariable'">
-        <xsl:value-of select="$source"/>~~<xsl:value-of select="$value"/>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

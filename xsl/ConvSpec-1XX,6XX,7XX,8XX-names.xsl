@@ -17,27 +17,11 @@
   <xsl:template match="marc:datafield[@tag='100' or @tag='110' or @tag='111']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <!-- get the source and the identifier as a string in format source~~identifier from $0 -->
-    <!-- note this will only deal with the first $0 -->
-    <!-- same in subsequent templates -->
-    <xsl:variable name="vIdentifier">
-      <xsl:if test="not(marc:subfield[@code='t']) or
-                    marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0']">
-        <xsl:apply-templates select="marc:subfield[@code='0'][1]" mode="subfield0orw">
-          <xsl:with-param name="serialization" select="'asVariable'"/>
-        </xsl:apply-templates>
-      </xsl:if>
-    </xsl:variable>
     <xsl:variable name="agentiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vIdentifier,'~~')='uri' or
-                        (substring-before($vIdentifier,'~~')='' and starts-with(substring-after($vIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="workName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
@@ -48,40 +32,17 @@
   <xsl:template match="marc:datafield[@tag='600' or @tag='610' or @tag='611']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vAgentIdentifier">
-      <xsl:if test="not(marc:subfield[@code='t']) or
-                    marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0']">
-        <xsl:apply-templates select="marc:subfield[@code='0'][1]" mode="subfield0orw">
-          <xsl:with-param name="serialization" select="'asVariable'"/>
-        </xsl:apply-templates>
-      </xsl:if>
-    </xsl:variable>
     <xsl:variable name="agentiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vAgentIdentifier,'~~')='uri' or
-                        (substring-before($vAgentIdentifier,'~~')='' and starts-with(substring-after($vAgentIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vAgentIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vWorkIdentifier">
-      <xsl:apply-templates select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0'][1]" mode="subfield0orw">
-        <xsl:with-param name="serialization" select="'asVariable'"/>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="workiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vWorkIdentifier,'~~')='uri' or
-                        (substring-before($vWorkIdentifier,'~~')='' and starts-with(substring-after($vWorkIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vWorkIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="work6XXName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
@@ -231,40 +192,17 @@
   <xsl:template match="marc:datafield[@tag='700' or @tag='710' or @tag='711' or @tag='720']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vAgentIdentifier">
-      <xsl:if test="not(marc:subfield[@code='t']) or
-                    marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0']">
-        <xsl:apply-templates select="marc:subfield[@code='0'][1]" mode="subfield0orw">
-          <xsl:with-param name="serialization" select="'asVariable'"/>
-        </xsl:apply-templates>
-      </xsl:if>
-    </xsl:variable>
     <xsl:variable name="agentiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vAgentIdentifier,'~~')='uri' or
-                        (substring-before($vAgentIdentifier,'~~')='' and starts-with(substring-after($vAgentIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vAgentIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vWorkIdentifier">
-      <xsl:apply-templates select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0'][1]" mode="subfield0orw">
-        <xsl:with-param name="serialization" select="'asVariable'"/>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="workiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vWorkIdentifier,'~~')='uri' or
-                        (substring-before($vWorkIdentifier,'~~')='' and starts-with(substring-after($vWorkIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vWorkIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="work7XX" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
@@ -365,42 +303,18 @@
   <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='400' or @tag='410' or @tag='411']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vAgentIdentifier">
-      <xsl:if test="not(marc:subfield[@code='t']) or
-                    marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0']">
-        <xsl:apply-templates select="marc:subfield[@code='0'][1]" mode="subfield0orw">
-          <xsl:with-param name="serialization" select="'asVariable'"/>
-        </xsl:apply-templates>
-      </xsl:if>
-    </xsl:variable>
     <xsl:variable name="agentiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vAgentIdentifier,'~~')='uri' or
-                        (substring-before($vAgentIdentifier,'~~')='' and starts-with(substring-after($vAgentIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vAgentIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vWorkIdentifier">
-      <xsl:apply-templates select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0'][1]" mode="subfield0orw">
-        <xsl:with-param name="serialization" select="'asVariable'"/>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="workiri">
-      <xsl:choose>
-        <xsl:when test="substring-before($vWorkIdentifier,'~~')='uri' or
-                        (substring-before($vWorkIdentifier,'~~')='' and starts-with(substring-after($vWorkIdentifier,'~~'),'http'))">
-          <xsl:value-of select="substring-after($vWorkIdentifier,'~~')"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
-    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates mode="work8XX" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="workiri" select="$workiri"/>
@@ -918,7 +832,14 @@
           </xsl:if>
           <xsl:choose>
             <xsl:when test="marc:subfield[@code='t']">
-              <xsl:for-each select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0']">
+              <xsl:for-each select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0' or @code='w']">
                 <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
@@ -927,7 +848,14 @@
               </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:for-each select="marc:subfield[@code='0']">
+              <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
                 <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>

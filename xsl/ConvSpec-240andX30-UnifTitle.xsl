@@ -25,7 +25,12 @@
   <xsl:template match="marc:datafield[@tag='630']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work630-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri">
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:apply-templates mode="work630" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
@@ -129,7 +134,10 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri">
-      <xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="work730" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
@@ -193,7 +201,12 @@
   <xsl:template match="marc:datafield[@tag='830' or @tag='440']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="workiri">
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:apply-templates mode="work830" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -463,9 +476,40 @@
          </xsl:for-each>
         </xsl:if>
         <xsl:if test="substring($tag,2,2)='30' or $tag='240' or marc:subfield[@code='t']">
-          <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='0']">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="marc:subfield[@code='t']">
+              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w']">
+                <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
+                <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+                  <xsl:apply-templates mode="subfield0orw" select=".">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
@@ -473,9 +517,6 @@
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
-        <xsl:apply-templates mode="subfield0orw" select="marc:subfield[@code='w']">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
         <xsl:if test="$tag='830'">
           <xsl:apply-templates mode="subfield7" select="marc:subfield[@code='7']">
             <xsl:with-param name="serialization" select="$serialization"/>
