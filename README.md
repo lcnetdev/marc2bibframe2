@@ -44,7 +44,7 @@ an XML file containing MARCXML as the second:
     xsltproc xsl/marc2bibframe2.xsl test/data/marc.xml
 
 ### Converter parameters
-The converter supports three optional parameters:
+The converter supports four optional parameters:
 - `baseuri` - the URI stem for generated entities. Default is
   `http://example.org/`, which will result in minting URIs like
   `http://example.org/<record ID>#Work`
@@ -56,13 +56,18 @@ The converter supports three optional parameters:
   subfield is `a`). *Note* - there is no built-in facility in the
   stylesheets for URI-encoding.
 
+- `idsource` - a URI used to identify the source of the Local
+  identifier derived from the `idfield` - e.g.,
+  `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
+  by default, resulting in no source property being defined.
+
 - `serialization` - the RDF serialization to be used for
   output. Currently only `rdfxml` is supported (the default).
 
 Different XSLT processors have different syntaxes for passing
 parameters. For xsltproc, the syntax is:
 
-    xsltproc --stringparam baseuri http://mylibrary.org/ xsl/marc2bibframe2.xsl test/data/marc.xml
+    xsltproc --stringparam baseuri http://mylibrary.org/ --stringparam idsource http://id.loc.gov/vocabulary/organizations/dlc xsl/marc2bibframe2.xsl test/data/marc.xml
 
 For [Metaproxy integration](#metaproxy-integration), the converter
 parameters can be passed to the stylesheets using the `<param>`
