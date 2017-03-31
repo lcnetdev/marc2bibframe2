@@ -20,6 +20,7 @@
     <x:expect label="$a creates a classificationPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'Z7164.N3'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:itemPortion = 'L34 no. 9'"/>
     <x:expect label="$ab become the rdfs:label of the ShelfMark" test="//bf:Item[1]/bf:shelfMark[1]/bf:ShelfMarkLcc/rdfs:label = 'Z7164.N3 L34 no. 9'"/>
+    <x:expect label="$a not of form ABC123... does not create a bf:classification property" test="count(//bf:ClassificationLcc/bf:classificationPortion[contains(.,'123.45')]) = 0"/>
   </x:scenario>
   
   <x:scenario label="051 - LIBRARY OF CONGRESS COPY, ISSUE, OFFPRINT STATEMENT">
