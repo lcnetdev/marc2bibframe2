@@ -149,7 +149,7 @@ configuration looks like this:
 ```xml
 <backend syntax="xml" name="rdf-lookup">
   <xslt stylesheet="xsl/marc2bibframe2.xsl"/>
-  <rdf-lookup debug=1>
+  <rdf-lookup debug="1">
     <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/" />
     <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
     <lookup xpath="//bf:contribution/bf:Contribution/bf:agent/bf:Agent">
@@ -163,7 +163,7 @@ configuration looks like this:
 ```
 
 From the YAZ User's Guide:
->The debug=1 attribute tells the filter to add XML comments to the key
+>The debug="1" attribute tells the filter to add XML comments to the key
 >nodes that indicate what lookup it tried to do, how it went, and how
 >long it took.  The namespace prefix bf: is defined in the namespace
 >tags. These namespaces are used in the xpath expressions in the
