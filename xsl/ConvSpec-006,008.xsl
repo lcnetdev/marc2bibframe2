@@ -1005,12 +1005,12 @@
           <xsl:choose>
             <xsl:when test="substring(.,14,2) = '  '">
               <xsl:call-template name="u2x">
-                <xsl:with-param name="dateString" select="concat(substring(.,8,4),'-',substring(.,12,4))"/>
+                <xsl:with-param name="dateString" select="concat(substring(.,8,4),'-',substring(.,12,2))"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="u2x">
-                <xsl:with-param name="dateString" select="concat(substring(.,8,4),'-',substring(.,12,4),'-',substring(.,14,2))"/>
+                <xsl:with-param name="dateString" select="concat(substring(.,8,4),'-',substring(.,12,2),'-',substring(.,14,2))"/>
               </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
