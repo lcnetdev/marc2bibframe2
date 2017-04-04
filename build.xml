@@ -4,6 +4,9 @@
   <property file="${user.home}/.marc2bibframe" />
   <property file="build.properties" />
 
+  <!-- Once xspec is downloaded and installed, we expect to use it -->
+  <import file="${xspec.dir}/build.xml" optional="true" />
+
   <target name="download-saxon">
     <mkdir dir="${upstream.dir}" />
     <get src="${saxon.url}" dest="${upstream.dir}/${saxon.file}"/>
@@ -33,6 +36,7 @@
 
   <target name="test"
           description="--> Run xspec tests using Saxon" >
+    <xspec xspec.xml="test/ConvSpec-001-007.xspec" />
   </target>
 
 
