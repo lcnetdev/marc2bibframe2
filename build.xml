@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="marc2bibframe">
+
+  <property file="${user.home}/.marc2bibframe" />
+  <property file="build.properties" />
+
+  <target name="download-saxon">
+    <mkdir dir="${upstream.dir}" />
+    <get src="${saxon.url}" dest="${upstream.dir}/${saxon.file}"/>
+  </target>
+
+  <target name="install-saxon">
+    <mkdir dir="${saxon.dir}" />
+    <copy file="${upstream.dir}/${saxon.file}" todir="${saxon.dir}"  overwrite="true" />
+  </target>
+
+  <target name="download-xspec">
+    <mkdir dir="${upstream.dir}" />
+    <get src="${xspec.url}" dest="${upstream.dir}/${xspec.file}"/>
+  </target>
+
+  <target name="install-xspec">
+    <mkdir dir="${xspec.dir}"/>
+    <unzip src="${upstream.dir}/${xspec.file}" dest="${xspec.dir}">
+      <cutdirsmapper dirs="1"/>
+    </unzip>
+  </target>
+
+  <target name="setup"
+          depends="download-saxon, install-saxon, download-xspec, install-xspec"
+          description="--> Download and install testing tools" />
+
+
+  <target name="test"
+          description="--> Run xspec tests using Saxon" >
+  </target>
+
+
+  <target name="build"
+          depends="test"
+          description="--> Package Bibframe xsl and metaproxy configuration into a ZIP" >
+    <mkdir dir="${build.dir}"/>
+    <zip basedir="${basedir}/xsl" destfile="${build.dir}/marc2bibframe2-${build.version}.zip"/>
+  </target>
+
+  <target name="clean"
+          description="--> Remove artifacts of the earlier build" >
+    <delete dir="${build.dir}" />
+  </target>
+
+  <target name="purge"
+          depends="clean"
+          description="--> Removes everything including downloads" >
+    <delete dir="${upstream.dir}" />
+    <delete dir="${saxon.dir}" />
+    <delete dir="${xspec.dir}" />
+
+    <!-- Go find .vagrant and remove those directories as well? -->
+  </target>
+
+</project>
