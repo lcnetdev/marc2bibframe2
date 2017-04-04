@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="marc2bibframe">
+<project name="marc2bibframe" default="help">
 
   <property file="${user.home}/.marc2bibframe" />
   <property file="build.properties" />
 
   <!-- Once xspec is downloaded and installed, we expect to use it -->
-  <import file="${xspec.dir}/build.xml" optional="true" />
+  <import file="${xspec.project.dir}/build.xml" optional="true" />
+
+  <!-- need foreach to avoid listing xspec files
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+   -->
 
   <target name="download-saxon">
     <mkdir dir="${upstream.dir}" />
@@ -23,8 +27,8 @@
   </target>
 
   <target name="install-xspec">
-    <mkdir dir="${xspec.dir}"/>
-    <unzip src="${upstream.dir}/${xspec.file}" dest="${xspec.dir}">
+    <mkdir dir="${xspec.project.dir}"/>
+    <unzip src="${upstream.dir}/${xspec.file}" dest="${xspec.project.dir}">
       <cutdirsmapper dirs="1"/>
     </unzip>
   </target>
@@ -36,7 +40,26 @@
 
   <target name="test"
           description="--> Run xspec tests using Saxon" >
+
+    <!-- Could use ant-contrib to make this easier -->
     <xspec xspec.xml="test/ConvSpec-001-007.xspec" />
+    <xspec xspec.xml="test/ConvSpec-006,008.xspec" />
+    <xspec xspec.xml="test/ConvSpec-010-048.xspec" />
+    <xspec xspec.xml="test/ConvSpec-050-088.xspec" />
+    <xspec xspec.xml="test/ConvSpec-1XX,6XX,7XX,8XX-names.xspec" />
+    <xspec xspec.xml="test/ConvSpec-200-247not240-Titles.xspec" />
+    <xspec xspec.xml="test/ConvSpec-240andX30-UnifTitle.xspec" />
+    <xspec xspec.xml="test/ConvSpec-250-270.xspec" />
+    <xspec xspec.xml="test/ConvSpec-3XX.xspec" />
+    <xspec xspec.xml="test/ConvSpec-490-510-530to535-Links.xspec" />
+    <xspec xspec.xml="test/ConvSpec-5XX.xspec" />
+    <xspec xspec.xml="test/ConvSpec-648-662.xspec" />
+    <xspec xspec.xml="test/ConvSpec-720+740to755.xspec" />
+    <xspec xspec.xml="test/ConvSpec-760-788-Links.xspec" />
+    <xspec xspec.xml="test/ConvSpec-841-887.xspec" />
+    <xspec xspec.xml="test/ConvSpec-880.xspec" />
+    <xspec xspec.xml="test/ConvSpec-LDR.xspec" />
+    <xspec xspec.xml="test/marc2bibframe2.xspec" />
   </target>
 
 
@@ -49,7 +72,13 @@
 
   <target name="clean"
           description="--> Remove artifacts of the earlier build" >
+
+    <!-- This is where the build goes -->
     <delete dir="${build.dir}" />
+
+    <!-- This is where xspec outputs go -->
+    <delete dir="${basedir}/test/xspec" />
+
   </target>
 
   <target name="purge"
@@ -60,6 +89,13 @@
     <delete dir="${xspec.dir}" />
 
     <!-- Go find .vagrant and remove those directories as well? -->
+  </target>
+
+  <target name="help">
+    <echo message="Run first" />
+    <echo message="     ant setup" />
+    <echo message="Run next" />
+    <echo message="     ant build" />
   </target>
 
 </project>
