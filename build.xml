@@ -37,11 +37,9 @@
           depends="download-saxon, install-saxon, download-xspec, install-xspec"
           description="--> Download and install testing tools" />
 
-
   <target name="test"
-          description="--> Run xspec tests using Saxon" >
+          description="--> Run xspec tests using Saxon">
 
-    <!-- Could use ant-contrib to make this easier -->
     <xspec xspec.xml="test/ConvSpec-001-007.xspec" />
     <xspec xspec.xml="test/ConvSpec-006,008.xspec" />
     <xspec xspec.xml="test/ConvSpec-010-048.xspec" />
@@ -62,9 +60,7 @@
     <xspec xspec.xml="test/marc2bibframe2.xspec" />
   </target>
 
-
-  <target name="build"
-          depends="test"
+  <target name="package"
           description="--> Package Bibframe xsl and metaproxy configuration into a ZIP" >
     <mkdir dir="${build.dir}/marc2bibframe2"/>
     <copy todir="${build.dir}/marc2bibframe2">
@@ -73,12 +69,19 @@
         <include name="metaproxy/**"/>
       </fileset>
     </copy>
-    <zip destfile="${build.dir}/marc2bibframe2-${build.version}.zip">
+    <mkdir dir="${dist.dir}"/>
+    <zip destfile="${dist.dir}/${dist.file}">
       <fileset dir="${build.dir}">
         <include name="marc2bibframe2/**"/>
       </fileset>
     </zip>
+    <checksum file="${dist.dir}/${dist.file}" algorithm="md5" fileext=".md5" format="MD5SUM"/>
+    <checksum file="${dist.dir}/${dist.file}" algorithm="sha-1" fileext=".sha1" format="MD5SUM"/>
   </target>
+
+  <target name="build"
+          depends="test, package"
+          description="--> Run tests and package xsl and metaproxy configuration" />
 
   <target name="clean"
           description="--> Remove artifacts of the earlier build" >
