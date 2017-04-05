@@ -66,8 +66,18 @@
   <target name="build"
           depends="test"
           description="--> Package Bibframe xsl and metaproxy configuration into a ZIP" >
-    <mkdir dir="${build.dir}"/>
-    <zip basedir="${basedir}/xsl" destfile="${build.dir}/marc2bibframe2-${build.version}.zip"/>
+    <mkdir dir="${build.dir}/marc2bibframe2"/>
+    <copy todir="${build.dir}/marc2bibframe2">
+      <fileset dir="${basedir}">
+        <include name="xsl/**"/>
+        <include name="metaproxy/**"/>
+      </fileset>
+    </copy>
+    <zip destfile="${build.dir}/marc2bibframe2-${build.version}.zip">
+      <fileset dir="${build.dir}">
+        <include name="marc2bibframe2/**"/>
+      </fileset>
+    </zip>
   </target>
 
   <target name="clean"
