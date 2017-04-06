@@ -26,23 +26,10 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <!-- rudimentary LCC validation -->
-          <xsl:variable name="vAlpha">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
-          <xsl:variable name="vNumber">0123456789</xsl:variable>
           <xsl:variable name="vValidLCC">
-            <xsl:if test="string-length(translate(substring(.,1,1),$vAlpha,''))=0">
-              <xsl:choose>
-                <xsl:when test="string-length(translate(substring(.,2,1),$vAlpha,''))=0">
-                  <xsl:choose>
-                    <xsl:when test="string-length(translate(substring(.,3,1),$vAlpha,''))=0">
-                      <xsl:if test="string-length(translate(substring(.,4,1),$vNumber,''))=0">true</xsl:if>
-                    </xsl:when>
-                    <xsl:when test="string-length(translate(substring(.,3,1),$vNumber,''))=0">true</xsl:when>
-                  </xsl:choose>
-                </xsl:when>
-                <xsl:when test="string-length(translate(substring(.,2,1),$vNumber,''))=0">true</xsl:when>
-              </xsl:choose>
-            </xsl:if>
+            <xsl:call-template name="validateLCC">
+              <xsl:with-param name="pCall" select="text()"/>
+            </xsl:call-template>
           </xsl:variable>
           <xsl:if test="$vValidLCC='true'">
             <bf:classification>
@@ -497,12 +484,23 @@
         <xsl:otherwise><xsl:value-of select="normalize-space(marc:subfield[@code='a'][1])"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vValidLCC">
+      <xsl:call-template name="validateLCC">
+        <xsl:with-param name="pCall" select="marc:subfield[@code='a'][1]"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="vShelfMarkClass">
+      <xsl:choose>
+        <xsl:when test="$vValidLCC='true'">bf:ShelfMarkLcc</xsl:when>
+        <xsl:otherwise>bf:ShelfMark</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Item>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
           <bf:shelfMark>
-            <bf:ShelfMarkLcc>
+            <xsl:element name="{$vShelfMarkClass}">
               <rdfs:label><xsl:value-of select="$vShelfMark"/></rdfs:label>
               <xsl:if test="@ind2 = '0'">
                 <bf:source>
@@ -511,7 +509,7 @@
                   </bf:Source>
                 </bf:source>
               </xsl:if>
-            </bf:ShelfMarkLcc>
+            </xsl:element>
           </bf:shelfMark>
           <xsl:for-each select="../marc:datafield[@tag='051']">
             <xsl:variable name="vClassLabel">

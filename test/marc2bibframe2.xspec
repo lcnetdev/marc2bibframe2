@@ -464,12 +464,12 @@
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/5637241#Item050-10">
                 <bf:shelfMark>
-                  <bf:ShelfMarkLcc>
+                  <bf:ShelfMark>
                     <rdfs:label>Atlantic 1259</rdfs:label>
                     <bf:source>
                       <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
                     </bf:source>
-                  </bf:ShelfMarkLcc>
+                  </bf:ShelfMark>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/5637241#Instance"/>
               </bf:Item>

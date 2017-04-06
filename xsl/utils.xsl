@@ -43,6 +43,29 @@
   </xsl:template>
         
   <!--
+      rudimentary LCC validation
+      returns "true" if valid, "" if not valid
+  -->
+  <xsl:template name="validateLCC">
+    <xsl:param name="pCall"/>
+    <xsl:variable name="vAlpha">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+    <xsl:variable name="vNumber">0123456789</xsl:variable>
+    <xsl:if test="string-length(translate(substring($pCall,1,1),$vAlpha,''))=0">
+      <xsl:choose>
+        <xsl:when test="string-length(translate(substring($pCall,2,1),$vAlpha,''))=0">
+          <xsl:choose>
+            <xsl:when test="string-length(translate(substring($pCall,3,1),$vAlpha,''))=0">
+              <xsl:if test="string-length(translate(substring($pCall,4,1),$vNumber,''))=0">true</xsl:if>
+            </xsl:when>
+            <xsl:when test="string-length(translate(substring($pCall,3,1),$vNumber,''))=0">true</xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="string-length(translate(substring($pCall,2,1),$vNumber,''))=0">true</xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
       Chop [ ] from beginning and end of a string
   -->
   <xsl:template name="chopBrackets">
