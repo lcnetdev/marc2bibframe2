@@ -516,10 +516,12 @@
             </xsl:when>
           </xsl:choose>
         </xsl:if>
-        <xsl:call-template name="splitRole">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="roleString" select="substring-after($roleString,',')"/>
-        </xsl:call-template>
+        <xsl:if test="string-length(normalize-space(substring-after($roleString,','))) &gt; 0">
+          <xsl:call-template name="splitRole">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="roleString" select="substring-after($roleString,',')"/>
+          </xsl:call-template>
+        </xsl:if>
       </xsl:when>
       <xsl:when test="contains($roleString,' and')">
         <xsl:if test="string-length(normalize-space(substring-before($roleString,' and'))) &gt; 0">

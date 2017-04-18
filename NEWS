@@ -1,5 +1,7 @@
 --- 1.1.1-SNAPSHOT
 
+Correct bug in processing of name $e (fixes ntra00/marc2bibframe2#10)
+
 --- 1.1.0 2017/04/06
 
 Set correct class of ShelfMark object for 050 based on LCC validation (fixes ntra00/marc2bibframe2#9)
