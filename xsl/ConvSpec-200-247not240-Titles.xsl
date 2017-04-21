@@ -274,9 +274,7 @@
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='y']">
             <bf:language>
-              <bf:Language>
-                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/languages/<xsl:value-of select="."/></xsl:attribute>
-              </bf:Language>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,.)"/></xsl:attribute>
             </bf:language>
           </xsl:for-each>
         </bf:Title>

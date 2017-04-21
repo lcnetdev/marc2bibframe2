@@ -89,7 +89,7 @@
     </x:scenario>
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/bf:Language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
+      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     </x:scenario>
   </x:scenario>
   
