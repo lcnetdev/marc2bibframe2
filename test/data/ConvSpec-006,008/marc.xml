@@ -46,4 +46,9 @@
     <controlfield tag="007">ta</controlfield>
     <controlfield tag="008">000703d20002010enkfr p       0   a0eng  </controlfield>
   </record>
+  <record>
+    <leader>00584nam a22002175a 4500</leader>
+    <controlfield tag="001">10</controlfield>
+    <controlfield tag="008">810811|1981    |||           000 0 spa  </controlfield>
+  </record>
 </collection>

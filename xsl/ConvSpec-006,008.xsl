@@ -215,10 +215,12 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <!-- continuing resources -->
     <xsl:if test="substring(.,1,1) = 's'">
-      <xsl:call-template name="entryConvention008">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring(.,18,1)"/>
-      </xsl:call-template>
+      <xsl:if test="substring(.,18,1) != '|'">
+        <xsl:call-template name="entryConvention008">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="code" select="substring(.,18,1)"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
   
@@ -244,10 +246,12 @@
                   (substring(../marc:leader,8,1) = 'b' or
                    substring(../marc:leader,8,1) = 'i' or
                    substring(../marc:leader,8,1) = 's')">
-      <xsl:call-template name="entryConvention008">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring(.,35,1)"/>
-      </xsl:call-template>
+      <xsl:if test="substring(.,35,1) != '|'">
+        <xsl:call-template name="entryConvention008">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="code" select="substring(.,35,1)"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
 
@@ -338,6 +342,7 @@
     <xsl:variable name="language">
       <xsl:choose>
         <xsl:when test="substring(.,36,3) = '   '"/>
+        <xsl:when test="substring(.,36,3) = '|||'"/>
         <xsl:otherwise><xsl:value-of select="substring(.,36,3)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -984,6 +989,24 @@
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vDate1">
+      <xsl:choose>
+        <xsl:when test="substring(.,8,4) = '    '"/>
+        <xsl:when test="substring(.,8,4) = '||||'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="substring(.,8.4)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vDate2">
+      <xsl:choose>
+        <xsl:when test="substring(.,12,4) = '    '"/>
+        <xsl:when test="substring(.,12,4) = '||||'"/>
+        <xsl:otherwise>
+          <xsl:value-of select="substring(.,12,4)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="provisionDate">
       <xsl:choose>
         <xsl:when test="substring(.,7,1) = 'c'">
@@ -996,12 +1019,14 @@
                         substring(.,7,1) = 'k' or
                         substring(.,7,1) = 'm' or
                         substring(.,7,1) = 'q' or
-                        substring(.,7,1) = 'u'">
+                        substring(.,7,1) = 'u' or
+                        (substring(.,7,1) = '|' and $vDate1 != '' and $vDate2 != '')">
           <xsl:call-template name="u2x">
             <xsl:with-param name="dateString" select="concat(substring(.,8,4),'/',substring(.,12,4))"/>
           </xsl:call-template>
         </xsl:when>
-        <xsl:when test="substring(.,7,1) = 'e'">
+        <xsl:when test="substring(.,7,1) = 'e' or
+                       (substring(.,7,1) = '|' and $vDate1 != '' and $vDate2 != '')">
           <xsl:choose>
             <xsl:when test="substring(.,14,2) = '  '">
               <xsl:call-template name="u2x">
@@ -1018,7 +1043,8 @@
         <xsl:when test="substring(.,7,1) = 'p' or
                         substring(.,7,1) = 'r' or
                         substring(.,7,1) = 's' or
-                        substring(.,7,1) = 't'">
+                        substring(.,7,1) = 't' or
+                       (substring(.,7,1) = '|' and $vDate1 != '')">
           <xsl:call-template name="u2x">
             <xsl:with-param name="dateString" select="substring(.,8,4)"/>
           </xsl:call-template>
@@ -1046,7 +1072,8 @@
                                   substring(.,7,1) = 'r' or
                                   substring(.,7,1) = 's' or
                                   substring(.,7,1) = 't' or
-                                  substring(.,7,1) = 'u'">
+                                  substring(.,7,1) = 'u' or
+                                  substring(.,7,1) = '|'">
                     <rdf:type>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Publication')"/></xsl:attribute>
                     </rdf:type>
@@ -1079,7 +1106,7 @@
                   <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
                   <xsl:value-of select="$provisionDate"/>
                 </bf:date>
-                <xsl:if test="$pubPlace != ''">
+                <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
                   <bf:place>
                     <bf:Place>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$pubPlace)"/></xsl:attribute>
@@ -1129,7 +1156,7 @@
             </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:if test="$pubPlace != ''">
+            <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
               <bf:provisionActivity>
                 <bf:ProvisionActivity>
                   <rdf:type>
