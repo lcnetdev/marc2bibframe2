@@ -88,7 +88,7 @@
     <x:expect label="$a creates a soundCharacteristic/RecordingMethod property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/rdfs:label = 'digital'"/>
     <x:expect label="$b creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[2]/bf:RecordingMedium/rdfs:label = 'optical'"/>
     <x:expect label="$c creates a soundCharacteristic/PlayingSpeed property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[6]/bf:PlayingSpeed/rdfs:label = '78 rpm'"/>
-    <x:expect label="$d creates a soundCharacteristic/GrooveCharacteristics property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[7]/bf:GrooveCharacteristics/rdfs:label = 'coarse groove'"/>
+    <x:expect label="$d creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[7]/bf:GrooveCharacteristic/rdfs:label = 'coarse groove'"/>
     <x:expect label="$e creates a soundCharacteristic/TrackConfig property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[9]/bf:TrackConfig/rdfs:label = 'edge track'"/>
     <x:expect label="$f creates a soundCharacteristic/TapeConfig property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[10]/bf:TapeConfig/rdfs:label = '12 track'"/>
     <x:expect label="$g creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[3]/bf:PlaybackChannels/rdfs:label = 'surround'"/>

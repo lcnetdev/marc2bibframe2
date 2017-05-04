@@ -625,7 +625,7 @@
         <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:GrooveCharacteristics</xsl:with-param>
+          <xsl:with-param name="pResource">bf:GrooveCharacteristic</xsl:with-param>
         </xsl:apply-templates>
         <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
