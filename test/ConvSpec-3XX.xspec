@@ -74,7 +74,7 @@
     <x:expect label="$d creates a productionMethod property of the Instance" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/rdfs:label = 'microfilm'"/>
     <x:expect label="$e creates a mount property of the Instance" test="//bf:Instance[1]/bf:mount[1]/bf:Mount/rdfs:label = 'none'"/>
     <x:expect label="$f creates a reductionRatio property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:label = '48x'"/>
-    <x:expect label="$i creates a systemRequirements property of the Instance" test="//bf:Instance[1]/bf:systemRequirements[1] = 'Ibord Model 74 tape reader.'"/>
+    <x:expect label="$i creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1] = 'Ibord Model 74 tape reader.'"/>
     <x:expect label="$j creates a generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'original'"/>
     <x:expect label="$k creates a layout property of the Instance" test="//bf:Instance[1]/bf:layout[1]/bf:Layout/rdfs:label = 'double-sided'"/>
     <x:expect label="$m creates a bookFormat property of the Instance" test="//bf:Instance[1]/bf:bookFormat[1]/bf:BookFormat/rdfs:label = 'folio'"/>

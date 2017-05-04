@@ -525,8 +525,8 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:systemRequirements>
-          <bf:SystemRequirements>
+        <bf:systemRequirement>
+          <bf:SystemRequirement>
             <xsl:for-each select="marc:subfield[@code='a']">
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
@@ -544,8 +544,8 @@
             <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
-          </bf:SystemRequirements>
-        </bf:systemRequirements>
+          </bf:SystemRequirement>
+        </bf:systemRequirement>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
