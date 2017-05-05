@@ -1,10 +1,11 @@
 --- 1.1.1-SNAPSHOT
 
+Fix 340 $i conversion to create SystemRequirement object (fixes ntra00/marc2bibframe2#19)
 Fix 340 $i and 538 conversions to assign correct property and class (systemRequirement/SystemRequirement) (fixes lcnetdev/marc2bibframe2#22)
 Fix 344 $d conversion to assign correct class (GrooveCharacteristic) (fixes lcnetdev/marc2bibframe2#20)
-Fix incorrect rdf:resource attribute for 242 $y conversion (fixes ntra00/marc2bibframe#15)
+Fix incorrect rdf:resource attribute for 242 $y conversion (fixes ntra00/marc2bibframe2#15)
 Correct bug in processing of name $e (fixes ntra00/marc2bibframe2#10)
-Improve handling of "no attempt to code" character ("|") in 008 (fixes ntra00/marc2bibframe#8)
+Improve handling of "no attempt to code" character ("|") in 008 (fixes ntra00/marc2bibframe2#8)
 
 --- 1.1.0 2017/04/06
 

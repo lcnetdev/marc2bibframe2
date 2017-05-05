@@ -564,9 +564,11 @@
           <xsl:with-param name="pProp">bf:reductionRatio</xsl:with-param>
           <xsl:with-param name="pResource">bf:ReductionRatio</xsl:with-param>
         </xsl:apply-templates>
-        <xsl:for-each select="marc:subfield[@code='i']">
-          <bf:systemRequirement><xsl:value-of select="."/></bf:systemRequirement>
-        </xsl:for-each>
+        <xsl:apply-templates select="marc:subfield[@code='i']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:systemRequirement</xsl:with-param>
+          <xsl:with-param name="pResource">bf:SystemRequirement</xsl:with-param>
+        </xsl:apply-templates>
         <xsl:apply-templates select="marc:subfield[@code='j']" mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:generation</xsl:with-param>
