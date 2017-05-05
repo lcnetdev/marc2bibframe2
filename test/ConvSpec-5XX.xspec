@@ -141,11 +141,11 @@
 
   <x:scenario label="538 - SYSTEM DETAILS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="538 creates a systemRequirements/SystemRequirements property of the Instance" test="count(//bf:Instance[1]/bf:systemRequirements/bf:SystemRequirements) = 1"/>
-    <x:expect label="$a creates an rdfs:label property of the SystemRequirements" test="//bf:Instance[1]/bf:systemRequirements[1]/bf:SystemRequirements/rdfs:label[1] = 'Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.'"/>
-    <x:expect label="$u creates an rdfs:label property of the SystemRequirements" test="//bf:Instance[1]/bf:systemRequirements[1]/bf:SystemRequirements/rdfs:label[2] = 'http://www.diglib.org/standards/bmarkfin.htm'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the SystemRequirements" test="//bf:Instance[1]/bf:systemRequirements[1]/bf:SystemRequirements/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'v.1-49(1927-1975)'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the SystemRequirements" test="//bf:Instance[1]/bf:systemRequirements[1]/bf:SystemRequirements/bflc:applicableInstitution/bf:Agent/bf:code = 'NIC'"/>
+    <x:expect label="538 creates a systemRequirement/SystemRequirement property of the Instance" test="count(//bf:Instance[1]/bf:systemRequirement/bf:SystemRequirement) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label[1] = 'Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.'"/>
+    <x:expect label="$u creates an rdfs:label property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label[2] = 'http://www.diglib.org/standards/bmarkfin.htm'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'v.1-49(1927-1975)'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bflc:applicableInstitution/bf:Agent/bf:code = 'NIC'"/>
   </x:scenario>
   
   <x:scenario label="540 - TERMS GOVERNING USE AND REPRODUCTION NOTE">
