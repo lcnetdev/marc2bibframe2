@@ -2,22 +2,27 @@
   <filter type="record_transform">
     <retrievalinfo  xmlns="http://indexdata.com/yaz" version="1.0">
       <retrieval syntax="xml"/>
-      <retrieval syntax="xml" name="bibframe2" identifier="info:bibframe2">
+      <retrieval syntax="xml" name="bibframe2" identifier="http://id.loc.gov/ontologies/bibframe/">
         <backend syntax="xml" name="marcxml">
-          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl"/>
+          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl">
+            <param name="idsource" value="http://id.loc.gov/vocabulary/organizations/dlc"/>
+          </xslt>
         </backend>
       </retrieval>
-      <retrieval syntax="xml" name="rdf-lookup" identifier="info:bibframe2a">
+      <retrieval syntax="xml" name="bibframe2a" identifier="http://id.loc.gov/ontologies/bibframe/">
         <backend syntax="xml" name="marcxml">
-          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl"/>
+          <xslt stylesheet="{{ m2bf_home }}/xsl/marc2bibframe2.xsl">
+            <param name="idsource" value="http://id.loc.gov/vocabulary/organizations/dlc"/>
+          </xslt>
           <rdf-lookup debug="1">
-            <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/" />
+            <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
             <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
-            <lookup xpath="//bf:contribution/bf:Contribution/bf:agent/bf:Agent">
+            <namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+            <lookup xpath="//bf:Agent[contains(@rdf:about,'example.org')]">
               <key field="bflc:name11MatchKey"/>
               <key field="bflc:name00MatchKey"/>
               <key field="bflc:name10MatchKey"/>
-              <server url="http://id.loc.gov/authorities/names/label/%s"/>
+              <server url="http://id.loc.gov/authorities/names/label/%s" method="HEAD"/>
             </lookup>
           </rdf-lookup>
         </backend>
