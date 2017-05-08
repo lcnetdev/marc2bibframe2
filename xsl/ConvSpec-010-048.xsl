@@ -189,7 +189,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bflc:metadataLicensor>
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <bflc:MetadataLicensor>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bflc:MetadataLicensor>
           </bflc:metadataLicensor>
         </xsl:for-each>
       </xsl:when>
