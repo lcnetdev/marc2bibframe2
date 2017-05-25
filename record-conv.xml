@@ -1,0 +1,29 @@
+<backend syntax="xml">
+  <xslt stylesheet="xsl/marc2bibframe2.xsl">
+    <param name="idsource" value="http://id.loc.gov/vocabulary/organizations/dlc"/>
+  </xslt>
+  <rdf-lookup>
+    <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+    <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+    <namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <lookup xpath="//bf:Agent[contains(@rdf:about,'example.org')]">
+      <key field="bflc:name11MatchKey"/>
+      <key field="bflc:name00MatchKey"/>
+      <key field="bflc:name10MatchKey"/>
+      <server url="http://id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+    </lookup>
+  </rdf-lookup>
+  <rdf-lookup>
+    <namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+    <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+    <namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+    <lookup xpath="//bf:Work/bf:subject/bf:Temporal[contains(@rdf:about,'example.org')] |
+                   //bf:Work/bf:subject/bf:Topic[contains(@rdf:about,'example.org')] |
+                   //bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org')] |
+                   //bf:Work/bf:genreForm/bf:GenreForm[contains(@rdf:about,'example.org')]">
+      <key field="rdfs:label"/>
+      <server url="http://id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+    </lookup>
+  </rdf-lookup>
+</backend>

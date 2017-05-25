@@ -148,7 +148,7 @@ in the [YAZ toolkit](http://www.indexdata.com/yaz).
 The retrieval tool in YAZ is driven by an XML configuration,
 documented in the
 [YAZ User's Guide and Reference](http://www.indexdata.com/yaz/doc/tools.retrieval.html).
-The YAZ conversion for RDF/XML is called `rdf-lookup`, and the
+The YAZ conversion for RDF/XML is called `rdf-lookup`, and a simple
 configuration looks like this:
 
 ```xml
@@ -181,8 +181,9 @@ From the YAZ User's Guide:
 >id.loc.gov address is used as a default. The default is to make a GET
 >request, this example uses HEAD.
 
-With this configuration saved as record-conv.xml, you could perform an
-active conversion of a MARCXML file using the
+A full sample configuration is available in this directory as
+[record-conv.xml](record-conv.xml). Using this configuration, you
+could perform an active conversion of a MARCXML file using the
 [yaz-record-conv](http://www.indexdata.com/yaz/doc/yaz-record-iconv.html)
 utility like so:
 
