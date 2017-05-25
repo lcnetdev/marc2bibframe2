@@ -132,6 +132,7 @@
                 <bf:role>
                   <bf:Role>
                     <rdfs:label>ill.</rdfs:label>
+                    <bflc:relatorMatchKey>ill</bflc:relatorMatchKey>
                   </bf:Role>
                 </bf:role>
               </bf:Contribution>

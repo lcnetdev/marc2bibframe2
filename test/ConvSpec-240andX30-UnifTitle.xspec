@@ -26,7 +26,7 @@
     <x:expect label="6XX/7XX/8XX $t creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/1#Work700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/2#Work730-4']) = 1"/>
     <x:expect label="630 becomes a subject/Work of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly'"/>
-    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation = 'depicted.'"/>
+    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/rdfs:Resource/rdfs:label = 'depicted.'"/>
     <x:expect label="730 I2=2 becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Bible'"/>
     <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = '[Motets]'"/>
     <x:expect label="830 becomes a hasSeries of the main Work" test="//bf:Work[@rdf:about='http://example.org/3#Work']/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Nihon zenkoku panorama chizu'"/>
