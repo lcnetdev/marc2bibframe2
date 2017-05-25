@@ -43,7 +43,7 @@
             <namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
             <namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
             <namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
-            <lookup xpath="//bf:Role[not(@rdf:about)] | //bflc:relation/rdfs:resource[not(@rdf:about)]">
+            <lookup xpath="//bf:Role[not(@rdf:about)] | //bflc:relation/rdfs:Resource[not(@rdf:about)]">
               <key field="bflc:relatorMatchKey"/>
               <key field="rdfs:label"/>
               <server url="http://id.loc.gov/vocabulary/relators/label/%s" method="HEAD"/>
