@@ -81,7 +81,7 @@
 
   <x:scenario label="263 - PROJECTED PUBLICATION DATE">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="$a creates a bflc:projectedPubDate property of the Instance" test="//bf:Instance[1]/bflc:projectedPubDate = '1999-XX'"/>
+    <x:expect label="$a creates a bflc:projectedProvisionDate property of the Instance" test="//bf:Instance[1]/bflc:projectedProvisionDate = '1999-XX'"/>
   </x:scenario>
 
   <x:scenario label="264 - PRODUCTION, PUBLICATION, DISTRIBUTION, MANUFACTURE, AND COPYRIGHT NOTICE">

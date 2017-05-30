@@ -549,10 +549,10 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$vDate != ''">
-          <bflc:projectedPubDate>
+          <bflc:projectedProvisionDate>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
             <xsl:value-of select="$vDate"/>
-          </bflc:projectedPubDate>
+          </bflc:projectedProvisionDate>
         </xsl:if>
       </xsl:when>
     </xsl:choose>

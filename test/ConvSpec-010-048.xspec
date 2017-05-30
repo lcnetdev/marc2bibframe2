@@ -158,7 +158,7 @@
 
   <x:scenario label="038 - RECORD CONTENT LICENSOR">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/rdfs:label = 'Uk'"/>
+    <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/bflc:MetadataLicensor/rdfs:label = 'Uk'"/>
   </x:scenario>
 
   <x:scenario label="040 - CATALOGING SOURCE">
