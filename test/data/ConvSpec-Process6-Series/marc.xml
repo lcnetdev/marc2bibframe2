@@ -1,0 +1,29 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Mémoire du BRGM,</subfield>
+      <subfield code="x">0071-8246 ;</subfield>
+      <subfield code="v">no 123</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Tōkaidō panorama chizu.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="830">
+      <subfield code="7">ab</subfield>
+      <subfield code="a">Nihon zenkoku panorama chizu ;</subfield>
+      <subfield code="v">1.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="800" ind1="1" ind2=" ">
+      <subfield code="a">Fernando, A. Denis N.</subfield>
+      <subfield code="t">Resource maps of Sri Lanka ;</subfield>
+      <subfield code="v">pt. 2.</subfield>
+    </datafield>
+  </record>    
+</collection>
