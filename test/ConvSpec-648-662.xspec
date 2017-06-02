@@ -63,6 +63,7 @@
     <x:expect label="...with rdf:type of madsrdf:HierarchicalGeographic" test="//bf:Work[1]/bf:subject[6]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
     <x:expect label="$abcdfgh creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Place/rdfs:label = 'Japan--Hokkaido--Asahi-dake.'"/>
     <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
+    <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[6]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
   </x:scenario>
   
 </x:description>
