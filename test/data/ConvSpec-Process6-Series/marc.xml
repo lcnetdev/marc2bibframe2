@@ -1,7 +1,7 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
-    <datafield tag="490" ind1="1" ind2=" ">
+    <datafield tag="490" ind1="0" ind2=" ">
       <subfield code="a">Mémoire du BRGM,</subfield>
       <subfield code="x">0071-8246 ;</subfield>
       <subfield code="v">no 123</subfield>
@@ -9,8 +9,41 @@
   </record>
   <record>
     <controlfield tag="001">2</controlfield>
+    <datafield tag="800" ind1="1" ind2=" ">
+      <subfield code="a">Fernando, A. Denis N.</subfield>
+      <subfield code="t">Resource maps of Sri Lanka ;</subfield>
+      <subfield code="v">pt. 2.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="3">1969-1979:</subfield>
+      <subfield code="a">DHEW publication</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="3">1980- :</subfield>
+      <subfield code="a">DHHS publication</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">DHEW publication</subfield>
+      <subfield code="x">0090-0206</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">DHHS publication</subfield>
+      <subfield code="x">0276-4733</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
     <datafield ind1="1" ind2="0" tag="245">
       <subfield code="a">Tōkaidō panorama chizu.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Panoramic maps of Japan ;</subfield>
+      <subfield code="v">v. 1 =</subfield>
+      <subfield code="a">Nihon zenkoku panorama chizu ;</subfield>
+      <subfield code="v">1.</subfield>
     </datafield>
     <datafield ind1=" " ind2="0" tag="830">
       <subfield code="7">ab</subfield>
@@ -19,11 +52,30 @@
     </datafield>
   </record>
   <record>
-    <controlfield tag="001">3</controlfield>
-    <datafield tag="800" ind1="1" ind2=" ">
+    <controlfield tag="001">5</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Department of State publication ;</subfield>
+      <subfield code="v">7846</subfield>
+      <subfield code="a">Department and Foreign Service series ;</subfield>
+      <subfield code="v">128</subfield>
+    </datafield>
+    <datafield tag="810" ind1="1" ind2=" ">
+      <subfield code="a">United States.</subfield>
+      <subfield code="b">Department of State.</subfield>
+      <subfield code="t">Department of State publication.</subfield>
+    </datafield>
+    <datafield tag="810" ind1="1" ind2=" ">
+      <subfield code="a">United States.</subfield>
+      <subfield code="b">Department of State.</subfield>
+      <subfield code="t">Department and Foreign service series</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <datafield tag="400" ind1="1" ind2=" ">
       <subfield code="a">Fernando, A. Denis N.</subfield>
       <subfield code="t">Resource maps of Sri Lanka ;</subfield>
       <subfield code="v">pt. 2.</subfield>
     </datafield>
-  </record>    
+  </record>
 </collection>

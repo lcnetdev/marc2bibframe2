@@ -325,4 +325,12 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- get the tag ord of a datafield within a marc:record -->
+  <xsl:template match="marc:datafield" mode="tagord">
+    <xsl:variable name="vId" select="generate-id(.)"/>
+    <xsl:for-each select="../marc:leader | ../marc:controlfield | ../marc:datafield">
+      <xsl:if test="generate-id(.)=$vId"><xsl:value-of select="position()"/></xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
