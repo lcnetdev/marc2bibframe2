@@ -412,8 +412,8 @@
                 <xsl:variable name="vResource">
                   <xsl:choose>
                     <xsl:when test="@code='a'">madsrdf:Country</xsl:when>
-                    <xsl:when test="@code='b'">madsrdf:County</xsl:when>
-                    <xsl:when test="@code='c'">madsrdf:State</xsl:when>
+                    <xsl:when test="@code='b'">madsrdf:State</xsl:when>
+                    <xsl:when test="@code='c'">madsrdf:County</xsl:when>
                     <xsl:when test="@code='d'">madsrdf:City</xsl:when>
                     <xsl:when test="@code='f'">madsrdf:CitySection</xsl:when>
                     <xsl:when test="@code='g'">madsrdf:Region</xsl:when>
