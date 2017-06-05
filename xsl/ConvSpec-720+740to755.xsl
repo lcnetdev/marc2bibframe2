@@ -105,7 +105,9 @@
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                    <bflc:Relation>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                    </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>

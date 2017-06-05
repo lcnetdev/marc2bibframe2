@@ -111,9 +111,9 @@
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
-                    <rdfs:Resource>
+                    <bflc:Relation>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
-                    </rdfs:Resource>
+                    </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
@@ -177,7 +177,7 @@
           <bflc:relationship>
             <bflc:Relationship>
               <bflc:relation>
-                <rdfs:Resource>
+                <bflc:Relation>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -188,7 +188,7 @@
                       </xsl:with-param>
                     </xsl:call-template>
                   </rdfs:label>
-                </rdfs:Resource>
+                </bflc:Relation>
               </bflc:relation>
               <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
             </bflc:Relationship>

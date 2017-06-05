@@ -221,7 +221,7 @@
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
-                    <rdfs:Resource>
+                    <bflc:Relation>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -232,7 +232,7 @@
                           </xsl:with-param>
                         </xsl:call-template>
                       </rdfs:label>
-                    </rdfs:Resource>
+                    </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
                     <xsl:attribute name="rdf:resource">
