@@ -21,7 +21,8 @@
     <x:expect label="773 creates a partOf property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:partOf) = 1"/>
     <x:expect label="774 creates a hasPart property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:hasPart) = 1"/>
     <x:expect label="775 creates an otherEdition property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:otherEdition) = 1"/>
-    <x:expect label="776 creates an otherPhysicalFormat property of the Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:otherPhysicalFormat) = 1"/>
+    <x:expect label="776 creates a hasInstance property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:hasInstance) = 2"/>
+    <x:expect label="...and an otherPhysicalFormat property of the Instance" test="count(/rdf:RDF/bf:Instance[1]/bf:otherPhysicalFormat) = 1"/>
     <x:expect label="777 creates an issuedWith property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:issuedWith) = 1"/>
     <x:expect label="780 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbed) = 1"/>
     <x:expect label="785 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbedBy) = 1"/>
@@ -29,7 +30,7 @@
     <x:expect label="787 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 1"/>
   </x:scenario>
     
-  <x:scenario label="760-788 SUBFIELDS">
+  <x:scenario label="760-788 SUBFIELDS" focus="testing 776">
     <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
     <x:expect label="$a creates a contribution property of the linked Work" test="/rdf:RDF/bf:Instance[1]/bf:hasSeries[1]/bf:Work/bf:contribution/bflc:PrimaryContribution/bf:agent/bf:Agent/rdfs:label = 'United States. Geological Survey.'"/>
     <x:expect label="$b creates an editionStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:hasInstance/bf:Instance/bf:editionStatement = 'Havana ed.'"/>
