@@ -437,19 +437,21 @@
         </xsl:for-each>        
         <xsl:for-each select="marc:subfield[@code='l']">
           <xsl:choose>
-            <xsl:when test="$pTranslation='true' and count(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
-              <bf:language>
-                <xsl:choose>
-                  <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/></xsl:attribute>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <bf:Language>
-                      <rdfs:label><xsl:value-of select="../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
-                    </bf:Language>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </bf:language>
+            <xsl:when test="$pTranslation='true'">
+              <xsl:if test="count(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
+                <bf:language>
+                  <xsl:choose>
+                    <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <bf:Language>
+                        <rdfs:label><xsl:value-of select="../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
+                      </bf:Language>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </bf:language>
+              </xsl:if>
             </xsl:when>
             <xsl:otherwise>
               <xsl:if test="$vXmlLang != ''">
