@@ -186,6 +186,10 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:Title/bf:date = 'Juli 1976-'"/>
     </x:scenario>
+    <x:scenario label="$i">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="becomes a variantType" test="//bf:Instance[4]/bf:title[1]/bf:Title/bf:variantType = 'Issues for Apr. and Oct. each year have title'"/>
+    </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="becomes a partNumber" test="//bf:Instance[4]/bf:title/bf:Title/bf:partNumber = 'Serie A'"/>

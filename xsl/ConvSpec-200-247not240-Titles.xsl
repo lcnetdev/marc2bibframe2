@@ -708,6 +708,18 @@
               </xsl:call-template>
             </bf:date>
           </xsl:for-each>
+          <xsl:for-each select="marc:subfield[@code='i']">
+            <bf:variantType>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:variantType>
+          </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
             <bf:partNumber>
               <xsl:if test="$vXmlLang != ''">
