@@ -34,10 +34,10 @@
   </record>
   <record>
     <controlfield tag="001">4</controlfield>
-    <datafield tag="246" ind1="3" ind2="1">
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="i">Issues for Apr. and Oct. each year have title:</subfield>
       <subfield code="a">Archives for meteorology, geophysics, and bioclimatology :</subfield>
       <subfield code="b">an engrossing read.</subfield>
-      <subfield code="i">Issues for Apr. and Oct. each year have title:</subfield>
       <subfield code="n">Serie A,</subfield>
       <subfield code="p">Meteorology and geophysics</subfield>
       <subfield code="5">DLC</subfield>

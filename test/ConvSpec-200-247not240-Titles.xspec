@@ -166,13 +166,17 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="should create a ParallelTitle" test="//bf:Instance[1]/bf:title[2]/bf:Title/rdf:type/@rdf:resource ='http://id.loc.gov/ontologies/bibframe/ParallelTitle'"/>
     </x:scenario>
+    <x:scenario label="@ind2 = ' '">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+      <x:expect label="creates no variantType property" test="count(//bf:Instance[4]/bf:title/bf:Title/bf:variantType) = 0"/>
+    </x:scenario>
     <x:scenario label="other @ind2 value">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="should become the variantType" test="//bf:Instance[3]/bf:title[2]/bf:Title/bf:variantType = 'portion'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="$abgnp in record order" test="//bf:Instance[4]/bf:title/bf:Title/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
+      <x:expect label="$abginp in record order" test="//bf:Instance[4]/bf:title/bf:Title/rdfs:label = 'Issues for Apr. and Oct. each year have title: Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
@@ -185,10 +189,6 @@
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
       <x:expect label="becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:Title/bf:date = 'Juli 1976-'"/>
-    </x:scenario>
-    <x:scenario label="$i">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a variantType" test="//bf:Instance[4]/bf:title[1]/bf:Title/bf:variantType = 'Issues for Apr. and Oct. each year have title'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>

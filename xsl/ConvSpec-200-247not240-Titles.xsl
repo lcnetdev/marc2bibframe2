@@ -660,6 +660,15 @@
                                  select="marc:subfield[@code='a' or
                                          @code='b' or
                                          @code='g' or
+                                         @code='i' or
+                                         @code='n' or
+                                         @code='p']"/>
+          </xsl:variable>
+          <xsl:variable name="vSortTitle">
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='a' or
+                                         @code='b' or
+                                         @code='g' or
                                          @code='n' or
                                          @code='p']"/>
           </xsl:variable>
@@ -670,7 +679,9 @@
               </xsl:if>
               <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
             </rdfs:label>
-            <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+          </xsl:if>
+          <xsl:if test="$vSortTitle != ''">
+            <bflc:titleSortKey><xsl:value-of select="substring($vSortTitle,1,string-length($label)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>
@@ -707,18 +718,6 @@
                 </xsl:with-param>
               </xsl:call-template>
             </bf:date>
-          </xsl:for-each>
-          <xsl:for-each select="marc:subfield[@code='i']">
-            <bf:variantType>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
-              </xsl:call-template>
-            </bf:variantType>
           </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='n']">
             <bf:partNumber>
