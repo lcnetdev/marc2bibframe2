@@ -26,6 +26,7 @@
   <x:import href="ConvSpec-760-788-Links.xspec"/>
   <x:import href="ConvSpec-841-887.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
+  <x:import href="ConvSpec-Process6-Series.xspec"/>
 
   <x:scenario label="Regression">
     <x:scenario label="Simple transform">

@@ -41,6 +41,7 @@
   <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
+  <xsl:include href="ConvSpec-Process6-Series.xsl"/>
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
@@ -156,6 +157,11 @@
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           <!-- pass fields through conversion specs for Instance properties -->
           <xsl:apply-templates mode="instance">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          <!-- pass the whole record through for series processing (490/8XX) -->
+          <xsl:apply-templates select="." mode="hasSeries">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
