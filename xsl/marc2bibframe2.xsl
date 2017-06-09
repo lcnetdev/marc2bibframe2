@@ -53,7 +53,7 @@
   <!-- id.loc.gov vocabulary stems -->
   <xsl:variable name="carriers">http://id.loc.gov/vocabulary/carriers/</xsl:variable>
   <xsl:variable name="classSchemes">http://id.loc.gov/vocabulary/classSchemes/</xsl:variable>
-  <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentType/</xsl:variable>
+  <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentTypes/</xsl:variable>
   <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
   <xsl:variable name="demographicTerms">http://id.loc.gov/authorities/demographicTerms/</xsl:variable>
   <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
@@ -64,7 +64,7 @@
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
   <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
-  <xsl:variable name="mediaType">http://id.loc.gov/vocabulary/mediaType/</xsl:variable>
+  <xsl:variable name="mediaType">http://id.loc.gov/vocabulary/mediaTypes/</xsl:variable>
   <xsl:variable name="mmaterial">http://id.loc.gov/vocabulary/mmaterial/</xsl:variable>
   <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
   <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>

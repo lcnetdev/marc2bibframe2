@@ -157,9 +157,9 @@
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
-                        <rdfs:Resource>
+                        <bflc:Relation>
                           <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
-                        </rdfs:Resource>
+                        </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
@@ -248,7 +248,7 @@
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
-                    <rdfs:Resource>
+                    <bflc:Relation>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -259,7 +259,7 @@
                           </xsl:with-param>
                         </xsl:call-template>
                       </rdfs:label>
-                    </rdfs:Resource>
+                    </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
@@ -279,7 +279,7 @@
           <bflc:relationship>
             <bflc:Relationship>
               <bflc:relation>
-                <rdfs:Resource>
+                <bflc:Relation>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -290,7 +290,7 @@
                       </xsl:with-param>
                     </xsl:call-template>
                   </rdfs:label>
-                </rdfs:Resource>
+                </bflc:Relation>
               </bflc:relation>
               <bf:relatedTo><xsl:value-of select="$agentiri"/></bf:relatedTo>
             </bflc:Relationship>
@@ -448,7 +448,7 @@
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
-                        <rdfs:Resource>
+                        <bflc:Relation>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -460,7 +460,7 @@
                               <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
                             </xsl:call-template>
                           </bflc:relatorMatchKey>
-                        </rdfs:Resource>
+                        </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
@@ -508,7 +508,7 @@
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
-                        <rdfs:Resource>
+                        <bflc:Relation>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -520,7 +520,7 @@
                               <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
                             </xsl:call-template>
                           </bflc:relatorMatchKey>
-                        </rdfs:Resource>
+                        </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
@@ -566,7 +566,7 @@
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
-                        <rdfs:Resource>
+                        <bflc:Relation>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -578,7 +578,7 @@
                               <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
                             </xsl:call-template>
                           </bflc:relatorMatchKey>
-                        </rdfs:Resource>
+                        </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
@@ -622,7 +622,7 @@
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
-                        <rdfs:Resource>
+                        <bflc:Relation>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -634,7 +634,7 @@
                               <xsl:with-param name="chopString"><xsl:value-of select="normalize-space($roleString)"/></xsl:with-param>
                             </xsl:call-template>
                           </bflc:relatorMatchKey>
-                        </rdfs:Resource>
+                        </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
@@ -771,9 +771,9 @@
                 <bflc:relationship>
                   <bflc:Relationship>
                     <bflc:relation>
-                      <rdfs:Resource>
+                      <bflc:Relation>
                         <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
-                      </rdfs:Resource>
+                      </bflc:Relation>
                     </bflc:relation>
                     <bf:relatedTo>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>

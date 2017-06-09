@@ -90,6 +90,38 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag=776]" mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work</xsl:variable>
+    <xsl:apply-templates select="." mode="work776">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
+      <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='776' or @tag='880']" mode="work776">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceUri"/>
+    <xsl:param name="pWorkUri"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:apply-templates select="." mode="link7XX">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pTag" select="$vTag"/>
+      <xsl:with-param name="pProperty">bf:hasInstance</xsl:with-param>
+      <xsl:with-param name="pElement">bf:Instance</xsl:with-param>
+      <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
+      <xsl:with-param name="pInstanceUri" select="$pInstanceUri"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='760' or @tag='762']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -131,18 +163,15 @@
   <xsl:template match="marc:datafield[@tag='776']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work</xsl:variable>
     <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:apply-templates select="." mode="instance776">
       <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
       <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='776' or @tag='880']" mode="instance776">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pWorkUri"/>
     <xsl:param name="pInstanceUri"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -150,14 +179,13 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:apply-templates select="." mode="link7XX">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pTag" select="$vTag"/>
-      <xsl:with-param name="pProperty">bf:otherPhysicalFormat</xsl:with-param>
-      <xsl:with-param name="pElement">bf:Instance</xsl:with-param>
-      <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
-      <xsl:with-param name="pInstanceUri" select="$pInstanceUri"/>
-    </xsl:apply-templates>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:otherPhysicalFormat>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="$pInstanceUri"/></xsl:attribute>
+        </bf:otherPhysicalFormat>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="link7XX">
@@ -221,7 +249,7 @@
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
-                    <rdfs:Resource>
+                    <bflc:Relation>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -232,7 +260,7 @@
                           </xsl:with-param>
                         </xsl:call-template>
                       </rdfs:label>
-                    </rdfs:Resource>
+                    </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
                     <xsl:attribute name="rdf:resource">

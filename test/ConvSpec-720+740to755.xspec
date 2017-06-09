@@ -24,9 +24,10 @@
 
   <x:scenario label="752 - ADDED ENTRY--HIERARCHICAL PLACE NAME">
     <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
-    <x:expect label="752 creates a place/Place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'England--London'"/>
-    <x:expect label="...with a madsrdf:HierarchicalGeopgraphic Class" test="//bf:Work[1]/bf:place[1]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
-    <x:expect label="$abcdfgh become part of the madsrdf:componentList of the Place" test="//bf:Work[1]/bf:place[1]/bf:Place/madsrdf:componentList/*[2]/rdfs:label = 'London'"/>
+    <x:expect label="752 creates a place/Place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'England--Greater London--London'"/>
+    <x:expect label="...with a madsrdf:HierarchicalGeographic Class" test="//bf:Work[1]/bf:place[1]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
+    <x:expect label="$abcdfgh become part of the madsrdf:componentList of the Place" test="//bf:Work[1]/bf:place[1]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'London'"/>
+    <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:place[1]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Greater London'"/>
   </x:scenario>
   
   <x:scenario label="753 - SYSTEM DETAILS ACCESS TO COMPUTER FILES">

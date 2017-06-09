@@ -13,6 +13,7 @@
     </datafield>
     <datafield tag="752" ind1=" " ind2=" ">
       <subfield code="a">England</subfield>
+      <subfield code="c">Greater London</subfield>
       <subfield code="d">London</subfield>
       <subfield code="e">publication place.</subfield>
       <subfield code="4">pup</subfield>
