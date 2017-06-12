@@ -7,7 +7,6 @@
       <subfield code="f">[between 1775 and 1800].</subfield>
       <subfield code="g">Manuscripts, Latin.</subfield>
       <subfield code="h">Sound recording.</subfield>
-      <subfield code="l">French</subfield>
       <subfield code="m">violin, viola,</subfield>
       <subfield code="r">D major.</subfield>
       <subfield code="o">arr.</subfield>
@@ -57,6 +56,31 @@
       <subfield code="h">Sound recording</subfield>
       <subfield code="x">1234-5678</subfield>
       <subfield code="5">DLC</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Tōkaidō panorama chizu.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="830">
+      <subfield code="7">ab</subfield>
+      <subfield code="a">Nihon zenkoku panorama chizu ;</subfield>
+      <subfield code="v">1.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">epo</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">Jara raporto de la Ministro de Supply kaj Servo Kanado sub la Korporacioj kaj Labor Unions Returns Akto.</subfield>
+      <subfield code="l">English.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act.</subfield>
     </datafield>
   </record>
 </collection>
