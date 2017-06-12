@@ -77,7 +77,16 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:identifiedBy>
           <bf:Identifier>
-            <rdf:value><xsl:value-of select="$value"/></rdf:value>
+            <rdf:value>
+              <xsl:choose>
+                <xsl:when test="contains($value,'://')">
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$value"/></xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$value"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </rdf:value>
             <xsl:if test="$source != ''">
               <bf:source>
                 <bf:Source>
