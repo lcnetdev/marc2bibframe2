@@ -567,46 +567,8 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='490']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:seriesStatement>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesStatement>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='v']">
-          <bf:seriesEnumeration>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesEnumeration>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='x']">
-          <bf:hasSeries>
-            <bf:Instance>
-              <bf:identifiedBy>
-                <bf:Issn>
-                  <rdf:value>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                    </xsl:call-template>
-                  </rdf:value>
-                </bf:Issn>
-              </bf:identifiedBy>
-            </bf:Instance>
-          </bf:hasSeries>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
+
+  <!-- Processing for 490 tags in ConvSpec-Process6-Series.xsl -->
 
   <xsl:template match="marc:datafield[@tag='510']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>

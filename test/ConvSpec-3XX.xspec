@@ -40,7 +40,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="336 creates a content property of the Work" test="count(//bf:Work[1]/bf:content) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/rdfs:label = 'performed music'"/>
-    <x:expect label="$b creates an rdf:about attribute of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentType/prm'"/>
+    <x:expect label="$b creates an rdf:about attribute of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
     <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/rdfs:label = 'rdacontent'"/>
     <x:expect label="$0 creates an identifiedBy property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'record'"/>
@@ -50,7 +50,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="337 creates a media property of the Instance" test="count(//bf:Instance[1]/bf:media) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/rdfs:label = 'audio'"/>
-    <x:expect label="$b creates an rdf:about attribute of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaType/s'"/>
+    <x:expect label="$b creates an rdf:about attribute of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
     <x:expect label="$2 creates a source property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:source/bf:Source/rdfs:label = 'rdamedia'"/>
     <x:expect label="$0 creates an identifiedBy property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>

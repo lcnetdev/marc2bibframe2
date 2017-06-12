@@ -11,6 +11,7 @@
 
   <x:scenario label="Process 1 - names">
     <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc.xml"/>
+    <!-- tests for 8XX name/title fields located in ConvSpec-Process6-Series.xspec -->
     <x:expect label="1XX creates a bflc:PrimaryContribution" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/PrimaryContribution'"/>
     <x:expect label="Name field with $e, $j, or $4 becomes a bf:Contribution" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Hecht, Ben, 1893-1964,'"/>
     <x:expect label="...$e/$j become bf:role properties with blank bf:Role node" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role) = 5"/>
@@ -30,8 +31,7 @@
     <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[2]/bf:Work/madsrdf:authoritativeLabel = 'Bellamy, Edward, 1850-1898. Looking backward, 2000-1887.'"/>
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Alice''s adventures in Wonderland'"/>
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence'"/>
-    <x:expect label="8XX creates a bf:hasSeries" test="//bf:Work[1]/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
-    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]/bf:title) = 4"/>
+    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]/bf:title) = 3"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891'"/>

@@ -20,6 +20,28 @@
     <xsl:apply-templates mode="workUnifTitle" select=".">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
+    <!-- create translationOf property and Work from uniform title if a translation -->
+    <xsl:if test="marc:subfield[@code='l']">
+      <xsl:variable name="vWorkUri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization='rdfxml'">
+          <bf:translationOf>
+            <bf:Work>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
+              <xsl:apply-templates mode="workUnifTitle" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pTranslation">true</xsl:with-param>
+              </xsl:apply-templates>
+            </bf:Work>
+          </bf:translationOf>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='630']" mode="work">
@@ -198,54 +220,12 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='830' or @tag='440']" mode="work">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:variable>
-    <xsl:apply-templates mode="work830" select=".">
-      <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
+  <!-- Processing for 830/440 tags in ConvSpec-Process6-Series.xsl -->
 
-  <xsl:template match="marc:datafield" mode="work830">
-    <xsl:param name="workiri"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:hasSeries>
-          <bf:Work>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-            <xsl:apply-templates mode="workUnifTitle" select=".">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </bf:Work>
-        </bf:hasSeries>
-        <xsl:for-each select="marc:subfield[@code='v']">
-          <bf:seriesEnumeration>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString">
-                <xsl:value-of select="."/>
-              </xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesEnumeration>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>    
-        
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pTranslation"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -258,7 +238,9 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="tTitleLabel"/>
+      <xsl:apply-templates select="." mode="tTitleLabel">
+        <xsl:with-param name="pTranslation"><xsl:value-of select="$pTranslation"/></xsl:with-param>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -411,20 +393,40 @@
           </bf:genreForm>
         </xsl:for-each>        
         <xsl:for-each select="marc:subfield[@code='l']">
-          <bf:language>
-            <bf:Language>
+          <xsl:choose>
+            <xsl:when test="$pTranslation='true'">
+              <xsl:if test="count(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
+                <bf:language>
+                  <xsl:choose>
+                    <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <bf:Language>
+                        <rdfs:label><xsl:value-of select="../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
+                      </bf:Language>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </bf:language>
+              </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <rdfs:label>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:Language>
-          </bf:language>
+              <bf:language>
+                <bf:Language>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString">
+                        <xsl:value-of select="."/>
+                      </xsl:with-param>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Language>
+              </bf:language>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='m']">
           <bf:musicMedium>
@@ -518,11 +520,6 @@
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </xsl:if>
-        <xsl:if test="$tag='830'">
-          <xsl:apply-templates mode="subfield7" select="marc:subfield[@code='7']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
@@ -677,6 +674,7 @@
 
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="tTitleLabel">
+    <xsl:param name="pTranslation"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -729,19 +727,37 @@
                                      @code='s']"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='a' or
-                                     @code='d' or
-                                     @code='f' or
-                                     @code='g' or 
-                                     @code='k' or
-                                     @code='l' or
-                                     @code='m' or
-                                     @code='n' or
-                                     @code='o' or
-                                     @code='p' or
-                                     @code='r' or
-                                     @code='s']"/>
+        <xsl:choose>
+          <xsl:when test="$pTranslation='true'">
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='a' or
+                                         @code='d' or
+                                         @code='f' or
+                                         @code='g' or 
+                                         @code='k' or
+                                         @code='m' or
+                                         @code='n' or
+                                         @code='o' or
+                                         @code='p' or
+                                         @code='r' or
+                                         @code='s']"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='a' or
+                                         @code='d' or
+                                         @code='f' or
+                                         @code='g' or 
+                                         @code='k' or
+                                         @code='l' or
+                                         @code='m' or
+                                         @code='n' or
+                                         @code='o' or
+                                         @code='p' or
+                                         @code='r' or
+                                         @code='s']"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
