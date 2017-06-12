@@ -1,4 +1,4 @@
---- 1.2.0-SNAPSHOT
+--- 1.2.0 2017/06/12
 
 Update conversion of 041 to use rdf:value indirection (fixes lcnetdev/marc2bibframe2#7)
 Create translationOf property of main Work for 130/240 field with $l (fixes lcnetdev/marc2bibframe2#25)
