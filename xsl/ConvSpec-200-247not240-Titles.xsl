@@ -660,6 +660,15 @@
                                  select="marc:subfield[@code='a' or
                                          @code='b' or
                                          @code='g' or
+                                         @code='i' or
+                                         @code='n' or
+                                         @code='p']"/>
+          </xsl:variable>
+          <xsl:variable name="vSortTitle">
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='a' or
+                                         @code='b' or
+                                         @code='g' or
                                          @code='n' or
                                          @code='p']"/>
           </xsl:variable>
@@ -670,7 +679,9 @@
               </xsl:if>
               <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
             </rdfs:label>
-            <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+          </xsl:if>
+          <xsl:if test="$vSortTitle != ''">
+            <bflc:titleSortKey><xsl:value-of select="substring($vSortTitle,1,string-length($label)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>

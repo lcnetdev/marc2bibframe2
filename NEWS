@@ -1,6 +1,8 @@
---- 1.1.1-SNAPSHOT
+--- 1.2.0-SNAPSHOT
 
 Create translationOf property of main Work for 130/240 field with $l (fixes lcnetdev/marc2bibframe2#25)
+Implement new process (Process6) for converting series tags (fixes lcnetdev/marc2bibframe2#27)
+Update 246 $i conversion (fixes lcnetdev/marc2bibframe2#41)
 Create hasInstance property of main Work for 776 field (fixes lcnetdev/marc2bibframe2#31)
 Create bflc:Relation object for bflc:relation proeprty (fixes lcnetdev/marc2bibframe2#34)
 Fix conversion of hierarchical geographic tags (662, 752) (fixes lcnetdev/marc2bibframe2#30)

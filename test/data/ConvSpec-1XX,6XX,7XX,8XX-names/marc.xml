@@ -46,10 +46,5 @@
       <subfield code="4">cnd</subfield>
       <subfield code="0">http://id.loc.gov/authorities/names/n81042545</subfield>
     </datafield>
-    <datafield tag="800" ind1="1" ind2=" ">
-      <subfield code="a">Fernando, A. Denis N.</subfield>
-      <subfield code="t">Resource maps of Sri Lanka ;</subfield>
-      <subfield code="v">pt. 2.</subfield>
-    </datafield>
   </record>
 </collection>

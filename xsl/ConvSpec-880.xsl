@@ -240,22 +240,6 @@
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>        
-      <xsl:when test="$tag='800' or $tag='810' or $tag='811'">
-        <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
-        <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
-        <xsl:apply-templates mode="work8XX" select=".">
-          <xsl:with-param name="agentiri" select="$agentiri"/>
-          <xsl:with-param name="workiri" select="$workiri"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>        
-      <xsl:when test="$tag='830'">
-        <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
-        <xsl:apply-templates mode="work830" select=".">
-          <xsl:with-param name="workiri" select="$workiri"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>        
     </xsl:choose>
   </xsl:template>
 

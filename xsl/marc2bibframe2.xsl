@@ -41,6 +41,7 @@
   <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
+  <xsl:include href="ConvSpec-Process6-Series.xsl"/>
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
@@ -52,7 +53,7 @@
   <!-- id.loc.gov vocabulary stems -->
   <xsl:variable name="carriers">http://id.loc.gov/vocabulary/carriers/</xsl:variable>
   <xsl:variable name="classSchemes">http://id.loc.gov/vocabulary/classSchemes/</xsl:variable>
-  <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentType/</xsl:variable>
+  <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentTypes/</xsl:variable>
   <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
   <xsl:variable name="demographicTerms">http://id.loc.gov/authorities/demographicTerms/</xsl:variable>
   <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
@@ -63,7 +64,7 @@
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
   <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
-  <xsl:variable name="mediaType">http://id.loc.gov/vocabulary/mediaType/</xsl:variable>
+  <xsl:variable name="mediaType">http://id.loc.gov/vocabulary/mediaTypes/</xsl:variable>
   <xsl:variable name="mmaterial">http://id.loc.gov/vocabulary/mmaterial/</xsl:variable>
   <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
   <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>
@@ -156,6 +157,11 @@
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           <!-- pass fields through conversion specs for Instance properties -->
           <xsl:apply-templates mode="instance">
+            <xsl:with-param name="recordid" select="$recordid"/>
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+          <!-- pass the whole record through for series processing (490/8XX) -->
+          <xsl:apply-templates select="." mode="hasSeries">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
