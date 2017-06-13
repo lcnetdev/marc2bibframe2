@@ -1,4 +1,4 @@
---- 1.3.0-SNAPSHOT
+--- 1.2.1 2017/06/13
 
 Prevent duplicate identifiers from being created for 8XX $x (fixes lcnetdev/marc2bibframe2#47)
 
