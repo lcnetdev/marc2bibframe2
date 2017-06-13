@@ -468,7 +468,7 @@
             </xsl:call-template>
           </bf:musicKey>
         </xsl:for-each>
-        <xsl:if test="substring($tag,1,1)='7' or substring($tag,1,1)='8'">
+        <xsl:if test="substring($tag,1,1)='7'"> <!-- $x processed in ConvSpec-Process for 8XX -->
          <xsl:for-each select="marc:subfield[@code='x']">
            <bf:identifiedBy>
              <bf:Issn>
