@@ -1,3 +1,7 @@
+--- 1.2.2 2017/06/15
+
+Fix crash for 880 with $6 240 and $l (fixes lcnetdev/marc2bibframe2#49)
+
 --- 1.2.1 2017/06/13
 
 Prevent duplicate identifiers from being created for 8XX $x (fixes lcnetdev/marc2bibframe2#47)
