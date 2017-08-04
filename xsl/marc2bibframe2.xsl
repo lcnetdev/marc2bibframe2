@@ -14,14 +14,43 @@
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
   <xsl:strip-space elements="*"/>
 
+  <!-- Current marc2bibframe2 version -->
+  <xsl:variable name="vCurrentVersion">v1.3.0-SNAPSHOT</xsl:variable>
+
+  <!-- stylesheet parameters -->
+
+  <!-- base for minting URIs -->
   <xsl:param name="baseuri" select="'http://example.org/'"/>
-  <xsl:param name="idfield" select="'001'"/>
-  <xsl:param name="idsource"/>
+
   <!--
-      to run test of idsource, comment out previous line, uncomment next
-      line and uncomment the test in test/ConvSpec-001-007.xspec
+      MARC field in which to find the record ID
+      Defaults to subfield $a, to use a different subfield,
+      add to the end of the tag (e.g. "035a")
   -->
+  <xsl:param name="idfield" select="'001'"/>
+
+  <!--
+      URI for record source, default none,
+      e.g. http://id.loc.gov/vocabulary/organizations/dlc
+      To run test of idsource, comment out next line, uncomment
+      following line, and uncomment the test in
+      test/ConvSpec-001-007.xspec
+  -->
+  <xsl:param name="idsource"/>
   <!-- <xsl:param name="idsource" select="'http://id.loc.gov/vocabulary/organizations/dlc'"/> -->
+
+  <!--
+      datestamp for generationProcess property of Work adminMetadata
+      Useful to override if date:date-time() extension is not
+      available
+  -->
+  <xsl:param name="pGenerationDatestamp">
+    <xsl:if test="function-available('date:date-time')">
+      <xsl:value-of select="date:date-time()"/>
+    </xsl:if>
+  </xsl:param>
+  
+  <!-- Output serialization. Currently only "rdfxml" is supported -->
   <xsl:param name="serialization" select="'rdfxml'"/>
 
   <xsl:include href="utils.xsl"/>
@@ -136,7 +165,7 @@
             <bf:AdminMetadata>
               <bf:generationProcess>
                 <bf:GenerationProcess>
-                  <rdfs:label>DLC marc2bibframe2 v1.3.0-SNAPSHOT<xsl:if test="function-available('date:date-time')">: <xsl:value-of select="date:date-time()"/></xsl:if></rdfs:label>
+                  <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/><xsl:if test="$pGenerationDatestamp != ''">: <xsl:value-of select="$pGenerationDatestamp"/></xsl:if></rdfs:label>
                 </bf:GenerationProcess>
               </bf:generationProcess>
               <!-- pass fields through conversion specs for AdminMetadata properties -->

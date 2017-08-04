@@ -61,6 +61,11 @@ The converter supports four optional parameters:
   `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
   by default, resulting in no source property being defined.
 
+- `pGenerationDatestamp` - a value to be used as the datestamp for the
+  bf:generationProcess property for the Work AdminMetadata. Defaults
+  to the current date/time if the EXSLT `date:date-time()` function is
+  available, otherwise defaults to an empty string.
+
 - `serialization` - the RDF serialization to be used for
   output. Currently only `rdfxml` is supported (the default).
 
