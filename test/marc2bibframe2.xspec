@@ -808,8 +808,8 @@
   </x:scenario>
 
   <x:scenario label="Record ID">
-    <x:context href="data/marc.xml"/>
-    <x:expect label="by default value of MARC control field 001" test="//bf:Work/@rdf:about = 'http://example.org/13600108#Work'"/>
+    <x:context href="data/marc_url_encode.xml"/>
+    <x:expect label="by default URL-encoded value of MARC control field 001" test="//bf:Work/@rdf:about = 'http://example.org/13600108%20(url-enc%3Fde%20test%3A%20%231)#Work'"/>
   </x:scenario>
 
   <x:scenario label="Generation Process">

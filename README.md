@@ -53,8 +53,9 @@ The converter supports four optional parameters:
   ID, used in minting URIs as above. Default is `001`. If the
   `idfield` refers to a MARC data field rather than a MARC control
   field, the subfield can also be indicated - e.g. `035a` (the default
-  subfield is `a`). *Note* - there is no built-in facility in the
-  stylesheets for URI-encoding.
+  subfield is `a`). *Note* - the converter will attempt to URL-encode
+  the resulting record ID, substituting `%3F` (the `?` character) for
+  anything outside the ASCII range.
 
 - `idsource` - a URI used to identify the source of the Local
   identifier derived from the `idfield` - e.g.,

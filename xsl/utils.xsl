@@ -173,12 +173,16 @@
       <xsl:choose>
         <xsl:when test="$tag &lt; 10">
           <xsl:if test="count(marc:controlfield[@tag=$tag]) = 1">
-            <xsl:value-of select="marc:controlfield[@tag=$tag]"/>
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="marc:controlfield[@tag=$tag]"/>
+            </xsl:call-template>
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>
           <xsl:if test="count(marc:datafield[@tag=$tag]/marc:subfield[@code=$subfield]) = 1">
-            <xsl:value-of select="normalize-space(marc:datafield[@tag=$tag]/marc:subfield[@code=$subfield])"/>
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="normalize-space(marc:datafield[@tag=$tag]/marc:subfield[@code=$subfield])"/>
+            </xsl:call-template>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
@@ -331,6 +335,46 @@
     <xsl:for-each select="../marc:leader | ../marc:controlfield | ../marc:datafield">
       <xsl:if test="generate-id(.)=$vId"><xsl:value-of select="position()"/></xsl:if>
     </xsl:for-each>
+  </xsl:template>
+
+  <!--
+      URL encode a string, ASCII only
+      based on https://skew.org/xml/stylesheets/url-encode/url-encode.xsl
+  -->
+  <xsl:template name="url-encode">
+    <xsl:param name="str"/>   
+    <xsl:variable name="ascii"> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:variable>
+    <xsl:variable name="safe">!'()*-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~</xsl:variable>
+    <xsl:variable name="hex" >0123456789ABCDEF</xsl:variable>
+    <xsl:if test="$str">
+      <xsl:variable name="first-char" select="substring($str,1,1)"/>
+      <xsl:choose>
+        <xsl:when test="contains($safe,$first-char)">
+          <xsl:value-of select="$first-char"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="codepoint">
+            <xsl:choose>
+              <xsl:when test="contains($ascii,$first-char)">
+                <xsl:value-of select="string-length(substring-before($ascii,$first-char)) + 32"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message terminate="no">Warning: string contains a character that is out of range! Substituting "?".</xsl:message>
+                <xsl:text>63</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+        <xsl:variable name="hex-digit1" select="substring($hex,floor($codepoint div 16) + 1,1)"/>
+        <xsl:variable name="hex-digit2" select="substring($hex,$codepoint mod 16 + 1,1)"/>
+        <xsl:value-of select="concat('%',$hex-digit1,$hex-digit2)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:if test="string-length($str) &gt; 1">
+        <xsl:call-template name="url-encode">
+          <xsl:with-param name="str" select="substring($str,2)"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
