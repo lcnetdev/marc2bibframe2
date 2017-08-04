@@ -7,6 +7,8 @@
                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:date="http://exslt.org/dates-and-times"
+                extension-element-prefixes="date"
                 exclude-result-prefixes="xsl marc">
 
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
@@ -132,6 +134,11 @@
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           <bf:adminMetadata>
             <bf:AdminMetadata>
+              <bf:generationProcess>
+                <bf:GenerationProcess>
+                  <rdfs:label>DLC marc2bibframe2 v1.3.0-SNAPSHOT<xsl:if test="function-available('date:date-time')">: <xsl:value-of select="date:date-time()"/></xsl:if></rdfs:label>
+                </bf:GenerationProcess>
+              </bf:generationProcess>
               <!-- pass fields through conversion specs for AdminMetadata properties -->
               <xsl:apply-templates mode="adminmetadata">
                 <xsl:with-param name="serialization" select="$serialization"/>
