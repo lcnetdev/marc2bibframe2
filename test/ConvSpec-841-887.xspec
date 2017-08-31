@@ -13,6 +13,7 @@
   <x:scenario label="850 - HOLDING INSTITUTION">
     <x:context href="data/ConvSpec-841-887/marc.xml"/>
     <x:expect label="850 $a create Items of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 6"/>
+    <x:expect label="...with a URI based on position of $a in field" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/@rdf:about = 'http://example.org/1#Item850-3-3'"/>
     <x:expect label="itemOf created" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:itemOf[@rdf:resource='http://example.org/1#Instance']) = 1"/>
     <x:expect label="if $a string-length &lt; 10, $a becomes URI of the heldBy/Agent of the Item" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[3]/bf:Item/bf:heldBy/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/DLC'"/>
     <x:expect label="...otherwise it is the rdfs:label property" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[4]/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'University of Upper Toothache'"/>

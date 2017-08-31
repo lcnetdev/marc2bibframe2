@@ -91,7 +91,7 @@
   <xsl:template match="marc:datafield[@tag='850' or @tag='852']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:variable name="vItemUriStem"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="vAddress">
       <xsl:call-template name="chopPunctuation">
         <xsl:with-param name="chopString">
@@ -104,6 +104,14 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vItemUri">
+            <xsl:choose>
+              <xsl:when test="parent::marc:datafield/@tag='850'">
+                <xsl:value-of select="$vItemUriStem"/>-<xsl:value-of select="position()"/>
+              </xsl:when>
+              <xsl:otherwise><xsl:value-of select="$vItemUriStem"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <bf:hasItem>
             <bf:Item>
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
