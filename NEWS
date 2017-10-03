@@ -3,6 +3,7 @@
 URL-encode record ID (fixes lcnetdev/marc2bibframe2#46)
 Add bf:generationProcess property to AdminMetadata (fixes lcnetdev/marc2bibframe2#51)
 Correct URI generation for bf:Items created by 850 $a (fixes lcnetdev/marc2bibframe#53)
+Correct URI generation for receiprocal properties created by 880 $6 530/533/534 conversion (fixes lcnetdev/marc2bibframe#55)
 
 --- 1.2.2 2017/06/15
 
