@@ -20,8 +20,7 @@
                   (@ind2='1' or
                   (@ind2 != '0' and @ind2 != '2' and
                   substring(../marc:leader,7,1) != 'm' and
-                  substring(../marc:controlfield[@tag='007'],1,1) != 'c' and
-                  substring(../marc:controlfield[@tag='008'],24,1) != 'q' and
+                  substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
                   substring(../marc:controlfield[@tag='008'],24,1) != 's'))">
       <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
@@ -171,8 +170,7 @@
     <xsl:if test="marc:subfield[@code='u'] and
                   (@ind2='0' or
                   substring(../marc:leader,7,1)='m' or
-                  substring(../marc:controlfield[@tag='007'],1,1)='c' or
-                  substring(../marc:controlfield[@tag='008'],24,1)='q' or
+                  substring(../marc:controlfield[@tag='008'],24,1)='o' or
                   substring(../marc:controlfield[@tag='008'],24,1)='s')">
       <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:choose>
