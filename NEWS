@@ -1,4 +1,6 @@
---- 1.3.0-SNAPSHOT
+--- 1.4.0-SNAPSHOT
+
+--- 1.3.0 2017/10/07
 
 URL-encode record ID (fixes lcnetdev/marc2bibframe2#46)
 Add bf:generationProcess property to AdminMetadata (fixes lcnetdev/marc2bibframe2#51)
