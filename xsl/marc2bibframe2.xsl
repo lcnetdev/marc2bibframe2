@@ -15,7 +15,7 @@
   <xsl:strip-space elements="*"/>
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.3.1</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v1.4.0-SNAPSHOT</xsl:variable>
 
   <!-- stylesheet parameters -->
 
