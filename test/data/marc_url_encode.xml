@@ -1,0 +1,71 @@
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>01094cam a2200229 a 4500</leader>
+  <controlfield tag="001">13600108 (url-encøde test: #1)</controlfield>
+  <controlfield tag="005">20040915141353.0</controlfield>
+  <controlfield tag="008">040520s2001    dk a   j      000 1 dan  </controlfield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">7</subfield>
+    <subfield code="b">cbc</subfield>
+    <subfield code="c">orignew</subfield>
+    <subfield code="d">3</subfield>
+    <subfield code="e">ncip</subfield>
+    <subfield code="f">20</subfield>
+    <subfield code="g">y-gencatlg</subfield>
+  </datafield>
+  <datafield tag="925" ind1="0" ind2=" ">
+    <subfield code="a">acquire</subfield>
+    <subfield code="b">1 shelf copy</subfield>
+    <subfield code="x">policy default</subfield>
+  </datafield>
+  <datafield tag="955" ind1=" " ind2=" ">
+    <subfield code="a">of10 05-20-04 to HLCD;</subfield>
+    <subfield code="c">ld04 2004-07-19 telework; to subj.</subfield>
+    <subfield code="d">ld07 2004-07-22</subfield>
+    <subfield code="e">ld11 2004-09-15 to BCCD</subfield>
+  </datafield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2004436018</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">8759517352</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">PZ54</subfield>
+    <subfield code="b">.A498 2001</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Andersen, H. C.</subfield>
+    <subfield code="q">(Hans Christian),</subfield>
+    <subfield code="d">1805-1875.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Ole Lukøie /</subfield>
+    <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[København?] :</subfield>
+    <subfield code="b">Lindhardt og Ringhof,</subfield>
+    <subfield code="c">c2001.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 v. (unpaged) :</subfield>
+    <subfield code="b">col. ill. ;</subfield>
+    <subfield code="c">23 cm.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Text based on the original work published under the title &quot;H.C. Andersens eventyr / kritisk udgivet efter de originale eventyrhæfter med varianter ved Erik Dal og kommentarer ved Erling Nielsen&quot;: Copenhagen : Danske Sprog- og Litteraturselskab : C.A. Reitzel, 1990.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Dickmeiss, Otto,</subfield>
+    <subfield code="e">ill.</subfield>
+  </datafield>
+  <datafield tag="923" ind1=" " ind2=" ">
+    <subfield code="d">030902</subfield>
+    <subfield code="n">692026</subfield>
+    <subfield code="s">9300818</subfield>
+  </datafield>
+</record>
