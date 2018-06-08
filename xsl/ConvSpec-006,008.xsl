@@ -343,7 +343,11 @@
       <xsl:choose>
         <xsl:when test="substring(.,36,3) = '   '"/>
         <xsl:when test="substring(.,36,3) = '|||'"/>
-        <xsl:otherwise><xsl:value-of select="substring(.,36,3)"/></xsl:otherwise>
+        <xsl:otherwise>
+          <xsl:call-template name="url-encode">
+            <xsl:with-param name="str" select="substring(.,36,3)"/>
+          </xsl:call-template>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -1107,9 +1111,14 @@
                   <xsl:value-of select="$provisionDate"/>
                 </bf:date>
                 <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
+                  <xsl:variable name="pubPlaceEncoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="$pubPlace"/>
+                    </xsl:call-template>
+                  </xsl:variable>
                   <bf:place>
                     <bf:Place>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$pubPlace)"/></xsl:attribute>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$pubPlaceEncoded)"/></xsl:attribute>
                     </bf:Place>
                   </bf:place>
                 </xsl:if>
@@ -1157,6 +1166,11 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
+              <xsl:variable name="pubPlaceEncoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="$pubPlace"/>
+                </xsl:call-template>
+              </xsl:variable>
               <bf:provisionActivity>
                 <bf:ProvisionActivity>
                   <rdf:type>
@@ -1164,7 +1178,7 @@
                   </rdf:type>
                   <bf:place>
                     <bf:Place>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$pubPlace)"/></xsl:attribute>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$pubPlaceEncoded)"/></xsl:attribute>
                     </bf:Place>
                   </bf:place>
                 </bf:ProvisionActivity>
