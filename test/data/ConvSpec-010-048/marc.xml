@@ -179,6 +179,7 @@
     <datafield tag="042" ind1=" " ind2=" ">
       <subfield code="a">lc</subfield>
       <subfield code="a">nsdp</subfield>
+      <subfield code="a">pcc record</subfield>
     </datafield>
     <datafield tag="043" ind1=" " ind2=" ">
       <subfield code="a">s-bl---</subfield>

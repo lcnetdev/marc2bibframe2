@@ -260,9 +260,14 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="encoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="."/>
+            </xsl:call-template>
+          </xsl:variable>
           <bf:descriptionAuthentication>
             <bf:DescriptionAuthentication>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,.)"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
             </bf:DescriptionAuthentication>
           </bf:descriptionAuthentication>
         </xsl:for-each>
