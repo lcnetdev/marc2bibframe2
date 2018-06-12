@@ -262,7 +262,7 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="encoded">
             <xsl:call-template name="url-encode">
-              <xsl:with-param name="str" select="."/>
+              <xsl:with-param name="str" select="normalize-space(.)"/>
             </xsl:call-template>
           </xsl:variable>
           <bf:descriptionAuthentication>

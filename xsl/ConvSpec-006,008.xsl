@@ -345,7 +345,7 @@
         <xsl:when test="substring(.,36,3) = '|||'"/>
         <xsl:otherwise>
           <xsl:call-template name="url-encode">
-            <xsl:with-param name="str" select="substring(.,36,3)"/>
+            <xsl:with-param name="str" select="normalize-space(substring(.,36,3))"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -1113,7 +1113,7 @@
                 <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
                   <xsl:variable name="pubPlaceEncoded">
                     <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="$pubPlace"/>
+                      <xsl:with-param name="str" select="normalize-space($pubPlace)"/>
                     </xsl:call-template>
                   </xsl:variable>
                   <bf:place>
@@ -1168,7 +1168,7 @@
             <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
               <xsl:variable name="pubPlaceEncoded">
                 <xsl:call-template name="url-encode">
-                  <xsl:with-param name="str" select="$pubPlace"/>
+                  <xsl:with-param name="str" select="normalize-space($pubPlace)"/>
                 </xsl:call-template>
               </xsl:variable>
               <bf:provisionActivity>
