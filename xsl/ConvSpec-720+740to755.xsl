@@ -102,11 +102,16 @@
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
             <xsl:for-each select="marc:subfield[@code='4']">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+                </xsl:call-template>
+              </xsl:variable>
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
                     <bflc:Relation>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
                     </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>

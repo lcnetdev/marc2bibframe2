@@ -261,8 +261,13 @@
               <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
                 <xsl:if test="starts-with(substring-after(../marc:subfield[@code='0'][1],')'),'dg')">
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(substring-after(../marc:subfield[@code='0'][1],')'))"/>
+                    </xsl:call-template>
+                  </xsl:variable>
                   <bflc:demographicGroup>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,substring-after(../marc:subfield[@code='0'][1],')'))"/></xsl:attribute>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
                   </bflc:demographicGroup>
                 </xsl:if>
               </xsl:for-each>
@@ -300,9 +305,14 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='b']">
+          <xsl:variable name="encoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="normalize-space(.)"/>
+            </xsl:call-template>
+          </xsl:variable>
           <xsl:element name="{$pProp}">
             <xsl:element name="{$pResource}">
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,.)"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,$encoded)"/></xsl:attribute>
               <xsl:if test="preceding-sibling::marc:subfield[position()=1]/@code = 'a'">
                 <rdfs:label>
                   <xsl:if test="$vXmlLang != ''">

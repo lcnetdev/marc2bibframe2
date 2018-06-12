@@ -118,7 +118,12 @@
                 <bf:Agent>
                   <xsl:choose>
                     <xsl:when test="string-length(.) &lt; 10">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,.)"/></xsl:attribute>
+                      <xsl:variable name="encoded">
+                        <xsl:call-template name="url-encode">
+                          <xsl:with-param name="str" select="normalize-space(.)"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$encoded)"/></xsl:attribute>
                     </xsl:when>
                     <xsl:otherwise>
                       <rdfs:label><xsl:value-of select="."/></rdfs:label>

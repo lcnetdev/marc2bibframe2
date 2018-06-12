@@ -239,9 +239,14 @@
               </bf:title>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='e']">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(.)"/>
+                </xsl:call-template>
+              </xsl:variable>
               <bf:language>
                 <bf:Language>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,.)"/></xsl:attribute>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
                 </bf:Language>
               </bf:language>
             </xsl:for-each>
@@ -362,11 +367,16 @@
           </bf:provisionActivityStatement>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='f']">
+          <xsl:variable name="encoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="normalize-space(.)"/>
+            </xsl:call-template>
+          </xsl:variable>
           <bf:provisionActivity>
             <bf:ProvisionActivity>
               <bf:place>
                 <bf:Place>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,.)"/></xsl:attribute>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$encoded)"/></xsl:attribute>
                 </bf:Place>
               </bf:place>
             </bf:ProvisionActivity>
