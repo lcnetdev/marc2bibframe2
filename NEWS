@@ -1,5 +1,7 @@
 --- 1.4.0-SNAPSHOT
 
+URL-encode codes from MARC before appending to URI stems (fixes lcnetdev/marc2bibframe2#77)
+
 --- 1.3.1 2017/10/07
 
 Correct version number in marc2bibframe2.xsl
