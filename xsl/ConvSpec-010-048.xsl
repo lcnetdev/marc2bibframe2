@@ -217,7 +217,12 @@
             <bf:Language>
               <xsl:choose>
                 <xsl:when test="string-length(.) = 3">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,.)"/></xsl:attribute>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(.)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                   <bf:code><xsl:value-of select="."/></bf:code>
@@ -242,7 +247,12 @@
                   -
                   string-length(translate(normalize-space(.),' ','')) +1
                   = 1">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,.)"/></xsl:attribute>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(.)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$encoded)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                   <rdfs:label><xsl:value-of select="."/></rdfs:label>
@@ -559,8 +569,13 @@
               </xsl:if>
               <bf:identifiedBy>
                 <bf:Identifier>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(substring($pLang,$pStart,3))"/>
+                    </xsl:call-template>
+                  </xsl:variable>
                   <rdf:value>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,substring($pLang,$pStart,3))"/></xsl:attribute>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
                   </rdf:value>
                   <bf:source>
                     <bf:Source>
@@ -597,7 +612,12 @@
                       <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
                     </xsl:call-template>
                   </xsl:variable>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,$vCode)"/></xsl:attribute>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space($vCode)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,$encoded)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:when test="@code='b' or @code='c'">
                   <rdfs:label><xsl:value-of select="."/></rdfs:label>
@@ -724,7 +744,12 @@
             <bf:GenreForm>
               <xsl:choose>
                 <xsl:when test="../@ind2 = ' '">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,.)"/></xsl:attribute>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(.)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,$encoded)"/></xsl:attribute>
                   <bf:source>
                     <bf:Source>
                       <rdfs:label>marcmuscomp</rdfs:label>
@@ -1191,7 +1216,12 @@
             <bf:Place>
               <xsl:choose>
                 <xsl:when test="@code='a'">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,.)"/></xsl:attribute>
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(.)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($countries,$encoded)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:when test="@code='b' or @code='c'">
                   <bf:code><xsl:value-of select="."/></bf:code>
