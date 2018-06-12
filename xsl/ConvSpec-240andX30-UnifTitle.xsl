@@ -130,11 +130,16 @@
               <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
             </xsl:apply-templates>
             <xsl:for-each select="marc:subfield[@code='4']">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+                </xsl:call-template>
+              </xsl:variable>
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
                     <bflc:Relation>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
                     </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
@@ -399,7 +404,12 @@
                 <bf:language>
                   <xsl:choose>
                     <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/></xsl:attribute>
+                      <xsl:variable name="encoded">
+                        <xsl:call-template name="url-encode">
+                          <xsl:with-param name="str" select="normalize-space(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
                     </xsl:when>
                     <xsl:otherwise>
                       <bf:Language>
