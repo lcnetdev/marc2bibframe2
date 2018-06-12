@@ -174,7 +174,7 @@
         <xsl:when test="$tag &lt; 10">
           <xsl:if test="count(marc:controlfield[@tag=$tag]) = 1">
             <xsl:call-template name="url-encode">
-              <xsl:with-param name="str" select="marc:controlfield[@tag=$tag]"/>
+              <xsl:with-param name="str" select="normalize-space(marc:controlfield[@tag=$tag])"/>
             </xsl:call-template>
           </xsl:if>
         </xsl:when>

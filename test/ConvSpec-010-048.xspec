@@ -181,6 +181,7 @@
   <x:scenario label="042 - AUTHENTICATION CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="042 create descriptionAuthentication properties of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[2]/bf:DescriptionAuthentication/@rdf:about = 'http://id.loc.gov/vocabulary/marcauthen/nsdp'"/>
+    <x:expect label="...URI-encoded, if necessary" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[3]/bf:DescriptionAuthentication/@rdf:about = 'http://id.loc.gov/vocabulary/marcauthen/pcc%20record'"/>
   </x:scenario>
   
   <x:scenario label="043 - GEOGRAPHIC AREA CODE">

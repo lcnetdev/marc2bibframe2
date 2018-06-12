@@ -154,11 +154,16 @@
                   </xsl:otherwise>
                 </xsl:choose>
                 <xsl:for-each select="marc:subfield[@code='4']">
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+                    </xsl:call-template>
+                  </xsl:variable>
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
                         <bflc:Relation>
-                          <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                          <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
                         </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
@@ -389,9 +394,14 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:variable name="encoded">
+          <xsl:call-template name="url-encode">
+            <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+          </xsl:call-template>
+        </xsl:variable>
         <bf:role>
           <bf:Role>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
           </bf:Role>
         </bf:role>
       </xsl:when>
@@ -768,11 +778,16 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:for-each select="marc:subfield[@code='4']">
+                <xsl:variable name="encoded">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+                  </xsl:call-template>
+                </xsl:variable>
                 <bflc:relationship>
                   <bflc:Relationship>
                     <bflc:relation>
                       <bflc:Relation>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
                       </bflc:Relation>
                     </bflc:relation>
                     <bf:relatedTo>
