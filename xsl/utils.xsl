@@ -225,6 +225,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
+          <xsl:when test="$vValue=''"/>
           <xsl:when test="contains($punctuation, substring($vValue,string-length($vValue),1))">
             <xsl:value-of select="$vValue"/><xsl:text> </xsl:text>
           </xsl:when>
