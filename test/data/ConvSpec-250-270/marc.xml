@@ -30,9 +30,9 @@
     </datafield>
     <datafield tag="260" ind1="3" ind2=" ">
       <subfield code="3">1998-</subfield>
+      <subfield code="b">Arts Council of Great Britain</subfield>
       <subfield code="a">London ;</subfield>
       <subfield code="a">Upton Snodsbury :</subfield>
-      <subfield code="b">Arts Council of Great Britain,</subfield>
       <subfield code="c">&lt;1981- &gt;</subfield>
       <subfield code="d">12345</subfield>
       <subfield code="e">(Twickenham :</subfield>
@@ -47,12 +47,12 @@
       <subfield code="a">Constantin Film,</subfield>
       <subfield code="f">Munich.</subfield>
       <subfield code="e">Made by D.C. Chipperfield.</subfield>
-      <subfield code="b">Released in the U.S. by United Artists Corp.,</subfield>
+      <subfield code="b">Released in the U.S. by United Artists Corp.</subfield>
       <subfield code="d">1957.</subfield>
     </datafield>
     <datafield tag="262" ind1=" " ind2=" ">
-      <subfield code="a">Louisville, KY.,</subfield>
       <subfield code="b">Louisville Orchestra,</subfield>
+      <subfield code="a">Louisville, KY.</subfield>
       <subfield code="c">[1967]</subfield>
       <subfield code="k">LS 671.</subfield>
     </datafield>
@@ -61,8 +61,8 @@
     </datafield>
     <datafield tag="264" ind1="3" ind2="1">
       <subfield code="3">1981-</subfield>
+      <subfield code="b">U.S. G.P.O.</subfield>
       <subfield code="a">Washington :</subfield>
-      <subfield code="b">U.S. G.P.O.,</subfield>
       <subfield code="c">1981-</subfield>
     </datafield>
     <datafield tag="265" ind1=" " ind2=" ">
