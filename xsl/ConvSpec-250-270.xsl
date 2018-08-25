@@ -7,8 +7,6 @@
                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exslt="http://exslt.org/common"
-                extension-element-prefixes="exslt"
                 exclude-result-prefixes="xsl marc">
 
   <!-- Conversion specs for 250-270 -->
@@ -299,23 +297,8 @@
         <xsl:otherwise>Publication</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <!-- parts of the provisionActivityStatement, in order -->
-    <xsl:variable name="vStatementArray">
-      <statementArray>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='a']" mode="concat-nodes-delimited"/>
-        </part>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='b']" mode="concat-nodes-delimited"/>
-        </part>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='c']" mode="concat-nodes-delimited"/>
-        </part>
-      </statementArray>
-    </xsl:variable>
-    <!-- provisionActivityStatement if no exslt:node-set -->
     <xsl:variable name="vStatement">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-space"/>
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-delimited"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
@@ -325,14 +308,7 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:choose>
-                <xsl:when test="function-available('exslt:node-set')">
-                  <xsl:apply-templates select="exslt:node-set($vStatementArray)//part" mode="concat-nodes-delimited"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="normalize-space($vStatement)"/>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:value-of select="$vStatement"/>
             </bf:copyrightDate>
           </xsl:when>
           <xsl:otherwise>
@@ -400,14 +376,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:choose>
-                  <xsl:when test="function-available('exslt:node-set')">
-                    <xsl:apply-templates select="exslt:node-set($vStatementArray)//part" mode="concat-nodes-delimited"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="normalize-space($vStatement)"/>
-                  </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="$vStatement"/>
               </bf:provisionActivityStatement>
             </xsl:if>
           </xsl:otherwise>
@@ -485,26 +454,8 @@
   <xsl:template match="marc:datafield[@tag='261' or @tag='880']" mode="instance261">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <!-- parts of the provisionActivityStatement, in order -->
-    <xsl:variable name="vStatementArray">
-      <statementArray>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='f']" mode="concat-nodes-delimited"/>
-        </part>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='a']" mode="concat-nodes-delimited"/>
-        </part>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='b']" mode="concat-nodes-delimited"/>
-        </part>
-        <part>
-          <xsl:apply-templates select="marc:subfield[@code='d']" mode="concat-nodes-delimited"/>
-        </part>
-      </statementArray>
-    </xsl:variable>
-    <!-- provisionActivityStatement if no exslt:node-set -->
     <xsl:variable name="vStatement">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-space"/>
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-delimited"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -557,14 +508,7 @@
           <xsl:if test="$vXmlLang != ''">
             <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
           </xsl:if>
-          <xsl:choose>
-            <xsl:when test="function-available('exslt:node-set')">
-              <xsl:apply-templates select="exslt:node-set($vStatementArray)//part" mode="concat-nodes-delimited"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="normalize-space($vStatement)"/>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:value-of select="$vStatement"/>
         </bf:provisionActivityStatement>
         <xsl:if test="marc:subfield[@code='e']">
           <bf:provisionActivity>
