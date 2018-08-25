@@ -209,6 +209,35 @@
   </xsl:template>
 
   <!--
+      create a label with parameterized delimiter for a nodeset
+      only add delimiter when there is no punctuation
+      used in creating bf:provisionActivityStatement
+  -->
+  <xsl:template match="*" mode="concat-nodes-delimited">
+    <xsl:param name="pDelimiter" select="';'"/>
+    <xsl:param name="punctuation">
+      <xsl:text>.:,;/</xsl:text>
+    </xsl:param>
+    <xsl:variable name="vValue" select="normalize-space(.)"/>
+    <xsl:choose>
+      <xsl:when test="position() = last()">
+        <xsl:value-of select="$vValue"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$vValue=''"/>
+          <xsl:when test="contains($punctuation, substring($vValue,string-length($vValue),1))">
+            <xsl:value-of select="$vValue"/><xsl:text> </xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$vValue"/><xsl:value-of select="$pDelimiter"/><xsl:text> </xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       generate a marcKey for the subfields of a marc:datafield
       of the form $[code][text]$[code][text] etc.
   -->

@@ -298,7 +298,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vStatement">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-space"/>
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c']" mode="concat-nodes-delimited"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
@@ -308,7 +308,7 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:value-of select="normalize-space($vStatement)"/>
+              <xsl:value-of select="$vStatement"/>
             </bf:copyrightDate>
           </xsl:when>
           <xsl:otherwise>
@@ -376,7 +376,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="normalize-space($vStatement)"/>
+                <xsl:value-of select="$vStatement"/>
               </bf:provisionActivityStatement>
             </xsl:if>
           </xsl:otherwise>
@@ -455,7 +455,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vStatement">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-space"/>
+      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='f']" mode="concat-nodes-delimited"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -504,7 +504,12 @@
             </xsl:for-each>
           </bf:ProvisionActivity>
         </bf:provisionActivity>
-        <bf:provisionActivityStatement><xsl:value-of select="normalize-space($vStatement)"/></bf:provisionActivityStatement>
+        <bf:provisionActivityStatement>
+          <xsl:if test="$vXmlLang != ''">
+            <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+          </xsl:if>
+          <xsl:value-of select="$vStatement"/>
+        </bf:provisionActivityStatement>
         <xsl:if test="marc:subfield[@code='e']">
           <bf:provisionActivity>
             <bf:ProvisionActivity>
