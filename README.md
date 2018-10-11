@@ -18,6 +18,7 @@ XSLT-based conversion from
 * [Known issues](#known-issues)
 * [Repository contents](#repository-contents)
 * [Dependencies](#dependencies)
+* [License](#license)
 
 ## Introduction
 This repository contains an XSLT 1.0 application for converting MARCXML
