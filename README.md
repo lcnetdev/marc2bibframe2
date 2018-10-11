@@ -265,3 +265,14 @@ the [deploy](deploy) directory.
 * [XSpec](https://github.com/xspec/xspec) for unit tests
 * [YAZ](http://www.indexdata.com/yaz) v5.20.0 or higher for active conversion
 
+## License
+As a work of the United States government, this project is in the
+public domain within the United States.
+
+Additionally, we waive copyright and related rights in the work
+worldwide through the CC0 1.0 Universal public domain dedication. 
+
+[Legal Code (read the full text)](https://creativecommons.org/publicdomain/zero/1.0/legalcode).
+
+You can copy, modify, distribute and perform the work, even for commercial
+purposes, all without asking permission.
