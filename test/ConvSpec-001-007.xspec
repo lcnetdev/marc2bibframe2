@@ -24,6 +24,7 @@
   <x:scenario label="005 - DATE AND TIME OF LAST TRANSACTION">
     <x:context href="data/ConvSpec-001-007/marc.xml"/>
     <x:expect label="005 should set the AdminMetadata changeDate property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:changeDate[@rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime']  = '2011-07-13T21:24:05'"/>
+    <x:expect label="005 with all '0' should not convert" test="count(//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:changeDate) = 1"/>
   </x:scenario>
 
   <x:scenario label="007 - PHYSICAL DESCRIPTION FIXED FIELD">
