@@ -32,11 +32,13 @@
     <x:scenario label="MAP">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
-      <x:expect label="pos 1 sets the genreForm property of the Work" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'map view'"/>
+      <x:expect label="pos 1 sets a genreForm/GenreForm property of the Work" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026387'"/>
+      <x:expect label="...with a label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'map view'"/>
       <x:expect label="pos 3 sets the colorContent property of the Work" test="//bf:Work[1]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 sets the baseMaterial property of the Work" test="//bf:Work[1]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'paper'"/>
       <x:expect label="pos 5 sets the generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'facsimile'"/>
-      <x:expect label="pos 6 sets another generation property of the Instance" test="//bf:Instance[1]/bf:generation[2]/bf:Generation/rdfs:label = 'photocopy'"/>
+      <x:expect label="pos 6 sets a productionMethod/ProductionMethod property of the Instance" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/@rdf:about = 'http://id.loc.gov/vocabulary/mproduction/photocopy'"/>
+      <x:expect label="...with a label" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/rdfs:label = 'photocopy'"/>
       <x:expect label="pos 7 sets the polarity property of the Instance" test="//bf:Instance[1]/bf:polarity/bf:Polarity/rdfs:label = 'mixed polarity'"/>
     </x:scenario>
 
@@ -48,16 +50,16 @@
       <x:expect label="pos 1 sets the carrier property of the Instance" test="//bf:Instance[2]/bf:carrier/bf:Carrier/rdfs:label = 'computer disc'"/>
       <x:expect label="pos 3 sets the colorContent property of the Work" test="//bf:Work[2]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 sets the dimensions property of the Instance" test="//bf:Instance[2]/bf:dimensions = '4 3/4 in. or 12 cm.'"/>
-      <x:expect label="pos 5 sets the soundContent property of the Instance" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 5 sets a soundContent/SoundContent/bflc:target property of the Instance" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6-8 creates an ImageBitDepth digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[1]/bf:DigitalCharacteristic/rdfs:label = 'multiple'"/>
-      <x:expect label="pos 9 creates an EncodingFormat digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[2]/bf:DigitalCharacteristic/rdfs:label = 'one file format'"/>
     </x:scenario>
 
     <x:scenario label="GLOBE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'd' sets Work rdf:type to 'Cartography'" test="count(//bf:Work[3]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
-      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'globe'"/>
-      <x:expect label="pos 1 creates a genreForm property of the Work" test="//bf:Work[3]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'terrestrial globe'"/>
+      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Work" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026300'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'terrestrial globe'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[3]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[3]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'synthetic'"/>
       <x:expect label="pos 5 creates a generation property of the Instance" test="//bf:Instance[3]/bf:generation/bf:Generation/rdfs:label = 'facsimile'"/>
@@ -71,8 +73,10 @@
       <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[4]/bf:carrier/bf:Carrier/rdfs:label = 'slide'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[4]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[4]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'safety film'"/>
-      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[4]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound separate from medium'"/>
-      <x:expect label="pos 6 creates a soundCharacteristic property of the Instance" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label = 'sound disc'"/>
+      <x:expect label="pos 5 creates a soundContent/SoundContent property of the Instance with bflc:target" test="//bf:Instance[4]/bf:soundContent/bf:SoundContent/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[4]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound separate from medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance with bflc:target" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mrecmedium/magopt'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label = 'sound disc'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[4]/bf:dimensions = '2x2 in. or 5x5 cm.'"/>
       <x:expect label="pos 8 creates a mount property of the Instance" test="//bf:Instance[4]/bf:mount/bf:Mount/rdfs:label = 'glass'"/>
     </x:scenario>
@@ -87,14 +91,16 @@
       <x:expect label="pos 5-8 create a reductionRatio property of the Instance" test="//bf:Instance[5]/bf:reductionRatio/bf:ReductionRatio/bf:note/bf:Note/rdfs:label = 'normal reduction range' and //bf:Instance[5]/bf:reductionRatio/bf:ReductionRatio/rdfs:label = '024'"/>
       <x:expect label="pos 9 creates a colorContent property of the Work" test="//bf:Work[5]/bf:colorContent/bf:ColorContent/rdfs:label = 'black and white'"/>
       <x:expect label="pos 10 creates an emulsion property of the Instance" test="//bf:Instance[5]/bf:emulsion/bf:Emulsion/rdfs:label = 'silver halide'"/>
-      <x:expect label="pos 11 creates a generation property of the Instance" test="//bf:Instance[5]/bf:generation/bf:Generation/rdfs:label = 'service copy'"/>
+      <x:expect label="pos 11 creates a generation property of the Instance" test="//bf:Instance[5]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/servcopy'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[5]/bf:generation/bf:Generation/rdfs:label = 'service copy'"/>
       <x:expect label="pos 12 creates a baseMaterial property of the Instance" test="//bf:Instance[5]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'safety base'"/>
     </x:scenario>
 
     <x:scenario label="NONPROJECTED GRAPHIC">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'k' sets Work rdf:type to 'StillImage'" test="//bf:Work[6]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>
-      <x:expect label="pos 1 creates a genreForm property of the Work" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = 'photoprint'"/>
+      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Work" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/vocabulary/graphicMaterials/tgm007718'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = 'photoprint'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[6]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[6]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'paper'"/>
       <x:expect label="pos 5 creates a mount property of the Instance" test="//bf:Instance[6]/bf:mount/bf:Mount/rdfs:label = 'paper'"/>
@@ -105,17 +111,25 @@
       <x:expect label="pos 0 = 'm' sets Work rdf:type to 'MovingImage'" test="//bf:Work[7]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>
       <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[7]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/g'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[7]/bf:media/bf:Media/rdfs:label = 'projected'"/>
-      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/mot'"/>
+      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026406'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[7]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Motion pictures'"/>
       <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[7]/bf:carrier/bf:Carrier/rdfs:label = 'film reel'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[7]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
-      <x:expect label="pos 4 creates a projectionCharacteristic property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:ProjectionCharacteristic/rdfs:label = 'standard sound aperture (reduced frame)'"/>
-      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
-      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'optical sound track on motion picture film'"/>
+      <x:expect label="pos 4 may create a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/@rdf:about='http://id.loc.gov/vocabulary/mpresformat/sound'"/>
+      <x:expect label="...with an rdfs:label " test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label = 'standard sound aperture (reduced frame)'"/>
+      <x:expect label="...or an aspectRatio/AspectRatio property of the Work with a bflc:target" test="//bf:Work[8]/bf:aspectRatio/bf:AspectRatio[1]/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mmaspect/nonana'"/>
+      <x:expect label="...and a note" test="//bf:Work[8]/bf:aspectRatio[3]/bf:AspectRatio/bf:note/bf:Note/rdfs:label = 'nonanamorphic (wide-screen)'"/>
+      <x:expect label="pos 5 creates a soundContent/SoundContent property of the Instance with a bflc:target" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance with a bflc:target" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mrecmedium/opt'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'optical sound track on motion picture film'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[7]/bf:dimensions = '16 mm.'"/>
-      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'monaural'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance with a bflc:target" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mplayback/mon'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'monaural'"/>
       <x:expect label="pos 9 creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'workprint'"/>
       <x:expect label="pos 10 creates a polarity property of the Instance" test="//bf:Instance[7]/bf:polarity/bf:Polarity/rdfs:label = 'positive'"/>
-      <x:expect label="pos 11 creates a generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/rdfs:label = 'reference print, viewing copy'"/>
+      <x:expect label="pos 11 creates a generation/Generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/viewcopy'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[7]/bf:generation/bf:Generation/rdfs:label = 'reference print, viewing copy'"/>
       <x:expect label="pos 12 creates a baseMaterial property of the Instance" test="//bf:Instance[7]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'triacetate'"/>
       <x:expect label="pos 16 creates a note property (completeness) of the Instance" test="//bf:Instance[7]/bf:note[1]/bf:Note/rdfs:label = 'complete'"/>
       <x:expect label="pos 17-22 creates a note property (film inspection date) of the Instance" test="//bf:Instance[7]/bf:note[2]/bf:Note/rdfs:label = '1986-06'"/>
@@ -123,34 +137,45 @@
 
     <x:scenario label="SOUND RECORDING">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 's' sets Work rdf:type to 'Audio'" test="//bf:Work[8]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Audio'"/>
-      <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[8]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
-      <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[8]/bf:media/bf:Media/rdfs:label = 'audio'"/>
-      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[8]/bf:carrier/bf:Carrier/rdfs:label = 'sound-tape reel'"/>
-      <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[1]/bf:PlayingSpeed/rdfs:label = '7 1/2 ips'"/>
-      <x:expect label="pos 4 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereophonic'"/>
-      <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/rdfs:label = 'coarse/standard'"/>
-      <x:expect label="pos 6 creates a dimensions property of the Instance" test="//bf:Instance[8]/bf:dimensions[1] = '7 in.'"/>
-      <x:expect label="pos 7 creates a dimensions property of the Instance (tape width)" test="//bf:Instance[8]/bf:dimensions[2] = '1/4 in. tape width'"/>
-      <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[4]/bf:TapeConfig/rdfs:label = 'quarter (4)'"/>
-      <x:expect label="pos 9 creates a generation property of the Instance" test="//bf:Instance[8]/bf:generation/bf:Generation/rdfs:label = 'mass produced'"/>
-      <x:expect label="pos 10 creates a baseMaterial property of the Instance" test="//bf:Instance[8]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'glass'"/>
-      <x:expect label="...and can create an emulsion property of the Instance" test="//bf:Instance[8]/bf:emulsion/bf:Emulsion/rdfs:label = 'lacquer'"/>
-      <x:expect label="pos 11 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/rdfs:label = 'lateral or combined cutting'"/>
-      <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[8]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
+      <x:expect label="pos 0 = 's' sets Work rdf:type to 'Audio'" test="//bf:Work[9]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Audio'"/>
+      <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[9]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
+      <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[9]/bf:media/bf:Media/rdfs:label = 'audio'"/>
+      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[9]/bf:carrier/bf:Carrier/rdfs:label = 'sound disc'"/>
+      <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/rdfs:label = '7 1/2 ips'"/>
+      <x:expect label="pos 4 creates a soundCharacteristic/PlaybackChannels property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mplayback/ste'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereo'"/>
+      <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mgroove/coarse'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/rdfs:label = 'coarse groove'"/>
+      <x:expect label="pos 6 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions[1] = '7 in.'"/>
+      <x:expect label="pos 7 creates a dimensions property of the Instance (tape width)" test="//bf:Instance[9]/bf:dimensions[2] = '1/4 in. tape width'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/rdfs:label = 'quarter (4)'"/>
+      <x:expect label="pos 9 creates a generation/Generation property of the Instance" test="//bf:Instance[9]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/master'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:generation/bf:Generation/rdfs:label = 'master tape'"/>
+      <x:expect label="...or it may create a note on the Instance" test="//bf:Instance[10]/bf:note/bf:Note/rdfs:label = 'Mass produced'"/>
+      <x:expect label="pos 10 creates a baseMaterial property of the Instance" test="//bf:Instance[9]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'glass'"/>
+      <x:expect label="...and can create an emulsion property of the Instance" test="//bf:Instance[9]/bf:emulsion/bf:Emulsion/rdfs:label = 'lacquer'"/>
+      <x:expect label="pos 11 creates a soundCharacteristic/GrooveCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mgroove/lateral'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/rdfs:label = 'lateral or combined cutting'"/>
+      <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mspecplayback/dolbyb'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
+      <x:expect label="...or it may create a soundCharacteristic/RecordingMethod property" test="//bf:Instance[11]/bf:soundCharacteristic[6]/bf:RecordingMethod/rdfs:label = 'digital recording'"/>
     </x:scenario>
 
     <x:scenario label="VIDEORECORDING">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'v' creates a media property of the Instance" test="//bf:Instance[9]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/v'"/>
-      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[9]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026723'"/>
-      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[9]/bf:carrier/bf:Carrier/rdfs:label = 'videocassette'"/>
-      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[9]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
-      <x:expect label="pos 4 creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[9]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label = 'Beta (1/2 in.videocassette)'"/>
-      <x:expect label="pos 5 creates a soundContent property of the Instance" test="//bf:Instance[9]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
-      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'videotape'"/>
-      <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions = '1/2 in.'"/>
-      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereophonic'"/>
+      <x:expect label="pos 0 = 'v' creates a media property of the Instance" test="//bf:Instance[12]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/v'"/>
+      <x:expect label="...and creates a genreForm property of the Work" test="//bf:Work[12]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026723'"/>
+      <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[12]/bf:carrier/bf:Carrier/rdfs:label = 'videocassette'"/>
+      <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[12]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
+      <x:expect label="pos 4 creates a videoCharacteristic/VideoFormat property of the Instance with a bflc:target" test="//bf:Instance[12]/bf:videoCharacteristic/bf:VideoFormat/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mvidformat/betamax'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[12]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label = 'Beta (1/2 in.videocassette)'"/>
+      <x:expect label="pos 5 creates a soundContent/soundContent property of the Instance with a bflc:target" test="//bf:Instance[12]/bf:soundContent/bf:SoundContent/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[12]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound on medium'"/>
+      <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance with a bflc:target" test="//bf:Instance[12]/bf:soundCharacteristic[1]/bf:RecordingMedium/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mrecmedium/mag'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[12]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'videotape'"/>
+      <x:expect label="pos 7 creates a dimensions property of the Instance" test="//bf:Instance[12]/bf:dimensions = '1/2 in.'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance with a bflc:target" test="//bf:Instance[12]/bf:soundCharacteristic[2]/bf:PlaybackChannels/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mplayback/ste'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[12]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereo'"/>
     </x:scenario>
     
   </x:scenario>

@@ -377,15 +377,16 @@
             </bf:soundCharacteristic>
             <bf:soundCharacteristic>
               <bf:GrooveCharacteristic>
-                <rdfs:label>microgroove/fine</rdfs:label>
+                <bflc:target rdf:resource="http://id.loc.gov/vocabulary/mgroove/micro"/>
+                <rdfs:label>microgroove</rdfs:label>
               </bf:GrooveCharacteristic>
             </bf:soundCharacteristic>
             <bf:dimensions>12 in.</bf:dimensions>
-            <bf:generation>
-              <bf:Generation>
-                <rdfs:label>mass produced</rdfs:label>
-              </bf:Generation>
-            </bf:generation>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>Mass produced</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:baseMaterial>
               <bf:BaseMaterial rdf:about="http://id.loc.gov/vocabulary/mmaterial/pla">
                 <rdfs:label>plastic</rdfs:label>
@@ -393,6 +394,7 @@
             </bf:baseMaterial>
             <bf:soundCharacteristic>
               <bf:GrooveCharacteristic>
+                <bflc:target rdf:resource="http://id.loc.gov/vocabulary/mgroove/lateral"/>
                 <rdfs:label>lateral or combined cutting</rdfs:label>
               </bf:GrooveCharacteristic>
             </bf:soundCharacteristic>
