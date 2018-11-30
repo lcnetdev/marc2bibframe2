@@ -55,54 +55,54 @@
   </local:carrier>
 
   <local:marcgt>
-    <a href="http://id.loc.gov/vocabulary/marcgt/abs">abstract or summary</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bib">bibliography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/cat">catalog</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dic">dictionary</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/enc">encyclopedia</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/han">handbook</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/lea">legal article</g>
-    <h href="http://id.loc.gov/vocabulary/marcgt/bio">biography</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/ind">index</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/pat">patent</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/dis">discography</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/leg">legislation</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/the">thesis</m>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2014026038">abstracts</a>
+    <b href="http://id.loc.gov/authorities/genreForms/gf2014026048">bibliographies</b>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026057">catalogs</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026086">dictionaries</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026092">encyclopedias</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2014026109">handbooks and manuals</f>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</g>
+    <h href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</h>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026112">indexes</i>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2011026438">patents</j>
+    <k href="http://id.loc.gov/authorities/genreForms/gf2014026088">discographies</k>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2011026611">statutes and codes</l>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026039">academic theses</m>
     <n href="http://id.loc.gov/vocabulary/marcgt/sur">survey of literature</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/rev">review</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/pro">programmed text</p>
+    <o href="http://id.loc.gov/authorities/genreForms/gf2014026168">reviews</o>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026155">programmed instructional materials</p>
     <q href="http://id.loc.gov/vocabulary/marcgt/fil">filmography</q>
-    <r href="http://id.loc.gov/vocabulary/marcgt/dir">directory</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sta">statistics</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/ter">technical report</t>
-    <u href="http://id.loc.gov/vocabulary/marcgt/stp">standard of specification</u>
-    <v href="http://id.loc.gov/vocabulary/marcgt/lec">legal case and case notes</v>
-    <w href="http://id.loc.gov/vocabulary/marcgt/law">law report or digest</w>
-    <y href="http://id.loc.gov/vocabulary/marcgt/yea">yearbook</y>
-    <z href="http://id.loc.gov/vocabulary/marcgt/tre">treaty</z>
+    <r href="http://id.loc.gov/authorities/genreForms/gf2014026087">directories</r>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2014026181">statistics</s>
+    <t href="http://id.loc.gov/authorities/genreForms/gf2015026093">technical reports</t>
+    <u href="http://id.loc.gov/vocabulary/marcgt/stp">standard or specification</u>
+    <v href="http://id.loc.gov/authorities/genreForms/gf2011026352">law reviews</v>
+    <w href="http://id.loc.gov/authorities/genreForms/gf2011026349">law digests</w>
+    <y href="http://id.loc.gov/authorities/genreForms/gf2014026208">yearbooks</y>
+    <z href="http://id.loc.gov/authorities/genreForms/gf2011026707">treaties</z>
     <x2 href="http://id.loc.gov/vocabulary/marcgt/off">offprint</x2>
-    <x5 href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</x5>
-    <x6 href="http://id.loc.gov/vocabulary/marcgt/cgn">comic or graphic novel</x6>
+    <x5 href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</x5>
+    <x6 href="http://id.loc.gov/authorities/genreForms/gf2014026362">graphic novels</x6>
   </local:marcgt>
 
   <local:litform>
-    <x1 href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</x1>
-    <d href="http://id.loc.gov/vocabulary/marcgt/fic">drama</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/fic">essay</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fic">novel</f>
-    <h href="http://id.loc.gov/vocabulary/marcgt/fic">humor, satire</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/fic">letter</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/fic">short story</j>
-    <m href="http://id.loc.gov/vocabulary/marcgt/fic">mixed fiction</m>
-    <p href="http://id.loc.gov/vocabulary/marcgt/fic">poetry</p>
-    <s href="http://id.loc.gov/vocabulary/marcgt/fic">speech</s>
+    <x1 href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</x1>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2015026020">novels</f>
+    <h href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</h>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026141">personal correspondence</i>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2014026542">short stories</j>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</m>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</s>
   </local:litform>
 
   <local:bioform>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bio">individual biography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/bio">collective biography</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/bio">contains biographical information</d>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
+    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</d>
   </local:bioform>
 
   <local:computerFileType>
@@ -442,7 +442,7 @@
         <xsl:if test="substring($dataElements,13,1) = '1'">
           <bf:genreForm>
             <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcgt,'fes')"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2016026082')"/></xsl:attribute>
               <rdfs:label>festschrift</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
@@ -824,8 +824,8 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcgt,'cpb')"/></xsl:attribute>
-              <rdfs:label>conference publication</rdfs:label>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2014026068')"/></xsl:attribute>
+              <rdfs:label>conference papers and proceedings</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:when>

@@ -33,13 +33,18 @@
       <x:expect label="pos 23 may create a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier/bf:Carrier/rdfs:label = 'electronic'"/>
       <x:expect label="...or a fontSize property" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/rdfs:label = 'large print'"/>
       <x:expect label="...or a notation" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/rdfs:label = 'braille'"/>
-      <x:expect label="pos 24-27 create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'comic or graphic novel'"/>
+      <x:expect label="pos 24-27 create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026362'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'graphic novels'"/>
       <x:expect label="pos 28 creates a genreForm for a gov doc" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'autonomous or semi-autonomous government publication'"/>
-      <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'conference publication'"/>
+      <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026068'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'conference papers and proceedings'"/>
+      <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2016026082'"/>
       <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/rdfs:label = 'festschrift'"/>
       <x:expect label="pos 31 creates a supplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent/bf:SupplementaryContent/rdfs:label = 'Index present'"/>
-      <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
-      <x:expect label="pos 33 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiography'"/>
+      <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026339'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
+      <x:expect label="pos 34 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026047'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiographies'"/>
     </x:scenario>
 
     <x:scenario label="COMPUTER FILES">
