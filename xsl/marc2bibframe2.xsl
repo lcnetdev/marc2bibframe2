@@ -103,6 +103,16 @@
   <xsl:variable name="marcmuscomp">http://id.loc.gov/vocabulary/marcmuscomp/</xsl:variable>
   <xsl:variable name="organizations">http://id.loc.gov/vocabulary/organizations/</xsl:variable>
   <xsl:variable name="relators">http://id.loc.gov/vocabulary/relators/</xsl:variable>
+  <xsl:variable name="mproduction">http://id.loc.gov/vocabulary/mproduction/</xsl:variable>
+  <xsl:variable name="msoundcontent">http://id.loc.gov/vocabulary/msoundcontent/</xsl:variable>
+  <xsl:variable name="mrecmedium">http://id.loc.gov/vocabulary/mrecmedium/</xsl:variable>
+  <xsl:variable name="mgeneration">http://id.loc.gov/vocabulary/mgeneration/</xsl:variable>
+  <xsl:variable name="mpresformat">http://id.loc.gov/vocabulary/mpresformat/</xsl:variable>
+  <xsl:variable name="mmaspect">http://id.loc.gov/vocabulary/mmaspect/</xsl:variable>
+  <xsl:variable name="mrectype">http://id.loc.gov/vocabulary/mrectype/</xsl:variable>
+  <xsl:variable name="mspecplayback">http://id.loc.gov/vocabulary/mspecplayback/</xsl:variable>
+  <xsl:variable name="mgroove">http://id.loc.gov/vocabulary/mgroove/</xsl:variable>
+  <xsl:variable name="mvidformat">http://id.loc.gov/vocabulary/mvidformat/</xsl:variable>
 
   <!-- configuration files -->
 
