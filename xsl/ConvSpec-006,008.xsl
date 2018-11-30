@@ -123,21 +123,21 @@
     <a prop="issuance">single map</a>
     <b prop="issuance">map series</b>
     <c prop="issuance">map serial</c>
-    <d prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/glo">globe</d>
-    <e prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/atl">atlas</e>
+    <d prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026300">globes</d>
+    <e prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026058">atlases</e>
     <f prop="issuance">map supplement to another work</f>
     <g prop="issuance">map bound as part of another work</g>
   </local:carttype>
 
   <local:mapform>
-    <e href="http://id.loc.gov/vocabulary/marcgt/man">manuscript</e>
-    <j href="http://id.loc.gov/vocabulary/marcgt/pos">picture card, post card</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/puz">puzzle</l>
-    <n href="http://id.loc.gov/vocabulary/marcgt/gam">game</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/wal">wall map</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/pla">playing cards</p>
-    <r href="http://id.loc.gov/vocabulary/marcgt/loo">loose-leaf</r>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2011026385">manuscript maps</e>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2014026151">picture card, post card</j>
+    <k href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</k>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</l>
+    <n href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</n>
+    <o href="http://id.loc.gov/authorities/genreForms/gf2011026728">wall maps</o>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2017027252">playing cards</p>
+    <r href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</r>
   </local:mapform>
 
   <local:musicTextForm>

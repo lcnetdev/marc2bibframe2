@@ -56,7 +56,7 @@
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
       <x:expect label="pos 18-21 create cartographicAttributes properties of the Instance" test="//bf:Instance[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:note/bf:Note/rdfs:label = 'shading'"/>
       <x:expect label="pos 22-23 creates a project property of the Instance" test="//bf:Instance[5]/bf:projection/bf:Cartographic/rdfs:label = 'Krovak'"/>
-      <x:expect label="pos 25 creates an issuance or genreForm property of the Instance" test="//bf:Instance[5]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'atlas'"/>
+      <x:expect label="pos 25 creates an issuance or genreForm property of the Instance" test="//bf:Instance[5]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'atlases'"/>
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'playing cards'"/>
     </x:scenario>
     
