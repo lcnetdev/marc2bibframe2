@@ -280,21 +280,30 @@
     <c href="http://id.loc.gov/vocabulary/marcgt/art">art reproduction</c>
     <d href="http://id.loc.gov/vocabulary/marcgt/dio">diorama</d>
     <f href="http://id.loc.gov/vocabulary/marcgt/fls">filmstrip</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
-    <i href="http://id.loc.gov/vocabulary/marcgt/pic">picture</i>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</g>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2017027251">picture</i>
     <k href="http://id.loc.gov/vocabulary/marcgt/gra">graphic</k>
     <l href="http://id.loc.gov/vocabulary/marcgt/ted">technical drawing</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/mot">motion picture</m>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2011026406">motion pictures</m>
     <n href="http://id.loc.gov/vocabulary/marcgt/cha">chart</n>
     <o href="http://id.loc.gov/vocabulary/marcgt/fla">flash card</o>
     <p href="http://id.loc.gov/vocabulary/marcgt/mic">microscope slide</p>
-    <q href="http://id.loc.gov/vocabulary/marcgt/mod">model</q>
+    <q href="http://id.loc.gov/authorities/genreForms/gf2017027245">model</q>
     <r href="http://id.loc.gov/vocabulary/marcgt/rea">realia</r>
     <s href="http://id.loc.gov/vocabulary/marcgt/sli">slide</s>
     <t href="http://id.loc.gov/vocabulary/marcgt/tra">transparency</t>
-    <v href="http://id.loc.gov/vocabulary/marcgt/vid">videorecording</v>
+    <v href="http://id.loc.gov/authorities/genreForms/gf2011026723">video recordings</v>
     <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
   </local:visualtype>
+
+  <local:technique>
+    <a href="http://id.loc.gov/vocabulary/mtechnique/anim">animation</a>
+    <c href="http://id.loc.gov/vocabulary/mtechnique/animlive">animation and live action"</c>
+    <l href="http://id.loc.gov/vocabulary/mtechnique/live">live action</l>
+    <n>not applicable</n>
+    <u>unknown</u>
+    <z href="http://id.loc.gov/vocabulary/mtechnique/other">other technique</z>
+  </local:technique>
 
   <xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -685,6 +694,11 @@
         <xsl:when test="substring($dataElements,1,3) = '---'"/>
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
+        <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
+          <xsl:call-template name="chopLeadingPadding">
+            <xsl:with-param name="chopString" select="substring($dataElements,1,3)"/>
+          </xsl:call-template>
+        </xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -1526,28 +1540,40 @@
   <xsl:template name="instance008visual">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:variable name="technique">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,17,1) = 'a'">animation</xsl:when>
-        <xsl:when test="substring($dataElements,17,1) = 'c'">animation and live action</xsl:when>
-        <xsl:when test="substring($dataElements,17,1) = 'l'">live action</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
     </xsl:call-template>
     <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$technique != ''">
-          <bf:note>
-            <bf:Note>
-              <bf:noteType>technique</bf:noteType>
-              <rdfs:label><xsl:value-of select="$technique"/></rdfs:label>
-            </bf:Note>
-          </bf:note>
-        </xsl:if>
+      <xsl:when test="substring($dataElements,17,1) = '|'">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>technique</bf:noteType>
+                <rdfs:label>no attempt to code</rdfs:label>
+              </bf:Note>
+            </bf:note>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="document('')/*/local:technique/*[name() = substring($dataElements,17,1)]">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:note>
+                <bf:Note>
+                  <xsl:if test="@href != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  </xsl:if>
+                  <bf:noteType>technique</bf:noteType>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
   
