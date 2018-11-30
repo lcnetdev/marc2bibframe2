@@ -87,7 +87,7 @@
               </bf:IntendedAudience>
             </bf:intendedAudience>
             <bf:genreForm>
-              <bf:GenreForm rdf:about="http://id.loc.gov/vocabulary/marcgt/fic">
+              <bf:GenreForm rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026339">
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
