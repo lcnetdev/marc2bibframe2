@@ -266,11 +266,11 @@
   </local:frequency>
 
   <local:crtype>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dtd">updating database</d>
-    <l href="http://id.loc.gov/vocabulary/marcgt/loo">updating loose-leaf</l>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026081">databases</d>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</l>
     <m href="http://id.loc.gov/vocabulary/marcgt/ser">monographic series</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/new">newspaper</n>
-    <p href="http://id.loc.gov/vocabulary/marcgt/per">periodical</p>
+    <n href="http://id.loc.gov/authorities/genreForms/gf2014026132">newspapers</n>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026139">periodicals</p>
     <w href="http://id.loc.gov/vocabulary/marcgt/web">updating web site</w>
   </local:crtype>
 
@@ -1467,7 +1467,11 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:frequency>
             <bf:Frequency>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <xsl:if test="@href != ''">
+                <bflc:target>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="@href"/></xsl:attribute>
+                </bflc:target>
+              </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Frequency>
           </bf:frequency>
