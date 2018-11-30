@@ -140,25 +140,110 @@
     <r href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</r>
   </local:mapform>
 
+  <local:musicCompForm>
+    <an href="http://id.loc.gov/authorities/genreForms/gf2014026635">anthems</an>
+    <bd href="http://id.loc.gov/authorities/genreForms/gf2014026648">ballads</bd>
+    <bg href="http://id.loc.gov/authorities/genreForms/gf2014026664">bluegrass music</bg>
+    <bl href="http://id.loc.gov/authorities/genreForms/gf2014026665">blues</bl>
+    <bt href="http://id.loc.gov/authorities/genreForms/gf2014026650">ballets</bt>
+    <ca href="http://id.loc.gov/authorities/genreForms/gf2014026701">chaconnes</ca>
+    <cb href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cb>
+    <cc href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cc>
+    <cg href="http://id.loc.gov/authorities/genreForms/gf2014026724">concerti grossi</cg>
+    <ch href="http://id.loc.gov/authorities/genreForms/gf2014026713">chorales</ch>
+    <cl href="http://id.loc.gov/authorities/genreForms/gf2014026712">chorale preludes</cl>
+    <cn href="http://id.loc.gov/authorities/genreForms/gf2014026687">canons</cn>
+    <co href="http://id.loc.gov/authorities/genreForms/gf2014026725">concertos</co>
+    <cp href="http://id.loc.gov/authorities/genreForms/gf2014027007">polyphonic chansons</cp>
+    <cr href="http://id.loc.gov/authorities/genreForms/gf2014026695">carols</cr>
+    <cs href="http://id.loc.gov/authorities/genreForms/gf2014026624">chance compositions</cs>
+    <ct href="http://id.loc.gov/authorities/genreForms/gf2014026688">cantatas</ct>
+    <cy href="http://id.loc.gov/authorities/genreForms/gf2014026739">country music</cy>
+    <cz>canzonas</cz>
+    <df href="http://id.loc.gov/authorities/genreForms/gf2014026753">dance forms</df>
+    <dv href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</dv>
+    <fg href="http://id.loc.gov/authorities/genreForms/gf2014026818">fugues</fg>
+    <fl href="http://id.loc.gov/authorities/genreForms/gf2014026806">flamenco music</fl>
+    <fm href="http://id.loc.gov/authorities/genreForms/gf2014026809">folk music</fm>
+    <ft>fantasias</ft>
+    <gm href="http://id.loc.gov/authorities/genreForms/gf2014026839">gospel music</gm>
+    <hy href="http://id.loc.gov/authorities/genreForms/gf2014026872">hymns</hy>
+    <jz href="http://id.loc.gov/authorities/genreForms/gf2014026879">jazz</jz>
+    <mc href="http://id.loc.gov/authorities/genreForms/gf2014027050">revues</mc>
+    <md href="http://id.loc.gov/authorities/genreForms/gf2014026915">madrigals</md>
+    <mi href="http://id.loc.gov/authorities/genreForms/gf2014026940">minuets</mi>
+    <mo href="http://id.loc.gov/authorities/genreForms/gf2014026949">motets</mo>
+    <mp href="http://id.loc.gov/authorities/genreForms/gf2014026950">motion picture music</mp>
+    <mr href="http://id.loc.gov/authorities/genreForms/gf2014026922">marches</mr>
+    <ms href="http://id.loc.gov/authorities/genreForms/gf2014026926">masses</ms>
+    <mz href="http://id.loc.gov/authorities/genreForms/gf2014026928">mazurkas</mz>
+    <nc href="http://id.loc.gov/authorities/genreForms/gf2014027116">nocturnes</nc>
+    <op href="http://id.loc.gov/authorities/genreForms/gf2014026976">operas</op>
+    <or href="http://id.loc.gov/authorities/genreForms/gf2014026977">oratorios</or>
+    <ov href="http://id.loc.gov/authorities/genreForms/gf2014026980">overtures</ov>
+    <pg href="http://id.loc.gov/authorities/genreForms/gf2014027017">program music</pg>
+    <pm href="http://id.loc.gov/authorities/genreForms/gf2014026861">passion music</pm>
+    <po href="http://id.loc.gov/authorities/genreForms/gf2014027005">polonaises</po>
+    <pp href="http://id.loc.gov/authorities/genreForms/gf2014027009">popular music</pp>
+    <pr href="http://id.loc.gov/authorities/genreForms/gf2014027013">preludes</pr>
+    <ps href="http://id.loc.gov/authorities/genreForms/gf2014026989">passacaglias</ps>
+    <pt href="http://id.loc.gov/authorities/genreForms/gf2014026984">part songs</pt>
+    <pv href="http://id.loc.gov/authorities/genreForms/gf2014026994">pavans</pv>
+    <rc href="http://id.loc.gov/authorities/genreForms/gf2014027054">rock music</rc>
+    <rd href="http://id.loc.gov/authorities/genreForms/gf2014027057">rondos</rd>
+    <rg href="http://id.loc.gov/authorities/genreForms/gf2014027034">ragtime music</rg>
+    <ri href="http://id.loc.gov/authorities/genreForms/gf2014026818">ricercars</ri>
+    <rp href="http://id.loc.gov/authorities/genreForms/gf2014027051">rhapsodies</rp>
+    <rq href="http://id.loc.gov/authorities/genreForms/gf2014027048">requiems</rq>
+    <sd href="http://id.loc.gov/authorities/genreForms/gf2014027111">square dance music</sd>
+    <sg href="http://id.loc.gov/authorities/genreForms/gf2014027103">songs</sg>
+    <sn href="http://id.loc.gov/authorities/genreForms/gf2014027099">sonatas</sn>
+    <sp href="http://id.loc.gov/authorities/genreForms/gf2014027120">symphonic poems</sp>
+    <st href="http://id.loc.gov/authorities/genreForms/gf2014027115">studies and exercises</st>
+    <su href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</su>
+    <sy href="http://id.loc.gov/authorities/genreForms/gf2014027121">symphonies</sy>
+    <tc href="http://id.loc.gov/authorities/genreForms/gf2014027140">toccatas</tc>
+    <tl href="http://id.loc.gov/authorities/genreForms/gf2016026059">teatro lirico</tl>
+    <ts href="http://id.loc.gov/authorities/genreForms/gf2014027099">trio sonatas</ts>
+    <vi>villancicos</vi>
+    <vr href="http://id.loc.gov/authorities/genreForms/gf2014027156">variations</vr>
+    <wz href="http://id.loc.gov/authorities/genreForms/gf2014027167">waltzes</wz>
+    <za href="http://id.loc.gov/authorities/genreForms/gf2016026059">zarzuelas</za>
+  </local:musicCompForm>
+
+  <local:musicFormat>
+    <a href="http://id.loc.gov/vocabulary/mmusicformat/score">score</a>
+    <b href="http://id.loc.gov/vocabulary/mmusicformat/studyscore">study score</b>
+    <c href="http://id.loc.gov/vocabulary/mmusicformat/pianoscore">piano score</c>
+    <d href="http://id.loc.gov/vocabulary/mmusicformat/vocalscore">vocal score</d>
+    <e href="http://id.loc.gov/vocabulary/mmusicformat/pianopart">piano conductor score</e>
+    <g href="http://id.loc.gov/vocabulary/mmusicformat/conscore">condensed score</g>
+    <h href="http://id.loc.gov/vocabulary/mmusicformat/chscore">chorus score</h>
+    <i href="http://id.loc.gov/vocabulary/mmusicformat/conscore">condensed score</i>
+    <j href="http://id.loc.gov/vocabularly/mmusicformat/perfconpt">performer-conducter part</j>
+    <k href="http://id.loc.gov/vocabulary/mmusicformat/vocalscore">vocal score</k>
+    <l href="http://id.loc.gov/vocabulary/mmusicformat/score">score</l>
+  </local:musicFormat>
+
   <local:musicTextForm>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bio">biography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/cpl">conference proceedings</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dra">drama</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/ess">essays</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/rpt">reporting</g>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
+    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026068">conference papers and proceedings</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</f>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2014026113">informational works</g>
     <h href="http://id.loc.gov/vocabulary/marcgt/his">history</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/ins">instruction</i>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026114">instructional and educational works</i>
     <j href="http://id.loc.gov/vocabulary/marcgt/lan">language instruction</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/cod">comedy</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/spe">lectures, speeches</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/mem">memoirs</m>
-    <o href="http://id.loc.gov/vocabulary/marcgt/fol">folktales</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/poe">poetry</p>
+    <k href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</k>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</l>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</m>
+    <o href="http://id.loc.gov/authorities/genreForms/gf2014026344">folk tales</o>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
     <r href="http://id.loc.gov/vocabulary/marcgt/reh">rehearsals</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sou">sounds</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/int">interviews</t>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2011026594">sound recordings</s>
+    <t href="http://id.loc.gov/authorities/genreForms/gf2014026115">interviews</t>
   </local:musicTextForm>
 
   <local:frequency>
@@ -522,94 +607,6 @@
   <xsl:template name="work008music">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:variable name="compform">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,1,2) = 'an'">anthems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bd'">ballads</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bg'">bluegrass music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bl'">blues</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bt'">ballets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ca'">chaconnes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cb'">chants, other religions</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cc'">chant, Christian</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cg'">concerti grossi</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ch'">chorales</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cl'">chorale preludes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cn'">canons and rounds</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cp'">chansons, polyphonic</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cr'">carols</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cs'">chance compositions</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ct'">cantatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cy'">country music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cz'">canzonas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'df'">dance forms</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'dv'">divertimentos, serenades, cassations, divertissements, notturni</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fg'">fugues</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fl'">flamenco</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fm'">folk music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ft'">fantasias</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'gm'">gospel music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'hy'">hymns</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'jz'">jazz</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mc'">musical revues and comedies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'md'">madrigals</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mi'">minuets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mo'">motets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mp'">motion picture music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mr'">marches</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ms'">masses</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mu'">multiple forms</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mz'">mazurkas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'nc'">nocturnes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'op'">operas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'or'">oratorios</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ov'">overtures</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pg'">program music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pm'">passion music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'po'">polonaises</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pp'">popular music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pr'">preludes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ps'">passacaglias</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pt'">part-songs</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pv'">pavans</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rc'">rock music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rd'">rondos</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rg'">ragtime music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ri'">ricercars</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rp'">rhapsodies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rq'">requiems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sd'">square dance music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sg'">songs</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sn'">sonatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sp'">symphonic poems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'st'">studies and exercises</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'su'">suites</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sy'">symphonies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'tc'">toccatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'tl'">teatro lirico</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ts'">trio-sonatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'vi'">villancicos</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'vr'">variations</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'wz'">waltzes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'za'">arzuelas</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="musicformat">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,3,1) = 'a'">full score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'b'">full score, miniature or study size</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'c'">accompaniment reduced for keyboard</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'd'">voice score with accompaniment omitted</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'e'">condensed score or piano-conductor score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'g'">close score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'h'">chorus score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'i'">condensed score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'j'">performer-conducter part</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'k'">vocal score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'l'">score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'm'">multiple score formats</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:call-template name="intendedAudience008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
@@ -618,26 +615,14 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="accomp" select="substring($dataElements,7,6)"/>
     </xsl:call-template>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$compform != ''">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <bf:code><xsl:value-of select="substring($dataElements,1,2)"/></bf:code>
-              <rdfs:label><xsl:value-of select="$compform"/></rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:if>
-        <xsl:if test="$musicformat != ''">
-          <bf:musicFormat>
-            <bf:MusicFormat>
-              <bf:code><xsl:value-of select="substring($dataElements,3,1)"/></bf:code>
-              <rdfs:label><xsl:value-of select="$musicformat"/></rdfs:label>
-            </bf:MusicFormat>
-          </bf:musicFormat>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="compForm008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,1,2)"/>
+    </xsl:call-template>
+    <xsl:call-template name="musicFormat008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,3,1)"/>
+    </xsl:call-template>
     <xsl:call-template name="musicTextForm008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="litform" select="substring($dataElements,13,2)"/>
@@ -857,6 +842,46 @@
         <xsl:with-param name="i" select="$i + 1"/>
       </xsl:call-template>
     </xsl:if>
+  </xsl:template>
+
+  <!-- compForm properties for music -->
+  <xsl:template name="compForm008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="code"/>
+    <xsl:for-each select="document('')/*/local:musicCompForm/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:if test="@href != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- musicFormat properties for music -->
+  <xsl:template name="musicFormat008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="code"/>
+    <xsl:for-each select="document('')/*/local:musicFormat/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:musicFormat>
+            <bf:MusicFormat>
+              <xsl:if test="@href != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:MusicFormat>
+          </bf:musicFormat>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- supplementaryContent properties for music - loop 6 times -->
