@@ -296,6 +296,7 @@
               <xsl:if test="@code = 'm'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label>canceled</rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -836,6 +837,18 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='020'">
+        <xsl:choose>
+          <xsl:when test="$serialization='rdfxml'">
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:acquisitionTerms>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </bf:acquisitionTerms>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Isbn</xsl:with-param>
@@ -859,9 +872,40 @@
             <xsl:when test="@ind1 = '2'">bf:Ismn</xsl:when>
             <xsl:when test="@ind1 = '3'">bf:Ean</xsl:when>
             <xsl:when test="@ind1 = '4'">bf:Sici</xsl:when>
+            <xsl:when test="@ind1 = '7'">
+              <xsl:choose>
+                <xsl:when test="marc:subfield[@code='2' and text()='ansi']">bf:Ansi</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='doi']">bf:Doi</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='hdl']">bf:Hdl</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='isan']">bf:Isan</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='isni']">bf:Isni</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='iso']">bf:Iso</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='istc']">bf:Istc</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='iswc']">bf:Iswc</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='matrix-number']">bf:MatrixNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='music-plate']">bf:MusicPlate</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='music-publisher']">bf:MusicPublisherNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='stock-number']">bf:StockNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='urn']">bf:Urn</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='videorecording-identifier']">bf:VideoRecordingNumber</xsl:when>
+                <xsl:otherwise>bf:Identifier</xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
             <xsl:otherwise>bf:Identifier</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization='rdfxml'">
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:acquisitionTerms>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </bf:acquisitionTerms>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
@@ -973,6 +1017,7 @@
               <xsl:if test="@code = 'z'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label><xsl:value-of select="$pInvalidLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -980,18 +1025,22 @@
               <xsl:if test="@code = 'y'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/incorrect</xsl:attribute>
                     <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>
               </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='c']">
-                <bf:acquisitionTerms>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
-                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                  </xsl:call-template>
-                </bf:acquisitionTerms>
-              </xsl:for-each>
+              <!-- special handling for 036 -->
+              <xsl:if test="../@tag='036'">
+                <xsl:for-each select="../marc:subfield[@code='c']">
+                  <bf:acquisitionTerms>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </bf:acquisitionTerms>
+                </xsl:for-each>
+              </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='q']">
                 <bf:qualifier>
                   <xsl:call-template name="chopPunctuation">
