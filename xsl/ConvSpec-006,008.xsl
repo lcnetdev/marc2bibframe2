@@ -12,298 +12,8 @@
 
   <!--
       Conversion specs for 006,008
+      See lookup tables in conf/codeMaps.xml for code conversions
   -->
-
-  <!-- Lookup tables -->
-  <local:millus>
-    <a href="http://id.loc.gov/vocabulary/millus/ill">illustrations</a>
-    <b href="http://id.loc.gov/vocabulary/millus/map">maps</b>
-    <c href="http://id.loc.gov/vocabulary/millus/por">portraits</c>
-    <d href="http://id.loc.gov/vocabulary/millus/chr">charts</d>
-    <e href="http://id.loc.gov/vocabulary/millus/pln">plans</e>
-    <f href="http://id.loc.gov/vocabulary/millus/plt">plates</f>
-    <g href="http://id.loc.gov/vocabulary/millus/mus">music</g>
-    <h href="http://id.loc.gov/vocabulary/millus/fac">facsimiles</h>
-    <i href="http://id.loc.gov/vocabulary/millus/coa">coats of arms</i>
-    <j href="http://id.loc.gov/vocabulary/millus/gnt">geneological tables</j>
-    <k href="http://id.loc.gov/vocabulary/millus/for">forms</k>
-    <l href="http://id.loc.gov/vocabulary/millus/sam">samples</l>
-    <m href="http://id.loc.gov/vocabulary/millus/pho">phonodisc, phonowire</m>
-    <o href="http://id.loc.gov/vocabulary/millus/pht">photographs</o>
-    <p href="http://id.loc.gov/vocabulary/millus/ilm">illuminations</p>
-  </local:millus>
-
-  <local:maudience>
-    <a href="http://id.loc.gov/vocabulary/maudience/pre">preschool</a>
-    <b href="http://id.loc.gov/vocabulary/maudience/pri">primary</b>
-    <c href="http://id.loc.gov/vocabulary/maudience/pad">pre-adolescent</c>
-    <d href="http://id.loc.gov/vocabulary/maudience/ado">adolescent</d>
-    <e href="http://id.loc.gov/vocabulary/maudience/adu">adult</e>
-    <f href="http://id.loc.gov/vocabulary/maudience/spe">specialized</f>
-    <g href="http://id.loc.gov/vocabulary/maudience/gen">general</g>
-    <j href="http://id.loc.gov/vocabulary/maudience/juv">juvenile</j>
-  </local:maudience>
-
-  <local:carrier>
-    <a href="http://id.loc.gov/vocabulary/mediaTypes/h">microfilm</a>
-    <b href="http://id.loc.gov/vocabulary/carriers/he">microfiche</b>
-    <c href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</c>
-    <o href="http://id.loc.gov/vocabulary/carriers/cr">online resource</o>
-    <q>direct electronic</q>
-    <r>regular print reproduction</r>
-    <s>electronic</s>
-  </local:carrier>
-
-  <local:marcgt>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2014026038">abstracts</a>
-    <b href="http://id.loc.gov/authorities/genreForms/gf2014026048">bibliographies</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026057">catalogs</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026086">dictionaries</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026092">encyclopedias</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2014026109">handbooks and manuals</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</g>
-    <h href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026112">indexes</i>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2011026438">patents</j>
-    <k href="http://id.loc.gov/authorities/genreForms/gf2014026088">discographies</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2011026611">statutes and codes</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026039">academic theses</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/sur">survey of literature</n>
-    <o href="http://id.loc.gov/authorities/genreForms/gf2014026168">reviews</o>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026155">programmed instructional materials</p>
-    <q href="http://id.loc.gov/vocabulary/marcgt/fil">filmography</q>
-    <r href="http://id.loc.gov/authorities/genreForms/gf2014026087">directories</r>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2014026181">statistics</s>
-    <t href="http://id.loc.gov/authorities/genreForms/gf2015026093">technical reports</t>
-    <u href="http://id.loc.gov/vocabulary/marcgt/stp">standard or specification</u>
-    <v href="http://id.loc.gov/authorities/genreForms/gf2011026352">law reviews</v>
-    <w href="http://id.loc.gov/authorities/genreForms/gf2011026349">law digests</w>
-    <y href="http://id.loc.gov/authorities/genreForms/gf2014026208">yearbooks</y>
-    <z href="http://id.loc.gov/authorities/genreForms/gf2011026707">treaties</z>
-    <x2 href="http://id.loc.gov/vocabulary/marcgt/off">offprint</x2>
-    <x5 href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</x5>
-    <x6 href="http://id.loc.gov/authorities/genreForms/gf2014026362">graphic novels</x6>
-  </local:marcgt>
-
-  <local:litform>
-    <x1 href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</x1>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2015026020">novels</f>
-    <h href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026141">personal correspondence</i>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2014026542">short stories</j>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</m>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</s>
-  </local:litform>
-
-  <local:bioform>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
-    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</d>
-  </local:bioform>
-
-  <local:computerFileType>
-    <a href="http://id.loc.gov/vocabulary/marcgt/num">numeric data</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/com">computer program</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/rep">representational</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/doc">document (computer)</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/bda">bibliographic data</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fon">font</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
-    <h>sound</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/inm">interactive multimedia</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/ons">online system or service</j>
-    <m>computer file combination</m>
-  </local:computerFileType>
-
-  <local:carttype>
-    <a prop="issuance">single map</a>
-    <b prop="issuance">map series</b>
-    <c prop="issuance">map serial</c>
-    <d prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026300">globes</d>
-    <e prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026058">atlases</e>
-    <f prop="issuance">map supplement to another work</f>
-    <g prop="issuance">map bound as part of another work</g>
-  </local:carttype>
-
-  <local:mapform>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2011026385">manuscript maps</e>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2014026151">picture card, post card</j>
-    <k href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</l>
-    <n href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</n>
-    <o href="http://id.loc.gov/authorities/genreForms/gf2011026728">wall maps</o>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2017027252">playing cards</p>
-    <r href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</r>
-  </local:mapform>
-
-  <local:musicCompForm>
-    <an href="http://id.loc.gov/authorities/genreForms/gf2014026635">anthems</an>
-    <bd href="http://id.loc.gov/authorities/genreForms/gf2014026648">ballads</bd>
-    <bg href="http://id.loc.gov/authorities/genreForms/gf2014026664">bluegrass music</bg>
-    <bl href="http://id.loc.gov/authorities/genreForms/gf2014026665">blues</bl>
-    <bt href="http://id.loc.gov/authorities/genreForms/gf2014026650">ballets</bt>
-    <ca href="http://id.loc.gov/authorities/genreForms/gf2014026701">chaconnes</ca>
-    <cb href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cb>
-    <cc href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cc>
-    <cg href="http://id.loc.gov/authorities/genreForms/gf2014026724">concerti grossi</cg>
-    <ch href="http://id.loc.gov/authorities/genreForms/gf2014026713">chorales</ch>
-    <cl href="http://id.loc.gov/authorities/genreForms/gf2014026712">chorale preludes</cl>
-    <cn href="http://id.loc.gov/authorities/genreForms/gf2014026687">canons</cn>
-    <co href="http://id.loc.gov/authorities/genreForms/gf2014026725">concertos</co>
-    <cp href="http://id.loc.gov/authorities/genreForms/gf2014027007">polyphonic chansons</cp>
-    <cr href="http://id.loc.gov/authorities/genreForms/gf2014026695">carols</cr>
-    <cs href="http://id.loc.gov/authorities/genreForms/gf2014026624">chance compositions</cs>
-    <ct href="http://id.loc.gov/authorities/genreForms/gf2014026688">cantatas</ct>
-    <cy href="http://id.loc.gov/authorities/genreForms/gf2014026739">country music</cy>
-    <cz>canzonas</cz>
-    <df href="http://id.loc.gov/authorities/genreForms/gf2014026753">dance forms</df>
-    <dv href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</dv>
-    <fg href="http://id.loc.gov/authorities/genreForms/gf2014026818">fugues</fg>
-    <fl href="http://id.loc.gov/authorities/genreForms/gf2014026806">flamenco music</fl>
-    <fm href="http://id.loc.gov/authorities/genreForms/gf2014026809">folk music</fm>
-    <ft>fantasias</ft>
-    <gm href="http://id.loc.gov/authorities/genreForms/gf2014026839">gospel music</gm>
-    <hy href="http://id.loc.gov/authorities/genreForms/gf2014026872">hymns</hy>
-    <jz href="http://id.loc.gov/authorities/genreForms/gf2014026879">jazz</jz>
-    <mc href="http://id.loc.gov/authorities/genreForms/gf2014027050">revues</mc>
-    <md href="http://id.loc.gov/authorities/genreForms/gf2014026915">madrigals</md>
-    <mi href="http://id.loc.gov/authorities/genreForms/gf2014026940">minuets</mi>
-    <mo href="http://id.loc.gov/authorities/genreForms/gf2014026949">motets</mo>
-    <mp href="http://id.loc.gov/authorities/genreForms/gf2014026950">motion picture music</mp>
-    <mr href="http://id.loc.gov/authorities/genreForms/gf2014026922">marches</mr>
-    <ms href="http://id.loc.gov/authorities/genreForms/gf2014026926">masses</ms>
-    <mz href="http://id.loc.gov/authorities/genreForms/gf2014026928">mazurkas</mz>
-    <nc href="http://id.loc.gov/authorities/genreForms/gf2014027116">nocturnes</nc>
-    <op href="http://id.loc.gov/authorities/genreForms/gf2014026976">operas</op>
-    <or href="http://id.loc.gov/authorities/genreForms/gf2014026977">oratorios</or>
-    <ov href="http://id.loc.gov/authorities/genreForms/gf2014026980">overtures</ov>
-    <pg href="http://id.loc.gov/authorities/genreForms/gf2014027017">program music</pg>
-    <pm href="http://id.loc.gov/authorities/genreForms/gf2014026861">passion music</pm>
-    <po href="http://id.loc.gov/authorities/genreForms/gf2014027005">polonaises</po>
-    <pp href="http://id.loc.gov/authorities/genreForms/gf2014027009">popular music</pp>
-    <pr href="http://id.loc.gov/authorities/genreForms/gf2014027013">preludes</pr>
-    <ps href="http://id.loc.gov/authorities/genreForms/gf2014026989">passacaglias</ps>
-    <pt href="http://id.loc.gov/authorities/genreForms/gf2014026984">part songs</pt>
-    <pv href="http://id.loc.gov/authorities/genreForms/gf2014026994">pavans</pv>
-    <rc href="http://id.loc.gov/authorities/genreForms/gf2014027054">rock music</rc>
-    <rd href="http://id.loc.gov/authorities/genreForms/gf2014027057">rondos</rd>
-    <rg href="http://id.loc.gov/authorities/genreForms/gf2014027034">ragtime music</rg>
-    <ri href="http://id.loc.gov/authorities/genreForms/gf2014026818">ricercars</ri>
-    <rp href="http://id.loc.gov/authorities/genreForms/gf2014027051">rhapsodies</rp>
-    <rq href="http://id.loc.gov/authorities/genreForms/gf2014027048">requiems</rq>
-    <sd href="http://id.loc.gov/authorities/genreForms/gf2014027111">square dance music</sd>
-    <sg href="http://id.loc.gov/authorities/genreForms/gf2014027103">songs</sg>
-    <sn href="http://id.loc.gov/authorities/genreForms/gf2014027099">sonatas</sn>
-    <sp href="http://id.loc.gov/authorities/genreForms/gf2014027120">symphonic poems</sp>
-    <st href="http://id.loc.gov/authorities/genreForms/gf2014027115">studies and exercises</st>
-    <su href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</su>
-    <sy href="http://id.loc.gov/authorities/genreForms/gf2014027121">symphonies</sy>
-    <tc href="http://id.loc.gov/authorities/genreForms/gf2014027140">toccatas</tc>
-    <tl href="http://id.loc.gov/authorities/genreForms/gf2016026059">teatro lirico</tl>
-    <ts href="http://id.loc.gov/authorities/genreForms/gf2014027099">trio sonatas</ts>
-    <vi>villancicos</vi>
-    <vr href="http://id.loc.gov/authorities/genreForms/gf2014027156">variations</vr>
-    <wz href="http://id.loc.gov/authorities/genreForms/gf2014027167">waltzes</wz>
-    <za href="http://id.loc.gov/authorities/genreForms/gf2016026059">zarzuelas</za>
-  </local:musicCompForm>
-
-  <local:musicFormat>
-    <a href="http://id.loc.gov/vocabulary/mmusicformat/score">score</a>
-    <b href="http://id.loc.gov/vocabulary/mmusicformat/studyscore">study score</b>
-    <c href="http://id.loc.gov/vocabulary/mmusicformat/pianoscore">piano score</c>
-    <d href="http://id.loc.gov/vocabulary/mmusicformat/vocalscore">vocal score</d>
-    <e href="http://id.loc.gov/vocabulary/mmusicformat/pianopart">piano conductor score</e>
-    <g href="http://id.loc.gov/vocabulary/mmusicformat/conscore">condensed score</g>
-    <h href="http://id.loc.gov/vocabulary/mmusicformat/chscore">chorus score</h>
-    <i href="http://id.loc.gov/vocabulary/mmusicformat/conscore">condensed score</i>
-    <j href="http://id.loc.gov/vocabularly/mmusicformat/perfconpt">performer-conducter part</j>
-    <k href="http://id.loc.gov/vocabulary/mmusicformat/vocalscore">vocal score</k>
-    <l href="http://id.loc.gov/vocabulary/mmusicformat/score">score</l>
-  </local:musicFormat>
-
-  <local:musicTextForm>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
-    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026068">conference papers and proceedings</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2014026113">informational works</g>
-    <h href="http://id.loc.gov/vocabulary/marcgt/his">history</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026114">instructional and educational works</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/lan">language instruction</j>
-    <k href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</m>
-    <o href="http://id.loc.gov/authorities/genreForms/gf2014026344">folk tales</o>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
-    <r href="http://id.loc.gov/vocabulary/marcgt/reh">rehearsals</r>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2011026594">sound recordings</s>
-    <t href="http://id.loc.gov/authorities/genreForms/gf2014026115">interviews</t>
-  </local:musicTextForm>
-
-  <local:frequency>
-    <a href="http://id.loc.gov/vocabulary/frequencies/ann">annual</a>
-    <b href="http://id.loc.gov/vocabulary/frequencies/bmn">bimonthly</b>
-    <c href="http://id.loc.gov/vocabulary/frequencies/swk">semiweekly</c>
-    <d href="http://id.loc.gov/vocabulary/frequencies/dyl">daily</d>
-    <e href="http://id.loc.gov/vocabulary/frequencies/bwk">biweekly</e>
-    <f href="http://id.loc.gov/vocabulary/frequencies/san">semiannual</f>
-    <g href="http://id.loc.gov/vocabulary/frequencies/bin">biennial</g>
-    <h href="http://id.loc.gov/vocabulary/frequencies/ten">triennial</h>
-    <i href="http://id.loc.gov/vocabulary/frequencies/ttw">three times a week</i>
-    <j href="http://id.loc.gov/vocabulary/frequencies/ttm">three times a month</j>
-    <k href="http://id.loc.gov/vocabulary/frequencies/con">continuously updated</k>
-    <m href="http://id.loc.gov/vocabulary/frequencies/mon">monthly</m>
-    <q href="http://id.loc.gov/vocabulary/frequencies/grt">quarterly</q>
-    <s href="http://id.loc.gov/vocabulary/frequencies/smn">semimonthly</s>
-    <t href="http://id.loc.gov/vocabulary/frequencies/tty">three times a year</t>
-    <w href="http://id.loc.gov/vocabulary/frequencies/wkl">weekly</w>
-  </local:frequency>
-
-  <local:crtype>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026081">databases</d>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/ser">monographic series</m>
-    <n href="http://id.loc.gov/authorities/genreForms/gf2014026132">newspapers</n>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026139">periodicals</p>
-    <w href="http://id.loc.gov/vocabulary/marcgt/web">updating web site</w>
-  </local:crtype>
-
-  <local:visualtype>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aro">art original</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/kit">kit</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/art">art reproduction</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dio">diorama</d>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fls">filmstrip</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</g>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2017027251">picture</i>
-    <k href="http://id.loc.gov/vocabulary/marcgt/gra">graphic</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/ted">technical drawing</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2011026406">motion pictures</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/cha">chart</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/fla">flash card</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/mic">microscope slide</p>
-    <q href="http://id.loc.gov/authorities/genreForms/gf2017027245">model</q>
-    <r href="http://id.loc.gov/vocabulary/marcgt/rea">realia</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sli">slide</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/tra">transparency</t>
-    <v href="http://id.loc.gov/authorities/genreForms/gf2011026723">video recordings</v>
-    <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
-  </local:visualtype>
-
-  <local:technique>
-    <a href="http://id.loc.gov/vocabulary/mtechnique/anim">animation</a>
-    <c href="http://id.loc.gov/vocabulary/mtechnique/animlive">animation and live action"</c>
-    <l href="http://id.loc.gov/vocabulary/mtechnique/live">live action</l>
-    <n>not applicable</n>
-    <u>unknown</u>
-    <z href="http://id.loc.gov/vocabulary/mtechnique/other">other technique</z>
-  </local:technique>
 
   <xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -543,8 +253,8 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
-    <xsl:for-each select="document('')/*/local:litform/*[name() = substring($dataElements,16,1)] |
-                          document('')/*/local:litform/*[name() = concat('x',substring($dataElements,16,1))]">
+    <xsl:for-each select="$codeMaps/maps/litform/*[name() = substring($dataElements,16,1)] |
+                          $codeMaps/maps/litform/*[name() = concat('x',substring($dataElements,16,1))]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -556,7 +266,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:bioform/*[name() = substring($dataElements,17,1)]">
+    <xsl:for-each select="$codeMaps/maps/bioform/*[name() = substring($dataElements,17,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -578,7 +288,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:computerFileType/*[name() = substring($dataElements,9,1)]">
+    <xsl:for-each select="$codeMaps/maps/computerFileType/*[name() = substring($dataElements,9,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -710,7 +420,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:visualtype/*[name() = substring($dataElements,16,1)]">
+    <xsl:for-each select="$codeMaps/maps/visualtype/*[name() = substring($dataElements,16,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -742,7 +452,7 @@
   <xsl:template name="intendedAudience008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:maudience/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/maudience/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:intendedAudience>
@@ -763,8 +473,8 @@
     <xsl:param name="contents"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:marcgt/*[name() = substring($contents,$i,1)] |
-                            document('')/*/local:marcgt/*[name() = concat('x',substring($contents,$i,1))]">
+      <xsl:for-each select="$codeMaps/maps/marcgt/*[name() = substring($contents,$i,1)] |
+                            $codeMaps/maps/marcgt/*[name() = concat('x',substring($contents,$i,1))]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -838,7 +548,7 @@
     <xsl:param name="form"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:mapform/*[name() = substring($form,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/mapform/*[name() = substring($form,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -862,7 +572,7 @@
   <xsl:template name="compForm008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:musicCompForm/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/musicCompForm/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -882,7 +592,7 @@
   <xsl:template name="musicFormat008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:musicFormat/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/musicFormat/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:musicFormat>
@@ -946,7 +656,7 @@
     <xsl:param name="litform"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:musicTextForm/*[name() = substring($litform,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/musicTextForm/*[name() = substring($litform,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -1416,7 +1126,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:carttype/*[name() = substring($dataElements,8,1)]">
+    <xsl:for-each select="$codeMaps/maps/carttype/*[name() = substring($dataElements,8,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <xsl:if test="@prop = 'genreForm'">
@@ -1476,7 +1186,7 @@
         <xsl:when test="substring($dataElements,2,1) = 'x'">completely irregular</xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="document('')/*/local:frequency/*[name() = substring($dataElements,1,1)]">
+    <xsl:for-each select="$codeMaps/maps/frequency/*[name() = substring($dataElements,1,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:frequency>
@@ -1492,7 +1202,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:crtype/*[name() = substring($dataElements,4,1)]">
+    <xsl:for-each select="$codeMaps/maps/crtype/*[name() = substring($dataElements,4,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -1504,7 +1214,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:carrier/*[name() = substring($dataElements,5,1)]">
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = substring($dataElements,5,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
@@ -1558,7 +1268,7 @@
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:for-each select="document('')/*/local:technique/*[name() = substring($dataElements,17,1)]">
+        <xsl:for-each select="$codeMaps/maps/technique/*[name() = substring($dataElements,17,1)]">
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
               <bf:note>
@@ -1593,7 +1303,7 @@
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:millus/*[name() = substring($illustrations,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:illustrativeContent>
@@ -1616,7 +1326,7 @@
   <xsl:template name="carrier008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:carrier/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:carrier>
