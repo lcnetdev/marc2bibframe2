@@ -242,13 +242,17 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:subject>
-          <rdfs:Resource>
-            <rdf:value>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="normalize-space($vSubjectValue)"/>
-            </rdf:value>
+          <bf:Topic>
+            <bf:classification>
+              <bf:Classification>
+                <bf:classificationPortion>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="normalize-space($vSubjectValue)"/>
+                </bf:classificationPortion>
+              </bf:Classification>
+            </bf:classification>
             <xsl:choose>
               <xsl:when test="@ind2 = '0'">
                 <bf:source>
@@ -263,7 +267,7 @@
                 </xsl:apply-templates>
               </xsl:otherwise>
             </xsl:choose>
-          </rdfs:Resource>
+          </bf:Topic>
         </bf:subject>
       </xsl:when>
     </xsl:choose>

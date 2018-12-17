@@ -67,10 +67,10 @@
 
   <x:scenario label="072 - SUBJECT CATEGORY CODE">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="072 creates a subject property of the Work" test="count(//bf:Work[1]/bf:subject/rdfs:Resource) = 2"/>
-    <x:expect label="$ax becomes the rdf:value of the rdfs:Resource" test="//bf:Work[1]/bf:subject[2]/rdfs:Resource/rdf:value = 'Z1 .630'"/>
-    <x:expect label="$2 creates source property of the rdfs:Resource" test="//bf:Work[1]/bf:subject[2]/rdfs:Resource/bf:source/bf:Source/rdfs:label = 'mesh'"/>
-    <x:expect label="ind2 = '0' creates 'agricola' source property of the rdfs:Resource" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/bf:source/bf:Source/rdfs:label = 'agricola'"/>
+    <x:expect label="072 creates a subject property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 2"/>
+    <x:expect label="$ax creates a classification property of the Topic " test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:classification/bf:Classification/bf:classificationPortion = 'Z1 .630'"/>
+    <x:expect label="$2 creates source property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:source/bf:Source/rdfs:label = 'mesh'"/>
+    <x:expect label="ind2 = '0' creates 'agricola' source property of the Topic" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:source/bf:Source/rdfs:label = 'agricola'"/>
   </x:scenario>
 
   <x:scenario label="074 - GPO ITEM NUMBER">
