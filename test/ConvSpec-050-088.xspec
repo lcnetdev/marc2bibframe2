@@ -105,7 +105,7 @@
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="086 creates a classification/Classification property of the Instance" test="count(//bf:Instance[1]/bf:classification/bf:Classification) = 3"/>
     <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/rdfs:label = 'A 1.1:'"/>
-    <x:expect label="$z creates an 'invalid' Classification" test="//bf:Instance[1]/bf:classification[2]/bf:Classification/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates an 'invalid' Classification" test="//bf:Instance[1]/bf:classification[2]/bf:Classification/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates a source property of the classification" test="//bf:Instance[1]/bf:classification[3]/bf:Classification/bf:source/bf:Source/rdfs:label = 'ordocs'"/>
     <x:expect label="ind1 can create a source property of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sudocs'"/>
   </x:scenario>

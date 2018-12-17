@@ -413,6 +413,7 @@
               <xsl:if test="@code='z'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label>invalid</rdfs:label>
                   </bf:Status>
                 </bf:status>
