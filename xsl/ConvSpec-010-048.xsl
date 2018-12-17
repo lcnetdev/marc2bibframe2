@@ -78,6 +78,7 @@
     <be property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>tuba</rdfs:label></be>
     <bf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>baritone</rdfs:label></bf>
     <bn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bn>
+    <bo property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bo>
     <bu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bu>
     <by property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass, ethnic</bf:instrumentType></by>
     <bz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bz>
@@ -86,6 +87,7 @@
     <ec property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>computer</rdfs:label></ec>
     <ed property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>ondes martinot</rdfs:label></ed>
     <en property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></en>
+    <eo property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></eo>
     <eu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></eu>
     <ez property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></ez>
     <ka property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>piano</rdfs:label></ka>
@@ -95,6 +97,7 @@
     <ke property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>continuo</rdfs:label></ke>
     <kf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>celeste</rdfs:label></kf>
     <kn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kn>
+    <ko property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></ko>
     <ku property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></ku>
     <ky property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard, ethnic</bf:instrumentType></ky>
     <kz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kz>
@@ -103,6 +106,7 @@
     <pc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>marimba</rdfs:label></pc>
     <pd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>drum</rdfs:label></pd>
     <pn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pn>
+    <po property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></po>
     <pu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pu>
     <py property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion, ethnic</bf:instrumentType></py>
     <pz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pz>
@@ -114,6 +118,7 @@
     <sf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola d'amore</rdfs:label></sf>
     <sg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola da gamba</rdfs:label></sg>
     <sn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sn>
+    <so property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></so>
     <su property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></su>
     <sy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed, ethnic</bf:instrumentType></sy>
     <sz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sz>
@@ -122,6 +127,7 @@
     <tc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>lute</rdfs:label></tc>
     <td property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>mandolin</rdfs:label></td>
     <tn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tn>
+    <to property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></to>
     <tu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tu>
     <ty property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked, ethnic</bf:instrumentType></ty>
     <tz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tz>
@@ -135,6 +141,7 @@
     <wh property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>recorder</rdfs:label></wh>
     <wi property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>saxophone</rdfs:label></wi>
     <wn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wn>
+    <wo property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wo>
     <wu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wu>
     <wy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind, ethnic</bf:instrumentType></wy>
     <wz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wz>
@@ -145,6 +152,7 @@
     <oe property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>dance orchestra</rdfs:label></oe>
     <of property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>brass band</rdfs:label></of>
     <on property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></on>
+    <oo property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></oo>
     <ou property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></ou>
     <oy property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental, ethnic</bf:ensembleType></oy>
     <oz property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></oz>
@@ -155,6 +163,7 @@
     <cn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cn>
     <cu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cu>
     <cy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus, ethnic</bf:voiceType></cy>
+    <cz property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cz>
     <va property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>soprano</rdfs:label></va>
     <vb property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>mezzo soprano</rdfs:label></vb>
     <vc property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>alto</rdfs:label></vc>
@@ -166,6 +175,7 @@
     <vi property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>medium voice</rdfs:label></vi>
     <vj property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>low voice</rdfs:label></vj>
     <vn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vn>
+    <vo property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vo>
     <vu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vu>
     <vy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice, ethnic</bf:voiceType></vy>
   </local:instrumentCode>
@@ -203,8 +213,18 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='c']">
+          <!-- if it's a code, normalize and create a URI -->
+          <!-- imperfect assumption: if there are no spaces, it's a code (shrug) -->
           <bf:source>
             <bf:Source>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              </xsl:if>
               <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Agent')"/></xsl:attribute>
               </rdf:type>
@@ -213,27 +233,33 @@
           </bf:source>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
+          <!-- this should be a code -->
+          <!-- assume MARC code if 3 characters -->
           <bf:descriptionLanguage>
             <bf:Language>
-              <xsl:choose>
-                <xsl:when test="string-length(.) = 3">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:code><xsl:value-of select="."/></bf:code>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:if test="string-length(.) = 3">
+                <xsl:variable name="encoded">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(.)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              </xsl:if>
+              <bf:code><xsl:value-of select="."/></bf:code>
             </bf:Language>
           </bf:descriptionLanguage>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='d']">
           <bf:descriptionModifier>
             <bf:Agent>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Agent>
           </bf:descriptionModifier>
@@ -241,23 +267,15 @@
         <xsl:for-each select="marc:subfield[@code='e']">
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
-              <xsl:choose>
-                <xsl:when test=
-                  "string-length(normalize-space(.))
-                  -
-                  string-length(translate(normalize-space(.),' ','')) +1
-                  = 1">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$encoded)"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(.)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vUri)"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:for-each>
@@ -278,6 +296,7 @@
           <bf:descriptionAuthentication>
             <bf:DescriptionAuthentication>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:DescriptionAuthentication>
           </bf:descriptionAuthentication>
         </xsl:for-each>
@@ -527,7 +546,7 @@
             <xsl:otherwise>
               <bf:language>
                 <bf:Language>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
                   <xsl:if test="$vPart != ''">
                     <bf:part><xsl:value-of select="$vPart"/></bf:part>
                   </xsl:if>
@@ -555,6 +574,7 @@
   </xsl:template>
 
   <!-- unstack language codes in 041 subfields -->
+  <!-- convert to lowercase -->
   <xsl:template name="parse041">
     <xsl:param name="pLang"/>
     <xsl:param name="pPart"/>
@@ -568,23 +588,19 @@
               <xsl:if test="$pPart != ''">
                 <bf:part><xsl:value-of select="$pPart"/></bf:part>
               </xsl:if>
-              <bf:identifiedBy>
-                <bf:Identifier>
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(substring($pLang,$pStart,3))"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <rdf:value>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                  </rdf:value>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/languages</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </bf:Identifier>
-              </bf:identifiedBy>
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <rdf:value>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              </rdf:value>
+              <bf:source>
+                <bf:Source>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/languages</xsl:attribute>
+                </bf:Source>
+              </bf:source>
             </bf:Language>
           </bf:language>
         </xsl:when>
@@ -741,31 +757,24 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <xsl:choose>
-                <xsl:when test="../@ind2 = ' '">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,$encoded)"/></xsl:attribute>
-                  <bf:source>
-                    <bf:Source>
-                      <rdfs:label>marcmuscomp</rdfs:label>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:code><xsl:value-of select="."/></bf:code>
+          <xsl:choose>
+            <xsl:when test="../@ind2 = ' '">
+              <xsl:call-template name="compForm008">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="code" select="."/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
                   <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
-                </xsl:otherwise>
-              </xsl:choose>
-            </bf:GenreForm>
-          </bf:genreForm>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -933,6 +942,7 @@
             <xsl:when test="@ind1 = '2'">bf:MusicPlate</xsl:when>
             <xsl:when test="@ind1 = '3'">bf:MusicPublisherNumber</xsl:when>
             <xsl:when test="@ind1 = '4'">bf:VideoRecordingNumber</xsl:when>
+            <xsl:when test="@ind1 = '6'">bf:MusicDistributorNumber</xsl:when>
             <xsl:otherwise>bf:PublisherNumber</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>

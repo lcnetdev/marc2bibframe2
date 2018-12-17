@@ -94,7 +94,7 @@
   <x:scenario label="027 - STANDARD TECHNICAL REPORT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Strn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:Strn/rdf:value = 'METPRO/CB/TR--74/216+PR.ENVR.WI'"/>
-    <x:expect label="$z creates a status/Status property of the Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[25]/bf:Strn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of the Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[25]/bf:Strn/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
   </x:scenario>
 
   <x:scenario label="028 - PUBLISHER NUMBER">
@@ -108,7 +108,7 @@
   <x:scenario label="030 - CODEN DESIGNATION">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Coden property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:Coden/rdf:value = 'ASIRAF'"/>
-    <x:expect label="$z creates a status/Status property of the Coden with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Coden/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of the Coden with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Coden/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="032 - POSTAL REGISTRATION NUMBER">
@@ -141,7 +141,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:Local/rdf:value = '814782'"/>
     <x:expect label="value in parens creates a source property of the Local" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:Local/bf:source/bf:Source/rdfs:label = 'OCoLC'"/>
-    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
@@ -171,16 +171,19 @@
 
   <x:scenario label="040 - CATALOGING SOURCE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="040 creates a source property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdfs:label = 'DNA'"/>
+    <x:expect label="040 creates a source property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdfs:label = 'NBPol-G'"/>
+    <x:expect label="...with additional rdf:type bf:Agent" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Agent'"/>
+    <x:expect label="...and a uri if it's a code" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/organizations/nbpolg'"/>
     <x:expect label="$b creates a descriptionLanguage property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionLanguage/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
-    <x:expect label="$c creates another source property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[2]/bf:Source/rdfs:label = 'CtY'"/>
-    <x:expect label="$d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier/bf:Agent/rdfs:label = 'CtY'"/>
+    <x:expect label="$c creates another source property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[2]/bf:Source[@rdf:about='http://id.loc.gov/vocabulary/organizations/cty']/rdfs:label = 'CtY'"/>
+    <x:expect label="$d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier/bf:Agent[@rdf:about='http://id.loc.gov/vocabulary/organizations/cty']/rdfs:label = 'CtY'"/>
     <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdfs:label = 'NARS Staff Bulletin No. 16'"/>
+    <x:expect label="...if it contains a code, the object has a URI" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[2]/bf:DescriptionConventions/@rdf:about = 'http://id.loc.gov/vocabulary/descriptionConventions/appm'"/>
   </x:scenario>
 
   <x:scenario label="041 - LANGUAGE CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="041 create language properties of the Work" test="//bf:Work/bf:language[1]/bf:Language/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/eng'"/>
+    <x:expect label="041 create language properties of the Work" test="//bf:Work/bf:language[1]/bf:Language/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/eng'"/>
     <x:expect label="ind1 creates a note property of the Work" test="//bf:Work/bf:note[1]/bf:Note/rdfs:label = 'Includes translation'"/>
     <x:expect label="ind2 determines the source property of the Language" test="//bf:Work/bf:language[4]/bf:Language/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/iso639-1'"/>
     <x:expect label="subfields other than $a create a part property of the Language" test="//bf:Work/bf:language[2]/bf:Language/bf:part = 'original'"/>
@@ -218,9 +221,9 @@
   
   <x:scenario label="047 - FORM OF MUSICAL COMPOSITION CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:code = 'rgg'"/>
-    <x:expect label="ind2 can set the source of the GenreForm" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/bf:source/bf:Source/rdfs:label = 'marcmuscomp'"/>
-    <x:expect label="...and set the URI for the GenreForm" test="//bf:Work/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/vocabulary/marcmuscomp/ct'"/>
+    <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'rgg'"/>
+    <x:expect label="if ind2 = ' ', use 008/18-19 music conversion on each $a to set URI" test="//bf:Work/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026688'"/>
+    <x:expect label="...and label" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'oratorios'"/>
     <x:expect label="$2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/rdfs:label = 'iamlmf'"/>
   </x:scenario>
   
