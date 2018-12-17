@@ -114,7 +114,7 @@
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="088 creates an identifiedBy/ReportNumber property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:ReportNumber) = 2"/>
     <x:expect label="$a is the rdf:value of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:ReportNumber/rdf:value = 'NASA-RP-1124-REV-3'"/>
-    <x:expect label="$z creates a status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:ReportNumber/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:ReportNumber/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
   </x:scenario>
 
 </x:description>

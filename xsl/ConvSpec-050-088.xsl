@@ -455,7 +455,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
+  <!-- instance match for fields 074, 088 in ConvSpec-010-048.xsl -->
 
   <xsl:template match="marc:datafield[@tag='050' or @tag='060']" mode="hasItem">
     <xsl:param name="recordid"/>
