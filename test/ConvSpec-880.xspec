@@ -14,7 +14,7 @@
     <x:context href="data/ConvSpec-880/marc.xml"/>
     <x:expect label="$6 052 creates a geographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:Place/rdfs:label = 'Нью-Йорк'"/>
     <x:expect label="$6 055 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'פ5050 .2'"/>
-    <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/rdf:value = 'ז 1 .630'"/>
+    <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:classification/bf:Classification/bf:classificationPortion = 'ז 1 .630'"/>
     <x:expect label="$6 082 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[2]/bf:ClassificationDdc/bf:classificationPortion = '975,5 / 4252/00222'"/>
     <x:expect label="$6 084 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[3]/bf:Classification/bf:classificationPortion = 'קב112.554'"/>
     <x:expect label="$6 086 creates a classification property of the Instance" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/rdfs:label = 'A 1.1:'"/>
