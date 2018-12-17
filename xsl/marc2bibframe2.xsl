@@ -114,6 +114,11 @@
   <xsl:variable name="mgroove">http://id.loc.gov/vocabulary/mgroove/</xsl:variable>
   <xsl:variable name="mvidformat">http://id.loc.gov/vocabulary/mvidformat/</xsl:variable>
 
+  <!-- for upper- and lower-case translation (ASCII only) -->
+  <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
+  <xsl:variable name="upper">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+  
+
   <!-- configuration files -->
 
   <!-- subject thesaurus map -->
@@ -121,6 +126,9 @@
 
   <!-- language map -->
   <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
+
+  <!-- code maps -->
+  <xsl:variable name="codeMaps" select="document('conf/codeMaps.xml')"/>
 
   <xsl:template match="/">
 
