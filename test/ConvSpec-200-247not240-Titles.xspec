@@ -118,6 +118,7 @@
       <x:expect label="$abfgknps in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
       <x:expect label="rdfs:label for Work" test="//bf:Work[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
       <x:expect label="rdfs:label for Instance" test="//bf:Instance[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="...trim trailing '/'" test="//bf:Instance[3]/rdfs:label = 'The plays of Oscar Wilde'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
@@ -150,6 +151,7 @@
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers'"/>
+      <x:expect label="trim trailing '='" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[1] = 'Labour unions'"/>
     </x:scenario>
     <x:scenario label="$s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>

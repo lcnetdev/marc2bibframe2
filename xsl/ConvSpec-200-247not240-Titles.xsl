@@ -347,15 +347,21 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
       <xsl:variable name="label">
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='a' or
-                                     @code='b' or
-                                     @code='f' or 
-                                     @code='g' or
-                                     @code='k' or
-                                     @code='n' or
-                                     @code='p' or
-                                     @code='s']"/>
+        <xsl:variable name="vLabelStr">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='b' or
+                                       @code='f' or 
+                                       @code='g' or
+                                       @code='k' or
+                                       @code='n' or
+                                       @code='p' or
+                                       @code='s']"/>
+        </xsl:variable>
+        <xsl:call-template name="chopPunctuation">
+          <xsl:with-param name="punctuation" select="'/ '"/>
+          <xsl:with-param name="chopString" select="$vLabelStr"/>
+        </xsl:call-template>
       </xsl:variable>
       <xsl:apply-templates mode="work245" select=".">
         <xsl:with-param name="label" select="$label"/>
@@ -390,6 +396,7 @@
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
               <xsl:with-param name="chopString">
                 <xsl:value-of select="."/>
               </xsl:with-param>
@@ -404,8 +411,10 @@
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                   <xsl:with-param name="chopString">
                     <xsl:call-template name="chopBrackets">
+                      <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                       <xsl:with-param name="chopString">
                         <xsl:value-of select="."/>
                       </xsl:with-param>
@@ -422,6 +431,7 @@
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
               <xsl:with-param name="chopString">
                 <xsl:value-of select="."/>
               </xsl:with-param>
@@ -436,17 +446,23 @@
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="label">
-      <xsl:apply-templates mode="concat-nodes-space"
-                           select="marc:subfield[@code='a' or
-                                   @code='b' or
-                                   @code='f' or 
-                                   @code='g' or
-                                   @code='k' or
-                                   @code='n' or
-                                   @code='p' or
-                                   @code='s']"/>
-    </xsl:variable>
+      <xsl:variable name="label">
+        <xsl:variable name="vLabelStr">
+          <xsl:apply-templates mode="concat-nodes-space"
+                               select="marc:subfield[@code='a' or
+                                       @code='b' or
+                                       @code='f' or 
+                                       @code='g' or
+                                       @code='k' or
+                                       @code='n' or
+                                       @code='p' or
+                                       @code='s']"/>
+        </xsl:variable>
+        <xsl:call-template name="chopPunctuation">
+          <xsl:with-param name="punctuation" select="'/ '"/>
+          <xsl:with-param name="chopString" select="$vLabelStr"/>
+        </xsl:call-template>
+      </xsl:variable>
     <xsl:apply-templates mode="instance245" select=".">
       <xsl:with-param name="label" select="$label"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -479,6 +495,7 @@
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
               <xsl:with-param name="chopString">
                 <xsl:value-of select="."/>
               </xsl:with-param>
@@ -493,8 +510,10 @@
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                   <xsl:with-param name="chopString">
                     <xsl:call-template name="chopBrackets">
+                      <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                       <xsl:with-param name="chopString">
                         <xsl:value-of select="."/>
                       </xsl:with-param>
@@ -522,9 +541,9 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+              <xsl:value-of select="normalize-space($label)"/>
             </rdfs:label>
-            <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+            <bflc:titleSortKey><xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>
@@ -532,6 +551,7 @@
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
               <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>
                 </xsl:with-param>
@@ -544,6 +564,7 @@
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
               <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>
                 </xsl:with-param>
@@ -556,6 +577,7 @@
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
               <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>
                 </xsl:with-param>
@@ -568,6 +590,7 @@
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
               <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
                 <xsl:with-param name="chopString">
                   <xsl:value-of select="."/>
                 </xsl:with-param>

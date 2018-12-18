@@ -117,11 +117,11 @@
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
-            <rdfs:label>Ole Lukøie /</rdfs:label>
+            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie /</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <rdfs:label>Ole Lukøie</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -173,11 +173,11 @@
                 <rdf:value>8759517352</rdf:value>
               </bf:Isbn>
             </bf:identifiedBy>
-            <rdfs:label>Ole Lukøie /</rdfs:label>
+            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie /</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <rdfs:label>Ole Lukøie</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
