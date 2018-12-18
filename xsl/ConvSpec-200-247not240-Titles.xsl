@@ -628,20 +628,18 @@
   <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="title246">
     <xsl:param name="serialization"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vTitleClass">
+      <xsl:choose>
+        <xsl:when test="@ind2 = '1'">bf:ParallelTitle</xsl:when>
+        <xsl:otherwise>bf:VariantTitle</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Title>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
-          </rdf:type>
+        <xsl:element name="{$vTitleClass}">
           <xsl:choose>
             <xsl:when test="@ind2 = '0'">
               <bf:variantType>portion</bf:variantType>
-            </xsl:when>
-            <xsl:when test="@ind2 = '1'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>ParallelTitle</xsl:attribute>
-              </rdf:type>
             </xsl:when>
             <xsl:when test="@ind2 = '2'">
               <bf:variantType>distinctive</bf:variantType>
@@ -666,16 +664,6 @@
             <xsl:apply-templates mode="concat-nodes-space"
                                  select="marc:subfield[@code='a' or
                                          @code='b' or
-                                         @code='g' or
-                                         @code='i' or
-                                         @code='n' or
-                                         @code='p']"/>
-          </xsl:variable>
-          <xsl:variable name="vSortTitle">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='b' or
-                                         @code='g' or
                                          @code='n' or
                                          @code='p']"/>
           </xsl:variable>
@@ -686,9 +674,6 @@
               </xsl:if>
               <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
             </rdfs:label>
-          </xsl:if>
-          <xsl:if test="$vSortTitle != ''">
-            <bflc:titleSortKey><xsl:value-of select="substring($vSortTitle,1,string-length($label)-1)"/></bflc:titleSortKey>
           </xsl:if>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>
@@ -753,7 +738,7 @@
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-        </bf:Title>
+        </xsl:element>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
