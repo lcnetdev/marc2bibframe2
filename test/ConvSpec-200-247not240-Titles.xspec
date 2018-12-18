@@ -61,35 +61,35 @@
   <x:scenario label="242 - TRANSLATION OF TITLE BY CATALOGING AGENCY">
     <x:scenario label="multiple 242s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
+      <x:expect label="should create title/VariantTitle properties in Instance" test="count(//bf:Instance[1]/bf:title/bf:VariantTitle) = 2"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:VariantTitle/bflc:titleSortKey = 'Bureau'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="$abchnp in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="$abchnp in record order" test="//bf:Instance[2]/bf:title/bf:VariantTitle/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title/bf:Title/bf:mainTitle = 'Le Bureau'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title/bf:VariantTitle/bf:mainTitle = 'Le Bureau'"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
+      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:VariantTitle/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
     </x:scenario>
     <x:scenario label="$n">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:Title/bf:partNumber[2] = 'Partie II'"/>
+      <x:expect label="becomes a partNumber" test="//bf:Instance[2]/bf:title/bf:VariantTitle/bf:partNumber[2] = 'Partie II'"/>
     </x:scenario>
     <x:scenario label="$p">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:Title/bf:partName[2] = 'Syndicats ouvriers'"/>
+      <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:VariantTitle/bf:partName[2] = 'Syndicats ouvriers'"/>
     </x:scenario>
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:Title/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
+      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     </x:scenario>
   </x:scenario>
   

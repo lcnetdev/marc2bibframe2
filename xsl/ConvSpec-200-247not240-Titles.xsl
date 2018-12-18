@@ -190,10 +190,7 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Title>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>VariantTitle</xsl:attribute>
-          </rdf:type>
+        <bf:VariantTitle>
           <bf:variantType>translated</bf:variantType>
           <xsl:variable name="label">
             <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
@@ -270,7 +267,7 @@
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
             </bf:language>
           </xsl:for-each>
-        </bf:Title>
+        </bf:VariantTitle>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
