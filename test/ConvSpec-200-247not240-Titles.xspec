@@ -38,23 +38,23 @@
   <x:scenario label="222 - KEY TITLE">
     <x:scenario label="multiple 222s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 2"/>
+      <x:expect label="should create title/KeyTitle properties in Instance" test="count(//bf:Instance[1]/bf:title/bf:KeyTitle) = 2"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance/bf:title[2]/bf:Title/bflc:titleSortKey = 'Vagrant (London)'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance/bf:title[2]/bf:KeyTitle/bflc:titleSortKey = 'Vagrant (London)'"/>
     </x:scenario>
     <x:scenario label="rdfs:label for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="$a $b in record order" test="//bf:Instance/bf:title[1]/bf:Title/rdfs:label = 'Idler (London)'"/>
+      <x:expect label="$a $b in record order" test="//bf:Instance/bf:title[1]/bf:KeyTitle/rdfs:label = 'Idler (London)'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Instance/bf:title[1]/bf:Title/bf:mainTitle = 'Idler'"/>
+      <x:expect label="becomes the mainTitle" test="//bf:Instance/bf:title[1]/bf:KeyTitle/bf:mainTitle = 'Idler'"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Instance/bf:title[1]/bf:Title/bf:qualifier = 'London'"/>
+      <x:expect label="becomes the qualifier" test="//bf:Instance/bf:title[1]/bf:KeyTitle/bf:qualifier = 'London'"/>
     </x:scenario>
   </x:scenario>
 
