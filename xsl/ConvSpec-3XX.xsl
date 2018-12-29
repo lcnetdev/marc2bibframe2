@@ -736,20 +736,65 @@
 
   <xsl:template match="marc:datafield[@tag='345' or @tag='880']" mode="instance345">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:PresentationFormat</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:ProjectionSpeed</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
+      <xsl:variable name="vResource">
+        <xsl:choose>
+          <xsl:when test="@code='a'">bf:PresentationFormat</xsl:when>
+          <xsl:when test="@code='b'">bf:ProjectionSpeed</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vTarget">
+        <xsl:if test="@code='a'">
+          <xsl:choose>
+            <xsl:when test="text()='3D'">
+              <xsl:value-of select="concat($mpresformat,'3d')"/>
+            </xsl:when>
+            <xsl:when test="text()='Cinemiracle'">
+              <xsl:value-of select="concat($mpresformat,'ciner')"/>
+            </xsl:when>
+            <xsl:when test="text()='Cinemiracle'">
+              <xsl:value-of select="concat($mpresformat,'cinem')"/>
+            </xsl:when>
+            <xsl:when test="text()='Cinerama'">
+              <xsl:value-of select="concat($mpresformat,'ciner')"/>
+            </xsl:when>
+            <xsl:when test="text()='Circarama'">
+              <xsl:value-of select="concat($mpresformat,'circa')"/>
+            </xsl:when>
+            <xsl:when test="text()='IMAX'">
+              <xsl:value-of select="concat($mpresformat,'imax')"/>
+            </xsl:when>
+            <xsl:when test="text()='multiprojector'">
+              <xsl:value-of select="concat($mpresformat,'mproj')"/>
+            </xsl:when>
+            <xsl:when test="text()='multiscreen'">
+              <xsl:value-of select="concat($mpresformat,'mscreen')"/>
+            </xsl:when>
+            <xsl:when test="text()='Panavision'">
+              <xsl:value-of select="concat($mpresformat,'pana')"/>
+            </xsl:when>
+            <xsl:when test="text()='standard silent aperture'">
+              <xsl:value-of select="concat($mpresformat,'silent')"/>
+            </xsl:when>
+            <xsl:when test="text()='standard sound aperture'">
+              <xsl:value-of select="concat($mpresformat,'sound')"/>
+            </xsl:when>
+            <xsl:when test="text()='stereoscopic'">
+              <xsl:value-of select="concat($mpresformat,'stereo')"/>
+            </xsl:when>
+            <xsl:when test="text()='Techniscope'">
+              <xsl:value-of select="concat($mpresformat,'tech')"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:if>
+      </xsl:variable>
+      <xsl:apply-templates select="." mode="generateProperty">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
+        <xsl:with-param name="pResource" select="$vResource"/>
+        <xsl:with-param name="pTarget" select="$vTarget"/>
+      </xsl:apply-templates>
+    </xsl:for-each>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='346']" mode="instance">
