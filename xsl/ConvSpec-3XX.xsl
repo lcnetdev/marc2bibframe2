@@ -257,23 +257,36 @@
                       <xsl:with-param name="str" select="normalize-space(substring-after(../marc:subfield[@code='0'][1],')'))"/>
                     </xsl:call-template>
                   </xsl:variable>
-                  <bflc:demographicGroup>
+                  <bflc:target>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
-                  </bflc:demographicGroup>
+                  </bflc:target>
                 </xsl:if>
               </xsl:for-each>
-              <xsl:for-each select="../marc:subfield[@code='m' or @code='n']">
+              <xsl:if test="../marc:subfield[@code='m'] or ../marc:subfield[@code='n']">
                 <bflc:demographicGroup>
                   <bflc:DemographicGroup>
-                    <rdfs:label>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:value-of select="."/>
-                    </rdfs:label>
+                    <xsl:for-each select="../marc:subfield[@code='m']">
+                      <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="."/>
+                      </rdfs:label>
+                    </xsl:for-each>
+                    <xsl:for-each select="../marc:subfield[@code='n']">
+                      <xsl:variable name="encoded">
+                        <xsl:call-template name="url-encode">
+                          <xsl:with-param name="str" select="normalize-space(.)"/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <bf:code><xsl:value-of select="."/></bf:code>
+                      <bflc:target>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
+                      </bflc:target>
+                    </xsl:for-each>
                   </bflc:DemographicGroup>
                 </bflc:demographicGroup>
-              </xsl:for-each>
+              </xsl:if>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
