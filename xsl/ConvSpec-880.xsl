@@ -367,27 +367,27 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='344'">
-        <xsl:apply-templates select="." mode="instance344">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='345'">
-        <xsl:apply-templates select="." mode="instance345">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='346'">
-        <xsl:apply-templates select="." mode="instance346">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='347'">
-        <xsl:apply-templates select="." mode="instance347">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='348'">
-        <xsl:apply-templates select="." mode="instance348">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
