@@ -373,6 +373,9 @@
             <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <xsl:apply-templates select="../marc:subfield[@code='0']" mode="subfield0orw">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:if test="$pTarget != ''">
               <bflc:target>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$pTarget"/></xsl:attribute>

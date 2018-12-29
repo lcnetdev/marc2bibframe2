@@ -116,6 +116,7 @@
   <xsl:variable name="mbroadstd">http://id.loc.gov/vocabulary/mbroadstd/</xsl:variable>
   <xsl:variable name="mfiletype">http://id.loc.gov/vocabulary/mfiletype/</xsl:variable>
   <xsl:variable name="mregencoding">http://id.loc.gov/vocabulary/mregencoding/</xsl:variable>
+  <xsl:variable name="mmusicformat">http://id.loc.gov/vocabulary/mmusicformat/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>

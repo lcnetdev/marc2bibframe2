@@ -608,14 +608,14 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='348']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance34X">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='880']" mode="instance34X">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='348' or @tag='880']" mode="instance34X">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -629,6 +629,7 @@
         <xsl:when test="$vTag='345'">bf:projectionCharacteristic</xsl:when>
         <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
         <xsl:when test="$vTag='347'">bf:digitalCharacteristic</xsl:when>
+        <xsl:when test="$vTag='348'">bf:musicFormat</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:for-each select="marc:subfield">
@@ -667,6 +668,9 @@
               <xsl:when test="@code='e'">bf:RegionalEncoding</xsl:when>
               <xsl:when test="@code='f'">bf:EncodedBitrate</xsl:when>
             </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$vTag='348'">
+            <xsl:if test="@code='a'">bf:MusicFormat</xsl:if>
           </xsl:when>
         </xsl:choose>
       </xsl:variable>
@@ -942,6 +946,45 @@
               </xsl:when>
             </xsl:choose>
           </xsl:when>
+          <xsl:when test="$vTag='348'">
+            <xsl:if test="@code='a'">
+              <xsl:choose>
+                <xsl:when test="text()='choir book'">
+                  <xsl:value-of select="concat($mmusicformat,'choirbk')"/>
+                </xsl:when>
+                <xsl:when test="text()='chorus score'">
+                  <xsl:value-of select="concat($mmusicformat,'chscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='condensed score'">
+                  <xsl:value-of select="concat($mmusicformat,'conscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='part'">
+                  <xsl:value-of select="concat($mmusicformat,'part')"/>
+                </xsl:when>
+                <xsl:when test="text()='piano conductor part'">
+                  <xsl:value-of select="concat($mmusicformat,'pianoconpt')"/>
+                </xsl:when>
+                <xsl:when test="text()='piano score'">
+                  <xsl:value-of select="concat($mmusicformat,'pianoscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='score'">
+                  <xsl:value-of select="concat($mmusicformat,'score')"/>
+                </xsl:when>
+                <xsl:when test="text()='study score'">
+                  <xsl:value-of select="concat($mmusicformat,'study score')"/>
+                </xsl:when>
+                <xsl:when test="text()='table book'">
+                  <xsl:value-of select="concat($mmusicformat,'tablebk')"/>
+                </xsl:when>
+                <xsl:when test="text()='violin conductor part'">
+                  <xsl:value-of select="concat($mmusicformat,'violconpart')"/>
+                </xsl:when>
+                <xsl:when test="text()='vocal score'">
+                  <xsl:value-of select="concat($mmusicformat,'vocalscore')"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:if>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$vResource != ''">
@@ -953,40 +996,6 @@
         </xsl:apply-templates>
       </xsl:if>
     </xsl:for-each>
-  </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='348']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance348">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='348' or @tag='880']" mode="instance348">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:musicFormat>
-            <bf:MusicFormat>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
-                <bf:code><xsl:value-of select="."/></bf:code>
-              </xsl:for-each>
-              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0'][position()=1]" mode="subfield0orw">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:MusicFormat>
-          </bf:musicFormat>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='350']" mode="instance">
