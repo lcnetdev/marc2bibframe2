@@ -617,50 +617,114 @@
 
   <xsl:template match="marc:datafield[@tag='344' or @tag='880']" mode="instance344">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:RecordingMethod</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:RecordingMedium</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:PlayingSpeed</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:GrooveCharacteristic</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:TrackConfig</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:TapeConfig</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='g']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:PlaybackChannels</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='h']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:PlaybackCharacteristic</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:for-each select="marc:subfield[@code='a' or
+                                        @code='b' or
+                                        @code='c' or
+                                        @code='d' or
+                                        @code='e' or
+                                        @code='f' or
+                                        @code='g' or
+                                        @code='h']">
+      <xsl:variable name="vResource">
+        <xsl:choose>
+          <xsl:when test="@code='a'">bf:RecordingMethod</xsl:when>
+          <xsl:when test="@code='b'">bf:RecordingMedium</xsl:when>
+          <xsl:when test="@code='c'">bf:PlayingSpeed</xsl:when>
+          <xsl:when test="@code='d'">bf:GrooveCharacteristic</xsl:when>
+          <xsl:when test="@code='e'">bf:TrackConfig</xsl:when>
+          <xsl:when test="@code='f'">bf:TapeConfig</xsl:when>
+          <xsl:when test="@code='g'">bf:PlaybackChannels</xsl:when>
+          <xsl:when test="@code='h'">bf:PlaybackCharacteristic</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vTarget">
+        <xsl:choose>
+          <xsl:when test="@code='a'">
+            <xsl:choose>
+              <xsl:when test="text()='analog'">
+                <xsl:value-of select="concat($mrectype,'analog')"/>
+              </xsl:when>
+              <xsl:when test="text()='digital'">
+                <xsl:value-of select="concat($mrectype,'digital')"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@code='b'">
+            <xsl:choose>
+              <xsl:when test="text()='magnetic'">
+                <xsl:value-of select="concat($mrecmedium,'mag')"/>
+              </xsl:when>
+              <xsl:when test="text()='optical'">
+                <xsl:value-of select="concat($mrecmedium,'opt')"/>
+              </xsl:when>
+              <xsl:when test="text()='magneto-optical'">
+                <xsl:value-of select="concat($mrecmedium,'magopt')"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@code='d'">
+            <xsl:choose>
+              <xsl:when test="text()='coarse groove'">
+                <xsl:value-of select="concat($mgroove,'coarse')"/>
+              </xsl:when>
+              <xsl:when test="text()='microgroove'">
+                <xsl:value-of select="concat($mgroove,'micro')"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@code='g'">
+            <xsl:choose>
+              <xsl:when test="text()='mono'">
+                <xsl:value-of select="concat($mplayback,'mon')"/>
+              </xsl:when>
+              <xsl:when test="text()='quadraphonic' or text()='surround'">
+                <xsl:value-of select="concat($mplayback,'mul')"/>
+              </xsl:when>
+              <xsl:when test="text()='stereo'">
+                <xsl:value-of select="concat($mplayback,'ste')"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="@code='h'">
+            <xsl:choose>
+              <xsl:when test="text()='CCIR encoded'">
+                <xsl:value-of select="concat($mspecplayback,'ccir')"/>
+              </xsl:when>
+              <xsl:when test="text()='CX encoded'">
+                <xsl:value-of select="concat($mspecplayback,'cx')"/>
+              </xsl:when>
+              <xsl:when test="text()='dbx encoded'">
+                <xsl:value-of select="concat($mspecplayback,'dbx')"/>
+              </xsl:when>
+              <xsl:when test="text()='Dolby'">
+                <xsl:value-of select="concat($mspecplayback,'dolby')"/>
+              </xsl:when>
+              <xsl:when test="text()='Dolby-A encoded'">
+                <xsl:value-of select="concat($mspecplayback,'dolbya')"/>
+              </xsl:when>
+              <xsl:when test="text()='Dolby-B encoded'">
+                <xsl:value-of select="concat($mspecplayback,'dolbyb')"/>
+              </xsl:when>
+              <xsl:when test="text()='Dolby-C encoded'">
+                <xsl:value-of select="concat($mspecplayback,'dolbyc')"/>
+              </xsl:when>
+              <xsl:when test="text()='LPCM'">
+                <xsl:value-of select="concat($mspecplayback,'lpcm')"/>
+              </xsl:when>
+              <xsl:when test="text()='NAB standard'">
+                <xsl:value-of select="concat($mspecplayback,'nab')"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:apply-templates select="." mode="generateProperty">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
+        <xsl:with-param name="pResource" select="$vResource"/>
+        <xsl:with-param name="pTarget" select="$vTarget"/>
+      </xsl:apply-templates>
+    </xsl:for-each>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='345']" mode="instance">
