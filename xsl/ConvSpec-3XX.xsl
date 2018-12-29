@@ -608,14 +608,14 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance34X">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='880']" mode="instance34X">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='880']" mode="instance34X">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -628,6 +628,7 @@
         <xsl:when test="$vTag='344'">bf:soundCharacteristic</xsl:when>
         <xsl:when test="$vTag='345'">bf:projectionCharacteristic</xsl:when>
         <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
+        <xsl:when test="$vTag='347'">bf:digitalCharacteristic</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:for-each select="marc:subfield">
@@ -655,6 +656,16 @@
             <xsl:choose>
               <xsl:when test="@code='a'">bf:VideoFormat</xsl:when>
               <xsl:when test="@code='b'">bf:BroadcastStandard</xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$vTag='347'">
+            <xsl:choose>
+              <xsl:when test="@code='a'">bf:FileType</xsl:when>
+              <xsl:when test="@code='b'">bf:EncodingFormat</xsl:when>
+              <xsl:when test="@code='c'">bf:FileSize</xsl:when>
+              <xsl:when test="@code='d'">bf:Resolution</xsl:when>
+              <xsl:when test="@code='e'">bf:RegionalEncoding</xsl:when>
+              <xsl:when test="@code='f'">bf:EncodedBitrate</xsl:when>
             </xsl:choose>
           </xsl:when>
         </xsl:choose>
@@ -856,6 +867,81 @@
               </xsl:when>
             </xsl:choose>
           </xsl:when>
+          <xsl:when test="$vTag='347'">
+            <xsl:choose>
+              <xsl:when test="@code='a'">
+                <xsl:choose>
+                  <xsl:when test="text()='audio file'">
+                    <xsl:value-of select="concat($mfiletype,'audio')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='data file'">
+                    <xsl:value-of select="concat($mfiletype,'data')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='image file'">
+                    <xsl:value-of select="concat($mfiletype,'image')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='program file'">
+                    <xsl:value-of select="concat($mfiletype,'program')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='text file'">
+                    <xsl:value-of select="concat($mfiletype,'text')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='video file'">
+                    <xsl:value-of select="concat($mfiletype,'video')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='e'">
+                <xsl:choose>
+                  <xsl:when test="text()='all regions'">
+                    <xsl:value-of select="concat($mregencoding,'all')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 1'">
+                    <xsl:value-of select="concat($mregencoding,'region1')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 2'">
+                    <xsl:value-of select="concat($mregencoding,'region2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 3'">
+                    <xsl:value-of select="concat($mregencoding,'region3')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 4'">
+                    <xsl:value-of select="concat($mregencoding,'region4')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 5'">
+                    <xsl:value-of select="concat($mregencoding,'region5')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 6'">
+                    <xsl:value-of select="concat($mregencoding,'region6')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 7'">
+                    <xsl:value-of select="concat($mregencoding,'region7')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region 8'">
+                    <xsl:value-of select="concat($mregencoding,'region8')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region A'">
+                    <xsl:value-of select="concat($mregencoding,'regionA')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region B'">
+                    <xsl:value-of select="concat($mregencoding,'regionB')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region C (Blu-Ray)'">
+                    <xsl:value-of select="concat($mregencoding,'regionCblu')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region C (video game)'">
+                    <xsl:value-of select="concat($mregencoding,'regionCgame')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region J'">
+                    <xsl:value-of select="concat($mregencoding,'regionJ')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='region U/C'">
+                    <xsl:value-of select="concat($mregencoding,'regionU')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$vResource != ''">
@@ -869,51 +955,6 @@
     </xsl:for-each>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='347']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance347">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='347' or @tag='880']" mode="instance347">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:FileType</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:EncodingFormat</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:FileSize</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:Resolution</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:RegionalEncoding</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:digitalCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:EncodedBitrate</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="marc:datafield[@tag='348']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance348">

@@ -382,7 +382,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='347'">
-        <xsl:apply-templates select="." mode="instance347">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
