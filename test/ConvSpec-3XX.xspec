@@ -181,12 +181,12 @@
   <x:scenario label="382 - MEDIUM OF PERFORMANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']) = 1"/>
-    <x:expect label="$n creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='baritone horn']/parent::*/bf:count = '2'"/>
+    <x:expect label="$n creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']/parent::*/bf:count = '2'"/>
     <x:expect label="$e creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='orchestra']/parent::*/bf:count = '1'"/>
     <x:expect label="$v immediately following $a/$b/$d/$p creates a note property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']/parent::*/bf:note/bf:Note/rdfs:label = 'played on altered piano'"/>
-    <x:expect label="$b creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute']) = 1"/>
-    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='doubling']/parent::*/parent::*/parent::*/rdfs:label = 'synthesizer'"/>
-    <x:expect label="$p creates a musicMedium/MusicMedium property of the Work with 'alternative' status" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/rdfs:label[text()='alternative']/parent::*/parent::*/parent::*/rdfs:label = 'baritone horn'"/>
+    <x:expect label="$b creates a musicMedium property of the Work with 'soloist' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute soloist']) = 1"/>
+    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='doubling synthesizer']) = 1"/>
+    <x:expect label="$p creates a musicMedium/MusicMedium property of the Work with 'alternate' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']) = 1"/>
     <x:expect label="$r creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[8]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers alongside ensembles: 1'"/>
     <x:expect label="$s creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[4]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers: 2'"/>
     <x:expect label="$t creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[9]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total ensembles: 1'"/>

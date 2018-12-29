@@ -110,25 +110,16 @@
           <xsl:variable name="vNodeId" select="generate-id()"/>
           <bf:musicMedium>
             <bf:MusicMedium>
-              <xsl:if test="@code='d'">
-                <bf:status>
-                  <bf:Status>
-                    <rdfs:label>doubling</rdfs:label>
-                  </bf:Status>
-                </bf:status>
-              </xsl:if>
-              <xsl:if test="@code='p'">
-                <bf:status>
-                  <bf:Status>
-                    <rdfs:label>alternative</rdfs:label>
-                  </bf:Status>
-                </bf:status>
-              </xsl:if>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:choose>
+                  <xsl:when test="@code='b'"><xsl:value-of select="concat(text(),' soloist')"/></xsl:when>
+                  <xsl:when test="@code='d'"><xsl:value-of select="concat('doubling ',text())"/></xsl:when>
+                  <xsl:when test="@code='p'"><xsl:value-of select="concat('alternate ',text())"/></xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                </xsl:choose>
               </rdfs:label>
               <xsl:for-each select="following-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p' or @code='r' or @code='s' or @code='t'][position()=1]/preceding-sibling::marc:subfield[@code='n' or @code='e']">
                 <xsl:if test="generate-id(preceding-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p'][position()=1])=$vNodeId">
