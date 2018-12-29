@@ -608,220 +608,267 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance344">
+    <xsl:apply-templates select="." mode="instance34X">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='344' or @tag='880']" mode="instance344">
+  <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='880']" mode="instance34X">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:for-each select="marc:subfield[@code='a' or
-                                        @code='b' or
-                                        @code='c' or
-                                        @code='d' or
-                                        @code='e' or
-                                        @code='f' or
-                                        @code='g' or
-                                        @code='h']">
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vProp">
+      <xsl:choose>
+        <xsl:when test="$vTag='344'">bf:soundCharacteristic</xsl:when>
+        <xsl:when test="$vTag='345'">bf:projectionCharacteristic</xsl:when>
+        <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:for-each select="marc:subfield">
       <xsl:variable name="vResource">
         <xsl:choose>
-          <xsl:when test="@code='a'">bf:RecordingMethod</xsl:when>
-          <xsl:when test="@code='b'">bf:RecordingMedium</xsl:when>
-          <xsl:when test="@code='c'">bf:PlayingSpeed</xsl:when>
-          <xsl:when test="@code='d'">bf:GrooveCharacteristic</xsl:when>
-          <xsl:when test="@code='e'">bf:TrackConfig</xsl:when>
-          <xsl:when test="@code='f'">bf:TapeConfig</xsl:when>
-          <xsl:when test="@code='g'">bf:PlaybackChannels</xsl:when>
-          <xsl:when test="@code='h'">bf:PlaybackCharacteristic</xsl:when>
+          <xsl:when test="$vTag='344'">
+            <xsl:choose>
+              <xsl:when test="@code='a'">bf:RecordingMethod</xsl:when>
+              <xsl:when test="@code='b'">bf:RecordingMedium</xsl:when>
+              <xsl:when test="@code='c'">bf:PlayingSpeed</xsl:when>
+              <xsl:when test="@code='d'">bf:GrooveCharacteristic</xsl:when>
+              <xsl:when test="@code='e'">bf:TrackConfig</xsl:when>
+              <xsl:when test="@code='f'">bf:TapeConfig</xsl:when>
+              <xsl:when test="@code='g'">bf:PlaybackChannels</xsl:when>
+              <xsl:when test="@code='h'">bf:PlaybackCharacteristic</xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$vTag='345'">
+            <xsl:choose>
+              <xsl:when test="@code='a'">bf:PresentationFormat</xsl:when>
+              <xsl:when test="@code='b'">bf:ProjectionSpeed</xsl:when>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$vTag='346'">
+            <xsl:choose>
+              <xsl:when test="@code='a'">bf:VideoFormat</xsl:when>
+              <xsl:when test="@code='b'">bf:BroadcastStandard</xsl:when>
+            </xsl:choose>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vTarget">
         <xsl:choose>
-          <xsl:when test="@code='a'">
+          <xsl:when test="$vTag='344'">
             <xsl:choose>
-              <xsl:when test="text()='analog'">
-                <xsl:value-of select="concat($mrectype,'analog')"/>
+              <xsl:when test="@code='a'">
+                <xsl:choose>
+                  <xsl:when test="text()='analog'">
+                    <xsl:value-of select="concat($mrectype,'analog')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='digital'">
+                    <xsl:value-of select="concat($mrectype,'digital')"/>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:when>
-              <xsl:when test="text()='digital'">
-                <xsl:value-of select="concat($mrectype,'digital')"/>
+              <xsl:when test="@code='b'">
+                <xsl:choose>
+                  <xsl:when test="text()='magnetic'">
+                    <xsl:value-of select="concat($mrecmedium,'mag')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='optical'">
+                    <xsl:value-of select="concat($mrecmedium,'opt')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='magneto-optical'">
+                    <xsl:value-of select="concat($mrecmedium,'magopt')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='d'">
+                <xsl:choose>
+                  <xsl:when test="text()='coarse groove'">
+                    <xsl:value-of select="concat($mgroove,'coarse')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='microgroove'">
+                    <xsl:value-of select="concat($mgroove,'micro')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='g'">
+                <xsl:choose>
+                  <xsl:when test="text()='mono'">
+                    <xsl:value-of select="concat($mplayback,'mon')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='quadraphonic' or text()='surround'">
+                    <xsl:value-of select="concat($mplayback,'mul')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='stereo'">
+                    <xsl:value-of select="concat($mplayback,'ste')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='h'">
+                <xsl:choose>
+                  <xsl:when test="text()='CCIR encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'ccir')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='CX encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'cx')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='dbx encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'dbx')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby'">
+                    <xsl:value-of select="concat($mspecplayback,'dolby')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby-A encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbya')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby-B encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbyb')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby-C encoded'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbyc')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='LPCM'">
+                    <xsl:value-of select="concat($mspecplayback,'lpcm')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='NAB standard'">
+                    <xsl:value-of select="concat($mspecplayback,'nab')"/>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:when>
             </xsl:choose>
           </xsl:when>
-          <xsl:when test="@code='b'">
-            <xsl:choose>
-              <xsl:when test="text()='magnetic'">
-                <xsl:value-of select="concat($mrecmedium,'mag')"/>
-              </xsl:when>
-              <xsl:when test="text()='optical'">
-                <xsl:value-of select="concat($mrecmedium,'opt')"/>
-              </xsl:when>
-              <xsl:when test="text()='magneto-optical'">
-                <xsl:value-of select="concat($mrecmedium,'magopt')"/>
-              </xsl:when>
-            </xsl:choose>
+          <xsl:when test="$vTag='345'">
+            <xsl:if test="@code='a'">
+              <xsl:choose>
+                <xsl:when test="text()='3D'">
+                  <xsl:value-of select="concat($mpresformat,'3d')"/>
+                </xsl:when>
+                <xsl:when test="text()='Cinemiracle'">
+                  <xsl:value-of select="concat($mpresformat,'ciner')"/>
+                </xsl:when>
+                <xsl:when test="text()='Cinemiracle'">
+                  <xsl:value-of select="concat($mpresformat,'cinem')"/>
+                </xsl:when>
+                <xsl:when test="text()='Cinerama'">
+                  <xsl:value-of select="concat($mpresformat,'ciner')"/>
+                </xsl:when>
+                <xsl:when test="text()='Circarama'">
+                  <xsl:value-of select="concat($mpresformat,'circa')"/>
+                </xsl:when>
+                <xsl:when test="text()='IMAX'">
+                  <xsl:value-of select="concat($mpresformat,'imax')"/>
+                </xsl:when>
+                <xsl:when test="text()='multiprojector'">
+                  <xsl:value-of select="concat($mpresformat,'mproj')"/>
+                </xsl:when>
+                <xsl:when test="text()='multiscreen'">
+                  <xsl:value-of select="concat($mpresformat,'mscreen')"/>
+                </xsl:when>
+                <xsl:when test="text()='Panavision'">
+                  <xsl:value-of select="concat($mpresformat,'pana')"/>
+                </xsl:when>
+                <xsl:when test="text()='standard silent aperture'">
+                  <xsl:value-of select="concat($mpresformat,'silent')"/>
+                </xsl:when>
+                <xsl:when test="text()='standard sound aperture'">
+                  <xsl:value-of select="concat($mpresformat,'sound')"/>
+                </xsl:when>
+                <xsl:when test="text()='stereoscopic'">
+                  <xsl:value-of select="concat($mpresformat,'stereo')"/>
+                </xsl:when>
+                <xsl:when test="text()='Techniscope'">
+                  <xsl:value-of select="concat($mpresformat,'tech')"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:if>
           </xsl:when>
-          <xsl:when test="@code='d'">
+          <xsl:when test="$vTag='346'">
             <xsl:choose>
-              <xsl:when test="text()='coarse groove'">
-                <xsl:value-of select="concat($mgroove,'coarse')"/>
+              <xsl:when test="@code='a'">
+                <xsl:choose>
+                  <xsl:when test="text()='8 mm'">
+                    <xsl:value-of select="concat($mvidformat,'8mm')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Betacam'">
+                    <xsl:value-of select="concat($mvidformat,'betacam')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Betacam SP'">
+                    <xsl:value-of select="concat($mvidformat,'betasp')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Betamax'">
+                    <xsl:value-of select="concat($mvidformat,'betamax')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='CED'">
+                    <xsl:value-of select="concat($mvidformat,'ced')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='D-2'">
+                    <xsl:value-of select="concat($mvidformat,'d2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='EIAJ'">
+                    <xsl:value-of select="concat($mvidformat,'eiaj')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Hi-8 mm'">
+                    <xsl:value-of select="concat($mvidformat,'hi8mm')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='laser optical'">
+                    <xsl:value-of select="concat($mvidformat,'laser')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='M-II'">
+                    <xsl:value-of select="concat($mvidformat,'mii')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Quadruplex'">
+                    <xsl:value-of select="concat($mvidformat,'quad')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Super-VHS'">
+                    <xsl:value-of select="concat($mvidformat,'svhs')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Type C'">
+                    <xsl:value-of select="concat($mvidformat,'typec')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='U-matic'">
+                    <xsl:value-of select="concat($mvidformat,'umatic')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='VHS'">
+                    <xsl:value-of select="concat($mvidformat,'vhs')"/>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:when>
-              <xsl:when test="text()='microgroove'">
-                <xsl:value-of select="concat($mgroove,'micro')"/>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:when test="@code='g'">
-            <xsl:choose>
-              <xsl:when test="text()='mono'">
-                <xsl:value-of select="concat($mplayback,'mon')"/>
-              </xsl:when>
-              <xsl:when test="text()='quadraphonic' or text()='surround'">
-                <xsl:value-of select="concat($mplayback,'mul')"/>
-              </xsl:when>
-              <xsl:when test="text()='stereo'">
-                <xsl:value-of select="concat($mplayback,'ste')"/>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:when test="@code='h'">
-            <xsl:choose>
-              <xsl:when test="text()='CCIR encoded'">
-                <xsl:value-of select="concat($mspecplayback,'ccir')"/>
-              </xsl:when>
-              <xsl:when test="text()='CX encoded'">
-                <xsl:value-of select="concat($mspecplayback,'cx')"/>
-              </xsl:when>
-              <xsl:when test="text()='dbx encoded'">
-                <xsl:value-of select="concat($mspecplayback,'dbx')"/>
-              </xsl:when>
-              <xsl:when test="text()='Dolby'">
-                <xsl:value-of select="concat($mspecplayback,'dolby')"/>
-              </xsl:when>
-              <xsl:when test="text()='Dolby-A encoded'">
-                <xsl:value-of select="concat($mspecplayback,'dolbya')"/>
-              </xsl:when>
-              <xsl:when test="text()='Dolby-B encoded'">
-                <xsl:value-of select="concat($mspecplayback,'dolbyb')"/>
-              </xsl:when>
-              <xsl:when test="text()='Dolby-C encoded'">
-                <xsl:value-of select="concat($mspecplayback,'dolbyc')"/>
-              </xsl:when>
-              <xsl:when test="text()='LPCM'">
-                <xsl:value-of select="concat($mspecplayback,'lpcm')"/>
-              </xsl:when>
-              <xsl:when test="text()='NAB standard'">
-                <xsl:value-of select="concat($mspecplayback,'nab')"/>
+              <xsl:when test="@code='b'">
+                <xsl:choose>
+                  <xsl:when test="text()='HDTV'">
+                    <xsl:value-of select="concat($mbroadstd,'hdtv')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='NTSC'">
+                    <xsl:value-of select="concat($mbroadstd,'ntsc')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='PAL'">
+                    <xsl:value-of select="concat($mbroadstd,'pal')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='SECAM'">
+                    <xsl:value-of select="concat($mbroadstd,'secam')"/>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:when>
             </xsl:choose>
           </xsl:when>
         </xsl:choose>
       </xsl:variable>
-      <xsl:apply-templates select="." mode="generateProperty">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pProp">bf:soundCharacteristic</xsl:with-param>
-        <xsl:with-param name="pResource" select="$vResource"/>
-        <xsl:with-param name="pTarget" select="$vTarget"/>
-      </xsl:apply-templates>
+      <xsl:if test="$vResource != ''">
+        <xsl:apply-templates select="." mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp" select="$vProp"/>
+          <xsl:with-param name="pResource" select="$vResource"/>
+          <xsl:with-param name="pTarget" select="$vTarget"/>
+        </xsl:apply-templates>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='345']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance345">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='345' or @tag='880']" mode="instance345">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
-      <xsl:variable name="vResource">
-        <xsl:choose>
-          <xsl:when test="@code='a'">bf:PresentationFormat</xsl:when>
-          <xsl:when test="@code='b'">bf:ProjectionSpeed</xsl:when>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:variable name="vTarget">
-        <xsl:if test="@code='a'">
-          <xsl:choose>
-            <xsl:when test="text()='3D'">
-              <xsl:value-of select="concat($mpresformat,'3d')"/>
-            </xsl:when>
-            <xsl:when test="text()='Cinemiracle'">
-              <xsl:value-of select="concat($mpresformat,'ciner')"/>
-            </xsl:when>
-            <xsl:when test="text()='Cinemiracle'">
-              <xsl:value-of select="concat($mpresformat,'cinem')"/>
-            </xsl:when>
-            <xsl:when test="text()='Cinerama'">
-              <xsl:value-of select="concat($mpresformat,'ciner')"/>
-            </xsl:when>
-            <xsl:when test="text()='Circarama'">
-              <xsl:value-of select="concat($mpresformat,'circa')"/>
-            </xsl:when>
-            <xsl:when test="text()='IMAX'">
-              <xsl:value-of select="concat($mpresformat,'imax')"/>
-            </xsl:when>
-            <xsl:when test="text()='multiprojector'">
-              <xsl:value-of select="concat($mpresformat,'mproj')"/>
-            </xsl:when>
-            <xsl:when test="text()='multiscreen'">
-              <xsl:value-of select="concat($mpresformat,'mscreen')"/>
-            </xsl:when>
-            <xsl:when test="text()='Panavision'">
-              <xsl:value-of select="concat($mpresformat,'pana')"/>
-            </xsl:when>
-            <xsl:when test="text()='standard silent aperture'">
-              <xsl:value-of select="concat($mpresformat,'silent')"/>
-            </xsl:when>
-            <xsl:when test="text()='standard sound aperture'">
-              <xsl:value-of select="concat($mpresformat,'sound')"/>
-            </xsl:when>
-            <xsl:when test="text()='stereoscopic'">
-              <xsl:value-of select="concat($mpresformat,'stereo')"/>
-            </xsl:when>
-            <xsl:when test="text()='Techniscope'">
-              <xsl:value-of select="concat($mpresformat,'tech')"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:if>
-      </xsl:variable>
-      <xsl:apply-templates select="." mode="generateProperty">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pProp">bf:projectionCharacteristic</xsl:with-param>
-        <xsl:with-param name="pResource" select="$vResource"/>
-        <xsl:with-param name="pTarget" select="$vTarget"/>
-      </xsl:apply-templates>
-    </xsl:for-each>
-  </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='346']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance346">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='346' or @tag='880']" mode="instance346">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:videoCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:VideoFormat</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='b']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:videoCharacteristic</xsl:with-param>
-          <xsl:with-param name="pResource">bf:BroadcastStandard</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="marc:datafield[@tag='347']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance347">

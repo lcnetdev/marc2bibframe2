@@ -113,8 +113,10 @@
     
   <x:scenario label="346 - VIDEO CHARACTERISTICS">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/rdfs:label = 'Beta'"/>
+    <x:expect label="$a creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/rdfs:label = 'Betamax'"/>
+    <x:expect label="...with a bflc:target property if matches string in spec" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/bflc:target/@rdf:resource='http://id.loc.gov/vocabulary/mvidformat/betamax'"/>
     <x:expect label="$b creates a videoCharacteristic/BroadcastStandard property of the Instance" test="//bf:Instance[1]/bf:videoCharacteristic[2]/bf:BroadcastStandard/rdfs:label = 'PAL'"/>
+    <x:expect label="...with a bflc:target property if matches string in spec" test="//bf:Instance[1]/bf:videoCharacteristic[2]/bf:BroadcastStandard/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mbroadstd/pal'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/bf:source/bf:Source/rdfs:label = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:videoCharacteristic[1]/bf:VideoFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'videotape'"/>
   </x:scenario>
