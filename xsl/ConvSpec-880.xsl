@@ -62,19 +62,7 @@
       </xsl:when>
       <xsl:when test="$tag='245'">
         <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-          <xsl:variable name="label">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='b' or
-                                         @code='f' or 
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='n' or
-                                         @code='p' or
-                                         @code='s']"/>
-          </xsl:variable>
           <xsl:apply-templates mode="work245" select=".">
-            <xsl:with-param name="label" select="$label"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
@@ -271,19 +259,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='245'">
-        <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                       @code='b' or
-                                       @code='f' or 
-                                       @code='g' or
-                                       @code='k' or
-                                       @code='n' or
-                                       @code='p' or
-                                       @code='s']"/>
-        </xsl:variable>
         <xsl:apply-templates mode="instance245" select=".">
-          <xsl:with-param name="label" select="$label"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

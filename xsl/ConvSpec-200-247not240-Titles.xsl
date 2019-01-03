@@ -346,34 +346,32 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-      <xsl:variable name="label">
-        <xsl:variable name="vLabelStr">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                       @code='b' or
-                                       @code='f' or 
-                                       @code='g' or
-                                       @code='k' or
-                                       @code='n' or
-                                       @code='p' or
-                                       @code='s']"/>
-        </xsl:variable>
-        <xsl:call-template name="chopPunctuation">
-          <xsl:with-param name="punctuation" select="'/ '"/>
-          <xsl:with-param name="chopString" select="$vLabelStr"/>
-        </xsl:call-template>
-      </xsl:variable>
       <xsl:apply-templates mode="work245" select=".">
-        <xsl:with-param name="label" select="$label"/>
         <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
-    <xsl:param name="label"/>
     <xsl:param name="serialization"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="label">
+      <xsl:variable name="vLabelStr">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='a' or
+                                     @code='b' or
+                                     @code='f' or 
+                                     @code='g' or
+                                     @code='k' or
+                                     @code='n' or
+                                     @code='p' or
+                                     @code='s']"/>
+      </xsl:variable>
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="punctuation" select="'/ '"/>
+        <xsl:with-param name="chopString" select="$vLabelStr"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$label != '' and @tag='245'">
@@ -446,33 +444,31 @@
   <xsl:template match="marc:datafield[@tag='245']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-      <xsl:variable name="label">
-        <xsl:variable name="vLabelStr">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                       @code='b' or
-                                       @code='f' or 
-                                       @code='g' or
-                                       @code='k' or
-                                       @code='n' or
-                                       @code='p' or
-                                       @code='s']"/>
-        </xsl:variable>
-        <xsl:call-template name="chopPunctuation">
-          <xsl:with-param name="punctuation" select="'/ '"/>
-          <xsl:with-param name="chopString" select="$vLabelStr"/>
-        </xsl:call-template>
-      </xsl:variable>
     <xsl:apply-templates mode="instance245" select=".">
-      <xsl:with-param name="label" select="$label"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="instance245">
-    <xsl:param name="label"/>
     <xsl:param name="serialization"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="label">
+      <xsl:variable name="vLabelStr">
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='a' or
+                                     @code='b' or
+                                     @code='f' or 
+                                     @code='g' or
+                                     @code='k' or
+                                     @code='n' or
+                                     @code='p' or
+                                     @code='s']"/>
+      </xsl:variable>
+      <xsl:call-template name="chopPunctuation">
+        <xsl:with-param name="punctuation" select="'/ '"/>
+        <xsl:with-param name="chopString" select="$vLabelStr"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$label != '' and @tag='245'">
