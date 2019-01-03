@@ -580,10 +580,16 @@
   <xsl:template match="marc:datafield[@tag='510' or @tag='880']" mode="instance510">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vProperty">
+      <xsl:choose>
+        <xsl:when test="@ind1='0' or @ind1='1' or @ind1='2'">bflc:indexedIn</xsl:when>
+        <xsl:otherwise>bf:references</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bflc:indexedIn>
-          <bf:Instance>
+        <xsl:element name="{$vProperty}">
+          <bf:Work>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:title>
                 <bf:Title>
@@ -632,8 +638,8 @@
                 </bf:Issn>
               </bf:identifiedBy>
             </xsl:for-each>
-          </bf:Instance>
-        </bflc:indexedIn>
+          </bf:Work>
+        </xsl:element>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
