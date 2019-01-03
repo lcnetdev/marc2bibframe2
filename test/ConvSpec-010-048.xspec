@@ -186,6 +186,7 @@
     <x:expect label="041 create language properties of the Work" test="//bf:Work/bf:language[1]/bf:Language/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/eng'"/>
     <x:expect label="ind1 creates a note property of the Work" test="//bf:Work/bf:note[1]/bf:Note/rdfs:label = 'Includes translation'"/>
     <x:expect label="ind2 determines the source property of the Language" test="//bf:Work/bf:language[4]/bf:Language/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/iso639-1'"/>
+    <x:expect label="No source property of Lanugage if ind2 = ' '" test="count(//bf:Work/bf:language[1]/bf:Language/bf:source) = 0"/>
     <x:expect label="subfields other than $a create a part property of the Language" test="//bf:Work/bf:language[2]/bf:Language/bf:part = 'original'"/>
   </x:scenario>
   

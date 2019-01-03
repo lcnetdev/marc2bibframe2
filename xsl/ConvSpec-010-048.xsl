@@ -596,11 +596,6 @@
               <rdf:value>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
               </rdf:value>
-              <bf:source>
-                <bf:Source>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/languages</xsl:attribute>
-                </bf:Source>
-              </bf:source>
             </bf:Language>
           </bf:language>
         </xsl:when>
