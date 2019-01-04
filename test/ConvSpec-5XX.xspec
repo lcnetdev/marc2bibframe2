@@ -43,7 +43,7 @@
     
   <x:scenario label="505 - FORMATTED CONTENTS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="505 creates a tableOfContents/TableOfContents property of the Instance" test="//bf:Instance[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
+    <x:expect label="505 creates a tableOfContents/TableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
   </x:scenario>
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">

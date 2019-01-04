@@ -305,6 +305,11 @@
               </bf:GenreForm>
             </bf:genreForm>
             <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
+            <bf:tableOfContents>
+              <bf:TableOfContents>
+                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
+              </bf:TableOfContents>
+            </bf:tableOfContents>
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/5637241#Topic650-17">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>
@@ -464,11 +469,6 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in.</bf:dimensions>
-            <bf:tableOfContents>
-              <bf:TableOfContents>
-                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
-              </bf:TableOfContents>
-            </bf:tableOfContents>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Brief record.</rdfs:label>
