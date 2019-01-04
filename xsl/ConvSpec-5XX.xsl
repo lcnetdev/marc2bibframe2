@@ -240,11 +240,11 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:language>
-          <bf:Language>
-            <bf:note>
-              <bf:Note>
-                <xsl:for-each select="marc:subfield[@code='a']">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:language>
+            <bf:Language>
+              <bf:note>
+                <bf:Note>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -253,28 +253,31 @@
                       <xsl:with-param name="chopString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='b']">
-                  <bf:notation>
-                    <bf:Notation>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bf:Notation>
-                  </bf:notation>
-                </xsl:for-each>
-                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:Note>
-            </bf:note>
-          </bf:Language>
-        </bf:language>
+                  <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Note>
+              </bf:note>
+            </bf:Language>
+          </bf:language>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:notation>
+            <bf:Notation>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:Notation>
+          </bf:notation>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
