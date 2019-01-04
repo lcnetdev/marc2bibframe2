@@ -43,7 +43,7 @@
     
   <x:scenario label="505 - FORMATTED CONTENTS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="505 creates a tableOfContents/TableOfContents property of the Instance" test="//bf:Instance[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
+    <x:expect label="505 creates a tableOfContents/TableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
   </x:scenario>
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">
@@ -183,10 +183,9 @@
   
   <x:scenario label="546 - LANGUAGE NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="546 creates a language/Language/note/Note property of the Work" test="count(//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note) = 1"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'German'"/>
-    <x:expect label="$b creates a notation property of the Note" test="//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note/bf:notation/bf:Notation/rdfs:label = 'Fraktur'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate'"/>
+    <x:expect label="$a creates a language/Language/note/Note property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'German'"/>
+    <x:expect label="$b creates a notation property of the Work" test="//bf:Work[1]/bf:notation/bf:Notation/rdfs:label = 'Fraktur'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note/Notation" test="//bf:Work[1]/bf:language/bf:Language/bf:note/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate' and //bf:Work[1]/bf:notation/bf:Notation/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate'"/>
   </x:scenario>
 
   <x:scenario label="547 - FORMER TITLE COMPLEXITY NOTE">

@@ -86,6 +86,35 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='505']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work505">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='505' or @tag='880']" mode="work505">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='g' or @code='r' or @code='t']"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:tableOfContents>
+          <bf:TableOfContents>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space($vLabel)"/>
+            </rdfs:label>
+          </bf:TableOfContents>
+        </bf:tableOfContents>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='508' or @tag='511']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="workCreditsNote">
@@ -211,11 +240,11 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:language>
-          <bf:Language>
-            <bf:note>
-              <bf:Note>
-                <xsl:for-each select="marc:subfield[@code='a']">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:language>
+            <bf:Language>
+              <bf:note>
+                <bf:Note>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -224,28 +253,31 @@
                       <xsl:with-param name="chopString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='b']">
-                  <bf:notation>
-                    <bf:Notation>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bf:Notation>
-                  </bf:notation>
-                </xsl:for-each>
-                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:Note>
-            </bf:note>
-          </bf:Language>
-        </bf:language>
+                  <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Note>
+              </bf:note>
+            </bf:Language>
+          </bf:language>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <bf:notation>
+            <bf:Notation>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:Notation>
+          </bf:notation>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -319,35 +351,6 @@
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='505']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance505">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='505' or @tag='880']" mode="instance505">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:variable name="vLabel">
-      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='g' or @code='r' or @code='t']"/>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:tableOfContents>
-          <bf:TableOfContents>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="normalize-space($vLabel)"/>
-            </rdfs:label>
-          </bf:TableOfContents>
-        </bf:tableOfContents>
-      </xsl:when>
-    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='506']" mode="instance">

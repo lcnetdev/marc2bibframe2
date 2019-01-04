@@ -109,6 +109,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='505'">
+        <xsl:apply-templates select="." mode="work505">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='508' or $tag='511'">
         <xsl:apply-templates select="." mode="workCreditsNote">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -389,11 +394,6 @@
                       $tag='556' or $tag='581' or $tag='585' or
                       $tag='586' or $tag='588'">
         <xsl:apply-templates select="." mode="instanceNote5XX">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='505'">
-        <xsl:apply-templates select="." mode="instance505">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
