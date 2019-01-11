@@ -77,6 +77,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:content</xsl:with-param>
           <xsl:with-param name="pResource">bf:Content</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$contentType"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='351'">
@@ -333,6 +334,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:media</xsl:with-param>
           <xsl:with-param name="pResource">bf:Media</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$mediaType"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='338'">
@@ -340,6 +342,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
           <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$carriers"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='340'">
