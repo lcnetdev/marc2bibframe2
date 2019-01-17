@@ -359,7 +359,6 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
-                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
@@ -456,7 +455,6 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
-                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
