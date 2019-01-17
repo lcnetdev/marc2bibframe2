@@ -359,7 +359,6 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
-                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
@@ -386,6 +385,7 @@
           <xsl:apply-templates mode="title245" select=".">
             <xsl:with-param name="label" select="$label"/>
             <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pStripNonfiling" select="true()"/>
           </xsl:apply-templates>
         </bf:title>
         <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
@@ -456,7 +456,6 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
-                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
@@ -528,6 +527,7 @@
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="title245">
     <xsl:param name="label"/>
     <xsl:param name="serialization"/>
+    <xsl:param name="pStripNonfiling" select="false()"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -537,7 +537,14 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:value-of select="normalize-space($label)"/>
+              <xsl:choose>
+                <xsl:when test="$pStripNonfiling">
+                  <xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="normalize-space($label)"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </rdfs:label>
             <bflc:titleSortKey><xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/></bflc:titleSortKey>
           </xsl:if>

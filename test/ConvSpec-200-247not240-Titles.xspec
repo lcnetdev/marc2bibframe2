@@ -108,16 +108,17 @@
     </x:scenario>
   </x:scenario>
 
-  <x:scenario label="245 - TITLE STATEMENT">
+  <x:scenario label="245 - TITLE STATEMENT" focus="245">
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau La Oficina = Das Büro.'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
+      <x:expect label="rdfs:label for Work Title should have nonfiling characters stripped" test="//bf:Work[1]/bf:title/bf:Title/rdfs:label = 'Bureau'"/>
     </x:scenario>
     <x:scenario label="rdfs:label">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="$abfgknps in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
-      <x:expect label="rdfs:label for Work" test="//bf:Work[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
-      <x:expect label="rdfs:label for Instance" test="//bf:Instance[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers. Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="$afgknps in record order" test="//bf:Instance[2]/bf:title/bf:Title/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="rdfs:label for Work" test="//bf:Work[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
+      <x:expect label="rdfs:label for Instance" test="//bf:Instance[2]/rdfs:label = 'Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act. Part II, Labour unions = Partie II, Syndicats ouvriers.'"/>
       <x:expect label="...trim trailing '/'" test="//bf:Instance[3]/rdfs:label = 'The plays of Oscar Wilde'"/>
     </x:scenario>
     <x:scenario label="$a">
