@@ -294,7 +294,7 @@
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The Great Ray Charles</rdfs:label>
+                <rdfs:label>Great Ray Charles</rdfs:label>
                 <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
@@ -588,7 +588,7 @@
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The White House</rdfs:label>
+                <rdfs:label>White House</rdfs:label>
                 <bflc:titleSortKey>White House</bflc:titleSortKey>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>

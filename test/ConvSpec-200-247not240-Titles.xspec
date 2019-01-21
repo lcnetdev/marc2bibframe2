@@ -108,7 +108,7 @@
     </x:scenario>
   </x:scenario>
 
-  <x:scenario label="245 - TITLE STATEMENT" focus="245">
+  <x:scenario label="245 - TITLE STATEMENT">
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau'"/>
