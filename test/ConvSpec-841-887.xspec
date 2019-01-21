@@ -10,14 +10,27 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
 
-  <x:scenario label="856 - ELECTRONIC LOCATION AND ACCESS">
-    <x:context href="data/ConvSpec-841-887/marc.xml"/>
-    <x:expect label="If Instance is Electronic, 856 creates an Item of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem/bf:Item) = 1"/>
-    <x:expect label="...otherwise, 856 creates a new Instance of the Work" test="count(//bf:Instance) = 2"/>
-    <x:expect label="...unless ind2=2, in which case it creates a supplementaryContent property of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent) = 1"/>
-    <x:expect label="$u with no $zy or $3 creates an electronicLocator property of the Item with rdf:resource = '$u'" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/@rdf:resource = 'http://www.jstor.org/journals/0277903x.html'"/>
-    <x:expect label="...otherwise it creates a blank node with a bflc:locator property from $u" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/bflc:locator/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
-    <x:expect label="...with notes generated from $z/y/3" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Finding aid'"/>
+  <x:scenario label="856/859 - ELECTRONIC LOCATION AND ACCESS">
+    <x:scenario label="If ind1 = #, 0, 1, or 8">
+      <x:context href="data/ConvSpec-841-887/marc.xml"/>
+      <x:expect label="If Instance is Electronic, 856 creates an Item of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem/bf:Item) = 2"/>
+      <x:expect label="...otherwise, 856 creates a new Instance of the Work" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance/bf:Instance) = 1"/>
+      <x:expect label="...with an Item" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance/bf:Instance/bf:hasItem/bf:Item) = 1"/>
+    </x:scenario>
+    <x:scenario label="If ind1 = 2">
+      <x:context href="data/ConvSpec-841-887/marc.xml"/>
+      <x:expect label="856 creates a supplementaryContent property of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent) = 1"/>
+    </x:scenario>
+    <x:scenario label="electronicLocator/supplementaryContent object">
+      <x:context href="data/ConvSpec-841-887/marc.xml"/>
+      <x:expect label="$u with no $zy or $3 creates an electronicLocator property of the Item with rdf:resource = '$u'" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook.html'"/>
+      <x:expect label="...otherwise it creates a blank node with a bflc:locator property from $u" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/rdfs:Resource/bflc:locator/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
+      <x:expect label="...with notes generated from $z/y/3" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Finding aid'"/>
+    </x:scenario>
+    <x:scenario label="859">
+      <x:context href="data/ConvSpec-841-887/marc.xml"/>
+      <x:expect label="859 processed same as 856" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook2.html'"/>
+    </x:scenario>
   </x:scenario>
 
 </x:description>

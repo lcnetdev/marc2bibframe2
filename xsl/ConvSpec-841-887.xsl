@@ -13,15 +13,15 @@
       Conversion specs for 841-887
   -->
 
-  <xsl:template match="marc:datafield[@tag='856']" mode="work">
+  <xsl:template match="marc:datafield[@tag='856' or @tag='859']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- If ind2 is #, 0, 1, or 8 and the Instance does not have the class of Electronic, create a new Instance -->
     <xsl:if test="marc:subfield[@code='u'] and
-                  (@ind2='1' or
-                  (@ind2 != '0' and @ind2 != '2' and
-                  substring(../marc:leader,7,1) != 'm' and
+                  (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                  (substring(../marc:leader,7,1) != 'm' and
                   substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
-                  substring(../marc:controlfield[@tag='008'],24,1) != 's'))">
+                  substring(../marc:controlfield[@tag='008'],24,1) != 's')">
       <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:choose>
@@ -72,7 +72,7 @@
     </xsl:if>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='856']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='856' or @tag='859']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:if test="marc:subfield[@code='u'] and @ind2='2'">
@@ -87,14 +87,15 @@
     </xsl:if>
   </xsl:template>
           
-  <xsl:template match="marc:datafield[@tag='856']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='856' or @tag='859']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <!-- If ind2 is #, 0, 1, or 8 and the Instance has the class of Electronic, add an Item to the Instance -->
     <xsl:if test="marc:subfield[@code='u'] and
-                  (@ind2='0' or
-                  substring(../marc:leader,7,1)='m' or
-                  substring(../marc:controlfield[@tag='008'],24,1)='o' or
-                  substring(../marc:controlfield[@tag='008'],24,1)='s')">
+                  (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                  (substring(../marc:leader,7,1) = 'm' or
+                  substring(../marc:controlfield[@tag='008'],24,1) = 'o' or
+                  substring(../marc:controlfield[@tag='008'],24,1) = 's')">
       <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
@@ -115,7 +116,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='856']" mode="locator856">
+  <xsl:template match="marc:datafield[@tag='856' or @tag='859']" mode="locator856">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:choose>
