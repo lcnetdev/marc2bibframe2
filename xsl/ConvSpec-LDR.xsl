@@ -21,6 +21,7 @@
           <xsl:when test="substring(.,6,1) = 'a'">
             <bf:status>
               <bf:Status>
+                <rdfs:label>increase in encoding level</rdfs:label>
                 <bf:code>c</bf:code>
               </bf:Status>
             </bf:status>
@@ -28,6 +29,7 @@
           <xsl:when test="substring(.,6,1) = 'c'">
             <bf:status>
               <bf:Status>
+                <rdfs:label>corrected or revised</rdfs:label>
                 <bf:code>c</bf:code>
               </bf:Status>
             </bf:status>
@@ -35,6 +37,7 @@
           <xsl:when test="substring(.,6,1) = 'n'">
             <bf:status>
               <bf:Status>
+                <rdfs:label>new</rdfs:label>
                 <bf:code>n</bf:code>
               </bf:Status>
             </bf:status>
@@ -42,6 +45,7 @@
           <xsl:when test="substring(.,6,1) = 'p'">
             <bf:status>
               <bf:Status>
+                <rdfs:label>increase in encoding level from prepublication</rdfs:label>
                 <bf:code>p</bf:code>
               </bf:Status>
             </bf:status>
@@ -49,33 +53,56 @@
         </xsl:choose>
         <bflc:encodingLevel>
           <bflc:EncodingLevel>
-            <bf:code>
-              <xsl:choose>
-                <xsl:when test="substring(.,18,1) = ' '">f</xsl:when>
-                <xsl:when test="substring(.,18,1) = '1'">1</xsl:when>
-                <xsl:when test="substring(.,18,1) = '2'">7</xsl:when>
-                <xsl:when test="substring(.,18,1) = '3'">3</xsl:when>
-                <xsl:when test="substring(.,18,1) = '4'">4</xsl:when>
-                <xsl:when test="substring(.,18,1) = '5'">5</xsl:when>
-                <xsl:when test="substring(.,18,1) = '7'">7</xsl:when>
-                <xsl:when test="substring(.,18,1) = '8'">8</xsl:when>
-                <xsl:otherwise>u</xsl:otherwise>
-              </xsl:choose>
-            </bf:code>
+            <xsl:choose>
+              <xsl:when test="substring(.,18,1) = ' '">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/f</xsl:attribute>
+                <rdfs:label>full</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '1'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/1</xsl:attribute>
+                <rdfs:label>full not examined</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '2'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/7</xsl:attribute>
+                <rdfs:label>less than full not examined</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '3'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/3</xsl:attribute>
+                <rdfs:label>abbreviated</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '4'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/4</xsl:attribute>
+                <rdfs:label>core</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '5'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/5</xsl:attribute>
+                <rdfs:label>preliminary</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '7'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/7</xsl:attribute>
+                <rdfs:label>minimal</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,18,1) = '8'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/8</xsl:attribute>
+                <rdfs:label>prepublication</rdfs:label>
+              </xsl:when>
+              <xsl:otherwise><bf:code>u</bf:code></xsl:otherwise>
+            </xsl:choose>
           </bflc:EncodingLevel>
         </bflc:encodingLevel>
         <bf:descriptionConventions>
           <bf:DescriptionConventions>
-            <bf:code>
-              <xsl:choose>
-                <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
-                <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
-                <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
-                <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
-                <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
-                <xsl:otherwise>unknown</xsl:otherwise>
-              </xsl:choose>
-            </bf:code>
+            <xsl:choose>
+              <xsl:when test="substring(.,19,1) = 'a' or substring(.,19,1) = 'p' or substring(.,19,1) = 'r'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/descriptionConventions/aacr</xsl:attribute>
+                <rdfs:label>aacr</rdfs:label>
+              </xsl:when>
+              <xsl:when test="substring(.,19,1) = 'c' or substring(.,19,1) = 'i'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/descriptionConventions/isbd</xsl:attribute>
+                <rdfs:label>isbd</rdfs:label>
+              </xsl:when>
+              <xsl:otherwise><rdfs:label>unknown</rdfs:label></xsl:otherwise>
+            </xsl:choose>
           </bf:DescriptionConventions>
         </bf:descriptionConventions>
       </xsl:when>

@@ -43,17 +43,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>corrected or revised</rdfs:label>
                     <bf:code>c</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>f</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
+                    <rdfs:label>full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -248,17 +249,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>new</rdfs:label>
                     <bf:code>n</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>7</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
+                    <rdfs:label>minimal</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -499,17 +501,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>corrected or revised</rdfs:label>
                     <bf:code>c</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>f</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
+                    <rdfs:label>full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
