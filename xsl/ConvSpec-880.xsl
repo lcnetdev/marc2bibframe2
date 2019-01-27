@@ -174,6 +174,12 @@
       <xsl:when test="($tag='648' or $tag='650' or $tag='651') or ($tag='655' and @ind1=' ')">
         <xsl:variable name="vTopicUri">
           <xsl:choose>
+            <xsl:when test="$tag='648'">
+              <xsl:value-of select="$recordid"/>#Temporal880-<xsl:value-of select="position()"/>
+            </xsl:when>
+            <xsl:when test="$tag='651'">
+              <xsl:value-of select="$recordid"/>#Place880-<xsl:value-of select="position()"/>
+            </xsl:when>
             <xsl:when test="$tag='655'">
               <xsl:value-of select="$recordid"/>#GenreForm880-<xsl:value-of select="position()"/>
             </xsl:when>
@@ -194,12 +200,20 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='656'">
+        <xsl:variable name="vDefaultUri">
+          <xsl:value-of select="$recordid"/>#Topic880-<xsl:value-of select="position()"/>
+        </xsl:variable>
         <xsl:apply-templates select="." mode="work656">
+          <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='662'">
+        <xsl:variable name="vDefaultUri">
+          <xsl:value-of select="$recordid"/>#Place880-<xsl:value-of select="position()"/>
+        </xsl:variable>
         <xsl:apply-templates select="." mode="work662">
+          <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
