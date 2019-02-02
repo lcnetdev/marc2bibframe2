@@ -323,6 +323,22 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='024']" mode="work">
+    <xsl:if test='starts-with(marc:subfield[@code="a"], "http://worldcat.org/entity/work/")' >
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:for-each select="marc:subfield[@code='a']">
+            <bf:identifiedBy>
+              <bf:Identifier>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="."/></xsl:attribute>
+              </bf:Identifier>
+            </bf:identifiedBy>
+          </xsl:for-each>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='033']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vDate">
@@ -862,52 +878,54 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='024'">
-        <xsl:variable name="vIdentifier">
+        <xsl:if test='not(starts-with(marc:subfield[@code="a"], "http://worldcat.org/entity/work/"))' >
+          <xsl:variable name="vIdentifier">
+            <xsl:choose>
+              <xsl:when test="@ind1 = '0'">bf:Isrc</xsl:when>
+              <xsl:when test="@ind1 = '1'">bf:Upc</xsl:when>
+              <xsl:when test="@ind1 = '2'">bf:Ismn</xsl:when>
+              <xsl:when test="@ind1 = '3'">bf:Ean</xsl:when>
+              <xsl:when test="@ind1 = '4'">bf:Sici</xsl:when>
+              <xsl:when test="@ind1 = '7'">
+                <xsl:choose>
+                  <xsl:when test="marc:subfield[@code='2' and text()='ansi']">bf:Ansi</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='doi']">bf:Doi</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='hdl']">bf:Hdl</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='isan']">bf:Isan</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='isni']">bf:Isni</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='iso']">bf:Iso</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='istc']">bf:Istc</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='iswc']">bf:Iswc</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='matrix-number']">bf:MatrixNumber</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='music-plate']">bf:MusicPlate</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='music-publisher']">bf:MusicPublisherNumber</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='stock-number']">bf:StockNumber</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='urn']">bf:Urn</xsl:when>
+                  <xsl:when test="marc:subfield[@code='2' and text()='videorecording-identifier']">bf:VideoRecordingNumber</xsl:when>
+                  <xsl:otherwise>bf:Identifier</xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>bf:Identifier</xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <xsl:choose>
-            <xsl:when test="@ind1 = '0'">bf:Isrc</xsl:when>
-            <xsl:when test="@ind1 = '1'">bf:Upc</xsl:when>
-            <xsl:when test="@ind1 = '2'">bf:Ismn</xsl:when>
-            <xsl:when test="@ind1 = '3'">bf:Ean</xsl:when>
-            <xsl:when test="@ind1 = '4'">bf:Sici</xsl:when>
-            <xsl:when test="@ind1 = '7'">
-              <xsl:choose>
-                <xsl:when test="marc:subfield[@code='2' and text()='ansi']">bf:Ansi</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='doi']">bf:Doi</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='hdl']">bf:Hdl</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='isan']">bf:Isan</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='isni']">bf:Isni</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='iso']">bf:Iso</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='istc']">bf:Istc</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='iswc']">bf:Iswc</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='matrix-number']">bf:MatrixNumber</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='music-plate']">bf:MusicPlate</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='music-publisher']">bf:MusicPublisherNumber</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='stock-number']">bf:StockNumber</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='urn']">bf:Urn</xsl:when>
-                <xsl:when test="marc:subfield[@code='2' and text()='videorecording-identifier']">bf:VideoRecordingNumber</xsl:when>
-                <xsl:otherwise>bf:Identifier</xsl:otherwise>
-              </xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <xsl:for-each select="marc:subfield[@code='c']">
+                <bf:acquisitionTerms>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </bf:acquisitionTerms>
+              </xsl:for-each>
             </xsl:when>
-            <xsl:otherwise>bf:Identifier</xsl:otherwise>
           </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <xsl:for-each select="marc:subfield[@code='c']">
-              <bf:acquisitionTerms>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
-                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                </xsl:call-template>
-              </bf:acquisitionTerms>
-            </xsl:for-each>
-          </xsl:when>
-        </xsl:choose>
-        <xsl:apply-templates select="." mode="instanceId">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
-          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
-        </xsl:apply-templates>
+          <xsl:apply-templates select="." mode="instanceId">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
+            <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:if>
       </xsl:when>
       <xsl:when test="@tag='025'">
         <xsl:apply-templates select="." mode="instanceId">
