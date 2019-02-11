@@ -132,9 +132,9 @@
               <xsl:value-of select="$vLabel"/>
             </madsrdf:authoritativeLabel>
             <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
-              <madsrdf:isMemberofMADSScheme>
+              <madsrdf:isMemberOfMADSScheme>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-              </madsrdf:isMemberofMADSScheme>
+              </madsrdf:isMemberOfMADSScheme>
             </xsl:for-each>
             <!-- build the ComplexSubject -->
             <xsl:if test="$vMADSClass='ComplexSubject'">

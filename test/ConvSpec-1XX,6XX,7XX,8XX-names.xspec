@@ -22,7 +22,7 @@
     <x:expect label="...with rdfs:label composed according to Name processing rules" test="//bf:Work[1]/bf:subject[1]/bf:Agent/rdfs:label = 'Nixon, Richard M. (Richard Milhouse), 1913-'"/>
     <x:expect label="...it also has a Class from MADSRDF" test="//bf:Work[1]/bf:subject[1]/bf:Agent/rdf:type[2]/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#ComplexSubject'"/>
     <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:authoritativeLabel = 'Nixon, Richard M. (Richard Milhouse), 1913---Psychology.'"/>
-    <x:expect label="...and a madsrdf:isMemberofMADSScheme property" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:isMemberofMADSScheme/@rdf:resource = 'http://id.loc.gov/authorities/subjects'"/>
+    <x:expect label="...and a madsrdf:isMemberOfMADSScheme property" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:isMemberOfMADSScheme/@rdf:resource = 'http://id.loc.gov/authorities/subjects'"/>
     <x:expect label="...ind2 creates a source property of the Agent" test="//bf:Work[1]/bf:subject[1]/bf:Agent/bf:source/bf:Source/bf:code = 'lcsh'"/>
     <x:expect label="600,610,611 with $t creates a subject/Work property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Work) = 1"/>
     <x:expect label="...with contribution from Name portion of field" test="//bf:Work[1]/bf:subject[2]/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Bellamy, Edward, 1850-1898.'"/>

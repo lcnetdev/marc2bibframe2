@@ -130,9 +130,9 @@
                   <xsl:value-of select="$vMADSLabel"/>
                 </madsrdf:authoritativeLabel>
                 <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
-                  <madsrdf:isMemberofMADSScheme>
+                  <madsrdf:isMemberOfMADSScheme>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-                  </madsrdf:isMemberofMADSScheme>
+                  </madsrdf:isMemberOfMADSScheme>
                 </xsl:for-each>                  
                 <xsl:if test="$vSource != ''">
                   <xsl:copy-of select="$vSource"/>
@@ -752,9 +752,9 @@
                 </madsrdf:authoritativeLabel>
               </xsl:if>
               <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
-                <madsrdf:isMemberofMADSScheme>
+                <madsrdf:isMemberOfMADSScheme>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-                </madsrdf:isMemberofMADSScheme>
+                </madsrdf:isMemberOfMADSScheme>
               </xsl:for-each>
             </xsl:if>
             <xsl:if test="$pSource != ''">
