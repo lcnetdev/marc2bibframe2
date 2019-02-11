@@ -25,7 +25,7 @@
     <x:expect label="530 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
     <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/@rdf:about = 'http://example.org/1#Instance530-4'"/>
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
-    <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie /'"/>
+    <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie'"/>
     <x:expect label="530 creates a otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance530-4'"/>
     <x:expect label="...and an otherPhysicalFormat property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance'"/>
     <x:expect label="$a creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'Available in microfilm'"/>
@@ -41,7 +41,7 @@
     <x:expect label="533 creates a hasInstance/Instance property of the Work" test="count(//bf:Work[1]/bf:hasInstance/bf:Instance) = 3"/>
     <x:expect label="...with a URI" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/@rdf:about = 'http://example.org/1#Instance533-5'"/>
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
-    <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie /'"/>
+    <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie'"/>
     <x:expect label="533 creates a hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource = 'http://example.org/1#Instance533-5'"/>
     <x:expect label="...and an reproductionOf property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:reproductionOf/@rdf:resource = 'http://example.org/1#Instance'"/>
     <x:expect label="$a creates a carrier property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Microfilm'"/>
