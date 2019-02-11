@@ -1100,45 +1100,182 @@
   <xsl:template match="marc:datafield[@tag='362' or @tag='880']" mode="instance362">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:variable name="vFirstIssue"><xsl:value-of select="substring-before(marc:subfield[@code='a'],'-')"/></xsl:variable>
-    <xsl:variable name="vLastIssue"><xsl:value-of select="substring-after(marc:subfield[@code='a'],'-')"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
+      <xsl:when test="@ind1='0'">
         <xsl:choose>
-          <xsl:when test="@ind1='0'">
-            <xsl:if test="$vFirstIssue != ''">
-              <bf:firstIssue>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="$vFirstIssue"/>
-              </bf:firstIssue>
-            </xsl:if>
-            <xsl:if test="$vLastIssue != ''">
-              <bf:lastIssue>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="$vLastIssue"/>
-              </bf:lastIssue>
-            </xsl:if>
+          <!-- process as a note under some conditions -->
+          <xsl:when test="contains(marc:subfield[@code='a'],';')
+                          or not(contains(marc:subfield[@code='a'],'-'))">
+            <xsl:call-template name="numberingNote">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+              <xsl:with-param name="pNote" select="marc:subfield[@code='a']/text()"/>
+            </xsl:call-template>
           </xsl:when>
+          <!-- '=' indicates parallel statements -->
+          <xsl:when test="contains(marc:subfield[@code='a'],'=')">
+            <xsl:choose>
+              <xsl:when test="not(contains(substring-after(marc:subfield[@code='a'],'='),'='))">
+                <xsl:variable name="vStatement1">
+                  <xsl:value-of select="normalize-space(substring-before(marc:subfield[@code='a'],'='))"/>
+                </xsl:variable>
+                <xsl:variable name="vStatement2">
+                  <xsl:value-of select="normalize-space(substring-after(marc:subfield[@code='a'],'='))"/>
+                </xsl:variable>
+                <!-- first statement -->
+                <xsl:choose>
+                  <xsl:when test="contains($vStatement1,'&#x00029;-')">
+                    <xsl:call-template name="firstLastIssue">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pFirstIssue" select="concat(substring-before($vStatement1,'&#x00029;-'),'&#x00029;')"/>
+                      <xsl:with-param name="pLastIssue" select="substring-after($vStatement1,'&#x00029;-')"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:when test="contains($vStatement1,'-')
+                                  and not(contains(substring-after($vStatement1,'-'),'-'))">
+                    <xsl:call-template name="firstLastIssue">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pFirstIssue" select="substring-before($vStatement1,'-')"/>
+                      <xsl:with-param name="pLastIssue" select="substring-after($vStatement1,'-')"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="numberingNote">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pNote" select="$vStatement1"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+                <!-- second statement -->
+                <xsl:choose>
+                  <xsl:when test="contains($vStatement2,'&#x00029;-')">
+                    <xsl:call-template name="firstLastIssue">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pFirstIssue" select="concat(substring-before($vStatement2,'&#x00029;-'),'&#x00029;')"/>
+                      <xsl:with-param name="pLastIssue" select="substring-after($vStatement2,'&#x00029;-')"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:when test="contains($vStatement2,'-')
+                                  and not(contains(substring-after($vStatement2,'-'),'-'))">
+                    <xsl:call-template name="firstLastIssue">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pFirstIssue" select="substring-before($vStatement2,'-')"/>
+                      <xsl:with-param name="pLastIssue" select="substring-after($vStatement2,'-')"/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="numberingNote">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      <xsl:with-param name="pNote" select="$vStatement2"/>
+                    </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="numberingNote">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                  <xsl:with-param name="pNote" select="marc:subfield[@code='a']/text()"/>
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <!-- ')-' as split between first/last -->
+          <xsl:when test="contains(marc:subfield[@code='a'],'&#x00029;-')">
+            <xsl:call-template name="firstLastIssue">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+              <xsl:with-param name="pFirstIssue" select="concat(substring-before(marc:subfield[@code='a'],'&#x00029;-'),'&#x00029;')"/>
+              <xsl:with-param name="pLastIssue" select="substring-after(marc:subfield[@code='a'],'&#x00029;-')"/>
+            </xsl:call-template>
+          </xsl:when>            
+          <!-- more than one hyphen, too hard to parse -->
+          <xsl:when test="contains(substring-after(marc:subfield[@code='a'],'-'),'-')">
+            <xsl:call-template name="numberingNote">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+              <xsl:with-param name="pNote" select="marc:subfield[@code='a']/text()"/>
+            </xsl:call-template>
+          </xsl:when>
+          <!-- the standard case (one hyphen, not parallel) -->
           <xsl:otherwise>
-            <bf:note>
-              <bf:Note>
-                <bf:noteType>Numbering</bf:noteType>
-                <rdfs:label>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="marc:subfield[@code='a']"/>
-                </rdfs:label>
-              </bf:Note>
-            </bf:note>
+            <xsl:call-template name="firstLastIssue">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+              <xsl:with-param name="pFirstIssue" select="substring-before(marc:subfield[@code='a'],'-')"/>
+              <xsl:with-param name="pLastIssue" select="substring-after(marc:subfield[@code='a'],'-')"/>
+            </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="numberingNote">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+          <xsl:with-param name="pNote" select="marc:subfield[@code='a']/text()"/>
+        </xsl:call-template>
+      </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="numberingNote">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pXmlLang"/>
+    <xsl:param name="pNote"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:note>
+          <bf:Note>
+            <bf:noteType>Numbering</bf:noteType>
+            <rdfs:label>
+              <xsl:if test="$pXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="$pNote"/>
+            </rdfs:label>
+          </bf:Note>
+        </bf:note>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="firstLastIssue">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pXmlLang"/>
+    <xsl:param name="pFirstIssue"/>
+    <xsl:param name="pLastIssue"/>
+    <xsl:message>first issue: <xsl:value-of select="$pFirstIssue"/></xsl:message>
+    <xsl:message>last issue: <xsl:value-of select="$pLastIssue"/></xsl:message>
+    <xsl:if test="$pFirstIssue != ''">
+      <xsl:choose>
+        <xsl:when test="$serialization='rdfxml'">
+          <bf:firstIssue>
+            <xsl:if test="$pXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="$pFirstIssue"/>
+          </bf:firstIssue>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+    <xsl:if test="$pLastIssue != ''">
+      <xsl:choose>
+        <xsl:when test="$serialization='rdfxml'">
+          <bf:lastIssue>
+            <xsl:if test="$pXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="$pLastIssue"/>
+          </bf:lastIssue>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
