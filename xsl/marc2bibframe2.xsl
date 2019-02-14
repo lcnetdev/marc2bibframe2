@@ -40,6 +40,17 @@
   <!-- <xsl:param name="idsource" select="'http://id.loc.gov/vocabulary/organizations/dlc'"/> -->
 
   <!--
+      Use field conversion for locally defined fields.
+      Some fields in the conversion (e.g. 859) are locally defined by
+      LoC for conversion. By default these fields will not be
+      converted unless this parameter evaluates to true()
+      To run a test of the localfields parameter, uncomment the
+      following line, and uncomment the test in test/ConvSpec-841-887.xspec
+  -->
+  <!-- <xsl:param name="localfields" select="true()"/> -->
+  <xsl:param name="localfields"/>
+  
+  <!--
       datestamp for generationProcess property of Work adminMetadata
       Useful to override if date:date-time() extension is not
       available
