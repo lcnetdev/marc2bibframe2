@@ -445,7 +445,7 @@
               <bf:Scale>
                 <bf:note>
                   <bf:Note>
-                    <rdfs:label>linear scale</rdfs:label>
+                    <rdfs:label>Linear scale</rdfs:label>
                   </bf:Note>
                 </bf:note>
               </bf:Scale>
