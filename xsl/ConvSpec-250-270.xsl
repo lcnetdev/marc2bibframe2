@@ -77,70 +77,72 @@
             </bf:Scale>
           </bf:scale>
         </xsl:for-each>
-        <bf:cartographicAttributes>
-          <bf:Cartographic>
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:projection>
-                <bf:Projection>
-                  <rdfs:label>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <!-- leave trailing period for abbreviations -->
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:Projection>
-              </bf:projection>
-            </xsl:for-each>
-            <xsl:if test="$vCoordinates != ''">
-              <bf:coordinates>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="$vCoordinates"/>
-              </bf:coordinates>
-            </xsl:if>
-            <xsl:if test="$vZone != ''">
-              <bf:ascensionAndDeclination>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="$vZone"/>
-              </bf:ascensionAndDeclination>
-            </xsl:if>
-            <xsl:if test="$vEquinox != ''">
-              <bf:equinox>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="$vEquinox"/>
-              </bf:equinox>
-            </xsl:if>
-            <xsl:for-each select="marc:subfield[@code='f']">
-              <bf:outerGRing>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </bf:outerGRing>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='g']">
-              <bf:exclusionGRing>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
-                </xsl:call-template>
-              </bf:exclusionGRing>
-            </xsl:for-each>
-          </bf:Cartographic>
-        </bf:cartographicAttributes>
+        <xsl:if test="marc:subfield[@code='b' or @code='c' or @code='d' or @code='f' or @code='g']">
+          <bf:cartographicAttributes>
+            <bf:Cartographic>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:projection>
+                  <bf:Projection>
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <!-- leave trailing period for abbreviations -->
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString" select="."/>
+                        <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Projection>
+                </bf:projection>
+              </xsl:for-each>
+              <xsl:if test="$vCoordinates != ''">
+                <bf:coordinates>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vCoordinates"/>
+                </bf:coordinates>
+              </xsl:if>
+              <xsl:if test="$vZone != ''">
+                <bf:ascensionAndDeclination>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vZone"/>
+                </bf:ascensionAndDeclination>
+              </xsl:if>
+              <xsl:if test="$vEquinox != ''">
+                <bf:equinox>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vEquinox"/>
+                </bf:equinox>
+              </xsl:if>
+              <xsl:for-each select="marc:subfield[@code='f']">
+                <bf:outerGRing>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:outerGRing>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='g']">
+                <bf:exclusionGRing>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:exclusionGRing>
+              </xsl:for-each>
+            </bf:Cartographic>
+          </bf:cartographicAttributes>
+        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
