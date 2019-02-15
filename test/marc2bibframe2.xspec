@@ -43,17 +43,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>corrected or revised</rdfs:label>
                     <bf:code>c</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>f</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
+                    <rdfs:label>full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -64,14 +65,14 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:creationDate>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>DLC</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>DLC</rdfs:label>
                   </bf:Source>
                 </bf:source>
@@ -87,7 +88,7 @@
               </bf:IntendedAudience>
             </bf:intendedAudience>
             <bf:genreForm>
-              <bf:GenreForm rdf:about="http://id.loc.gov/vocabulary/marcgt/fic">
+              <bf:GenreForm rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026339">
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
@@ -117,11 +118,11 @@
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
-            <rdfs:label>Ole Lukøie /</rdfs:label>
+            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie /</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <rdfs:label>Ole Lukøie</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -173,11 +174,11 @@
                 <rdf:value>8759517352</rdf:value>
               </bf:Isbn>
             </bf:identifiedBy>
-            <rdfs:label>Ole Lukøie /</rdfs:label>
+            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie /</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie /</bflc:titleSortKey>
+                <rdfs:label>Ole Lukøie</rdfs:label>
+                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -248,17 +249,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>new</rdfs:label>
                     <bf:code>n</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>7</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
+                    <rdfs:label>minimal</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -274,14 +276,14 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>DLC</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>DLC</rdfs:label>
                   </bf:Source>
                 </bf:source>
@@ -294,7 +296,7 @@
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The Great Ray Charles</rdfs:label>
+                <rdfs:label>Great Ray Charles</rdfs:label>
                 <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
@@ -305,12 +307,17 @@
               </bf:GenreForm>
             </bf:genreForm>
             <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
+            <bf:tableOfContents>
+              <bf:TableOfContents>
+                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
+              </bf:TableOfContents>
+            </bf:tableOfContents>
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/5637241#Topic650-17">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>
                 <rdfs:label>Jazz--1951-1960.</rdfs:label>
                 <madsrdf:authoritativeLabel>Jazz--1951-1960.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <madsrdf:componentList rdf:parseType="Collection">
                   <madsrdf:Topic>
                     <madsrdf:authoritativeLabel>Jazz</madsrdf:authoritativeLabel>
@@ -331,7 +338,7 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
                 <rdfs:label>Piano with jazz ensemble.</rdfs:label>
                 <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
@@ -377,15 +384,16 @@
             </bf:soundCharacteristic>
             <bf:soundCharacteristic>
               <bf:GrooveCharacteristic>
-                <rdfs:label>microgroove/fine</rdfs:label>
+                <bflc:target rdf:resource="http://id.loc.gov/vocabulary/mgroove/micro"/>
+                <rdfs:label>microgroove</rdfs:label>
               </bf:GrooveCharacteristic>
             </bf:soundCharacteristic>
             <bf:dimensions>12 in.</bf:dimensions>
-            <bf:generation>
-              <bf:Generation>
-                <rdfs:label>mass produced</rdfs:label>
-              </bf:Generation>
-            </bf:generation>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>Mass produced</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:baseMaterial>
               <bf:BaseMaterial rdf:about="http://id.loc.gov/vocabulary/mmaterial/pla">
                 <rdfs:label>plastic</rdfs:label>
@@ -393,6 +401,7 @@
             </bf:baseMaterial>
             <bf:soundCharacteristic>
               <bf:GrooveCharacteristic>
+                <bflc:target rdf:resource="http://id.loc.gov/vocabulary/mgroove/lateral"/>
                 <rdfs:label>lateral or combined cutting</rdfs:label>
               </bf:GrooveCharacteristic>
             </bf:soundCharacteristic>
@@ -462,11 +471,6 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in.</bf:dimensions>
-            <bf:tableOfContents>
-              <bf:TableOfContents>
-                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
-              </bf:TableOfContents>
-            </bf:tableOfContents>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Brief record.</rdfs:label>
@@ -497,17 +501,18 @@
                 </bf:generationProcess>
                 <bf:status>
                   <bf:Status>
+                    <rdfs:label>corrected or revised</rdfs:label>
                     <bf:code>c</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
-                  <bflc:EncodingLevel>
-                    <bf:code>f</bf:code>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
+                    <rdfs:label>full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
-                  <bf:DescriptionConventions>
-                    <bf:code>aacr</bf:code>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -518,29 +523,31 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:descriptionModifier>
-                  <bf:Agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/n%40f">
                     <rdfs:label>N@F</rdfs:label>
                   </bf:Agent>
                 </bf:descriptionModifier>
                 <bf:descriptionModifier>
-                  <bf:Agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
                     <rdfs:label>DLC</rdfs:label>
                   </bf:Agent>
                 </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
-                  <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat"/>
+                  <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
+                    <rdfs:label>lccopycat</rdfs:label>
+                  </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -584,7 +591,7 @@
             <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The White House</rdfs:label>
+                <rdfs:label>White House</rdfs:label>
                 <bflc:titleSortKey>White House</bflc:titleSortKey>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
@@ -604,7 +611,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
@@ -620,7 +627,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
@@ -636,7 +643,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
@@ -652,7 +659,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberofMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>

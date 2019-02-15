@@ -242,13 +242,17 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:subject>
-          <rdfs:Resource>
-            <rdf:value>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="normalize-space($vSubjectValue)"/>
-            </rdf:value>
+          <bf:Topic>
+            <bf:classification>
+              <bf:Classification>
+                <bf:classificationPortion>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="normalize-space($vSubjectValue)"/>
+                </bf:classificationPortion>
+              </bf:Classification>
+            </bf:classification>
             <xsl:choose>
               <xsl:when test="@ind2 = '0'">
                 <bf:source>
@@ -263,7 +267,7 @@
                 </xsl:apply-templates>
               </xsl:otherwise>
             </xsl:choose>
-          </rdfs:Resource>
+          </bf:Topic>
         </bf:subject>
       </xsl:when>
     </xsl:choose>
@@ -409,6 +413,7 @@
               <xsl:if test="@code='z'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label>invalid</rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -450,7 +455,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
+  <!-- instance match for fields 074, 088 in ConvSpec-010-048.xsl -->
 
   <xsl:template match="marc:datafield[@tag='050' or @tag='060']" mode="hasItem">
     <xsl:param name="recordid"/>

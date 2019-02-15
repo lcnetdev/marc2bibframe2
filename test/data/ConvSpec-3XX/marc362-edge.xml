@@ -1,0 +1,40 @@
+<!-- 362 edge cases -->
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <!-- unformatted dates -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">Began in 1989</subfield>
+    </datafield>
+    <!-- legacy formatting  -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">no. 1-3; 1975-1977.</subfield>
+    </datafield>
+    <!-- parallel statements -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">Vol. 62 (May 1959)-v. 73 (Jan. 1970) = No. 768-896.</subfield>
+    </datafield>
+    <!-- too many hyphens -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">[Dai 1-gō] (Shōwa 41-nen 12-gatsu [Dec. 1966])</subfield>
+    </datafield>
+    <!-- ')-' parsing -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">Vol. 1 (1865-1866)-v. 62 (1926-1927).</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <!-- trailing hyphen -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">No. 1-</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <!-- leading hyphen -->
+    <datafield tag="362" ind1="0" ind2=" ">
+      <subfield code="a">-6th (Sept. 28, 1972).</subfield>
+    </datafield>
+  </record>
+</collection>

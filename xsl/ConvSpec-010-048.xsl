@@ -71,73 +71,73 @@
   </local:marctimeperiod>
 
   <local:instrumentCode>
-    <ba property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>horn</rdfs:label></ba>
-    <bb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>trumpet</rdfs:label></bb>
-    <bc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>coronet</rdfs:label></bc>
-    <bd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>trombone</rdfs:label></bd>
-    <be property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>tuba</rdfs:label></be>
-    <bf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType><rdfs:label>baritone</rdfs:label></bf>
-    <bn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bn>
-    <bu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bu>
-    <by property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass, ethnic</bf:instrumentType></by>
-    <bz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>brass</bf:instrumentType></bz>
-    <ea property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>electronic synthesizer</rdfs:label></ea>
-    <eb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>electronic tape</rdfs:label></eb>
-    <ec property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>computer</rdfs:label></ec>
-    <ed property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType><rdfs:label>ondes martinot</rdfs:label></ed>
-    <en property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></en>
-    <eu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></eu>
-    <ez property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>electronic</bf:instrumentType></ez>
-    <ka property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>piano</rdfs:label></ka>
-    <kb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>organ</rdfs:label></kb>
-    <kc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>harpsichord</rdfs:label></kc>
-    <kd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>clavichord</rdfs:label></kd>
-    <ke property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>continuo</rdfs:label></ke>
-    <kf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType><rdfs:label>celeste</rdfs:label></kf>
-    <kn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kn>
-    <ku property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></ku>
-    <ky property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard, ethnic</bf:instrumentType></ky>
-    <kz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>keyboard</bf:instrumentType></kz>
-    <pa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>timpani</rdfs:label></pa>
-    <pb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>xylophone</rdfs:label></pb>
-    <pc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>marimba</rdfs:label></pc>
-    <pd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType><rdfs:label>drum</rdfs:label></pd>
-    <pn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pn>
-    <pu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pu>
-    <py property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion, ethnic</bf:instrumentType></py>
-    <pz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>percussion</bf:instrumentType></pz>
-    <sa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>violin</rdfs:label></sa>
-    <sb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola</rdfs:label></sb>
-    <sc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>violoncello</rdfs:label></sc>
-    <sd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>double bass</rdfs:label></sd>
-    <se property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viol</rdfs:label></se>
-    <sf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola d'amore</rdfs:label></sf>
-    <sg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType><rdfs:label>viola da gamba</rdfs:label></sg>
-    <sn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sn>
-    <su property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></su>
-    <sy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed, ethnic</bf:instrumentType></sy>
-    <sz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, bowed</bf:instrumentType></sz>
-    <ta property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>harp</rdfs:label></ta>
-    <tb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>guitar</rdfs:label></tb>
-    <tc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>lute</rdfs:label></tc>
-    <td property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType><rdfs:label>mandolin</rdfs:label></td>
-    <tn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tn>
-    <tu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tu>
-    <ty property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked, ethnic</bf:instrumentType></ty>
-    <tz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>string, plucked</bf:instrumentType></tz>
-    <wa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>flute</rdfs:label></wa>
-    <wb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>oboe</rdfs:label></wb>
-    <wc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>clarinet</rdfs:label></wc>
-    <wd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>bassoon</rdfs:label></wd>
-    <we property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>piccolo</rdfs:label></we>
-    <wf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>English horn</rdfs:label></wf>
-    <wg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>bass clarinet</rdfs:label></wg>
-    <wh property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>recorder</rdfs:label></wh>
-    <wi property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType><rdfs:label>saxophone</rdfs:label></wi>
-    <wn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wn>
-    <wu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wu>
-    <wy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind, ethnic</bf:instrumentType></wy>
-    <wz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentType>woodwind</bf:instrumentType></wz>
+    <ba property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>horn</rdfs:label></ba>
+    <bb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>trumpet</rdfs:label></bb>
+    <bc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>coronet</rdfs:label></bc>
+    <bd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>trombone</rdfs:label></bd>
+    <be property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>tuba</rdfs:label></be>
+    <bf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType><rdfs:label>baritone</rdfs:label></bf>
+    <bn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType></bn>
+    <bu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType></bu>
+    <by property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass, ethnic</bf:instrumentalType></by>
+    <bz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>brass</bf:instrumentalType></bz>
+    <ea property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType><rdfs:label>electronic synthesizer</rdfs:label></ea>
+    <eb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType><rdfs:label>electronic tape</rdfs:label></eb>
+    <ec property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType><rdfs:label>computer</rdfs:label></ec>
+    <ed property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType><rdfs:label>ondes martinot</rdfs:label></ed>
+    <en property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType></en>
+    <eu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType></eu>
+    <ez property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>electronic</bf:instrumentalType></ez>
+    <ka property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>piano</rdfs:label></ka>
+    <kb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>organ</rdfs:label></kb>
+    <kc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>harpsichord</rdfs:label></kc>
+    <kd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>clavichord</rdfs:label></kd>
+    <ke property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>continuo</rdfs:label></ke>
+    <kf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType><rdfs:label>celeste</rdfs:label></kf>
+    <kn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType></kn>
+    <ku property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType></ku>
+    <ky property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard, ethnic</bf:instrumentalType></ky>
+    <kz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>keyboard</bf:instrumentalType></kz>
+    <pa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType><rdfs:label>timpani</rdfs:label></pa>
+    <pb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType><rdfs:label>xylophone</rdfs:label></pb>
+    <pc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType><rdfs:label>marimba</rdfs:label></pc>
+    <pd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType><rdfs:label>drum</rdfs:label></pd>
+    <pn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType></pn>
+    <pu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType></pu>
+    <py property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion, ethnic</bf:instrumentalType></py>
+    <pz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>percussion</bf:instrumentalType></pz>
+    <sa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>violin</rdfs:label></sa>
+    <sb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>viola</rdfs:label></sb>
+    <sc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>violoncello</rdfs:label></sc>
+    <sd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>double bass</rdfs:label></sd>
+    <se property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>viol</rdfs:label></se>
+    <sf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>viola d'amore</rdfs:label></sf>
+    <sg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType><rdfs:label>viola da gamba</rdfs:label></sg>
+    <sn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType></sn>
+    <su property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType></su>
+    <sy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed, ethnic</bf:instrumentalType></sy>
+    <sz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, bowed</bf:instrumentalType></sz>
+    <ta property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType><rdfs:label>harp</rdfs:label></ta>
+    <tb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType><rdfs:label>guitar</rdfs:label></tb>
+    <tc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType><rdfs:label>lute</rdfs:label></tc>
+    <td property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType><rdfs:label>mandolin</rdfs:label></td>
+    <tn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType></tn>
+    <tu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType></tu>
+    <ty property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked, ethnic</bf:instrumentalType></ty>
+    <tz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>string, plucked</bf:instrumentalType></tz>
+    <wa property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>flute</rdfs:label></wa>
+    <wb property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>oboe</rdfs:label></wb>
+    <wc property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>clarinet</rdfs:label></wc>
+    <wd property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>bassoon</rdfs:label></wd>
+    <we property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>piccolo</rdfs:label></we>
+    <wf property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>English horn</rdfs:label></wf>
+    <wg property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>bass clarinet</rdfs:label></wg>
+    <wh property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>recorder</rdfs:label></wh>
+    <wi property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType><rdfs:label>saxophone</rdfs:label></wi>
+    <wn property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType></wn>
+    <wu property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType></wu>
+    <wy property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind, ethnic</bf:instrumentalType></wy>
+    <wz property="bf:instrument" entity="bf:MusicInstrument"><bf:instrumentalType>woodwind</bf:instrumentalType></wz>
     <oa property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>orchestra</rdfs:label></oa>
     <ob property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>chamber orchestra</rdfs:label></ob>
     <oc property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>string orchestra</rdfs:label></oc>
@@ -145,6 +145,7 @@
     <oe property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>dance orchestra</rdfs:label></oe>
     <of property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType><rdfs:label>brass band</rdfs:label></of>
     <on property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></on>
+    <oo property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></oo>
     <ou property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></ou>
     <oy property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental, ethnic</bf:ensembleType></oy>
     <oz property="bf:ensemble" entity="bf:MusicEnsemble"><bf:ensembleType>instrumental</bf:ensembleType></oz>
@@ -155,6 +156,7 @@
     <cn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cn>
     <cu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cu>
     <cy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus, ethnic</bf:voiceType></cy>
+    <cz property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>chorus</bf:voiceType></cz>
     <va property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>soprano</rdfs:label></va>
     <vb property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>mezzo soprano</rdfs:label></vb>
     <vc property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>alto</rdfs:label></vc>
@@ -166,6 +168,7 @@
     <vi property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>medium voice</rdfs:label></vi>
     <vj property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType><rdfs:label>low voice</rdfs:label></vj>
     <vn property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vn>
+    <vo property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vo>
     <vu property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice</bf:voiceType></vu>
     <vy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice, ethnic</bf:voiceType></vy>
   </local:instrumentCode>
@@ -203,8 +206,18 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='c']">
+          <!-- if it's a code, normalize and create a URI -->
+          <!-- imperfect assumption: if there are no spaces, it's a code (shrug) -->
           <bf:source>
             <bf:Source>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              </xsl:if>
               <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Agent')"/></xsl:attribute>
               </rdf:type>
@@ -213,27 +226,33 @@
           </bf:source>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
+          <!-- this should be a code -->
+          <!-- assume MARC code if 3 characters -->
           <bf:descriptionLanguage>
             <bf:Language>
-              <xsl:choose>
-                <xsl:when test="string-length(.) = 3">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:code><xsl:value-of select="."/></bf:code>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:if test="string-length(.) = 3">
+                <xsl:variable name="encoded">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(.)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              </xsl:if>
+              <bf:code><xsl:value-of select="."/></bf:code>
             </bf:Language>
           </bf:descriptionLanguage>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='d']">
           <bf:descriptionModifier>
             <bf:Agent>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Agent>
           </bf:descriptionModifier>
@@ -241,23 +260,15 @@
         <xsl:for-each select="marc:subfield[@code='e']">
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
-              <xsl:choose>
-                <xsl:when test=
-                  "string-length(normalize-space(.))
-                  -
-                  string-length(translate(normalize-space(.),' ','')) +1
-                  = 1">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$encoded)"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </xsl:otherwise>
-              </xsl:choose>
+              <xsl:if test="not(contains(normalize-space(.),' '))">
+                <xsl:variable name="vUri">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(.)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vUri)"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:for-each>
@@ -278,6 +289,7 @@
           <bf:descriptionAuthentication>
             <bf:DescriptionAuthentication>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:DescriptionAuthentication>
           </bf:descriptionAuthentication>
         </xsl:for-each>
@@ -296,6 +308,7 @@
               <xsl:if test="@code = 'm'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label>canceled</rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -425,7 +438,7 @@
               <bf:Scale>
                 <bf:note>
                   <bf:Note>
-                    <rdfs:label>linear scale</rdfs:label>
+                    <rdfs:label>Linear scale</rdfs:label>
                   </bf:Note>
                 </bf:note>
               </bf:Scale>
@@ -526,7 +539,7 @@
             <xsl:otherwise>
               <bf:language>
                 <bf:Language>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
                   <xsl:if test="$vPart != ''">
                     <bf:part><xsl:value-of select="$vPart"/></bf:part>
                   </xsl:if>
@@ -554,6 +567,7 @@
   </xsl:template>
 
   <!-- unstack language codes in 041 subfields -->
+  <!-- convert to lowercase -->
   <xsl:template name="parse041">
     <xsl:param name="pLang"/>
     <xsl:param name="pPart"/>
@@ -567,23 +581,14 @@
               <xsl:if test="$pPart != ''">
                 <bf:part><xsl:value-of select="$pPart"/></bf:part>
               </xsl:if>
-              <bf:identifiedBy>
-                <bf:Identifier>
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(substring($pLang,$pStart,3))"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <rdf:value>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                  </rdf:value>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/languages</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </bf:Identifier>
-              </bf:identifiedBy>
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <rdf:value>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              </rdf:value>
             </bf:Language>
           </bf:language>
         </xsl:when>
@@ -740,31 +745,24 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <xsl:choose>
-                <xsl:when test="../@ind2 = ' '">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcmuscomp,$encoded)"/></xsl:attribute>
-                  <bf:source>
-                    <bf:Source>
-                      <rdfs:label>marcmuscomp</rdfs:label>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:code><xsl:value-of select="."/></bf:code>
+          <xsl:choose>
+            <xsl:when test="../@ind2 = ' '">
+              <xsl:call-template name="compForm008">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="code" select="."/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
                   <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
-                </xsl:otherwise>
-              </xsl:choose>
-            </bf:GenreForm>
-          </bf:genreForm>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -836,6 +834,18 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='020'">
+        <xsl:choose>
+          <xsl:when test="$serialization='rdfxml'">
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:acquisitionTerms>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </bf:acquisitionTerms>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Isbn</xsl:with-param>
@@ -859,9 +869,40 @@
             <xsl:when test="@ind1 = '2'">bf:Ismn</xsl:when>
             <xsl:when test="@ind1 = '3'">bf:Ean</xsl:when>
             <xsl:when test="@ind1 = '4'">bf:Sici</xsl:when>
+            <xsl:when test="@ind1 = '7'">
+              <xsl:choose>
+                <xsl:when test="marc:subfield[@code='2' and text()='ansi']">bf:Ansi</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='doi']">bf:Doi</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='hdl']">bf:Hdl</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='isan']">bf:Isan</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='isni']">bf:Isni</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='iso']">bf:Iso</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='istc']">bf:Istc</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='iswc']">bf:Iswc</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='matrix-number']">bf:MatrixNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='music-plate']">bf:MusicPlate</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='music-publisher']">bf:MusicPublisherNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='stock-number']">bf:StockNumber</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='urn']">bf:Urn</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='videorecording-identifier']">bf:VideoRecordingNumber</xsl:when>
+                <xsl:otherwise>bf:Identifier</xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
             <xsl:otherwise>bf:Identifier</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization='rdfxml'">
+            <xsl:for-each select="marc:subfield[@code='c']">
+              <bf:acquisitionTerms>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                  <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                </xsl:call-template>
+              </bf:acquisitionTerms>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
@@ -889,6 +930,7 @@
             <xsl:when test="@ind1 = '2'">bf:MusicPlate</xsl:when>
             <xsl:when test="@ind1 = '3'">bf:MusicPublisherNumber</xsl:when>
             <xsl:when test="@ind1 = '4'">bf:VideoRecordingNumber</xsl:when>
+            <xsl:when test="@ind1 = '6'">bf:MusicDistributorNumber</xsl:when>
             <xsl:otherwise>bf:PublisherNumber</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -973,6 +1015,7 @@
               <xsl:if test="@code = 'z'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
                     <rdfs:label><xsl:value-of select="$pInvalidLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -980,18 +1023,22 @@
               <xsl:if test="@code = 'y'">
                 <bf:status>
                   <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/incorrect</xsl:attribute>
                     <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>
               </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='c']">
-                <bf:acquisitionTerms>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
-                    <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-                  </xsl:call-template>
-                </bf:acquisitionTerms>
-              </xsl:for-each>
+              <!-- special handling for 036 -->
+              <xsl:if test="../@tag='036'">
+                <xsl:for-each select="../marc:subfield[@code='c']">
+                  <bf:acquisitionTerms>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </bf:acquisitionTerms>
+                </xsl:for-each>
+              </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='q']">
                 <bf:qualifier>
                   <xsl:call-template name="chopPunctuation">

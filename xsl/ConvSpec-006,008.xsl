@@ -12,204 +12,8 @@
 
   <!--
       Conversion specs for 006,008
+      See lookup tables in conf/codeMaps.xml for code conversions
   -->
-
-  <!-- Lookup tables -->
-  <local:millus>
-    <a href="http://id.loc.gov/vocabulary/millus/ill">illustrations</a>
-    <b href="http://id.loc.gov/vocabulary/millus/map">maps</b>
-    <c href="http://id.loc.gov/vocabulary/millus/por">portraits</c>
-    <d href="http://id.loc.gov/vocabulary/millus/chr">charts</d>
-    <e href="http://id.loc.gov/vocabulary/millus/pln">plans</e>
-    <f href="http://id.loc.gov/vocabulary/millus/plt">plates</f>
-    <g href="http://id.loc.gov/vocabulary/millus/mus">music</g>
-    <h href="http://id.loc.gov/vocabulary/millus/fac">facsimiles</h>
-    <i href="http://id.loc.gov/vocabulary/millus/coa">coats of arms</i>
-    <j href="http://id.loc.gov/vocabulary/millus/gnt">geneological tables</j>
-    <k href="http://id.loc.gov/vocabulary/millus/for">forms</k>
-    <l href="http://id.loc.gov/vocabulary/millus/sam">samples</l>
-    <m href="http://id.loc.gov/vocabulary/millus/pho">phonodisc, phonowire</m>
-    <o href="http://id.loc.gov/vocabulary/millus/pht">photographs</o>
-    <p href="http://id.loc.gov/vocabulary/millus/ilm">illuminations</p>
-  </local:millus>
-
-  <local:maudience>
-    <a href="http://id.loc.gov/vocabulary/maudience/pre">preschool</a>
-    <b href="http://id.loc.gov/vocabulary/maudience/pri">primary</b>
-    <c href="http://id.loc.gov/vocabulary/maudience/pad">pre-adolescent</c>
-    <d href="http://id.loc.gov/vocabulary/maudience/ado">adolescent</d>
-    <e href="http://id.loc.gov/vocabulary/maudience/adu">adult</e>
-    <f href="http://id.loc.gov/vocabulary/maudience/spe">specialized</f>
-    <g href="http://id.loc.gov/vocabulary/maudience/gen">general</g>
-    <j href="http://id.loc.gov/vocabulary/maudience/juv">juvenile</j>
-  </local:maudience>
-
-  <local:carrier>
-    <a href="http://id.loc.gov/vocabulary/mediaTypes/h">microfilm</a>
-    <b href="http://id.loc.gov/vocabulary/carriers/he">microfiche</b>
-    <c href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</c>
-    <o href="http://id.loc.gov/vocabulary/carriers/cr">online resource</o>
-    <q>direct electronic</q>
-    <r>regular print reproduction</r>
-    <s>electronic</s>
-  </local:carrier>
-
-  <local:marcgt>
-    <a href="http://id.loc.gov/vocabulary/marcgt/abs">abstract or summary</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bib">bibliography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/cat">catalog</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dic">dictionary</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/enc">encyclopedia</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/han">handbook</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/lea">legal article</g>
-    <h href="http://id.loc.gov/vocabulary/marcgt/bio">biography</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/ind">index</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/pat">patent</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/dis">discography</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/leg">legislation</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/the">thesis</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/sur">survey of literature</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/rev">review</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/pro">programmed text</p>
-    <q href="http://id.loc.gov/vocabulary/marcgt/fil">filmography</q>
-    <r href="http://id.loc.gov/vocabulary/marcgt/dir">directory</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sta">statistics</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/ter">technical report</t>
-    <u href="http://id.loc.gov/vocabulary/marcgt/stp">standard of specification</u>
-    <v href="http://id.loc.gov/vocabulary/marcgt/lec">legal case and case notes</v>
-    <w href="http://id.loc.gov/vocabulary/marcgt/law">law report or digest</w>
-    <y href="http://id.loc.gov/vocabulary/marcgt/yea">yearbook</y>
-    <z href="http://id.loc.gov/vocabulary/marcgt/tre">treaty</z>
-    <x2 href="http://id.loc.gov/vocabulary/marcgt/off">offprint</x2>
-    <x5 href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</x5>
-    <x6 href="http://id.loc.gov/vocabulary/marcgt/cgn">comic or graphic novel</x6>
-  </local:marcgt>
-
-  <local:litform>
-    <x1 href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</x1>
-    <d href="http://id.loc.gov/vocabulary/marcgt/fic">drama</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/fic">essay</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fic">novel</f>
-    <h href="http://id.loc.gov/vocabulary/marcgt/fic">humor, satire</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/fic">letter</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/fic">short story</j>
-    <m href="http://id.loc.gov/vocabulary/marcgt/fic">mixed fiction</m>
-    <p href="http://id.loc.gov/vocabulary/marcgt/fic">poetry</p>
-    <s href="http://id.loc.gov/vocabulary/marcgt/fic">speech</s>
-  </local:litform>
-
-  <local:bioform>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bio">individual biography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/bio">collective biography</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/bio">contains biographical information</d>
-  </local:bioform>
-
-  <local:computerFileType>
-    <a href="http://id.loc.gov/vocabulary/marcgt/num">numeric data</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/com">computer program</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/rep">representational</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/doc">document (computer)</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/bda">bibliographic data</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fon">font</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
-    <h>sound</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/inm">interactive multimedia</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/ons">online system or service</j>
-    <m>computer file combination</m>
-  </local:computerFileType>
-
-  <local:carttype>
-    <a prop="issuance">single map</a>
-    <b prop="issuance">map series</b>
-    <c prop="issuance">map serial</c>
-    <d prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/glo">globe</d>
-    <e prop="genreForm" href="http://id.loc.gov/vocabulary/marcgt/atl">atlas</e>
-    <f prop="issuance">map supplement to another work</f>
-    <g prop="issuance">map bound as part of another work</g>
-  </local:carttype>
-
-  <local:mapform>
-    <e href="http://id.loc.gov/vocabulary/marcgt/man">manuscript</e>
-    <j href="http://id.loc.gov/vocabulary/marcgt/pos">picture card, post card</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/cal">calendar</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/puz">puzzle</l>
-    <n href="http://id.loc.gov/vocabulary/marcgt/gam">game</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/wal">wall map</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/pla">playing cards</p>
-    <r href="http://id.loc.gov/vocabulary/marcgt/loo">loose-leaf</r>
-  </local:mapform>
-
-  <local:musicTextForm>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aut">autobiography</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/bio">biography</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/cpl">conference proceedings</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dra">drama</d>
-    <e href="http://id.loc.gov/vocabulary/marcgt/ess">essays</e>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fic">fiction</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/rpt">reporting</g>
-    <h href="http://id.loc.gov/vocabulary/marcgt/his">history</h>
-    <i href="http://id.loc.gov/vocabulary/marcgt/ins">instruction</i>
-    <j href="http://id.loc.gov/vocabulary/marcgt/lan">language instruction</j>
-    <k href="http://id.loc.gov/vocabulary/marcgt/cod">comedy</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/spe">lectures, speeches</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/mem">memoirs</m>
-    <o href="http://id.loc.gov/vocabulary/marcgt/fol">folktales</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/poe">poetry</p>
-    <r href="http://id.loc.gov/vocabulary/marcgt/reh">rehearsals</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sou">sounds</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/int">interviews</t>
-  </local:musicTextForm>
-
-  <local:frequency>
-    <a href="http://id.loc.gov/vocabulary/frequencies/ann">annual</a>
-    <b href="http://id.loc.gov/vocabulary/frequencies/bmn">bimonthly</b>
-    <c href="http://id.loc.gov/vocabulary/frequencies/swk">semiweekly</c>
-    <d href="http://id.loc.gov/vocabulary/frequencies/dyl">daily</d>
-    <e href="http://id.loc.gov/vocabulary/frequencies/bwk">biweekly</e>
-    <f href="http://id.loc.gov/vocabulary/frequencies/san">semiannual</f>
-    <g href="http://id.loc.gov/vocabulary/frequencies/bin">biennial</g>
-    <h href="http://id.loc.gov/vocabulary/frequencies/ten">triennial</h>
-    <i href="http://id.loc.gov/vocabulary/frequencies/ttw">three times a week</i>
-    <j href="http://id.loc.gov/vocabulary/frequencies/ttm">three times a month</j>
-    <k href="http://id.loc.gov/vocabulary/frequencies/con">continuously updated</k>
-    <m href="http://id.loc.gov/vocabulary/frequencies/mon">monthly</m>
-    <q href="http://id.loc.gov/vocabulary/frequencies/grt">quarterly</q>
-    <s href="http://id.loc.gov/vocabulary/frequencies/smn">semimonthly</s>
-    <t href="http://id.loc.gov/vocabulary/frequencies/tty">three times a year</t>
-    <w href="http://id.loc.gov/vocabulary/frequencies/wkl">weekly</w>
-  </local:frequency>
-
-  <local:crtype>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dtd">updating database</d>
-    <l href="http://id.loc.gov/vocabulary/marcgt/loo">updating loose-leaf</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/ser">monographic series</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/new">newspaper</n>
-    <p href="http://id.loc.gov/vocabulary/marcgt/per">periodical</p>
-    <w href="http://id.loc.gov/vocabulary/marcgt/web">updating web site</w>
-  </local:crtype>
-
-  <local:visualtype>
-    <a href="http://id.loc.gov/vocabulary/marcgt/aro">art original</a>
-    <b href="http://id.loc.gov/vocabulary/marcgt/kit">kit</b>
-    <c href="http://id.loc.gov/vocabulary/marcgt/art">art reproduction</c>
-    <d href="http://id.loc.gov/vocabulary/marcgt/dio">diorama</d>
-    <f href="http://id.loc.gov/vocabulary/marcgt/fls">filmstrip</f>
-    <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
-    <i href="http://id.loc.gov/vocabulary/marcgt/pic">picture</i>
-    <k href="http://id.loc.gov/vocabulary/marcgt/gra">graphic</k>
-    <l href="http://id.loc.gov/vocabulary/marcgt/ted">technical drawing</l>
-    <m href="http://id.loc.gov/vocabulary/marcgt/mot">motion picture</m>
-    <n href="http://id.loc.gov/vocabulary/marcgt/cha">chart</n>
-    <o href="http://id.loc.gov/vocabulary/marcgt/fla">flash card</o>
-    <p href="http://id.loc.gov/vocabulary/marcgt/mic">microscope slide</p>
-    <q href="http://id.loc.gov/vocabulary/marcgt/mod">model</q>
-    <r href="http://id.loc.gov/vocabulary/marcgt/rea">realia</r>
-    <s href="http://id.loc.gov/vocabulary/marcgt/sli">slide</s>
-    <t href="http://id.loc.gov/vocabulary/marcgt/tra">transparency</t>
-    <v href="http://id.loc.gov/vocabulary/marcgt/vid">videorecording</v>
-    <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
-  </local:visualtype>
 
   <xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -442,15 +246,15 @@
         <xsl:if test="substring($dataElements,13,1) = '1'">
           <bf:genreForm>
             <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcgt,'fes')"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2016026082')"/></xsl:attribute>
               <rdfs:label>festschrift</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
-    <xsl:for-each select="document('')/*/local:litform/*[name() = substring($dataElements,16,1)] |
-                          document('')/*/local:litform/*[name() = concat('x',substring($dataElements,16,1))]">
+    <xsl:for-each select="$codeMaps/maps/litform/*[name() = substring($dataElements,16,1)] |
+                          $codeMaps/maps/litform/*[name() = concat('x',substring($dataElements,16,1))]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -462,7 +266,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:bioform/*[name() = substring($dataElements,17,1)]">
+    <xsl:for-each select="$codeMaps/maps/bioform/*[name() = substring($dataElements,17,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -484,7 +288,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:computerFileType/*[name() = substring($dataElements,9,1)]">
+    <xsl:for-each select="$codeMaps/maps/computerFileType/*[name() = substring($dataElements,9,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -522,94 +326,6 @@
   <xsl:template name="work008music">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:variable name="compform">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,1,2) = 'an'">anthems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bd'">ballads</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bg'">bluegrass music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bl'">blues</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'bt'">ballets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ca'">chaconnes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cb'">chants, other religions</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cc'">chant, Christian</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cg'">concerti grossi</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ch'">chorales</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cl'">chorale preludes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cn'">canons and rounds</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cp'">chansons, polyphonic</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cr'">carols</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cs'">chance compositions</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ct'">cantatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cy'">country music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'cz'">canzonas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'df'">dance forms</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'dv'">divertimentos, serenades, cassations, divertissements, notturni</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fg'">fugues</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fl'">flamenco</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'fm'">folk music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ft'">fantasias</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'gm'">gospel music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'hy'">hymns</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'jz'">jazz</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mc'">musical revues and comedies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'md'">madrigals</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mi'">minuets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mo'">motets</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mp'">motion picture music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mr'">marches</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ms'">masses</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mu'">multiple forms</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'mz'">mazurkas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'nc'">nocturnes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'op'">operas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'or'">oratorios</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ov'">overtures</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pg'">program music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pm'">passion music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'po'">polonaises</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pp'">popular music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pr'">preludes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ps'">passacaglias</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pt'">part-songs</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'pv'">pavans</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rc'">rock music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rd'">rondos</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rg'">ragtime music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ri'">ricercars</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rp'">rhapsodies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'rq'">requiems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sd'">square dance music</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sg'">songs</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sn'">sonatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sp'">symphonic poems</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'st'">studies and exercises</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'su'">suites</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'sy'">symphonies</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'tc'">toccatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'tl'">teatro lirico</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'ts'">trio-sonatas</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'vi'">villancicos</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'vr'">variations</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'wz'">waltzes</xsl:when>
-        <xsl:when test="substring($dataElements,1,2) = 'za'">arzuelas</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="musicformat">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,3,1) = 'a'">full score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'b'">full score, miniature or study size</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'c'">accompaniment reduced for keyboard</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'd'">voice score with accompaniment omitted</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'e'">condensed score or piano-conductor score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'g'">close score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'h'">chorus score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'i'">condensed score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'j'">performer-conducter part</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'k'">vocal score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'l'">score</xsl:when>
-        <xsl:when test="substring($dataElements,3,1) = 'm'">multiple score formats</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:call-template name="intendedAudience008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
@@ -618,26 +334,14 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="accomp" select="substring($dataElements,7,6)"/>
     </xsl:call-template>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$compform != ''">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <bf:code><xsl:value-of select="substring($dataElements,1,2)"/></bf:code>
-              <rdfs:label><xsl:value-of select="$compform"/></rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:if>
-        <xsl:if test="$musicformat != ''">
-          <bf:musicFormat>
-            <bf:MusicFormat>
-              <bf:code><xsl:value-of select="substring($dataElements,3,1)"/></bf:code>
-              <rdfs:label><xsl:value-of select="$musicformat"/></rdfs:label>
-            </bf:MusicFormat>
-          </bf:musicFormat>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:call-template name="compForm008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,1,2)"/>
+    </xsl:call-template>
+    <xsl:call-template name="musicFormat008">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="code" select="substring($dataElements,3,1)"/>
+    </xsl:call-template>
     <xsl:call-template name="musicTextForm008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="litform" select="substring($dataElements,13,2)"/>
@@ -700,6 +404,11 @@
         <xsl:when test="substring($dataElements,1,3) = '---'"/>
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
+        <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
+          <xsl:call-template name="chopLeadingPadding">
+            <xsl:with-param name="chopString" select="substring($dataElements,1,3)"/>
+          </xsl:call-template>
+        </xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -711,7 +420,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:visualtype/*[name() = substring($dataElements,16,1)]">
+    <xsl:for-each select="$codeMaps/maps/visualtype/*[name() = substring($dataElements,16,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -743,7 +452,7 @@
   <xsl:template name="intendedAudience008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:maudience/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/maudience/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:intendedAudience>
@@ -764,8 +473,8 @@
     <xsl:param name="contents"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:marcgt/*[name() = substring($contents,$i,1)] |
-                            document('')/*/local:marcgt/*[name() = concat('x',substring($contents,$i,1))]">
+      <xsl:for-each select="$codeMaps/maps/marcgt/*[name() = substring($contents,$i,1)] |
+                            $codeMaps/maps/marcgt/*[name() = concat('x',substring($contents,$i,1))]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -824,8 +533,8 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcgt,'cpb')"/></xsl:attribute>
-              <rdfs:label>conference publication</rdfs:label>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2014026068')"/></xsl:attribute>
+              <rdfs:label>conference papers and proceedings</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:when>
@@ -839,7 +548,7 @@
     <xsl:param name="form"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:mapform/*[name() = substring($form,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/mapform/*[name() = substring($form,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -857,6 +566,46 @@
         <xsl:with-param name="i" select="$i + 1"/>
       </xsl:call-template>
     </xsl:if>
+  </xsl:template>
+
+  <!-- compForm properties for music -->
+  <xsl:template name="compForm008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="code"/>
+    <xsl:for-each select="$codeMaps/maps/musicCompForm/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:genreForm>
+            <bf:GenreForm>
+              <xsl:if test="@href != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:GenreForm>
+          </bf:genreForm>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- musicFormat properties for music -->
+  <xsl:template name="musicFormat008">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="code"/>
+    <xsl:for-each select="$codeMaps/maps/musicFormat/*[name() = $code]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:musicFormat>
+            <bf:MusicFormat>
+              <xsl:if test="@href != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:MusicFormat>
+          </bf:musicFormat>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- supplementaryContent properties for music - loop 6 times -->
@@ -907,7 +656,7 @@
     <xsl:param name="litform"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
-      <xsl:for-each select="document('')/*/local:musicTextForm/*[name() = substring($litform,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/musicTextForm/*[name() = substring($litform,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:genreForm>
@@ -1377,7 +1126,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
-    <xsl:for-each select="document('')/*/local:carttype/*[name() = substring($dataElements,8,1)]">
+    <xsl:for-each select="$codeMaps/maps/carttype/*[name() = substring($dataElements,8,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <xsl:if test="@prop = 'genreForm'">
@@ -1437,19 +1186,23 @@
         <xsl:when test="substring($dataElements,2,1) = 'x'">completely irregular</xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="document('')/*/local:frequency/*[name() = substring($dataElements,1,1)]">
+    <xsl:for-each select="$codeMaps/maps/frequency/*[name() = substring($dataElements,1,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:frequency>
             <bf:Frequency>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <xsl:if test="@href != ''">
+                <bflc:target>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="@href"/></xsl:attribute>
+                </bflc:target>
+              </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Frequency>
           </bf:frequency>
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:crtype/*[name() = substring($dataElements,4,1)]">
+    <xsl:for-each select="$codeMaps/maps/crtype/*[name() = substring($dataElements,4,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:genreForm>
@@ -1461,7 +1214,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="document('')/*/local:carrier/*[name() = substring($dataElements,5,1)]">
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = substring($dataElements,5,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
@@ -1497,28 +1250,40 @@
   <xsl:template name="instance008visual">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:variable name="technique">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,17,1) = 'a'">animation</xsl:when>
-        <xsl:when test="substring($dataElements,17,1) = 'c'">animation and live action</xsl:when>
-        <xsl:when test="substring($dataElements,17,1) = 'l'">live action</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
     </xsl:call-template>
     <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$technique != ''">
-          <bf:note>
-            <bf:Note>
-              <bf:noteType>technique</bf:noteType>
-              <rdfs:label><xsl:value-of select="$technique"/></rdfs:label>
-            </bf:Note>
-          </bf:note>
-        </xsl:if>
+      <xsl:when test="substring($dataElements,17,1) = '|'">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>technique</bf:noteType>
+                <rdfs:label>no attempt to code</rdfs:label>
+              </bf:Note>
+            </bf:note>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="$codeMaps/maps/technique/*[name() = substring($dataElements,17,1)]">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:note>
+                <bf:Note>
+                  <xsl:if test="@href != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  </xsl:if>
+                  <bf:noteType>technique</bf:noteType>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
   
@@ -1538,7 +1303,7 @@
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="document('')/*/local:millus/*[name() = substring($illustrations,$i,1)]">
+      <xsl:for-each select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:illustrativeContent>
@@ -1561,7 +1326,7 @@
   <xsl:template name="carrier008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:for-each select="document('')/*/local:carrier/*[name() = $code]">
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:carrier>

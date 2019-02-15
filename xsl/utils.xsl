@@ -128,6 +128,26 @@
   </xsl:template>
 
   <!--
+      Chop leading padding character on string
+      Used mostly to chop leading '0'
+  -->
+  <xsl:template name="chopLeadingPadding">
+    <xsl:param name="chopString"/>
+    <xsl:param name="padding" select="'0'"/>
+    <xsl:variable name="length" select="string-length($chopString)"/>
+    <xsl:choose>
+      <xsl:when test="$length=0"/>
+      <xsl:when test="contains($padding,substring($chopString,1,1))">
+        <xsl:call-template name="chopLeadingPadding">
+          <xsl:with-param name="chopString" select="substring($chopString,2)"/>
+          <xsl:with-param name="padding" select="$padding"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$chopString"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <!--
       Chop trailing punctuation
       .:,;/ and space
       From MARC21slimUtils.xsl
@@ -315,6 +335,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
+    <xsl:param name="pTarget"/>
     <xsl:param name="pProcess"/>
     <xsl:param name="pPunctuation">
       <xsl:text>.:,;/ </xsl:text>
@@ -352,6 +373,14 @@
             <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <xsl:apply-templates select="../marc:subfield[@code='0']" mode="subfield0orw">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:if test="$pTarget != ''">
+              <bflc:target>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$pTarget"/></xsl:attribute>
+              </bflc:target>
+            </xsl:if>
           </xsl:element>
         </xsl:element>
       </xsl:when>

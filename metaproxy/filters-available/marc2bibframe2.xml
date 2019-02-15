@@ -31,7 +31,7 @@
             <namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
             <namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
             <lookup xpath="//bf:Work/bf:subject/bf:Temporal[contains(@rdf:about,'example.org')] |
-                           //bf:Work/bf:subject/bf:Topic[contains(@rdf:about,'example.org')] |
+                           //bf:Work/bf:subject/bf:Topic[contains(@rdf:about,'example.org') and bf:source/bf:Source/bf:code='lcsh'] |
                            //bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org')] |
                            //bf:Work/bf:genreForm/bf:GenreForm[contains(@rdf:about,'example.org')]">
               <key field="rdfs:label"/>

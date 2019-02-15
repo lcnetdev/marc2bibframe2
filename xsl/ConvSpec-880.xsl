@@ -62,19 +62,7 @@
       </xsl:when>
       <xsl:when test="$tag='245'">
         <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-          <xsl:variable name="label">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='b' or
-                                         @code='f' or 
-                                         @code='g' or
-                                         @code='k' or
-                                         @code='n' or
-                                         @code='p' or
-                                         @code='s']"/>
-          </xsl:variable>
           <xsl:apply-templates mode="work245" select=".">
-            <xsl:with-param name="label" select="$label"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
@@ -89,6 +77,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:content</xsl:with-param>
           <xsl:with-param name="pResource">bf:Content</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$contentType"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='351'">
@@ -118,6 +107,11 @@
       </xsl:when>
       <xsl:when test="$tag='502'">
         <xsl:apply-templates select="." mode="work502">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='505'">
+        <xsl:apply-templates select="." mode="work505">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -180,6 +174,12 @@
       <xsl:when test="($tag='648' or $tag='650' or $tag='651') or ($tag='655' and @ind1=' ')">
         <xsl:variable name="vTopicUri">
           <xsl:choose>
+            <xsl:when test="$tag='648'">
+              <xsl:value-of select="$recordid"/>#Temporal880-<xsl:value-of select="position()"/>
+            </xsl:when>
+            <xsl:when test="$tag='651'">
+              <xsl:value-of select="$recordid"/>#Place880-<xsl:value-of select="position()"/>
+            </xsl:when>
             <xsl:when test="$tag='655'">
               <xsl:value-of select="$recordid"/>#GenreForm880-<xsl:value-of select="position()"/>
             </xsl:when>
@@ -200,12 +200,20 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='656'">
+        <xsl:variable name="vDefaultUri">
+          <xsl:value-of select="$recordid"/>#Topic880-<xsl:value-of select="position()"/>
+        </xsl:variable>
         <xsl:apply-templates select="." mode="work656">
+          <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='662'">
+        <xsl:variable name="vDefaultUri">
+          <xsl:value-of select="$recordid"/>#Place880-<xsl:value-of select="position()"/>
+        </xsl:variable>
         <xsl:apply-templates select="." mode="work662">
+          <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -271,19 +279,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='245'">
-        <xsl:variable name="label">
-          <xsl:apply-templates mode="concat-nodes-space"
-                               select="marc:subfield[@code='a' or
-                                       @code='b' or
-                                       @code='f' or 
-                                       @code='g' or
-                                       @code='k' or
-                                       @code='n' or
-                                       @code='p' or
-                                       @code='s']"/>
-        </xsl:variable>
         <xsl:apply-templates mode="instance245" select=".">
-          <xsl:with-param name="label" select="$label"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -352,6 +348,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:media</xsl:with-param>
           <xsl:with-param name="pResource">bf:Media</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$mediaType"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='338'">
@@ -359,6 +356,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
           <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
+          <xsl:with-param name="pUriStem"><xsl:value-of select="$carriers"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='340'">
@@ -367,27 +365,27 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='344'">
-        <xsl:apply-templates select="." mode="instance344">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='345'">
-        <xsl:apply-templates select="." mode="instance345">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='346'">
-        <xsl:apply-templates select="." mode="instance346">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='347'">
-        <xsl:apply-templates select="." mode="instance347">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='348'">
-        <xsl:apply-templates select="." mode="instance348">
+        <xsl:apply-templates select="." mode="instance34X">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -413,11 +411,6 @@
                       $tag='556' or $tag='581' or $tag='585' or
                       $tag='586' or $tag='588'">
         <xsl:apply-templates select="." mode="instanceNote5XX">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='505'">
-        <xsl:apply-templates select="." mode="instance505">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

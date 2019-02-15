@@ -20,9 +20,6 @@
       <subfield code="x">1-54 on order in Microfiche</subfield>
       <subfield code="z">Signed by author</subfield>
     </datafield>
-    <datafield tag="856" ind1="4" ind2="1">
-      <subfield code="u">http://www.jstor.org/journals/0277903x.html</subfield>
-    </datafield>
     <datafield tag="856" ind1="4" ind2="0">
       <subfield code="u">http://www.ref.oclc.org:2000</subfield>
       <subfield code="z">Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text</subfield>
@@ -30,6 +27,21 @@
     <datafield tag="856" ind1="4" ind2="2">
       <subfield code="3">Finding aid</subfield>
       <subfield code="u">http://www.loc.gov/ammem/ead/jackson.sgm</subfield>
+    </datafield>
+  </record>
+  <record>
+    <leader>01892cam a22003737a 4500</leader>
+    <controlfield tag="001">2</controlfield>
+    <controlfield tag="008">050126s2002    caua    s     001 0 eng d</controlfield>
+    <datafield tag="245" ind1="0" ind2="4">
+      <subfield code="a">The XML CD bookshelf</subfield>
+      <subfield code="h">[electronic resource].</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">http://example.org/fakebook.html</subfield>
+    </datafield>
+    <datafield tag="859" ind1="4" ind2="0">
+      <subfield code="u">http://example.org/fakebook2.html</subfield>
     </datafield>
   </record>
 </collection>

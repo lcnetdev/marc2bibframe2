@@ -40,6 +40,17 @@
   <!-- <xsl:param name="idsource" select="'http://id.loc.gov/vocabulary/organizations/dlc'"/> -->
 
   <!--
+      Use field conversion for locally defined fields.
+      Some fields in the conversion (e.g. 859) are locally defined by
+      LoC for conversion. By default these fields will not be
+      converted unless this parameter evaluates to true()
+      To run a test of the localfields parameter, uncomment the
+      following line, and uncomment the test in test/ConvSpec-841-887.xspec
+  -->
+  <!-- <xsl:param name="localfields" select="true()"/> -->
+  <xsl:param name="localfields"/>
+  
+  <!--
       datestamp for generationProcess property of Work adminMetadata
       Useful to override if date:date-time() extension is not
       available
@@ -103,6 +114,25 @@
   <xsl:variable name="marcmuscomp">http://id.loc.gov/vocabulary/marcmuscomp/</xsl:variable>
   <xsl:variable name="organizations">http://id.loc.gov/vocabulary/organizations/</xsl:variable>
   <xsl:variable name="relators">http://id.loc.gov/vocabulary/relators/</xsl:variable>
+  <xsl:variable name="mproduction">http://id.loc.gov/vocabulary/mproduction/</xsl:variable>
+  <xsl:variable name="msoundcontent">http://id.loc.gov/vocabulary/msoundcontent/</xsl:variable>
+  <xsl:variable name="mrecmedium">http://id.loc.gov/vocabulary/mrecmedium/</xsl:variable>
+  <xsl:variable name="mgeneration">http://id.loc.gov/vocabulary/mgeneration/</xsl:variable>
+  <xsl:variable name="mpresformat">http://id.loc.gov/vocabulary/mpresformat/</xsl:variable>
+  <xsl:variable name="mmaspect">http://id.loc.gov/vocabulary/mmaspect/</xsl:variable>
+  <xsl:variable name="mrectype">http://id.loc.gov/vocabulary/mrectype/</xsl:variable>
+  <xsl:variable name="mspecplayback">http://id.loc.gov/vocabulary/mspecplayback/</xsl:variable>
+  <xsl:variable name="mgroove">http://id.loc.gov/vocabulary/mgroove/</xsl:variable>
+  <xsl:variable name="mvidformat">http://id.loc.gov/vocabulary/mvidformat/</xsl:variable>
+  <xsl:variable name="mbroadstd">http://id.loc.gov/vocabulary/mbroadstd/</xsl:variable>
+  <xsl:variable name="mfiletype">http://id.loc.gov/vocabulary/mfiletype/</xsl:variable>
+  <xsl:variable name="mregencoding">http://id.loc.gov/vocabulary/mregencoding/</xsl:variable>
+  <xsl:variable name="mmusicformat">http://id.loc.gov/vocabulary/mmusicformat/</xsl:variable>
+
+  <!-- for upper- and lower-case translation (ASCII only) -->
+  <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
+  <xsl:variable name="upper">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+  
 
   <!-- configuration files -->
 
@@ -111,6 +141,9 @@
 
   <!-- language map -->
   <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
+
+  <!-- code maps -->
+  <xsl:variable name="codeMaps" select="document('conf/codeMaps.xml')"/>
 
   <xsl:template match="/">
 

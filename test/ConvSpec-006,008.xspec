@@ -33,13 +33,18 @@
       <x:expect label="pos 23 may create a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier/bf:Carrier/rdfs:label = 'electronic'"/>
       <x:expect label="...or a fontSize property" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/rdfs:label = 'large print'"/>
       <x:expect label="...or a notation" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/rdfs:label = 'braille'"/>
-      <x:expect label="pos 24-27 create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'comic or graphic novel'"/>
+      <x:expect label="pos 24-27 create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026362'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'graphic novels'"/>
       <x:expect label="pos 28 creates a genreForm for a gov doc" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'autonomous or semi-autonomous government publication'"/>
-      <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'conference publication'"/>
+      <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026068'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'conference papers and proceedings'"/>
+      <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2016026082'"/>
       <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/rdfs:label = 'festschrift'"/>
       <x:expect label="pos 31 creates a supplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent/bf:SupplementaryContent/rdfs:label = 'Index present'"/>
-      <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
-      <x:expect label="pos 33 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiography'"/>
+      <x:expect label="pos 33 creates a genreForm for the literary form" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026339'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'fiction'"/>
+      <x:expect label="pos 34 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026047'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[6]/bf:GenreForm/rdfs:label = 'autobiographies'"/>
     </x:scenario>
 
     <x:scenario label="COMPUTER FILES">
@@ -51,23 +56,27 @@
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
       <x:expect label="pos 18-21 create cartographicAttributes properties of the Instance" test="//bf:Instance[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:note/bf:Note/rdfs:label = 'shading'"/>
       <x:expect label="pos 22-23 creates a project property of the Instance" test="//bf:Instance[5]/bf:projection/bf:Cartographic/rdfs:label = 'Krovak'"/>
-      <x:expect label="pos 25 creates an issuance or genreForm property of the Instance" test="//bf:Instance[5]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'atlas'"/>
+      <x:expect label="pos 25 creates an issuance or genreForm property of the Instance" test="//bf:Instance[5]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'atlases'"/>
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'playing cards'"/>
     </x:scenario>
     
     <x:scenario label="MUSIC">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18-19 creates a genreForm property of the Work" test="//bf:Work[6]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'hymns'"/>
-      <x:expect label="pos 20 creates a musicFormat property of the Work" test="//bf:Work[6]/bf:musicFormat/bf:MusicFormat/rdfs:label = 'full score'"/>
+      <x:expect label="pos 18-19 creates a genreForm property of the Work" test="//bf:Work[6]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026872'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[6]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'hymns'"/>
+      <x:expect label="pos 20 creates a musicFormat property of the Work" test="//bf:Work[6]/bf:musicFormat/bf:MusicFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mmusicformat/score'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[6]/bf:musicFormat/bf:MusicFormat/rdfs:label = 'score'"/>
       <x:expect label="pos 24-29 create supplementaryContent properties of the Work" test="//bf:Work[6]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'bibliography'"/>
       <x:expect label="pos 30-31 create genreForm properties of the Work" test="//bf:Work[6]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'drama'"/>
     </x:scenario>
 
     <x:scenario label="CONTINUING RESOURCES">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18 creates a frequency property of the Instance" test="//bf:Instance[7]/bf:frequency[1]/bf:Frequency/rdfs:label = 'weekly'"/>
+      <x:expect label="pos 18 creates a frequency property of the Instance with a bflc:target" test="//bf:Instance[7]/bf:frequency[1]/bf:Frequency/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/frequencies/wkl'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:frequency[1]/bf:Frequency/rdfs:label = 'weekly'"/>
       <x:expect label="pos 19 creates another frequency property of the Instance" test="//bf:Instance[7]/bf:frequency[2]/bf:Frequency/rdfs:label = 'normalized irregular'"/>
-      <x:expect label="pos 21 creates a genreForm property of the Instance" test="//bf:Instance[7]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'periodical'"/>
+      <x:expect label="pos 21 creates a genreForm property of the Instance" test="//bf:Instance[7]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026139'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[7]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'periodicals'"/>
       <x:expect label="pos 22 creates a note property of the Instance" test="//bf:Instance[7]/bf:note[2]/bf:Note/rdfs:label = 'electronic'"/>
       <x:expect label="pos 33 creates a notation property of the Work" test="//bf:Work[7]/bf:notation/bf:Script/rdfs:label = 'basic roman'"/>
       <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note/rdfs:label = '0 - successive'"/>
@@ -75,9 +84,11 @@
 
     <x:scenario label="VISUAL MATERIALS">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18-21 create a duration property of the Work" test="//bf:Work[8]/bf:duration = '161'"/>
-      <x:expect label="pos 33 creates a genreForm property of the Work" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'motion picture'"/>
-      <x:expect label="pos 34 creates a note property of the Instance" test="//bf:Instance[8]/bf:note/bf:Note/rdfs:label = 'live action'"/>
+      <x:expect label="pos 18-21 create a duration property of the Work" test="//bf:Work[8]/bf:duration = '1'"/>
+      <x:expect label="pos 33 creates a genreForm property of the Work" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026406'"/>
+      <x:expect label="with an rdfs:label" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'motion pictures'"/>
+      <x:expect label="pos 34 creates a note property of the Instance" test="//bf:Instance[8]/bf:note/bf:Note/@rdf:about = 'http://id.loc.gov/vocabulary/mtechnique/live'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[8]/bf:note/bf:Note/rdfs:label = 'live action'"/>
     </x:scenario>
 
   </x:scenario>

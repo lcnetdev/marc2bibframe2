@@ -63,6 +63,9 @@ The converter supports four optional parameters:
   `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
   by default, resulting in no source property being defined.
 
+- `localfield` - if true, process fields that are local to the Library
+  of Congress records. Right now, the only field affected is the 859.
+
 - `pGenerationDatestamp` - a value to be used as the datestamp for the
   bf:generationProcess property for the Work AdminMetadata. Defaults
   to the current date/time if the EXSLT `date:date-time()` function is
@@ -251,6 +254,10 @@ the [deploy](deploy) directory.
 * dataset - sample records for exercising conversion
 * metaproxy - sample [Metaproxy](http://www.indexdata.com/metaproxy/)
   configuration for static and active conversion
+* spec - the current specifications of the conversion. These are
+  mostly published on the
+  [BIBFRAME website|http://www.loc.gov/bibframe/mtbf/], but the
+  versions in the conversion may be ahead of the published versions.
 * test - Unit tests for the [XSpec](https://github.com/xspec/xspec)
   testing framework, and test data
 * xsl - XSLT 1.0 stylesheets for transformation, configuration in xsl/conf

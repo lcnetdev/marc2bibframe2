@@ -14,19 +14,19 @@
     <x:context href="data/ConvSpec-880/marc.xml"/>
     <x:expect label="$6 052 creates a geographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:Place/rdfs:label = 'Нью-Йорк'"/>
     <x:expect label="$6 055 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'פ5050 .2'"/>
-    <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/rdfs:Resource/rdf:value = 'ז 1 .630'"/>
+    <x:expect label="$6 072 creates a subject property of the Work" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:classification/bf:Classification/bf:classificationPortion = 'ז 1 .630'"/>
     <x:expect label="$6 082 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[2]/bf:ClassificationDdc/bf:classificationPortion = '975,5 / 4252/00222'"/>
     <x:expect label="$6 084 creates a classification property of the Work" test="//bf:Work[1]/bf:classification[3]/bf:Classification/bf:classificationPortion = 'קב112.554'"/>
     <x:expect label="$6 086 creates a classification property of the Instance" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/rdfs:label = 'A 1.1:'"/>
     <x:expect label="$6 1XX should make an Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 X30-xx/240-xx should make a Title" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
-    <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/AbbreviatedTitle'"/>
-    <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Instance[1]/bf:title[2]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/KeyTitle'"/>
-    <x:expect label="$6 242-xx should make a VariantTitle with varientType 'translated'" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:variantType = 'translated'"/>
-    <x:expect label="$6 243-xx should make a CollectiveTitle" test="//bf:Work[1]/bf:title[2]/bf:Title/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/CollectiveTitle'"/>
+    <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/rdfs:label='東海道五十三次絵卷.'"/>
+    <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Instance[1]/bf:title[2]/bf:KeyTitle/rdfs:label = '東海道五十三次絵卷.'"/>
+    <x:expect label="$6 242-xx should make a VariantTitle with varientType 'translated'" test="//bf:Instance[1]/bf:title[3]/bf:VariantTitle/bf:variantType = 'translated'"/>
+    <x:expect label="$6 243-xx should make a CollectiveTitle" test="//bf:Work[1]/bf:title[2]/bf:CollectiveTitle/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[4]/bf:Title/rdfs:label = '東海道五十三次絵卷.'"/>
-    <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Instance[1]/bf:title[5]/bf:Title/rdf:type[1]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/VariantTitle'"/>
-    <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[6]/bf:Title/bf:variantType = 'former'"/>
+    <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Instance[1]/bf:title[5]/bf:ParallelTitle/rdfs:label = '東海道五十三次絵卷.'"/>
+    <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[6]/bf:VariantTitle/bf:variantType = 'former'"/>
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Полный счет'"/>
     <x:expect label="$6 255 $a creates a scale property of the Work" test="//bf:Work[1]/bf:scale/bf:Scale/rdfs:label = 'Масштаб не дано'"/>
@@ -64,11 +64,11 @@
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
     <x:expect label="$6 504 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
-    <x:expect label="$6 505 creates a tableOfContents property of the Instance" test="//bf:Instance[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
+    <x:expect label="$6 505 creates a tableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
     <x:expect label="$6 506 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label = 'Классифицированная информация.'"/>
     <x:expect label="$6 507 creates a scale property of the Instance" test="//bf:Instance/bf:scale[1] = 'Перспектива карта не в масштабе.'"/>
     <x:expect label="$6 508 creates a credits property of the Work" test="//bf:Work[1]/bf:credits[1] = 'Музыка, Майкл Фишбейн; камера, Джордж Mo.'"/>
-    <x:expect label="$6 510 creates a bflc:indexedIn property of the Instance" test="//bf:Instance[1]/bflc:indexedIn[1]/bf:Instance/bf:title/bf:Title/rdfs:label = 'химический рефераты'"/>
+    <x:expect label="$6 510 creates a bflc:indexedIn or bf:references property of the Instance" test="//bf:Instance[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'химический рефераты'"/>
     <x:expect label="$6 511 creates a bf:credits property of the Work" test="//bf:Work[1]/bf:credits[2] = 'Джеки Гланвилл.'"/>
     <x:expect label="$6 513 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Ежеквартальный отчет технический прогресс; Январь-апрель 1, 1977.'"/>
     <x:expect label="$6 515 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Выпущенные в частях.'"/>

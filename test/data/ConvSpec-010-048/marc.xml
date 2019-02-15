@@ -159,7 +159,7 @@
       <subfield code="a">Uk</subfield>
     </datafield>
     <datafield tag="040" ind1=" " ind2=" ">
-      <subfield code="a">DNA</subfield>
+      <subfield code="a">NBPol-G</subfield>
       <subfield code="b">fre</subfield>
       <subfield code="c">CtY</subfield>
       <subfield code="d">CtY</subfield>
@@ -212,6 +212,7 @@
       <subfield code="b">vc01</subfield>
       <subfield code="b">vd01</subfield>
       <subfield code="b">vf01</subfield>
+      <subfield code="b">ka01</subfield>
       <subfield code="a">ca04</subfield>
       <subfield code="a">oc</subfield>
     </datafield>
