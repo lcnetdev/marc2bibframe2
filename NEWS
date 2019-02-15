@@ -1,5 +1,29 @@
 --- 1.4.0-SNAPSHOT
 
+Update conversion based on updated specifications:
+  ConvSpec-LDR-R1
+  ConvSpec-841-887-R3
+  ConvSpec-5XX-R2
+  ConvSpec-490,510,530-535-Links-R2
+  ConvSpec-200-247-Titles-R2
+  ConvSpec-010-048-R3
+  ConvSpec-3XX-R2
+  ConvSpec-050-088-R1
+  ConvSpec-006-008-R1
+  ConvSpec-001-007-R2
+  ConvSpec-250-270-v1.4
+Generate property bf:instrumentalType instead of bf:instrumentType (https://github.com/lcnetdev/marc2bibframe2/issues/99)
+Correct isMemberOfMADSScheme typo (https://github.com/lcnetdev/marc2bibframe2/issues/100)
+Add "localfields" parameter (https://github.com/lcnetdev/marc2bibframe2/issues/98)
+Fix typo in MARC 034 conversion (https://github.com/lcnetdev/marc2bibframe2/issues/106)
+Update conversion for MARC 255 (https://github.com/lcnetdev/marc2bibframe2/issues/83)
+Refine conversion for MARC 362 (https://github.com/lcnetdev/marc2bibframe2/issues/74)
+Standardize URI generation in 6XX fields (https://github.com/lcnetdev/marc2bibframe2/issues/61)
+Add conversion specifications to repository (https://github.com/lcnetdev/marc2bibframe2/issues/57)
+Correct generation of rdfs:label properties from MARC 245 (https://github.com/lcnetdev/marc2bibframe2/issues/95)
+Add missing "pUriStem" parameter to 880/33X conversion (https://github.com/lcnetdev/marc2bibframe2/issues/93)
+License update
+
 --- 1.3.2 2018/06/15
 
 URL-encode codes from MARC before appending to URI stems (fixes lcnetdev/marc2bibframe2#77)
