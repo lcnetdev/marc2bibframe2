@@ -36,10 +36,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_datadir}/marc2bibframe2
 %{_docdir}/marc2bibframe2
-%doc NEWS README.md LICENSE.md
+%doc NEWS README.md LICENSE
 %docdir %{_docdir}/marc2bibframe2
 
 %changelog
+* Fri Feb 15 2019 Wayne Schneider <wayne@indexdata.com> - 1.4.0-1.indexdata
+- Release 1.4.0
+
 * Fri Jun 15 2018 Wayne Schneider <wayne@indexdata.com> - 1.3.2-1.indexdata
 - Release 1.3.2
 
