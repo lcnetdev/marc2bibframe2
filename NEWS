@@ -1,3 +1,7 @@
+--- 1.5.0-SNAPSHOT
+
+Remove extra xsl:message logging (https://github.com/lcnetdev/marc2bibframe2/issues/113)
+
 --- 1.4.0 2019/02/15
 
 Update conversion based on updated specifications:

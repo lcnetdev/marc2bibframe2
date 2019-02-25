@@ -1250,8 +1250,6 @@
     <xsl:param name="pXmlLang"/>
     <xsl:param name="pFirstIssue"/>
     <xsl:param name="pLastIssue"/>
-    <xsl:message>first issue: <xsl:value-of select="$pFirstIssue"/></xsl:message>
-    <xsl:message>last issue: <xsl:value-of select="$pLastIssue"/></xsl:message>
     <xsl:if test="$pFirstIssue != ''">
       <xsl:choose>
         <xsl:when test="$serialization='rdfxml'">
