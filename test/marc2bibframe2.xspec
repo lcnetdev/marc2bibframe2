@@ -546,7 +546,7 @@
                 </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
-                    <rdfs:label>lccopycat</rdfs:label>
+                    <bf:code>lccopycat</bf:code>
                   </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
