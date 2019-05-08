@@ -1,5 +1,5 @@
 
-[![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/circleci.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/circleci)
+[![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/master.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2)
 
 # marc2bibframe2
 
