@@ -775,9 +775,9 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
-            <xsl:if test="document('')/*/local:instrumentCode/*[name() = substring(.,1,2)]">
-              <xsl:variable name="vCode" select="substring(.,1,2)"/>
-              <xsl:variable name="vCount" select="substring(.,3,2)"/>
+            <xsl:variable name="vCode" select="substring(.,1,2)"/>
+            <xsl:variable name="vCount" select="substring(.,3,2)"/>
+            <xsl:if test="document('')/*/local:instrumentCode/*[name() = $vCode]">
               <xsl:element name="{document('')/*/local:instrumentCode/*[name() = $vCode]/@property}">
                 <xsl:element name="{document('')/*/local:instrumentCode/*[name() = $vCode]/@entity}">
                   <xsl:for-each select="document('')/*/local:instrumentCode/*[name() = $vCode]/*">
