@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/buildpack-deps:scm
+    steps:
+      - checkout
+      - run:
+          name: Install testing prerequisites
+          command: |
+            sudo apt-get update && sudo apt-get install -y libsaxonhe-java
+            git clone https://github.com/xspec/xspec.git /tmp/xspec
+      - run:
+          name: Run XSpec tests
+          environment:
+            SAXON_CP: /usr/share/java/Saxon-HE.jar
+            XSPEC: /tmp/xspec/bin/xspec.sh
+          command: "$XSPEC test/marc2bibframe2.xspec"
+      - store_artifacts:
+          path: test/xspec/marc2bibframe2-result.html
+          destination: xspec-tests/marc2bibframe2-result.html

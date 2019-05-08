@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/lcnetdev/marc2bibframe2.svg?branch=master)](https://travis-ci.org/lcnetdev/marc2bibframe2)
+[![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/circleci.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/circleci)
 
 # marc2bibframe2
 
