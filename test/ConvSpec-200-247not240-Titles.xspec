@@ -11,23 +11,11 @@
   <x:scenario label="210 - ABBREVIATED TITLE">
     <x:scenario label="multiple 210s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="should create title/AbbreviatedTitle properties in Instance" test="count(//bf:Instance[1]/bf:title/bf:AbbreviatedTitle) = 2"/>
+      <x:expect label="Create title/AbbreviatedTitle properties in Instance and Work" test="count(//bf:Instance[1]/bf:title/bf:AbbreviatedTitle) = 2 and count(//bf:Work[1]/bf:title/bf:AbbreviatedTitle) = 2"/>
     </x:scenario>
-    <x:scenario label="@ind2 = ' '">
+    <x:scenario label="$a and $b generate rdfs:label and mainTitle for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="creates an issnkey source" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/bf:source/bf:Source/rdf:value = 'issnkey'"/>
-    </x:scenario>
-    <x:scenario label="rdfs:label for Title">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="$a $b in record order" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/rdfs:label = 'Idler (Lond.)'"/>
-    </x:scenario>
-    <x:scenario label="$a">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'Idler'"/>
-    </x:scenario>
-    <x:scenario label="$b">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/bf:qualifier = 'Lond.'"/>
+      <x:expect label="$a $b in record order" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/rdfs:label = 'Idler (Lond.)' and //bf:Instance[2]/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'Idler (Lond.)'"/>
     </x:scenario>
     <x:scenario label="$2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
@@ -38,23 +26,15 @@
   <x:scenario label="222 - KEY TITLE">
     <x:scenario label="multiple 222s">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should create title/KeyTitle properties in Instance" test="count(//bf:Instance[1]/bf:title/bf:KeyTitle) = 2"/>
+      <x:expect label="should create title/KeyTitle properties in Work" test="count(//bf:Work[1]/bf:title/bf:KeyTitle) = 2"/>
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance/bf:title[2]/bf:KeyTitle/bflc:titleSortKey = 'Vagrant (London)'"/>
+      <x:expect label="should create the appropriate titleSortKey" test="//bf:Work/bf:title[2]/bf:KeyTitle/bflc:titleSortKey = 'Vagrant (London)'"/>
     </x:scenario>
-    <x:scenario label="rdfs:label for Title">
+    <x:scenario label="$a and $b generate rdfs:label and mainTitle for Title">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="$a $b in record order" test="//bf:Instance/bf:title[1]/bf:KeyTitle/rdfs:label = 'Idler (London)'"/>
-    </x:scenario>
-    <x:scenario label="$a">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Instance/bf:title[1]/bf:KeyTitle/bf:mainTitle = 'Idler'"/>
-    </x:scenario>
-    <x:scenario label="$b">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
-      <x:expect label="becomes the qualifier" test="//bf:Instance/bf:title[1]/bf:KeyTitle/bf:qualifier = 'London'"/>
+      <x:expect label="$a $b in record order" test="//bf:Work/bf:title[1]/bf:KeyTitle/rdfs:label = 'Idler (London)' and //bf:Work/bf:title[1]/bf:KeyTitle/bf:mainTitle = 'Idler (London)'"/>
     </x:scenario>
   </x:scenario>
 
@@ -89,7 +69,7 @@
     </x:scenario>
     <x:scenario label="$y">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/fre'"/>
+      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:language/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     </x:scenario>
   </x:scenario>
   
@@ -127,7 +107,8 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
+      <x:expect label="becomes the subtitle for the Instance title" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
+      <x:expect label="...but not for the Work" test="count(//bf:Work[2]/bf:title/bf:Title/bf:subtitle) = 0"/>
     </x:scenario>
     <x:scenario label="$c">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>

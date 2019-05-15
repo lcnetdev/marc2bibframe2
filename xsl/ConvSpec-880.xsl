@@ -55,6 +55,16 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='210'">
+        <xsl:apply-templates mode="title210" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='222'">
+        <xsl:apply-templates mode="title222" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='243'">
         <xsl:apply-templates mode="work243" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -264,12 +274,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='210'">
-        <xsl:apply-templates mode="instance210" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='222'">
-        <xsl:apply-templates mode="instance222" select=".">
+        <xsl:apply-templates mode="title210" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

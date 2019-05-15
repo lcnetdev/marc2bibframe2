@@ -437,11 +437,6 @@
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:genreForm>
-              <bf:GenreForm>
-                <rdfs:label>sound recording</rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
@@ -735,11 +730,6 @@
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:genreForm>
-              <bf:GenreForm>
-                <rdfs:label>computer file</rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
             <bf:note>
               <bf:Note>
                 <bf:noteType>Computer file characteristics</bf:noteType>
