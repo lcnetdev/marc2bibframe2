@@ -107,7 +107,8 @@
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
+      <x:expect label="becomes the subtitle for the Instance title" test="//bf:Instance[2]/bf:title/bf:Title/bf:subtitle = 'Rapport annuel du ministre des Approvisionnements et services Canada présenté sous l''empire et des syndicates ouvriers'"/>
+      <x:expect label="...but not for the Work" test="count(//bf:Work[2]/bf:title/bf:Title/bf:subtitle) = 0"/>
     </x:scenario>
     <x:scenario label="$c">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
