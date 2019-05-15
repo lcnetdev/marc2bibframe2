@@ -213,7 +213,9 @@
               </xsl:call-template>
             </xsl:variable>
             <bf:language>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              <bf:Language>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+              </bf:Language>
             </bf:language>
           </xsl:for-each>
         </bf:VariantTitle>
