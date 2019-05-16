@@ -66,6 +66,7 @@
   -->
   <xsl:template match="marc:subfield" mode="subfield0orw">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pIdClass" select="'bf:Identifier'"/>
     <xsl:variable name="source" select="substring(substring-after(text(),'('),1,string-length(substring-before(text(),')'))-1)"/>
     <xsl:variable name="value">
       <xsl:choose>
@@ -76,7 +77,7 @@
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:identifiedBy>
-          <bf:Identifier>
+          <xsl:element name="{$pIdClass}">
             <rdf:value>
               <xsl:choose>
                 <xsl:when test="contains($value,'://')">
@@ -94,7 +95,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:if>
-          </bf:Identifier>
+          </xsl:element>
         </bf:identifiedBy>
       </xsl:when>
     </xsl:choose>
