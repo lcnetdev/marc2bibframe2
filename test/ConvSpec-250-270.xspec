@@ -101,7 +101,7 @@
 
   <x:scenario label="265 - SOURCE FOR ACQUISITION/SUBSCRIPTION ADDRESS [OBSOLETE]">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="265 creates an acquisitionSource of the Instance" test="//bf:Instance[1]/bf:acquisitionSource[1] = 'U.S. Geological Survey, Reston, Va. 22091'"/>
+    <x:expect label="265 creates an acquisitionSource of the Instance" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/rdfs:label = 'U.S. Geological Survey, Reston, Va. 22091'"/>
   </x:scenario>
   
 </x:description>

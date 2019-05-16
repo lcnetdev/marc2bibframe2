@@ -1,6 +1,7 @@
 --- 1.5.0-SNAPSHOT
 
 Update conversion based on updated specifications:
+  ConvSpec-250-270-v1.5
   ConvSpec-200-247-Titles-v1.5
 Don't attempt to generate a property if the MARC 048 $a/$b contains an unknown code (https://github.com/lcnetdev/marc2bibframe2/issues/119)
 Generate correct property for MARC 042 conversion (https://github.com/lcnetdev/marc2bibframe2/issues/116)

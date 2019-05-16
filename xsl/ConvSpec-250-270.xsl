@@ -570,7 +570,11 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:acquisitionSource><xsl:value-of select="."/></bf:acquisitionSource>
+          <bf:acquisitionSource>
+            <bf:AcquisitionSource>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:AcquisitionSource>
+          </bf:acquisitionSource>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
