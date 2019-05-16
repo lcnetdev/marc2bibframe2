@@ -479,13 +479,20 @@
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>
-      <xsl:when test="$tag='766'">
+      <xsl:when test="$tag='776'">
         <xsl:apply-templates select="." mode="instance776">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='777'">
+        <xsl:apply-templates select="." mode="work7XXLinks">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+          <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
+        </xsl:apply-templates>
+      </xsl:when>        
     </xsl:choose>
   </xsl:template>
 

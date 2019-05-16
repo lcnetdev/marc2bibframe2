@@ -112,7 +112,7 @@
     <x:expect label="$6 7XX should make an Agent" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'ملحمة دانيال'"/>
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 752 creates a place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'Англия--Лондон'"/>
-    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/rdfs:label = 'Графические уведомления и дополнительные данные'"/>
+    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
   </x:scenario>
 
   <x:scenario label="xml:lang attributes from 880">
