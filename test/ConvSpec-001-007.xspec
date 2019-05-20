@@ -141,7 +141,8 @@
       <x:expect label="...and creates a media property of the Instance" test="//bf:Instance[9]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[9]/bf:media/bf:Media/rdfs:label = 'audio'"/>
       <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[9]/bf:carrier/bf:Carrier/rdfs:label = 'sound disc'"/>
-      <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/rdfs:label = '7 1/2 ips'"/>
+      <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance - label check" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/rdfs:label = '7 1/2 ips'"/>
+      <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance - uri check" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/@rdf:about = 'http://id.loc.gov/vocabulary/mplayspeed/o'"/>
       <x:expect label="pos 4 creates a soundCharacteristic/PlaybackChannels property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mplayback/ste'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereo'"/>
       <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mgroove/coarse'"/>

@@ -1754,6 +1754,27 @@
             <xsl:when test="substring(.,4,1) = 'r'">30 ips</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="playingSpeedUri">
+          <xsl:choose>
+            <xsl:when test="contains('abcdefhiklmopr', substring(.,4,1))"><xsl:value-of select="concat($mplayspeed, substring(.,4,1))"/></xsl:when>
+            <!--
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mplayspeed,'a')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mplayspeed,'b')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mplayspeed,'c')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'd'"><xsl:value-of select="concat($mplayspeed,'d')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'e'"><xsl:value-of select="concat($mplayspeed,'e')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'f'"><xsl:value-of select="concat($mplayspeed,'f')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mplayspeed,'h')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'i'"><xsl:value-of select="concat($mplayspeed,'i')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'k'"><xsl:value-of select="concat($mplayspeed,'k')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'l'"><xsl:value-of select="concat($mplayspeed,'l')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mplayspeed,'m')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'o'"><xsl:value-of select="concat($mplayspeed,'o')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'p'"><xsl:value-of select="concat($mplayspeed,'p')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'r'"><xsl:value-of select="concat($mplayspeed,'r')"/></xsl:when>
+            -->
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="playbackChannels">
           <xsl:choose>
             <xsl:when test="substring(.,5,1) = 'm'">mono</xsl:when>
@@ -1973,6 +1994,9 @@
             <xsl:if test="$playingSpeed != ''">
               <bf:soundCharacteristic>
                 <bf:PlayingSpeed>
+                  <xsl:if test="$playingSpeedUri != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$playingSpeedUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$playingSpeed"/></rdfs:label>
                 </bf:PlayingSpeed>
               </bf:soundCharacteristic>

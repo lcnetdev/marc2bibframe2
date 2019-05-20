@@ -378,7 +378,7 @@
               </bf:Carrier>
             </bf:carrier>
             <bf:soundCharacteristic>
-              <bf:PlayingSpeed>
+              <bf:PlayingSpeed rdf:about="http://id.loc.gov/vocabulary/mplayspeed/b">
                 <rdfs:label>13 1/3 rpm</rdfs:label>
               </bf:PlayingSpeed>
             </bf:soundCharacteristic>
