@@ -41,7 +41,7 @@
     <x:expect label="336 creates a content property of the Work" test="count(//bf:Work[1]/bf:content) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/rdfs:label = 'performed music'"/>
     <x:expect label="$b creates an rdf:about attribute of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
-    <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/rdfs:label = 'rdacontent'"/>
+    <x:expect label="$2 creates a source property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/genreFormSchemes/rdacontent'"/>
     <x:expect label="$0 creates an identifiedBy property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Content" test="//bf:Work[1]/bf:content[1]/bf:Content/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'record'"/>
   </x:scenario>
@@ -51,7 +51,7 @@
     <x:expect label="337 creates a media property of the Instance" test="count(//bf:Instance[1]/bf:media) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/rdfs:label = 'audio'"/>
     <x:expect label="$b creates an rdf:about attribute of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
-    <x:expect label="$2 creates a source property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:source/bf:Source/rdfs:label = 'rdamedia'"/>
+    <x:expect label="$2 creates a source property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/genreFormSchemes/rdamedia'"/>
     <x:expect label="$0 creates an identifiedBy property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Media" test="//bf:Instance[1]/bf:media[1]/bf:Media/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
@@ -61,7 +61,7 @@
     <x:expect label="337 creates a carrier property of the Instance" test="count(//bf:Instance[1]/bf:carrier) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/rdfs:label = 'audio disc'"/>
     <x:expect label="$b creates an rdf:about attribute of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/@rdf:about = 'http://id.loc.gov/vocabulary/carriers/sd'"/>
-    <x:expect label="$2 creates a source property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:source/bf:Source/rdfs:label = 'rdacarrier'"/>
+    <x:expect label="$2 creates a source property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/genreFormSchemes/rdacarrier'"/>
     <x:expect label="$0 creates an identifiedBy property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/carriers/sd'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Carrier" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'soundtrack'"/>
   </x:scenario>
