@@ -1815,16 +1815,15 @@
             <xsl:when test="substring(.,8,1) = 'p'">1 in. tape width</xsl:when>
           </xsl:choose>
         </xsl:variable>
+
+        <xsl:variable name="tapeConfigValue"><xsl:value-of select="substring(.,9,1)" /></xsl:variable>
         <xsl:variable name="tapeConfig">
-          <xsl:choose>
-            <xsl:when test="substring(.,9,1) = 'a'">full (1)</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'b'">half (2)</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'c'">quarter (4)</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'd'">8</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'e'">12</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'f'">16</xsl:when>
-          </xsl:choose>
+          <xsl:value-of select="$codeMaps/maps/tapeConfig/*[name() = $tapeConfigValue]" />
         </xsl:variable>
+        <xsl:variable name="tapeConfigUri">
+            <xsl:value-of select="$codeMaps/maps/tapeConfig/*[name() = $tapeConfigValue]/@href" />
+        </xsl:variable>
+
         <xsl:variable name="generation">
           <xsl:choose>
             <xsl:when test="substring(.,10,1) = 'a'">master tape</xsl:when>
@@ -2006,6 +2005,9 @@
             <xsl:if test="$tapeConfig != ''">
               <bf:soundCharacteristic>
                 <bf:TapeConfig>
+                  <xsl:if test="$tapeConfigUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$tapeConfigUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$tapeConfig"/></rdfs:label>
                 </bf:TapeConfig>
               </bf:soundCharacteristic>

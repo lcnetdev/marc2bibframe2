@@ -334,4 +334,14 @@
     <d href="http://id.loc.gov/vocabulary/mreductionratio/veryhigh">very high reduction range</d>
     <e href="http://id.loc.gov/vocabulary/mreductionratio/ultrahigh">ultra high reduction range</e>
   </reductionRatioRange>
+  <!-- tape config ratio range -->
+  <!-- used in 007/08 for sound recordings -->
+  <tapeConfig> 
+    <a href="http://id.loc.gov/vocabulary/mtapeconfig/full">full (1)</a>
+    <b href="http://id.loc.gov/vocabulary/mtapeconfig/half">half (2)</b>
+    <c href="http://id.loc.gov/vocabulary/mtapeconfig/quarter">quarter (4)</c>
+    <d href="http://id.loc.gov/vocabulary/mtapeconfig/8">8</d>
+    <e href="http://id.loc.gov/vocabulary/mtapeconfig/12">12</e>
+    <f href="http://id.loc.gov/vocabulary/mtapeconfig/16">16</f>
+  </tapeConfig> 
 </maps>

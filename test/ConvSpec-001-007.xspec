@@ -150,7 +150,8 @@
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/rdfs:label = 'coarse groove'"/>
       <x:expect label="pos 6 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions[1] = '7 in.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance (tape width)" test="//bf:Instance[9]/bf:dimensions[2] = '1/4 in. tape width'"/>
-      <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/rdfs:label = 'quarter (4)'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance - label check" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/rdfs:label = 'quarter (4)'"/>
+      <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance - uri check" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/@rdf:about = 'http://id.loc.gov/vocabulary/mtapeconfig/quarter'"/>
       <x:expect label="pos 9 creates a generation/Generation property of the Instance" test="//bf:Instance[9]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/master'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:generation/bf:Generation/rdfs:label = 'master tape'"/>
       <x:expect label="...or it may create a note on the Instance" test="//bf:Instance[10]/bf:note/bf:Note/rdfs:label = 'Mass produced'"/>
