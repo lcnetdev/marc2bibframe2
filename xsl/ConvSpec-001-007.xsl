@@ -1736,45 +1736,15 @@
             <xsl:when test="substring(.,2,1) = 'w'"><xsl:value-of select="concat($carriers,'sw')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
+
+        <xsl:variable name="playingSpeedValue"><xsl:value-of select="substring(.,4,1)" /></xsl:variable>
         <xsl:variable name="playingSpeed">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">16 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'">13 1/3 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">45 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'd'">78 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'e'">8 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'f'">1.4 m. per sec.</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'">120 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'i'">160 rpm</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'k'">15/16 ips</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'l'">1 7/8 ips</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">3 3/4 ips</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'o'">7 1/2 ips</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'p'">15 ips</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'r'">30 ips</xsl:when>
-          </xsl:choose>
+          <xsl:value-of select="$codeMaps/maps/playbackSpeed/*[name() = $playingSpeedValue]" />
         </xsl:variable>
         <xsl:variable name="playingSpeedUri">
-          <xsl:choose>
-            <xsl:when test="contains('abcdefhiklmopr', substring(.,4,1))"><xsl:value-of select="concat($mplayspeed, substring(.,4,1))"/></xsl:when>
-            <!--
-            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mplayspeed,'a')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mplayspeed,'b')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mplayspeed,'c')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'd'"><xsl:value-of select="concat($mplayspeed,'d')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'e'"><xsl:value-of select="concat($mplayspeed,'e')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'f'"><xsl:value-of select="concat($mplayspeed,'f')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mplayspeed,'h')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'i'"><xsl:value-of select="concat($mplayspeed,'i')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'k'"><xsl:value-of select="concat($mplayspeed,'k')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'l'"><xsl:value-of select="concat($mplayspeed,'l')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mplayspeed,'m')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'o'"><xsl:value-of select="concat($mplayspeed,'o')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'p'"><xsl:value-of select="concat($mplayspeed,'p')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'r'"><xsl:value-of select="concat($mplayspeed,'r')"/></xsl:when>
-            -->
-          </xsl:choose>
+            <xsl:value-of select="$codeMaps/maps/playbackSpeed/*[name() = $playingSpeedValue]/@href" />
         </xsl:variable>
+
         <xsl:variable name="playbackChannels">
           <xsl:choose>
             <xsl:when test="substring(.,5,1) = 'm'">mono</xsl:when>
