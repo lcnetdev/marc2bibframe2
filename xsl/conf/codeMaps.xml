@@ -307,4 +307,22 @@
     <u>unknown</u>
     <z href="http://id.loc.gov/vocabulary/mtechnique/other">other technique</z>
   </technique>
+  <!-- playback speed -->
+  <!-- used in 007/03 for sound recordings -->
+  <playbackSpeed>
+    <a href="http://id.loc.gov/vocabulary/mplayspeed/a">16 rpm</a>
+    <b href="http://id.loc.gov/vocabulary/mplayspeed/b">13 1/3 rpm</b>
+    <c href="http://id.loc.gov/vocabulary/mplayspeed/c">45 rpm</c>
+    <d href="http://id.loc.gov/vocabulary/mplayspeed/d">78 rpm</d>
+    <e href="http://id.loc.gov/vocabulary/mplayspeed/e">8 rpm</e>
+    <f href="http://id.loc.gov/vocabulary/mplayspeed/f">1.4 m. per sec.</f>
+    <h href="http://id.loc.gov/vocabulary/mplayspeed/h">120 rpm</h>
+    <i href="http://id.loc.gov/vocabulary/mplayspeed/i">160 rpm</i>
+    <k href="http://id.loc.gov/vocabulary/mplayspeed/k">15/16 ips</k>
+    <l href="http://id.loc.gov/vocabulary/mplayspeed/l">1 7/8 ips</l>
+    <m href="http://id.loc.gov/vocabulary/mplayspeed/m">3 3/4 ips</m>
+    <o href="http://id.loc.gov/vocabulary/mplayspeed/o">7 1/2 ips</o>
+    <p href="http://id.loc.gov/vocabulary/mplayspeed/p">15 ips</p>
+    <r href="http://id.loc.gov/vocabulary/mplayspeed/r">30 ips</r>
+  </playbackSpeed>
 </maps>
