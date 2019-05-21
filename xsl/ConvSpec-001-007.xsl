@@ -1146,15 +1146,13 @@
             <xsl:when test="substring(.,5,1) = 'p'">3 1/4 x 7 3/8 in. or 9x19 cm.</xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="reductionRatioNote">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = 'a'">low reduction range</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">normal reduction range</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'c'">high reduction range</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'd'">very high reduction range</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'e'">ultra high reduction range</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'v'">reduction rate varies</xsl:when>
-          </xsl:choose>
+        
+        <xsl:variable name="reductionRatioRangeValue"><xsl:value-of select="substring(.,6,1)" /></xsl:variable>
+        <xsl:variable name="reductionRatioRange">
+          <xsl:value-of select="$codeMaps/maps/reductionRatioRange/*[name() = $reductionRatioRangeValue]" />
+        </xsl:variable>
+        <xsl:variable name="reductionRatioRangeUri">
+          <xsl:value-of select="$codeMaps/maps/reductionRatioRange/*[name() = $reductionRatioRangeValue]/@href" />
         </xsl:variable>
         <xsl:variable name="reductionRatio">
           <xsl:choose>
@@ -1163,6 +1161,7 @@
             <xsl:otherwise><xsl:value-of select="substring(.,7,3)"/></xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
+        
         <xsl:variable name="emulsion">
           <xsl:choose>
             <xsl:when test="substring(.,11,1) = 'a'">silver halide</xsl:when>
@@ -1251,17 +1250,20 @@
             <xsl:if test="$dimensions != ''">
               <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
-            <xsl:if test="$reductionRatioNote != ''">
+            <xsl:if test="$reductionRatioRange != ''">
               <bf:reductionRatio>
                 <bf:ReductionRatio>
-                  <bf:note>
-                    <bf:Note>
-                      <rdfs:label><xsl:value-of select="$reductionRatioNote"/></rdfs:label>
-                    </bf:Note>
-                  </bf:note>
-                  <xsl:if test="$reductionRatio != ''">
-                    <rdfs:label><xsl:value-of select="$reductionRatio"/></rdfs:label>
+                  <xsl:if test="$reductionRatioRangeUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$reductionRatioRangeUri"/></xsl:attribute>
                   </xsl:if>
+                  <rdfs:label><xsl:value-of select="$reductionRatioRange"/></rdfs:label>
+                </bf:ReductionRatio>
+              </bf:reductionRatio>
+            </xsl:if>
+            <xsl:if test="$reductionRatio != ''">
+              <bf:reductionRatio>
+                <bf:ReductionRatio>
+                    <rdfs:label><xsl:value-of select="$reductionRatio"/></rdfs:label>
                 </bf:ReductionRatio>
               </bf:reductionRatio>
             </xsl:if>

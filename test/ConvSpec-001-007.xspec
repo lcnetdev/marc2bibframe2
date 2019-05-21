@@ -88,7 +88,8 @@
       <x:expect label="pos 1 creates a carrier property of the Instance" test="//bf:Instance[5]/bf:carrier/bf:Carrier/@rdf:about = 'http://id.loc.gov/vocabulary/carriers/he'"/>
       <x:expect label="pos 3 creates a polarity property of the Instance" test="//bf:Instance[5]/bf:polarity/bf:Polarity/rdfs:label = 'negative'"/>
       <x:expect label="pos 4 creates a dimensions property of the Instance" test="//bf:Instance[5]/bf:dimensions = '4x6 in. or 11x15 cm.'"/>
-      <x:expect label="pos 5-8 create a reductionRatio property of the Instance" test="//bf:Instance[5]/bf:reductionRatio/bf:ReductionRatio/bf:note/bf:Note/rdfs:label = 'normal reduction range' and //bf:Instance[5]/bf:reductionRatio/bf:ReductionRatio/rdfs:label = '024'"/>
+      <x:expect label="pos 5 create a reductionRatioRange property of the Instance" test="//bf:Instance[5]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:label = 'normal reduction range' and //bf:Instance[5]/bf:reductionRatio[1]/bf:ReductionRatio/@rdf:about = 'http://id.loc.gov/vocabulary/mreductionratio/normal'"/>
+      <x:expect label="pos 6-8 create a reductionRatio property of the Instance" test="//bf:Instance[5]/bf:reductionRatio[2]/bf:ReductionRatio/rdfs:label = '024'"/>
       <x:expect label="pos 9 creates a colorContent property of the Work" test="//bf:Work[5]/bf:colorContent/bf:ColorContent/rdfs:label = 'black and white'"/>
       <x:expect label="pos 10 creates an emulsion property of the Instance" test="//bf:Instance[5]/bf:emulsion/bf:Emulsion/rdfs:label = 'silver halide'"/>
       <x:expect label="pos 11 creates a generation property of the Instance" test="//bf:Instance[5]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/servcopy'"/>

@@ -325,4 +325,13 @@
     <p href="http://id.loc.gov/vocabulary/mplayspeed/p">15 ips</p>
     <r href="http://id.loc.gov/vocabulary/mplayspeed/r">30 ips</r>
   </playbackSpeed>
+  <!-- reduction ratio range -->
+  <!-- used in 007/05 for microform -->
+  <reductionRatioRange> 
+    <a href="http://id.loc.gov/vocabulary/mreductionratio/low">low reduction range</a>
+    <b href="http://id.loc.gov/vocabulary/mreductionratio/normal">normal reduction range</b>
+    <c href="http://id.loc.gov/vocabulary/mreductionratio/high">high reduction range</c>
+    <d href="http://id.loc.gov/vocabulary/mreductionratio/veryhigh">very high reduction range</d>
+    <e href="http://id.loc.gov/vocabulary/mreductionratio/ultrahigh">ultra high reduction range</e>
+  </reductionRatioRange>
 </maps>
