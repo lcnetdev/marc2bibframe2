@@ -39,9 +39,9 @@
     <b href="http://id.loc.gov/vocabulary/carriers/he">microfiche</b>
     <c href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</c>
     <o href="http://id.loc.gov/vocabulary/carriers/cr">online resource</o>
-    <q>direct electronic</q>
-    <r>regular print reproduction</r>
-    <s>electronic</s>
+    <q href="http://id.loc.gov/vocabulary/carriers/cz">electronic</q>
+    <r href="http://id.loc.gov/vocabulary/carriers/nc">volume</r>
+    <s href="http://id.loc.gov/vocabulary/carriers/cz">electronic</s>
   </carrier>
   <!-- nature of contents -->
   <!-- used in 008/24-27 for books and continuing resources -->
@@ -107,21 +107,82 @@
     <e href="http://id.loc.gov/vocabulary/marcgt/bda">bibliographic data</e>
     <f href="http://id.loc.gov/vocabulary/marcgt/fon">font</f>
     <g href="http://id.loc.gov/vocabulary/marcgt/gam">game</g>
-    <h>sound</h>
+    <h href="http://id.loc.gov/vocabulary/marcgt/sou">sound</h>
     <i href="http://id.loc.gov/vocabulary/marcgt/inm">interactive multimedia</i>
     <j href="http://id.loc.gov/vocabulary/marcgt/ons">online system or service</j>
-    <m>computer file combination</m>
   </computerFileType>
+  <!-- cartographic relief type -->
+  <!-- used in 008/18-21 for maps -->
+  <relief>
+    <a href="http://id.loc.gov/vocabulary/mrelief/cont">contours</a>
+    <b href="http://id.loc.gov/vocabulary/mrelief/shad">shading</b>
+    <c href="http://id.loc.gov/vocabulary/mrelief/grad">gradient and bathymetric tints</c>
+    <d href="http://id.loc.gov/vocabulary/mrelief/hach">hachures</d>
+    <e href="http://id.loc.gov/vocabulary/mrelief/bath">bathymetry/soundings</e>
+    <f href="http://id.loc.gov/vocabulary/mrelief/form">form lines</f>
+    <g href="http://id.loc.gov/vocabulary/mrelief/spot">spot heights</g>
+    <i href="http://id.loc.gov/vocabulary/mrelief/pict">pictorially</i>
+    <j href="http://id.loc.gov/vocabulary/mrelief/land">land forms</j>
+    <k href="http://id.loc.gov/vocabulary/mrelief/isol">bathymetry/isolines</k>
+    <m href="http://id.loc.gov/vocabulary/mrelief/rock">rock drawings</m>
+  </relief>
+  <!-- cartographic projection -->
+  <!-- used in 008/22-23 for maps -->
+  <projection>
+    <aa href="http://id.loc.gov/vocabulary/mprojection/aa">Aitoff</aa>
+    <ab href="http://id.loc.gov/vocabulary/mprojection/ab">Gnomic</ab>
+    <ac href="http://id.loc.gov/vocabulary/mprojection/ac">Lambert's azimuthal equal area</ac>
+    <ad href="http://id.loc.gov/vocabulary/mprojection/ad">Orthographic</ad>
+    <ae href="http://id.loc.gov/vocabulary/mprojection/ae">Azimuthal equidistant</ae>
+    <af href="http://id.loc.gov/vocabulary/mprojection/af">Stereographic</af>
+    <ag href="http://id.loc.gov/vocabulary/mprojection/ag">General vertical near-sided</ag>
+    <am href="http://id.loc.gov/vocabulary/mprojection/am">Modified stereographic for Alaska</am>
+    <an href="http://id.loc.gov/vocabulary/mprojection/an">Chamberlin trimetric</an>
+    <ap href="http://id.loc.gov/vocabulary/mprojection/ap">polar stereographic</ap>
+    <au href="http://id.loc.gov/vocabulary/mprojection/au">Azimuthal, specific type unknown</au>
+    <az href="http://id.loc.gov/vocabulary/mprojection/az">Azimuthal, other</az>
+    <ba href="http://id.loc.gov/vocabulary/mprojection/ba">Gali</ba>
+    <bb href="http://id.loc.gov/vocabulary/mprojection/bb">Goode's homiographic</bb>
+    <bc href="http://id.loc.gov/vocabulary/mprojection/bc">Lambert's cylindrical equal area</bc>
+    <bd href="http://id.loc.gov/vocabulary/mprojection/bd">Mercator</bd>
+    <be href="http://id.loc.gov/vocabulary/mprojection/be">Miller</be>
+    <bf href="http://id.loc.gov/vocabulary/mprojection/bf">Mollweide</bf>
+    <bg href="http://id.loc.gov/vocabulary/mprojection/bg">Sinusoidal</bg>
+    <bh href="http://id.loc.gov/vocabulary/mprojection/bh">Transverse Mercator</bh>
+    <bi href="http://id.loc.gov/vocabulary/mprojection/bi">Gauss-Kruger</bi>
+    <bj href="http://id.loc.gov/vocabulary/mprojection/bj">Equirectangular</bj>
+    <bk href="http://id.loc.gov/vocabulary/mprojection/bk">Krovak</bk>
+    <bl href="http://id.loc.gov/vocabulary/mprojection/bl">Cassini-Soldner</bl>
+    <bo href="http://id.loc.gov/vocabulary/mprojection/bo">Oblique Mercator</bo>
+    <br href="http://id.loc.gov/vocabulary/mprojection/br">Robinson</br>
+    <bs href="http://id.loc.gov/vocabulary/mprojection/bs">Space oblique Mercator</bs>
+    <bu href="http://id.loc.gov/vocabulary/mprojection/bu">Cylindrical, specific type unknown</bu>
+    <bz href="http://id.loc.gov/vocabulary/mprojection/bz">Cylindrical, other</bz>
+    <ca href="http://id.loc.gov/vocabulary/mprojection/ca">Alber's equal area</ca>
+    <cb href="http://id.loc.gov/vocabulary/mprojection/cb">Bonne</cb>
+    <cc href="http://id.loc.gov/vocabulary/mprojection/cc">Lambert's conformal conic</cc>
+    <ce href="http://id.loc.gov/vocabulary/mprojection/ce">Equidistant conic</ce>
+    <cp href="http://id.loc.gov/vocabulary/mprojection/cp">Polyconic</cp>
+    <cu href="http://id.loc.gov/vocabulary/mprojection/cu">Conic, specific type unknown</cu>
+    <cz href="http://id.loc.gov/vocabulary/mprojection/cz">Conic, other</cz>
+    <da href="http://id.loc.gov/vocabulary/mprojection/da">Armadillo</da>
+    <db href="http://id.loc.gov/vocabulary/mprojection/db">Butterfly</db>
+    <dc href="http://id.loc.gov/vocabulary/mprojection/dc">Eckert</dc>
+    <dd href="http://id.loc.gov/vocabulary/mprojection/dd">Goode's homolosine</dd>
+    <de href="http://id.loc.gov/vocabulary/mprojection/de">Miller's bipolar oblique conformal conic</de>
+    <df href="http://id.loc.gov/vocabulary/mprojection/df">Van Der Grinten</df>
+    <dg href="http://id.loc.gov/vocabulary/mprojection/dg">Dimaxion</dg>
+    <dh href="http://id.loc.gov/vocabulary/mprojection/dh">Cordiform</dh>
+    <dl href="http://id.loc.gov/vocabulary/mprojection/dl">Lambert conformal</dl>
+  </projection>
   <!-- cartographic material type -->
   <!-- used in 008/25 for maps -->
   <carttype>
-    <a prop="issuance">single map</a>
-    <b prop="issuance">map series</b>
-    <c prop="issuance">map serial</c>
+    <a prop="issuance" href="http://id.loc.gov/vocabulary/issuance/mono">single map</a>
+    <b prop="issuance" href="http://id.loc.gov/vocabulary/issuance/serl">map series</b>
+    <c prop="issuance" href="http://id.loc.gov/vocabulary/issuance/serl">map serial</c>
     <d prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026300">globes</d>
     <e prop="genreForm" href="http://id.loc.gov/authorities/genreForms/gf2011026058">atlases</e>
-    <f prop="issuance">map supplement to another work</f>
-    <g prop="issuance">map bound as part of another work</g>
   </carttype>
   <!-- map special format characteristics -->
   <!-- used on 008/33-34 for maps -->
@@ -156,13 +217,13 @@
     <cs href="http://id.loc.gov/authorities/genreForms/gf2014026624">chance compositions</cs>
     <ct href="http://id.loc.gov/authorities/genreForms/gf2014026688">cantatas</ct>
     <cy href="http://id.loc.gov/authorities/genreForms/gf2014026739">country music</cy>
-    <cz>canzonas</cz>
+    <cz href="http://id.loc.gov/authorities/genreForms/gf2018026012">canzonas</cz>
     <df href="http://id.loc.gov/authorities/genreForms/gf2014026753">dance forms</df>
     <dv href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</dv>
     <fg href="http://id.loc.gov/authorities/genreForms/gf2014026818">fugues</fg>
     <fl href="http://id.loc.gov/authorities/genreForms/gf2014026806">flamenco music</fl>
     <fm href="http://id.loc.gov/authorities/genreForms/gf2014026809">folk music</fm>
-    <ft>fantasias</ft>
+    <ft href="http://id.loc.gov/authorities/genreForms/gf2018026018">fantasias</ft>
     <gm href="http://id.loc.gov/authorities/genreForms/gf2014026839">gospel music</gm>
     <hy href="http://id.loc.gov/authorities/genreForms/gf2014026872">hymns</hy>
     <jz href="http://id.loc.gov/authorities/genreForms/gf2014026879">jazz</jz>
@@ -189,7 +250,7 @@
     <rc href="http://id.loc.gov/authorities/genreForms/gf2014027054">rock music</rc>
     <rd href="http://id.loc.gov/authorities/genreForms/gf2014027057">rondos</rd>
     <rg href="http://id.loc.gov/authorities/genreForms/gf2014027034">ragtime music</rg>
-    <ri href="http://id.loc.gov/authorities/genreForms/gf2014026818">ricercars</ri>
+    <ri href="http://id.loc.gov/authorities/genreForms/gf2017026128">ricercars</ri>
     <rp href="http://id.loc.gov/authorities/genreForms/gf2014027051">rhapsodies</rp>
     <rq href="http://id.loc.gov/authorities/genreForms/gf2014027048">requiems</rq>
     <sd href="http://id.loc.gov/authorities/genreForms/gf2014027111">square dance music</sd>
@@ -202,7 +263,7 @@
     <tc href="http://id.loc.gov/authorities/genreForms/gf2014027140">toccatas</tc>
     <tl href="http://id.loc.gov/authorities/genreForms/gf2016026059">teatro lirico</tl>
     <ts href="http://id.loc.gov/authorities/genreForms/gf2014027099">trio sonatas</ts>
-    <vi>villancicos</vi>
+    <vi href="http://id.loc.gov/authorities/genreForms/gf2017026025">villancicos</vi>
     <vr href="http://id.loc.gov/authorities/genreForms/gf2014027156">variations</vr>
     <wz href="http://id.loc.gov/authorities/genreForms/gf2014027167">waltzes</wz>
     <za href="http://id.loc.gov/authorities/genreForms/gf2016026059">zarzuelas</za>
@@ -222,6 +283,22 @@
     <k href="http://id.loc.gov/vocabulary/mmusicformat/vocalscore">vocal score</k>
     <l href="http://id.loc.gov/vocabulary/mmusicformat/score">score</l>
   </musicFormat>
+  <!-- music supplementary content -->
+  <!-- used in 008/24-29 for music -->
+  <musicSuppContent>
+    <a href="http://id.loc.gov/vocabulary/msupplcont/discography">discography</a>
+    <b href="http://id.loc.gov/vocabulary/msupplcont/bibliography">bibliography</b>
+    <c href="http://id.loc.gov/vocabulary/msupplcont/thematicindex">thematic index</c>
+    <d href="http://id.loc.gov/vocabulary/msupplcont/libretto">libretto or text</d>
+    <e href="http://id.loc.gov/vocabulary/msupplcont/creatorbio">biography of composer or author</e>
+    <f href="http://id.loc.gov/vocabulary/msupplcont/performerhistory">biography of performer or history of ensemble</f>
+    <g href="http://id.loc.gov/vocabulary/msupplcont/techinstruments">technical and/or historical information on instruments</g>
+    <h href="http://id.loc.gov/vocabulary/msupplcont/techmusic">technical information on music</h>
+    <i href="http://id.loc.gov/vocabulary/msupplcont/historicalinfo">historical information</i>
+    <k href="http://id.loc.gov/vocabulary/msupplcont/ethnologicinfo">ethnological information</k>
+    <r href="http://id.loc.gov/vocabulary/msupplcont/instructmaterial">instructional materials</r>
+    <s href="http://id.loc.gov/vocabulary/msupplcont/music">music</s>
+  </musicSuppContent>    
   <!-- literary text for sound -->
   <!-- used in 008/30-31 for music -->
   <musicTextForm>
@@ -274,6 +351,22 @@
     <p href="http://id.loc.gov/authorities/genreForms/gf2014026139">periodicals</p>
     <w href="http://id.loc.gov/vocabulary/marcgt/web">updating web site</w>
   </crtype>
+  <!-- continuing resource original script -->
+  <!-- used in 008/33 for continuing resources -->
+  <crscript>
+    <a href="http://id.loc.gov/vocabulary/mscript/a">Basic roman</a>
+    <b href="http://id.loc.gov/vocabulary/mscript/b">Extended roman</b>
+    <c href="http://id.loc.gov/vocabulary/mscript/c">Cyrillic</c>
+    <d href="http://id.loc.gov/vocabulary/mscript/d">Japanese</d>
+    <e href="http://id.loc.gov/vocabulary/mscript/e">Chinese</e>
+    <f href="http://id.loc.gov/vocabulary/mscript/f">Arabic</f>
+    <g href="http://id.loc.gov/vocabulary/mscript/g">Greek</g>
+    <h href="http://id.loc.gov/vocabulary/mscript/h">Hebrew</h>
+    <i href="http://id.loc.gov/vocabulary/mscript/i">Thai</i>
+    <j href="http://id.loc.gov/vocabulary/mscript/j">Devanagari</j>
+    <k href="http://id.loc.gov/vocabulary/mscript/k">Korean</k>
+    <l href="http://id.loc.gov/vocabulary/mscript/l">Tamil</l>
+  </crscript>
   <!-- visual material type -->
   <!-- used in 008/33 for visual materials -->
   <visualtype>
