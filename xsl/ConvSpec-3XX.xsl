@@ -722,8 +722,6 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template name="processSubfield0"/>
-
   <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='348']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance34X">
@@ -1008,6 +1006,16 @@
                   </xsl:when>
                   <xsl:when test="text()='video file'">
                     <xsl:value-of select="concat($mfiletype,'video')"/>
+                  </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='b'">
+                <xsl:choose>
+                  <xsl:when test="text()='Blu-Ray'">
+                    <xsl:value-of select="concat($mvidformat,'bluray')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DVD video'">
+                    <xsl:value-of select="concat($mvidformat,'dvd')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>

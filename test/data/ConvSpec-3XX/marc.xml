@@ -96,6 +96,7 @@
       <subfield code="b">optical</subfield>
       <subfield code="g">surround</subfield>
       <subfield code="h">Dolby</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mspecplayback/dolby</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
@@ -113,6 +114,7 @@
     <datafield tag="345" ind1=" " ind2=" ">
       <subfield code="3">filmstrip</subfield>
       <subfield code="a">Cinerama</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mpresformat/ciner</subfield>
       <subfield code="b">24 fps</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
@@ -120,12 +122,14 @@
       <subfield code="3">videotape</subfield>
       <subfield code="a">Betamax</subfield>
       <subfield code="b">PAL</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mbroadstd/pal</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="347" ind1=" " ind2=" ">
       <subfield code="3">computer disc</subfield>
       <subfield code="a">image file</subfield>
-      <subfield code="b">JPEG</subfield>
+      <subfield code="b">Blu-Ray</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mvidformat/bluray</subfield>
       <subfield code="c">182 KB</subfield>
       <subfield code="d">3.1 megapixels</subfield>
       <subfield code="e">region 4</subfield>
@@ -135,8 +139,8 @@
     <datafield tag="348" ind1=" " ind2=" ">
       <subfield code="3">enclosed score</subfield>
       <subfield code="a">vocal score</subfield>
-      <subfield code="b">voc</subfield>
       <subfield code="0">(foo)12345</subfield>
+      <subfield code="b">voc</subfield>
       <subfield code="2">foo</subfield>
     </datafield>
     <datafield tag="350" ind1=" " ind2=" ">
