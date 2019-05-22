@@ -90,8 +90,23 @@
           <xsl:with-param name="pUriStem"><xsl:value-of select="$contentType"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='340'">
+        <xsl:apply-templates mode="work340" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='341'">
+        <xsl:apply-templates mode="work341" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='351'">
         <xsl:apply-templates select="." mode="work351">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='377'">
+        <xsl:apply-templates select="." mode="work377">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -107,6 +122,11 @@
       </xsl:when>
       <xsl:when test="$tag='383'">
         <xsl:apply-templates select="." mode="work383">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='384'">
+        <xsl:apply-templates select="." mode="work384">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

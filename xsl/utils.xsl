@@ -328,7 +328,8 @@
   <!--
       generate a property with a blank node Resource, and an rdfs:label
       process $3 and $2, if necessary
-      Inspired by processing 340, may be useful elsewhere
+      Inspired by processing 340, may be useful elsewhere (actually
+      not used by 340, but by other 3XX fields)
   -->
 
   <xsl:template match="marc:subfield" mode="generateProperty">
@@ -340,10 +341,14 @@
     <xsl:param name="pPunctuation">
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
+    <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$pProp}">
           <xsl:element name="{$pResource}">
+            <xsl:if test="$pTarget != ''">
+              <xsl:attribute name="rdf:about"><xsl:value-of select="$pTarget"/></xsl:attribute>
+            </xsl:if>
             <rdfs:label>
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
@@ -367,20 +372,15 @@
                 <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
               </xsl:choose>
             </rdfs:label>
+            <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
             <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
-            <xsl:apply-templates select="../marc:subfield[@code='0']" mode="subfield0orw">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-            <xsl:if test="$pTarget != ''">
-              <bflc:target>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="$pTarget"/></xsl:attribute>
-              </bflc:target>
-            </xsl:if>
           </xsl:element>
         </xsl:element>
       </xsl:when>
