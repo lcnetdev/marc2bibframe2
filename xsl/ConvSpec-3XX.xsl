@@ -175,6 +175,32 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='370']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:for-each select="marc:subfield[@code='c' or @code='g']">
+      <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:originPlace>
+            <bf:Place>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[(@code != '0') and (@code != '2')][1])=$vCurrentNode]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='2' and generate-id(preceding-sibling::marc:subfield[(@code != '0') and (@code != '1')][1])=$vCurrentNode]">
+                <bf:source>
+                  <bf:Source>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($subjectSchemes,.)"/></xsl:attribute>
+                  </bf:Source>
+                </bf:source>
+              </xsl:for-each>
+            </bf:Place>
+          </bf:originPlace>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='380']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work380">

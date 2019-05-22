@@ -166,6 +166,12 @@
     <datafield tag="362" ind1="1" ind2=" ">
       <subfield code="a">3 issues in vol. 1, ceased with 3 (1983)</subfield>
     </datafield>
+    <datafield tag="370" ind1=" " ind2=" ">
+      <subfield code="c">Latvia</subfield>
+      <subfield code="2">lcsh</subfield>
+      <subfield code="g">Riga, Latvia</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2007010623</subfield>
+    </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>
     </datafield>
