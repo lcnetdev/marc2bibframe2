@@ -638,12 +638,16 @@
             <xsl:when test="substring(.,6,1) = 'z'">other type of reproduction</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="generationURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = 'f'"><xsl:value-of select="concat($mgeneration,'facsimile')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'z'"><xsl:value-of select="concat($mgeneration,'mixedgen')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="productionMethod">
           <xsl:choose>
             <xsl:when test="substring(.,7,1) = 'a'">blueline print</xsl:when>
             <xsl:when test="substring(.,7,1) = 'b'">photocopy</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">photographic pre-production</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">film</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="productionMethodURI">
@@ -671,6 +675,9 @@
             <xsl:if test="$generation != ''">
               <bf:generation>
                 <bf:Generation>
+                  <xsl:if test="$generationURI != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$generationURI"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$generation"/></rdfs:label>
                 </bf:Generation>
               </bf:generation>

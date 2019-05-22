@@ -36,7 +36,8 @@
       <x:expect label="...with a label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'map view'"/>
       <x:expect label="pos 3 sets the colorContent property of the Work" test="//bf:Work[1]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 sets the baseMaterial property of the Work" test="//bf:Work[1]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'paper'"/>
-      <x:expect label="pos 5 sets the generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'facsimile'"/>
+      <x:expect label="pos 5 sets the generation property of the Instance - label check" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'facsimile'"/>
+      <x:expect label="pos 5 sets the generation property of the Instance - uri check" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/facsimile'"/>
       <x:expect label="pos 6 sets a productionMethod/ProductionMethod property of the Instance" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/@rdf:about = 'http://id.loc.gov/vocabulary/mproduction/photocopy'"/>
       <x:expect label="...with a label" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/rdfs:label = 'photocopy'"/>
       <x:expect label="pos 7 sets the polarity property of the Instance" test="//bf:Instance[1]/bf:polarity/bf:Polarity/rdfs:label = 'mixed polarity'"/>
