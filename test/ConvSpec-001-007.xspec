@@ -64,7 +64,8 @@
       <x:expect label="...with an rdfs:label" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'terrestrial globe'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[3]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[3]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'synthetic'"/>
-      <x:expect label="pos 5 creates a generation property of the Instance" test="//bf:Instance[3]/bf:generation/bf:Generation/rdfs:label = 'facsimile'"/>
+      <x:expect label="pos 5 creates a generation property of the Instance - label check" test="//bf:Instance[3]/bf:generation/bf:Generation/rdfs:label = 'facsimile'"/>
+      <x:expect label="pos 5 creates a generation property of the Instance - uri check" test="//bf:Instance[3]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/facsimile'"/>
     </x:scenario>
 
     <x:scenario label="PROJECTED GRAPHIC">

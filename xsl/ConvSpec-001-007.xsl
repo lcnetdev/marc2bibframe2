@@ -872,6 +872,11 @@
             <xsl:when test="substring(.,6,1) = 'f'">facsimile</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="generationUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = 'f'"><xsl:value-of select="concat($mgeneration,'facsimile')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <xsl:if test="$baseMaterial != ''">
@@ -887,6 +892,9 @@
             <xsl:if test="$generation != ''">
               <bf:generation>
                 <bf:Generation>
+                  <xsl:if test="$generationUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$generationUri"/></xsl:attribute>
+                  </xsl:if>
                   <rdfs:label><xsl:value-of select="$generation"/></rdfs:label>
                 </bf:Generation>
               </bf:generation>
