@@ -46,6 +46,7 @@
     <x:expect label="$6 338 creates a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/rdfs:label = 'аудиодиск'"/>
     <x:expect label="$6 340 creates a bunch of Instance properties" test="//bf:Instance[1]/bf:baseMaterial[1]/bf:BaseMaterial/rdfs:label = 'рисовая бумага'"/>
     <x:expect label="...$6 340 $g creates a colorContent property of the Work" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/rdfs:label = 'цвет'"/>
+    <x:expect label="$6 341 creates a contentAccessibility property of the Work" test="//bf:Work[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label[2] = 'Visual assistive features: язык знаков'"/>
     <x:expect label="$6 344 creates a bunch of Instance soundCharacteristic properties" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/rdfs:label = 'цифровой'"/>
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
@@ -80,11 +81,11 @@
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
-    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-69'"/>
+    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-70'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
-    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-70'"/>
+    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-71'"/>
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>
-    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-71'"/>
+    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-72'"/>
     <x:expect label="$6 535 creates a hasItem/Item property of the related 880/533 or 880/534 Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'Американский горный конгресс'"/>
     <x:expect label="$6 536 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'При поддержке Всемирной организации здравоохранения'"/>
     <x:expect label="$6 538 creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Режим доступа: Интернет.'"/>

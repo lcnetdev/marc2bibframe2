@@ -169,6 +169,11 @@
       <subfield code="c">рисовая бумага</subfield>
       <subfield code="g">цвет</subfield>
     </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">341-01</subfield>
+      <subfield code="a">слуховой</subfield>
+      <subfield code="c">язык знаков</subfield>
+    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">344-01</subfield>
       <subfield code="3">аудиодиск</subfield>

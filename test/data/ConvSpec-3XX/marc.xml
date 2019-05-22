@@ -72,6 +72,24 @@
       <subfield code="o">positive</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
+    <datafield tag="341" ind1="1" ind2=" ">
+      <subfield code="a">auditory</subfield>
+      <subfield code="b">transcript</subfield>
+      <subfield code="2">termList</subfield>
+      <subfield code="3">accompanying audio CD</subfield>
+    </datafield>
+    <datafield tag="341" ind1="0" ind2=" ">
+      <subfield code="a">auditory</subfield>
+      <subfield code="c">signLanguage</subfield>
+    </datafield>
+    <datafield tag="341" ind1="0" ind2=" ">
+      <subfield code="a">visual</subfield>
+      <subfield code="d">audioDescription</subfield>
+    </datafield>
+    <datafield tag="341" ind1="1" ind2=" ">
+      <subfield code="a">textual</subfield>
+      <subfield code="e">braille</subfield>
+    </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
       <subfield code="3">audio disc</subfield>
       <subfield code="a">digital</subfield>

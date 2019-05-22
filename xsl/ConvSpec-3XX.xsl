@@ -56,6 +56,72 @@
     </xsl:for-each>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='341']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work341">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='341' or @tag='880']" mode="work341">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:for-each select="marc:subfield[@code='a']">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:contentAccessibility>
+            <bf:ContentAccessibility>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:text>Content access mode: </xsl:text><xsl:value-of select="."/>
+              </rdfs:label>
+              <xsl:for-each select="../marc:subfield[@code='b']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Textual assistive features: </xsl:text><xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='c']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Visual assistive features: </xsl:text><xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='d']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Auditory assistive features: </xsl:text><xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='e']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Tactile assistive features: </xsl:text><xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:ContentAccessibility>
+          </bf:contentAccessibility>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+    
   <xsl:template match="marc:datafield[@tag='351']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work351">

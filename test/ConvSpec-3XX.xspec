@@ -85,6 +85,18 @@
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/rdfs:label = 'rda'"/>
   </x:scenario>
 
+  <x:scenario label="341 - ACCESSIBILITY CONTENT">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="341 creates a contentAccessibility property of the Work" test="count(//bf:Work[1]/bf:contentAccessibility) = 4"/>
+    <x:expect label="$a creates an rdfs:label with prefix 'Content access mode:'" test="//bf:Work[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label[1] = 'Content access mode: auditory'"/>
+    <x:expect label="$b creates an rdfs:label with prefix 'Textual assistive features:'" test="//bf:Work[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label[2] = 'Textual assistive features: transcript'"/>
+    <x:expect label="$c creates an rdfs:label with prefix 'Visual assistive features:'" test="//bf:Work[1]/bf:contentAccessibility[2]/bf:ContentAccessibility/rdfs:label[2] = 'Visual assistive features: signLanguage'"/>
+    <x:expect label="$d creates an rdfs:label with prefix 'Auditory assistive features:'" test="//bf:Work[1]/bf:contentAccessibility[3]/bf:ContentAccessibility/rdfs:label[2] = 'Auditory assistive features: audioDescription'"/>
+    <x:expect label="$e creates an rdfs:label with prefix 'Tactile assistive features:'" test="//bf:Work[1]/bf:contentAccessibility[4]/bf:ContentAccessibility/rdfs:label[2] = 'Tactile assistive features: braille'"/>
+    <x:expect label="$2 creates a source property on the ContentAccessibility subject" test="//bf:Work[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/bf:source/bf:Source/rdfs:label = 'termList'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property on ContentAccessibility subject" test="//bf:Work[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'accompanying audio CD'"/>
+  </x:scenario>
+
   <x:scenario label="344 - SOUND CHARACTERISTICS">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a soundCharacteristic/RecordingMethod property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/rdfs:label = 'digital'"/>
