@@ -167,6 +167,7 @@
       <subfield code="a">рисовая бумага</subfield>
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">рисовая бумага</subfield>
+      <subfield code="g">цвет</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">344-01</subfield>

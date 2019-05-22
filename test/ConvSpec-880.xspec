@@ -45,6 +45,7 @@
     <x:expect label="$6 337 creates a media property of the Instance" test="//bf:Instance[1]/bf:media[1]/bf:Media/rdfs:label = 'аудио'"/>
     <x:expect label="$6 338 creates a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/rdfs:label = 'аудиодиск'"/>
     <x:expect label="$6 340 creates a bunch of Instance properties" test="//bf:Instance[1]/bf:baseMaterial[1]/bf:BaseMaterial/rdfs:label = 'рисовая бумага'"/>
+    <x:expect label="...$6 340 $g creates a colorContent property of the Work" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/rdfs:label = 'цвет'"/>
     <x:expect label="$6 344 creates a bunch of Instance soundCharacteristic properties" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/rdfs:label = 'цифровой'"/>
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
     <x:expect label="$6 345 creates a bunch of Instance projectionCharacteristic properties" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'синерама'"/>
