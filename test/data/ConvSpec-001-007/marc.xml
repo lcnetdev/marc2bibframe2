@@ -9,7 +9,7 @@
   </record>
   <record>
     <controlfield tag="001">2</controlfield>
-    <controlfield tag="007">co cgammmaadda</controlfield>
+    <controlfield tag="007">co cga016aadda</controlfield>
   </record>
   <record>
     <controlfield tag="001">3</controlfield>
@@ -50,5 +50,12 @@
   <record>
     <controlfield tag="001">12</controlfield>
     <controlfield tag="007">vf caahos</controlfield>
+  </record>
+  <record>
+    <controlfield tag="001">13</controlfield>
+    <controlfield tag="007">co cjammmaadda</controlfield>
+    <datafield tag="300">
+        <subfield code="c">9.8 x 6.3 cm</subfield>
+    </datafield>
   </record>
 </collection>

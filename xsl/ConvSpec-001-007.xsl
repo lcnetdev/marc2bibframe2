@@ -767,7 +767,7 @@
         </xsl:variable>
         <xsl:variable name="imageBitDepth">
           <xsl:choose>
-            <xsl:when test="substring(.,7,3) = 'mmm'">multiple</xsl:when>
+            <xsl:when test="substring(.,7,3) = 'mmm'"/>
             <xsl:when test="substring(.,7,3) = 'nnn'"/>
             <xsl:when test="substring(.,7,3) = '---'"/>
             <xsl:when test="substring(.,7,3) = '|||'"/>
@@ -801,16 +801,16 @@
                 </bf:carrier>
               </xsl:if>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$soundContent != ''">
               <bf:soundContent>
                 <bf:SoundContent>
                   <xsl:if test="$soundContentURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
                 </bf:SoundContent>
@@ -822,7 +822,7 @@
                   <rdf:type>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bflc,'ImageBitDepth')"/></xsl:attribute>
                   </rdf:type>
-                  <rdfs:label><xsl:value-of select="$imageBitDepth"/></rdfs:label>
+                  <rdf:value><xsl:value-of select="$imageBitDepth"/></rdf:value>
                 </bf:DigitalCharacteristic>
               </bf:digitalCharacteristic>
             </xsl:if>

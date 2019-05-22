@@ -50,10 +50,11 @@
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[2]/bf:media/bf:Media/rdfs:label = 'computer'"/>
       <x:expect label="pos 1 sets the carrier property of the Instance" test="//bf:Instance[2]/bf:carrier/bf:Carrier/rdfs:label = 'computer disc'"/>
       <x:expect label="pos 3 sets the colorContent property of the Work" test="//bf:Work[2]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
-      <x:expect label="pos 4 sets the dimensions property of the Instance" test="//bf:Instance[2]/bf:dimensions = '4 3/4 in. or 12 cm.'"/>
-      <x:expect label="pos 5 sets a soundContent/SoundContent/bflc:target property of the Instance" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
+      <x:expect label="pos 4 sets the dimensions property of the Instance - from 007" test="//bf:Instance[2]/bf:dimensions = '4 3/4 in. or 12 cm.'"/>
+      <x:expect label="pos 4 sets the dimensions property of the Instance - 300 override of 007" test="//bf:Instance[13]/bf:dimensions = '9.8 x 6.3 cm'"/>
+      <x:expect label="pos 5 sets a soundContent/SoundContent/@rdf:about of the Instance" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/@rdf:about = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[2]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
-      <x:expect label="pos 6-8 creates an ImageBitDepth digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[1]/bf:DigitalCharacteristic/rdfs:label = 'multiple'"/>
+      <x:expect label="pos 6-8 creates an ImageBitDepth digitalCharacteristic property of the Instance" test="//bf:Instance[2]/bf:digitalCharacteristic[1]/bf:DigitalCharacteristic/rdf:value = '016'"/>
     </x:scenario>
 
     <x:scenario label="GLOBE">
