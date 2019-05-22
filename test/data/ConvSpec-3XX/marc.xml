@@ -52,6 +52,7 @@
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">colored inks</subfield>
       <subfield code="e">none</subfield>
+      <subfield code="g">color</subfield>
       <subfield code="h">between entry for April 7 and April 19, 1843.</subfield>
     </datafield>
     <datafield tag="340" ind1=" " ind2=" ">
@@ -67,6 +68,7 @@
       <subfield code="k">double-sided</subfield>
       <subfield code="m">folio</subfield>
       <subfield code="n">giant print (36 point)</subfield>
+      <subfield code="0">http://rdaregistry.info/termList/fontSize/1001</subfield>
       <subfield code="o">positive</subfield>
       <subfield code="2">rda</subfield>
     </datafield>

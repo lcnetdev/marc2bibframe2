@@ -328,7 +328,8 @@
   <!--
       generate a property with a blank node Resource, and an rdfs:label
       process $3 and $2, if necessary
-      Inspired by processing 340, may be useful elsewhere
+      Inspired by processing 340, may be useful elsewhere (actually
+      not used by 340, but by other 3XX fields)
   -->
 
   <xsl:template match="marc:subfield" mode="generateProperty">

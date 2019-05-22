@@ -21,6 +21,41 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='340']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work340">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='340' or @tag='880']" mode="work340">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:for-each select="marc:subfield[@code='g']">
+      <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:colorContent>
+            <bf:ColorContent>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:ColorContent>
+          </bf:colorContent>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='351']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work351">
@@ -543,69 +578,85 @@
 
   <xsl:template match="marc:datafield[@tag='340' or @tag='880']" mode="instance340">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:apply-templates select="marc:subfield[@code='a']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:baseMaterial</xsl:with-param>
-          <xsl:with-param name="pResource">bf:BaseMaterial</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:for-each select="marc:subfield[@code='b']">
-          <bf:dimensions><xsl:value-of select="."/></bf:dimensions>
-        </xsl:for-each>
-        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:appliedMaterial</xsl:with-param>
-          <xsl:with-param name="pResource">bf:AppliedMaterial</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='d']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:productionMethod</xsl:with-param>
-          <xsl:with-param name="pResource">bf:ProductionMethod</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='e']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:mount</xsl:with-param>
-          <xsl:with-param name="pResource">bf:Mount</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='f']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:reductionRatio</xsl:with-param>
-          <xsl:with-param name="pResource">bf:ReductionRatio</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='i']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:systemRequirement</xsl:with-param>
-          <xsl:with-param name="pResource">bf:SystemRequirement</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='j']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:generation</xsl:with-param>
-          <xsl:with-param name="pResource">bf:Generation</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='k']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:layout</xsl:with-param>
-          <xsl:with-param name="pResource">bf:Layout</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='m']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:bookFormat</xsl:with-param>
-          <xsl:with-param name="pResource">bf:BookFormat</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='n']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:fontSize</xsl:with-param>
-          <xsl:with-param name="pResource">bf:FontSize</xsl:with-param>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="marc:subfield[@code='o']" mode="generateProperty">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pProp">bf:polarity</xsl:with-param>
-          <xsl:with-param name="pResource">bf:Polarity</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:for-each select="marc:subfield[@code='a' or @code='c' or @code='d' or @code='e' or @code='f' or @code='j' or @code='k' or @code='m' or @code='n' or @code='o']">
+      <xsl:variable name="vProp">
+        <xsl:choose>
+          <xsl:when test="@code='a'">bf:baseMaterial</xsl:when>
+          <xsl:when test="@code='c'">bf:appliedMaterial</xsl:when>
+          <xsl:when test="@code='d'">bf:productionMethod</xsl:when>
+          <xsl:when test="@code='e'">bf:mount</xsl:when>
+          <xsl:when test="@code='f'">bf:reductionRatio</xsl:when>
+          <xsl:when test="@code='j'">bf:generation</xsl:when>
+          <xsl:when test="@code='k'">bf:layout</xsl:when>
+          <xsl:when test="@code='m'">bf:bookFormat</xsl:when>
+          <xsl:when test="@code='n'">bf:fontSize</xsl:when>
+          <xsl:when test="@code='o'">bf:polarity</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vObject">
+        <xsl:choose>
+          <xsl:when test="@code='a'">bf:BaseMaterial</xsl:when>
+          <xsl:when test="@code='c'">bf:AppliedMaterial</xsl:when>
+          <xsl:when test="@code='d'">bf:ProductionMethod</xsl:when>
+          <xsl:when test="@code='e'">bf:Mount</xsl:when>
+          <xsl:when test="@code='f'">bf:ReductionRatio</xsl:when>
+          <xsl:when test="@code='j'">bf:Generation</xsl:when>
+          <xsl:when test="@code='k'">bf:Layout</xsl:when>
+          <xsl:when test="@code='m'">bf:BookFormat</xsl:when>
+          <xsl:when test="@code='n'">bf:FontSize</xsl:when>
+          <xsl:when test="@code='o'">bf:Polarity</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:element name="{$vProp}">
+            <xsl:element name="{$vObject}">
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:element>
+          </xsl:element>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+    <xsl:for-each select="marc:subfield[@code='b']">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:dimensions>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </bf:dimensions>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+    <xsl:for-each select="marc:subfield[@code='i']">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:systemRequirement>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </bf:systemRequirement>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
+
+  <xsl:template name="processSubfield0"/>
 
   <xsl:template match="marc:datafield[@tag='344' or @tag='345' or @tag='346' or @tag='347' or @tag='348']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
