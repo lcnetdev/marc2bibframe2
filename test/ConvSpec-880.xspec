@@ -57,6 +57,7 @@
     <x:expect label="$6 351 creates an arrangement property of the Work" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:organization = 'SPSS системный файл'"/>
     <x:expect label="$6 352 creates a digitalCharacteristic property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:CartographicDataType = 'Вектор'"/>
     <x:expect label="$6 362 creates a firstIssue/lastIssue or note property of the Instance" test="//bf:Instance[1]/bf:note/bf:Note/bf:noteType[text()='Numbering']/parent::*/rdfs:label = '3 выпуска в том. 1, прекратилось с 3 (1983)'"/>
+    <x:expect label="$6 377 creates a language/Language property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bflc:appliesTo= 'лекция'"/>
     <x:expect label="$6 380 creates genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Телевизионная программа'"/>
     <x:expect label="$6 382 creates musicMedium properties of the Work" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/rdfs:label = 'пианино'"/>
     <x:expect label="$6 383 creates music number properties of the Work" test="//bf:Work[1]/bf:musicSerialNumber[1] = '没有。 14'"/>
@@ -81,18 +82,18 @@
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
-    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-70'"/>
+    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-71'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
-    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-71'"/>
+    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-72'"/>
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>
-    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-72'"/>
+    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-73'"/>
     <x:expect label="$6 535 creates a hasItem/Item property of the related 880/533 or 880/534 Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'Американский горный конгресс'"/>
     <x:expect label="$6 536 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'При поддержке Всемирной организации здравоохранения'"/>
     <x:expect label="$6 538 creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Режим доступа: Интернет.'"/>
     <x:expect label="$6 540 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label = 'Литературные права Carrie Chapman Кэтт были посвящены общественности'"/>
     <x:expect label="$6 544 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Департамент здравоохранения Fonds, Услуги здравоохранения Отдел файлов.'"/>
     <x:expect label="$6 545 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Автор и реформатор.'"/>
-    <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском'"/>
+    <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[2]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском'"/>
     <x:expect label="$6 547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'Издание меняется: 1916, Нью-Йорк издания.'"/>
     <x:expect label="$6 550 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Орган клуба Потомак на стороне естествоиспытателей.'"/>
     <x:expect label="$6 555 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'Совокупный индекс с учетом включенных в каждом томе, -V. 29.'"/>

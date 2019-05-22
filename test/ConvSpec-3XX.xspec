@@ -211,6 +211,15 @@
     <x:expect label="$2 creates a bf:source property of the Place" test="//bf:Work[1]/bf:originPlace[1]/bf:Place/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/lcsh'"/>
   </x:scenario>
   
+  <x:scenario label="377 - ASSOCIATED LANGUAGE">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a language/Language property of the Work with a URI" test="//bf:Work[1]/bf:language[1]/bf:Language/@rdf:about='http://id.loc.gov/vocabulary/languages/eng'"/>
+    <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[2]/bf:Language/@rdf:about)"/>
+    <x:expect label="$l creates an rdfs:label property of the Language" test="//bf:Work[1]/bf:language[2]/bf:Language/rdfs:label='foobar'"/>
+    <x:expect label="$0 creates a bf:identifiedBy property of the Language" test="//bf:Work[1]/bf:language[2]/bf:Language/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.org/languages/foo'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Language" test="//bf:Work[1]/bf:language[1]/bf:Language/bflc:appliesTo = 'Lecture'"/>
+  </x:scenario>
+  
   <x:scenario label="380 - FORM OF WORK">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="380 creates genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Play'"/>
