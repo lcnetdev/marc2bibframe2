@@ -229,6 +229,10 @@
       <subfield code="a">没有。 14</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">384-01</subfield>
+      <subfield code="a">си минор</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">385-01</subfield>
       <subfield code="a">Дети</subfield>
       <subfield code="2">lcsh</subfield>

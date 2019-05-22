@@ -249,6 +249,11 @@
     <x:expect label="$c creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber[1] = 'F. I, 22-25'"/>
     <x:expect label="$d creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber[2] = 'Fanna'"/>
   </x:scenario>
+
+  <x:scenario label="384 - KEY">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="$a creates a musicKey property of the Work" test="//bf:Work[1]/bf:musicKey = 'B minor'"/>
+  </x:scenario>
   
   <x:scenario label="385 - AUDIENCE CHARACTERISTICS">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>

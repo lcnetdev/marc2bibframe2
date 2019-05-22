@@ -216,6 +216,10 @@
       <subfield code="d">Fanna</subfield>
       <subfield code="2">mlati</subfield>
     </datafield>
+    <datafield tag="384" ind1=" " ind2=" ">
+      <subfield code="3">Shostakovich sonata no. 2</subfield>
+      <subfield code="a">B minor</subfield>
+    </datafield>
     <datafield tag="385" ind1=" " ind2=" ">
       <subfield code="3">Nonsense</subfield>
       <subfield code="m">Age group</subfield>
