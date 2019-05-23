@@ -81,7 +81,7 @@
     <x:expect label="$6 520 creates a summary property of the Work" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Иллюстрированный сборник потешек на музыку.'"/>
     <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[2]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
-    <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
+    <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
     <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-72'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
