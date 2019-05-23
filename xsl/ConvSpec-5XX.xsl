@@ -179,13 +179,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='508' or @tag='511']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="workCreditsNote">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
   <xsl:template match="marc:datafield[@tag='518']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work518">
@@ -374,34 +367,6 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="workCreditsNote">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vTag">
-      <xsl:choose>
-        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:variable name="vDisplayConst">
-      <xsl:choose>
-        <xsl:when test="$vTag='511' and @ind1='1'">Cast: </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:credits>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
-          </bf:credits>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template mode="instance" match="marc:datafield[@tag='500'] | marc:datafield[@tag='501'] |
                                        marc:datafield[@tag='513'] | marc:datafield[@tag='515'] |
                                        marc:datafield[@tag='516'] | marc:datafield[@tag='536'] |
@@ -452,6 +417,13 @@
         </bf:usageAndAccessPolicy>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='508' or @tag='511']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instanceCreditsNote">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='521']" mode="instance">
@@ -771,6 +743,34 @@
             </xsl:apply-templates>
           </bf:Note>
         </bf:note>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='508' or @tag='511' or @tag='880']" mode="instanceCreditsNote">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vDisplayConst">
+      <xsl:choose>
+        <xsl:when test="$vTag='511' and @ind1='1'">Cast: </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:credits>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
+          </bf:credits>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
