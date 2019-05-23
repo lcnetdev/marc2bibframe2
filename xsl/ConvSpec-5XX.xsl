@@ -222,7 +222,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c']"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -245,9 +245,6 @@
                 </bf:Source>
               </bf:source>
             </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='c']" mode="subfield2">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
