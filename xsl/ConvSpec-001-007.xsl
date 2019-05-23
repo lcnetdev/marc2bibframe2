@@ -1262,8 +1262,10 @@
                 </bf:Polarity>
               </bf:polarity>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$reductionRatioRange != ''">
               <bf:reductionRatio>
