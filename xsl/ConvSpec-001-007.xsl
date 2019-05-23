@@ -475,6 +475,8 @@
         </xsl:variable>
         <xsl:variable name="vAspectRatioLabel">
           <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">anamorphic</xsl:when>
             <xsl:when test="substring(.,5,1) = 'e'">wide-screen</xsl:when>
           </xsl:choose>
         </xsl:variable>
@@ -484,21 +486,16 @@
             <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="vAspectRatioNote">
+        <xsl:variable name="vAspectRatioLabel2">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">nonanamorphic (wide-screen)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">anamorphic (wide-screen)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'">wide-screen</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">wide-screen</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreForm2">
           <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'a'">workprint</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'b'">trims</xsl:when>
             <xsl:when test="substring(.,10,1) = 'c'">outtakes</xsl:when>
             <xsl:when test="substring(.,10,1) = 'd'">rushes</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'e'">mixing tracks</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'f'">title bands, intertitle rolls</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'g'">production rolls</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreForm2Uri">
@@ -533,32 +530,20 @@
             <xsl:if test="$vAspectRatioURI != ''">
               <bf:aspectRatio>
                 <bf:AspectRatio>
-                  <bflc:target>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
-                  </bflc:target>
-                  <xsl:if test="$vAspectRatioLabel != ''">
-                    <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
-                  </xsl:if>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
+                    <xsl:if test="$vAspectRatioLabel != ''">
+                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
+                    </xsl:if>
                 </bf:AspectRatio>
               </bf:aspectRatio>
             </xsl:if>
             <xsl:if test="$vAspectRatioURI2 != ''">
               <bf:aspectRatio>
                 <bf:AspectRatio>
-                  <bflc:target>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
-                  </bflc:target>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$vAspectRatioNote != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                  <bf:note>
-                    <bf:Note>
-                      <rdfs:label><xsl:value-of select="$vAspectRatioNote"/></rdfs:label>
-                    </bf:Note>
-                  </bf:note>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
+                    <xsl:if test="$vAspectRatioLabel2 != ''">
+                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel2"/></rdfs:label>
+                    </xsl:if>
                 </bf:AspectRatio>
               </bf:aspectRatio>
             </xsl:if>
@@ -1476,8 +1461,8 @@
         <xsl:variable name="soundContent">
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound on medium</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound separate from medium</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="soundContentURI">
@@ -1527,9 +1512,9 @@
         <xsl:variable name="playbackChannels">
           <xsl:choose>
             <xsl:when test="substring(.,9,1) = 'k'">mixed</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'm'">monaural</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'q'">quadraphonic, multichannel or surround</xsl:when>
-            <xsl:when test="substring(.,9,1) = 's'">stereophonic</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'm'">mono</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'q'">surround</xsl:when>
+            <xsl:when test="substring(.,9,1) = 's'">stereo</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="playbackUri">
@@ -1598,13 +1583,6 @@
             <xsl:when test="substring(.,17,1) = 'i'">incomplete</xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="inspectionDate">
-          <xsl:choose>
-            <xsl:when test="substring(.,18,6) = '||||||'"/>
-            <xsl:when test="substring(.,18,6) = '------'"/>
-            <xsl:otherwise><xsl:value-of select="concat(substring(.,18,4),'-',substring(.,22,2))"/></xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
@@ -1641,9 +1619,7 @@
               <bf:soundContent>
                 <bf:SoundContent>
                   <xsl:if test="$soundContentURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                    </bflc:target>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
                 </bf:SoundContent>
@@ -1661,16 +1637,16 @@
                 </bf:RecordingMedium>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$playbackChannels != ''">
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$playbackUri"/></xsl:attribute>
-                    </bflc:target>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackUri"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$playbackChannels"/></rdfs:label>
                 </bf:PlaybackChannels>
@@ -1711,17 +1687,6 @@
                 <bf:Note>
                   <bf:noteType>completeness</bf:noteType>
                   <rdfs:label><xsl:value-of select="$completeness"/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:if>
-            <xsl:if test="$inspectionDate != ''">
-              <bf:note>
-                <bf:Note>
-                  <bf:noteType>film inspection date</bf:noteType>
-                  <rdfs:label>
-                    <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>gYearMonth</xsl:attribute>
-                    <xsl:value-of select="$inspectionDate"/>
-                  </rdfs:label>
                 </bf:Note>
               </bf:note>
             </xsl:if>

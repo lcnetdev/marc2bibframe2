@@ -29,11 +29,14 @@
   </record>
   <record>
     <controlfield tag="001">7</controlfield>
-    <controlfield tag="007">mr caaadmaartauac198606</controlfield>
+    <controlfield tag="007">mr caaadmcartauac198606</controlfield>
   </record>
   <record>
     <controlfield tag="001">8</controlfield>
-    <controlfield tag="007">mr cbaadmaartauac198606</controlfield>
+    <controlfield tag="007">mr cbaafmaartauac198606</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">9</controlfield>
