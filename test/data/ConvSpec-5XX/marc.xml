@@ -119,8 +119,12 @@
       <subfield code="a">Photocopying prohibited;</subfield>
       <subfield code="c">50 Stat.88;</subfield>
       <subfield code="d">Executor of estate.</subfield>
+      <subfield code="f">CC BY-NC-ND</subfield>
+      <subfield code="g">20190523</subfield>
+      <subfield code="q">DLC</subfield>
       <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
       <subfield code="5">DLC</subfield>
+      <subfield code="2">HCO</subfield>
     </datafield>
     <datafield tag="541" ind1=" " ind2=" ">
       <subfield code="3">Materials scheduled for permanent retention</subfield>
