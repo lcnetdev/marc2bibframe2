@@ -374,13 +374,13 @@
             <xsl:when test="substring(.,2,1) = 'p'">postcard</xsl:when>
             <xsl:when test="substring(.,2,1) = 'q'">icon</xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'">radiograph</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">study print</xsl:when>
-            <xsl:when test="substring(.,2,1) =
-                            'v'">photograph</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">print</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'v'">photograph</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreFormUri">
           <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2017027227')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($graphicMaterials,'tgm003277')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($graphicMaterials,'tgm007391')"/></xsl:when>
@@ -390,12 +390,13 @@
             <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2014026152')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($marcgt,'ted')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($graphicMaterials,'tgm003055')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'n'"><xsl:value-of select="concat($genreForms,'gf2016026011')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'o'"><xsl:value-of select="concat($marcgt,'fla')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'p'"><xsl:value-of select="concat($genreForms,'gf2014026151')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($graphicMaterials,'tgm005289')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($graphicMaterials,'tgm008530')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'v'"><xsl:value-of select="concat($genreForms,'gf2017027249')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
