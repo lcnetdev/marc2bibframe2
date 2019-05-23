@@ -58,4 +58,11 @@
         <subfield code="c">9.8 x 6.3 cm</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">14</controlfield>
+    <controlfield tag="007">gs cjbdfd</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
 </collection>

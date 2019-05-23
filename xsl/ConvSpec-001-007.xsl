@@ -948,7 +948,7 @@
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
             <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound separate from medium</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="soundContentURI">
@@ -1073,9 +1073,7 @@
               <bf:soundContent>
                 <bf:SoundContent>
                   <xsl:if test="$soundContentURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
                 </bf:SoundContent>
@@ -1093,8 +1091,10 @@
                 </bf:RecordingMedium>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$mount != ''">
               <bf:mount>
