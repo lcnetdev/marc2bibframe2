@@ -125,6 +125,11 @@
     <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
   </x:scenario>
 
+  <x:scenario label="532 - ACCESSIBILITY NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Closed captioning in English'"/>
+  </x:scenario>
+  
   <x:scenario label="536 - FUNDING INFORMATION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="536 creates a note/Note property of the Instance with noteType 'funding information'" test="//bf:Instance[1]/bf:note[6]/bf:Note/bf:noteType = 'funding information'"/>

@@ -95,6 +95,9 @@
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
+    <datafield tag="532" ind1="1" ind2=" ">
+      <subfield code="a">Closed captioning in English</subfield>
+    </datafield>
     <datafield tag="536" ind1=" " ind2=" ">
       <subfield code="a">Sponsored by the U.S. Air Force</subfield>
       <subfield code="b">N00014-68-A-0245-0007</subfield>

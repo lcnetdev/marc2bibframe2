@@ -324,6 +324,10 @@
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
     </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">532-01</subfield>
+      <subfield code="a">Субтитры на английском языке</subfield>
+    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">533-01</subfield>
       <subfield code="a">Микрофильмов.</subfield>
