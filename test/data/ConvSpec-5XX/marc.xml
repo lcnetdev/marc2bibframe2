@@ -38,6 +38,8 @@
       <subfield code="d">Members of donor's family;</subfield>
       <subfield code="e">Title 50, chapter 401, U.S.C.</subfield>
       <subfield code="f">Preview only</subfield>
+      <subfield code="g">20190207</subfield>
+      <subfield code="q">DLC</subfield>
       <subfield code="u">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
       <subfield code="5">MH</subfield>
     </datafield>
@@ -93,6 +95,9 @@
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
+    <datafield tag="532" ind1="1" ind2=" ">
+      <subfield code="a">Closed captioning in English</subfield>
+    </datafield>
     <datafield tag="536" ind1=" " ind2=" ">
       <subfield code="a">Sponsored by the U.S. Air Force</subfield>
       <subfield code="b">N00014-68-A-0245-0007</subfield>
@@ -114,8 +119,12 @@
       <subfield code="a">Photocopying prohibited;</subfield>
       <subfield code="c">50 Stat.88;</subfield>
       <subfield code="d">Executor of estate.</subfield>
+      <subfield code="f">CC BY-NC-ND</subfield>
+      <subfield code="g">20190523</subfield>
+      <subfield code="q">DLC</subfield>
       <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
       <subfield code="5">DLC</subfield>
+      <subfield code="2">HCO</subfield>
     </datafield>
     <datafield tag="541" ind1=" " ind2=" ">
       <subfield code="3">Materials scheduled for permanent retention</subfield>
