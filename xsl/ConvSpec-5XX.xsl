@@ -86,6 +86,37 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='504']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="work504">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='504' or @tag='880']" mode="work504">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:supplementaryContent>
+          <bf:SupplementaryContent>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:count><xsl:value-of select="."/></bf:count>
+            </xsl:for-each>
+          </bf:SupplementaryContent>
+        </bf:supplementaryContent>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='505']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work505">
@@ -339,14 +370,13 @@
   </xsl:template>
 
   <xsl:template mode="instance" match="marc:datafield[@tag='500'] | marc:datafield[@tag='501'] |
-                                       marc:datafield[@tag='504'] | marc:datafield[@tag='513'] |
-                                       marc:datafield[@tag='515'] | marc:datafield[@tag='516'] |
-                                       marc:datafield[@tag='536'] | marc:datafield[@tag='544'] |
-                                       marc:datafield[@tag='545'] | marc:datafield[@tag='547'] |
-                                       marc:datafield[@tag='550'] | marc:datafield[@tag='555'] |
-                                       marc:datafield[@tag='556'] | marc:datafield[@tag='581'] |
-                                       marc:datafield[@tag='585'] | marc:datafield[@tag='586'] |
-                                       marc:datafield[@tag='588']">
+                                       marc:datafield[@tag='513'] | marc:datafield[@tag='515'] |
+                                       marc:datafield[@tag='516'] | marc:datafield[@tag='536'] |
+                                       marc:datafield[@tag='544'] | marc:datafield[@tag='545'] |
+                                       marc:datafield[@tag='547'] | marc:datafield[@tag='550'] |
+                                       marc:datafield[@tag='555'] | marc:datafield[@tag='556'] |
+                                       marc:datafield[@tag='581'] | marc:datafield[@tag='585'] |
+                                       marc:datafield[@tag='586'] | marc:datafield[@tag='588']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -652,7 +682,6 @@
     <xsl:variable name="vNoteType">
       <xsl:choose>
         <xsl:when test="$vTag='501'">with</xsl:when>
-        <xsl:when test="$vTag='504'">bibliography</xsl:when>
         <xsl:when test="$vTag='513'">report type</xsl:when>
         <xsl:when test="$vTag='515'">issuance information</xsl:when>
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
@@ -693,11 +722,6 @@
             </xsl:if>
             <!-- special handling for other subfields -->
             <xsl:choose>
-              <xsl:when test="$vTag='504'">
-                <xsl:for-each select="marc:subfield[@code='b']">
-                  <bf:count><xsl:value-of select="."/></bf:count>
-                </xsl:for-each>
-              </xsl:when>
               <xsl:when test="$vTag='536'">
                 <xsl:for-each select="marc:subfield[@code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='g' or @code='h']">
                   <xsl:variable name="vDisplayConst">
