@@ -151,18 +151,18 @@
       <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance - uri check" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/@rdf:about = 'http://id.loc.gov/vocabulary/mplayspeed/o'"/>
       <x:expect label="pos 4 creates a soundCharacteristic/PlaybackChannels property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mplayback/ste'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereo'"/>
-      <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mgroove/coarse'"/>
+      <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[10]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mgroove/finepitch'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/rdfs:label = 'coarse groove'"/>
       <x:expect label="pos 6 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions[1] = '7 in.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance (tape width)" test="//bf:Instance[9]/bf:dimensions[2] = '1/4 in. tape width'"/>
+      <x:expect label="pos 6, 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[10]/bf:dimensions[1] = '2 in.'"/>
       <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance - label check" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/rdfs:label = 'quarter (4)'"/>
       <x:expect label="pos 8 creates a soundCharacteristic/TapeConfig property of the Instance - uri check" test="//bf:Instance[9]/bf:soundCharacteristic[4]/bf:TapeConfig/@rdf:about = 'http://id.loc.gov/vocabulary/mtapeconfig/quarter'"/>
       <x:expect label="pos 9 creates a generation/Generation property of the Instance" test="//bf:Instance[9]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/master'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:generation/bf:Generation/rdfs:label = 'master tape'"/>
-      <x:expect label="...or it may create a note on the Instance" test="//bf:Instance[10]/bf:note/bf:Note/rdfs:label = 'Mass produced'"/>
       <x:expect label="pos 10 creates a baseMaterial property of the Instance" test="//bf:Instance[9]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'glass'"/>
       <x:expect label="...and can create an emulsion property of the Instance" test="//bf:Instance[9]/bf:emulsion/bf:Emulsion/rdfs:label = 'lacquer'"/>
-      <x:expect label="pos 11 creates a soundCharacteristic/GrooveCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mgroove/lateral'"/>
+      <x:expect label="pos 11 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mgroove/lateral'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/rdfs:label = 'lateral or combined cutting'"/>
       <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mspecplayback/dolbyb'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>

@@ -1748,14 +1748,16 @@
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = 'm'">
               <xsl:choose>
-                <xsl:when test="substring(.,2,1) = 'd'">microgroove</xsl:when>
-                <xsl:when test="substring(.,2,1) = 'e'">fine pitch</xsl:when>
+                <xsl:when test="contains('abce', substring(.,4,1))">microgroove</xsl:when>
+                <xsl:when test="substring(.,4,1) = 'i'">fine pitch</xsl:when>
+                <xsl:otherwise>microgroove</xsl:otherwise>
               </xsl:choose>
             </xsl:when>
             <xsl:when test="substring(.,6,1) = 's'">
               <xsl:choose>
-                <xsl:when test="substring(.,2,1) = 'd'">coarse groove</xsl:when>
-                <xsl:when test="substring(.,2,1) = 'e'">standard pitch</xsl:when>
+                <xsl:when test="substring(.,4,1) = 'd'">coarse groove</xsl:when>
+                <xsl:when test="substring(.,4,1) = 'h'">standard pitch</xsl:when>
+                <xsl:otherwise>coarse groove</xsl:otherwise>
               </xsl:choose>
             </xsl:when>
           </xsl:choose>
@@ -1764,14 +1766,16 @@
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = 'm'">
               <xsl:choose>
-                <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($mgroove,'micro')"/></xsl:when>
-                <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($mgroove,'fine')"/></xsl:when>
+                <xsl:when test="contains('abce', substring(.,4,1))"><xsl:value-of select="concat($mgroove,'micro')"/></xsl:when>
+                <xsl:when test="substring(.,4,1) = 'i'"><xsl:value-of select="concat($mgroove,'finepitch')"/></xsl:when>
+                <xsl:otherwise><xsl:value-of select="concat($mgroove,'micro')"/></xsl:otherwise>
               </xsl:choose>
             </xsl:when>
             <xsl:when test="substring(.,6,1) = 's'">
               <xsl:choose>
-                <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($mgroove,'coarse')"/></xsl:when>
-                <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($mgroove,'standard')"/></xsl:when>
+                <xsl:when test="substring(.,4,1) = 'd'"><xsl:value-of select="concat($mgroove,'coarse')"/></xsl:when>
+                <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mgroove,'stanpitch')"/></xsl:when>
+                <xsl:otherwise><xsl:value-of select="concat($mgroove,'coarse')"/></xsl:otherwise>
               </xsl:choose>
             </xsl:when>
           </xsl:choose>
@@ -1827,12 +1831,6 @@
             <xsl:when test="substring(.,10,1) = 't'"><xsl:value-of select="concat($mgeneration,'testpress')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="generationNote">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'i'">Instantaneous (recorded on the spot)</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'm'">Mass produced</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
             <xsl:when test="substring(.,11,1) = 'b'">cellulose nitrate</xsl:when>
@@ -1881,7 +1879,7 @@
         </xsl:variable>
         <xsl:variable name="cutting">
           <xsl:choose>
-            <xsl:when test="substring(.,12,1) = 'h'">hill-and-dale cutting</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'h'">vertical cutting</xsl:when>
             <xsl:when test="substring(.,12,1) = 'l'">lateral or combined cutting</xsl:when>
           </xsl:choose>
         </xsl:variable>
@@ -1971,19 +1969,19 @@
               <bf:soundCharacteristic>
                 <bf:GrooveCharacteristic>
                   <xsl:if test="$grooveCharacteristicURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$grooveCharacteristicURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$grooveCharacteristicURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$grooveCharacteristic"/></rdfs:label>
                 </bf:GrooveCharacteristic>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-            </xsl:if>
-            <xsl:if test="$tapeWidth != ''">
-              <bf:dimensions><xsl:value-of select="$tapeWidth"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
+                <xsl:if test="$tapeWidth != ''">
+                    <bf:dimensions><xsl:value-of select="$tapeWidth"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$tapeConfig != ''">
               <bf:soundCharacteristic>
@@ -2004,13 +2002,6 @@
                   <rdfs:label><xsl:value-of select="$generation"/></rdfs:label>
                 </bf:Generation>
               </bf:generation>
-            </xsl:if>
-            <xsl:if test="$generationNote != ''">
-              <bf:note>
-                <bf:Note>
-                  <rdfs:label><xsl:value-of select="$generationNote"/></rdfs:label>
-                </bf:Note>
-              </bf:note>
             </xsl:if>
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
@@ -2036,9 +2027,7 @@
               <bf:soundCharacteristic>
                 <bf:GrooveCharacteristic>
                   <xsl:if test="$cuttingURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$cuttingURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$cuttingURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$cutting"/></rdfs:label>
                 </bf:GrooveCharacteristic>

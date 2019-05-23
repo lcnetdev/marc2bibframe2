@@ -44,7 +44,10 @@
   </record>
   <record>
     <controlfield tag="001">10</controlfield>
-    <controlfield tag="007">sd osscmcmglce</controlfield>
+    <controlfield tag="007">sd ismcmcmglce</controlfield>
+    <datafield tag="300">
+        <subfield code="c">2 in.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">11</controlfield>
