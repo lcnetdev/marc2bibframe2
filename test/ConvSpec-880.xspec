@@ -79,7 +79,7 @@
     <x:expect label="$6 516 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Компьютерные программы.'"/>
     <x:expect label="$6 518 creates a capture property of the Work" test="//bf:Work[1]/bf:capture/bf:Capture/rdfs:label = 'Работы по звуковым сопровождением диск записан 1955-1963 в различных местах.'"/>
     <x:expect label="$6 520 creates a summary property of the Work" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Иллюстрированный сборник потешек на музыку.'"/>
-    <x:expect label="$6 521 creates an intendedAudience property of the Instance" test="//bf:Instance[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
+    <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[2]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
