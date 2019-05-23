@@ -56,7 +56,7 @@
   
   <x:scenario label="507 - SCALE NOTE FOR GRAPHIC MATERIAL">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="506 creates a scale property of the Instance" test="//bf:Instance[1]/bf:scale[1] = 'Scale 1:500,000; 1 in. equals 8 miles.'"/>
+    <x:expect label="506 creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/bf:note/bf:Note/rdfs:label = 'Scale 1:500,000; 1 in. equals 8 miles.'"/>
   </x:scenario>
   
   <x:scenario label="508 - CREATION/PRODUCTION CREDITS NOTE">
