@@ -18,7 +18,7 @@
 
   <x:scenario label="003 - CONTROL NUMBER IDENTIFIER">
     <x:context href="data/ConvSpec-001-007/marc.xml"/>
-    <x:expect label="003 should set the AdminMetadata source property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Source/bf:code = 'DE-101'"/>
+    <x:expect label="003 should set the AdminMetadata source property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Agent/bf:code = 'DE-101'"/>
   </x:scenario>
 
   <x:scenario label="005 - DATE AND TIME OF LAST TRANSACTION">

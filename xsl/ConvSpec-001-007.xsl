@@ -38,9 +38,12 @@
     <xsl:choose>
       <xsl:when test="$serialization= 'rdfxml'">
         <bf:source>
-          <bf:Source>
+          <bf:Agent>
+            <xsl:if test=". = 'DLC'">
+                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+            </xsl:if>
             <bf:code><xsl:value-of select="."/></bf:code>
-          </bf:Source>
+          </bf:Agent>
         </bf:source>
       </xsl:when>
     </xsl:choose>
