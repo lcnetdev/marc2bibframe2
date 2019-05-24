@@ -76,6 +76,7 @@
     <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[16]/bf:Ismn/bf:qualifier[2] = 'sewn'"/>
     <x:expect label="$z creates a status/Status property of the Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Upc/bf:status/bf:Status/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates an rdfs:label property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[19]/bf:Istc/rdfs:label = 'istc'"/>
+    <x:expect label="might be identified by an OCLC Work Identifier" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Identifier/@rdf:about = 'http://worldcat.org/entity/work/id/762673833'"/>
   </x:scenario>
 
   <x:scenario label="025 - OVERSEAS ACQUISITION NUMBER">
