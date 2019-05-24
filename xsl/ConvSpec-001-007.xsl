@@ -1069,9 +1069,7 @@
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
                 </bf:RecordingMedium>
@@ -1629,9 +1627,7 @@
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
                 </bf:RecordingMedium>
@@ -1966,9 +1962,7 @@
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$playbackUri"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackUri"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$playbackChannels"/></rdfs:label>
                 </bf:PlaybackChannels>
@@ -2226,9 +2220,7 @@
               <bf:videoCharacteristic>
                 <bf:VideoFormat>
                   <xsl:if test="$videoFormatURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$videoFormatURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$videoFormatURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$videoFormat"/></rdfs:label>
                 </bf:VideoFormat>
@@ -2238,9 +2230,7 @@
               <bf:soundContent>
                 <bf:SoundContent>
                   <xsl:if test="$soundContentURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
                 </bf:SoundContent>
@@ -2250,9 +2240,7 @@
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
                 </bf:RecordingMedium>
@@ -2267,9 +2255,7 @@
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$playbackUri"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackUri"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$playbackChannels"/></rdfs:label>
                 </bf:PlaybackChannels>
