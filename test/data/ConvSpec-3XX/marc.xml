@@ -52,6 +52,7 @@
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">colored inks</subfield>
       <subfield code="e">none</subfield>
+      <subfield code="g">color</subfield>
       <subfield code="h">between entry for April 7 and April 19, 1843.</subfield>
     </datafield>
     <datafield tag="340" ind1=" " ind2=" ">
@@ -67,8 +68,27 @@
       <subfield code="k">double-sided</subfield>
       <subfield code="m">folio</subfield>
       <subfield code="n">giant print (36 point)</subfield>
+      <subfield code="0">http://rdaregistry.info/termList/fontSize/1001</subfield>
       <subfield code="o">positive</subfield>
       <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="341" ind1="1" ind2=" ">
+      <subfield code="a">auditory</subfield>
+      <subfield code="b">transcript</subfield>
+      <subfield code="2">termList</subfield>
+      <subfield code="3">accompanying audio CD</subfield>
+    </datafield>
+    <datafield tag="341" ind1="0" ind2=" ">
+      <subfield code="a">auditory</subfield>
+      <subfield code="c">signLanguage</subfield>
+    </datafield>
+    <datafield tag="341" ind1="0" ind2=" ">
+      <subfield code="a">visual</subfield>
+      <subfield code="d">audioDescription</subfield>
+    </datafield>
+    <datafield tag="341" ind1="1" ind2=" ">
+      <subfield code="a">textual</subfield>
+      <subfield code="e">braille</subfield>
     </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
       <subfield code="3">audio disc</subfield>
@@ -76,6 +96,7 @@
       <subfield code="b">optical</subfield>
       <subfield code="g">surround</subfield>
       <subfield code="h">Dolby</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mspecplayback/dolby</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
@@ -93,6 +114,7 @@
     <datafield tag="345" ind1=" " ind2=" ">
       <subfield code="3">filmstrip</subfield>
       <subfield code="a">Cinerama</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mpresformat/ciner</subfield>
       <subfield code="b">24 fps</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
@@ -100,12 +122,14 @@
       <subfield code="3">videotape</subfield>
       <subfield code="a">Betamax</subfield>
       <subfield code="b">PAL</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mbroadstd/pal</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="347" ind1=" " ind2=" ">
       <subfield code="3">computer disc</subfield>
       <subfield code="a">image file</subfield>
-      <subfield code="b">JPEG</subfield>
+      <subfield code="b">Blu-Ray</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mvidformat/bluray</subfield>
       <subfield code="c">182 KB</subfield>
       <subfield code="d">3.1 megapixels</subfield>
       <subfield code="e">region 4</subfield>
@@ -115,8 +139,8 @@
     <datafield tag="348" ind1=" " ind2=" ">
       <subfield code="3">enclosed score</subfield>
       <subfield code="a">vocal score</subfield>
-      <subfield code="b">voc</subfield>
       <subfield code="0">(foo)12345</subfield>
+      <subfield code="b">voc</subfield>
       <subfield code="2">foo</subfield>
     </datafield>
     <datafield tag="350" ind1=" " ind2=" ">
@@ -141,6 +165,21 @@
     </datafield>
     <datafield tag="362" ind1="1" ind2=" ">
       <subfield code="a">3 issues in vol. 1, ceased with 3 (1983)</subfield>
+    </datafield>
+    <datafield tag="370" ind1=" " ind2=" ">
+      <subfield code="c">Latvia</subfield>
+      <subfield code="2">lcsh</subfield>
+      <subfield code="g">Riga, Latvia</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2007010623</subfield>
+    </datafield>
+    <datafield tag="377" ind1=" " ind2=" ">
+      <subfield code="3">Lecture</subfield>
+      <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="377" ind1=" " ind2="7">
+      <subfield code="a">foo</subfield>
+      <subfield code="l">foobar</subfield>
+      <subfield code="0">http://example.org/languages/foo</subfield>
     </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>
@@ -176,6 +215,10 @@
       <subfield code="c">F. I, 22-25</subfield>
       <subfield code="d">Fanna</subfield>
       <subfield code="2">mlati</subfield>
+    </datafield>
+    <datafield tag="384" ind1=" " ind2=" ">
+      <subfield code="3">Shostakovich sonata no. 2</subfield>
+      <subfield code="a">B minor</subfield>
     </datafield>
     <datafield tag="385" ind1=" " ind2=" ">
       <subfield code="3">Nonsense</subfield>

@@ -167,6 +167,12 @@
       <subfield code="a">рисовая бумага</subfield>
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">рисовая бумага</subfield>
+      <subfield code="g">цвет</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">341-01</subfield>
+      <subfield code="a">слуховой</subfield>
+      <subfield code="c">язык знаков</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">344-01</subfield>
@@ -206,6 +212,11 @@
       <subfield code="a">3 выпуска в том. 1, прекратилось с 3 (1983)</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">377-01</subfield>
+      <subfield code="3">лекция</subfield>
+      <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">380-01</subfield>
       <subfield code="a">Телевизионная программа</subfield>
     </datafield>
@@ -216,6 +227,10 @@
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">383-01</subfield>
       <subfield code="a">没有。 14</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">384-01</subfield>
+      <subfield code="a">си минор</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">385-01</subfield>
@@ -308,6 +323,10 @@
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">530-01</subfield>
       <subfield code="a">Доступно на микрофиши.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">532-01</subfield>
+      <subfield code="a">Субтитры на английском языке</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">533-01</subfield>
