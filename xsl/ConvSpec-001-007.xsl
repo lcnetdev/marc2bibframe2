@@ -1921,6 +1921,15 @@
             <xsl:when test="substring(.,13,1) = 'e'"><xsl:value-of select="concat($mrectype,'digital')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
+
+        <xsl:variable name="captureStorageValue"><xsl:value-of select="substring(.,14,1)" /></xsl:variable>
+        <xsl:variable name="captureStorage">
+          <xsl:value-of select="$codeMaps/maps/captureStorage/*[name() = $captureStorageValue]" />
+        </xsl:variable>
+        <xsl:variable name="captureStorageUri">
+            <xsl:value-of select="$codeMaps/maps/captureStorage/*[name() = $captureStorageValue]/@href" />
+        </xsl:variable>
+        
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
             <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
@@ -2037,9 +2046,7 @@
               <bf:soundCharacteristic>
                 <bf:PlaybackCharacteristic>
                   <xsl:if test="$playbackCharacteristicURI != ''">
-                    <bflc:target>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$playbackCharacteristicURI"/></xsl:attribute>
-                    </bflc:target>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$playbackCharacteristicURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$playbackCharacteristic"/></rdfs:label>
                 </bf:PlaybackCharacteristic>
@@ -2053,6 +2060,16 @@
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMethod"/></rdfs:label>
                 </bf:RecordingMethod>
+              </bf:soundCharacteristic>
+            </xsl:if>
+            <xsl:if test="$captureStorage != ''">
+              <bf:soundCharacteristic>
+                <bflc:CaptureStorage>
+                  <xsl:if test="$captureStorageUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$captureStorageUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$captureStorage"/></rdfs:label>
+                </bflc:CaptureStorage>
               </bf:soundCharacteristic>
             </xsl:if>
           </xsl:when>

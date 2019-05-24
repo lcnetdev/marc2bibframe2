@@ -164,9 +164,11 @@
       <x:expect label="...and can create an emulsion property of the Instance" test="//bf:Instance[9]/bf:emulsion/bf:Emulsion/rdfs:label = 'lacquer'"/>
       <x:expect label="pos 11 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mgroove/lateral'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/rdfs:label = 'lateral or combined cutting'"/>
-      <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance with a bflc:target" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/bflc:target/@rdf:resource = 'http://id.loc.gov/vocabulary/mspecplayback/dolbyb'"/>
+      <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mspecplayback/dolbyb'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
       <x:expect label="...or it may create a soundCharacteristic/RecordingMethod property" test="//bf:Instance[11]/bf:soundCharacteristic[6]/bf:RecordingMethod/rdfs:label = 'digital recording'"/>
+      <x:expect label="pos 13 creates a soundCharacteristic/bflc:CaptureStorage property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/@rdf:about = 'http://id.loc.gov/vocabulary/mcapturestorage/aes'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/rdfs:label = 'Electrical capture, Analog electrical storage'"/>
     </x:scenario>
 
     <x:scenario label="VIDEORECORDING">

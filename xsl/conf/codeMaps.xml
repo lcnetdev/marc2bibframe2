@@ -344,4 +344,13 @@
     <e href="http://id.loc.gov/vocabulary/mtapeconfig/12">12</e>
     <f href="http://id.loc.gov/vocabulary/mtapeconfig/16">16</f>
   </tapeConfig> 
+  <!-- capture storage  -->
+  <!-- used in 007/12 for sound recordings -->
+  <captureStorage> 
+    <a href="http://id.loc.gov/vocabulary/mcapturestorage/acds">Acoustical capture, direct storage</a>
+    <b href="http://id.loc.gov/vocabulary/mcapturestorage/dsna">Electrical capture, direct storage</b>
+    <d href="http://id.loc.gov/vocabulary/mcapturestorage/dist">Electrical capture, digital storage</d>
+    <e href="http://id.loc.gov/vocabulary/mcapturestorage/aes">Electrical capture, Analog electrical storage</e>
+    <u href="http://id.loc.gov/vocabulary/mcapturestorage/unk">Unknown capture and storage</u>
+  </captureStorage> 
 </maps>
