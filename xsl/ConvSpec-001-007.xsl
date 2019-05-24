@@ -2131,13 +2131,15 @@
             <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mvidformat,'d2')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mvidformat,'8mm')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'q'"><xsl:value-of select="concat($mvidformat,'hi8mm')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mvidformat,'bluray')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mvidformat,'dvd')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="soundContent">
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound on medium</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound separate from medium</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="soundContentURI">
@@ -2256,8 +2258,10 @@
                 </bf:RecordingMedium>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$dimensions != ''">
-              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
+                <xsl:if test="$dimensions != ''">
+                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="$playbackChannels != ''">
               <bf:soundCharacteristic>
