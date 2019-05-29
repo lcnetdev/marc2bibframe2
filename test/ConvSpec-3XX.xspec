@@ -142,7 +142,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a digitalCharacteristic/FileType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/rdfs:label = 'image file'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/@rdf:about = 'http://id.loc.gov/vocabulary/mfiletype/image'"/>
-    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-Ray'"/>
+    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Bluray'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mvidformat/bluray'"/>
     <x:expect label="$c creates a digitalCharacteristic/FileSize property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[3]/bf:FileSize/rdfs:label = '182 KB'"/>
     <x:expect label="$d creates a digitalCharacteristic/Resolution property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[4]/bf:Resolution/rdfs:label = '3.1 megapixels'"/>
@@ -213,10 +213,10 @@
   
   <x:scenario label="377 - ASSOCIATED LANGUAGE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a language/Language property of the Work with a URI" test="//bf:Work[1]/bf:language[1]/bf:Language/@rdf:about='http://id.loc.gov/vocabulary/languages/eng'"/>
-    <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[2]/bf:Language/@rdf:about)"/>
-    <x:expect label="$l creates an rdfs:label property of the Language" test="//bf:Work[1]/bf:language[2]/bf:Language/rdfs:label='foobar'"/>
-    <x:expect label="$0 creates a bf:identifiedBy property of the Language" test="//bf:Work[1]/bf:language[2]/bf:Language/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.org/languages/foo'"/>
+    <x:expect label="Each $a creates a language/Language property of the Work with a URI" test="//bf:Work[1]/bf:language[1]/bf:Language/@rdf:about='http://id.loc.gov/vocabulary/languages/eng'"/>
+    <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[3]/bf:Language/@rdf:about)"/>
+    <x:expect label="Each $l creates a language/Language property of the Work" test="//bf:Work[1]/bf:language[4]/bf:Language/rdfs:label='foobar'"/>
+    <x:expect label="$0 creates a bf:identifiedBy property of the Language" test="//bf:Work[1]/bf:language[4]/bf:Language/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.org/languages/foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Language" test="//bf:Work[1]/bf:language[1]/bf:Language/bflc:appliesTo = 'Lecture'"/>
   </x:scenario>
   
