@@ -14,7 +14,6 @@
       <subfield code="n">Book 4.</subfield>
       <subfield code="k">Selections.</subfield>
       <subfield code="0">(ID)0001</subfield>
-      <subfield code="w">(ID)0002</subfield>
     </datafield>
     <datafield tag="245" ind1="1" ind2="0">
       <subfield code="a">Latin American lives :</subfield>
@@ -26,6 +25,7 @@
       <subfield code="v">Indexes</subfield>
       <subfield code="v">Periodicals</subfield>
       <subfield code="0">(uri)http://example.org/9999#Work</subfield>
+      <subfield code="2">example</subfield>
     </datafield>
     <datafield tag="700" ind1="1" ind2="2">
       <subfield code="a">Cendrars, Blaise, 1887-1961.</subfield>
