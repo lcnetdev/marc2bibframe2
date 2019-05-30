@@ -81,7 +81,8 @@
     <x:expect label="$m creates a bookFormat property of the Instance" test="//bf:Instance[1]/bf:bookFormat[1]/bf:BookFormat/rdfs:label = 'folio'"/>
     <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
     <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
-    <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://rdaregistry.info/termList/fontSize/1001'"/>
+    <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/bf:identifiedBy/bf:Identifier/rdf:value = '123456'"/>
+    <x:expect label="...or sets the URI of the generated object" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/@rdf:about = 'http://rdaregistry.info/termList/fontSize/1001'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/rdfs:label = 'rda'"/>
   </x:scenario>
 
@@ -207,7 +208,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$c creates an originPlace property of the Work" test="//bf:Work[1]/bf:originPlace[1]/bf:Place/rdfs:label='Latvia'"/>
     <x:expect label="$g creates an originPlace property of the Work" test="//bf:Work[1]/bf:originPlace[2]/bf:Place/rdfs:label='Riga, Latvia'"/>
-    <x:expect label="$0 creates a bf:identifiedBy property of the Place" test="//bf:Work[1]/bf:originPlace[2]/bf:Place/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource='http://id.loc.gov/authorities/subjects/sh2007010623'"/>
+    <x:expect label="$0 can set the URI of the Place" test="//bf:Work[1]/bf:originPlace[2]/bf:Place/@rdf:about='http://id.loc.gov/authorities/subjects/sh2007010623'"/>
     <x:expect label="$2 creates a bf:source property of the Place" test="//bf:Work[1]/bf:originPlace[1]/bf:Place/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/lcsh'"/>
   </x:scenario>
   
@@ -216,7 +217,7 @@
     <x:expect label="Each $a creates a language/Language property of the Work with a URI" test="//bf:Work[1]/bf:language[1]/bf:Language/@rdf:about='http://id.loc.gov/vocabulary/languages/eng'"/>
     <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[3]/bf:Language/@rdf:about)"/>
     <x:expect label="Each $l creates a language/Language property of the Work" test="//bf:Work[1]/bf:language[4]/bf:Language/rdfs:label='foobar'"/>
-    <x:expect label="$0 creates a bf:identifiedBy property of the Language" test="//bf:Work[1]/bf:language[4]/bf:Language/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.org/languages/foo'"/>
+    <x:expect label="$0 can set the URI of the Language" test="//bf:Work[1]/bf:language[4]/bf:Language/@rdf:about = 'http://example.org/languages/foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Language" test="//bf:Work[1]/bf:language[1]/bf:Language/bflc:appliesTo = 'Lecture'"/>
   </x:scenario>
   
