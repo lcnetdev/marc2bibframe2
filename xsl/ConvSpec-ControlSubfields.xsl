@@ -88,7 +88,7 @@
                 </xsl:otherwise>
               </xsl:choose>
             </rdf:value>
-            <xsl:if test="$source != ''">
+            <xsl:if test="$source != '' and $source != 'uri'">
               <bf:source>
                 <bf:Source>
                   <rdfs:label><xsl:value-of select="$source"/></rdfs:label>
