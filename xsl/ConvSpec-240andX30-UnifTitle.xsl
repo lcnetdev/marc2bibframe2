@@ -494,14 +494,14 @@
         <xsl:if test="substring($tag,2,2)='30' or $tag='240' or marc:subfield[@code='t']">
           <xsl:choose>
             <xsl:when test="marc:subfield[@code='t']">
-              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
-              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w']">
+              <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0']">
                 <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
@@ -510,14 +510,14 @@
               </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+              <xsl:for-each select="marc:subfield[@code='0'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
-              <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
+              <xsl:for-each select="marc:subfield[@code='0']">
                 <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
@@ -526,6 +526,9 @@
               </xsl:for-each>
             </xsl:otherwise>
           </xsl:choose>
+          <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
