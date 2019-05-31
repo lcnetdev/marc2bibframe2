@@ -227,12 +227,16 @@
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
           <bf:acquisitionSource>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-            </xsl:call-template>
+            <bf:AcquisitionSource>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="chopPunctuation">
+                  <xsl:with-param name="chopString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:AcquisitionSource>
           </bf:acquisitionSource>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='c']">
@@ -262,9 +266,7 @@
               <bf:itemOf>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$pInstanceUri"/></xsl:attribute>
               </bf:itemOf>
-              <bf:electronicLocator>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-              </bf:electronicLocator>
+              <bf:electronicLocator><xsl:value-of select="."/></bf:electronicLocator>
             </bf:Item>
           </bf:hasItem>
         </xsl:for-each>

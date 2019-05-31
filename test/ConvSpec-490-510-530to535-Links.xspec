@@ -36,10 +36,10 @@
     <x:expect label="530 creates a otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance530-6'"/>
     <x:expect label="...and an otherPhysicalFormat property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance'"/>
     <x:expect label="$a creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'Available in microfilm'"/>
-    <x:expect label="$b creates an acquisitionSource property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:acquisitionSource = 'National Archives'"/>
+    <x:expect label="$b creates an acquisitionSource/AcquisitionSource property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:acquisitionSource/bf:AcquisitionSource/rdfs:label = 'National Archives'"/>
     <x:expect label="$c creates an acquisitionTerms property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:acquisitionTerms = 'Standing order account required'"/>
     <x:expect label="$d creates an identifiedBy/StockNumber property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:identifiedBy/bf:StockNumber/rdf:value = 'M449'"/>
-    <x:expect label="$u creates a hasItem property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/@rdf:resource = 'http://www.bartleby.com/99/index.html'"/>
+    <x:expect label="$u creates a hasItem property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator = 'http://www.bartleby.com/99/index.html'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance/bf:Instance/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Dispatches from U.S. consuls in Batavia, Java, Netherlands East Indies, 1818-1906'"/>
   </x:scenario>
   
