@@ -1,6 +1,7 @@
 --- 1.5.0-SNAPSHOT
 
 Update conversion based on updated specifications:
+  ConvSpec-490,510,530-535-Links-v1.5
   ConvSpec-240,X30-UnifTitle-v1.5
   ConvSpec-NumericSubfields-v1.5
   ConvSpec-5XX-v1.5
