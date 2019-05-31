@@ -95,14 +95,14 @@
               </xsl:when>                  
               <xsl:when test="$vTag='534' and marc:subfield[@code='t']">
                 <bf:title>
-                  <bf:InstanceTitle>
-                    <rdfs:label>
+                  <bf:Title>
+                    <bf:mainTitle>
                       <xsl:if test="$vXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                       </xsl:if>
                       <xsl:value-of select="marc:subfield[@code='t']"/>
-                    </rdfs:label>
-                  </bf:InstanceTitle>
+                    </bf:mainTitle>
+                  </bf:Title>
                 </bf:title>
               </xsl:when>
               <xsl:otherwise>
@@ -482,14 +482,14 @@
         <xsl:for-each select="marc:subfield[@code='k']">
           <bf:title>
             <bf:KeyTitle>
-              <rdfs:label>
+              <bf:mainTitle>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="chopPunctuation">
                   <xsl:with-param name="chopString" select="."/>
                 </xsl:call-template>
-              </rdfs:label>
+              </bf:mainTitle>
             </bf:KeyTitle>
           </bf:title>
         </xsl:for-each>

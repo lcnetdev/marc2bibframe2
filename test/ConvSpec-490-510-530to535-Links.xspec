@@ -76,11 +76,11 @@
     <x:expect label="$c creates a provisionActivityStatement of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Berlin :Eulenspiegel, c1978'"/>
     <x:expect label="$e creates an extent property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:extent/bf:Extent/rdfs:label = '1 art original : oil, col. ; 79 x 64 cm'"/>
     <x:expect label="$f creates a seriesStatement property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:seriesStatement = 'International series of monographs on electromagnetic waves ; v. 4'"/>
-    <x:expect label="$k creates a title/KeyTitle property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[2]/bf:KeyTitle/rdfs:label = 'American journal of theology &amp; philosophy'"/>
+    <x:expect label="$k creates a title/KeyTitle property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[2]/bf:KeyTitle/bf:mainTitle = 'American journal of theology &amp; philosophy'"/>
     <x:expect label="$m creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:note[2]/bf:Note/rdfs:label = 'at scale 1:50,000'"/>
     <x:expect label="$n creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'under title'"/>
     <x:expect label="$p creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'Reprint. Originally published'"/>
-    <x:expect label="$t creates a title/InstanceTitle property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[1]/bf:InstanceTitle/rdfs:label = 'Luck.'"/>
+    <x:expect label="$t creates a title/Title property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:title[1]/bf:Title/bf:mainTitle = 'Luck.'"/>
     <x:expect label="$x creates an identifiedBy/Issn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Issn/rdf:value = '0228-913X'"/>
     <x:expect label="$z creates an identifiedBy/Isbn property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:identifiedBy/bf:Isbn/rdf:value = '0385061781 (v. 1)'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = 'vol. 2'"/>
