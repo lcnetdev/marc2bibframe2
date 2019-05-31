@@ -135,6 +135,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='490'">
+        <xsl:apply-templates select="." mode="work490">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='502'">
         <xsl:apply-templates select="." mode="work502">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -292,7 +297,13 @@
           <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
-      </xsl:when>        
+      </xsl:when>
+      <xsl:when test="$tag='800' or $tag='810' or $tag='811' or $tag='830'">
+        <xsl:apply-templates select="." mode="work8XX">
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -444,6 +455,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='490'">
+        <xsl:apply-templates select="." mode="instance490">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='500' or $tag='501' or $tag='513' or
                       $tag='515' or $tag='516' or $tag='536' or
                       $tag='544' or $tag='545' or $tag='547' or
@@ -523,6 +539,11 @@
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>        
+      <xsl:when test="$tag='800' or $tag='810' or $tag='811' or $tag='830'">
+        <xsl:apply-templates select="." mode="instance8XX">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

@@ -64,6 +64,8 @@
     <x:expect label="$6 384 creates a musicKey property of the Work" test="//bf:Work[1]/bf:musicKey[1] = 'си минор'"/>
     <x:expect label="$6 385 creates intendedAudience properties of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Дети'"/>
     <x:expect label="$6 386 creates creatorCharacteristic properties of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Дети'"/>
+    <x:expect label="$6 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Книги пеликан 1234-5678'"/>
+    <x:expect label="...$x creates a hasSeries property of the Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn = '1234-5678'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
@@ -83,12 +85,12 @@
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note/bf:Note/rdfs:label = 'Доступно на микрофиши'"/>
-    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-72'"/>
+    <x:expect label="...with reciprocal otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource='http://example.org/1#Instance880-73'"/>
     <x:expect label="$6 532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Субтитры на английском языке'"/>
     <x:expect label="$6 533 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[2]/bf:Instance/bf:carrier/bf:Carrier/rdfs:label = 'Микрофильмов'"/>
-    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-74'"/>
+    <x:expect label="...with reciprocal hasReproduction property of the Instance" test="//bf:Instance[1]/bf:hasReproduction/@rdf:resource='http://example.org/1#Instance880-75'"/>
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>
-    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-75'"/>
+    <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-76'"/>
     <x:expect label="$6 535 creates a hasItem/Item property of the related 880/533 or 880/534 Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'Американский горный конгресс'"/>
     <x:expect label="$6 536 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label = 'При поддержке Всемирной организации здравоохранения'"/>
     <x:expect label="$6 538 creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Режим доступа: Интернет.'"/>
@@ -118,6 +120,8 @@
     <x:expect label="$6 730 should make a related Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = 'ملحمة دانيال'"/>
     <x:expect label="$6 752 creates a place property of the Work" test="//bf:Work[1]/bf:place[1]/bf:Place/rdfs:label = 'Англия--Лондон'"/>
     <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
+    <x:expect label="$6 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bf:hasSeries[3]/bf:Work/rdfs:label = 'ملحمة دانيال'"/>
+    <x:expect label="...and a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[3] = 'ملحمة دانيال'"/>
   </x:scenario>
 
   <x:scenario label="xml:lang attributes from 880">

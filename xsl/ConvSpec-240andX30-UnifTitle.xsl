@@ -243,9 +243,12 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="tTitleLabel">
-        <xsl:with-param name="pTranslation"><xsl:value-of select="$pTranslation"/></xsl:with-param>
-      </xsl:apply-templates>
+      <!-- 8XX fields construct the label differently -->
+      <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4'">
+        <xsl:apply-templates select="." mode="tTitleLabel">
+          <xsl:with-param name="pTranslation"><xsl:value-of select="$pTranslation"/></xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:if>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
