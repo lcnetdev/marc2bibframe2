@@ -17,6 +17,7 @@
     <x:expect label="...$e/$j become bf:role properties with blank bf:Role node" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role) = 5"/>
     <x:expect label="...with a bflc:relatorMatchKey property for active conversion" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:role[1]/bf:Role/bflc:relatorMatchKey = 'writing'"/>
     <x:expect label="...$4 becomes bf:role/bf:Role property with URI" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:role[1]/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/prf'"/>
+    <x:expect label="...$4 with URI becomes URI of Role" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:role[3]/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/adi'"/>
     <x:expect label="...otherwise role of  bf:Contribution is ctb" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/ctb'"/>
     <x:expect label="600,610,611 without $t creates a subject/Topic/agent/Agent property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic/bf:agent/bf:Agent) = 1"/>
     <x:expect label="...with rdfs:label composed according to Name processing rules" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:agent/bf:Agent/rdfs:label = 'Nixon, Richard M. (Richard Milhouse), 1913-'"/>

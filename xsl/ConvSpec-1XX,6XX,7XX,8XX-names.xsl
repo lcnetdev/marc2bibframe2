@@ -162,16 +162,33 @@
                   </xsl:otherwise>
                 </xsl:choose>
                 <xsl:for-each select="marc:subfield[@code='4']">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-                    </xsl:call-template>
+                  <xsl:variable name="vRelationUri">
+                    <xsl:choose>
+                      <xsl:when test="string-length(.) = 3">
+                        <xsl:variable name="encoded">
+                          <xsl:call-template name="url-encode">
+                            <xsl:with-param name="str" select="."/>
+                          </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="concat($relators,$encoded)"/>
+                      </xsl:when>
+                      <xsl:when test="contains(.,'://')">
+                        <xsl:value-of select="."/>
+                      </xsl:when>
+                    </xsl:choose>
                   </xsl:variable>
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
                         <bflc:Relation>
-                          <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+                          <xsl:choose>
+                            <xsl:when test="$vRelationUri != ''">
+                              <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <bf:code><xsl:value-of select="."/></bf:code>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
@@ -435,16 +452,33 @@
   <!-- build bf:role properties from $4 -->
   <xsl:template match="marc:subfield[@code='4']" mode="contributionRoleCode">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vRoleUri">
+      <xsl:choose>
+        <xsl:when test="string-length(.) = 3">
+          <xsl:variable name="encoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="."/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:value-of select="concat($relators,$encoded)"/>
+        </xsl:when>
+        <xsl:when test="contains(.,'://')">
+          <xsl:value-of select="."/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:variable name="encoded">
-          <xsl:call-template name="url-encode">
-            <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-          </xsl:call-template>
-        </xsl:variable>
         <bf:role>
           <bf:Role>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+            <xsl:choose>
+              <xsl:when test="$vRoleUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vRoleUri"/></xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </xsl:otherwise>
+            </xsl:choose>
           </bf:Role>
         </bf:role>
       </xsl:when>
@@ -821,16 +855,33 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:for-each select="marc:subfield[@code='4']">
-                <xsl:variable name="encoded">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-                  </xsl:call-template>
+                <xsl:variable name="vRelationUri">
+                  <xsl:choose>
+                    <xsl:when test="string-length(.) = 3">
+                      <xsl:variable name="encoded">
+                        <xsl:call-template name="url-encode">
+                          <xsl:with-param name="str" select="."/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:value-of select="concat($relators,$encoded)"/>
+                    </xsl:when>
+                    <xsl:when test="contains(.,'://')">
+                      <xsl:value-of select="."/>
+                    </xsl:when>
+                  </xsl:choose>
                 </xsl:variable>
                 <bflc:relationship>
                   <bflc:Relationship>
                     <bflc:relation>
                       <bflc:Relation>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+                        <xsl:choose>
+                          <xsl:when test="$vRelationUri != ''">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <bf:code><xsl:value-of select="."/></bf:code>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </bflc:Relation>
                     </bflc:relation>
                     <bf:relatedTo>
