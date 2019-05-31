@@ -702,7 +702,7 @@
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:title>
                 <bf:Title>
-                  <rdfs:label>
+                  <bf:mainTitle>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
@@ -710,7 +710,7 @@
                       <xsl:with-param name="chopString" select="."/>
                       <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
                     </xsl:call-template>
-                  </rdfs:label>
+                  </bf:mainTitle>
                 </bf:Title>
               </bf:title>
             </xsl:for-each>
