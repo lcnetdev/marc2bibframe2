@@ -44,9 +44,16 @@
         <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
+    <xsl:variable name="vTopicUri">
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Topic</xsl:with-param>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:apply-templates mode="work6XXName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
@@ -55,6 +62,7 @@
   <xsl:template match="marc:datafield" mode="work6XXName">
     <xsl:param name="agentiri"/>
     <xsl:param name="workiri"/>
+    <xsl:param name="pTopicUri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
@@ -154,16 +162,33 @@
                   </xsl:otherwise>
                 </xsl:choose>
                 <xsl:for-each select="marc:subfield[@code='4']">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-                    </xsl:call-template>
+                  <xsl:variable name="vRelationUri">
+                    <xsl:choose>
+                      <xsl:when test="string-length(.) = 3">
+                        <xsl:variable name="encoded">
+                          <xsl:call-template name="url-encode">
+                            <xsl:with-param name="str" select="."/>
+                          </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="concat($relators,$encoded)"/>
+                      </xsl:when>
+                      <xsl:when test="contains(.,'://')">
+                        <xsl:value-of select="."/>
+                      </xsl:when>
+                    </xsl:choose>
                   </xsl:variable>
                   <bflc:relationship>
                     <bflc:Relationship>
                       <bflc:relation>
                         <bflc:Relation>
-                          <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+                          <xsl:choose>
+                            <xsl:when test="$vRelationUri != ''">
+                              <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <bf:code><xsl:value-of select="."/></bf:code>
+                            </xsl:otherwise>
+                          </xsl:choose>
                         </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
@@ -180,13 +205,48 @@
               </bf:Work>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select="." mode="agent">
-                <xsl:with-param name="agentiri" select="$agentiri"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pMADSClass" select="$vMADSClass"/>
-                <xsl:with-param name="pSource" select="$vSource"/>
-                <xsl:with-param name="recordid" select="$recordid"/>
-              </xsl:apply-templates>
+              <bf:Topic>
+                <xsl:if test="$pTopicUri != ''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
+                </xsl:if>
+                <rdf:type>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
+                </rdf:type>
+                <madsrdf:authoritativeLabel>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vMADSLabel"/>
+                </madsrdf:authoritativeLabel>
+                <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
+                  <madsrdf:isMemberOfMADSScheme>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  </madsrdf:isMemberOfMADSScheme>
+                </xsl:for-each>                  
+                <xsl:if test="$vSource != ''">
+                  <xsl:copy-of select="$vSource"/>
+                </xsl:if>
+                <bf:agent>
+                  <xsl:apply-templates select="." mode="agent">
+                    <xsl:with-param name="agentiri" select="$agentiri"/>
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                  </xsl:apply-templates>
+                </bf:agent>
+                <!-- build the ComplexSubject -->
+                <xsl:if test="$vMADSClass='ComplexSubject'">
+                  <madsrdf:componentList rdf:parseType="Collection">
+                    <xsl:element name="{$vMADSClass}">
+                      <madsrdf:authoritativeLabel><xsl:value-of select="normalize-space($vNameLabel)"/></madsrdf:authoritativeLabel>
+                    </xsl:element>
+                    <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pTag" select="$vTag"/>
+                      <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                    </xsl:apply-templates>
+                  </madsrdf:componentList>
+                </xsl:if>
+              </bf:Topic>
             </xsl:otherwise>
           </xsl:choose>
         </bf:subject>
@@ -392,16 +452,33 @@
   <!-- build bf:role properties from $4 -->
   <xsl:template match="marc:subfield[@code='4']" mode="contributionRoleCode">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vRoleUri">
+      <xsl:choose>
+        <xsl:when test="string-length(.) = 3">
+          <xsl:variable name="encoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="."/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:value-of select="concat($relators,$encoded)"/>
+        </xsl:when>
+        <xsl:when test="contains(.,'://')">
+          <xsl:value-of select="."/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:variable name="encoded">
-          <xsl:call-template name="url-encode">
-            <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-          </xsl:call-template>
-        </xsl:variable>
         <bf:role>
           <bf:Role>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+            <xsl:choose>
+              <xsl:when test="$vRoleUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vRoleUri"/></xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </xsl:otherwise>
+            </xsl:choose>
           </bf:Role>
         </bf:role>
       </xsl:when>
@@ -778,16 +855,33 @@
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:for-each select="marc:subfield[@code='4']">
-                <xsl:variable name="encoded">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-                  </xsl:call-template>
+                <xsl:variable name="vRelationUri">
+                  <xsl:choose>
+                    <xsl:when test="string-length(.) = 3">
+                      <xsl:variable name="encoded">
+                        <xsl:call-template name="url-encode">
+                          <xsl:with-param name="str" select="."/>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <xsl:value-of select="concat($relators,$encoded)"/>
+                    </xsl:when>
+                    <xsl:when test="contains(.,'://')">
+                      <xsl:value-of select="."/>
+                    </xsl:when>
+                  </xsl:choose>
                 </xsl:variable>
                 <bflc:relationship>
                   <bflc:Relationship>
                     <bflc:relation>
                       <bflc:Relation>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+                        <xsl:choose>
+                          <xsl:when test="$vRelationUri != ''">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <bf:code><xsl:value-of select="."/></bf:code>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </bflc:Relation>
                     </bflc:relation>
                     <bf:relatedTo>
@@ -867,6 +961,9 @@
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
+              <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
               <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
