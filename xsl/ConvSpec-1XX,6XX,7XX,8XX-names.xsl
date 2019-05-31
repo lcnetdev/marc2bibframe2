@@ -961,6 +961,9 @@
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
+              <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
               <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
