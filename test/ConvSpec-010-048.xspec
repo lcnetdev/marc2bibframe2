@@ -101,6 +101,8 @@
   <x:scenario label="027 - STANDARD TECHNICAL REPORT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Strn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/rdf:value = 'METPRO/CB/TR--74/216+PR.ENVR.WI'"/>
+    <x:expect label="$a can contain a qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/bf:qualifier[1] = 'vol 1'"/>
+    <x:expect label="$q creates a qualifier property of the Strn" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/bf:qualifier[2] = 'pbk'"/>
     <x:expect label="$z creates a status/Status property of the Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Strn/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
 

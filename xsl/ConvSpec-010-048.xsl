@@ -950,6 +950,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Strn</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+          <xsl:with-param name="pChopPunct" select="true()"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='028'">
@@ -1025,8 +1026,9 @@
             <xsl:choose>
               <!-- for 035, extract value after parentheses -->
               <xsl:when test="../@tag='035' and contains(.,')')"><xsl:value-of select="substring-after(.,')')"/></xsl:when>
-              <!-- for 015, 020, and 024 extract value outside parentheses -->
-              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024') and contains(.,'(') and contains(.,')')">
+              <!-- for 015,020,024,027 extract value outside parentheses -->
+              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
+                              contains(.,'(') and contains(.,')')">
                 <xsl:value-of select="concat(substring-before(.,'('),substring-after(.,')'))"/>
               </xsl:when>
               <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
@@ -1062,8 +1064,9 @@
                   </bf:Status>
                 </bf:status>
               </xsl:if>
-              <!-- special handling for 015, 020, 024 -->
-              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024') and contains(.,'(') and contains(.,')')">
+              <!-- special handling for 015, 020, 024, 027 -->
+              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
+                            contains(.,'(') and contains(.,')')">
                 <xsl:variable name="vQualifier" select="substring-before(substring-after(.,'('),')')"/>
                 <xsl:if test="$vQualifier != ''">
                   <bf:qualifier>

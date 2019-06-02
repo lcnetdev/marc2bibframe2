@@ -99,7 +99,8 @@
       <subfield code="5">UkCU</subfield>
     </datafield>
     <datafield tag="027" ind1=" " ind2=" ">
-      <subfield code="a">METPRO/CB/TR--74/216+PR.ENVR.WI</subfield>
+      <subfield code="a">METPRO/CB/TR--74/216+PR.ENVR.WI (vol 1)</subfield>
+      <subfield code="q">pbk</subfield>
       <subfield code="z">MPC-387</subfield>
     </datafield>
     <datafield tag="028" ind1="0" ind2="2">
