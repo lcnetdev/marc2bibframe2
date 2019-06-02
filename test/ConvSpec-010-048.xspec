@@ -12,15 +12,19 @@
   <x:scenario label="010 - LIBRARY OF CONGRESS CONTROL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Lccn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Lccn/rdf:value = '  2004436018'"/>
-    <x:expect label="$z creates an status/Status property of the Lccn" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
+    <x:expect label="...and an identifiedBy/Lccn property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Lccn/rdf:value = '  2004436018'"/>
+    <x:expect label="$z creates an status/Status property of the Lccn" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
   </x:scenario>
 
   <x:scenario label="015 - NATIONAL BIBLIOGRAPHY NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Nbn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/rdf:value = '06,A29,1122'"/>
-    <x:expect label="$b creates a qualifier property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/bf:qualifier = 'pbk'"/>
-    <x:expect label="$z creates an status/Status property of the Nbn with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$a can also include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:Nbn/bf:qualifier = 'v. 1'"/>
+    <x:expect label="...which should not be part of the rdf:value" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:Nbn/rdf:value = 'F67-835'"/>
+    <x:expect label="$q creates a qualifier property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/bf:qualifier = 'pbk'"/>
+    <x:expect label="$z creates an status/Status property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="$z ...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates a source property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:source/bf:Source/rdfs:label = 'dnb'"/>
   </x:scenario>
 
@@ -28,93 +32,99 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="ind1=' ' creates a LAC source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
     <x:expect label="$a creates an identifiedBy/Local property of the AdminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/rdf:value=' 730032015  rev'"/>
-    <x:expect label="$z creates an status/Status property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[3]/bf:Local/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
+    <x:expect label="$z creates an status/Status property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[3]/bf:Local/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[3]/bf:Local/bf:status/bf:Status/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates a source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[4]/bf:Local/bf:source/bf:Source/rdfs:label = 'PoLiBN'"/>    
   </x:scenario>
   
   <x:scenario label="017 - COPYRIGHT OR LEGAL DEPOSIT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:CopyrightNumber/rdf:value='JP732'"/>
-    <x:expect label="$b creates a source property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:CopyrightNumber/bf:source/bf:Source/rdfs:label = 'U.S. Copyright Office'"/>
-    <x:expect label="$d creates a date property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:CopyrightNumber/bf:date = '1951-05-04'"/>
-    <x:expect label="$i creates a note property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[5]/bf:CopyrightNumber/bf:note/bf:Note/rdfs:label = 'Suppl. reg.'"/>
-    <x:expect label="$z creates a status/Status property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[7]/bf:CopyrightNumber/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
-    <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[7]/bf:CopyrightNumber/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/rdf:value='JP732'"/>
+    <x:expect label="$b creates a source property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:source/bf:Source/rdfs:label = 'U.S. Copyright Office'"/>
+    <x:expect label="$d creates a date property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:date = '1951-05-04'"/>
+    <x:expect label="$i creates a note property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:note/bf:Note/rdfs:label = 'Suppl. reg.'"/>
+    <x:expect label="$z creates a status/Status property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:status/bf:Status/rdfs:label = 'invalid'"/>
   </x:scenario>
 
   <x:scenario label="020 - INTERNATIONAL STANDARD BOOK NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="020 creates identifiedBy/Isbn properties of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:Isbn) = 3"/>
-    <x:expect label="$a is the rdf:value of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:Isbn/rdf:value = '0877790086'"/>
+    <x:expect label="$a is the rdf:value of the Isbn (without parenthetical qualifier)" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/rdf:value = '0877790086'"/>
+    <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/bf:qualifier = 'pbk'"/>
     <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms[1] = '$10.00'"/>
-    <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/bf:qualifier = 'black leather'"/>
-    <x:expect label="$z creates a status/Status property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:Isbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
-    <x:expect label="...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:Isbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:Isbn/bf:qualifier = 'black leather'"/>
+    <x:expect label="$z creates a status/Status property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="022 - INTERNATIONAL STANDARD SERIAL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/Issn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Issn/rdf:value = '1234-1231'"/>
-    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:IssnL/rdf:value = '1234-1231'"/>
-    <x:expect label="$m creates an IssnL with status/Status property" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid'"/>
-    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'canceled'"/>
-    <x:expect label="$y creates a status/Status property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/incorrect'"/>
-    <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
-    <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
-    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Issn/bf:status/bf:Status/rdfs:label = 'canceled'"/>
-    <x:expect label="$2 creates a source property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Issn/bf:source/bf:Source/rdfs:label = 'DEU-6'"/>
+    <x:expect label="$a creates an identifiedBy/Issn property of the Work" test="//bf:Work[1]/bf:identifiedBy[2]/bf:Issn/rdf:value = '1234-1231'"/>
+    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[5]/bf:IssnL/rdf:value = '1234-1231'"/>
+    <x:expect label="$m creates an IssnL with status/Status property" test="//bf:Work[1]/bf:identifiedBy[6]/bf:IssnL/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[6]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'canceled'"/>
+    <x:expect label="$y creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/incorrect'"/>
+    <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
+    <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[4]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[4]/bf:Issn/bf:status/bf:Status/rdfs:label = 'canceled'"/>
+    <x:expect label="$2 creates a source property of the Issn" test="//bf:Work[1]/bf:identifiedBy[2]/bf:Issn/bf:source/bf:Source/rdfs:label = 'DEU-6'"/>
   </x:scenario>
   
   <x:scenario label="024 - OTHER STANDARD IDENTIFIER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[14]/bf:Isrc) = 1"/>
-    <x:expect label="...can also come from $2" test="count(//bf:Instance[1]/bf:identifiedBy[19]/bf:Istc) = 1"/>
-    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[14]/bf:Isrc/rdf:value = 'NLC018413261'"/>
+    <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc) = 1"/>
+    <x:expect label="...can also come from $2" test="count(//bf:Instance[1]/bf:identifiedBy[17]/bf:Istc) = 1"/>
+    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc/rdf:value = 'NLC018413261'"/>
+    <x:expect label="...except if $2 = 'eidr', then it creates an identifiedBy property on the Work" test="//bf:Work[1]/bf:identifiedBy[7]/bflc:Eidr/rdf:value = '10.5240/EA73-79D7-1B2B-B378-3A73-M'"/>
+    <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:Identifier/bf:qualifier = 'v. 1'"/>
     <x:expect label="$c creates an acquisitionTerms property of the instance" test="//bf:Instance[1]/bf:acquisitionTerms[3] = 'EUR28.50'"/>
-    <x:expect label="$d creates a note property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[17]/bf:Ean/bf:note/bf:Note/rdfs:label = '51000'"/>
-    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[16]/bf:Ismn/bf:qualifier[2] = 'sewn'"/>
-    <x:expect label="$z creates a status/Status property of the Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Upc/bf:status/bf:Status/rdfs:label = 'invalid'"/>
-    <x:expect label="$2 creates an rdfs:label property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[19]/bf:Istc/rdfs:label = 'istc'"/>
+    <x:expect label="$d creates a note property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Ean/bf:note/bf:Note/rdfs:label = '51000'"/>
+    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[14]/bf:Ismn/bf:qualifier[2] = 'sewn'"/>
+    <x:expect label="$z creates a status/Status property of the Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Upc/bf:status/bf:Status/rdfs:label = 'invalid'"/>
+    <x:expect label="$2 creates a source/Source property of the Identifier if the Identifier is not subclassed" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:Identifier/bf:source/bf:Source/rdfs:label = 'sample'"/>
   </x:scenario>
 
   <x:scenario label="025 - OVERSEAS ACQUISITION NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/LcOverseasAcq property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[21]/bf:LcOverseasAcq/rdf:value = 'LACAP72-1719'"/>
+    <x:expect label="$a creates an identifiedBy/LcOverseasAcq property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[19]/bf:LcOverseasAcq/rdf:value = 'LACAP72-1719'"/>
   </x:scenario>
   
   <x:scenario label="026 - FINGERPRINT IDENTIFIER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a $b $c $d create an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
-    <x:expect label="$e creates an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
-    <x:expect label="$2 creates a source property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Fingerprint/bf:source/bf:Source/rdfs:label = 'fei'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Fingerprint/bflc:applicableInstitution/bf:Agent/bf:code = 'UkCU'"/>
+    <x:expect label="$a $b $c $d create an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
+    <x:expect label="$e creates an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[21]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
+    <x:expect label="$2 creates a source property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Fingerprint/bf:source/bf:Source/rdfs:label = 'fei'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[21]/bf:Fingerprint/bflc:applicableInstitution/bf:Agent/bf:code = 'UkCU'"/>
   </x:scenario>
 
   <x:scenario label="027 - STANDARD TECHNICAL REPORT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/Strn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:Strn/rdf:value = 'METPRO/CB/TR--74/216+PR.ENVR.WI'"/>
-    <x:expect label="$z creates a status/Status property of the Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[25]/bf:Strn/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$a creates an identifiedBy/Strn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/rdf:value = 'METPRO/CB/TR--74/216+PR.ENVR.WI'"/>
+    <x:expect label="$a can contain a qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/bf:qualifier[1] = 'vol 1'"/>
+    <x:expect label="$q creates a qualifier property of the Strn" test="//bf:Instance[1]/bf:identifiedBy[22]/bf:Strn/bf:qualifier[2] = 'pbk'"/>
+    <x:expect label="$z creates a status/Status property of the Strn with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[23]/bf:Strn/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
 
   <x:scenario label="028 - PUBLISHER NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="ind1 determines the class of Identifier for the identifiedBy property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy[26]/bf:AudioIssueNumber) = 1"/>
-    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[26]/bf:AudioIssueNumber/rdf:value = '440 073 033-9'"/>
-    <x:expect label="$b creates a source property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[26]/bf:AudioIssueNumber/bf:source/bf:Source/rdfs:label = 'Deutsche Grammophon'"/>
-    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[26]/bf:AudioIssueNumber/bf:qualifier = '(disc 1)'"/>
+    <x:expect label="ind1 determines the class of Identifier for the identifiedBy property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber) = 1"/>
+    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/rdf:value = '440 073 033-9'"/>
+    <x:expect label="$a can contain a qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:qualifier[1] = 'compact disc'"/>
+    <x:expect label="$b creates a source property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:source/bf:Source/rdfs:label = 'Deutsche Grammophon'"/>
+    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:qualifier[2] = 'disc 1'"/>
   </x:scenario>
 
   <x:scenario label="030 - CODEN DESIGNATION">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/Coden property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:Coden/rdf:value = 'ASIRAF'"/>
-    <x:expect label="$z creates a status/Status property of the Coden with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Coden/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$a creates an identifiedBy/Coden property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[25]/bf:Coden/rdf:value = 'ASIRAF'"/>
+    <x:expect label="$z creates a status/Status property of the Coden with rdfs:label = 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[26]/bf:Coden/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="032 - POSTAL REGISTRATION NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/PostalRegistration property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:PostalRegistration/rdf:value = '686310'"/>
-    <x:expect label="$b creates a source property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:PostalRegistration/bf:source/bf:Source/rdfs:label = 'USPS'"/>
+    <x:expect label="$a creates an identifiedBy/PostalRegistration property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:PostalRegistration/rdf:value = '686310'"/>
+    <x:expect label="$b creates a source property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:PostalRegistration/bf:source/bf:Source/rdfs:label = 'USPS'"/>
   </x:scenario>
   
   <x:scenario label="033 - DATE/TIME AND PLACE OF AN EVENT">
@@ -139,15 +149,15 @@
   
   <x:scenario label="035 - SYSTEM CONTROL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:Local/rdf:value = '814782'"/>
-    <x:expect label="value in parens creates a source property of the Local" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:Local/bf:source/bf:Source/rdfs:label = 'OCoLC'"/>
-    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Local/rdf:value = '814782'"/>
+    <x:expect label="value in parens creates a source property of the Local" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Local/bf:source/bf:Source/rdfs:label = 'OCoLC'"/>
+    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:Local/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
-    <x:expect label="$b creates a source property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:StudyNumber/bf:source/bf:Source/rdfs:label = 'Centre national de la recherche scientifique'"/>
+    <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
+    <x:expect label="$b creates a source property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/bf:source/bf:Source/rdfs:label = 'Centre national de la recherche scientifique'"/>
   </x:scenario>
   
   <x:scenario label="037 - SOURCE OF ACQUISITION">
@@ -173,10 +183,12 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="040 creates a source property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdfs:label = 'NBPol-G'"/>
     <x:expect label="...with additional rdf:type bf:Agent" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Agent'"/>
-    <x:expect label="...and a uri if it's a code" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[1]/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/organizations/nbpolg'"/>
+    <x:expect label="...and a uri if $a = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[3]/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="$b creates a descriptionLanguage property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionLanguage/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
-    <x:expect label="$c creates another source property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[2]/bf:Source[@rdf:about='http://id.loc.gov/vocabulary/organizations/cty']/rdfs:label = 'CtY'"/>
-    <x:expect label="$d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier/bf:Agent[@rdf:about='http://id.loc.gov/vocabulary/organizations/cty']/rdfs:label = 'CtY'"/>
+    <x:expect label="$c creates another source property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[2]/bf:Source/rdfs:label = 'CtY'"/>
+    <x:expect label="...with a URI if $c = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:source[4]/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="$d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[1]/bf:Agent/rdfs:label = 'CtY'"/>
+    <x:expect label="...with a URI if $d = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[2]/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdfs:label = 'NARS Staff Bulletin No. 16'"/>
     <x:expect label="...if it contains a code, the object has a URI" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[2]/bf:DescriptionConventions/@rdf:about = 'http://id.loc.gov/vocabulary/descriptionConventions/appm'"/>
   </x:scenario>
@@ -194,7 +206,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="042 create descriptionAuthentication properties of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[2]/bf:DescriptionAuthentication/@rdf:about = 'http://id.loc.gov/vocabulary/marcauthen/nsdp'"/>
     <x:expect label="...URI-encoded, if necessary" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[3]/bf:DescriptionAuthentication/@rdf:about = 'http://id.loc.gov/vocabulary/marcauthen/pcc%20record'"/>
-    <x:expect label="...with a bf:code property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[2]/bf:DescriptionAuthentication/bf:code='nsdp'"/>
+    <x:expect label="...with an rdf:value property" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionAuthentication[2]/bf:DescriptionAuthentication/rdf:value = 'nsdp'"/>
   </x:scenario>
   
   <x:scenario label="043 - GEOGRAPHIC AREA CODE">
@@ -204,15 +216,6 @@
     <x:expect label="...with the source of the GeographicCoverage from $2" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/bf:source/bf:Source/rdfs:label = 'BlRjBN'"/>
     <x:expect label="$c creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/rdfs:label = 'us'"/>
     <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/bf:source/bf:Source/rdfs:label = 'ISO 3166'"/>
-  </x:scenario>
-  
-  <x:scenario label="044 - COUNTRY OF PUBLISHING/PRODUCING ENTITY CODE">
-    <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates a place property of the Instance" test="//bf:Instance[1]/bf:place[1]/bf:Place/@rdf:about = 'http://id.loc.gov/vocabulary/countries/at'"/>
-    <x:expect label="$b creates a place property of the Instance" test="//bf:Instance[1]/bf:place[2]/bf:Place/bf:code = 'xna'"/>
-    <x:expect label="...with the source of the Place from $2" test="//bf:Instance[1]/bf:place[2]/bf:Place/bf:source/bf:Source/rdfs:label = 'ausmarc'"/>
-    <x:expect label="$c creates a place property of the Instance" test="//bf:Instance[1]/bf:place[3]/bf:Place/bf:code = 'au'"/>
-    <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Instance[1]/bf:place[3]/bf:Place/bf:source/bf:Source/rdfs:label = 'ISO 3166'"/>
   </x:scenario>
   
   <x:scenario label="045 - TIME PERIOD OF CONTENT">

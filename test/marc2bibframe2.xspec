@@ -97,6 +97,11 @@
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>  2004436018</rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:source>
@@ -294,6 +299,11 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   91758335 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -519,19 +529,19 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:descriptionModifier>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/n%40f">
+                  <bf:Agent>
                     <rdfs:label>N@F</rdfs:label>
                   </bf:Agent>
                 </bf:descriptionModifier>
@@ -542,7 +552,7 @@
                 </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
-                    <bf:code>lccopycat</bf:code>
+                    <rdf:value>lccopycat</rdf:value>
                   </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
@@ -555,6 +565,11 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   00530046 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <bf:geographicCoverage>
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
             </bf:geographicCoverage>
