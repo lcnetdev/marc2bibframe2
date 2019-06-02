@@ -50,7 +50,8 @@
   <x:scenario label="020 - INTERNATIONAL STANDARD BOOK NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="020 creates identifiedBy/Isbn properties of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:Isbn) = 3"/>
-    <x:expect label="$a is the rdf:value of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/rdf:value = '0877790086'"/>
+    <x:expect label="$a is the rdf:value of the Isbn (without parenthetical qualifier)" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/rdf:value = '0877790086'"/>
+    <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/bf:qualifier = 'pbk'"/>
     <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms[1] = '$10.00'"/>
     <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:Isbn/bf:qualifier = 'black leather'"/>
     <x:expect label="$z creates a status/Status property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
