@@ -74,8 +74,13 @@
       <subfield code="a">0A3200912B4A1057</subfield>
       <subfield code="2">istc</subfield>
     </datafield>
-    <datafield tag="024" ind1="8" ind2=" ">
-      <subfield code="a">12345678</subfield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">10.5240/EA73-79D7-1B2B-B378-3A73-M</subfield>
+      <subfield code="2">eidr</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">12345 (v. 1)</subfield>
+      <subfield code="2">sample</subfield>
     </datafield>
     <datafield tag="025" ind1=" " ind2=" ">
       <subfield code="a">LACAP72-1719</subfield>
