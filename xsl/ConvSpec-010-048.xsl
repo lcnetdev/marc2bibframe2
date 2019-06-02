@@ -287,7 +287,7 @@
           <bf:descriptionAuthentication>
             <bf:DescriptionAuthentication>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
-              <bf:code><xsl:value-of select="."/></bf:code>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
             </bf:DescriptionAuthentication>
           </bf:descriptionAuthentication>
         </xsl:for-each>
