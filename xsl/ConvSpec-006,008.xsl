@@ -698,6 +698,7 @@
 
   <xsl:template match="marc:controlfield[@tag='006']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType"/>
     <!-- select call appropriate 008 template based on pos 0 -->
     <xsl:choose>
       <!-- books -->
@@ -706,6 +707,7 @@
         <xsl:call-template name="instance008books">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
@@ -713,6 +715,7 @@
         <xsl:call-template name="instance008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
@@ -721,6 +724,7 @@
         <xsl:call-template name="instance008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- mixed materials -->
@@ -728,6 +732,7 @@
         <xsl:call-template name="instance008mixed">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
@@ -738,6 +743,7 @@
         <xsl:call-template name="instance008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
@@ -745,6 +751,7 @@
         <xsl:call-template name="instance008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
@@ -755,6 +762,7 @@
         <xsl:call-template name="instance008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
@@ -762,6 +770,7 @@
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType"/>
     <xsl:variable name="vDate1">
       <xsl:choose>
         <xsl:when test="substring(.,8,4) = '    '"/>
@@ -965,6 +974,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
           <xsl:with-param name="leader" select="../marc:leader"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
@@ -972,6 +982,7 @@
         <xsl:call-template name="instance008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
@@ -979,6 +990,7 @@
         <xsl:call-template name="instance008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
@@ -989,6 +1001,7 @@
         <xsl:call-template name="instance008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
@@ -999,6 +1012,7 @@
         <xsl:call-template name="instance008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
@@ -1009,6 +1023,7 @@
         <xsl:call-template name="instance008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
       <!-- mixed materials -->
@@ -1016,6 +1031,7 @@
         <xsl:call-template name="instance008mixed">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
@@ -1025,17 +1041,19 @@
   <xsl:template name="instance008books">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:param name="leader"/>
+    <xsl:param name="pInstanceType"/>
     <xsl:call-template name="carrier008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
     </xsl:call-template>
-    <xsl:variable name="instanceType">
+    <xsl:variable name="vAddInstanceType">
       <xsl:choose>
         <xsl:when test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 's'">
-          <xsl:if test="substring($leader,7,1) != 'm'"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:if>
+          <xsl:if test="pInstanceType != 'Electronic'">Electronic</xsl:if>
         </xsl:when>
-        <xsl:when test="substring($dataElements,6,1) = 'r'"><xsl:value-of select="concat($bf,'Print')"/></xsl:when>
+        <xsl:when test="substring($dataElements,6,1) = 'r'">
+          <xsl:if test="pInstanceType != 'Print'">Print</xsl:if>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -1056,9 +1074,9 @@
             </bf:notation>
           </xsl:when>
         </xsl:choose>
-        <xsl:if test="$instanceType != ''">
+        <xsl:if test="$vAddInstanceType != ''">
           <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$instanceType"/></xsl:attribute>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$vAddInstanceType)"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
       </xsl:when>

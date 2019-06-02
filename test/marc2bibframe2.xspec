@@ -152,6 +152,7 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print" />
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
@@ -695,10 +696,10 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c">
                 <rdfs:label>computer</rdfs:label>
