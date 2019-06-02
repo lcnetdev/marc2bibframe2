@@ -12,6 +12,7 @@
   <x:scenario label="010 - LIBRARY OF CONGRESS CONTROL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Lccn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Lccn/rdf:value = '  2004436018'"/>
+    <x:expect label="...and an identifiedBy/Lccn property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Lccn/rdf:value = '  2004436018'"/>
     <x:expect label="$z creates an status/Status property of the Lccn" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>
     <x:expect label="...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Lccn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
   </x:scenario>
@@ -56,9 +57,9 @@
   <x:scenario label="022 - INTERNATIONAL STANDARD SERIAL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Issn property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Issn/rdf:value = '1234-1231'"/>
-    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:IssnL/rdf:value = '1234-1231'"/>
-    <x:expect label="$m creates an IssnL with status/Status property" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid'"/>
-    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'canceled'"/>
+    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[2]/bf:IssnL/rdf:value = '1234-1231'"/>
+    <x:expect label="$m creates an IssnL with status/Status property" test="//bf:Work[1]/bf:identifiedBy[3]/bf:IssnL/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid'"/>
+    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[3]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'canceled'"/>
     <x:expect label="$y creates a status/Status property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/incorrect'"/>
     <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Issn/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
     <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/invalid'"/>

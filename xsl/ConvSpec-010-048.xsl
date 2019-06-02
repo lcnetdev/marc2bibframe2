@@ -297,6 +297,21 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='010']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:identifiedBy>
+            <bf:Lccn>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+            </bf:Lccn>
+          </bf:identifiedBy>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='022']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
