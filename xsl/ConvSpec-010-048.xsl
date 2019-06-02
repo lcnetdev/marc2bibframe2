@@ -543,7 +543,10 @@
                               marc:subfield[@code = 'j'] |
                               marc:subfield[@code = 'k'] |
                               marc:subfield[@code = 'm'] |
-                              marc:subfield[@code = 'n']">
+                              marc:subfield[@code = 'n'] |
+                              marc:subfield[@code = 'p'] |
+                              marc:subfield[@code = 'q'] |
+                              marc:subfield[@code = 'r']">
           <xsl:variable name="vPart">
             <xsl:choose>
               <xsl:when test="@code = 'b'">summary</xsl:when>
@@ -556,6 +559,9 @@
               <xsl:when test="@code = 'k'">intermediate translations</xsl:when>
               <xsl:when test="@code = 'm'">original accompanying materials</xsl:when>
               <xsl:when test="@code = 'n'">original libretto</xsl:when>
+              <xsl:when test="@code = 'p'">captions</xsl:when>
+              <xsl:when test="@code = 'q'">accessible audio</xsl:when>
+              <xsl:when test="@code = 'r'">accessible visual material</xsl:when>
             </xsl:choose>
           </xsl:variable>
           <xsl:choose>
