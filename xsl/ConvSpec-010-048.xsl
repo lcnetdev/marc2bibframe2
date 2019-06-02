@@ -968,6 +968,7 @@
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
+          <xsl:with-param name="pChopPunct" select="true()"/>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='030'">
@@ -1026,8 +1027,8 @@
             <xsl:choose>
               <!-- for 035, extract value after parentheses -->
               <xsl:when test="../@tag='035' and contains(.,')')"><xsl:value-of select="substring-after(.,')')"/></xsl:when>
-              <!-- for 015,020,024,027 extract value outside parentheses -->
-              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
+              <!-- for 015,020,024,027,028 extract value outside parentheses -->
+              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027' or ../@tag='028') and
                               contains(.,'(') and contains(.,')')">
                 <xsl:value-of select="concat(substring-before(.,'('),substring-after(.,')'))"/>
               </xsl:when>
@@ -1064,8 +1065,8 @@
                   </bf:Status>
                 </bf:status>
               </xsl:if>
-              <!-- special handling for 015, 020, 024, 027 -->
-              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
+              <!-- special handling for 015, 020, 024, 027, 028 -->
+              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027' or ../@tag='028') and
                             contains(.,'(') and contains(.,')')">
                 <xsl:variable name="vQualifier" select="substring-before(substring-after(.,'('),')')"/>
                 <xsl:if test="$vQualifier != ''">
@@ -1090,7 +1091,7 @@
               </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='q']">
                 <bf:qualifier>
-                  <xsl:call-template name="chopPunctuation">
+                  <xsl:call-template name="chopParens">
                     <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
                     <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
                   </xsl:call-template>
