@@ -11,6 +11,9 @@
       <subfield code="z">05,N51,1204</subfield>
       <subfield code="2">dnb</subfield>
     </datafield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">F67-835 (v. 1)</subfield>
+    </datafield>
     <datafield tag="016" ind1=" " ind2=" ">
       <subfield code="a"> 730032015  rev</subfield>
       <subfield code="z"> 89000298  </subfield>

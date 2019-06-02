@@ -839,6 +839,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Nbn</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+          <xsl:with-param name="pChopPunct"><xsl:value-of select="true()"/></xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='017'">
@@ -1010,6 +1011,10 @@
             <xsl:choose>
               <!-- for 035, extract value after parentheses -->
               <xsl:when test="../@tag='035' and contains(.,')')"><xsl:value-of select="substring-after(.,')')"/></xsl:when>
+              <!-- for 015, extract value outside parentheses -->
+              <xsl:when test="../@tag='015' and contains(.,'(') and contains(.,')')">
+                <xsl:value-of select="concat(substring-before(.,'('),substring-after(.,')'))"/>
+              </xsl:when>
               <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
@@ -1042,6 +1047,18 @@
                     <rdfs:label><xsl:value-of select="$pIncorrectLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>
+              </xsl:if>
+              <!-- special handling for 015 -->
+              <xsl:if test="../@tag='015' and contains(.,'(') and contains(.,')')">
+                <xsl:variable name="vQualifier" select="substring-before(substring-after(.,'('),')')"/>
+                <xsl:if test="$vQualifier != ''">
+                  <bf:qualifier>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString"><xsl:value-of select="$vQualifier"/></xsl:with-param>
+                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    </xsl:call-template>
+                  </bf:qualifier>
+                </xsl:if>
               </xsl:if>
               <!-- special handling for 036 -->
               <xsl:if test="../@tag='036'">
