@@ -314,9 +314,15 @@
   
   <xsl:template match="marc:datafield[@tag='022']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='l'] | marc:subfield[@code='m']">
+    <xsl:apply-templates select="." mode="instanceId">
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pIdentifier">bf:Issn</xsl:with-param>
+      <xsl:with-param name="pIncorrectLabel">incorrect</xsl:with-param>
+      <xsl:with-param name="pInvalidLabel">canceled</xsl:with-param>
+    </xsl:apply-templates>
+    <xsl:for-each select="marc:subfield[@code='l'] | marc:subfield[@code='m']">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
           <bf:identifiedBy>
             <bf:IssnL>
               <rdf:value><xsl:value-of select="."/></rdf:value>
@@ -333,9 +339,9 @@
               </xsl:apply-templates>
             </bf:IssnL>
           </bf:identifiedBy>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='033']" mode="work">
@@ -814,7 +820,6 @@
                                        marc:datafield[@tag='015'] |
                                        marc:datafield[@tag='017'] |
                                        marc:datafield[@tag='020'] |
-                                       marc:datafield[@tag='022'] |
                                        marc:datafield[@tag='024'] |
                                        marc:datafield[@tag='025'] |
                                        marc:datafield[@tag='027'] |
@@ -867,14 +872,6 @@
           <xsl:with-param name="pIdentifier">bf:Isbn</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
           <xsl:with-param name="pChopPunct" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="@tag='022'">
-        <xsl:apply-templates select="." mode="instanceId">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pIdentifier">bf:Issn</xsl:with-param>
-          <xsl:with-param name="pIncorrectLabel">incorrect</xsl:with-param>
-          <xsl:with-param name="pInvalidLabel">canceled</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="@tag='024'">
