@@ -323,7 +323,7 @@
               <xsl:if test="@code = 'm'">
                 <bf:status>
                   <bf:Status>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/cancinv</xsl:attribute>
                     <rdfs:label>canceled</rdfs:label>
                   </bf:Status>
                 </bf:status>
@@ -1035,7 +1035,7 @@
               <xsl:if test="@code = 'z'">
                 <bf:status>
                   <bf:Status>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/invalid</xsl:attribute>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/cancinv</xsl:attribute>
                     <rdfs:label><xsl:value-of select="$pInvalidLabel"/></rdfs:label>
                   </bf:Status>
                 </bf:status>

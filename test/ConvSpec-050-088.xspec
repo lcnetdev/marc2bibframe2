@@ -78,7 +78,7 @@
     <x:expect label="074 creates an identifiedBy/Identifier property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:Identifier) = 2"/>
     <x:expect label="...with a source labelled 'US GPO'" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Identifier/bf:source/bf:Source/rdfs:label = 'US GPO'"/>
     <x:expect label="$a is the rdf:value of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Identifier/rdf:value = '1022-A'"/>
-    <x:expect label="$z creates an status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Identifier/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates an status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Identifier/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
 
   <x:scenario label="082 - DEWEY DECIMAL CLASSIFICATION NUMBER">
@@ -105,7 +105,7 @@
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="086 creates a classification/Classification property of the Instance" test="count(//bf:Instance[1]/bf:classification/bf:Classification) = 3"/>
     <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/rdfs:label = 'A 1.1:'"/>
-    <x:expect label="$z creates an 'invalid' Classification" test="//bf:Instance[1]/bf:classification[2]/bf:Classification/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates an 'invalid' Classification" test="//bf:Instance[1]/bf:classification[2]/bf:Classification/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates a source property of the classification" test="//bf:Instance[1]/bf:classification[3]/bf:Classification/bf:source/bf:Source/rdfs:label = 'ordocs'"/>
     <x:expect label="ind1 can create a source property of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sudocs'"/>
   </x:scenario>
@@ -114,7 +114,7 @@
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="088 creates an identifiedBy/ReportNumber property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:ReportNumber) = 2"/>
     <x:expect label="$a is the rdf:value of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:ReportNumber/rdf:value = 'NASA-RP-1124-REV-3'"/>
-    <x:expect label="$z creates a status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:ReportNumber/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/invalid']/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:ReportNumber/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
 
 </x:description>
