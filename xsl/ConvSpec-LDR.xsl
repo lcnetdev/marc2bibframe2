@@ -13,6 +13,19 @@
       Conversion specs for LDR
   -->
 
+  <!-- determine rdf:type for Instance from LDR -->
+  <xsl:template match="marc:leader" mode="instanceType">
+    <xsl:choose>
+      <xsl:when test="substring(.,7,1) = 'd'">Manuscript</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'f'">Manuscript</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'm'">Electronic</xsl:when>
+      <xsl:when test="substring(.,7,1) = 't'">Manuscript</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when>
+      <xsl:when test="substring(.,8,1) = 'c'">Collection</xsl:when>
+      <xsl:when test="substring(.,8,1) = 'd'">Collection</xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:leader" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -31,6 +44,14 @@
               <bf:Status>
                 <rdfs:label>corrected or revised</rdfs:label>
                 <bf:code>c</bf:code>
+              </bf:Status>
+            </bf:status>
+          </xsl:when>
+          <xsl:when test="substring(.,6,1) = 'd'">
+            <bf:status>
+              <bf:Status>
+                <rdfs:label>deleted</rdfs:label>
+                <bf:code>d</bf:code>
               </bf:Status>
             </bf:status>
           </xsl:when>
@@ -86,7 +107,6 @@
                 <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/8</xsl:attribute>
                 <rdfs:label>prepublication</rdfs:label>
               </xsl:when>
-              <xsl:otherwise><bf:code>u</bf:code></xsl:otherwise>
             </xsl:choose>
           </bflc:EncodingLevel>
         </bflc:encodingLevel>
@@ -101,7 +121,6 @@
                 <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/descriptionConventions/isbd</xsl:attribute>
                 <rdfs:label>isbd</rdfs:label>
               </xsl:when>
-              <xsl:otherwise><rdfs:label>unknown</rdfs:label></xsl:otherwise>
             </xsl:choose>
           </bf:DescriptionConventions>
         </bf:descriptionConventions>
@@ -141,6 +160,7 @@
 
   <xsl:template match="marc:leader" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType"/>
     <xsl:variable name="issuanceUri">
       <xsl:choose>
         <xsl:when test="substring(.,8,1) = 'a'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
@@ -152,37 +172,22 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:variable name="instanceType">
-          <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'd'">Manuscript</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">Manuscript</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'm'">Electronic</xsl:when>
-            <xsl:when test="substring(.,7,1) = 't'">Manuscript</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:if test="$instanceType != ''">
+        <xsl:if test="$pInstanceType != ''">
           <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$instanceType)"/></xsl:attribute>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$pInstanceType)"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:choose>
-          <xsl:when test="substring(.,8,1) = 'c' or substring(.,8,1) = 'd'">
-            <rdf:type>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Collection')"/></xsl:attribute>
-            </rdf:type>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:if test="substring(.,9,1) = 'a'">
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Archival')"/></xsl:attribute>
+          </rdf:type>
+        </xsl:if>
         <xsl:if test="$issuanceUri != ''">
           <bf:issuance>
             <bf:Issuance>
               <xsl:attribute name="rdf:about"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
             </bf:Issuance>
           </bf:issuance>
-        </xsl:if>
-        <xsl:if test="substring(.,9,1) = 'a'">
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Archival</xsl:attribute>
-          </rdf:type>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
