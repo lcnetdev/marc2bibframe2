@@ -206,17 +206,15 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='c']">
-          <!-- if it's a code, normalize and create a URI -->
-          <!-- imperfect assumption: if there are no spaces, it's a code (shrug) -->
+          <xsl:variable name="vUri">
+            <xsl:if test="text() = 'DLC'">
+              <xsl:value-of select="concat($organizations,'dlc')"/>
+            </xsl:if>
+          </xsl:variable>
           <bf:source>
             <bf:Source>
-              <xsl:if test="not(contains(normalize-space(.),' '))">
-                <xsl:variable name="vUri">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              <xsl:if test="$vUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
               </xsl:if>
               <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Agent')"/></xsl:attribute>
@@ -245,13 +243,13 @@
         <xsl:for-each select="marc:subfield[@code='d']">
           <bf:descriptionModifier>
             <bf:Agent>
-              <xsl:if test="not(contains(normalize-space(.),' '))">
-                <xsl:variable name="vUri">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="translate(translate(normalize-space(.),$upper,$lower),'-','')"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vUri)"/></xsl:attribute>
+              <xsl:variable name="vUri">
+                <xsl:if test="text() = 'DLC'">
+                  <xsl:value-of select="concat($organizations,'dlc')"/>
+                </xsl:if>
+              </xsl:variable>
+              <xsl:if test="$vUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
               </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Agent>

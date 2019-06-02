@@ -529,19 +529,19 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:descriptionModifier>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/n%40f">
+                  <bf:Agent>
                     <rdfs:label>N@F</rdfs:label>
                   </bf:Agent>
                 </bf:descriptionModifier>
