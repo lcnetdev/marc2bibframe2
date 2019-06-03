@@ -87,7 +87,7 @@
             <xsl:otherwise>Geographic</xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="$vTag='655'">GenreForm</xsl:when>
+        <xsl:when test="$vTag='655'">Topic</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">
@@ -267,28 +267,20 @@
         <xsl:otherwise>bf:Topic</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
-          <xsl:for-each select="marc:subfield[@code='a']">
-            <xsl:value-of select="concat(.,'--')"/>
-          </xsl:for-each>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:element name="{$vProp}">
-          <xsl:element name="{$vResource}">
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="$vLabel"/>
-            </rdfs:label>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:element name="{$vProp}">
+            <xsl:element name="{$vResource}">
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+            </xsl:element>
           </xsl:element>
-        </xsl:element>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
