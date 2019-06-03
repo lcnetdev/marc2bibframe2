@@ -3,9 +3,13 @@
     <controlfield tag="001">1</controlfield>
     <datafield tag="050" ind1="0" ind2="0">
       <subfield code="a">Z7164.N3</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/Z7164.N3</subfield>
+      <subfield code="0">http://example.org/natural_resources_conservation</subfield>
       <subfield code="b">L34 no. 9</subfield>
       <subfield code="a">Z7165.R42</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/Z7165.R42</subfield>
       <subfield code="a">HC517.R42</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/HC517.R42</subfield>
       <subfield code="a">123.45</subfield>
     </datafield>
     <datafield tag="051" ind1=" " ind2=" ">

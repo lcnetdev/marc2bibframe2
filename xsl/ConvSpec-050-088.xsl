@@ -31,9 +31,25 @@
               <xsl:with-param name="pCall" select="text()"/>
             </xsl:call-template>
           </xsl:variable>
+          <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+          <xsl:variable name="vCurrentNodeUri">
+            <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+              <xsl:if test="position() = 1">
+                <xsl:choose>
+                  <xsl:when test="starts-with(.,'(uri)')">
+                    <xsl:value-of select="substring-after(.,'(uri)')"/>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
           <xsl:if test="$vValidLCC='true'">
             <bf:classification>
               <bf:ClassificationLcc>
+                <xsl:if test="$vCurrentNodeUri != ''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+                </xsl:if>
                 <xsl:if test="../@ind2 = '0'">
                   <bf:source>
                     <bf:Source>
@@ -57,6 +73,16 @@
                     </bf:itemPortion>
                   </xsl:for-each>
                 </xsl:if>
+                <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+                  <xsl:if test="position() != 1">
+                    <xsl:apply-templates select="." mode="subfield0orw">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:if>
+                </xsl:for-each>
+                <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
               </bf:ClassificationLcc>
             </bf:classification>
           </xsl:if>
@@ -83,7 +109,14 @@
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="vNodeUri">
-      <xsl:value-of select="marc:subfield[@code='0' and contains(text(),'://')][1]"/>
+      <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
+        <xsl:choose>
+          <xsl:when test="starts-with(.,'(uri)')">
+            <xsl:value-of select="substring-after(.,'(uri)')"/>
+          </xsl:when>
+          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
     </xsl:variable>
     <xsl:if test="($vLabel1 != '') or ($vLabel2 != '') or ($vNodeUri != '')">
       <xsl:choose>

@@ -23,6 +23,8 @@
     <x:expect label="$a not of form ABC123... does not create a bf:classification property" test="count(//bf:ClassificationLcc/bf:classificationPortion[contains(.,'123.45')]) = 0"/>
     <x:expect label="If the first $a is of form ABC123... 050 creates a ShelfMarkLcc object of the shelfMark property" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:shelfMark/bf:ShelfMarkLcc) = 2"/>
     <x:expect label="otherwise it creates a ShelfMark object of the shelfMark property" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-4']/bf:shelfMark/bf:ShelfMark) = 1"/>
+    <x:expect label="First $0 that is a URI sets the URI of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/@rdf:about = 'http://id.loc.gov/authorities/classification/Z7164.N3'"/>
+    <x:expect label="Additional $0s create identifiedBy properties of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.org/natural_resources_conservation'"/>
   </x:scenario>
   
   <x:scenario label="051 - LIBRARY OF CONGRESS COPY, ISSUE, OFFPRINT STATEMENT">
