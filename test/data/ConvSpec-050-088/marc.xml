@@ -45,6 +45,8 @@
     </datafield>
     <datafield tag="070" ind1="0" ind2=" ">
       <subfield code="a">HD3492.H8</subfield>
+      <subfield code="0">http://example.org/HD3492.H8</subfield>
+      <subfield code="0">http://example.com/HD3492.H8</subfield>
       <subfield code="b">L3</subfield>
     </datafield>
     <datafield tag="072" ind1=" " ind2="0">

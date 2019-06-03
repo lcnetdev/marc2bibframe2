@@ -67,9 +67,12 @@
   <x:scenario label="070 - NATIONAL AGRICULTURAL LIBRARY CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="070 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
-    <x:expect label="...with a source property" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:source/bf:Source/rdfs:label = 'National Agricultural Library'"/>
+    <x:expect label="...with a source property" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dnal'"/>
+    <x:expect label="...that has a label" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:source/bf:Source/rdfs:label = 'National Agricultural Library'"/>
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:classificationPortion = 'HD3492.H8'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:itemPortion = 'L3'"/>
+    <x:expect label="First $0 that is a URI sets the URI of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/@rdf:about = 'http://example.org/HD3492.H8'"/>
+    <x:expect label="Additional $0s create identifiedBy properties of the Classification" test="//bf:Work[1]/bf:classification[6]/bf:Classification/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/HD3492.H8'"/>
   </x:scenario>
 
   <x:scenario label="072 - SUBJECT CATEGORY CODE">
