@@ -11,6 +11,9 @@
       <subfield code="z">05,N51,1204</subfield>
       <subfield code="2">dnb</subfield>
     </datafield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">F67-835 (v. 1)</subfield>
+    </datafield>
     <datafield tag="016" ind1=" " ind2=" ">
       <subfield code="a"> 730032015  rev</subfield>
       <subfield code="z"> 89000298  </subfield>
@@ -31,7 +34,7 @@
       <subfield code="z">M444120-2006</subfield>
     </datafield>
     <datafield tag="020" ind1=" " ind2=" ">
-      <subfield code="a">0877790086 :</subfield>
+      <subfield code="a">0877790086 (pbk) :</subfield>
       <subfield code="c">$10.00</subfield>
     </datafield>
     <datafield tag="020" ind1=" " ind2=" ">
@@ -71,8 +74,13 @@
       <subfield code="a">0A3200912B4A1057</subfield>
       <subfield code="2">istc</subfield>
     </datafield>
-    <datafield tag="024" ind1="8" ind2=" ">
-      <subfield code="a">12345678</subfield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">10.5240/EA73-79D7-1B2B-B378-3A73-M</subfield>
+      <subfield code="2">eidr</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">12345 (v. 1)</subfield>
+      <subfield code="2">sample</subfield>
     </datafield>
     <datafield tag="025" ind1=" " ind2=" ">
       <subfield code="a">LACAP72-1719</subfield>
@@ -91,11 +99,12 @@
       <subfield code="5">UkCU</subfield>
     </datafield>
     <datafield tag="027" ind1=" " ind2=" ">
-      <subfield code="a">METPRO/CB/TR--74/216+PR.ENVR.WI</subfield>
+      <subfield code="a">METPRO/CB/TR--74/216+PR.ENVR.WI (vol 1)</subfield>
+      <subfield code="q">pbk</subfield>
       <subfield code="z">MPC-387</subfield>
     </datafield>
     <datafield tag="028" ind1="0" ind2="2">
-      <subfield code="a">440 073 033-9</subfield>
+      <subfield code="a">440 073 033-9 (compact disc)</subfield>
       <subfield code="b">Deutsche Grammophon</subfield>
       <subfield code="q">(disc 1)</subfield>
     </datafield>
@@ -165,6 +174,11 @@
       <subfield code="d">CtY</subfield>
       <subfield code="e">NARS Staff Bulletin No. 16</subfield>
       <subfield code="e">appm</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">DLC</subfield>
     </datafield>
     <datafield tag="041" ind1="1" ind2=" ">
       <subfield code="a">eng</subfield>

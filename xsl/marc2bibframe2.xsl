@@ -190,6 +190,10 @@
         <xsl:with-param name="recordno" select="$recordno"/>
       </xsl:apply-templates>
     </xsl:variable>
+
+    <xsl:variable name="vInstanceType">
+      <xsl:apply-templates mode="instanceType" select="marc:leader"/>
+    </xsl:variable>
     
     <!-- generate main Work entity -->
     <xsl:choose>
@@ -230,11 +234,7 @@
           <xsl:apply-templates mode="instance">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-          <!-- pass the whole record through for series processing (490/8XX) -->
-          <xsl:apply-templates select="." mode="hasSeries">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
           </xsl:apply-templates>
           <bf:instanceOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>

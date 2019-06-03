@@ -97,6 +97,11 @@
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>  2004436018</rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:source>
@@ -152,6 +157,7 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print" />
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
@@ -293,6 +299,11 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   91758335 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -510,19 +521,19 @@
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/ieu">
+                  <bf:Source>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
                     <rdfs:label>IEU</rdfs:label>
                   </bf:Source>
                 </bf:source>
                 <bf:descriptionModifier>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/n%40f">
+                  <bf:Agent>
                     <rdfs:label>N@F</rdfs:label>
                   </bf:Agent>
                 </bf:descriptionModifier>
@@ -533,7 +544,7 @@
                 </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
-                    <bf:code>lccopycat</bf:code>
+                    <rdf:value>lccopycat</rdf:value>
                   </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
@@ -546,6 +557,11 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   00530046 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
             <bf:geographicCoverage>
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
             </bf:geographicCoverage>
@@ -563,8 +579,7 @@
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>975.3</bf:classificationPortion>
-                <bf:edition>13</bf:edition>
-                <bf:edition>abridged</bf:edition>
+                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc13</bf:edition>
                 <bf:source>
                   <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
                 </bf:source>
@@ -589,68 +604,84 @@
               </bf:Summary>
             </bf:summary>
             <bf:subject>
-              <bf:Agent rdf:about="http://example.org/12149120#Agent610-22">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+              <bf:Topic rdf:about="http://example.org/12149120#Topic610-22">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
-                <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
-                <bflc:name10MarcKey>61020$aWhite House (Washington, D.C.)</bflc:name10MarcKey>
-                <rdfs:label>White House (Washington, D.C.)</rdfs:label>
-              </bf:Agent>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/12149120#Agent610-22">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization" />
+                    <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
+                    <bflc:name10MarcKey>61020$aWhite House (Washington, D.C.)</bflc:name10MarcKey>
+                    <rdfs:label>White House (Washington, D.C.)</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Topic>
             </bf:subject>
             <bf:subject>
-              <bf:Agent rdf:about="http://example.org/12149120#Agent610-23">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+              <bf:Topic rdf:about="http://example.org/12149120#Topic610-23">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
-                <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
-                <bflc:name10MarcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:name10MarcKey>
-                <rdfs:label>United States. Executive Office of the President.</rdfs:label>
-              </bf:Agent>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/12149120#Agent610-23">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
+                    <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
+                    <bflc:name10MarcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:name10MarcKey>
+                    <rdfs:label>United States. Executive Office of the President.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Topic>
             </bf:subject>
             <bf:subject>
-              <bf:Agent rdf:about="http://example.org/12149120#Agent610-24">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+              <bf:Topic rdf:about="http://example.org/12149120#Topic610-24">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
-                <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
-                <bflc:name10MarcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:name10MarcKey>
-                <rdfs:label>United States. Office of the Vice President.</rdfs:label>
-              </bf:Agent>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/12149120#Agent610-24">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
+                    <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
+                    <bflc:name10MarcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:name10MarcKey>
+                    <rdfs:label>United States. Office of the Vice President.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Topic>
             </bf:subject>
             <bf:subject>
-              <bf:Agent rdf:about="http://example.org/12149120#Agent610-25">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName"/>
+              <bf:Topic rdf:about="http://example.org/12149120#Topic610-25">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
                   <bf:Source>
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
-                <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
-                <bflc:name10MarcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:name10MarcKey>
-                <rdfs:label>United States. Office of the First Lady.</rdfs:label>
-              </bf:Agent>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/12149120#Agent610-25">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
+                    <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
+                    <bflc:name10MarcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:name10MarcKey>
+                    <rdfs:label>United States. Office of the First Lady.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:Topic>
             </bf:subject>
             <bf:contribution>
               <bf:Contribution>
@@ -671,10 +702,10 @@
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c">
                 <rdfs:label>computer</rdfs:label>

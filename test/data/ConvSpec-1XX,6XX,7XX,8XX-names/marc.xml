@@ -6,6 +6,7 @@
       <subfield code="d">1770-1827</subfield>
       <subfield code="c">(Spirit)</subfield>
       <subfield code="0">(DE-101c)310008891</subfield>
+      <subfield code="2">naf</subfield>
     </datafield>
     <datafield tag="600" ind1="1" ind2="0">
       <subfield code="a">Nixon, Richard M.</subfield>
@@ -44,6 +45,7 @@
       <subfield code="a">Galway, James.</subfield>
       <subfield code="4">prf</subfield>
       <subfield code="4">cnd</subfield>
+      <subfield code="4">http://id.loc.gov/vocabulary/relators/adi</subfield>
       <subfield code="0">http://id.loc.gov/authorities/names/n81042545</subfield>
     </datafield>
   </record>

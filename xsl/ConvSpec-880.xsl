@@ -135,6 +135,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='490'">
+        <xsl:apply-templates select="." mode="work490">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='502'">
         <xsl:apply-templates select="." mode="work502">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -201,9 +206,11 @@
       <xsl:when test="$tag='600' or $tag='610' or $tag='611'">
         <xsl:variable name="agentiri"><xsl:value-of select="$recordid"/>#Agent880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:variable name="workiri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
+        <xsl:variable name="vTopicUri"><xsl:value-of select="$recordid"/>#Topic880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:apply-templates mode="work6XXName" select=".">
           <xsl:with-param name="agentiri" select="$agentiri"/>
           <xsl:with-param name="workiri" select="$workiri"/>
+          <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
           <xsl:with-param name="recordid" select="$recordid"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
@@ -292,7 +299,13 @@
           <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
-      </xsl:when>        
+      </xsl:when>
+      <xsl:when test="$tag='800' or $tag='810' or $tag='811' or $tag='830'">
+        <xsl:apply-templates select="." mode="work8XX">
+          <xsl:with-param name="recordid" select="$recordid"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -444,6 +457,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='490'">
+        <xsl:apply-templates select="." mode="instance490">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='500' or $tag='501' or $tag='513' or
                       $tag='515' or $tag='516' or $tag='536' or
                       $tag='544' or $tag='545' or $tag='547' or
@@ -523,6 +541,11 @@
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
       </xsl:when>        
+      <xsl:when test="$tag='800' or $tag='810' or $tag='811' or $tag='830'">
+        <xsl:apply-templates select="." mode="instance8XX">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 

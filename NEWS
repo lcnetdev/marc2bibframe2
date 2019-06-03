@@ -1,6 +1,13 @@
 --- 1.5.0-SNAPSHOT
 
 Update conversion based on updated specifications:
+  ConvSpec-050-088-v1.5
+  ConvSpec-010-048-v1.5
+  ConvSpec-LDR-v1.5 (also addresses https://github.com/lcnetdev/marc2bibframe2/issues/121)
+  ConvSpec-1XX,6XX,7XX,8XX-Names-v1.5
+  ConvSpec-490,510,530-535-Links-v1.5
+  ConvSpec-240,X30-UnifTitle-v1.5
+  ConvSpec-NumericSubfields-v1.5
   ConvSpec-5XX-v1.5
   ConvSpec-3XX-v1.5
   ConvSpec-006-008-v1.5
