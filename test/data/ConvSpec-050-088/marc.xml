@@ -3,9 +3,13 @@
     <controlfield tag="001">1</controlfield>
     <datafield tag="050" ind1="0" ind2="0">
       <subfield code="a">Z7164.N3</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/Z7164.N3</subfield>
+      <subfield code="0">http://example.org/natural_resources_conservation</subfield>
       <subfield code="b">L34 no. 9</subfield>
       <subfield code="a">Z7165.R42</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/Z7165.R42</subfield>
       <subfield code="a">HC517.R42</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/classification/HC517.R42</subfield>
       <subfield code="a">123.45</subfield>
     </datafield>
     <datafield tag="051" ind1=" " ind2=" ">
@@ -24,17 +28,25 @@
     <datafield tag="052" ind1="1" ind2=" ">
       <subfield code="a">BK</subfield>
       <subfield code="d">Mostar</subfield>
+      <subfield code="0">http://example.org/mostar</subfield>
+      <subfield code="0">http://example.com/mostar</subfield>
     </datafield>
     <datafield tag="055" ind1="0" ind2="0">
       <subfield code="a">F5050 .2</subfield>
       <subfield code="b">T5</subfield>
+      <subfield code="0">http://example.org/F5050.2T5</subfield>
+      <subfield code="0">(LAC)F5050 .2 T5</subfield>
     </datafield>
     <datafield tag="060" ind1="0" ind2="0">
       <subfield code="a">W 22 DC2.1</subfield>
+      <subfield code="0">http://example.org/W22DC2.1</subfield>
+      <subfield code="0">http://example.com/W22DC2.1</subfield>
       <subfield code="b">B8M</subfield>
     </datafield>
     <datafield tag="070" ind1="0" ind2=" ">
       <subfield code="a">HD3492.H8</subfield>
+      <subfield code="0">http://example.org/HD3492.H8</subfield>
+      <subfield code="0">http://example.com/HD3492.H8</subfield>
       <subfield code="b">L3</subfield>
     </datafield>
     <datafield tag="072" ind1=" " ind2="0">
@@ -44,6 +56,10 @@
       <subfield code="a">Z1</subfield>
       <subfield code="x">.630</subfield>
       <subfield code="2">mesh</subfield>
+    </datafield>
+    <datafield tag="072" ind1=" " ind2="7">
+      <subfield code="a">ARC000000</subfield>
+      <subfield code="2">bisacsh</subfield>
     </datafield>
     <datafield tag="074" ind1=" " ind2=" ">
       <subfield code="a">1022-A</subfield>
@@ -61,6 +77,8 @@
     </datafield>
     <datafield tag="084" ind1=" " ind2=" ">
       <subfield code="a">KB112.554</subfield>
+      <subfield code="0">http://example.org/KB112.554</subfield>
+      <subfield code="0">http://example.com/KB112.554</subfield>
       <subfield code="b">U62 1980</subfield>
       <subfield code="q">DE-101</subfield>
       <subfield code="2">sdnb</subfield>
@@ -71,6 +89,8 @@
     </datafield>
     <datafield tag="086" ind1=" " ind2=" ">
       <subfield code="a">HEU/G74.3C49</subfield>
+      <subfield code="0">http://example.org/HEU_G74.3C49</subfield>
+      <subfield code="0">http://example.com/HEU_G74.3C49</subfield>
       <subfield code="2">ordocs</subfield>
     </datafield>
     <datafield tag="088" ind1=" " ind2=" ">
