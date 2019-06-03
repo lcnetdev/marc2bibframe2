@@ -24,6 +24,8 @@
     <datafield tag="052" ind1="1" ind2=" ">
       <subfield code="a">BK</subfield>
       <subfield code="d">Mostar</subfield>
+      <subfield code="0">http://example.org/mostar</subfield>
+      <subfield code="0">http://example.com/mostar</subfield>
     </datafield>
     <datafield tag="055" ind1="0" ind2="0">
       <subfield code="a">F5050 .2</subfield>
