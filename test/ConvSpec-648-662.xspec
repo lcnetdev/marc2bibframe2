@@ -21,7 +21,7 @@
 
   <x:scenario label="650 - SUBJECT ADDED ENTRY--TOPICAL TERM">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
-    <x:expect label="650 creates a subject/Topic property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 3"/>
+    <x:expect label="650 creates a subject/Topic property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 5"/>
     <x:expect label="$abcdvxyz create the rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/rdfs:label = 'Caracas--Bolivar Statue--Far away--Long ago--History'"/>
     <x:expect label="$e creates a bflc:relationship property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted'"/>
     <x:expect label="$g creates a note property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:note/bf:Note/rdfs:label = 'Miscellania'"/>
@@ -38,8 +38,8 @@
   
   <x:scenario label="653 - INDEX TERM--UNCONTROLLED">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
-    <x:expect label="653 creates a subject property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 3"/>
-    <x:expect label="$a (repeated) creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[4]/bf:Topic/rdfs:label = 'Man--Eye--Diseases'"/>
+    <x:expect label="ind2 determine the class of the created object" test="local-name(//bf:Work[1]/bf:subject[4]/*) = 'Topic'"/>
+    <x:expect label="$a creates a subject/Topic (or other) property of the Work" test="//bf:Work[1]/bf:subject[4]/bf:Topic/rdfs:label = 'Man'"/> 
   </x:scenario>
   
   <x:scenario label="655 - INDEX TERM--GENRE/FORM">
@@ -50,22 +50,22 @@
 
   <x:scenario label="656 - INDEX TERM--OCCUPATION">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
-    <x:expect label="656 creates a subject/Topic property of the work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 3"/>
-    <x:expect label="...with a URI (not a blank node)" test="//bf:Work[1]/bf:subject[5]/bf:Topic/@rdf:about = 'http://example.org/1#Topic656-7'"/>
-    <x:expect label="...with rdf:type of madsrdf:ComplexSubject" test="//bf:Work[1]/bf:subject[5]/bf:Topic/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#ComplexSubject'"/>
-    <x:expect label="$akvxyz creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[5]/bf:Topic/rdfs:label = 'Chauffeurs--France.'"/>
-    <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[5]/bf:Topic/madsrdf:componentList/madsrdf:Occupation/rdfs:label = 'Chauffeurs'"/>
-    <x:expect label="$2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[5]/bf:Topic/bf:source/bf:Source/rdfs:label = 'someCode'"/>
+    <x:expect label="656 creates a subject/Topic property of the work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 5"/>
+    <x:expect label="...with a URI (not a blank node)" test="//bf:Work[1]/bf:subject[7]/bf:Topic/@rdf:about = 'http://example.org/1#Topic656-7'"/>
+    <x:expect label="...with rdf:type of madsrdf:ComplexSubject" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#ComplexSubject'"/>
+    <x:expect label="$akvxyz creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdfs:label = 'Chauffeurs--France.'"/>
+    <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:componentList/madsrdf:Occupation/rdfs:label = 'Chauffeurs'"/>
+    <x:expect label="$2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/bf:source/bf:Source/rdfs:label = 'someCode'"/>
   </x:scenario>
   
   <x:scenario label="662 - SUBJECT ADDED ENTRY--HIERARCHICAL PLACE NAME">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="662 creates a subject/Place property of the work" test="count(//bf:Work[1]/bf:subject/bf:Place) = 2"/>
-    <x:expect label="...with a URI (not a blank node)" test="//bf:Work[1]/bf:subject[6]/bf:Place/@rdf:about = 'http://example.org/1#Place662-8'"/>
-    <x:expect label="...with rdf:type of madsrdf:HierarchicalGeographic" test="//bf:Work[1]/bf:subject[6]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
-    <x:expect label="$abcdfgh creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Place/rdfs:label = 'Japan--Hokkaido--Asahi-dake.'"/>
-    <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
-    <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[6]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
+    <x:expect label="...with a URI (not a blank node)" test="//bf:Work[1]/bf:subject[8]/bf:Place/@rdf:about = 'http://example.org/1#Place662-8'"/>
+    <x:expect label="...with rdf:type of madsrdf:HierarchicalGeographic" test="//bf:Work[1]/bf:subject[8]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic'"/>
+    <x:expect label="$abcdfgh creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[8]/bf:Place/rdfs:label = 'Japan--Hokkaido--Asahi-dake.'"/>
+    <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
+    <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
   </x:scenario>
   
 </x:description>
