@@ -49,6 +49,8 @@
     <x:expect label="$a creates the classificationPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:classificationPortion = 'F5050 .2'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:itemPortion = 'T5'"/>
     <x:expect label="ind2 = 0,1,2 creates a source of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
+    <x:expect label="First $0 that is a URI sets the URI of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/@rdf:about = 'http://example.org/F5050.2T5'"/>
+    <x:expect label="Additional $0s create identifiedBy properties of the ClassificationLcc" test="//bf:Work[1]/bf:classification[4]/bf:ClassificationLcc/bf:identifiedBy[1]/bf:Identifier/rdf:value = 'F5050 .2 T5'"/>
   </x:scenario>
 
   <x:scenario label="060 - NATIONAL LIBRARY OF MEDICINE CALL NUMBER">

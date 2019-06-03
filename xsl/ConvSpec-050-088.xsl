@@ -168,10 +168,23 @@
   <xsl:template match="marc:datafield[@tag='055' or @tag='880']" mode="work055">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vNodeUri">
+      <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
+        <xsl:choose>
+          <xsl:when test="starts-with(.,'(uri)')">
+            <xsl:value-of select="substring-after(.,'(uri)')"/>
+          </xsl:when>
+          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
           <bf:classification>
             <bf:ClassificationLcc>
+              <xsl:if test="$vNodeUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vNodeUri"/></xsl:attribute>
+              </xsl:if>
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:classificationPortion>
                   <xsl:if test="$vXmlLang != ''">
@@ -195,6 +208,18 @@
                   </bf:Source>
                 </bf:source>
               </xsl:if>
+              <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates select="." mode="subfield0orw">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='0' and not(contains(text(),'://'))]">
+                <xsl:apply-templates select="." mode="subfield0orw">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
             </bf:ClassificationLcc>
           </bf:classification>
       </xsl:when>
