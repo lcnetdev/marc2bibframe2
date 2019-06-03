@@ -9,10 +9,12 @@
   </record>
   <record>
     <controlfield tag="001">2</controlfield>
-    <controlfield tag="007">co cgammmaadda</controlfield>
+    <controlfield tag="003">DLC</controlfield>
+    <controlfield tag="007">co cga016aadda</controlfield>
   </record>
   <record>
     <controlfield tag="001">3</controlfield>
+    <controlfield tag="003"></controlfield>
     <controlfield tag="007">dc cef</controlfield>
   </record>
   <record>
@@ -29,11 +31,14 @@
   </record>
   <record>
     <controlfield tag="001">7</controlfield>
-    <controlfield tag="007">mr caaadmaartauac198606</controlfield>
+    <controlfield tag="007">mr caaadmcartauac198606</controlfield>
   </record>
   <record>
     <controlfield tag="001">8</controlfield>
-    <controlfield tag="007">mr cbaadmaartauac198606</controlfield>
+    <controlfield tag="007">mr cbaafmaartauac198606</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">9</controlfield>
@@ -41,7 +46,10 @@
   </record>
   <record>
     <controlfield tag="001">10</controlfield>
-    <controlfield tag="007">sd osscmcmglce</controlfield>
+    <controlfield tag="007">sd ismcmcmglce</controlfield>
+    <datafield tag="300">
+        <subfield code="c">2 in.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">11</controlfield>
@@ -50,5 +58,33 @@
   <record>
     <controlfield tag="001">12</controlfield>
     <controlfield tag="007">vf caahos</controlfield>
+  </record>
+  <record>
+    <controlfield tag="001">13</controlfield>
+    <controlfield tag="007">co cjammmaadda</controlfield>
+    <datafield tag="300">
+        <subfield code="c">9.8 x 6.3 cm</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">14</controlfield>
+    <controlfield tag="007">gs cjbdfd</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">15</controlfield>
+    <controlfield tag="007">he bfb024baca</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">16</controlfield>
+    <controlfield tag="007">vf caahps</controlfield>
+    <datafield tag="300">
+        <subfield code="c">25.4 mm.</subfield>
+    </datafield>
   </record>
 </collection>

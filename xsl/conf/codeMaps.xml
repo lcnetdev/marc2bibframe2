@@ -400,4 +400,50 @@
     <u>unknown</u>
     <z href="http://id.loc.gov/vocabulary/mtechnique/other">other technique</z>
   </technique>
+  <!-- playback speed -->
+  <!-- used in 007/03 for sound recordings -->
+  <playbackSpeed>
+    <a href="http://id.loc.gov/vocabulary/mplayspeed/a">16 rpm</a>
+    <b href="http://id.loc.gov/vocabulary/mplayspeed/b">13 1/3 rpm</b>
+    <c href="http://id.loc.gov/vocabulary/mplayspeed/c">45 rpm</c>
+    <d href="http://id.loc.gov/vocabulary/mplayspeed/d">78 rpm</d>
+    <e href="http://id.loc.gov/vocabulary/mplayspeed/e">8 rpm</e>
+    <f href="http://id.loc.gov/vocabulary/mplayspeed/f">1.4 m. per sec.</f>
+    <h href="http://id.loc.gov/vocabulary/mplayspeed/h">120 rpm</h>
+    <i href="http://id.loc.gov/vocabulary/mplayspeed/i">160 rpm</i>
+    <k href="http://id.loc.gov/vocabulary/mplayspeed/k">15/16 ips</k>
+    <l href="http://id.loc.gov/vocabulary/mplayspeed/l">1 7/8 ips</l>
+    <m href="http://id.loc.gov/vocabulary/mplayspeed/m">3 3/4 ips</m>
+    <o href="http://id.loc.gov/vocabulary/mplayspeed/o">7 1/2 ips</o>
+    <p href="http://id.loc.gov/vocabulary/mplayspeed/p">15 ips</p>
+    <r href="http://id.loc.gov/vocabulary/mplayspeed/r">30 ips</r>
+  </playbackSpeed>
+  <!-- reduction ratio range -->
+  <!-- used in 007/05 for microform -->
+  <reductionRatioRange> 
+    <a href="http://id.loc.gov/vocabulary/mreductionratio/low">low reduction range</a>
+    <b href="http://id.loc.gov/vocabulary/mreductionratio/normal">normal reduction range</b>
+    <c href="http://id.loc.gov/vocabulary/mreductionratio/high">high reduction range</c>
+    <d href="http://id.loc.gov/vocabulary/mreductionratio/veryhigh">very high reduction range</d>
+    <e href="http://id.loc.gov/vocabulary/mreductionratio/ultrahigh">ultra high reduction range</e>
+  </reductionRatioRange>
+  <!-- tape config ratio range -->
+  <!-- used in 007/08 for sound recordings -->
+  <tapeConfig> 
+    <a href="http://id.loc.gov/vocabulary/mtapeconfig/full">full (1)</a>
+    <b href="http://id.loc.gov/vocabulary/mtapeconfig/half">half (2)</b>
+    <c href="http://id.loc.gov/vocabulary/mtapeconfig/quarter">quarter (4)</c>
+    <d href="http://id.loc.gov/vocabulary/mtapeconfig/8">8</d>
+    <e href="http://id.loc.gov/vocabulary/mtapeconfig/12">12</e>
+    <f href="http://id.loc.gov/vocabulary/mtapeconfig/16">16</f>
+  </tapeConfig> 
+  <!-- capture storage  -->
+  <!-- used in 007/12 for sound recordings -->
+  <captureStorage> 
+    <a href="http://id.loc.gov/vocabulary/mcapturestorage/acds">Acoustical capture, direct storage</a>
+    <b href="http://id.loc.gov/vocabulary/mcapturestorage/dsna">Electrical capture, direct storage</b>
+    <d href="http://id.loc.gov/vocabulary/mcapturestorage/dist">Electrical capture, digital storage</d>
+    <e href="http://id.loc.gov/vocabulary/mcapturestorage/aes">Electrical capture, Analog electrical storage</e>
+    <u href="http://id.loc.gov/vocabulary/mcapturestorage/unk">Unknown capture and storage</u>
+  </captureStorage> 
 </maps>
