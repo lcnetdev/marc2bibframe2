@@ -522,8 +522,24 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
+          <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+          <xsl:variable name="vCurrentNodeUri">
+            <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+              <xsl:if test="position() = 1">
+                <xsl:choose>
+                  <xsl:when test="starts-with(.,'(uri)')">
+                    <xsl:value-of select="substring-after(.,'(uri)')"/>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
           <bf:classification>
             <bf:Classification>
+              <xsl:if test="$vCurrentNodeUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+              </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
               <xsl:if test="@code='z'">
                 <bf:status>
@@ -533,18 +549,28 @@
                   </bf:Status>
                 </bf:status>
               </xsl:if>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates select="." mode="subfield0orw">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
               <xsl:choose>
                 <xsl:when test="../@ind1='0'">
                   <bf:source>
                     <bf:Source>
-                      <rdfs:label>sudocs</rdfs:label>
+                      <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/classSchemes/sudocs</xsl:attribute>
                     </bf:Source>
                   </bf:source>
                 </xsl:when>
                 <xsl:when test="../@ind1='1'">
                   <bf:source>
                     <bf:Source>
-                      <rdfs:label>Government of Canada Publications</rdfs:label>
+                      <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/classSchemes/cacodoc</xsl:attribute>
                     </bf:Source>
                   </bf:source>
                 </xsl:when>

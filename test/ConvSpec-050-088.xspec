@@ -119,7 +119,9 @@
     <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/rdfs:label = 'A 1.1:'"/>
     <x:expect label="$z creates an 'invalid' Classification" test="//bf:Instance[1]/bf:classification[2]/bf:Classification/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
     <x:expect label="$2 creates a source property of the classification" test="//bf:Instance[1]/bf:classification[3]/bf:Classification/bf:source/bf:Source/rdfs:label = 'ordocs'"/>
-    <x:expect label="ind1 can create a source property of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sudocs'"/>
+    <x:expect label="ind1 can create a source property of the Classification" test="//bf:Instance[1]/bf:classification[1]/bf:Classification/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/classSchemes/sudocs'"/>
+    <x:expect label="First $0 that is a URI sets the URI of the Classification" test="//bf:Instance[1]/bf:classification[3]/bf:Classification/@rdf:about = 'http://example.org/HEU_G74.3C49'"/>
+    <x:expect label="Additional $0s create identifiedBy properties of the Classification" test="//bf:Instance[1]/bf:classification[3]/bf:Classification/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/HEU_G74.3C49'"/>
   </x:scenario>
   
   <x:scenario label="088 - REPORT NUMBER">
