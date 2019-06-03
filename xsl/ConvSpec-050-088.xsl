@@ -382,6 +382,64 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='082']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates mode="work082" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='082' or @tag='880']" mode="work082">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:classification>
+            <bf:ClassificationDdc>
+              <bf:classificationPortion>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:itemPortion>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </bf:itemPortion>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='2']">
+                <bf:edition>
+                  <xsl:choose>
+                    <xsl:when test="string-length(.)=2 and contains('0123456789',substring(.,1,1)) and contains('0123456789',substring(.,2,1))">
+                      <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
+                      <xsl:value-of select="concat('http://id.loc.gov/vocabulary/classSchemes/ddc',.)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </bf:edition>
+              </xsl:for-each>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:source>
+                  <bf:Source>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Source>
+                </bf:source>
+              </xsl:if>
+            </bf:ClassificationDdc>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='084']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates mode="work084" select=".">
@@ -441,66 +499,6 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='082']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work082" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='082' or @tag='880']" mode="work082">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:classification>
-            <bf:ClassificationDdc>
-              <bf:classificationPortion>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="."/>
-              </bf:classificationPortion>
-              <xsl:if test="position() = 1">
-                <xsl:for-each select="../marc:subfield[@code='b']">
-                  <bf:itemPortion>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:value-of select="."/>
-                  </bf:itemPortion>
-                </xsl:for-each>
-              </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='2']">
-                <bf:edition>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="."/>
-                </bf:edition>
-              </xsl:for-each>
-              <xsl:choose>
-                <xsl:when test="../@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
-                <xsl:when test="../@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
-              </xsl:choose>
-              <xsl:apply-templates select="../marc:subfield[@code='q']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:if test="../@ind2 = '0'">
-                <bf:source>
-                  <bf:Source>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
-            </bf:ClassificationDdc>
-          </bf:classification>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
 
   <xsl:template match="marc:datafield[@tag='086']" mode="instance">

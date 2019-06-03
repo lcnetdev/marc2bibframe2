@@ -587,8 +587,7 @@
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>975.3</bf:classificationPortion>
-                <bf:edition>13</bf:edition>
-                <bf:edition>abridged</bf:edition>
+                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc13</bf:edition>
                 <bf:source>
                   <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
                 </bf:source>
