@@ -77,6 +77,8 @@
     </datafield>
     <datafield tag="084" ind1=" " ind2=" ">
       <subfield code="a">KB112.554</subfield>
+      <subfield code="0">http://example.org/KB112.554</subfield>
+      <subfield code="0">http://example.com/KB112.554</subfield>
       <subfield code="b">U62 1980</subfield>
       <subfield code="q">DE-101</subfield>
       <subfield code="2">sdnb</subfield>
