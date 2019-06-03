@@ -87,7 +87,7 @@
             <xsl:otherwise>Geographic</xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="$vTag='655'">GenreForm</xsl:when>
+        <xsl:when test="$vTag='655'">Topic</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">

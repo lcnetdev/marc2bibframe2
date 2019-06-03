@@ -45,7 +45,7 @@
   <x:scenario label="655 - INDEX TERM--GENRE/FORM">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="655 creates a genreForm/GenreForm property of the Work" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm) = 1"/>
-    <x:expect label="...with a Class from MADSRDF" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#GenreForm'"/>
+    <x:expect label="...with a Class from MADSRDF" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#Topic'"/>
   </x:scenario>
 
   <x:scenario label="656 - INDEX TERM--OCCUPATION">
