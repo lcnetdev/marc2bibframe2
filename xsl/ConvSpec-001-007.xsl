@@ -20,35 +20,27 @@
         <bf:identifiedBy>
           <bf:Local>
             <rdf:value><xsl:value-of select="."/></rdf:value>
-            <xsl:if test="$idsource != ''">
-              <bf:source>
-                <bf:Source>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$idsource"/></xsl:attribute>
-                </bf:Source>
-              </bf:source>
-            </xsl:if>
+            <bf:assigner>
+                <bf:Agent>
+                    <xsl:choose>
+                        <xsl:when test="../marc:controlfield[@tag='003'] = 'DLC' or ../marc:controlfield[@tag='003'] = ''">
+                            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                        </xsl:when>
+                        <xsl:when test="not(../marc:controlfield[@tag='003'])">
+                            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <bf:code><xsl:value-of select="../marc:controlfield[@tag='003']" /></bf:code>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </bf:Agent>
+            </bf:assigner>
           </bf:Local>
         </bf:identifiedBy>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
-  <xsl:template match="marc:controlfield[@tag='003']" mode="adminmetadata">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization= 'rdfxml'">
-        <bf:source>
-          <bf:Agent>
-            <xsl:if test=". = 'DLC'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
-            </xsl:if>
-            <bf:code><xsl:value-of select="."/></bf:code>
-          </bf:Agent>
-        </bf:source>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
+  
   <xsl:template match="marc:controlfield[@tag='005']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="changeDate" select="concat(substring(.,1,4),'-',substring(.,5,2),'-',substring(.,7,2),'T',substring(.,9,2),':',substring(.,11,2),':',substring(.,13,2))"/>

@@ -60,6 +60,9 @@
                 <bf:identifiedBy>
                   <bf:Local>
                     <rdf:value>13600108</rdf:value>
+                    <bf:assigner>
+                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                    </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
@@ -272,13 +275,11 @@
                 <bf:identifiedBy>
                   <bf:Local>
                     <rdf:value>5637241</rdf:value>
+                    <bf:assigner>
+                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                    </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:source>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:source>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
                 <bf:source>
@@ -516,6 +517,9 @@
                 <bf:identifiedBy>
                   <bf:Local>
                     <rdf:value>12149120</rdf:value>
+                    <bf:assigner>
+                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                    </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>

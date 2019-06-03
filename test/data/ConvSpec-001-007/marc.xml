@@ -9,10 +9,12 @@
   </record>
   <record>
     <controlfield tag="001">2</controlfield>
+    <controlfield tag="003">DLC</controlfield>
     <controlfield tag="007">co cga016aadda</controlfield>
   </record>
   <record>
     <controlfield tag="001">3</controlfield>
+    <controlfield tag="003"></controlfield>
     <controlfield tag="007">dc cef</controlfield>
   </record>
   <record>

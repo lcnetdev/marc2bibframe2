@@ -18,7 +18,10 @@
 
   <x:scenario label="003 - CONTROL NUMBER IDENTIFIER">
     <x:context href="data/ConvSpec-001-007/marc.xml"/>
-    <x:expect label="003 should set the AdminMetadata source property for the work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Agent/bf:code = 'DE-101'"/>
+    <x:expect label="003 should set the assigner for the Local identifier" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/bf:code = 'DE-101'"/>
+    <x:expect label="... but inject URI if 003 value is DLC" test="//bf:Work[2]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="... or inject URI if 003 value is empty string" test="//bf:Work[3]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="... or inject URI if there is no 003" test="//bf:Work[4]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
   </x:scenario>
 
   <x:scenario label="005 - DATE AND TIME OF LAST TRANSACTION">
