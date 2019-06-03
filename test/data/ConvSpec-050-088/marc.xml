@@ -57,6 +57,10 @@
       <subfield code="x">.630</subfield>
       <subfield code="2">mesh</subfield>
     </datafield>
+    <datafield tag="072" ind1=" " ind2="7">
+      <subfield code="a">ARC000000</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
     <datafield tag="074" ind1=" " ind2=" ">
       <subfield code="a">1022-A</subfield>
       <subfield code="z">1012-A</subfield>

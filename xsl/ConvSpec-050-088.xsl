@@ -341,7 +341,6 @@
 
   <xsl:template match="marc:datafield[@tag='072' or @tag='880']" mode="work072">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSubjectValue">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='x']" mode="concat-nodes-space"/>
     </xsl:variable>
@@ -349,28 +348,32 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:subject>
           <bf:Topic>
-            <bf:classification>
-              <bf:Classification>
-                <bf:classificationPortion>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="normalize-space($vSubjectValue)"/>
-                </bf:classificationPortion>
-              </bf:Classification>
-            </bf:classification>
+            <bf:code><xsl:value-of select="normalize-space($vSubjectValue)"/></bf:code>
             <xsl:choose>
               <xsl:when test="@ind2 = '0'">
                 <bf:source>
                   <bf:Source>
-                    <rdfs:label>agricola</rdfs:label>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/classSchemes/agricola</xsl:attribute>
                   </bf:Source>
                 </bf:source>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
+                <xsl:for-each select="marc:subfield[@code='2']">
+                  <xsl:choose>
+                    <xsl:when test="text()='bisacsh'">
+                      <bf:source>
+                        <bf:Source>
+                          <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/classSchemes/bisacsh</xsl:attribute>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates select="." mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:for-each>
               </xsl:otherwise>
             </xsl:choose>
           </bf:Topic>
