@@ -230,23 +230,52 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:classification>
-          <bf:ClassificationNlm>
-            <xsl:for-each select="marc:subfield[@code='a']">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+          <xsl:variable name="vCurrentNodeUri">
+            <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+              <xsl:if test="position() = 1">
+                <xsl:choose>
+                  <xsl:when test="starts-with(.,'(uri)')">
+                    <xsl:value-of select="substring-after(.,'(uri)')"/>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+          <bf:classification>
+            <bf:ClassificationNlm>
+              <xsl:if test="$vCurrentNodeUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+              </xsl:if>
               <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
-            </xsl:for-each>
-            <xsl:if test="@ind2 = '0'">
-              <bf:source>
-                <bf:Source>
-                  <rdfs:label>National Library of Medicine</rdfs:label>
-                </bf:Source>
-              </bf:source>
-            </xsl:if>
-          </bf:ClassificationNlm>
-        </bf:classification>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
+                </xsl:for-each>
+              </xsl:if>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:source>
+                  <bf:Source>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
+                    <rdfs:label>National Library of Medicine</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </xsl:if>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates select="." mode="subfield0orw">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:ClassificationNlm>
+          </bf:classification>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -505,7 +534,7 @@
   
   <!-- instance match for fields 074, 088 in ConvSpec-010-048.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='050' or @tag='060']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='050']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
@@ -594,24 +623,4 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='060']" mode="newItem">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pItemUri"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="@ind1='0'">
-          <bf:Item>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
-            <bf:heldBy>
-              <bf:Agent>
-                <rdfs:label>National Library of Medicine</rdfs:label>
-              </bf:Agent>
-            </bf:heldBy>
-          </bf:Item>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-  
 </xsl:stylesheet>
