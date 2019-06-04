@@ -23,6 +23,9 @@
       <subfield code="a">IBM PC</subfield>
       <subfield code="b">Pascal</subfield>
       <subfield code="c">DOS 1.1</subfield>
+      <subfield code="0">(uri)http://example.org/platform/obsolete</subfield>
+      <subfield code="0">(uri)http://example.com/platform/obsolete</subfield>
+      <subfield code="2">exampleplatform</subfield>
     </datafield>
   </record>
 </collection>
