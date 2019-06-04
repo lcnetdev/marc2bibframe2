@@ -1049,10 +1049,10 @@
     <xsl:variable name="vAddInstanceType">
       <xsl:choose>
         <xsl:when test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 's'">
-          <xsl:if test="pInstanceType != 'Electronic'">Electronic</xsl:if>
+          <xsl:if test="$pInstanceType != 'Electronic'">Electronic</xsl:if>
         </xsl:when>
         <xsl:when test="substring($dataElements,6,1) = 'r'">
-          <xsl:if test="pInstanceType != 'Print'">Print</xsl:if>
+          <xsl:if test="$pInstanceType != 'Print'">Print</xsl:if>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
