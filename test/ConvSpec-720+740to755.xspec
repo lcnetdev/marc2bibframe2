@@ -32,9 +32,10 @@
   
   <x:scenario label="753 - SYSTEM DETAILS ACCESS TO COMPUTER FILES">
     <x:context href="data/ConvSpec-720+740to755/marc.xml"/>
-    <x:expect label="$a creates a systemRequirement/bflc:MachineModel property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bflc:MachineModel/rdfs:label = 'IBM PC'"/>
-    <x:expect label="$b creates a systemRequirement/bflc:ProgrammingLanguage property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[2]/bflc:ProgrammingLanguage/rdfs:label = 'Pascal'"/>
-    <x:expect label="$c creates a systemRequirement/bflc:OperatingSystem property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[3]/bflc:OperatingSystem/rdfs:label = 'DOS 1.1'"/>
+    <x:expect label="$abc create a systemRequirement/SystemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'IBM PC Pascal DOS 1.1'"/>
+    <x:expect label="First $0 sets the URI of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/@rdf:about = 'http://example.org/platform/obsolete'"/>
+    <x:expect label="Additional $0s create an identifiedBy property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/platform/obsolete'"/>
+    <x:expect label="$2 creates a source property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bf:source[1]/bf:Source/rdfs:label = 'exampleplatform'"/>
   </x:scenario>
   
 </x:description>
