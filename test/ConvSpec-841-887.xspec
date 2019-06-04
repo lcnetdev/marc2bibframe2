@@ -14,8 +14,14 @@
     <x:scenario label="If ind1 = #, 0, 1, or 8">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
       <x:expect label="If Instance is Electronic, 856 creates an Item of the Instance" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/@rdf:about = 'http://example.org/2#Item856-5'"/>
-      <x:expect label="...otherwise, 856 creates a new Instance of the Work" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance/bf:Instance) = 1"/>
-      <x:expect label="...with an Item" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance/bf:Instance/bf:hasItem/bf:Item) = 1"/>
+      <x:expect label="...$u creates an electronicLocator property of the Item" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook.html'"/>
+      <x:expect label="...if there are $z, $y, or $3, object of electronicLocator is a bnode" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:electronicLocator/*/bflc:locator/@rdf:resource = 'http://example.org/fakebook.html'"/>
+      <x:expect label="...$z, $y, and $3 create notes of the bnode" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:electronicLocator/*/bf:note[1]/bf:Note/rdfs:label = 'Click here for access'"/>
+      <x:expect label="If Instance is not Electronic, 856 creates a new Instance of the Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/rdf:type[1]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Electronic'"/>
+      <x:expect label="...with an Item" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem[1]/bf:Item/@rdf:about = 'http://example.org/1#Item856-5'"/>
+      <x:expect label="...$u creates an electronicLocator property of the Item" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
+      <x:expect label="...if there are $z, $y, or $3, object of electronicLocator is a bnode" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[2]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/*/bflc:target/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
+      <x:expect label="...$z, $y, and $3 create notes of the bnode" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[2]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/*/bf:note[1]/bf:Note/rdfs:label = 'Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text'"/>
     </x:scenario>
     <x:scenario label="If ind1 = 2">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
@@ -24,13 +30,13 @@
     <x:scenario label="electronicLocator/supplementaryContent object">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
       <x:expect label="$u with no $zy or $3 creates an electronicLocator property of the Item with rdf:resource = '$u'" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook.html'"/>
-      <x:expect label="...otherwise it creates a blank node with a bflc:locator property from $u" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/rdfs:Resource/bflc:locator/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
+      <x:expect label="...otherwise it creates a blank node with a bflc:locator property from $u" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[2]/bf:Instance/bf:hasItem/bf:Item/bf:electronicLocator/rdfs:Resource/bflc:target/@rdf:resource = 'http://www.ref.oclc.org:2000'"/>
       <x:expect label="...with notes generated from $z/y/3" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Finding aid'"/>
     </x:scenario>
     <!-- to test 859 conversion, uncomment this scenario and set the stylesheet parameter "localfields" -->
     <!-- <x:scenario label="859 (LoC local field parsed like 856)"> -->
     <!--   <x:context href="data/ConvSpec-841-887/marc.xml"/> -->
-    <!--   <x:expect label="859 processed same as 856" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook2.html'"/> -->
+    <!--   <x:expect label="859 processed same as 856" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[3]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://example.org/fakebook2.html'"/> -->
     <!-- </x:scenario> -->
   </x:scenario>
 

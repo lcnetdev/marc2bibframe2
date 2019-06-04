@@ -22,6 +22,9 @@
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
       <subfield code="u">http://www.ref.oclc.org:2000</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">http://www.ref.oclc.org:2000</subfield>
       <subfield code="z">Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="2">
@@ -39,6 +42,10 @@
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
       <subfield code="u">http://example.org/fakebook.html</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">http://example.org/fakebook.html</subfield>
+      <subfield code="y">Click here for access</subfield>
     </datafield>
     <datafield tag="859" ind1="4" ind2="0">
       <subfield code="u">http://example.org/fakebook2.html</subfield>

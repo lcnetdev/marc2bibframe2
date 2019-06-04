@@ -80,6 +80,7 @@
                   <xsl:apply-templates select="." mode="locator856">
                     <xsl:with-param name="serialization" select="$serialization"/>
                     <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
+                    <xsl:with-param name="pLocatorProp">bflc:target</xsl:with-param>
                   </xsl:apply-templates>
                   <bf:itemOf>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
@@ -126,6 +127,7 @@
           <xsl:apply-templates select="." mode="locator856">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pProp">bf:supplementaryContent</xsl:with-param>
+            <xsl:with-param name="pLocatorProp">bflc:locator</xsl:with-param>
           </xsl:apply-templates>
         </xsl:when>
       </xsl:choose>
@@ -174,6 +176,7 @@
               <xsl:apply-templates select="." mode="locator856">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
+                <xsl:with-param name="pLocatorProp">bflc:locator</xsl:with-param>
               </xsl:apply-templates>
               <bf:itemOf>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
@@ -187,7 +190,8 @@
 
   <xsl:template match="marc:datafield" mode="locator856">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pProp"/>
+    <xsl:param name="pProp" select="'bf:electronicLocator'"/>
+    <xsl:param name="pLocatorProp" select="'bflc:locator'"/>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='u']">
@@ -195,9 +199,9 @@
             <xsl:choose>
               <xsl:when test="../marc:subfield[@code='z' or @code='y' or @code='3']">
                 <rdfs:Resource>
-                  <bflc:locator>
+                  <xsl:element name="{$pLocatorProp}">
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-                  </bflc:locator>
+                  </xsl:element>
                   <xsl:for-each select="../marc:subfield[@code='z' or @code='y' or @code='3']">
                     <bf:note>
                       <bf:Note>
