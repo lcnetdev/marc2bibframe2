@@ -584,9 +584,10 @@
               <bf:ClassificationDdc>
                 <bf:classificationPortion>975.3</bf:classificationPortion>
                 <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc13</bf:edition>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:edition>abridged</bf:edition>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
               </bf:ClassificationDdc>
             </bf:classification>
             <rdfs:label>The White House</rdfs:label>

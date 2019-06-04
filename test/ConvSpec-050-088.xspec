@@ -100,7 +100,8 @@
     <x:expect label="$2 creates an edition property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:edition[1] = 'http://id.loc.gov/vocabulary/classSchemes/ddc22'"/>
     <x:expect label="...with an xs:anyURI datatype" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:edition[1]/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#anyURI'"/>
     <x:expect label="...unless it isn't a 2-digit number" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationDdc/bf:edition[1] = '22/ger'"/>
-    <x:expect label="ind2 can set a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="ind1 creates an edition property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:edition[2] = 'full'"/>
+    <x:expect label="ind2 can set an assigner property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
   </x:scenario>
 
   <x:scenario label="084 - OTHER CLASSIFICATION NUMBER">
