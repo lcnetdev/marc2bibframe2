@@ -53,8 +53,15 @@
         <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
+    <xsl:variable name="vTopicUri">
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Topic</xsl:with-param>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:apply-templates mode="work630" select=".">
       <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
@@ -63,7 +70,15 @@
   <xsl:template match="marc:datafield" mode="work630">
     <xsl:param name="recordid"/>
     <xsl:param name="workiri"/>
+    <xsl:param name="pTopicUri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
@@ -110,52 +125,121 @@
           </xsl:choose>
         </xsl:variable>
         <bf:subject>
-          <bf:Work>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-            <rdf:type>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
-            </rdf:type>
-            <madsrdf:authoritativeLabel><xsl:value-of select="$vMADSLabel"/></madsrdf:authoritativeLabel>
-            <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
-              <madsrdf:isMemberOfMADSScheme>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-              </madsrdf:isMemberOfMADSScheme>
-            </xsl:for-each>                  
-            <xsl:if test="$vSource != ''">
-              <xsl:copy-of select="$vSource"/>
-            </xsl:if>
-            <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pMode">relationship</xsl:with-param>
-              <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
-            </xsl:apply-templates>
-            <xsl:for-each select="marc:subfield[@code='4']">
-              <xsl:variable name="encoded">
-                <xsl:call-template name="url-encode">
-                  <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-                </xsl:call-template>
-              </xsl:variable>
-              <bflc:relationship>
-                <bflc:Relationship>
-                  <bflc:relation>
-                    <bflc:Relation>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
-                    </bflc:Relation>
-                  </bflc:relation>
-                  <bf:relatedTo>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                  </bf:relatedTo>
-                </bflc:Relationship>
-              </bflc:relationship>
-            </xsl:for-each>
-            <xsl:apply-templates select="." mode="workUnifTitle">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </bf:Work>
+          <xsl:choose>
+            <xsl:when test="$vMADSClass='ComplexSubject'">
+              <bf:Topic>
+                <xsl:if test="$pTopicUri != ''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
+                </xsl:if>
+                <rdf:type>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
+                </rdf:type>
+                <madsrdf:authoritativeLabel>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vMADSLabel"/>
+                </madsrdf:authoritativeLabel>
+                <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
+                  <madsrdf:isMemberOfMADSScheme>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  </madsrdf:isMemberOfMADSScheme>
+                </xsl:for-each>                  
+                <xsl:if test="$vSource != ''">
+                  <xsl:copy-of select="$vSource"/>
+                </xsl:if>
+                <!-- build the ComplexSubject -->
+                <madsrdf:componentList rdf:parseType="Collection">
+                  <xsl:apply-templates select="." mode="work630Work">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="workiri" select="$workiri"/>
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                    <xsl:with-param name="pMADSClass" select="Title"/>
+                    <xsl:with-param name="pMADSLabel">
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString" select="normalize-space($vTitleLabel)"/>
+                        <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                      </xsl:call-template>
+                    </xsl:with-param>
+                    <xsl:with-param name="pSource" select="$vSource"/>
+                  </xsl:apply-templates>
+                  <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pTag" select="$vTag"/>
+                    <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                  </xsl:apply-templates>
+                </madsrdf:componentList>
+              </bf:Topic>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="work630Work">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="workiri" select="$workiri"/>
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="pMADSClass" select="Title"/>
+                <xsl:with-param name="pMADSLabel" select="$vMADSLabel"/>
+                <xsl:with-param name="pSource" select="$vSource"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
         </bf:subject>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="work630Work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="workiri"/>
+    <xsl:param name="pMADSClass"/>
+    <xsl:param name="pMADSLabel"/>
+    <xsl:param name="pSource"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:Work>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
+          </rdf:type>
+          <madsrdf:authoritativeLabel><xsl:value-of select="$pMADSLabel"/></madsrdf:authoritativeLabel>
+          <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
+            <madsrdf:isMemberOfMADSScheme>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+            </madsrdf:isMemberOfMADSScheme>
+          </xsl:for-each>                  
+          <xsl:if test="$pSource != ''">
+            <xsl:copy-of select="$pSource"/>
+          </xsl:if>
+          <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pMode">relationship</xsl:with-param>
+            <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
+          </xsl:apply-templates>
+          <xsl:for-each select="marc:subfield[@code='4']">
+            <xsl:variable name="encoded">
+              <xsl:call-template name="url-encode">
+                <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
+                  </bflc:Relation>
+                </bflc:relation>
+                <bf:relatedTo>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+                </bf:relatedTo>
+              </bflc:Relationship>
+            </bflc:relationship>
+          </xsl:for-each>
+          <xsl:apply-templates select="." mode="workUnifTitle">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </bf:Work>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>    
   
   <xsl:template match="marc:datafield[@tag='730' or @tag='740']" mode="work">
     <xsl:param name="recordid"/>

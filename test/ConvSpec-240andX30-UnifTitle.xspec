@@ -26,8 +26,8 @@
     <x:expect label="130/240 becomes a title of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture'"/>
     <x:expect label="6XX/7XX/8XX $t creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/1#Work700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/2#Work730-4']) = 1"/>
-    <x:expect label="630 becomes a subject/Work of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly'"/>
-    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted.'"/>
+    <x:expect label="630 becomes a subject of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly'"/>
+    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted.'"/>
     <x:expect label="730 I2=2 becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Bible'"/>
     <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = '[Motets]'"/>
     <x:expect label="$i becomes a bflc:relationship of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label='Parody of (work)' and //bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bf:relatedTo='http://example.org/2#Work730-5'"/>
@@ -45,9 +45,9 @@
     <x:expect label="$r becomes a musicKey" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:musicKey = 'D major'"/>
     <x:expect label="$s becomes a version" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bf:version = 'Codex Sinaiticus'"/>
     <x:expect label="$x becomes an Issn" test="//bf:Work[@rdf:about='http://example.org/2#Work730-5']/bf:identifiedBy/bf:Issn = '1234-5678'"/>
-    <x:expect label="$2 becomes a source" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/bf:source/bf:Source/rdfs:label='example'"/>
+    <x:expect label="$2 becomes a source" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bf:source/bf:Source/rdfs:label='example'"/>
     <x:expect label="$0 becomes an identifiedBy" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:identifiedBy[1]/bf:Identifier/rdf:value = '0001'"/>
-    <x:expect label="$0/$w, if a URI, becomes the rdf:about attribute of the bf:Work for 630, 730, 830" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Work/@rdf:about = 'http://example.org/9999#Work'"/>
+    <x:expect label="$0/$w, if a URI, becomes the rdf:about attribute of the bf:Work for 630, 730, 830" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/@rdf:about = 'http://example.org/9999#Work'"/>
     <x:expect label="$3 becomes a bflc:appliesTo" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1980'"/>
     <x:expect label="$5 becomes a bflc:applicableInstitution" test="//bf:Work[@rdf:about='http://example.org/2#Work730-5']/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
