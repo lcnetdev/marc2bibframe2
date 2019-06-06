@@ -19,6 +19,11 @@
       <subfield code="b">1850-1898.</subfield>
       <subfield code="t">Looking backward, 2000-1887.</subfield>
     </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Beethoven, Ludwig van,</subfield>
+      <subfield code="d">1770-1827</subfield>
+      <subfield code="c">(Spirit)</subfield>
+    </datafield>
     <datafield tag="700" ind1="1" ind2=" ">
       <subfield code="i">Parody of (work):</subfield>
       <subfield code="a">Carroll, Lewis,</subfield>
