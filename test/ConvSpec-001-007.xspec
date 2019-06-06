@@ -126,7 +126,7 @@
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[7]/bf:colorContent/bf:ColorContent/rdfs:label = 'multicolored'"/>
       <x:expect label="pos 4 may create a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/@rdf:about='http://id.loc.gov/vocabulary/mpresformat/sound'"/>
       <x:expect label="...with an rdfs:label " test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label = 'standard sound aperture (reduced frame)'"/>
-      <x:expect label="...or an aspectRatio/AspectRatio property of the Work" test="//bf:Work[8]/bf:aspectRatio/bf:AspectRatio[1]/@rdf:about = 'http://id.loc.gov/vocabulary/mmaspect/nonana'"/>
+      <x:expect label="...or an aspectRatio/AspectRatio property of the Work" test="//bf:Work[8]/bf:aspectRatio/bf:AspectRatio[1]/@rdf:about = 'http://id.loc.gov/vocabulary/maspect/nonana'"/>
       <x:expect label="...and a second" test="//bf:Work[8]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide-screen'"/>
       <x:expect label="pos 5 creates a soundContent/SoundContent property of the Instance" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/@rdf:about = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>

@@ -119,7 +119,7 @@
   <xsl:variable name="mrecmedium">http://id.loc.gov/vocabulary/mrecmedium/</xsl:variable>
   <xsl:variable name="mgeneration">http://id.loc.gov/vocabulary/mgeneration/</xsl:variable>
   <xsl:variable name="mpresformat">http://id.loc.gov/vocabulary/mpresformat/</xsl:variable>
-  <xsl:variable name="mmaspect">http://id.loc.gov/vocabulary/mmaspect/</xsl:variable>
+  <xsl:variable name="mmaspect">http://id.loc.gov/vocabulary/maspect/</xsl:variable>
   <xsl:variable name="mrectype">http://id.loc.gov/vocabulary/mrectype/</xsl:variable>
   <xsl:variable name="mspecplayback">http://id.loc.gov/vocabulary/mspecplayback/</xsl:variable>
   <xsl:variable name="mgroove">http://id.loc.gov/vocabulary/mgroove/</xsl:variable>
