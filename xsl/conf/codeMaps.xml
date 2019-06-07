@@ -404,7 +404,7 @@
   <!-- used in 007/03 for sound recordings -->
   <playbackSpeed>
     <a href="http://id.loc.gov/vocabulary/mplayspeed/a">16 rpm</a>
-    <b href="http://id.loc.gov/vocabulary/mplayspeed/b">13 1/3 rpm</b>
+    <b href="http://id.loc.gov/vocabulary/mplayspeed/b">33 1/3 rpm</b>
     <c href="http://id.loc.gov/vocabulary/mplayspeed/c">45 rpm</c>
     <d href="http://id.loc.gov/vocabulary/mplayspeed/d">78 rpm</d>
     <e href="http://id.loc.gov/vocabulary/mplayspeed/e">8 rpm</e>
