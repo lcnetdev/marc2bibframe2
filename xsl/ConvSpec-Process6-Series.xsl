@@ -127,7 +127,7 @@
                 </xsl:for-each>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:if test="substring($vTag,1,1)='8'">
+                <xsl:if test="substring($vTag,1,1)='8' and count(../marc:datafield[@tag='490' and @ind1 = '1']) &gt; 0">
                   <xsl:variable name="vIssn">
                     <xsl:call-template name="tIssn490">
                       <xsl:with-param name="pLastPos" select="$pCurrentPos"/>

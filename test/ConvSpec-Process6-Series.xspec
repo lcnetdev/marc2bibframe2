@@ -11,7 +11,7 @@
 
   <x:scenario label="490/8XX SERIES STATEMENT and SERIES ADDED ENTRY">
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
-    <x:expect label="Each 8XX creates a hasSeries/Work property of the Work" test="count(//bf:Work/bf:hasSeries/bf:Work) = 7"/>
+    <x:expect label="Each 8XX creates a hasSeries/Work property of the Work" test="count(//bf:Work/bf:hasSeries/bf:Work) = 9"/>
     <x:expect label="...with rdfs:label from all subfields except $vwx and control subfields" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/rdfs:label = 'Fernando, A. Denis N. Resource maps of Sri Lanka'"/>
     <x:expect label="8XX $t or 830 $a becomes title property of series Work" test="//bf:Work[2]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
     <x:expect label="8XX can create a contribution property of the series Work" test="//bf:Work[4]/bf:hasSeries[1]/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
@@ -26,6 +26,7 @@
     <x:expect label="8XX $7 sets the rdf:type of the series Work" test="//bf:Work[3]/bf:hasSeries/bf:Work/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Text'"/>
     <x:expect label="8XX $7 sets the issuance of the series Work" test="//bf:Work[3]/bf:hasSeries/bf:Work/bf:issuance/bf:Issuance/bf:code = 's'"/>
     <x:expect label="Subseries in 490 with repeated $a matches multiple 8XX" test="//bf:Work[4]/bf:hasSeries[2]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '2345-6789'"/>
+    <x:expect label="Two 830s, one 490 with $x - Subseries in 490 with single $a matches first 8XX (recursion issue, plus added scenario)" test="//bf:Work[6]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = 'issn123456789'"/>
     <x:expect label="Obsolete 4XX fields treated like 8XX without 490 match" test="//bf:Work[5]/bf:hasSeries[1]/bf:Work/rdfs:label = 'Fernando, A. Denis N. Resource maps of Sri Lanka'"/>
   </x:scenario>
 
