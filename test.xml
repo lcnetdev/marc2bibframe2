@@ -1,0 +1,118 @@
+<record xmlns="http://www.loc.gov/MARC21/slim">
+    <leader>01799pam a2200397 a 4500</leader>
+    <controlfield tag="001">4417401</controlfield>
+    <controlfield tag="005">20140910095539.0</controlfield>
+    <controlfield tag="008">931203s1994    caua     b    001 0 eng  </controlfield>
+    <datafield tag="906" ind1=" " ind2=" ">
+      <subfield code="a">7</subfield>
+      <subfield code="b">cbc</subfield>
+      <subfield code="c">orignew</subfield>
+      <subfield code="d">1</subfield>
+      <subfield code="e">ocip</subfield>
+      <subfield code="f">19</subfield>
+      <subfield code="g">y-gencatlg</subfield>
+    </datafield>
+    <datafield tag="925" ind1="0" ind2=" ">
+      <subfield code="a">acquire</subfield>
+      <subfield code="b">1 shelf copy</subfield>
+      <subfield code="x">policy default</subfield>
+    </datafield>
+    <datafield tag="955" ind1=" " ind2=" ">
+      <subfield code="a">pc19 to sa00 12-06-93; sb17 12-06-93 (descrip.); sb11 12-07-93; sb21 93-48623; aa21 12-08-93; CIP ver sb24 09-12-94</subfield>
+    </datafield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   93048623 </subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1555426573</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">(DLC)   93048623</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">DLC</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">H97</subfield>
+      <subfield code="b">.H358 1994</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="0">
+      <subfield code="a">658.4</subfield>
+      <subfield code="2">20</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Handbook of practical program evaluation /</subfield>
+      <subfield code="c">Joseph S. Wholey, Harry P. Hatry, Kathryn E. Newcomer, editors.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">1st ed.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">San Francisco :</subfield>
+      <subfield code="b">Jossey-Bass,</subfield>
+      <subfield code="c">c1994.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">xxiii, 622 p. :</subfield>
+      <subfield code="b">ill. ;</subfield>
+      <subfield code="c">26 cm.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Policy sciences.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Political planning</subfield>
+      <subfield code="x">Evaluation.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Wholey, Joseph S.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Hatry, Harry P.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Newcomer, Kathryn E.,</subfield>
+      <subfield code="d">1949-</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Jossey-Bass public administration series.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Jossey-Bass nonprofit sector series.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Jossey-Bass social and behavioral science series.</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="2">
+      <subfield code="3">Contributor biographical information</subfield>
+      <subfield code="u">http://www.loc.gov/catdir/bios/wiley043/93048623.html</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="2">
+      <subfield code="3">Publisher description</subfield>
+      <subfield code="u">http://www.loc.gov/catdir/description/wiley036/93048623.html</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2=" ">
+      <subfield code="3">Table of Contents</subfield>
+      <subfield code="u">http://www.loc.gov/catdir/toc/onix07/93048623.html</subfield>
+    </datafield>
+    <datafield tag="922" ind1=" " ind2=" ">
+      <subfield code="a">adco</subfield>
+    </datafield>
+    <datafield tag="991" ind1=" " ind2=" ">
+      <subfield code="b">c-GenColl</subfield>
+      <subfield code="h">H97</subfield>
+      <subfield code="i">.H358 1994</subfield>
+      <subfield code="p">00019044853</subfield>
+      <subfield code="t">Copy 1</subfield>
+      <subfield code="w">BOOKS</subfield>
+    </datafield>
+  </record>
+

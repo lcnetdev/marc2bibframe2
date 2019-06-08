@@ -195,7 +195,16 @@
                 </xsl:call-template>
               </xsl:if>
             </xsl:for-each>
-            <xsl:if test="$pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &lt; $pLastPos">
+            <!-- 
+                If there is no 490 that corresponds with the current node, then there is no point 
+                continuing because it will never return a value.  Instead, it will result in 
+                a horrific recursion event that results in either the transformation hanging
+                foreever or error output and a failed transformation.
+            -->
+            <xsl:if test="
+                    count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &gt; 0 and
+                    $pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &lt; $pLastPos"
+                >
               <xsl:call-template name="tIssn490">
                 <xsl:with-param name="pCurrentPos" select="$pCurrentPos + 1"/>
                 <xsl:with-param name="pLastPos" select="$pLastPos"/>
