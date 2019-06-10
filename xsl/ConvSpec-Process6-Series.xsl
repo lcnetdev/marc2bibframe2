@@ -153,68 +153,66 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      extract ISSN for series from matching 490
+      if there is no matching 490 (or the matching 490 has no $x),
+      return empty string
+  -->
   <xsl:template name="tIssn490">
     <xsl:param name="pCurrentPos" select="1"/>
     <xsl:param name="pLastPos"/>
     <xsl:param name="pCompositePos" select="1"/>
-    <xsl:choose>
-      <xsl:when test="$pCompositePos &lt;= $pLastPos">
-        <xsl:variable name="vParallel">
-          <xsl:choose>
-            <xsl:when test="substring(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'][1],string-length(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'][1])) = '=' or
-                            substring(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='v'][1],string-length(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='v'][1])) = '='">
-              <xsl:text>parallel</xsl:text>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$vParallel != ''">
+    <xsl:if test="../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']">
+      <xsl:choose>
+        <xsl:when test="$pCompositePos &lt;= $pLastPos">
+          <xsl:variable name="vParallel">
             <xsl:choose>
-              <xsl:when test="$pCompositePos=$pLastPos">
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='x'][1]"/>
-                  <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
-                </xsl:call-template>
+              <xsl:when test="substring(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'][1],string-length(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'][1])) = '=' or
+                              substring(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='v'][1],string-length(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='v'][1])) = '='">
+                <xsl:text>parallel</xsl:text>
               </xsl:when>
-              <xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="$vParallel != ''">
+              <xsl:choose>
+                <xsl:when test="$pCompositePos=$pLastPos">
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='x'][1]"/>
+                    <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:call-template name="tIssn490">
+                    <xsl:with-param name="pCurrentPos" select="$pCurrentPos + 1"/>
+                    <xsl:with-param name="pLastPos" select="$pLastPos"/>
+                    <xsl:with-param name="pCompositePos" select="$pCompositePos + 1"/>
+                  </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:for-each select="../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']">
+                <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+                <xsl:if test="$pCompositePos + position() - 1 = $pLastPos">
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="following-sibling::marc:subfield[@code='x' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
+                    <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                  </xsl:call-template>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:if test="$pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &lt; $pLastPos">
                 <xsl:call-template name="tIssn490">
                   <xsl:with-param name="pCurrentPos" select="$pCurrentPos + 1"/>
                   <xsl:with-param name="pLastPos" select="$pLastPos"/>
-                  <xsl:with-param name="pCompositePos" select="$pCompositePos + 1"/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:for-each select="../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']">
-              <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
-              <xsl:if test="$pCompositePos + position() - 1 = $pLastPos">
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="following-sibling::marc:subfield[@code='x' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
-                  <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                  <xsl:with-param name="pCompositePos" select="$pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'])"/>
                 </xsl:call-template>
               </xsl:if>
-            </xsl:for-each>
-            <!-- 
-                If there is no 490 that corresponds with the current node, then there is no point 
-                continuing because it will never return a value.  Instead, it will result in 
-                a horrific recursion event that results in either the transformation hanging
-                foreever or error output and a failed transformation.
-            -->
-            <xsl:if test="
-                    count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &gt; 0 and
-                    $pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']) &lt; $pLastPos"
-                >
-              <xsl:call-template name="tIssn490">
-                <xsl:with-param name="pCurrentPos" select="$pCurrentPos + 1"/>
-                <xsl:with-param name="pLastPos" select="$pLastPos"/>
-                <xsl:with-param name="pCompositePos" select="$pCompositePos + count(../marc:datafield[@tag='490' and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a'])"/>
-              </xsl:call-template>
-            </xsl:if>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-    </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or @tag='400' or @tag='410' or @tag='411' or @tag='440']" mode="instance">
