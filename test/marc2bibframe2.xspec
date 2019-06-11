@@ -244,7 +244,7 @@
         </rdf:RDF>
       </x:expect>
     </x:scenario>
-    <x:scenario label="Simple collection transform">
+    <x:scenario label="Simple collection transform (if this hangs, kill the test and check for a recursion/inifinte loop issue)">
       <x:context href="data/collection.xml"/>
       <x:expect label="should match expected">
         <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
@@ -803,6 +803,356 @@
                   </rdfs:Resource>
                 </bf:electronicLocator>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
+              </bf:Item>
+            </bf:hasItem>
+          </bf:Instance>
+          <bf:Work rdf:about="http://example.org/4417401#Work">
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:generationProcess>
+                  <bf:GenerationProcess>
+                    <rdfs:label>DLC marc2bibframe2 v1.5.0-SNAPSHOT</rdfs:label>
+                  </bf:GenerationProcess>
+                </bf:generationProcess>
+                <bf:status>
+                  <bf:Status>
+                    <rdfs:label>increase in encoding level from prepublication</rdfs:label>
+                    <bf:code>p</bf:code>
+                  </bf:Status>
+                </bf:status>
+                <bflc:encodingLevel>
+                  <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
+                    <rdfs:label>full</rdfs:label>
+                  </bflc:EncodingLevel>
+                </bflc:encodingLevel>
+                <bf:descriptionConventions>
+                  <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
+                    <rdfs:label>aacr</rdfs:label>
+                  </bf:DescriptionConventions>
+                </bf:descriptionConventions>
+                <bf:identifiedBy>
+                  <bf:Local>
+                    <rdf:value>4417401</rdf:value>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
+                  </bf:Local>
+                </bf:identifiedBy>
+                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:changeDate>
+                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1993-12-03</bf:creationDate>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                    <rdfs:label>DLC</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
+                    <rdfs:label>DLC</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+                <bf:descriptionModifier>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <rdfs:label>DLC</rdfs:label>
+                  </bf:Agent>
+                </bf:descriptionModifier>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
+            <bf:language>
+              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
+            </bf:language>
+            <bf:illustrativeContent>
+              <bf:Illustration rdf:about="http://id.loc.gov/vocabulary/millus/ill">
+                <rdfs:label>illustrations</rdfs:label>
+              </bf:Illustration>
+            </bf:illustrativeContent>
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026048">
+                <rdfs:label>bibliographies</rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/index">
+                <rdfs:label>Index present</rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   93048623 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:source>
+                <bf:classificationPortion>H97</bf:classificationPortion>
+                <bf:itemPortion>.H358 1994</bf:itemPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
+            <bf:classification>
+              <bf:ClassificationDdc>
+                <bf:classificationPortion>658.4</bf:classificationPortion>
+                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc20</bf:edition>
+                <bf:edition>full</bf:edition>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
+              </bf:ClassificationDdc>
+            </bf:classification>
+            <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+            <bf:title>
+              <bf:Title>
+                <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+                <bflc:titleSortKey>Handbook of practical program evaluation</bflc:titleSortKey>
+                <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent>
+                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
+            <bf:subject>
+              <bf:Topic rdf:about="http://example.org/4417401#Topic650-20">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
+                <rdfs:label>Policy sciences.</rdfs:label>
+                        <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+              </bf:Topic>
+            </bf:subject>
+            <bf:subject>
+              <bf:Topic rdf:about="http://example.org/4417401#Topic650-21">
+                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>
+                <rdfs:label>Political planning--Evaluation.</rdfs:label>
+                <madsrdf:authoritativeLabel>Political planning--Evaluation.</madsrdf:authoritativeLabel>
+                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
+                <madsrdf:componentList rdf:parseType="Collection">
+                  <madsrdf:Topic>
+                    <madsrdf:authoritativeLabel>Political planning</madsrdf:authoritativeLabel>
+                  </madsrdf:Topic>
+                  <madsrdf:Topic>
+                    <madsrdf:authoritativeLabel>Evaluation</madsrdf:authoritativeLabel>
+                  </madsrdf:Topic>
+                </madsrdf:componentList>
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>lcsh</bf:code>
+                  </bf:Source>
+                </bf:source>
+              </bf:Topic>
+            </bf:subject>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/4417401#Agent700-22">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+                    <bflc:name00MatchKey>Wholey, Joseph S.</bflc:name00MatchKey>
+                    <bflc:name00MarcKey>7001 $aWholey, Joseph S.</bflc:name00MarcKey>
+                    <rdfs:label>Wholey, Joseph S.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:role>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                </bf:role>
+              </bf:Contribution>
+            </bf:contribution>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/4417401#Agent700-23">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+                    <bflc:name00MatchKey>Hatry, Harry P.</bflc:name00MatchKey>
+                    <bflc:name00MarcKey>7001 $aHatry, Harry P.</bflc:name00MarcKey>
+                    <rdfs:label>Hatry, Harry P.</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:role>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                </bf:role>
+              </bf:Contribution>
+            </bf:contribution>
+            <bf:contribution>
+              <bf:Contribution>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://example.org/4417401#Agent700-24">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+                    <bflc:name00MatchKey>Newcomer, Kathryn E., 1949-</bflc:name00MatchKey>
+                    <bflc:name00MarcKey>7001 $aNewcomer, Kathryn E.,$d1949-</bflc:name00MarcKey>
+                    <rdfs:label>Newcomer, Kathryn E., 1949-</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:role>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                </bf:role>
+              </bf:Contribution>
+            </bf:contribution>
+            <bf:hasSeries>
+              <bf:Work rdf:about="http://example.org/4417401#Work830-25">
+                <rdfs:label>Jossey-Bass public administration series.</rdfs:label>
+                <bf:title>
+                  <bf:Title>
+                    <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
+                    <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
+                  </bf:Title>
+                </bf:title>
+              </bf:Work>
+            </bf:hasSeries>
+            <bf:hasSeries>
+              <bf:Work rdf:about="http://example.org/4417401#Work830-26">
+                <rdfs:label>Jossey-Bass nonprofit sector series.</rdfs:label>
+                <bf:title>
+                  <bf:Title>
+                    <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
+                    <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
+                  </bf:Title>
+                </bf:title>
+              </bf:Work>
+            </bf:hasSeries>
+            <bf:hasSeries>
+              <bf:Work rdf:about="http://example.org/4417401#Work830-27">
+                <rdfs:label>Jossey-Bass social and behavioral science series.</rdfs:label>
+                <bf:title>
+                  <bf:Title>
+                    <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
+                    <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
+                  </bf:Title>
+                </bf:title>
+              </bf:Work>
+            </bf:hasSeries>
+            <bf:hasInstance>
+              <bf:Instance rdf:about="http://example.org/4417401#Instance856-30">
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
+                <bf:title>
+                  <bf:Title>
+                    <rdfs:label>Handbook of practical program evaluation /</rdfs:label>
+                    <bflc:titleSortKey>Handbook of practical program evaluation /</bflc:titleSortKey>
+                    <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
+                  </bf:Title>
+                </bf:title>
+                <bf:hasItem>
+                  <bf:Item rdf:about="http://example.org/4417401#Item856-30">
+                    <bf:electronicLocator>
+                      <rdfs:Resource>
+                        <bflc:target rdf:resource="http://www.loc.gov/catdir/toc/onix07/93048623.html"/>
+                        <bf:note>
+                          <bf:Note>
+                            <rdfs:label>Table of Contents</rdfs:label>
+                          </bf:Note>
+                        </bf:note>
+                      </rdfs:Resource>
+                    </bf:electronicLocator>
+                    <bf:itemOf rdf:resource="http://example.org/4417401#Instance856-30"/>
+                  </bf:Item>
+                </bf:hasItem>
+                <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
+              </bf:Instance>
+            </bf:hasInstance>
+            <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
+          </bf:Work>
+          <bf:Instance rdf:about="http://example.org/4417401#Instance">
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print"/>
+            <bf:issuance>
+              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
+            </bf:issuance>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                        <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1994</bf:date>
+                <bf:place>
+                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/cau"/>
+                </bf:place>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
+            <bf:identifiedBy>
+              <bf:Lccn>
+                <rdf:value>   93048623 </rdf:value>
+              </bf:Lccn>
+            </bf:identifiedBy>
+            <bf:identifiedBy>
+              <bf:Isbn>
+                <rdf:value>1555426573</rdf:value>
+              </bf:Isbn>
+            </bf:identifiedBy>
+                    <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+            <bf:title>
+              <bf:Title>
+                <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+                <bflc:titleSortKey>Handbook of practical program evaluation</bflc:titleSortKey>
+                <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
+            <bf:responsibilityStatement>Joseph S. Wholey, Harry P. Hatry, Kathryn E. Newcomer, editors</bf:responsibilityStatement>
+            <bf:editionStatement>1st ed</bf:editionStatement>
+            <bf:provisionActivity>
+              <bf:ProvisionActivity>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+                <bf:place>
+                  <bf:Place>
+                    <rdfs:label>San Francisco</rdfs:label>
+                  </bf:Place>
+                        </bf:place>
+                <bf:agent>
+                  <bf:Agent>
+                    <rdfs:label>Jossey-Bass</rdfs:label>
+                  </bf:Agent>
+                </bf:agent>
+                <bf:date>c1994</bf:date>
+              </bf:ProvisionActivity>
+            </bf:provisionActivity>
+            <bf:provisionActivityStatement>San Francisco : Jossey-Bass, c1994.</bf:provisionActivityStatement>
+            <bf:extent>
+              <bf:Extent>
+                <rdfs:label>xxiii, 622 p.</rdfs:label>
+              </bf:Extent>
+            </bf:extent>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>Physical details</bf:noteType>
+                <rdfs:label>ill.</rdfs:label>
+              </bf:Note>
+            </bf:note>
+            <bf:dimensions>26 cm.</bf:dimensions>
+                    <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:supplementaryContent>
+              <rdfs:Resource>
+                <bflc:locator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html"/>
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>Contributor biographical information</rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </rdfs:Resource>
+            </bf:supplementaryContent>
+            <bf:supplementaryContent>
+              <rdfs:Resource>
+                <bflc:locator rdf:resource="http://www.loc.gov/catdir/description/wiley036/93048623.html"/>
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>Publisher description</rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </rdfs:Resource>
+            </bf:supplementaryContent>
+            <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
+            <bf:hasItem>
+              <bf:Item rdf:about="http://example.org/4417401#Item050-12">
+                <bf:shelfMark>
+                  <bf:ShelfMarkLcc>
+                    <rdfs:label>H97.H358 1994</rdfs:label>
+                    <bf:source>
+                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:source>
+                  </bf:ShelfMarkLcc>
+                </bf:shelfMark>
+                <bf:itemOf rdf:resource="http://example.org/4417401#Instance"/>
               </bf:Item>
             </bf:hasItem>
           </bf:Instance>

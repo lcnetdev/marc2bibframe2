@@ -74,4 +74,22 @@
       <subfield code="v">pt. 2.</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Jian kang cong shu</subfield>
+      <subfield code="x">issn123456789</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">Teikoku bunko ;</subfield>
+      <subfield code="v">dai 13-hen, etc.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="6">880-07</subfield>
+      <subfield code="a">Zoku Teikoku bunko ;</subfield>
+      <subfield code="v">dai 34-hen, etc.</subfield>
+    </datafield>
+  </record>
 </collection>
