@@ -639,11 +639,6 @@
                         </xsl:if>
                         <xsl:value-of select="$vRole"/>
                       </rdfs:label>
-                      <bflc:relatorMatchKey>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                        </xsl:call-template>
-                      </bflc:relatorMatchKey>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -658,11 +653,6 @@
                             </xsl:if>
                             <xsl:value-of select="$vRole"/>
                           </rdfs:label>
-                          <bflc:relatorMatchKey>
-                            <xsl:call-template name="chopPunctuation">
-                              <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                            </xsl:call-template>
-                          </bflc:relatorMatchKey>
                         </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -699,11 +689,6 @@
                         </xsl:if>
                         <xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/>
                       </rdfs:label>
-                      <bflc:relatorMatchKey>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                        </xsl:call-template>
-                      </bflc:relatorMatchKey>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -718,11 +703,6 @@
                             </xsl:if>
                             <xsl:value-of select="$vRole"/>
                           </rdfs:label>
-                          <bflc:relatorMatchKey>
-                            <xsl:call-template name="chopPunctuation">
-                              <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                            </xsl:call-template>
-                          </bflc:relatorMatchKey>
                         </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -757,11 +737,6 @@
                         </xsl:if>
                         <xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/>
                       </rdfs:label>
-                      <bflc:relatorMatchKey>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                        </xsl:call-template>
-                      </bflc:relatorMatchKey>
                     </bf:Role>
                   </bf:role>
                 </xsl:when>
@@ -776,11 +751,6 @@
                             </xsl:if>
                             <xsl:value-of select="$vRole"/>
                           </rdfs:label>
-                          <bflc:relatorMatchKey>
-                            <xsl:call-template name="chopPunctuation">
-                              <xsl:with-param name="chopString"><xsl:value-of select="$vRole"/></xsl:with-param>
-                            </xsl:call-template>
-                          </bflc:relatorMatchKey>
                         </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
@@ -813,11 +783,6 @@
                       </xsl:if>
                       <xsl:value-of select="normalize-space($roleString)"/>
                     </rdfs:label>
-                    <bflc:relatorMatchKey>
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString"><xsl:value-of select="normalize-space($roleString)"/></xsl:with-param>
-                      </xsl:call-template>
-                    </bflc:relatorMatchKey>
                   </bf:Role>
                 </bf:role>
               </xsl:when>
@@ -832,11 +797,6 @@
                             </xsl:if>
                             <xsl:value-of select="normalize-space($roleString)"/>
                           </rdfs:label>
-                          <bflc:relatorMatchKey>
-                            <xsl:call-template name="chopPunctuation">
-                              <xsl:with-param name="chopString"><xsl:value-of select="normalize-space($roleString)"/></xsl:with-param>
-                            </xsl:call-template>
-                          </bflc:relatorMatchKey>
                         </bflc:Relation>
                       </bflc:relation>
                       <xsl:if test="$pRelatedTo != ''">
