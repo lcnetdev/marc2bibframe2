@@ -99,7 +99,8 @@
 
     <x:scenario label="VISUAL MATERIALS">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18-21 create a duration property of the Work" test="//bf:Work[8]/bf:duration = '1'"/>
+      <x:expect label="pos 18-21 create a duration property of the Work" test="//bf:Work[8]/bf:duration = 'PT1M'"/>
+      <x:expect label="...with a datatype of xsd:duration" test="//bf:Work[8]/bf:duration/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#duration'"/>
       <x:expect label="pos 33 creates a genreForm property of the Work" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026406'"/>
       <x:expect label="with an rdfs:label" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'motion pictures'"/>
       <x:expect label="pos 34 creates a note property of the Instance" test="//bf:Instance[8]/bf:note/bf:Note/@rdf:about = 'http://id.loc.gov/vocabulary/mtechnique/live'"/>
