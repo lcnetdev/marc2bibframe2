@@ -212,9 +212,9 @@
   <x:scenario label="043 - GEOGRAPHIC AREA CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[1]/bf:GeographicCoverage/@rdf:about = 'http://id.loc.gov/vocabulary/geographicAreas/s-bl'"/>
-    <x:expect label="$b creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 's-bl-ba'"/>
+    <x:expect label="$b creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/rdf:value = 's-bl-ba'"/>
     <x:expect label="...with the source of the GeographicCoverage from $2" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/bf:source/bf:Source/rdfs:label = 'BlRjBN'"/>
-    <x:expect label="$c creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/rdfs:label = 'us'"/>
+    <x:expect label="$c creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/rdf:value = 'us'"/>
     <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/bf:source/bf:Source/rdfs:label = 'ISO 3166'"/>
   </x:scenario>
   
