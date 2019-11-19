@@ -208,9 +208,6 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:otherPhysicalFormat>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-        </bf:otherPhysicalFormat>
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
