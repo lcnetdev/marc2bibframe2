@@ -447,7 +447,7 @@
                                        marc:datafield[@tag='547'] | marc:datafield[@tag='550'] |
                                        marc:datafield[@tag='555'] | marc:datafield[@tag='556'] |
                                        marc:datafield[@tag='581'] | marc:datafield[@tag='585'] |
-                                       marc:datafield[@tag='586'] | marc:datafield[@tag='588']">
+                                       marc:datafield[@tag='588']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instanceNote5XX">
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -646,6 +646,30 @@
     </xsl:choose>
   </xsl:template>
   
+  <xsl:template match="marc:datafield[@tag='586']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:apply-templates select="." mode="instance586">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='586' or @tag='880']" mode="instance586">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <bf:awards>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </bf:awards>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield" mode="instanceNote5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pNoteType"/>
@@ -694,7 +718,6 @@
           </xsl:choose>
         </xsl:when>
         <xsl:when test="$vTag='585'">exhibition</xsl:when>
-        <xsl:when test="$vTag='586'">award</xsl:when>
         <xsl:when test="$vTag='588'">description source</xsl:when>
       </xsl:choose>
     </xsl:variable>
