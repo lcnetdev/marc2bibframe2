@@ -20,11 +20,11 @@
   
   <x:scenario label="510 - CITATION/REFERENCES NOTE">
     <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
-    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Instance[1]/bf:references/bf:Work) = 1"/>
-    <x:expect label="$a creates a title property of the Work object" test="//bf:Instance[1]/bf:references/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
-    <x:expect label="$b creates a note property of the Work object with noteType 'Coverage'" test="//bf:Instance[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Coverage']/parent::*/rdfs:label = 'v1n1, 1984-'"/>
-    <x:expect label="$c creates a note property of the Work object with noteType 'Location'" test="//bf:Instance[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Location']/parent::*/rdfs:label = 'p. 10, 50, and iii'"/>
-    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Instance[1]/bf:references/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
+    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Work[1]/bf:references/bf:Work) = 1"/>
+    <x:expect label="$a creates a title property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
+    <x:expect label="$b creates a note property of the Work object with noteType 'Coverage'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Coverage']/parent::*/rdfs:label = 'v1n1, 1984-'"/>
+    <x:expect label="$c creates a note property of the Work object with noteType 'Location'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Location']/parent::*/rdfs:label = 'p. 10, 50, and iii'"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
   </x:scenario>
 
   <x:scenario label="530 - ADDITIONAL PHYSICAL FORM AVAILABLE NOTE">
