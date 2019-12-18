@@ -301,7 +301,9 @@
                   </rdfs:label>
                 </bflc:Relation>
               </bflc:relation>
-              <bf:relatedTo><xsl:value-of select="$workiri"/></bf:relatedTo>
+              <bf:relatedTo>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
+              </bf:relatedTo>
             </bflc:Relationship>
           </bflc:relationship>
         </xsl:for-each>
