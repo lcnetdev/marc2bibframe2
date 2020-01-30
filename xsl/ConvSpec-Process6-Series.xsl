@@ -217,13 +217,22 @@
 
   <xsl:template match="marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or @tag='400' or @tag='410' or @tag='411' or @tag='440']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vCurrentPos">
+      <xsl:choose>
+        <xsl:when test="substring(@tag,1,1)='8'">
+          <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830']) + 1"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:apply-templates select="." mode="instance8XX">
       <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="instance8XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pCurrentPos" select="1"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -231,7 +240,7 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:if test="not(../marc:datafield[@tag='490' and @ind1 = '1']) or substring($vTag,1,1)='4' or @tag='880'">
+    <xsl:if test="count(../marc:datafield[@tag='490' and @ind1 = '1']) &lt; $pCurrentPos or substring($vTag,1,1)='4' or @tag='880'">
       <xsl:variable name="vStatement">
         <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[not(contains('vwx012345678',@code))]"/>
       </xsl:variable>
