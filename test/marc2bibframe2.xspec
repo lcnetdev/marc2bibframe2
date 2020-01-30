@@ -1125,7 +1125,9 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm.</bf:dimensions>
-                    <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
             <bf:supplementaryContent>
               <rdfs:Resource>
                 <bflc:locator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html"/>
