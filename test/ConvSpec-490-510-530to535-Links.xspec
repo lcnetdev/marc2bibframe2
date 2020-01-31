@@ -20,11 +20,11 @@
   
   <x:scenario label="510 - CITATION/REFERENCES NOTE">
     <x:context href="data/ConvSpec-490-510-530to535-Links/marc.xml"/>
-    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Instance[1]/bf:references/bf:Work) = 1"/>
-    <x:expect label="$a creates a title property of the Work object" test="//bf:Instance[1]/bf:references/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
-    <x:expect label="$b creates a note property of the Work object with noteType 'Coverage'" test="//bf:Instance[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Coverage']/parent::*/rdfs:label = 'v1n1, 1984-'"/>
-    <x:expect label="$c creates a note property of the Work object with noteType 'Location'" test="//bf:Instance[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Location']/parent::*/rdfs:label = 'p. 10, 50, and iii'"/>
-    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Instance[1]/bf:references/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
+    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Work[1]/bf:references/bf:Work) = 1"/>
+    <x:expect label="$a creates a title property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
+    <x:expect label="$b creates a note property of the Work object with noteType 'Coverage'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Coverage']/parent::*/rdfs:label = 'v1n1, 1984-'"/>
+    <x:expect label="$c creates a note property of the Work object with noteType 'Location'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Location']/parent::*/rdfs:label = 'p. 10, 50, and iii'"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
   </x:scenario>
 
   <x:scenario label="530 - ADDITIONAL PHYSICAL FORM AVAILABLE NOTE">
@@ -34,7 +34,6 @@
     <x:expect label="...and an instanceOf property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:instanceOf/@rdf:resource = 'http://example.org/1#Work'"/>
     <x:expect label="...and a title property" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/rdfs:label = 'Ole Lukøie /'"/>
     <x:expect label="530 creates a otherPhysicalFormat property of the Instance" test="//bf:Instance[1]/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance530-6'"/>
-    <x:expect label="...and an otherPhysicalFormat property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:otherPhysicalFormat/@rdf:resource = 'http://example.org/1#Instance'"/>
     <x:expect label="$a creates a note property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'Available in microfilm'"/>
     <x:expect label="$b creates an acquisitionSource/AcquisitionSource property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:acquisitionSource/bf:AcquisitionSource/rdfs:label = 'National Archives'"/>
     <x:expect label="$c creates an acquisitionTerms property of the hasInstance/Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:acquisitionTerms = 'Standing order account required'"/>

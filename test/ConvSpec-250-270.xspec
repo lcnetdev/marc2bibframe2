@@ -89,8 +89,10 @@
 
   <x:scenario label="264 - PRODUCTION, PUBLICATION, DISTRIBUTION, MANUFACTURE, AND COPYRIGHT NOTICE">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="264 creates a provisionActivity or copyrightDate property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 10"/>
+    <x:expect label="264 creates a provisionActivity or copyrightDate property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 11"/>
     <x:expect label="...with resource class determined by ind2" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...do not create additional class for ProvisionActivity if it can't be determined"
+              test="count(//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/rdf:type) = 0"/>
     <x:expect label="...and a provisionActivityStatement from $a $b $c in field order with a semicolon separating the parts if no other punctuation" test="//bf:Instance[1]/bf:provisionActivityStatement[4] = 'U.S. G.P.O. Washington : 1981-'"/>
     <x:expect label="ind1 = 3 creates a status property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1981-'"/>

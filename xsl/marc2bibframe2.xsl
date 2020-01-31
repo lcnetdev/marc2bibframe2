@@ -8,14 +8,15 @@
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
-                extension-element-prefixes="date"
+                xmlns:fn="http://www.w3.org/2005/xpath-function"
+                extension-element-prefixes="date fn"
                 exclude-result-prefixes="xsl marc">
 
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
   <xsl:strip-space elements="*"/>
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.5.1</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v1.5.2</xsl:variable>
 
   <!-- stylesheet parameters -->
 
@@ -56,9 +57,14 @@
       available
   -->
   <xsl:param name="pGenerationDatestamp">
-    <xsl:if test="function-available('date:date-time')">
-      <xsl:value-of select="date:date-time()"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="function-available('date:date-time')">
+        <xsl:value-of select="date:date-time()"/>
+      </xsl:when>
+      <xsl:when test="function-available('fn:current-dateTime')">
+        <xsl:value-of select="fn:current-dateTime()"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:param>
   
   <!-- Output serialization. Currently only "rdfxml" is supported -->
@@ -204,7 +210,13 @@
             <bf:AdminMetadata>
               <bf:generationProcess>
                 <bf:GenerationProcess>
-                  <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/><xsl:if test="$pGenerationDatestamp != ''">: <xsl:value-of select="$pGenerationDatestamp"/></xsl:if></rdfs:label>
+                  <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/></rdfs:label>
+                  <xsl:if test="$pGenerationDatestamp != ''">
+                    <bf:generationDate>
+                      <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
+                      <xsl:value-of select="$pGenerationDatestamp"/>
+                    </bf:generationDate>
+                  </xsl:if>
                 </bf:GenerationProcess>
               </bf:generationProcess>
               <!-- pass fields through conversion specs for AdminMetadata properties -->

@@ -9,6 +9,8 @@
                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
+  <x:param name="pGenerationDatestamp" select="'1970-01-01T00:00:00Z'"/>
+
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-001-007.xspec"/>
   <x:import href="ConvSpec-006,008.xspec"/>
@@ -38,7 +40,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.5.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.5.2</rdfs:label>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
@@ -152,7 +154,6 @@
                 <bf:role>
                   <bf:Role>
                     <rdfs:label>ill.</rdfs:label>
-                    <bflc:relatorMatchKey>ill</bflc:relatorMatchKey>
                   </bf:Role>
                 </bf:role>
               </bf:Contribution>
@@ -253,7 +254,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.5.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.5.2</rdfs:label>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
@@ -495,7 +496,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.5.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.5.2</rdfs:label>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
@@ -811,7 +812,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.5.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.5.2</rdfs:label>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
@@ -1120,7 +1121,9 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm.</bf:dimensions>
-                    <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
             <bf:supplementaryContent>
               <rdfs:Resource>
                 <bflc:locator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html"/>
@@ -1169,6 +1172,10 @@
   <x:scenario label="Generation Process">
     <x:context href="data/marc.xml"/>
     <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/rdfs:label,'DLC marc2bibframe2')"/>
+    <x:expect label="GenerationProcess should have a generationDate property if available"
+              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/bf:generationDate = '1970-01-01T00:00:00Z'"/>
+    <x:expect label="...and a datatype"
+              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/bf:generationDate/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#dateTime'"/>
   </x:scenario>
 
 </x:description>

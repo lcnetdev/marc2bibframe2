@@ -471,11 +471,14 @@
         <xsl:if test="$duration != ''">
           <bf:duration>
             <xsl:choose>
-              <xsl:when test="substring($dataElements,1,3) != '000'">
-                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
+              <xsl:when test="substring($dataElements,1,3) = '000'">
+                <xsl:value-of select="$duration"/>
               </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
+                <xsl:value-of select="concat('PT',$duration,'M')"/>
+              </xsl:otherwise>
             </xsl:choose>
-            <xsl:value-of select="$duration"/>
           </bf:duration>
         </xsl:if>
       </xsl:when>
