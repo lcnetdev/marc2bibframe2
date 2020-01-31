@@ -662,7 +662,7 @@
                   <xsl:attribute name="rdf:about"><xsl:value-of select="concat($geographicAreas,$encoded)"/></xsl:attribute>
                 </xsl:when>
                 <xsl:when test="@code='b' or @code='c'">
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
                   <xsl:choose>
                     <xsl:when test="@code='c'">
                       <bf:source>

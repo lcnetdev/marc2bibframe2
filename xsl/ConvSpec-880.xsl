@@ -160,6 +160,11 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$tag='510'">
+        <xsl:apply-templates select="." mode="work510">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$tag='518'">
         <xsl:apply-templates select="." mode="work518">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -466,8 +471,7 @@
                       $tag='515' or $tag='516' or $tag='536' or
                       $tag='544' or $tag='545' or $tag='547' or
                       $tag='550' or $tag='555' or $tag='556' or
-                      $tag='581' or $tag='585' or $tag='586' or
-                      $tag='588'">
+                      $tag='581' or $tag='585' or $tag='588'">
         <xsl:apply-templates select="." mode="instanceNote5XX">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
@@ -479,11 +483,6 @@
       </xsl:when>
       <xsl:when test="$tag='508' or $tag='511'">
         <xsl:apply-templates select="." mode="instanceCreditsNote">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='510'">
-        <xsl:apply-templates select="." mode="instance510">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -517,6 +516,11 @@
       </xsl:when>
       <xsl:when test="$tag='540'">
         <xsl:apply-templates select="." mode="instance540">
+          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$tag='586'">
+        <xsl:apply-templates select="." mode="instance586">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>

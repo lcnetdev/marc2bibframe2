@@ -317,9 +317,11 @@
             <xsl:if test="marc:subfield[@code='a' or @code='b' or @code='c']">
               <bf:provisionActivity>
                 <bf:ProvisionActivity>
-                  <rdf:type>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$vProvisionActivity)"/></xsl:attribute>
-                  </rdf:type>
+                  <xsl:if test="$vProvisionActivity != ''">
+                    <rdf:type>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$vProvisionActivity)"/></xsl:attribute>
+                    </rdf:type>
+                  </xsl:if>
                   <xsl:if test="$vTag='260' or $vTag='264'">
                     <xsl:if test="@ind1 = '3'">
                       <bf:status>

@@ -21,7 +21,7 @@
       <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
       <xsl:variable name="vScript6simple">
         <xsl:choose>
-          <xsl:when test="contains(vScript6,'/')"><xsl:value-of select="substring-before($vScript6,'/')"/></xsl:when>
+          <xsl:when test="contains($vScript6,'/')"><xsl:value-of select="substring-before($vScript6,'/')"/></xsl:when>
           <xsl:otherwise><xsl:value-of select="$vScript6"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
