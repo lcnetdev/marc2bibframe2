@@ -1,7 +1,22 @@
 --- 1.6.0-SNAPSHOT
 
+--- 1.5.2 2020/01/30
+
+Generate seriesStatement and seriesEnumeration properties from 8XX fields not matched to 490s (https://github.com/lcnetdev/marc2bibframe2/issues/164)
+Update 264 conversion to avoid generating addition bogus ProvisionActivity class (https://github.com/lcnetdev/marc2bibframe2/issues/150)
+Correct $6 orientation code processing (https://github.com/lcnetdev/marc2bibframe2/issues/166)
+Update 7XX conversion to generate URI for bf:relatedTo property instead of string (https://github.com/lcnetdev/marc2bibframe2/issues/162)
+Update 510 conversion to generate Work properties instead of Instance properties (https://github.com/lcnetdev/marc2bibframe2/issues/160)
+Generate bf:generationDate property in bf:AdminMetadata (https://github.com/lcnetdev/marc2bibframe2/issues/152)
+Generate bf:awards property from 586.
+Update 530 conversion to remove otherPhysicalFormat property from generated (skeletal) Instance.
+Generate rdf:value instead of rdfs:label for 043 $b/$c (https://github.com/lcnetdev/marc2bibframe2/issues/153)
 Don't generate bflc:relatorMatchKey property for Roles and Relations (https://github.com/lcnetdev/marc2bibframe2/issues/81)
 Update 008/18-20 conversion for visual materials (https://github.com/lcnetdev/marc2bibframe2/issues/147)
+
+--- 1.5.1 2019/06/13
+
+Fix regression test for version number
 
 --- 1.5.0 2019/06/12
 
