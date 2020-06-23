@@ -28,6 +28,16 @@
   
   <xsl:template match="marc:leader" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vDescrConventions">
+      <xsl:choose>
+        <xsl:when test="substring(.,19,1) = ' '">local</xsl:when>
+        <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
+        <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
+        <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
+        <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
+        <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
@@ -110,20 +120,14 @@
             </xsl:choose>
           </bflc:EncodingLevel>
         </bflc:encodingLevel>
-        <bf:descriptionConventions>
-          <bf:DescriptionConventions>
-            <xsl:choose>
-              <xsl:when test="substring(.,19,1) = 'a' or substring(.,19,1) = 'p' or substring(.,19,1) = 'r'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/descriptionConventions/aacr</xsl:attribute>
-                <rdfs:label>aacr</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,19,1) = 'c' or substring(.,19,1) = 'i'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/descriptionConventions/isbd</xsl:attribute>
-                <rdfs:label>isbd</rdfs:label>
-              </xsl:when>
-            </xsl:choose>
-          </bf:DescriptionConventions>
-        </bf:descriptionConventions>
+        <xsl:if test="$vDescrConventions != ''">
+          <bf:descriptionConventions>
+            <bf:DescriptionConventions>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vDescrConventions)"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="$vDescrConventions"/></rdfs:label>
+            </bf:DescriptionConventions>
+          </bf:descriptionConventions>
+        </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -143,16 +147,55 @@
             <xsl:when test="substring(.,7,1) = 'i'">Audio</xsl:when>
             <xsl:when test="substring(.,7,1) = 'j'">Audio</xsl:when>
             <xsl:when test="substring(.,7,1) = 'k'">StillImage</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'm'">Multimedia</xsl:when>
             <xsl:when test="substring(.,7,1) = 'o'">MixedMaterial</xsl:when>
             <xsl:when test="substring(.,7,1) = 'p'">MixedMaterial</xsl:when>
             <xsl:when test="substring(.,7,1) = 'r'">Object</xsl:when>
             <xsl:when test="substring(.,7,1) = 't'">Text</xsl:when>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="vContentType">
+          <xsl:choose>
+            <xsl:when test="substring(.,7,1) = 'a'">txt</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">ntm</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">ntm</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">cri</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">cri</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">tdi</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'i'">spw</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'j'">prm</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'k'">sti</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'm'">cop</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'o'">txt</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'p'">txt</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'r'">tdf</xsl:when>
+            <xsl:when test="substring(.,7,1) = 't'">txt</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:if test="$workType != ''">
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
           </rdf:type>
+        </xsl:if>
+        <xsl:if test="$vContentType != '' and not(../marc:datafield[@tag='336'])">
+          <bf:content>
+            <bf:Content>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($contentType,$vContentType)"/></xsl:attribute>
+              <rdfs:label>
+                <xsl:choose>
+                  <xsl:when test="$vContentType='txt'">text</xsl:when>
+                  <xsl:when test="$vContentType='ntm'">notated music</xsl:when>
+                  <xsl:when test="$vContentType='cri'">cartographic image</xsl:when>
+                  <xsl:when test="$vContentType='tdi'">two-dimensional moving image</xsl:when>
+                  <xsl:when test="$vContentType='spw'">spoken word</xsl:when>
+                  <xsl:when test="$vContentType='prm'">performed music</xsl:when>
+                  <xsl:when test="$vContentType='sti'">still image</xsl:when>
+                  <xsl:when test="$vContentType='cop'">computer program</xsl:when>
+                  <xsl:when test="$vContentType='tdf'">three-dimensional form</xsl:when>
+                </xsl:choose>
+              </rdfs:label>
+            </bf:Content>
+          </bf:content>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
