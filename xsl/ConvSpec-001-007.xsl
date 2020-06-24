@@ -21,19 +21,21 @@
           <bf:Local>
             <rdf:value><xsl:value-of select="."/></rdf:value>
             <bf:assigner>
-                <bf:Agent>
-                    <xsl:choose>
-                        <xsl:when test="../marc:controlfield[@tag='003'] = 'DLC' or ../marc:controlfield[@tag='003'] = ''">
-                            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
-                        </xsl:when>
-                        <xsl:when test="not(../marc:controlfield[@tag='003'])">
-                            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <bf:code><xsl:value-of select="../marc:controlfield[@tag='003']" /></bf:code>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </bf:Agent>
+              <bf:Agent>
+                <xsl:choose>
+                  <xsl:when test="../marc:controlfield[@tag='003'] = 'DLC' or ../marc:controlfield[@tag='003'] = ''">
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                    <bf:code>DLC</bf:code>
+                  </xsl:when>
+                  <xsl:when test="not(../marc:controlfield[@tag='003'])">
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                    <bf:code>DLC</bf:code>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <bf:code><xsl:value-of select="../marc:controlfield[@tag='003']" /></bf:code>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </bf:Agent>
             </bf:assigner>
           </bf:Local>
         </bf:identifiedBy>

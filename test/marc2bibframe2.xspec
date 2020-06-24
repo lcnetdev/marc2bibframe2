@@ -64,7 +64,9 @@
                   <bf:Local>
                     <rdf:value>13600108</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -284,7 +286,9 @@
                   <bf:Local>
                     <rdf:value>5637241</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -532,7 +536,9 @@
                   <bf:Local>
                     <rdf:value>12149120</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -855,7 +861,9 @@
                   <bf:Local>
                     <rdf:value>4417401</rdf:value>
                     <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>

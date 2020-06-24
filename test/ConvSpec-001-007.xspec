@@ -22,6 +22,7 @@
     <x:expect label="... but inject URI if 003 value is DLC" test="//bf:Work[2]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="... or inject URI if 003 value is empty string" test="//bf:Work[3]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="... or inject URI if there is no 003" test="//bf:Work[4]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="...and set the code for DLC" test="//bf:Work[4]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/bf:assigner/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
   <x:scenario label="005 - DATE AND TIME OF LAST TRANSACTION">
