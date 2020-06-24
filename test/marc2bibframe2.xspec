@@ -85,6 +85,11 @@
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
+            <bf:content>
+              <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/txt">
+                <rdfs:label>text</rdfs:label>
+              </bf:Content>
+            </bf:content>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/dan"/>
             </bf:language>
@@ -300,6 +305,11 @@
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
+            <bf:content>
+              <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/prm">
+                <rdfs:label>performed music</rdfs:label>
+              </bf:Content>
+            </bf:content>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
@@ -557,6 +567,12 @@
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
             </bf:adminMetadata>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Multimedia" />
+            <bf:content>
+              <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/cop">
+                <rdfs:label>computer program</rdfs:label>
+              </bf:Content>
+            </bf:content>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
@@ -865,6 +881,11 @@
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
+            <bf:content>
+              <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/txt">
+                <rdfs:label>text</rdfs:label>
+              </bf:Content>
+            </bf:content>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>

@@ -10,6 +10,13 @@
   <record>
     <leader>01094cac a2200229 aa4500</leader>
     <controlfield tag="001">3</controlfield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">performed music</subfield>
+      <subfield code="b">prm</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/contentTypes/prm</subfield>
+      <subfield code="2">rdacontent</subfield>
+      <subfield code="3">record</subfield>
+    </datafield>
   </record>
   <record>
     <leader>01094camaa2200229 a 4500</leader>
