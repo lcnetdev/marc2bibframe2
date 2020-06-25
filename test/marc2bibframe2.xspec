@@ -402,7 +402,7 @@
             </bf:media>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/sd">
-                <rdfs:label>sound disc</rdfs:label>
+                <rdfs:label>audio disc</rdfs:label>
               </bf:Carrier>
             </bf:carrier>
             <bf:soundCharacteristic>

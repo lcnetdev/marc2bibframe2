@@ -60,29 +60,85 @@
 
   <xsl:template match="marc:controlfield[@tag='007']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vNodeId" select="generate-id(.)"/>
     <xsl:variable name="workType">
       <xsl:choose>
-        <xsl:when test="substring(.,1,1) = 'a'">Cartography</xsl:when>
-        <xsl:when test="substring(.,1,1) = 'd'">Cartography</xsl:when>
-        <xsl:when test="substring(.,1,1) = 'g'">StillImage</xsl:when>
-        <xsl:when test="substring(.,1,1) = 'k'">StillImage</xsl:when>
-        <xsl:when test="substring(.,1,1) = 'm'">MovingImage</xsl:when>
-        <xsl:when test="substring(.,1,1) = 's'">Audio</xsl:when>
+        <xsl:when test="contains('ad',substring(.,1,1)) and
+                        substring(../marc:leader,7,1) != 'e' and
+                        substring(../marc:leader,7,1) != 'f'">Cartography</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'c' and
+                        substring(../marc:leader,7,1) != 'm'">Multimedia</xsl:when>
+        <xsl:when test="contains('gk',substring(.,1,1)) and
+                        substring(../marc:leader,7,1) != 'k'">StillImage</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'h' and
+                        substring(../marc:leader,7,1) != 'a' and
+                        substring(../marc:leader,7,1) != 't'">Text</xsl:when>
+        <xsl:when test="contains('mv',substring(.,1,1)) and
+                        substring(../marc:leader,7,1) != 'g'">MovingImage</xsl:when>
+        <xsl:when test="substring(.,1,1) = 's' and
+                        substring(../marc:leader,7,1) != 'i' and
+                        substring(../marc:leader,7,1) != 'j'">Audio</xsl:when>
       </xsl:choose>
     </xsl:variable>
+    <xsl:if test="$workType != ''">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <rdf:type>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
+          </rdf:type>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+    <xsl:variable name="vContentType">
+      <xsl:choose>
+        <xsl:when test="substring(.,1,1) = 'a'">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'q'">crf</xsl:when>
+            <xsl:when test="contains('dgjkrsy',substring(.,2,1)) and
+                            substring(../marc:leader,7,1) != 'e' and
+                            substring(../marc:leader,7,1) != 'f'">cri</xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="substring(.,1,1) = 'd'">crf</xsl:when>
+        <xsl:when test="contains('gk',substring(.,1,1)) and
+                        substring(../marc:leader,7,1) != 'k'">sti</xsl:when>
+        <xsl:when test="contains('mv',substring(.,1,1)) and
+                        substring(../marc:leader,7,1) != 'g'">tdi</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$vContentType != '' and
+                  not(../marc:datafield[@tag='336'])">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:content>
+            <bf:Content>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($contentType,$vContentType)"/></xsl:attribute>
+              <rdfs:label>
+                <xsl:choose>
+                  <xsl:when test="$vContentType='crf'">cartographic three-dimensional form</xsl:when>
+                  <xsl:when test="$vContentType='cri'">cartographic image</xsl:when>
+                  <xsl:when test="$vContentType='tdi'">two-dimensional moving image</xsl:when>
+                  <xsl:when test="$vContentType='sti'">still image</xsl:when>
+                </xsl:choose>
+              </rdfs:label>
+            </bf:Content>
+          </bf:content>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
     <xsl:choose>
       <!-- map -->
       <xsl:when test="substring(.,1,1) = 'a'">
         <xsl:variable name="genreForm">
           <xsl:choose>
             <xsl:when test="substring(.,2,1) = 'd'">atlases</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">diagrams</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">graphs</xsl:when>
             <xsl:when test="substring(.,2,1) = 'j'">maps</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">profile</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'">models</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">cartographic materials</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'">models (representations)</xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'">remote-sensing images</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">map section</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'y'">map view</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">geological cross-sections</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'y'">views</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreUri">
@@ -90,23 +146,597 @@
             <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026058')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2014026061')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2011026387')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2011026387')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2011026113')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($genreForms,'gf2017027245')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($genreForms,'gf2011026530')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($genreForms,'gf2011026295')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'y'"><xsl:value-of select="concat($genreForms,'gf2011026387')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'y'"><xsl:value-of select="concat($genreForms,'gf2018026045')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="colorContent">
           <xsl:choose>
             <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="colorContentUri">
           <xsl:choose>
             <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
             <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+                </bf:genreForm>
+            </xsl:if>
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- electronic resource -->
+      <xsl:when test="substring(.,1,1) = 'c'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'">gray scale</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'gry')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContentURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <xsl:if test="$soundContentURI != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- globe -->
+      <xsl:when test="substring(.,1,1) = 'd'">
+        <xsl:variable name="genreForm">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'">celestial globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'">globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">globes</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="genreFormURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2011026117')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreFormURI != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- projected graphic -->
+      <xsl:when test="substring(.,1,1) = 'g'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContentURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <xsl:if test="$soundContentURI != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- microform -->
+      <xsl:when test="substring(.,1,1) = 'h'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,10,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- nonprojected graphic -->
+      <xsl:when test="substring(.,1,1) = 'k'">
+        <xsl:variable name="genreForm">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'c'">collages</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">drawing</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">paintings</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'">photomechanical print</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">negatives (photographs)</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'">photographic prints</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'">picture</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">prints</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">posters</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'l'">scientific illustrations</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'n'">wall charts</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'p'">postcards</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'v'">photographs</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="genreFormUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2017027227')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($graphicMaterials,'tgm003277')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2017027246')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($graphicMaterials,'tgm007730')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2019026026')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($graphicMaterials,'tgm007718')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2014026152')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($graphicMaterials,'tgm009250')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'n'"><xsl:value-of select="concat($genreForms,'gf2016026011')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'p'"><xsl:value-of select="concat($genreForms,'gf2014026151')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'v'"><xsl:value-of select="concat($genreForms,'gf2017027249')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreFormUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- motion picture -->
+      <xsl:when test="substring(.,1,1) = 'm'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vAspectRatioURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'nonana')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'ana')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vAspectRatioLabel">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">anamorphic</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'">wide-screen</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vAspectRatioURI2">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vAspectRatioLabel2">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'">wide-screen</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">wide-screen</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vAspectRatioNote">
+          <xsl:choose>
+            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic (wide-screen)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">anamorphic (wide-screen)</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContentURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="genreForm2">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'c'">outtakes</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'd'">rushes</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="genreForm2Uri">
+          <xsl:choose>
+            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026435')"/></xsl:when>
+            <xsl:when test="substring(.,10,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026551')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+            <xsl:if test="$vAspectRatioURI != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
+                    <xsl:if test="$vAspectRatioLabel != ''">
+                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
+                    </xsl:if>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$vAspectRatioURI2 != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
+                    <xsl:if test="$vAspectRatioLabel2 != ''">
+                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel2"/></rdfs:label>
+                    </xsl:if>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$vAspectRatioNote != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                  <bf:note>
+                    <bf:Note>
+                      <rdfs:label><xsl:value-of select="$vAspectRatioNote"/></rdfs:label>
+                    </bf:Note>
+                  </bf:note>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <xsl:if test="$soundContentURI != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+            <xsl:if test="$genreForm2 != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreForm2Uri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreForm2Uri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm2"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <!-- no Work properties for sound recording other than rdf:type -->
+      <!-- videorecording -->
+      <xsl:when test="substring(.,1,1) = 'v'">
+        <xsl:variable name="colorContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'">color</xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'">mixed color</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="colorContentUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
+            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContent">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="soundContentURI">
+          <xsl:choose>
+            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$colorContent != ''">
+              <bf:colorContent>
+                <bf:ColorContent>
+                  <xsl:if test="$colorContentUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
+                </bf:ColorContent>
+              </bf:colorContent>
+            </xsl:if>
+            <xsl:if test="$soundContent != ''">
+              <bf:soundContent>
+                <bf:SoundContent>
+                  <xsl:if test="$soundContentURI != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
+                </bf:SoundContent>
+              </bf:soundContent>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:controlfield[@tag='007']" mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vMediaTypeLabel">
+      <xsl:choose>
+        <xsl:when test="substring(.,1,1) = 'a'">unmediated</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'c'">computer</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'g'">projected</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'h'">microform</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'k'">unmediated</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'm'">projected</xsl:when>
+        <xsl:when test="substring(.,1,1) = 's'">audio</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'v'">video</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vMediaTypeCode">
+      <xsl:choose>
+        <xsl:when test="substring(.,1,1) = 'a'">n</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'c'">c</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'g'">g</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'h'">h</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'k'">n</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'm'">g</xsl:when>
+        <xsl:when test="substring(.,1,1) = 's'">s</xsl:when>
+        <xsl:when test="substring(.,1,1) = 'v'">v</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$vMediaTypeLabel != '' and not(../marc:datafield[@tag='337'])">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:media>
+            <bf:Media>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mediaType,$vMediaTypeCode)"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="$vMediaTypeLabel"/></rdfs:label>
+            </bf:Media>
+          </bf:media>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+    <xsl:choose>
+      <!-- map -->
+      <xsl:when test="substring(.,1,1) = 'a'">
+        <xsl:variable name="vCarrierUri">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'nc')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($carriers,'nr')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 'y'"><xsl:value-of select="concat($carriers,'nb')"/></xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vCarrierLabel">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'd'">volume</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">sheet</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">sheet</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">sheet</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'">object</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">sheet</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">sheet</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'y'">sheet</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="baseMaterial">
@@ -145,480 +775,10 @@
             <xsl:when test="substring(.,5,1) = 'w'"><xsl:value-of select="concat($mmaterial,'par')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'e' and substring(../marc:leader,7,1) != 'f'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-            <xsl:if test="$genreForm != ''">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-                </bf:genreForm>
-            </xsl:if>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-            <xsl:if test="$baseMaterial != ''">
-              <bf:baseMaterial>
-                <bf:BaseMaterial>
-                  <xsl:if test="$baseMaterialUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
-                </bf:BaseMaterial>
-              </bf:baseMaterial>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- electronic resource -->
-      <xsl:when test="substring(.,1,1) = 'c'">
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'g'">gray scale</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'gry')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- globe -->
-      <xsl:when test="substring(.,1,1) = 'd'">
-        <xsl:variable name="genreForm">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'">celestial globe</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'b'">planetary or lunar globe</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'">terrestrial globe</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">earth moon globe</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreFormURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2011026117')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'e' and substring(../marc:leader,7,1) != 'f'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-            <xsl:if test="$genreForm != ''">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreFormURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormURI"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- projected graphic -->
-      <xsl:when test="substring(.,1,1) = 'g'">
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'g'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'k'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- microform -->
-      <xsl:when test="substring(.,1,1) = 'h'">
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,10,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- nonprojected graphic -->
-      <xsl:when test="substring(.,1,1) = 'k'">
-        <xsl:variable name="genreForm">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'">activity card</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'">collage</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'd'">drawing</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">painting</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'f'">photomechanical print</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">photonegative</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'h'">photoprint</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'">picture</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">print</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">poster</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'">technical drawing</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'n'">chart</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'o'">flash card</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'p'">postcard</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'">icon</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'">radiograph</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">print</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'v'">photograph</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreFormUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2017027227')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($graphicMaterials,'tgm003277')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($graphicMaterials,'tgm007391')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($graphicMaterials,'tgm007730')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($graphicMaterials,'tgm007028')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($graphicMaterials,'tgm007718')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2014026152')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($graphicMaterials,'tgm003055')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'n'"><xsl:value-of select="concat($genreForms,'gf2016026011')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'o'"><xsl:value-of select="concat($marcgt,'fla')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'p'"><xsl:value-of select="concat($genreForms,'gf2014026151')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($graphicMaterials,'tgm005289')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($graphicMaterials,'tgm008530')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'v'"><xsl:value-of select="concat($genreForms,'gf2017027249')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'k'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-            <xsl:if test="$genreForm != ''">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreFormUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- motion picture -->
-      <xsl:when test="substring(.,1,1) = 'm'">
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'">hand colored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'h'"><xsl:value-of select="concat($mcolor,'hnd')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'nonana')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'ana')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioLabel">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">anamorphic</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'">wide-screen</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioURI2">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioLabel2">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">wide-screen</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">wide-screen</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreForm2">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'c'">outtakes</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'">rushes</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreForm2Uri">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026435')"/></xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026551')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'g'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/genreForms/gf2011026406</xsl:attribute>
-                <rdfs:label>Motion pictures</rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-            <xsl:if test="$vAspectRatioURI != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
-                    <xsl:if test="$vAspectRatioLabel != ''">
-                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
-                    </xsl:if>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$vAspectRatioURI2 != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
-                    <xsl:if test="$vAspectRatioLabel2 != ''">
-                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel2"/></rdfs:label>
-                    </xsl:if>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$genreForm2 != ''">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreForm2Uri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreForm2Uri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm2"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- sound recording -->
-      <xsl:when test="substring(.,1,1) = 's'">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'i' and substring(../marc:leader,7,1) != 'j'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <!-- videorecording -->
-      <xsl:when test="substring(.,1,1) = 'v'">
-        <xsl:variable name="colorContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'">black and white</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'">multicolored</xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'">mixed</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="colorContentUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'one')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'b'"><xsl:value-of select="concat($mcolor,'blw')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'c'"><xsl:value-of select="concat($mcolor,'mul')"/></xsl:when>
-            <xsl:when test="substring(.,4,1) = 'm'"><xsl:value-of select="concat($mcolor,'mix')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/genreForms/gf2011026723</xsl:attribute>
-              </bf:GenreForm>
-            </bf:genreForm>
-            <xsl:if test="$colorContent != ''">
-              <bf:colorContent>
-                <bf:ColorContent>
-                  <xsl:if test="$colorContentUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$colorContentUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$colorContent"/></rdfs:label>
-                </bf:ColorContent>
-              </bf:colorContent>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="marc:controlfield[@tag='007']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <!-- map -->
-      <xsl:when test="substring(.,1,1) = 'a'">
         <xsl:variable name="generation">
           <xsl:choose>
             <xsl:when test="substring(.,6,1) = 'f'">facsimile</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'z'">other type of reproduction</xsl:when>
+            <xsl:when test="substring(.,6,1) = 'z'">mixed generation</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="generationURI">
@@ -629,8 +789,8 @@
         </xsl:variable>
         <xsl:variable name="productionMethod">
           <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">blueline print</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'b'">photocopy</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'a'">blueline process</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">photocopying</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="productionMethodURI">
@@ -643,7 +803,7 @@
           <xsl:choose>
             <xsl:when test="substring(.,8,1) = 'a'">positive</xsl:when>
             <xsl:when test="substring(.,8,1) = 'b'">negative</xsl:when>
-            <xsl:when test="substring(.,8,1) = 'm'">mixed polarity</xsl:when>
+            <xsl:when test="substring(.,8,1) = 'm'">mixed</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="polarityUri">
@@ -655,6 +815,26 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$vCarrierLabel != '' and not(../marc:datafield[@tag='338'])">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:if test="$vCarrierUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vCarrierUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$vCarrierLabel"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
+            </xsl:if>
+            <xsl:if test="$baseMaterial != ''">
+              <bf:baseMaterial>
+                <bf:BaseMaterial>
+                  <xsl:if test="$baseMaterialUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$baseMaterialUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$baseMaterial"/></rdfs:label>
+                </bf:BaseMaterial>
+              </bf:baseMaterial>
+            </xsl:if>
             <xsl:if test="$generation != ''">
               <bf:generation>
                 <bf:Generation>
@@ -699,12 +879,12 @@
             <xsl:when test="substring(.,2,1) = 'e'">computer disc cartridge</xsl:when>
             <xsl:when test="substring(.,2,1) = 'f'">computer tape cassette</xsl:when>
             <xsl:when test="substring(.,2,1) = 'h'">computer tape reel</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">computer disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">computer disc cartridge</xsl:when>
             <xsl:when test="substring(.,2,1) = 'k'">computer card</xsl:when>
             <xsl:when test="substring(.,2,1) = 'm'">computer disc</xsl:when>
             <xsl:when test="substring(.,2,1) = 'o'">computer disc</xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'">online resource</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'z'">other electronic carrier</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'z'">other computer carrier</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="carrierUri">
@@ -728,33 +908,12 @@
           <xsl:choose>
             <xsl:when test="substring(.,5,1) = 'a'">3 1/2 in.</xsl:when>
             <xsl:when test="substring(.,5,1) = 'e'">12 in.</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'g'">4 3/4 in. or 12 cm.</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'">4 3/4 in.</xsl:when>
             <xsl:when test="substring(.,5,1) = 'i'">1 1/8 x 2 3/8 in.</xsl:when>
             <xsl:when test="substring(.,5,1) = 'j'">3 7/8 x 2 1/2 in.</xsl:when>
             <xsl:when test="substring(.,5,1) = 'o'">5 1/4 in.</xsl:when>
             <xsl:when test="substring(.,5,1) = 'u'">unknown</xsl:when>
             <xsl:when test="substring(.,5,1) = 'v'">8 in.</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="soundContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="soundContentURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="imageBitDepth">
-          <xsl:choose>
-            <xsl:when test="substring(.,7,3) = 'mmm'"/>
-            <xsl:when test="substring(.,7,3) = 'nnn'"/>
-            <xsl:when test="substring(.,7,3) = '---'"/>
-            <xsl:when test="substring(.,7,3) = '|||'"/>
-            <xsl:otherwise><xsl:value-of select="substring(.,7,3)"/></xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -764,50 +923,18 @@
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:attribute>
               </rdf:type>
             </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/c</xsl:attribute>
-                  <rdfs:label>computer</rdfs:label>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrier != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:if test="$carrierUri != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
-            </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
-                <xsl:if test="$dimensions != ''">
-                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-                </xsl:if>
-            </xsl:if>
-            <xsl:if test="$soundContent != ''">
-              <bf:soundContent>
-                <bf:SoundContent>
-                  <xsl:if test="$soundContentURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+            <xsl:if test="$carrier != '' and not(../marc:datafield[@tag='338'])">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:if test="$carrierUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
                   </xsl:if>
-                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
-                </bf:SoundContent>
-              </bf:soundContent>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
-            <xsl:if test="$imageBitDepth != ''">
-              <bf:digitalCharacteristic>
-                <bf:DigitalCharacteristic>
-                  <rdf:type>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bflc,'ImageBitDepth')"/></xsl:attribute>
-                  </rdf:type>
-                  <rdf:value><xsl:value-of select="$imageBitDepth"/></rdf:value>
-                </bf:DigitalCharacteristic>
-              </bf:digitalCharacteristic>
+            <xsl:if test="$dimensions != '' and not(../marc:datafield[@tag='300']/marc:subfield[@code='c'])">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
           </xsl:when>
         </xsl:choose>
@@ -862,6 +989,22 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="not(../marc:datafield[@tag='337'])">
+              <bf:media>
+                <bf:Media>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/n</xsl:attribute>
+                  <rdfs:label>unmediated</rdfs:label>
+                </bf:Media>
+              </bf:media>
+            </xsl:if>
+            <xsl:if test="not(../marc:datafield[@tag='338'])">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/carriers/nr</xsl:attribute>
+                  <rdfs:label>object</rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
+            </xsl:if>
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
@@ -911,9 +1054,9 @@
           <xsl:choose>
             <xsl:when test="substring(.,5,1) = 'd'">glass</xsl:when>
             <xsl:when test="substring(.,5,1) = 'e'">synthetic</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'j'">safety film</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'k'">film base (not safety)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'm'">mixed collection</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'">safety base</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'k'">non-safety base</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'">mixed material</xsl:when>
             <xsl:when test="substring(.,5,1) = 'o'">paper</xsl:when>
           </xsl:choose>
         </xsl:variable>
@@ -923,35 +1066,21 @@
             <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaterial,'syn')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'j'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'k'"><xsl:value-of select="concat($mmaterial,'nsf')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mmaterial,'pap')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="soundContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="soundContentURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMedium">
           <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">optical sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'b'">magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">magnetic audio tape in cartridge</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">sound disc</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'e'">magnetic audio tape on reel</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">magnetic audio tape in cassette</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">optical and magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'h'">videotape</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'i'">videodisc</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'a'">optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'h'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'i'">optical</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMediumURI">
@@ -994,7 +1123,7 @@
             <xsl:when test="substring(.,9,1) = 'h'">metal</xsl:when>
             <xsl:when test="substring(.,9,1) = 'j'">metal</xsl:when>
             <xsl:when test="substring(.,9,1) = 'k'">synthetic</xsl:when>
-            <xsl:when test="substring(.,9,1) = 'm'">mixed collection</xsl:when>
+            <xsl:when test="substring(.,9,1) = 'm'">mixed material</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="mount2">
@@ -1022,25 +1151,15 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/g</xsl:attribute>
-                  <rdfs:label>projected</rdfs:label>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrier != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:if test="$carrierUri != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
+            <xsl:if test="$carrier != '' and not(../marc:datafield[@tag='338'])">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:if test="$carrierUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
@@ -1052,16 +1171,6 @@
                 </bf:BaseMaterial>
               </bf:baseMaterial>
             </xsl:if>
-            <xsl:if test="$soundContent != ''">
-              <bf:soundContent>
-                <bf:SoundContent>
-                  <xsl:if test="$soundContentURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
-                </bf:SoundContent>
-              </bf:soundContent>
-            </xsl:if>
             <xsl:if test="$recordingMedium != ''">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
@@ -1072,10 +1181,8 @@
                 </bf:RecordingMedium>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
-                <xsl:if test="$dimensions != ''">
-                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-                </xsl:if>
+            <xsl:if test="$dimensions != '' and not(../marc:datafield[@tag='300']/marc:subfield[@code='c'])">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
             <xsl:if test="$mount != ''">
               <bf:mount>
@@ -1102,6 +1209,19 @@
       </xsl:when>
       <!-- microform -->
       <xsl:when test="substring(.,1,1) = 'h'">
+        <xsl:variable name="vCarrier">
+          <xsl:choose>
+            <xsl:when test="substring(.,2,1) = 'a'">aperture card</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'">microfilm cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">microfilm cassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">microfilm reel</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">microfiche</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'">microfiche cassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">microopaque</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'">microfilm slip</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">microfilm roll</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="carrierUri">
           <xsl:choose>
             <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($carriers,'ha')"/></xsl:when>
@@ -1160,10 +1280,10 @@
         
         <xsl:variable name="emulsion">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'a'">silver halide</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'b'">diazo</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'c'">vesicular</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'm'">mixed emulsion</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'a'">silver halide emulsion</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'">diazo emulsion</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">vesicular emulsion</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'm'">mixed material</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="emulsionUri">
@@ -1176,7 +1296,7 @@
         </xsl:variable>
         <xsl:variable name="generation">
           <xsl:choose>
-            <xsl:when test="substring(.,12,1) = 'a'">first generation (master)</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'a'">first generation</xsl:when>
             <xsl:when test="substring(.,12,1) = 'b'">printing master</xsl:when>
             <xsl:when test="substring(.,12,1) = 'c'">service copy</xsl:when>
             <xsl:when test="substring(.,12,1) = 'm'">mixed generation</xsl:when>
@@ -1194,19 +1314,19 @@
           <xsl:choose>
             <xsl:when test="substring(.,13,1) = 'a'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'">acetate</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'd'">diacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'">polyester</xsl:when>
             <xsl:when test="substring(.,13,1) = 'r'">safety base, mixed</xsl:when>
             <xsl:when test="substring(.,13,1) = 't'">triacetate</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'i'">nitrate base</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety base</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'i'">nitrate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'">mixed material</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
             <xsl:when test="substring(.,13,1) = 'a'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
-            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'dia')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'"><xsl:value-of select="concat($mmaterial,'pol')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'r'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 't'"><xsl:value-of select="concat($mmaterial,'tri')"/></xsl:when>
@@ -1216,22 +1336,13 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/h</xsl:attribute>
-                  <rdfs:label>microform</rdfs:label>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrierUri != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $vCarrier != ''">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="$vCarrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
             <xsl:if test="$polarity != ''">
               <bf:polarity>
@@ -1243,10 +1354,8 @@
                 </bf:Polarity>
               </bf:polarity>
             </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
-                <xsl:if test="$dimensions != ''">
-                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-                </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0 and $dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
             <xsl:if test="$reductionRatioRange != ''">
               <bf:reductionRatio>
@@ -1300,6 +1409,18 @@
       </xsl:when>
       <!-- nonprojected graphic -->
       <xsl:when test="substring(.,1,1) = 'k'">
+        <xsl:variable name="vCarrier">
+          <xsl:choose>
+            <xsl:when test="contains('acdfghijklcopv',substring(.,1,1))">sheet</xsl:when>
+            <xsl:when test="substring(.,1,1) = 'e'">object</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vCarrierUri">
+          <xsl:choose>
+            <xsl:when test="contains('acdfghijklcopv',substring(.,1,1))">http://id.loc.gov/vocabulary/carriers/nb</xsl:when>
+            <xsl:when test="substring(.,1,1) = 'e'">http://id.loc.gov/vocabulary/carriers/nr</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
             <xsl:when test="substring(.,5,1) = 'a'">canvas</xsl:when>
@@ -1312,7 +1433,7 @@
             <xsl:when test="substring(.,5,1) = 'h'">metal</xsl:when>
             <xsl:when test="substring(.,5,1) = 'i'">plastic</xsl:when>
             <xsl:when test="substring(.,5,1) = 'l'">vinyl</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'm'">mixed collection</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'">mixed material</xsl:when>
             <xsl:when test="substring(.,5,1) = 'n'">vellum</xsl:when>
             <xsl:when test="substring(.,5,1) = 'o'">paper</xsl:when>
             <xsl:when test="substring(.,5,1) = 'p'">plaster</xsl:when>
@@ -1398,6 +1519,14 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $vCarrier != ''">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vCarrierUri"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="$vCarrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
+            </xsl:if>
             <xsl:if test="$baseMaterial != ''">
               <bf:baseMaterial>
                 <bf:BaseMaterial>
@@ -1441,9 +1570,9 @@
         </xsl:variable>
         <xsl:variable name="vPresentationFormat">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'a'">standard sound aperture (reduced frame)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'a'">standard sound aperture</xsl:when>
             <xsl:when test="substring(.,5,1) = 'c'">3D</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'f'">standard silent aperture (full frame)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'">standard silent aperture</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="vPresentationFormatURI">
@@ -1453,31 +1582,17 @@
             <xsl:when test="substring(.,5,1) = 'f'"><xsl:value-of select="concat($mpresformat,'silent')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="soundContent">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="soundContentURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
         <xsl:variable name="recordingMedium">
           <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">optical sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'b'">magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">magnetic audio tape in cartridge</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">sound disc</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'e'">magnetic audio tape on reel</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">magnetic audio tape in cassette</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">optical and magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'h'">videotape</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'i'">videodisc</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'a'">optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'h'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'i'">optical</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMediumURI">
@@ -1537,7 +1652,7 @@
             <xsl:when test="substring(.,12,1) = 'd'">duplicate</xsl:when>
             <xsl:when test="substring(.,12,1) = 'e'">master</xsl:when>
             <xsl:when test="substring(.,12,1) = 'o'">original</xsl:when>
-            <xsl:when test="substring(.,12,1) = 'r'">reference print, viewing copy</xsl:when>
+            <xsl:when test="substring(.,12,1) = 'r'">viewing copy</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="generationURI">
@@ -1552,19 +1667,19 @@
           <xsl:choose>
             <xsl:when test="substring(.,13,1) = 'a'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'">acetate</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'd'">diacetate</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'">polyester</xsl:when>
             <xsl:when test="substring(.,13,1) = 'r'">safety base</xsl:when>
             <xsl:when test="substring(.,13,1) = 't'">triacetate</xsl:when>
             <xsl:when test="substring(.,13,1) = 'i'">nitrate base</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'm'">mixed nitrate and safety base</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'm'">mixed material</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
             <xsl:when test="substring(.,13,1) = 'a'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
-            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'dia')"/></xsl:when>
+            <xsl:when test="substring(.,13,1) = 'd'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'p'"><xsl:value-of select="concat($mmaterial,'pol')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 'r'"><xsl:value-of select="concat($mmaterial,'saf')"/></xsl:when>
             <xsl:when test="substring(.,13,1) = 't'"><xsl:value-of select="concat($mmaterial,'tri')"/></xsl:when>
@@ -1572,33 +1687,17 @@
             <xsl:when test="substring(.,13,1) = 'm'"><xsl:value-of select="concat($mmaterial,'mix')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="completeness">
-          <xsl:choose>
-            <xsl:when test="substring(.,17,1) = 'c'">complete</xsl:when>
-            <xsl:when test="substring(.,17,1) = 'i'">incomplete</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/g</xsl:attribute>
-                  <rdfs:label>projected</rdfs:label>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrier != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:if test="$carrierUri != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $carrier != ''">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:if test="$carrierUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
             <xsl:if test="$vPresentationFormat != ''">
               <bf:projectionCharacteristic>
@@ -1610,16 +1709,6 @@
                 </bf:PresentationFormat>
               </bf:projectionCharacteristic>
             </xsl:if>
-            <xsl:if test="$soundContent != ''">
-              <bf:soundContent>
-                <bf:SoundContent>
-                  <xsl:if test="$soundContentURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
-                </bf:SoundContent>
-              </bf:soundContent>
-            </xsl:if>
             <xsl:if test="$recordingMedium != ''">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
@@ -1630,10 +1719,8 @@
                 </bf:RecordingMedium>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
-                <xsl:if test="$dimensions != ''">
-                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-                </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0 and $dimensions != ''">
+              <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
             <xsl:if test="$playbackChannels != ''">
               <bf:soundCharacteristic>
@@ -1675,14 +1762,6 @@
                 </bf:BaseMaterial>
               </bf:baseMaterial>
             </xsl:if>
-            <xsl:if test="$completeness != ''">
-              <bf:note>
-                <bf:Note>
-                  <bf:noteType>completeness</bf:noteType>
-                  <rdfs:label><xsl:value-of select="$completeness"/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:if>
           </xsl:when>
         </xsl:choose>
       </xsl:when>
@@ -1690,15 +1769,15 @@
       <xsl:when test="substring(.,1,1) = 's'">
         <xsl:variable name="carrier">
           <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'd'">sound disc</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">cylinder</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">sound cartridge</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'">sound-track film</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'">roll</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'">remote</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">sound cassette</xsl:when>
-            <xsl:when test="substring(.,2,1) = 't'">sound-tape reel</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'w'">wire recording</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">audio disc</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">audio cylinder</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">audio cartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'">sound track film</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'">audio roll</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">online resource</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">audiocassette</xsl:when>
+            <xsl:when test="substring(.,2,1) = 't'">audiotape reel</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'w'">audio wire reel</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="carrierUri">
@@ -1781,7 +1860,7 @@
             <xsl:when test="substring(.,7,1) = 'd'">10 in.</xsl:when>
             <xsl:when test="substring(.,7,1) = 'e'">12 in.</xsl:when>
             <xsl:when test="substring(.,7,1) = 'f'">16 in.</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">4 3/4 in. or 12 cm.</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">4 3/4 in.</xsl:when>
             <xsl:when test="substring(.,7,1) = 'j'">3 7/8 x 2 1/2 in.</xsl:when>
             <xsl:when test="substring(.,7,1) = 'o'">5 1/4 x 3 7/8 in.</xsl:when>
             <xsl:when test="substring(.,7,1) = 's'">2 3/4 x 4 in.</xsl:when>
@@ -1808,9 +1887,9 @@
           <xsl:choose>
             <xsl:when test="substring(.,10,1) = 'a'">master tape</xsl:when>
             <xsl:when test="substring(.,10,1) = 'b'">tape duplication master</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'">disc master (negative)</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'r'">mother (positive)</xsl:when>
-            <xsl:when test="substring(.,10,1) = 's'">stamper (negative)</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'd'">disc master</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'r'">mother</xsl:when>
+            <xsl:when test="substring(.,10,1) = 's'">stamper</xsl:when>
             <xsl:when test="substring(.,10,1) = 't'">test pressing</xsl:when>
           </xsl:choose>
         </xsl:variable>
@@ -1826,8 +1905,9 @@
         </xsl:variable>
         <xsl:variable name="baseMaterial">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'b'">cellulose nitrate</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'c'">acetate tape</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'a'">lacquer</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'">nitrate</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">acetate</xsl:when>
             <xsl:when test="substring(.,11,1) = 'g'">glass</xsl:when>
             <xsl:when test="substring(.,11,1) = 'i'">aluminum</xsl:when>
             <xsl:when test="substring(.,11,1) = 'r'">paper</xsl:when>
@@ -1840,7 +1920,8 @@
         </xsl:variable>
         <xsl:variable name="baseMaterialUri">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'b'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'a'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
+            <xsl:when test="substring(.,11,1) = 'b'"><xsl:value-of select="concat($mmaterial,'nit')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'c'"><xsl:value-of select="concat($mmaterial,'ace')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'g'"><xsl:value-of select="concat($mmaterial,'gla')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'i'"><xsl:value-of select="concat($mmaterial,'alu')"/></xsl:when>
@@ -1852,18 +1933,16 @@
             <xsl:when test="substring(.,11,1) = 'w'"><xsl:value-of select="concat($mmaterial,'wax')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="emulsion">
+        <xsl:variable name="vBaseMaterial2">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'a'">lacquer coating</xsl:when>
-            <xsl:when test="substring(.,11,1) = 'c'">ferrous oxide</xsl:when>
+            <xsl:when test="substring(.,11,1) = 'c'">magnetic particles</xsl:when>
             <xsl:when test="substring(.,11,1) = 'g'">lacquer</xsl:when>
             <xsl:when test="substring(.,11,1) = 'i'">lacquer</xsl:when>
             <xsl:when test="substring(.,11,1) = 'm'">metal</xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="emulsionUri">
+        <xsl:variable name="vBaseMaterialUri2">
           <xsl:choose>
-            <xsl:when test="substring(.,11,1) = 'a'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'c'"><xsl:value-of select="concat($mmaterial,'fer')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'g'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
             <xsl:when test="substring(.,11,1) = 'i'"><xsl:value-of select="concat($mmaterial,'lac')"/></xsl:when>
@@ -1885,7 +1964,7 @@
         <xsl:variable name="playbackCharacteristic">
           <xsl:choose>
             <xsl:when test="substring(.,13,1) = 'a'">NAB standard</xsl:when>
-            <xsl:when test="substring(.,13,1) = 'b'">CCIR standard</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'b'">CCIR encoded</xsl:when>
             <xsl:when test="substring(.,13,1) = 'c'">Dolby-B encoded</xsl:when>
             <xsl:when test="substring(.,13,1) = 'd'">dbx encoded</xsl:when>
             <xsl:when test="substring(.,13,1) = 'f'">Dolby-A encoded</xsl:when>
@@ -1906,7 +1985,7 @@
         </xsl:variable>
         <xsl:variable name="recordingMethod">
           <xsl:choose>
-            <xsl:when test="substring(.,13,1) = 'e'">digital recording</xsl:when>
+            <xsl:when test="substring(.,13,1) = 'e'">digital</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMethodURI">
@@ -1925,14 +2004,6 @@
         
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/s</xsl:attribute>
-                  <rdfs:label>audio</rdfs:label>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
             <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
               <xsl:if test="$carrier != ''">
                 <bf:carrier>
@@ -1975,13 +2046,13 @@
                 </bf:GrooveCharacteristic>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0">
-                <xsl:if test="$dimensions != ''">
-                    <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
-                </xsl:if>
-                <xsl:if test="$tapeWidth != ''">
-                    <bf:dimensions><xsl:value-of select="$tapeWidth"/></bf:dimensions>
-                </xsl:if>
+            <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0 and $dimensions != ''">
+              <xsl:if test="$dimensions != ''">
+                <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
+              </xsl:if>
+              <xsl:if test="$tapeWidth != ''">
+                <bf:dimensions><xsl:value-of select="$tapeWidth"/></bf:dimensions>
+              </xsl:if>
             </xsl:if>
             <xsl:if test="$tapeConfig != ''">
               <bf:soundCharacteristic>
@@ -2013,15 +2084,15 @@
                 </bf:BaseMaterial>
               </bf:baseMaterial>
             </xsl:if>
-            <xsl:if test="$emulsion != ''">
-              <bf:emulsion>
-                <bf:Emulsion>
-                  <xsl:if test="$emulsionUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$emulsionUri"/></xsl:attribute>
+            <xsl:if test="$vBaseMaterial2 != ''">
+              <bf:baseMaterial>
+                <bf:BaseMaterial>
+                  <xsl:if test="$vBaseMaterialUri2 != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vBaseMaterialUri2"/></xsl:attribute>
                   </xsl:if>
-                  <rdfs:label><xsl:value-of select="$emulsion"/></rdfs:label>
-                </bf:Emulsion>
-              </bf:emulsion>
+                  <rdfs:label><xsl:value-of select="$vBaseMaterial2"/></rdfs:label>
+                </bf:BaseMaterial>
+              </bf:baseMaterial>
             </xsl:if>
             <xsl:if test="$cutting != ''">
               <bf:soundCharacteristic>
@@ -2070,7 +2141,7 @@
       <xsl:when test="substring(.,1,1) = 'v'">
         <xsl:variable name="carrier">
           <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'c'">videocartridge</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">video cartridge</xsl:when>
             <xsl:when test="substring(.,2,1) = 'd'">videodisc</xsl:when>
             <xsl:when test="substring(.,2,1) = 'f'">videocassette</xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'">videotape reel</xsl:when>
@@ -2086,23 +2157,21 @@
         </xsl:variable>
         <xsl:variable name="videoFormat">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'a'">Beta (1/2 in.videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'b'">VHS (1/2 in.videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'c'">U-matic  (3/4 in.videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">EIAJ (1/2 in.reel)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'">Type C  (1 in.reel)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'f'">Quadruplex (1 in.or 2 in. reel)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'g'">Laserdisc</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'h'">CED (Capacitance Electronic Disc)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'i'">Betacam (1/2 in., videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'j'">Betacam SP (1/2 in., videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'k'">Super-VHS (1/2 in. videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'm'">M-II (1/2 in., videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'o'">D-2 (3/4 in., videocassette)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'p'">8 mm.</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'q'">Hi-8 mm.</xsl:when>
-            <xsl:when test="substring(.,5,1) = 's'">Blu-ray disc</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'v'">DVD</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'a'">Betamax</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'b'">VHS</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'c'">U-matic)</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'd'">EIAJ</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'e'">Type C</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'f'">Quadruplex</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'g'">laser optical</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'h'">CED</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'i'">Betacam</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'j'">Betacam SP</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'k'">Super-VHS</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'm'">M-II</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'o'">D-2</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'p'">8mm</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'q'">Hi-8mm</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="videoFormatURI">
@@ -2122,35 +2191,31 @@
             <xsl:when test="substring(.,5,1) = 'o'"><xsl:value-of select="concat($mvidformat,'d2')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'p'"><xsl:value-of select="concat($mvidformat,'8mm')"/></xsl:when>
             <xsl:when test="substring(.,5,1) = 'q'"><xsl:value-of select="concat($mvidformat,'hi8mm')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mvidformat,'bluray')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mvidformat,'dvd')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="soundContent">
+        <xsl:variable name="vEncodingFormat">
           <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '">silent</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'">sound</xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'">sound</xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'">Blu-Ray video</xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'">DVD video</xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="soundContentURI">
+        <xsl:variable name="vEncodingFormatUri">
           <xsl:choose>
-            <xsl:when test="substring(.,6,1) = ' '"><xsl:value-of select="concat($msoundcontent,'silent')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'a'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
-            <xsl:when test="substring(.,6,1) = 'b'"><xsl:value-of select="concat($msoundcontent,'sound')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'"><xsl:value-of select="concat($mencformat,'bluray')"/></xsl:when>
+            <xsl:when test="substring(.,5,1) = 'v'"><xsl:value-of select="concat($mencformat,'dvdv')"/></xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMedium">
           <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">optical sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'b'">magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">magnetic audio tape in cartridge</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">sound disc</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'e'">magnetic audio tape on reel</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">magnetic audio tape in cassette</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">optical and magnetic sound track on motion picture film</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'h'">videotape</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'i'">videodisc</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'a'">optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'b'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'c'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'd'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'e'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'f'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'g'">magneto-optical</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'h'">magnetic</xsl:when>
+            <xsl:when test="substring(.,7,1) = 'i'">optical</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="recordingMediumURI">
@@ -2194,13 +2259,6 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='337']) = 0">
-              <bf:media>
-                <bf:Media>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mediaTypes/v</xsl:attribute>
-                </bf:Media>
-              </bf:media>
-            </xsl:if>
             <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
               <xsl:if test="$carrier != ''">
                 <bf:carrier>
@@ -2223,15 +2281,15 @@
                 </bf:VideoFormat>
               </bf:videoCharacteristic>
             </xsl:if>
-            <xsl:if test="$soundContent != ''">
-              <bf:soundContent>
-                <bf:SoundContent>
-                  <xsl:if test="$soundContentURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$soundContentURI"/></xsl:attribute>
+            <xsl:if test="$vEncodingFormat != ''">
+              <bf:digitalCharacteristic>
+                <bf:EncodingFormat>
+                  <xsl:if test="$vEncodingFormatUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vEncodingFormatUri"/></xsl:attribute>
                   </xsl:if>
-                  <rdfs:label><xsl:value-of select="$soundContent"/></rdfs:label>
-                </bf:SoundContent>
-              </bf:soundContent>
+                  <rdfs:label><xsl:value-of select="$vEncodingFormat"/></rdfs:label>
+                </bf:EncodingFormat>
+              </bf:digitalCharacteristic>
             </xsl:if>
             <xsl:if test="$recordingMedium != ''">
               <bf:soundCharacteristic>
