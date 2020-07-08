@@ -895,13 +895,13 @@
               </bf:Illustration>
             </bf:illustrativeContent>
             <bf:supplementaryContent>
-              <bf:SupplementaryContent rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026048">
-                <rdfs:label>bibliographies</rdfs:label>
+              <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/bibliography">
+                <rdfs:label>bibliography</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:supplementaryContent>
               <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/index">
-                <rdfs:label>Index present</rdfs:label>
+                <rdfs:label>index</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:identifiedBy>

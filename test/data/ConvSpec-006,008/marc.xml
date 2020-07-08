@@ -20,9 +20,9 @@
     <controlfield tag="008">000407m19949999dcu    go  h        eng d</controlfield>
   </record>
   <record>
-    <leader>01354cem a2200325   4500</leader>
+    <leader>01354cec a2200325   4500</leader>
     <controlfield tag="001">5</controlfield>
-    <controlfield tag="008">830317s1977    pl ab  bk e  f    epeng  </controlfield>
+    <controlfield tag="008">830317s1977    pl ab  bk b  f    epeng  </controlfield>
   </record>
   <record>
     <leader>01478cjm a22002653a 4500</leader>
@@ -50,5 +50,10 @@
     <leader>00584nam a22002175a 4500</leader>
     <controlfield tag="001">10</controlfield>
     <controlfield tag="008">810811|1981    |||           000 0 spa  </controlfield>
+  </record>
+  <record>
+    <leader>01354ceb a2200325   4500</leader>
+    <controlfield tag="001">11</controlfield>
+    <controlfield tag="008">830317s1977    pl ab  bk b  f    epeng  </controlfield>
   </record>
 </collection>
