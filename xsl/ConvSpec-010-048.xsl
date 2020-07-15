@@ -1141,6 +1141,20 @@
               </xsl:if>
               <!-- special handling for source ($2) -->
               <xsl:choose>
+                <xsl:when test="../@tag='015'">
+                  <xsl:for-each select="../marc:subfield[@code='2']">
+                    <xsl:variable name="vEncoded">
+                      <xsl:call-template name="url-encode">
+                        <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
+                      </xsl:call-template>
+                    </xsl:variable>
+                    <bf:source>
+                      <bf:Source>
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($nationalbibschemes,$vEncoded)"/></xsl:attribute>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:for-each>
+                </xsl:when>
                 <xsl:when test="../@tag='016'">
                   <xsl:choose>
                     <xsl:when test="../@ind1 = ' '">

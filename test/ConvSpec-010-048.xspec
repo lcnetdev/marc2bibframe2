@@ -25,7 +25,7 @@
     <x:expect label="$q creates a qualifier property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[3]/bf:Nbn/bf:qualifier = 'pbk'"/>
     <x:expect label="$z creates an status/Status property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="$z ...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
-    <x:expect label="$2 creates a source property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:source/bf:Source/rdfs:label = 'dnb'"/>
+    <x:expect label="$2 creates a source property of the Nbn" test="//bf:Instance[1]/bf:identifiedBy[4]/bf:Nbn/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/nationalbibschemes/dnb'"/>
   </x:scenario>
 
   <x:scenario label="016 - NATIONAL BIBLIOGRAPHIC AGENCY CONTROL NUMBER">
