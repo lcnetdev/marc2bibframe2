@@ -123,8 +123,8 @@
         <xsl:if test="$vDescrConventions != ''">
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vDescrConventions)"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="$vDescrConventions"/></rdfs:label>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vDescrConventions)"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="$vDescrConventions"/></rdfs:label>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:if>
@@ -134,50 +134,55 @@
 
   <xsl:template match="marc:leader" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:variable name="workType">
-          <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">Text</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">NotatedMusic</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">NotatedMusic</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'e'">Cartography</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">Cartography</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">MovingImage</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'i'">Audio</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'j'">Audio</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'k'">StillImage</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'm'">Multimedia</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'o'">MixedMaterial</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'p'">MixedMaterial</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'r'">Object</xsl:when>
-            <xsl:when test="substring(.,7,1) = 't'">Text</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vContentType">
-          <xsl:choose>
-            <xsl:when test="substring(.,7,1) = 'a'">txt</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'c'">ntm</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'd'">ntm</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'e'">cri</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'f'">cri</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'g'">tdi</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'i'">spw</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'j'">prm</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'k'">sti</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'm'">cop</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'o'">txt</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'p'">txt</xsl:when>
-            <xsl:when test="substring(.,7,1) = 'r'">tdf</xsl:when>
-            <xsl:when test="substring(.,7,1) = 't'">txt</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:if test="$workType != ''">
+    <xsl:variable name="workType">
+      <xsl:choose>
+        <xsl:when test="substring(.,7,1) = 'a'">Text</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'c'">NotatedMusic</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'd'">NotatedMusic</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'e'">Cartography</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'f'">Cartography</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'g'">MovingImage</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'i'">Audio</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'j'">Audio</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'k'">StillImage</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'm'">Multimedia</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'o'">MixedMaterial</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'p'">MixedMaterial</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'r'">Object</xsl:when>
+        <xsl:when test="substring(.,7,1) = 't'">Text</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vContentType">
+      <xsl:choose>
+        <xsl:when test="substring(.,7,1) = 'a'">txt</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'c'">ntm</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'd'">ntm</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'e'">cri</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'f'">cri</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'g'">tdi</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'i'">spw</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'j'">prm</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'k'">sti</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'm'">cop</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'o'">txt</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'p'">txt</xsl:when>
+        <xsl:when test="substring(.,7,1) = 'r'">tdf</xsl:when>
+        <xsl:when test="substring(.,7,1) = 't'">txt</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$workType != ''">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
           </rdf:type>
-        </xsl:if>
-        <xsl:if test="$vContentType != '' and not(../marc:datafield[@tag='336'])">
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+    <xsl:if test="$vContentType != '' and
+                  not(../marc:datafield[@tag='336'])">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
           <bf:content>
             <bf:Content>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($contentType,$vContentType)"/></xsl:attribute>
@@ -196,9 +201,9 @@
               </rdfs:label>
             </bf:Content>
           </bf:content>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:leader" mode="instance">
