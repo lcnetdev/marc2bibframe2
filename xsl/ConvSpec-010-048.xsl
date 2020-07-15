@@ -1160,14 +1160,24 @@
                     <xsl:when test="../@ind1 = ' '">
                       <bf:source>
                         <bf:Source>
+                          <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/names/no2004037399</xsl:attribute>
                           <rdfs:label>Library and Archives Canada</rdfs:label>
                         </bf:Source>
                       </bf:source>
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                        <xsl:with-param name="serialization" select="$serialization"/>
-                      </xsl:apply-templates>
+                      <xsl:for-each select="../marc:subfield[@code='2']">
+                        <xsl:variable name="vEncoded">
+                          <xsl:call-template name="url-encode">
+                            <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
+                          </xsl:call-template>
+                        </xsl:variable>
+                        <bf:source>
+                          <bf:Source>
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vEncoded)"/></xsl:attribute>
+                          </bf:Source>
+                        </bf:source>
+                      </xsl:for-each>
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>

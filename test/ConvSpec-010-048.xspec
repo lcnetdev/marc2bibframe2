@@ -30,11 +30,12 @@
 
   <x:scenario label="016 - NATIONAL BIBLIOGRAPHIC AGENCY CONTROL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="ind1=' ' creates a LAC source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
+    <x:expect label="ind1=' ' creates a LAC source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/authorities/names/no2004037399'"/>
+    <x:expect label="...with a label" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/bf:source/bf:Source/rdfs:label = 'Library and Archives Canada'"/>
     <x:expect label="$a creates an identifiedBy/Local property of the AdminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[2]/bf:Local/rdf:value=' 730032015  rev'"/>
     <x:expect label="$z creates an status/Status property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[3]/bf:Local/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[3]/bf:Local/bf:status/bf:Status/rdfs:label = 'invalid'"/>
-    <x:expect label="$2 creates a source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[4]/bf:Local/bf:source/bf:Source/rdfs:label = 'PoLiBN'"/>    
+    <x:expect label="$2 creates a source property of the Local" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy[4]/bf:Local/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/polibn'"/>    
   </x:scenario>
   
   <x:scenario label="017 - COPYRIGHT OR LEGAL DEPOSIT NUMBER">
