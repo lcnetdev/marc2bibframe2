@@ -139,6 +139,7 @@
   <xsl:variable name="nationalbibschemes">http://id.loc.gov/vocabulary/nationalbibschemes/</xsl:variable>
   <xsl:variable name="fingerprintschemes">http://id.loc.gov/vocabulary/fingerprintschemes/</xsl:variable>
   <xsl:variable name="languageschemes">http://id.loc.gov/vocabulary/languageschemes/</xsl:variable>
+  <xsl:variable name="musiccompschemes">http://id.loc.gov/vocabulary/musiccompschemes/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>

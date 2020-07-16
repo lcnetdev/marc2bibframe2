@@ -226,10 +226,11 @@
   
   <x:scenario label="047 - FORM OF MUSICAL COMPOSITION CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'rgg'"/>
+    <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:code = 'rgg'"/>
+    <x:expect label="if ind2 = ' ' add marcmuscomp source" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/musiccompschemes/marcmuscomp'"/>
     <x:expect label="if ind2 = ' ', use 008/18-19 music conversion on each $a to set URI" test="//bf:Work/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026688'"/>
     <x:expect label="...and label" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'oratorios'"/>
-    <x:expect label="$2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/rdfs:label = 'iamlmf'"/>
+    <x:expect label="if ind2 = '7', $2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/musiccompschemes/iamlmf'"/>
   </x:scenario>
   
   <x:scenario label="048 - NUMBER OF MUSICAL INSTRUMENTS OR VOICES CODE">

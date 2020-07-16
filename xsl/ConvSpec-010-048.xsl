@@ -780,14 +780,16 @@
               <xsl:call-template name="compForm008">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="code" select="."/>
+                <xsl:with-param name="pMarcSource" select="true()"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <bf:genreForm>
                 <bf:GenreForm>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2code">
                     <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pUriStem" select="$musiccompschemes"/>
                   </xsl:apply-templates>
                 </bf:GenreForm>
               </bf:genreForm>
