@@ -205,55 +205,58 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a' or @code='c']">
+        <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="vUri">
             <xsl:if test="text() = 'DLC'">
               <xsl:value-of select="concat($organizations,'dlc')"/>
             </xsl:if>
           </xsl:variable>
-          <bf:source>
-            <bf:Source>
+          <bf:assigner>
+            <bf:Agent>
               <xsl:if test="$vUri != ''">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
               </xsl:if>
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Agent')"/></xsl:attribute>
-              </rdf:type>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:Source>
-          </bf:source>
+              <bf:code><xsl:value-of select="."/></bf:code>
+            </bf:Agent>
+          </bf:assigner>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
           <!-- this should be a code -->
           <!-- assume MARC code if 3 characters -->
           <bf:descriptionLanguage>
             <bf:Language>
-              <xsl:if test="string-length(.) = 3">
-                <xsl:variable name="encoded">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="normalize-space(.)"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-              </xsl:if>
-              <bf:code><xsl:value-of select="."/></bf:code>
+              <xsl:choose>
+                <xsl:when test="string-length(.) = 3">
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="normalize-space(.)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                </xsl:otherwise>
+              </xsl:choose>
             </bf:Language>
           </bf:descriptionLanguage>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='d']">
-          <bf:descriptionModifier>
-            <bf:Agent>
-              <xsl:variable name="vUri">
-                <xsl:if test="text() = 'DLC'">
-                  <xsl:value-of select="concat($organizations,'dlc')"/>
+          <xsl:if test="position() = count(../marc:subfield[@code='d'])">
+            <bf:descriptionModifier>
+              <bf:Agent>
+                <xsl:variable name="vUri">
+                  <xsl:if test="text() = 'DLC'">
+                    <xsl:value-of select="concat($organizations,'dlc')"/>
+                  </xsl:if>
+                </xsl:variable>
+                <xsl:if test="$vUri != ''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
                 </xsl:if>
-              </xsl:variable>
-              <xsl:if test="$vUri != ''">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
-              </xsl:if>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:Agent>
-          </bf:descriptionModifier>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </bf:Agent>
+            </bf:descriptionModifier>
+          </xsl:if>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='e']">
           <bf:descriptionConventions>

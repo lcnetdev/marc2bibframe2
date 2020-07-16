@@ -170,7 +170,7 @@
     <datafield tag="040" ind1=" " ind2=" ">
       <subfield code="a">NBPol-G</subfield>
       <subfield code="b">fre</subfield>
-      <subfield code="c">CtY</subfield>
+      <subfield code="d">DLC</subfield>
       <subfield code="d">CtY</subfield>
       <subfield code="e">NARS Staff Bulletin No. 16</subfield>
       <subfield code="e">appm</subfield>
