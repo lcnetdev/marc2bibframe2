@@ -1188,6 +1188,45 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
+                <xsl:when test="../@tag='022'">
+                  <xsl:for-each select="../marc:subfield[@code='2']">
+                    <xsl:variable name="vCentreCode">
+                      <xsl:choose>
+                        <xsl:when test="number(.) = .">
+                          <xsl:choose>
+                            <xsl:when test="string-length(.) = 1"><xsl:value-of select="concat('_',.)"/></xsl:when>
+                            <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:when>
+                        <xsl:when test="contains(.,'-')">
+                          <xsl:variable name="vCodeCandidate"><xsl:value-of select="substring-after(.,'-')"/></xsl:variable>
+                          <xsl:choose>
+                            <xsl:when test="number($vCodeCandidate) = $vCodeCandidate">
+                              <xsl:choose>
+                                <xsl:when test="string-length($vCodeCandidate) = 1">
+                                  <xsl:value-of select="concat('_',$vCodeCandidate)"/>
+                                </xsl:when>
+                                <xsl:otherwise><xsl:value-of select="$vCodeCandidate"/></xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:when>
+                          </xsl:choose>
+                        </xsl:when>
+                      </xsl:choose>
+                    </xsl:variable>
+                    <bf:assigner>
+                      <bf:Agent>
+                        <xsl:if test="$vCentreCode != ''">
+                          <xsl:attribute name="rdf:about">
+                            <xsl:value-of select="concat('http://issn.org/organization/ISSNCentre#',$vCentreCode)"/>
+                          </xsl:attribute>
+                        </xsl:if>
+                        <xsl:if test="number(.) != .">
+                          <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                        </xsl:if>
+                      </bf:Agent>
+                    </bf:assigner>
+                  </xsl:for-each>
+                </xsl:when>
                 <xsl:when test="../@tag='028' or ../@tag='032' or ../@tag='036'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
