@@ -417,7 +417,7 @@
                   <rdf:value><xsl:value-of select="normalize-space(concat(.,' ',following-sibling::*[position()=1][@code='c']))"/></rdf:value>
                   <bf:source>
                     <bf:Source>
-                      <rdfs:label>lcc-g</rdfs:label>
+                      <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
                     </bf:Source>
                   </bf:source>
                 </bf:Place>
@@ -427,8 +427,9 @@
               <bf:place>
                 <bf:Place>
                   <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  <xsl:apply-templates mode="subfield2" select="following-sibling::*[position()=1][@code='2']">
+                  <xsl:apply-templates mode="subfield2code" select="following-sibling::*[position()=1][@code='2']">
                     <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pUriStem" select="$subjectSchemes"/>
                   </xsl:apply-templates>
                 </bf:Place>
               </bf:place>
@@ -1153,18 +1154,10 @@
               <!-- special handling for source ($2) -->
               <xsl:choose>
                 <xsl:when test="../@tag='015'">
-                  <xsl:for-each select="../marc:subfield[@code='2']">
-                    <xsl:variable name="vEncoded">
-                      <xsl:call-template name="url-encode">
-                        <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
-                      </xsl:call-template>
-                    </xsl:variable>
-                    <bf:source>
-                      <bf:Source>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($nationalbibschemes,$vEncoded)"/></xsl:attribute>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:for-each>
+                  <xsl:apply-templates mode="subfield2code" select="../marc:subfield[@code='2']">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pUriStem" select="$nationalbibschemes"/>
+                  </xsl:apply-templates>
                 </xsl:when>
                 <xsl:when test="../@tag='016'">
                   <xsl:choose>
@@ -1177,18 +1170,10 @@
                       </bf:source>
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:for-each select="../marc:subfield[@code='2']">
-                        <xsl:variable name="vEncoded">
-                          <xsl:call-template name="url-encode">
-                            <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
-                          </xsl:call-template>
-                        </xsl:variable>
-                        <bf:source>
-                          <bf:Source>
-                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vEncoded)"/></xsl:attribute>
-                          </bf:Source>
-                        </bf:source>
-                      </xsl:for-each>
+                      <xsl:apply-templates mode="subfield2code" select="../marc:subfield[@code='2']">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                        <xsl:with-param name="pUriStem" select="$organizations"/>
+                      </xsl:apply-templates>
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
@@ -1305,18 +1290,10 @@
                 </xsl:for-each>
               </xsl:otherwise>
             </xsl:choose>
-            <xsl:for-each select="marc:subfield[@code='2']">
-              <xsl:variable name="vEncoded">
-                <xsl:call-template name="url-encode">
-                  <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
-                </xsl:call-template>
-              </xsl:variable>
-              <bf:source>
-                <bf:Source>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($fingerprintschemes,$vEncoded)"/></xsl:attribute>
-                </bf:Source>
-              </bf:source>
-            </xsl:for-each>
+            <xsl:apply-templates mode="subfield2code" select="marc:subfield[@code='2']">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pUriStem" select="$fingerprintschemes"/>
+            </xsl:apply-templates>
             <xsl:for-each select="marc:subfield[@code='5']">
               <xsl:apply-templates select="." mode="subfield5">
                 <xsl:with-param name="serialization" select="$serialization"/>
