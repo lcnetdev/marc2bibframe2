@@ -1032,8 +1032,8 @@
             <xsl:choose>
               <!-- for 035, extract value after parentheses -->
               <xsl:when test="../@tag='035' and contains(.,')')"><xsl:value-of select="substring-after(.,')')"/></xsl:when>
-              <!-- for 015,020,024,027,028 extract value outside parentheses -->
-              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027' or ../@tag='028') and
+              <!-- for 015,020,024,027 extract value outside parentheses -->
+              <xsl:when test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
                               contains(.,'(') and contains(.,')')">
                 <xsl:value-of select="concat(substring-before(.,'('),substring-after(.,')'))"/>
               </xsl:when>
@@ -1070,8 +1070,8 @@
                   </bf:Status>
                 </bf:status>
               </xsl:if>
-              <!-- special handling for 015, 020, 024, 027, 028 -->
-              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027' or ../@tag='028') and
+              <!-- special handling for 015, 020, 024, 027 -->
+              <xsl:if test="(../@tag='015' or ../@tag='020' or ../@tag='024' or ../@tag='027') and
                             contains(.,'(') and contains(.,')')">
                 <xsl:variable name="vQualifier" select="substring-before(substring-after(.,'('),')')"/>
                 <xsl:if test="$vQualifier != ''">
@@ -1082,6 +1082,16 @@
                     </xsl:call-template>
                   </bf:qualifier>
                 </xsl:if>
+              </xsl:if>
+              <!-- special handling for 017, 028 $b -->
+              <xsl:if test="../@tag='017' or ../@tag='028'">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:for-each>
               </xsl:if>
               <!-- special handling for 036 -->
               <xsl:if test="../@tag='036'">
@@ -1104,13 +1114,6 @@
               </xsl:for-each>
               <!-- special handling for 017 -->
               <xsl:if test="../@tag='017'">
-                <xsl:for-each select="../marc:subfield[@code='b']">
-                  <bf:assigner>
-                    <bf:Agent>
-                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                    </bf:Agent>
-                  </bf:assigner>
-                </xsl:for-each>
                 <xsl:variable name="date"><xsl:value-of select="../marc:subfield[@code='d'][1]"/></xsl:variable>
                 <xsl:variable name="dateformatted"><xsl:value-of select="concat(substring($date,1,4),'-',substring($date,5,2),'-',substring($date,7,2))"/></xsl:variable>
                 <xsl:if test="$date != ''">
@@ -1228,7 +1231,7 @@
                     </bf:assigner>
                   </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="../@tag='028' or ../@tag='032' or ../@tag='036'">
+                <xsl:when test="../@tag='032' or ../@tag='036'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
                       <bf:Source>

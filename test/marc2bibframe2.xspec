@@ -438,11 +438,11 @@
             <bf:identifiedBy>
               <bf:AudioIssueNumber>
                 <rdf:value>1259</rdf:value>
-                <bf:source>
-                  <bf:Source>
+                <bf:assigner>
+                  <bf:Agent>
                     <rdfs:label>Atlantic</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                  </bf:Agent>
+                </bf:assigner>
               </bf:AudioIssueNumber>
             </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>

@@ -111,10 +111,9 @@
   <x:scenario label="028 - PUBLISHER NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="ind1 determines the class of Identifier for the identifiedBy property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber) = 1"/>
-    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/rdf:value = '440 073 033-9'"/>
-    <x:expect label="$a can contain a qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:qualifier[1] = 'compact disc'"/>
-    <x:expect label="$b creates a source property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:source/bf:Source/rdfs:label = 'Deutsche Grammophon'"/>
-    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:qualifier[2] = 'disc 1'"/>
+    <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/rdf:value = '440 073 033-9 (compact disc)'"/>
+    <x:expect label="$b creates an assigner property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:assigner/bf:Agent/rdfs:label = 'Deutsche Grammophon'"/>
+    <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[24]/bf:AudioIssueNumber/bf:qualifier[1] = 'disc 1'"/>
   </x:scenario>
 
   <x:scenario label="030 - CODEN DESIGNATION">
