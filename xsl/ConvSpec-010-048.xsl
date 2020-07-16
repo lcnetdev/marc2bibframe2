@@ -1083,8 +1083,8 @@
                   </bf:qualifier>
                 </xsl:if>
               </xsl:if>
-              <!-- special handling for 017, 028 $b -->
-              <xsl:if test="../@tag='017' or ../@tag='028'">
+              <!-- special handling for 017, 028, 032 $b -->
+              <xsl:if test="../@tag='017' or ../@tag='028' or ../@tag='032'">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:assigner>
                     <bf:Agent>
@@ -1231,7 +1231,7 @@
                     </bf:assigner>
                   </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="../@tag='032' or ../@tag='036'">
+                <xsl:when test="../@tag='036'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
                       <bf:Source>

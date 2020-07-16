@@ -125,7 +125,7 @@
   <x:scenario label="032 - POSTAL REGISTRATION NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/PostalRegistration property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:PostalRegistration/rdf:value = '686310'"/>
-    <x:expect label="$b creates a source property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:PostalRegistration/bf:source/bf:Source/rdfs:label = 'USPS'"/>
+    <x:expect label="$b creates an assigner property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:PostalRegistration/bf:assigner/bf:Agent/rdfs:label = 'USPS'"/>
   </x:scenario>
   
   <x:scenario label="033 - DATE/TIME AND PLACE OF AN EVENT">
