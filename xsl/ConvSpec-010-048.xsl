@@ -1326,9 +1326,9 @@
                 </bf:StockNumber>
               </bf:identifiedBy>
             </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='b']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
             <xsl:for-each select="marc:subfield[@code='c']">
               <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
             </xsl:for-each>
