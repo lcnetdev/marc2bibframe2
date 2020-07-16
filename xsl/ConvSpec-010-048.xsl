@@ -1078,12 +1078,18 @@
                   </bf:qualifier>
                 </xsl:if>
               </xsl:if>
-              <!-- special handling for 017, 028, 032 $b -->
-              <xsl:if test="../@tag='017' or ../@tag='028' or ../@tag='032'">
+              <!-- special handling for 017, 028, 032, 036 $b -->
+              <xsl:if test="../@tag='017' or ../@tag='028' or ../@tag='032' or ../@tag='036'">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:assigner>
                     <bf:Agent>
-                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                      <rdfs:label>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString">
+                            <xsl:value-of select="."/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </rdfs:label>
                     </bf:Agent>
                   </bf:assigner>
                 </xsl:for-each>
@@ -1208,21 +1214,6 @@
                         </xsl:if>
                       </bf:Agent>
                     </bf:assigner>
-                  </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="../@tag='036'">
-                  <xsl:for-each select="../marc:subfield[@code='b']">
-                    <bf:source>
-                      <bf:Source>
-                        <rdfs:label>
-                          <xsl:call-template name="chopPunctuation">
-                            <xsl:with-param name="chopString">
-                              <xsl:value-of select="."/>
-                            </xsl:with-param>
-                          </xsl:call-template>
-                        </rdfs:label>
-                      </bf:Source>
-                    </bf:source>
                   </xsl:for-each>
                 </xsl:when>
                 <xsl:when test="../@tag='024'">

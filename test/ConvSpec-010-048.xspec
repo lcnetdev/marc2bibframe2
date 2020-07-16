@@ -160,7 +160,7 @@
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
-    <x:expect label="$b creates a source property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/bf:source/bf:Source/rdfs:label = 'Centre national de la recherche scientifique'"/>
+    <x:expect label="$b creates an assigner property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/bf:assigner/bf:Agent/rdfs:label = 'Centre national de la recherche scientifique'"/>
   </x:scenario>
   
   <x:scenario label="037 - SOURCE OF ACQUISITION">
