@@ -468,11 +468,7 @@
           <xsl:if test="text() = 'a' and not(../marc:subfield[@code='b' or @code='c'])">
             <bf:scale>
               <bf:Scale>
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>Linear scale</rdfs:label>
-                  </bf:Note>
-                </bf:note>
+                <rdfs:label>linear scale</rdfs:label>
               </bf:Scale>
             </bf:scale>
           </xsl:if>
@@ -501,11 +497,9 @@
         <bf:scale>
           <bf:Scale>
             <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            <bf:note>
-              <bf:Note>
-                <rdfs:label><xsl:value-of select="$pScaleType"/></rdfs:label>
-              </bf:Note>
-            </bf:note>
+            <xsl:if test="$pScaleType != ''">
+              <rdfs:label><xsl:value-of select="$pScaleType"/></rdfs:label>
+            </xsl:if>
             <xsl:for-each select="../marc:subfield[@code='3']">
               <xsl:apply-templates select="." mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
