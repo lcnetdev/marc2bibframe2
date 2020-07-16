@@ -538,13 +538,15 @@
                               marc:subfield[@code = 'f'] |
                               marc:subfield[@code = 'g'] |
                               marc:subfield[@code = 'h'] |
+                              marc:subfield[@code = 'i'] |
                               marc:subfield[@code = 'j'] |
                               marc:subfield[@code = 'k'] |
                               marc:subfield[@code = 'm'] |
                               marc:subfield[@code = 'n'] |
                               marc:subfield[@code = 'p'] |
                               marc:subfield[@code = 'q'] |
-                              marc:subfield[@code = 'r']">
+                              marc:subfield[@code = 'r'] |
+                              marc:subfield[@code = 't']">
           <xsl:variable name="vPart">
             <xsl:choose>
               <xsl:when test="@code = 'b'">summary</xsl:when>
@@ -553,6 +555,7 @@
               <xsl:when test="@code = 'f'">table of contents</xsl:when>
               <xsl:when test="@code = 'g'">accompanying material</xsl:when>
               <xsl:when test="@code = 'h'">original</xsl:when>
+              <xsl:when test="@code = 'i'">intertitles</xsl:when>
               <xsl:when test="@code = 'j'">subtitles or captions</xsl:when>
               <xsl:when test="@code = 'k'">intermediate translations</xsl:when>
               <xsl:when test="@code = 'm'">original accompanying materials</xsl:when>
@@ -560,6 +563,7 @@
               <xsl:when test="@code = 'p'">captions</xsl:when>
               <xsl:when test="@code = 'q'">accessible audio</xsl:when>
               <xsl:when test="@code = 'r'">accessible visual material</xsl:when>
+              <xsl:when test="@code = 't'">accompanying transcripts</xsl:when>
             </xsl:choose>
           </xsl:variable>
           <xsl:choose>
@@ -578,20 +582,11 @@
                   <xsl:if test="$vPart != ''">
                     <bf:part><xsl:value-of select="$vPart"/></bf:part>
                   </xsl:if>
-                  <xsl:if test="$vSource != ''">
-                    <bf:source>
-                      <bf:Source>
-                        <xsl:choose>
-                          <xsl:when test="$vSource = 'iso639-1'">
-                            <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/iso639-1</xsl:attribute>
-                          </xsl:when>
-                          <xsl:otherwise>
-                            <rdfs:label><xsl:value-of select="$vSource"/></rdfs:label>
-                          </xsl:otherwise>
-                        </xsl:choose>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:if>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2code">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pUriStem" select="$languageschemes"/>
+                    <xsl:with-param name="pStripPunct" select="true()"/>
+                  </xsl:apply-templates>
                 </bf:Language>
               </bf:language>
             </xsl:otherwise>
