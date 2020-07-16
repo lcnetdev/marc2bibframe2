@@ -41,7 +41,7 @@
   <x:scenario label="017 - COPYRIGHT OR LEGAL DEPOSIT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/rdf:value='JP732'"/>
-    <x:expect label="$b creates a source property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:source/bf:Source/rdfs:label = 'U.S. Copyright Office'"/>
+    <x:expect label="$b creates an assigner property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:assigner/bf:Agent/rdfs:label = 'U.S. Copyright Office'"/>
     <x:expect label="$d creates a date property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:date = '1951-05-04'"/>
     <x:expect label="$i creates a note property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:note/bf:Note/rdfs:label = 'Suppl. reg.'"/>
     <x:expect label="$z creates a status/Status property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>

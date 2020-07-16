@@ -1103,6 +1103,13 @@
               </xsl:for-each>
               <!-- special handling for 017 -->
               <xsl:if test="../@tag='017'">
+                <xsl:for-each select="../marc:subfield[@code='b']">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:for-each>
                 <xsl:variable name="date"><xsl:value-of select="../marc:subfield[@code='d'][1]"/></xsl:variable>
                 <xsl:variable name="dateformatted"><xsl:value-of select="concat(substring($date,1,4),'-',substring($date,5,2),'-',substring($date,7,2))"/></xsl:variable>
                 <xsl:if test="$date != ''">
@@ -1181,7 +1188,7 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
-                <xsl:when test="../@tag='017' or ../@tag='028' or ../@tag='032' or ../@tag='036'">
+                <xsl:when test="../@tag='028' or ../@tag='032' or ../@tag='036'">
                   <xsl:for-each select="../marc:subfield[@code='b']">
                     <bf:source>
                       <bf:Source>
