@@ -1237,11 +1237,16 @@
                 <xsl:when test="../@tag='035'">
                   <xsl:variable name="vSource" select="substring-before(substring-after(.,'('),')')"/>
                   <xsl:if test="$vSource != ''">
-                    <bf:source>
-                      <bf:Source>
-                        <rdfs:label><xsl:value-of select="$vSource"/></rdfs:label>
-                      </bf:Source>
-                    </bf:source>
+                    <xsl:variable name="vEncoded">
+                      <xsl:call-template name="url-encode">
+                        <xsl:with-param name="str" select="translate(normalize-space($vSource),$upper,$lower)"/>
+                      </xsl:call-template>
+                    </xsl:variable>
+                    <bf:assigner>
+                      <bf:Agent>
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vEncoded)"/></xsl:attribute>
+                      </bf:Agent>
+                    </bf:assigner>
                   </xsl:if>
                 </xsl:when>
                 <xsl:when test="../@tag='074'">
