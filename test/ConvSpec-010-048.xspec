@@ -236,7 +236,9 @@
   <x:scenario label="048 - NUMBER OF MUSICAL INSTRUMENTS OR VOICES CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="048 $a creates an instrument, ensemble, or voice property of the Work" test="//bf:Work/bf:voice[5]/bf:MusicVoice/rdfs:label = 'mixed chorus'"/>
+    <x:expect label="...with a source URI" test="//bf:Work/bf:voice[5]/bf:MusicVoice/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/musiccodeschemes/marcmusperf'"/>
     <x:expect label="048 $b creates an instrument, ensemble, or voice property of the Work" test="//bf:Work/bf:voice[1]/bf:MusicVoice/rdfs:label = 'soprano'"/>
+    <x:expect label="...with a source URI" test="//bf:Work/bf:voice[1]/bf:MusicVoice/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/musiccodeschemes/marcmusperf'"/>
     <x:expect label="position 2-3 of the subfield create a count property of the MusicInstrument, MusicEnsemble, or MusicVoice" test="//bf:Work/bf:voice[5]/bf:MusicVoice/bf:count = '4'"/>
     <x:expect label="048 $b creates an instrumentalType property of the Work for instruments" test="//bf:Work/bf:instrument[1]/bf:MusicInstrument/bf:instrumentalType = 'keyboard'"/>
     <x:expect label="only valid codes in 048 $a/$b should create properties" test="count(//bf:Work/bf:instrument|//bf:Work/bf:voice|//bf:Work/bf:ensemble) = 7"/>

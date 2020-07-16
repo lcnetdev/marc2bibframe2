@@ -818,6 +818,11 @@
                   <xsl:if test="$vCount != ''">
                     <bf:count><xsl:value-of select="number($vCount)"/></bf:count>
                   </xsl:if>
+                  <bf:source>
+                    <bf:Source>
+                      <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/musiccodeschemes/marcmusperf</xsl:attribute>
+                    </bf:Source>
+                  </bf:source>
                 </xsl:element>
               </xsl:element>
             </xsl:if>
