@@ -96,7 +96,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a $b $c $d create an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
     <x:expect label="$e creates an identifiedBy/Fingerprint property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[21]/bf:Fingerprint/rdf:value = 'dete nkck vess lodo 3 Anno Domini MDCXXXVI 3'"/>
-    <x:expect label="$2 creates a source property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Fingerprint/bf:source/bf:Source/rdfs:label = 'fei'"/>
+    <x:expect label="$2 creates a source property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[20]/bf:Fingerprint/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/fingerprintschemes/fei'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the Fingerprint" test="//bf:Instance[1]/bf:identifiedBy[21]/bf:Fingerprint/bflc:applicableInstitution/bf:Agent/bf:code = 'UkCU'"/>
   </x:scenario>
 

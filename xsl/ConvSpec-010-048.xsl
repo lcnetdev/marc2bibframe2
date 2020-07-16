@@ -1303,9 +1303,16 @@
               </xsl:otherwise>
             </xsl:choose>
             <xsl:for-each select="marc:subfield[@code='2']">
-              <xsl:apply-templates select="." mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:variable name="vEncoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="translate(normalize-space(.),$upper,$lower)"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <bf:source>
+                <bf:Source>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($fingerprintschemes,$vEncoded)"/></xsl:attribute>
+                </bf:Source>
+              </bf:source>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='5']">
               <xsl:apply-templates select="." mode="subfield5">
