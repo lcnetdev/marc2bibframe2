@@ -902,6 +902,7 @@
               <xsl:choose>
                 <xsl:when test="marc:subfield[@code='2' and text()='ansi']">bf:Ansi</xsl:when>
                 <xsl:when test="marc:subfield[@code='2' and text()='doi']">bf:Doi</xsl:when>
+                <xsl:when test="marc:subfield[@code='2' and text()='gtin-14']">bf:Gtin14Number</xsl:when>
                 <xsl:when test="marc:subfield[@code='2' and text()='hdl']">bf:Hdl</xsl:when>
                 <xsl:when test="marc:subfield[@code='2' and text()='isan']">bf:Isan</xsl:when>
                 <xsl:when test="marc:subfield[@code='2' and text()='isni']">bf:Isni</xsl:when>
