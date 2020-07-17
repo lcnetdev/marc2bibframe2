@@ -499,7 +499,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:scale>
           <bf:Scale>
-            <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            <rdf:value><xsl:value-of select="."/></rdf:value>
             <xsl:if test="$pScaleType != ''">
               <rdfs:label><xsl:value-of select="$pScaleType"/></rdfs:label>
             </xsl:if>
