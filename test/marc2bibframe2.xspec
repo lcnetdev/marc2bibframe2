@@ -619,7 +619,11 @@
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>975.3</bf:classificationPortion>
-                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc13</bf:edition>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>13</rdfs:label>
+                  </bf:Source>
+                </bf:source>
                 <bf:edition>abridged</bf:edition>
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
@@ -944,7 +948,11 @@
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>658.4</bf:classificationPortion>
-                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc20</bf:edition>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>20</rdfs:label>
+                  </bf:Source>
+                </bf:source>
                 <bf:edition>full</bf:edition>
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>

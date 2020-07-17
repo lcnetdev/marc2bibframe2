@@ -18,11 +18,6 @@
     <xsl:param name="serialization"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$tag='082'">
-        <xsl:apply-templates mode="work082" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
       <xsl:when test="$tag='084'">
         <xsl:apply-templates mode="work084" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
