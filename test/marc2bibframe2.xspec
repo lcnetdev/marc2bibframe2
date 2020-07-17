@@ -64,7 +64,9 @@
                   <bf:Local>
                     <rdf:value>13600108</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -277,7 +279,9 @@
                   <bf:Local>
                     <rdf:value>5637241</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -384,7 +388,7 @@
             </bf:media>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/sd">
-                <rdfs:label>sound disc</rdfs:label>
+                <rdfs:label>audio disc</rdfs:label>
               </bf:Carrier>
             </bf:carrier>
             <bf:soundCharacteristic>
@@ -518,7 +522,9 @@
                   <bf:Local>
                     <rdf:value>12149120</rdf:value>
                     <bf:assigner>
-                        <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -827,7 +833,9 @@
                   <bf:Local>
                     <rdf:value>4417401</rdf:value>
                     <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                        <bf:code>DLC</bf:code>
+                      </bf:Agent>
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
@@ -860,13 +868,13 @@
               </bf:Illustration>
             </bf:illustrativeContent>
             <bf:supplementaryContent>
-              <bf:SupplementaryContent rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026048">
-                <rdfs:label>bibliographies</rdfs:label>
+              <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/bibliography">
+                <rdfs:label>bibliography</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:supplementaryContent>
               <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/index">
-                <rdfs:label>Index present</rdfs:label>
+                <rdfs:label>index</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:identifiedBy>

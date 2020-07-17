@@ -140,6 +140,8 @@
   <xsl:variable name="fingerprintschemes">http://id.loc.gov/vocabulary/fingerprintschemes/</xsl:variable>
   <xsl:variable name="languageschemes">http://id.loc.gov/vocabulary/languageschemes/</xsl:variable>
   <xsl:variable name="musiccompschemes">http://id.loc.gov/vocabulary/musiccompschemes/</xsl:variable>
+  <xsl:variable name="mgovtpubtype">http://id.loc.gov/vocabulary/mgovtpubtype/</xsl:variable>
+  <xsl:variable name="mencformat">http://id.loc.gov/vocabulary/mencformat/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
