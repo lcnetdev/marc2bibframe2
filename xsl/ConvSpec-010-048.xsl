@@ -472,6 +472,23 @@
             <bf:scale>
               <bf:Scale>
                 <rdfs:label>linear scale</rdfs:label>
+                <xsl:for-each select="../marc:subfield[@code='3']">
+                  <xsl:apply-templates select="." mode="subfield3">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:for-each>
+              </bf:Scale>
+            </bf:scale>
+          </xsl:if>
+          <xsl:if test="text() = 'b'">
+            <bf:scale>
+              <bf:Scale>
+                <rdfs:label>angular scale</rdfs:label>
+                <xsl:for-each select="../marc:subfield[@code='3']">
+                  <xsl:apply-templates select="." mode="subfield3">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:for-each>
               </bf:Scale>
             </bf:scale>
           </xsl:if>
