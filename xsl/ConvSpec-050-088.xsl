@@ -15,14 +15,6 @@
 
   <xsl:template match="marc:datafield[@tag='050']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work050" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='050' or @tag='880']" mode="work050">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -51,24 +43,18 @@
                   <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
                 </xsl:if>
                 <xsl:if test="../@ind2 = '0'">
-                  <bf:source>
-                    <bf:Source>
+                  <bf:assigner>
+                    <bf:Agent>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
+                    </bf:Agent>
+                  </bf:assigner>
                 </xsl:if>
                 <bf:classificationPortion>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
                   <xsl:value-of select="."/>
                 </bf:classificationPortion>
                 <xsl:if test="position() = 1">
                   <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
                     <bf:itemPortion>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
                       <xsl:value-of select="."/>
                     </bf:itemPortion>
                   </xsl:for-each>
@@ -583,20 +569,23 @@
   <xsl:template match="marc:datafield[@tag='050']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:hasItem>
-          <xsl:apply-templates select="." mode="newItem">
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="pItemUri" select="$vItemUri"/>
-          </xsl:apply-templates>
-        </bf:hasItem>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:if test="@ind1='0'">
+      <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:hasItem>
+            <xsl:apply-templates select="." mode="newItem">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="recordid" select="$recordid"/>
+              <xsl:with-param name="pItemUri" select="$vItemUri"/>
+            </xsl:apply-templates>
+          </bf:hasItem>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
+  <!-- only called if ind2 = 0 (Item is in LC) -->
   <xsl:template match="marc:datafield[@tag='050']" mode="newItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -627,16 +616,20 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Item>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
+          <bf:heldBy>
+            <bf:Agent>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+              <bf:code>DLC</bf:code>
+            </bf:Agent>
+          </bf:heldBy>
           <bf:shelfMark>
             <xsl:element name="{$vShelfMarkClass}">
               <rdfs:label><xsl:value-of select="$vShelfMark"/></rdfs:label>
-              <xsl:if test="@ind2 = '0'">
-                <bf:source>
-                  <bf:Source>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
+              <bf:assigner>
+                <bf:Agent>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                </bf:Agent>
+              </bf:assigner>
             </xsl:element>
           </bf:shelfMark>
           <xsl:for-each select="../marc:datafield[@tag='051']">

@@ -11,12 +11,14 @@
 
   <x:scenario label="050 - LIBRARY OF CONGRESS CALL NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="050 creates an Item" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2'])= 1"/>
+    <x:expect label="050 creates an Item if ind1=0" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2'])= 1"/>
     <x:expect label="...and a hasItem property of the Instance" test="count(//bf:Instance[1]/bf:hasItem) = 2"/>
     <x:expect label="...and classification properties of the Work" test="count(//bf:Work[1]/bf:classification/bf:ClassificationLcc) = 4"/>
     <x:expect label="...and a shelfMark property of the Item" test="count(//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:shelfMark) = 2"/>
-    <x:expect label="ind2 = '0' creates a source property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
-    <x:expect label="...and a source of the ShelfMarkLcc" test="//bf:Item[1]/bf:shelfMark[1]/bf:ShelfMarkLcc/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="...and a heldBy property of the Item" test="//bf:Item[1]/bf:heldBy/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="...with a code for the Agent" test="//bf:Item[1]/bf:heldBy/bf:Agent/bf:code = 'DLC'"/>
+    <x:expect label="ind2 = '0' creates an assigner property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="...and an assigner of the ShelfMarkLcc" test="//bf:Item[1]/bf:shelfMark[1]/bf:ShelfMarkLcc/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="$a creates a classificationPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:classificationPortion = 'Z7164.N3'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationLcc" test="//bf:Work[1]/bf:classification[1]/bf:ClassificationLcc/bf:itemPortion = 'L34 no. 9'"/>
     <x:expect label="$ab become the rdfs:label of the ShelfMark" test="//bf:Item[1]/bf:shelfMark[1]/bf:ShelfMarkLcc/rdfs:label = 'Z7164.N3 L34 no. 9'"/>

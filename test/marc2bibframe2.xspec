@@ -117,9 +117,9 @@
             </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>PZ54</bf:classificationPortion>
                 <bf:itemPortion>.A498 2001</bf:itemPortion>
               </bf:ClassificationLcc>
@@ -238,12 +238,17 @@
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/13600108#Item050-11">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>PZ54.A498 2001</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/13600108#Instance"/>
@@ -495,12 +500,17 @@
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/5637241#Item050-10">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMark>
                     <rdfs:label>Atlantic 1259</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMark>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/5637241#Instance"/>
@@ -600,9 +610,9 @@
             </bf:geographicCoverage>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>F204.W5</bf:classificationPortion>
               </bf:ClassificationLcc>
             </bf:classification>
@@ -799,12 +809,17 @@
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item050-14">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>F204.W5</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
@@ -919,9 +934,9 @@
             </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>H97</bf:classificationPortion>
                 <bf:itemPortion>.H358 1994</bf:itemPortion>
               </bf:ClassificationLcc>
@@ -1180,12 +1195,17 @@
             <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/4417401#Item050-12">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>H97.H358 1994</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/4417401#Instance"/>
