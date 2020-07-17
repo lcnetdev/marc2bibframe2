@@ -87,7 +87,7 @@
   <x:scenario label="074 - GPO ITEM NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="074 creates an identifiedBy/Identifier property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:Identifier) = 2"/>
-    <x:expect label="...with a source that has the GPO organization URI" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Identifier/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dgpo'"/>
+    <x:expect label="...with an assigner that has the GPO organization URI" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Identifier/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dgpo'"/>
     <x:expect label="$a is the rdf:value of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:Identifier/rdf:value = '1022-A'"/>
     <x:expect label="$z creates an status/Status property of an Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[2]/bf:Identifier/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>

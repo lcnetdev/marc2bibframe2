@@ -1192,11 +1192,11 @@
                   </xsl:if>
                 </xsl:when>
                 <xsl:when test="../@tag='074'">
-                  <bf:source>
-                    <bf:Source>
+                  <bf:assigner>
+                    <bf:Agent>
                       <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dgpo</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
+                    </bf:Agent>
+                  </bf:assigner>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
