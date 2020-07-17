@@ -380,8 +380,6 @@
     <a href="http://id.loc.gov/vocabulary/mtechnique/anim">animation</a>
     <c href="http://id.loc.gov/vocabulary/mtechnique/animlive">animation and live action"</c>
     <l href="http://id.loc.gov/vocabulary/mtechnique/live">live action</l>
-    <n>not applicable</n>
-    <u>unknown</u>
     <z href="http://id.loc.gov/vocabulary/mtechnique/other">other technique</z>
   </technique>
   <!-- playback speed -->
