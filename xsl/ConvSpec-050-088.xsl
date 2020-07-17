@@ -267,18 +267,19 @@
               <xsl:if test="$vCurrentNodeUri != ''">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
+              <xsl:if test="../@ind1='0'">
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnal</xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:if>
               <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
               <xsl:if test="position() = 1">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
-              <bf:source>
-                <bf:Source>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnal</xsl:attribute>
-                  <rdfs:label>National Agricultural Library</rdfs:label>
-                </bf:Source>
-              </bf:source>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">
