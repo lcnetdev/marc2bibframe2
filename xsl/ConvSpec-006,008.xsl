@@ -233,7 +233,7 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
     </xsl:call-template>
-    <xsl:call-template name="supplementaryContent008">
+    <xsl:call-template name="genreForm008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="contents" select="substring($dataElements,7,4)"/>
     </xsl:call-template>
@@ -251,7 +251,7 @@
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2016026082')"/></xsl:attribute>
-              <rdfs:label>festschrift</rdfs:label>
+              <rdfs:label>festschriften</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:if>
@@ -342,20 +342,6 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:for-each select="$codeMaps/maps/carttype/*[name() = substring($dataElements,8,1)]">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <xsl:if test="@prop = 'genreForm'">
-            <bf:genreForm>
-              <bf:GenreForm>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
-          </xsl:if>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
     <xsl:call-template name="govdoc008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
@@ -400,7 +386,19 @@
   <xsl:template name="work008cr">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:call-template name="supplementaryContent008">
+    <xsl:for-each select="$codeMaps/maps/crtype/*[name() = substring($dataElements,4,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bflc:serialPubType>
+            <bflc:SerialPubType>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bflc:SerialPubType>
+          </bflc:serialPubType>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+    <xsl:call-template name="genreForm008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="contents" select="substring($dataElements,7,4)"/>
     </xsl:call-template>
@@ -466,6 +464,20 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:for-each select="$codeMaps/maps/technique/*[name() = substring($dataElements,17,1)]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bflc:movingImageTechnique>
+            <bflc:MovingImageTechnique>
+              <xsl:if test="@href != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              </xsl:if>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bflc:MovingImageTechnique>
+          </bflc:movingImageTechnique>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$duration != ''">
@@ -505,25 +517,37 @@
 
   <!-- create Work supplementaryContent properties from 008 -->
   <!-- loop 4 times -->
-  <xsl:template name="supplementaryContent008">
+  <xsl:template name="genreForm008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="contents"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
+      <xsl:variable name="vProperty">
+        <xsl:choose>
+          <xsl:when test="contains('bkq',substring($contents,$i,1))">bf:supplementaryContent</xsl:when>
+          <xsl:otherwise>bf:genreForm</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vResource">
+        <xsl:choose>
+          <xsl:when test="contains('bkq',substring($contents,$i,1))">bf:SupplementaryContent</xsl:when>
+          <xsl:otherwise>bf:GenreForm</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:for-each select="$codeMaps/maps/marcgt/*[name() = substring($contents,$i,1)] |
                             $codeMaps/maps/marcgt/*[name() = concat('x',substring($contents,$i,1))]">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <bf:supplementaryContent>
-              <bf:SupplementaryContent>
+            <xsl:element name="{$vProperty}">
+              <xsl:element name="{$vResource}">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
                 <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:SupplementaryContent>
-            </bf:supplementaryContent>
+              </xsl:element>
+            </xsl:element>
           </xsl:when>
         </xsl:choose>
       </xsl:for-each>
-      <xsl:call-template name="supplementaryContent008">
+      <xsl:call-template name="genreForm008">
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="contents" select="$contents"/>
         <xsl:with-param name="i" select="$i + 1"/>
@@ -531,31 +555,31 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- create genreForm property for a gov doc -->
+  <!-- create bflc:governmentPubType property for a gov doc -->
   <xsl:template name="govdoc008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
     <xsl:variable name="govdoc">
       <xsl:choose>
-        <xsl:when test="$code = 'a'">autonomous or semi-autonomous government publication</xsl:when>
-        <xsl:when test="$code = 'c'">multilocal government publication</xsl:when>
-        <xsl:when test="$code = 'f'">federal or national government publication</xsl:when>
-        <xsl:when test="$code = 'i'">international intergovernmental government publication</xsl:when>
-        <xsl:when test="$code = 'l'">local government publication</xsl:when>
-        <xsl:when test="$code = 'm'">multistate government publication</xsl:when>
-        <xsl:when test="$code = 'o'">government publication</xsl:when>
-        <xsl:when test="$code = 's'">state, provincial, territorial, dependant government publication</xsl:when>
+        <xsl:when test="$code = 'a'">autonomous</xsl:when>
+        <xsl:when test="$code = 'c'">multilocal</xsl:when>
+        <xsl:when test="$code = 'f'">federal</xsl:when>
+        <xsl:when test="$code = 'i'">international intergovernmental</xsl:when>
+        <xsl:when test="$code = 'l'">local</xsl:when>
+        <xsl:when test="$code = 'm'">multistate</xsl:when>
+        <xsl:when test="$code = 'o'">government</xsl:when>
+        <xsl:when test="$code = 's'">state</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$govdoc != ''">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcgt,'gov')"/></xsl:attribute>
+          <bflc:governmentPubType>
+            <bflc:GovernmentPubType>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mgovtpubtype,$code)"/></xsl:attribute>
               <rdfs:label><xsl:value-of select="$govdoc"/></rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
+            </bflc:GovernmentPubType>
+          </bflc:governmentPubType>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
@@ -891,6 +915,22 @@
                   <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
                   <xsl:value-of select="$provisionDate"/>
                 </bf:date>
+                <xsl:choose>
+                  <xsl:when test="substring(.,7,1) = 'c'">
+                    <bf:note>
+                      <bf:Note>
+                        <rdfs:label>Currently published</rdfs:label>
+                      </bf:Note>
+                    </bf:note>
+                  </xsl:when>
+                  <xsl:when test="substring(.,7,1) = 'd'">
+                    <bf:note>
+                      <bf:Note>
+                        <rdfs:label>Ceased publication</rdfs:label>
+                      </bf:Note>
+                    </bf:note>
+                  </xsl:when>
+                </xsl:choose>
                 <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
                   <xsl:variable name="pubPlaceEncoded">
                     <xsl:call-template name="url-encode">
@@ -906,20 +946,6 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <xsl:choose>
-              <xsl:when test="substring(.,7,1) = 'c'">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>Currently published</rdfs:label>
-                  </bf:Note>
-                </bf:note>
-              </xsl:when>
-              <xsl:when test="substring(.,7,1) = 'd'">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>Ceased publication</rdfs:label>
-                  </bf:Note>
-                </bf:note>
-              </xsl:when>
               <xsl:when test="substring(.,7,1) = 'p'">
                 <bf:provisionActivity>
                   <bf:ProvisionActivity>
@@ -1045,10 +1071,12 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
     <xsl:param name="pInstanceType"/>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
-    </xsl:call-template>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+      </xsl:call-template>
+    </xsl:if>
     <xsl:variable name="vAddInstanceType">
       <xsl:choose>
         <xsl:when test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 's'">
@@ -1072,7 +1100,7 @@
           <xsl:when test="substring($dataElements,6,1) = 'f'">
             <bf:notation>
               <bf:TactileNotation rdf:about="http://id.loc.gov/vocabulary/mtactile/brail">
-                <rdfs:label>braille</rdfs:label>
+                <rdfs:label>braille code</rdfs:label>
               </bf:TactileNotation>
             </bf:notation>
           </xsl:when>
@@ -1090,7 +1118,7 @@
   <xsl:template name="instance008computerfiles">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 'q'">
+    <xsl:if test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 'q' and not(../marc:datafield[@tag='338'])">
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
@@ -1102,34 +1130,37 @@
   <xsl:template name="instance008maps">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:for-each select="$codeMaps/maps/carttype/*[name() = substring($dataElements,8,1)]">
+    <xsl:if test="substring($dataElements,8,1) = 'b' and
+                  (not(../marc:leader) or not(contains('bs',substring(../marc:leader,8,1))))">
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <xsl:if test="@prop = 'issuance'">
-            <bf:issuance>
-              <bf:Issuance>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Issuance>
-            </bf:issuance>
-          </xsl:if>
+        <xsl:when test="$serialization='rdfxml'">
+          <bf:issuance>
+            <bf:Issuance>
+              <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/issuance/serl</xsl:attribute>
+              <rdfs:label>serial</rdfs:label>
+            </bf:Issuance>
+          </bf:issuance>
         </xsl:when>
       </xsl:choose>
-    </xsl:for-each>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
-    </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
   
   <!-- data elements for music -->
   <xsl:template name="instance008music">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
-    </xsl:call-template>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
   
   <!-- data elements for continuing resources -->
@@ -1165,18 +1196,6 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
-    <xsl:for-each select="$codeMaps/maps/crtype/*[name() = substring($dataElements,4,1)]">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
     <xsl:for-each select="$codeMaps/maps/carrier/*[name() = substring($dataElements,5,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
@@ -1192,61 +1211,36 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
-    </xsl:call-template>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
   
   <!-- data elements for visual materials -->
   <xsl:template name="instance008visual">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
-    </xsl:call-template>
-    <xsl:choose>
-      <xsl:when test="substring($dataElements,17,1) = '|'">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:note>
-              <bf:Note>
-                <bf:noteType>technique</bf:noteType>
-                <rdfs:label>no attempt to code</rdfs:label>
-              </bf:Note>
-            </bf:note>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:for-each select="$codeMaps/maps/technique/*[name() = substring($dataElements,17,1)]">
-          <xsl:choose>
-            <xsl:when test="$serialization = 'rdfxml'">
-              <bf:note>
-                <bf:Note>
-                  <xsl:if test="@href != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                  </xsl:if>
-                  <bf:noteType>technique</bf:noteType>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:for-each>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
   
   <!-- data elements for mixed materials -->
   <xsl:template name="instance008mixed">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:call-template name="carrier008">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
-    </xsl:call-template>
+    <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:call-template name="carrier008">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
   
   <!-- illustrativeContent - loop over 4 times -->
@@ -1332,7 +1326,7 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:supplementaryContent>
             <bf:SupplementaryContent rdf:about="http://id.loc.gov/vocabulary/msupplcont/index">
-              <rdfs:label>Index present</rdfs:label>
+              <rdfs:label>index</rdfs:label>
             </bf:SupplementaryContent>
           </bf:supplementaryContent>
         </xsl:when>
