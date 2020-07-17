@@ -235,12 +235,11 @@
                 </xsl:for-each>
               </xsl:if>
               <xsl:if test="../@ind2 = '0'">
-                <bf:source>
-                  <bf:Source>
+                <bf:assigner>
+                  <bf:Agent>
                     <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
-                    <rdfs:label>National Library of Medicine</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                  </bf:Agent>
+                </bf:assigner>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
