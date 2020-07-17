@@ -153,14 +153,6 @@
   
   <xsl:template match="marc:datafield[@tag='055']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work055" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='055' or @tag='880']" mode="work055">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vNodeUri">
       <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
         <xsl:choose>
@@ -180,26 +172,20 @@
               </xsl:if>
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:classificationPortion>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
                   <xsl:value-of select="."/>
                 </bf:classificationPortion>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='b']">
                 <bf:itemPortion>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
                   <xsl:value-of select="."/>
                 </bf:itemPortion>
               </xsl:for-each>
               <xsl:if test="@ind2 = '0' or @ind2 = '1' or @ind2 = '2'">
-                <bf:source>
-                  <bf:Source>
-                    <rdfs:label>Library and Archives Canada</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/names/no2004037399</xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
               </xsl:if>
               <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
