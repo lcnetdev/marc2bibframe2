@@ -36,7 +36,7 @@
   <x:scenario label="052 - GEOGRAPHIC CLASSIFICATION">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="052 creates a geographicCoverage/GeographicCoverage property of the Work" test="count(//bf:Work[1]/bf:geographicCoverage/bf:GeographicCoverage) = 2"/>
-    <x:expect label="ind1 = ' ' creates a source property of the GeographicCoverage" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/classSchemes/lcc'"/>
+    <x:expect label="ind1 = ' ' creates a source property of the GeographicCoverage" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/authorities/classification/G'"/>
     <x:expect label="$ab creates an rdfs:label property of the GeographicCoverage" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = '4034 R4 R8'"/>
     <x:expect label="$ad creates an rdfs:label property of the GeographicCoverage" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/rdfs:label = 'BK Mostar'"/>
     <x:expect label="First $0 that is a URI sets the URI of the GeographicCoverage" test="//bf:Work[1]/bf:geographicCoverage[2]/bf:GeographicCoverage/@rdf:about='http://example.org/mostar'"/>

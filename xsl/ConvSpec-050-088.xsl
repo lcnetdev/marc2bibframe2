@@ -93,13 +93,6 @@
 
   <xsl:template match="marc:datafield[@tag='052']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work052" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='052' or @tag='880']" mode="work052">
-    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vLabel1">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='b']" mode="concat-nodes-space"/>
     </xsl:variable>
@@ -129,7 +122,7 @@
               <xsl:if test="@ind1 = ' '">
                 <bf:source>
                   <bf:Source>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($classSchemes,'lcc')"/></xsl:attribute>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
                   </bf:Source>
                 </bf:source>
               </xsl:if>
