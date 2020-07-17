@@ -299,13 +299,6 @@
 
   <xsl:template match="marc:datafield[@tag='072']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work072" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='072' or @tag='880']" mode="work072">
-    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSubjectValue">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='x']" mode="concat-nodes-space"/>
     </xsl:variable>
