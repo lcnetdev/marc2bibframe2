@@ -387,14 +387,6 @@
 
   <xsl:template match="marc:datafield[@tag='084']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="work084" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='084' or @tag='880']" mode="work084">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -417,21 +409,22 @@
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <bf:classificationPortion>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
                 <xsl:value-of select="."/>
               </bf:classificationPortion>
               <xsl:if test="position() = 1">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:itemPortion>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
                     <xsl:value-of select="."/>
                   </bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
+              <xsl:for-each select="../marc:subfield[@code='q']">
+                <bf:assigner>
+                  <bf:Agent>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:for-each>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">

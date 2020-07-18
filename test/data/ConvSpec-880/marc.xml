@@ -5,13 +5,6 @@
       <subfield code="6">130-01/(3</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">084-01</subfield>
-      <subfield code="a">קב112.554</subfield>
-      <subfield code="b">ו62 1980</subfield>
-      <subfield code="q">DE-101</subfield>
-      <subfield code="2">sdnb</subfield>
-    </datafield>
     <datafield tag="880" ind1="0" ind2=" ">
       <subfield code="6">086-01</subfield>
       <subfield code="a">A 1.1:</subfield>
