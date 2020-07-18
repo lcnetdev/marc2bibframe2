@@ -103,7 +103,7 @@
 
   <!-- create a bf:source property from a subfield $2 -->
   <xsl:template match="marc:subfield" mode="subfield2">
-    <xsl:param name="serialization" select="'rdfxsml'"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
@@ -115,6 +115,36 @@
               </xsl:if>
               <xsl:value-of select="."/>
             </rdfs:label>
+          </bf:Source>
+        </bf:source>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- create a bf:source property from a coded subfield $2 -->
+  <xsl:template match="marc:subfield" mode="subfield2code">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pUriStem"/>
+    <xsl:param name="pStripPunct" select="false()"/>
+    <xsl:variable name="vCode">
+      <xsl:choose>
+        <!-- well, not all punctuation (e.g. quotes), but probably enough -->
+        <xsl:when test="$pStripPunct">
+          <xsl:value-of select="translate(.,'.?!,;:-/\()[]{}','')"/>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vEncoded">
+      <xsl:call-template name="url-encode">
+        <xsl:with-param name="str" select="translate(normalize-space($vCode),$upper,$lower)"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:source>
+          <bf:Source>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,$vEncoded)"/></xsl:attribute>
           </bf:Source>
         </bf:source>
       </xsl:when>

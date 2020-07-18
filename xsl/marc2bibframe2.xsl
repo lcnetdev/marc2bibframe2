@@ -136,6 +136,11 @@
   <xsl:variable name="mmusicformat">http://id.loc.gov/vocabulary/mmusicformat/</xsl:variable>
   <xsl:variable name="genreFormSchemes">http://id.loc.gov/vocabulary/genreFormSchemes/</xsl:variable>
   <xsl:variable name="subjectSchemes">http://id.loc.gov/vocabulary/subjectSchemes/</xsl:variable>
+  <xsl:variable name="nationalbibschemes">http://id.loc.gov/vocabulary/nationalbibschemes/</xsl:variable>
+  <xsl:variable name="fingerprintschemes">http://id.loc.gov/vocabulary/fingerprintschemes/</xsl:variable>
+  <xsl:variable name="languageschemes">http://id.loc.gov/vocabulary/languageschemes/</xsl:variable>
+  <xsl:variable name="musiccompschemes">http://id.loc.gov/vocabulary/musiccompschemes/</xsl:variable>
+  <xsl:variable name="mgovtpubtype">http://id.loc.gov/vocabulary/mgovtpubtype/</xsl:variable>
   <xsl:variable name="mencformat">http://id.loc.gov/vocabulary/mencformat/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
