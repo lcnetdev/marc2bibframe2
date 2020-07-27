@@ -68,8 +68,7 @@
     <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Work[1]/bf:identifiedBy[2]/bf:Issn/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
     <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/rdfs:label = 'canceled'"/>
-    <x:expect label="$2 creates an assigner property of the Issn with parsed Centre code for URI" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Issn/bf:assigner/bf:Agent/@rdf:about = 'http://issn.org/organization/ISSNCentre#_6'"/>
-    <x:expect label="...and may create a label" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Issn/bf:assigner/bf:Agent/rdfs:label = 'DEU-6'"/>
+    <x:expect label="$2 creates an assigner property of the Issn" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Issn/bf:assigner/bf:Agent/bf:code = 'DEU-6'"/>
   </x:scenario>
   
   <x:scenario label="024 - OTHER STANDARD IDENTIFIER">
