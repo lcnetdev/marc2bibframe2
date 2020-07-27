@@ -633,7 +633,6 @@
   <xsl:template name="compForm008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:param name="pMarcSource" select="false()"/>
     <xsl:for-each select="$codeMaps/maps/musicCompForm/*[name() = $code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
@@ -643,13 +642,6 @@
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
               </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              <xsl:if test="$pMarcSource">
-                <bf:source>
-                  <bf:Source>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($musiccompschemes,'marcmuscomp')"/></xsl:attribute>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:when>

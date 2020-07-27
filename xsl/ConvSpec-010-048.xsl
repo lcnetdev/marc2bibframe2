@@ -782,7 +782,6 @@
               <xsl:call-template name="compForm008">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="code" select="."/>
-                <xsl:with-param name="pMarcSource" select="true()"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
