@@ -103,11 +103,6 @@
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>  2004436018</rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:assigner>
@@ -308,11 +303,6 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   91758335 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -571,11 +561,6 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   00530046 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:geographicCoverage>
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
             </bf:geographicCoverage>
@@ -896,11 +881,6 @@
                 <rdfs:label>index</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   93048623 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:assigner>
