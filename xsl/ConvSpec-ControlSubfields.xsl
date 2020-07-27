@@ -130,7 +130,7 @@
       <xsl:choose>
         <!-- well, not all punctuation (e.g. quotes), but probably enough -->
         <xsl:when test="$pStripPunct">
-          <xsl:value-of select="translate(.,'.?!,;:-/\()[]{}','')"/>
+          <xsl:value-of select="translate(.,'.?!,;:-/\()[]{} ','')"/>
         </xsl:when>
         <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
       </xsl:choose>

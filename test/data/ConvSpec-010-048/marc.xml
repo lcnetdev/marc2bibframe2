@@ -188,7 +188,7 @@
       <subfield code="a">en</subfield>
       <subfield code="a">fr</subfield>
       <subfield code="g">it</subfield>
-      <subfield code="2">iso639-1</subfield>
+      <subfield code="2">ISO 639-1</subfield>
     </datafield>
     <datafield tag="042" ind1=" " ind2=" ">
       <subfield code="a">lc</subfield>
