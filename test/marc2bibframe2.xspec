@@ -72,18 +72,11 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:creationDate>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:assigner>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -110,16 +103,11 @@
                 <rdfs:label>fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>  2004436018</rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>PZ54</bf:classificationPortion>
                 <bf:itemPortion>.A498 2001</bf:itemPortion>
               </bf:ClassificationLcc>
@@ -238,12 +226,17 @@
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/13600108#Item050-11">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>PZ54.A498 2001</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/13600108#Instance"/>
@@ -294,18 +287,11 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:assigner>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
@@ -317,11 +303,6 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   91758335 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
@@ -442,11 +423,11 @@
             <bf:identifiedBy>
               <bf:AudioIssueNumber>
                 <rdf:value>1259</rdf:value>
-                <bf:source>
-                  <bf:Source>
+                <bf:assigner>
+                  <bf:Agent>
                     <rdfs:label>Atlantic</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                  </bf:Agent>
+                </bf:assigner>
               </bf:AudioIssueNumber>
             </bf:identifiedBy>
             <rdfs:label>The Great Ray Charles</rdfs:label>
@@ -495,12 +476,17 @@
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/5637241#Item050-10">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMark>
                     <rdfs:label>Atlantic 1259</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMark>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/5637241#Instance"/>
@@ -544,31 +530,19 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
-                <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>IEU</rdfs:label>
-                  </bf:Source>
-                </bf:source>
-                <bf:source>
-                  <bf:Source>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent" />
-                    <rdfs:label>IEU</rdfs:label>
-                  </bf:Source>
-                </bf:source>
-                <bf:descriptionModifier>
+                <bf:assigner>
                   <bf:Agent>
-                    <rdfs:label>N@F</rdfs:label>
+                    <bf:code>IEU</bf:code>
                   </bf:Agent>
-                </bf:descriptionModifier>
+                </bf:assigner>
                 <bf:descriptionModifier>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdfs:label>DLC</rdfs:label>
+                    <bf:code>DLC</bf:code>
                   </bf:Agent>
                 </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
-                    <rdf:value>lccopycat</rdf:value>
+                    <bf:code>lccopycat</bf:code>
                   </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
               </bf:AdminMetadata>
@@ -587,11 +561,6 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   00530046 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:geographicCoverage>
               <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
             </bf:geographicCoverage>
@@ -600,16 +569,20 @@
             </bf:geographicCoverage>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>F204.W5</bf:classificationPortion>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>975.3</bf:classificationPortion>
-                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc13</bf:edition>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>13</rdfs:label>
+                  </bf:Source>
+                </bf:source>
                 <bf:edition>abridged</bf:edition>
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
@@ -748,11 +721,9 @@
             <bf:identifiedBy>
               <bf:Local>
                 <rdf:value>ocm44279786</rdf:value>
-                <bf:source>
-                  <bf:Source>
-                    <rdfs:label>OCoLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/ocolc" />
+                </bf:assigner>
               </bf:Local>
             </bf:identifiedBy>
             <rdfs:label>The White House</rdfs:label>
@@ -799,12 +770,17 @@
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item050-14">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>F204.W5</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
@@ -869,21 +845,14 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1993-12-03</bf:creationDate>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Agent"/>
-                    <rdfs:label>DLC</rdfs:label>
-                  </bf:Source>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:assigner>
                 <bf:descriptionModifier>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <rdfs:label>DLC</rdfs:label>
+                    <bf:code>DLC</bf:code>
                   </bf:Agent>
                 </bf:descriptionModifier>
               </bf:AdminMetadata>
@@ -912,16 +881,11 @@
                 <rdfs:label>index</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
-            <bf:identifiedBy>
-              <bf:Lccn>
-                <rdf:value>   93048623 </rdf:value>
-              </bf:Lccn>
-            </bf:identifiedBy>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:source>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                </bf:assigner>
                 <bf:classificationPortion>H97</bf:classificationPortion>
                 <bf:itemPortion>.H358 1994</bf:itemPortion>
               </bf:ClassificationLcc>
@@ -929,7 +893,11 @@
             <bf:classification>
               <bf:ClassificationDdc>
                 <bf:classificationPortion>658.4</bf:classificationPortion>
-                <bf:edition rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://id.loc.gov/vocabulary/classSchemes/ddc20</bf:edition>
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label>20</rdfs:label>
+                  </bf:Source>
+                </bf:source>
                 <bf:edition>full</bf:edition>
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
@@ -1180,12 +1148,17 @@
             <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/4417401#Item050-12">
+                <bf:heldBy>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
                 <bf:shelfMark>
                   <bf:ShelfMarkLcc>
                     <rdfs:label>H97.H358 1994</rdfs:label>
-                    <bf:source>
-                      <bf:Source rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:source>
+                    <bf:assigner>
+                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                    </bf:assigner>
                   </bf:ShelfMarkLcc>
                 </bf:shelfMark>
                 <bf:itemOf rdf:resource="http://example.org/4417401#Instance"/>
