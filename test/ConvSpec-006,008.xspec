@@ -36,9 +36,11 @@
       <x:expect label="...with URI" test="//bf:Work[1]/bf:intendedAudience/bf:IntendedAudience/@rdf:about = 'http://id.loc.gov/vocabulary/maudience/juv'"/>
       <x:expect label="pos 23 may create a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier/bf:Carrier/rdfs:label = 'other computer carrier'"/>
       <x:expect label="...with URI" test="//bf:Instance[1]/bf:carrier/bf:Carrier/@rdf:about = 'http://id.loc.gov/vocabulary/carriers/cz'"/>
-      <x:expect label="...or a fontSize property" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/rdfs:label = 'large print'"/>
+      <x:expect label="and a media property" test="//bf:Instance[1]/bf:media/bf:Media/rdfs:label = 'computer'"/>
+      <x:expect label="...with URI" test="//bf:Instance[1]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/c'"/>
+      <x:expect label="...and a fontSize property" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/rdfs:label = 'large print'"/>
       <x:expect label="...with URI" test="//bf:Instance[2]/bf:fontSize/bf:FontSize/@rdf:about = 'http://id.loc.gov/vocabulary/mfont/lp'"/>
-      <x:expect label="...or a notation" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/rdfs:label = 'braille code'"/>
+      <x:expect label="...and a notation" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/rdfs:label = 'braille code'"/>
       <x:expect label="...with URI" test="//bf:Instance[3]/bf:notation/bf:TactileNotation/@rdf:about = 'http://id.loc.gov/vocabulary/mtactile/brail'"/>
       <x:expect label="pos 24-27 may create genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026266'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'comics (graphic works)'"/>

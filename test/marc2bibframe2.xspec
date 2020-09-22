@@ -170,6 +170,16 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:carrier>
+              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
+                <rdfs:label>volume</rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
+            <bf:media>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
+                <rdfs:label>unmediated</rdfs:label>
+              </bf:Media>
+            </bf:media>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>  2004436018</rdf:value>
@@ -415,6 +425,11 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:carrier>
+              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
+                <rdfs:label>volume</rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   91758335 </rdf:value>
@@ -1073,6 +1088,16 @@
                 </bf:place>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bf:carrier>
+              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
+                <rdfs:label>volume</rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
+            <bf:media>
+              <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
+                <rdfs:label>unmediated</rdfs:label>
+              </bf:Media>
+            </bf:media>            
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   93048623 </rdf:value>

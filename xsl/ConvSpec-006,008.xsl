@@ -1072,9 +1072,15 @@
     <xsl:param name="dataElements"/>
     <xsl:param name="pInstanceType"/>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,6,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
     <xsl:variable name="vAddInstanceType">
@@ -1087,8 +1093,34 @@
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vMediaType">
+      <xsl:if test="not(../marc:datafield[@tag='337'])">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,6,1) = ' ' or
+                          substring($dataElements,6,1) = 'd' or
+                          substring($dataElements,6,1) = 'f' or
+                          substring($dataElements,6,1) = 'r'">n</xsl:when>
+          <xsl:when test="substring($dataElements,6,1) = 'o' or
+                          substring($dataElements,6,1) = 'q' or
+                          substring($dataElements,6,1) = 's'">c</xsl:when>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="$vMediaType != ''">
+          <bf:media>
+            <bf:Media>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mediaType,$vMediaType)"/></xsl:attribute>
+              <rdfs:label>
+                <xsl:choose>
+                  <xsl:when test="$vMediaType = 'n'">unmediated</xsl:when>
+                  <xsl:when test="$vMediaType = 'c'">computer</xsl:when>
+                </xsl:choose>
+              </rdfs:label>
+            </bf:Media>
+          </bf:media>
+        </xsl:if>
         <xsl:choose>
           <xsl:when test="substring($dataElements,6,1) = 'd'">
             <bf:fontSize>
@@ -1144,9 +1176,15 @@
       </xsl:choose>
     </xsl:if>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,12,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,12,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -1156,9 +1194,15 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,6,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -1196,7 +1240,13 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
-    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = substring($dataElements,5,1)]">
+    <xsl:variable name="vPos22Code">
+      <xsl:choose>
+        <xsl:when test="substring($dataElements,5,1) = ' '">r</xsl:when>
+        <xsl:otherwise><xsl:value-of select="substring($dataElements,5,1)"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $vPos22Code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
@@ -1212,9 +1262,15 @@
       </xsl:choose>
     </xsl:for-each>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,6,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -1224,9 +1280,15 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,12,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,12,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,12,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -1236,9 +1298,15 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
+      <xsl:variable name="vPos23Code">
+        <xsl:choose>
+          <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
+          <xsl:otherwise><xsl:value-of select="substring($dataElements,6,1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="carrier008">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+        <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
