@@ -31,9 +31,11 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$tag='210'">
-        <xsl:apply-templates mode="title210" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
+        <xsl:if test="@ind2=' '">
+          <xsl:apply-templates mode="title210" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:if>
       </xsl:when>
       <xsl:when test="$tag='222'">
         <xsl:apply-templates mode="title222" select=".">
@@ -297,9 +299,11 @@
     <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$tag='210'">
-        <xsl:apply-templates mode="title210" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
+        <xsl:if test="@ind2='0'">
+          <xsl:apply-templates mode="title210" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:if>
       </xsl:when>
       <xsl:when test="$tag='242'">
         <xsl:apply-templates mode="instance242" select=".">

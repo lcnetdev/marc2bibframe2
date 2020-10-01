@@ -17,18 +17,22 @@
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="title210" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:if test="@ind2='0'">
+      <xsl:apply-templates mode="title210" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <!-- bf:Work properties from MARC 210 -->
   <xsl:template match="marc:datafield[@tag='210']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="title210" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:if test="@ind2=' '">
+      <xsl:apply-templates mode="title210" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <!-- bf:title property from MARC 210 -->
@@ -47,18 +51,48 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+                <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
-              <bf:mainTitle>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
-              </bf:mainTitle>
-              <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <bflc:titleSortKey><xsl:value-of select="normalize-space($label)"/></bflc:titleSortKey>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="."/>
+                    <xsl:with-param name="punctuation" select="':,;/ '"/>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
+              <xsl:choose>
+                <xsl:when test="@ind2='0'">
+                  <xsl:for-each select="marc:subfield[@code='2']">
+                    <bf:assigner>
+                      <bf:Agent>
+                        <bf:code><xsl:value-of select="."/></bf:code>
+                      </bf:Agent>
+                    </bf:assigner>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@ind2=' '">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <bf:code>issnkey</bf:code>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:when>
+              </xsl:choose>
             </bf:AbbreviatedTitle>
           </bf:title>
         </xsl:when>

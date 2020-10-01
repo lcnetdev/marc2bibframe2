@@ -10,18 +10,14 @@
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:scenario label="210 - ABBREVIATED TITLE">
-    <x:scenario label="multiple 210s">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="Create title/AbbreviatedTitle properties in Instance and Work" test="count(//bf:Instance[1]/bf:title/bf:AbbreviatedTitle) = 2 and count(//bf:Work[1]/bf:title/bf:AbbreviatedTitle) = 2"/>
-    </x:scenario>
-    <x:scenario label="$a and $b generate rdfs:label and mainTitle for Title">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="$a $b in record order" test="//bf:Instance[2]/bf:title/bf:AbbreviatedTitle/rdfs:label = 'Idler (Lond.)' and //bf:Instance[2]/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'Idler (Lond.)'"/>
-    </x:scenario>
-    <x:scenario label="$2">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
-      <x:expect label="becomes the source" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:source/bf:Source/rdfs:label = 'DNLM'"/>
-    </x:scenario>
+    <x:context href="data/ConvSpec-200-247not240-Titles/marc210.xml"/>
+    <x:expect label="ind2 = # creates AbbreviatedTitle in Work, not Instance" test="count(//bf:Work[2]/bf:title/bf:AbbreviatedTitle) = 1 and count(//bf:Instance[2]/bf:title/bf:AbbreviatedTitle) = 0"/>
+    <x:expect label="ind2 = 0 creates AbbreviatedTitle in Instance, not Work" test="count(//bf:Instance[1]/bf:title/bf:AbbreviatedTitle) = 2 and count(//bf:Work[1]/bf:title/bf:AbbreviatedTitle) = 0"/>
+    <x:expect label="$a and $b generate rdfs:label" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/rdfs:label = 'Idler (Lond.)'"/>
+    <x:expect label="$a generates mainTitle" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'Idler'"/>
+    <x:expect label="$b generates qualifier" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:qualifier = 'Lond.'"/>
+    <x:expect label="if ind2 = 0, $2 becomes the assigner" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:assigner/bf:Agent/bf:code = 'DNLM'"/>
+    <x:expect label="if ind2 = #, assigner is 'issnkey'" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:assigner/bf:Agent/bf:code='issnkey'"/>
   </x:scenario>
 
   <x:scenario label="222 - KEY TITLE">
