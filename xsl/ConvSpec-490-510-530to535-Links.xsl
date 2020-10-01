@@ -13,14 +13,25 @@
 
   <xsl:template match="marc:datafield[@tag='490']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vCurrentPos">
+      <xsl:choose>
+        <xsl:when test="@ind1 = '1'">
+          <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='490' and @ind1='1']) + 1"/>
+        </xsl:when>
+        <xsl:otherwise>0</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:apply-templates select="." mode="work490">
       <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
     </xsl:apply-templates>
   </xsl:template>
     
   <xsl:template match="marc:datafield[@tag='490' or @tag='880']" mode="work490">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@ind1='0'">
+    <xsl:param name="pCurrentPos"/>
+    <xsl:if test="@ind1=0 or @tag='880' or
+                  (@ind1='1' and count(../marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830']) &lt; $pCurrentPos)">
       <xsl:for-each select="marc:subfield[@code='x']">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">

@@ -16,11 +16,11 @@
     <x:expect label="...with rdfs:label from all subfields except $vwx and control subfields" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/rdfs:label = 'Fernando, A. Denis N. Resource maps of Sri Lanka'"/>
     <x:expect label="8XX $t or 830 $a becomes title property of series Work" test="//bf:Work[2]/bf:hasSeries[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
     <x:expect label="8XX can create a contribution property of the series Work" test="//bf:Work[4]/bf:hasSeries[1]/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
-    <x:expect label="8XX with no matching 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Fernando, A. Denis N. Resource maps of Sri Lanka'"/>
-    <x:expect label="8XX $v with no matching 490 creates a seriesEnumeration property of the Instance" test="//bf:Instance[5]/bf:seriesEnumeration = 'pt. 2.'"/>
+    <x:expect label="8XX with no matching 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Fernando, A. Denis N. Resource maps of Sri Lanka ; pt. 2.'"/>
     <x:expect label="8XX $w creates an identifiedBy/Identifier property of the series Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Identifier/rdf:value = '550955267'"/>
-    <x:expect label="...with a source from the prefixed parenthetical" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Identifier/bf:source/bf:Source/rdfs:label = 'DE-101'"/>
+    <x:expect label="...with a source from the prefixed parenthetical" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Identifier/bf:source/bf:Source/bf:code = 'DE-101'"/>
     <x:expect label="...unless the source is DLC, in which case create an identifiedBy/Lccn" test="//bf:Work[2]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Lccn/rdf:value = '83641640'"/>
+    <x:expect label="...with a source property with the DLC URI" test="//bf:Work[2]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Lccn/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="8XX $x creates an identifiedBy/Issn property of the series Work" test="//bf:Work[2]/bf:hasSeries[2]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0276-4733'"/>
     <x:expect label="...with fallback to associated 490 $x" test="//bf:Work[3]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '8765-4321'"/>
     <x:expect label="8XX $3 creates a bflc:appliesTo property of the series Work" test="//bf:Work[2]/bf:hasSeries[1]/bf:Work/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1969-1979'"/>
@@ -28,9 +28,7 @@
     <x:expect label="8XX $7 sets the issuance of the series Work" test="//bf:Work[3]/bf:hasSeries/bf:Work/bf:issuance/bf:Issuance/bf:code = 's'"/>
     <x:expect label="Subseries in 490 with repeated $a matches multiple 8XX" test="//bf:Work[4]/bf:hasSeries[2]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '2345-6789'"/>
     <x:expect label="Two 8XX, one 490 - second 8XX should generate seriesStatement property on Instance"
-              test="//bf:Instance[6]/bf:seriesStatement[2] = 'Zoku Teikoku bunko'"/>
-    <x:expect label="...and seriesEnumeration property"
-              test="//bf:Instance[6]/bf:seriesEnumeration[1] = 'dai 34-hen, etc.'"/>
+              test="//bf:Instance[6]/bf:seriesStatement[2] = 'Zoku Teikoku bunko ; dai 34-hen, etc.'"/>
     <x:expect label="Two 830s, one 490 with $x - Subseries in 490 with single $a matches first 8XX (recursion issue, plus added scenario)" test="//bf:Work[6]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = 'issn123456789'"/>
     <x:expect label="Obsolete 4XX fields treated like 8XX without 490 match" test="//bf:Work[5]/bf:hasSeries[1]/bf:Work/rdfs:label = 'Fernando, A. Denis N. Resource maps of Sri Lanka'"/>
   </x:scenario>

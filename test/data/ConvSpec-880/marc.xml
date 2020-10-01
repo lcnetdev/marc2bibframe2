@@ -203,7 +203,7 @@
       <subfield code="a">Дети</subfield>
       <subfield code="2">lcsh</subfield>
     </datafield>
-    <datafield tag="490" ind1="0" ind2=" ">
+    <datafield tag="880" ind1="1" ind2=" ">
       <subfield code="6">490-01</subfield>
       <subfield code="a">Книги пеликан</subfield>
       <subfield code="x">1234-5678</subfield>
