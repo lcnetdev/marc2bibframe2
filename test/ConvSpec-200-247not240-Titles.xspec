@@ -58,10 +58,6 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
       <x:expect label="becomes a partName" test="//bf:Instance[2]/bf:title/bf:VariantTitle/bf:partName[2] = 'Syndicats ouvriers'"/>
     </x:scenario>
-    <x:scenario label="$y">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="becomes the language" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:language/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
-    </x:scenario>
   </x:scenario>
   
   <x:scenario label="243 - COLLECTIVE UNIFORM TITLE">

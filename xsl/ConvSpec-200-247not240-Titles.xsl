@@ -250,18 +250,6 @@
               </xsl:call-template>
             </bf:partName>
           </xsl:for-each>
-          <xsl:for-each select="marc:subfield[@code='y']">
-            <xsl:variable name="encoded">
-              <xsl:call-template name="url-encode">
-                <xsl:with-param name="str" select="normalize-space(.)"/>
-              </xsl:call-template>
-            </xsl:variable>
-            <bf:language>
-              <bf:Language>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-              </bf:Language>
-            </bf:language>
-          </xsl:for-each>
         </bf:VariantTitle>
       </xsl:when>
     </xsl:choose>
