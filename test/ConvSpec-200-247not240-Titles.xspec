@@ -126,50 +126,19 @@
   </x:scenario>
 
   <x:scenario label="246 - VARYING FORM OF TITLE">
-    <x:scenario label="multiple 246s">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 3"/>
-    </x:scenario>
-    <x:scenario label="@ind2 = 1">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should create a ParallelTitle" test="//bf:Instance[1]/bf:title[2]/bf:ParallelTitle/rdfs:label = 'Moderne Probleme der Pharmakopsychiatrie'"/>
-    </x:scenario>
-    <x:scenario label="@ind2 = ' '">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="creates no variantType property" test="count(//bf:Instance[4]/bf:title/bf:VariantTitle/bf:variantType) = 0"/>
-    </x:scenario>
-    <x:scenario label="other @ind2 value">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="should become the variantType" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:variantType = 'portion'"/>
-    </x:scenario>
-    <x:scenario label="rdfs:label for Title">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="$abnp in record order" test="//bf:Instance[4]/bf:title/bf:VariantTitle/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
-    </x:scenario>
-    <x:scenario label="$a">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title[2]/bf:ParallelTitle/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
-    </x:scenario>
-    <x:scenario label="$b">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the subtitle" test="//bf:Instance[2]/bf:title[2]/bf:VariantTitle/bf:subtitle = 'an engrossing read'"/>
-    </x:scenario>
-    <x:scenario label="$f">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:date = 'Juli 1976-'"/>
-    </x:scenario>
-    <x:scenario label="$n">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a partNumber" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bf:partNumber = 'Serie A'"/>
-    </x:scenario>
-    <x:scenario label="$p">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes a partName" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bf:partName = 'Meteorology and geophysics'"/>
-    </x:scenario>
-    <x:scenario label="$5">
-      <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
-      <x:expect label="becomes the applicableInstitution" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
-    </x:scenario>
+    <x:context href="data/ConvSpec-200-247not240-Titles/marc246.xml"/>
+    <x:expect label="MARC 246 should create title properties in Instance" test="count(//bf:Instance[1]/bf:title) = 3"/>
+    <x:expect label="@ind2 = 1 should create a ParallelTitle" test="//bf:Instance[1]/bf:title[2]/bf:ParallelTitle/rdfs:label = 'Moderne Probleme der Pharmakopsychiatrie'"/>
+    <x:expect label="@ind2 = ' ' creates no variantType property" test="count(//bf:Instance[4]/bf:title/bf:VariantTitle/bf:variantType) = 0"/>
+    <x:expect label="other @ind2 value should become the variantType" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:variantType = 'portion'"/>
+    <x:expect label="$abnp in record order generates rdfs:label for Title" test="//bf:Instance[4]/bf:title/bf:VariantTitle/rdfs:label = 'Archives for meteorology, geophysics, and bioclimatology : an engrossing read. Serie A, Meteorology and geophysics'"/>
+    <x:expect label="$a becomes the mainTitle" test="//bf:Instance[1]/bf:title[2]/bf:ParallelTitle/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
+    <x:expect label="$b becomes the subtitle" test="//bf:Instance[2]/bf:title[2]/bf:VariantTitle/bf:subtitle = 'an engrossing read'"/>
+    <x:expect label="$f becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:date = 'Juli 1976-'"/>
+    <x:expect label="$i generates a note property" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bf:note/bf:Note/rdfs:label = 'Issues for Apr. and Oct. each year have title'"/>
+    <x:expect label="$n becomes a partNumber" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bf:partNumber = 'Serie A'"/>
+    <x:expect label="$p becomes a partName" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bf:partName = 'Meteorology and geophysics'"/>
+    <x:expect label="$5 becomes the applicableInstitution" test="//bf:Instance[4]/bf:title/bf:VariantTitle/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
   <x:scenario label="247 - FORMER TITLE">

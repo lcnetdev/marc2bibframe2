@@ -640,6 +640,22 @@
               <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
             </rdfs:label>
           </xsl:if>
+          <xsl:for-each select="marc:subfield[@code='i']">
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </rdfs:label>
+              </bf:Note>
+            </bf:note>
+          </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>
               <xsl:if test="$vXmlLang != ''">
