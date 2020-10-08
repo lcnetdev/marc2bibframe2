@@ -125,19 +125,29 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+                <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
-              <bf:mainTitle>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="$label"/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </bf:mainTitle>
+              <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,@ind2+1))"/></bflc:titleSortKey>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
             </bf:KeyTitle>
           </bf:title>
         </xsl:when>
