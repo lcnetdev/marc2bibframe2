@@ -17,18 +17,22 @@
   <xsl:template match="marc:datafield[@tag='210']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="title210" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:if test="@ind2='0'">
+      <xsl:apply-templates mode="title210" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <!-- bf:Work properties from MARC 210 -->
   <xsl:template match="marc:datafield[@tag='210']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="title210" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:if test="@ind2=' '">
+      <xsl:apply-templates mode="title210" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <!-- bf:title property from MARC 210 -->
@@ -47,18 +51,48 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+                <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
-              <bf:mainTitle>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
-              </bf:mainTitle>
-              <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <bflc:titleSortKey><xsl:value-of select="normalize-space($label)"/></bflc:titleSortKey>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="."/>
+                    <xsl:with-param name="punctuation" select="':,;/ '"/>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
+              <xsl:choose>
+                <xsl:when test="@ind2='0'">
+                  <xsl:for-each select="marc:subfield[@code='2']">
+                    <bf:assigner>
+                      <bf:Agent>
+                        <bf:code><xsl:value-of select="."/></bf:code>
+                      </bf:Agent>
+                    </bf:assigner>
+                  </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="@ind2=' '">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <bf:code>issnkey</bf:code>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:when>
+              </xsl:choose>
             </bf:AbbreviatedTitle>
           </bf:title>
         </xsl:when>
@@ -91,19 +125,29 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+                <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
-              <bf:mainTitle>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="$label"/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </bf:mainTitle>
+              <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,@ind2+1))"/></bflc:titleSortKey>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopParens">
+                    <xsl:with-param name="chopString" select="."/>
+                  </xsl:call-template>
+                </bf:qualifier>
+              </xsl:for-each>
             </bf:KeyTitle>
           </bf:title>
         </xsl:when>
@@ -206,18 +250,6 @@
               </xsl:call-template>
             </bf:partName>
           </xsl:for-each>
-          <xsl:for-each select="marc:subfield[@code='y']">
-            <xsl:variable name="encoded">
-              <xsl:call-template name="url-encode">
-                <xsl:with-param name="str" select="normalize-space(.)"/>
-              </xsl:call-template>
-            </xsl:variable>
-            <bf:language>
-              <bf:Language>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-              </bf:Language>
-            </bf:language>
-          </xsl:for-each>
         </bf:VariantTitle>
       </xsl:when>
     </xsl:choose>
@@ -310,6 +342,7 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
+                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
@@ -353,28 +386,6 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='h']">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
-                  <xsl:with-param name="chopString">
-                    <xsl:call-template name="chopBrackets">
-                      <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='s']">
           <bf:version>
             <xsl:if test="$vXmlLang != ''">
@@ -408,6 +419,7 @@
       <xsl:variable name="vLabelStr">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='a' or
+                                     @code='b' or
                                      @code='f' or 
                                      @code='g' or
                                      @code='k' or
@@ -479,34 +491,53 @@
             </rdfs:label>
             <bflc:titleSortKey><xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/></bflc:titleSortKey>
           </xsl:if>
-          <xsl:for-each select="marc:subfield[@code='a']">
-            <bf:mainTitle>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+          <!-- subtitle handling is different for Works and Instances -->
+          <xsl:choose>
+            <xsl:when test="$pSubtitle">
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </bf:mainTitle>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:subtitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </bf:subtitle>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:variable name="vTitleStr">
+                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+              </xsl:variable>
+              <xsl:if test="$vTitleStr != ''">
+                <bf:mainTitle>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="punctuation" select="'/ '"/>
+                    <xsl:with-param name="chopString" select="$vTitleStr"/>
+                  </xsl:call-template>
+                </bf:mainTitle>
               </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
-              </xsl:call-template>
-            </bf:mainTitle>
-          </xsl:for-each>
-          <xsl:if test="$pSubtitle">
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:subtitle>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="punctuation" select="'=.:,;/ '"/>
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </bf:subtitle>
-            </xsl:for-each>
-          </xsl:if>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:for-each select="marc:subfield[@code='n']">
             <bf:partNumber>
               <xsl:if test="$vXmlLang != ''">
@@ -611,6 +642,22 @@
               <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
             </rdfs:label>
           </xsl:if>
+          <xsl:for-each select="marc:subfield[@code='i']">
+            <bf:note>
+              <bf:Note>
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </rdfs:label>
+              </bf:Note>
+            </bf:note>
+          </xsl:for-each>
           <xsl:for-each select="marc:subfield[@code='a']">
             <bf:mainTitle>
               <xsl:if test="$vXmlLang != ''">
