@@ -17,8 +17,7 @@
   
   <x:scenario label="254 - MUSICAL PRESENTATION STATEMENT">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Full score'"/>
-    <x:expect label="...with a noteType of 'Musical presentation'" test="//bf:Instance[1]/bf:note[1]/bf:Note/bf:noteType = 'Musical presentation'"/>
+    <x:expect label="254 creates a musicFormt/MusicFormat property of the Work" test="//bf:Work[1]/bf:musicFormat/bf:MusicFormat/rdfs:label = 'Full score'"/>
   </x:scenario>
 
   <x:scenario label="255 - CARTOGRAPHIC MATHEMATICAL DATA">
@@ -36,8 +35,8 @@
 
   <x:scenario label="256 - COMPUTER FILE CHARACTERISTICS">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Computer data (2 files : 876,000, 775,000 records)'"/>
-    <x:expect label="...with a noteType of 'Computer file characteristics'" test="//bf:Instance[1]/bf:note[2]/bf:Note/bf:noteType = 'Computer file characteristics'"/>
+    <x:expect label="256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Computer data (2 files : 876,000, 775,000 records)'"/>
+    <x:expect label="...with a noteType of 'Computer file characteristics'" test="//bf:Instance[1]/bf:note[1]/bf:Note/bf:noteType = 'Computer file characteristics'"/>
   </x:scenario>
   
   <x:scenario label="257 - COUNTRY OF PRODUCING ENTITY">

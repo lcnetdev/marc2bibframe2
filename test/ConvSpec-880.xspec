@@ -22,9 +22,8 @@
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Instance[1]/bf:title[4]/bf:ParallelTitle/rdfs:label = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Instance[1]/bf:title[5]/bf:VariantTitle/bf:variantType = 'former'"/>
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
-    <x:expect label="$6 254 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Полный счет'"/>
     <x:expect label="$6 255 $a creates a scale property of the Work" test="//bf:Work[1]/bf:scale/bf:Scale/rdfs:label = 'Масштаб не дано'"/>
-    <x:expect label="$6 256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'Компьютерные данные (2 файлов: 876,000, 775,000 записей)'"/>
+    <x:expect label="$6 256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Компьютерные данные (2 файлов: 876,000, 775,000 записей)'"/>
     <x:expect label="$6 257 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:Production/bf:place/bf:Place/rdfs:label = 'Франция'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Лондон'"/>
     <x:expect label="$6 261 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Coronet Фильмы'"/>
@@ -60,8 +59,8 @@
     <x:expect label="$6 386 creates creatorCharacteristic properties of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Дети'"/>
     <x:expect label="$6 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Книги пеликан 1234-5678'"/>
     <x:expect label="...$x creates a hasSeries property of the Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn = '1234-5678'"/>
-    <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
-    <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
+    <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[3]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
+    <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
     <x:expect label="$6 504 creates a supplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
     <x:expect label="$6 505 creates a tableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
@@ -70,9 +69,9 @@
     <x:expect label="$6 508 creates a credits property of the Instance" test="//bf:Instance[1]/bf:credits[1] = 'Музыка, Майкл Фишбейн; камера, Джордж Mo.'"/>
     <x:expect label="$6 510 creates a bflc:indexedIn or bf:references property of the Work" test="//bf:Work[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'химический рефераты'"/>
     <x:expect label="$6 511 creates a bf:credits property of the Instance" test="//bf:Instance[1]/bf:credits[2] = 'Джеки Гланвилл.'"/>
-    <x:expect label="$6 513 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Ежеквартальный отчет технический прогресс; Январь-апрель 1, 1977.'"/>
-    <x:expect label="$6 515 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Выпущенные в частях.'"/>
-    <x:expect label="$6 516 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Компьютерные программы.'"/>
+    <x:expect label="$6 513 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[5]/bf:Note/rdfs:label = 'Ежеквартальный отчет технический прогресс; Январь-апрель 1, 1977.'"/>
+    <x:expect label="$6 515 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Выпущенные в частях.'"/>
+    <x:expect label="$6 516 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Компьютерные программы.'"/>
     <x:expect label="$6 518 creates a capture property of the Work" test="//bf:Work[1]/bf:capture/bf:Capture/rdfs:label = 'Работы по звуковым сопровождением диск записан 1955-1963 в различных местах.'"/>
     <x:expect label="$6 520 creates a summary property of the Work" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Иллюстрированный сборник потешек на музыку.'"/>
     <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[2]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
@@ -86,21 +85,21 @@
     <x:expect label="$6 534 creates a hasInstance/Instance property of the Work" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:provisionActivityStatement = 'Нью-Йорк: Garland, 1987'"/>
     <x:expect label="...with reciprocal originalVersion property of the Instance" test="//bf:Instance[1]/bf:originalVersion/@rdf:resource='http://example.org/1#Instance880-69'"/>
     <x:expect label="$6 535 creates a hasItem/Item property of the related 880/533 or 880/534 Instance" test="//bf:Work[1]/bf:hasInstance[3]/bf:Instance/bf:hasItem/bf:Item/bf:heldBy/bf:Agent/rdfs:label = 'Американский горный конгресс'"/>
-    <x:expect label="$6 536 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label = 'При поддержке Всемирной организации здравоохранения'"/>
+    <x:expect label="$6 536 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'При поддержке Всемирной организации здравоохранения'"/>
     <x:expect label="$6 538 creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Режим доступа: Интернет.'"/>
     <x:expect label="$6 540 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label = 'Литературные права Carrie Chapman Кэтт были посвящены общественности.'"/>
-    <x:expect label="$6 544 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Департамент здравоохранения Fonds, Услуги здравоохранения Отдел файлов.'"/>
-    <x:expect label="$6 545 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Автор и реформатор.'"/>
+    <x:expect label="$6 544 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label = 'Департамент здравоохранения Fonds, Услуги здравоохранения Отдел файлов.'"/>
+    <x:expect label="$6 545 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Автор и реформатор.'"/>
     <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[2]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском'"/>
-    <x:expect label="$6 547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Издание меняется: 1916, Нью-Йорк издания.'"/>
-    <x:expect label="$6 550 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'Орган клуба Потомак на стороне естествоиспытателей.'"/>
-    <x:expect label="$6 555 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Совокупный индекс с учетом включенных в каждом томе, -V. 29.'"/>
-    <x:expect label="$6 556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'BASIC ссылка. 3-е изд. Бока-Ратон, штат Флорида. : IBM, c1984. (Персональный компьютер аппаратные справочная библиотека); 6361132.'"/>
+    <x:expect label="$6 547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Издание меняется: 1916, Нью-Йорк издания.'"/>
+    <x:expect label="$6 550 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Орган клуба Потомак на стороне естествоиспытателей.'"/>
+    <x:expect label="$6 555 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'Совокупный индекс с учетом включенных в каждом томе, -V. 29.'"/>
+    <x:expect label="$6 556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'BASIC ссылка. 3-е изд. Бока-Ратон, штат Флорида. : IBM, c1984. (Персональный компьютер аппаратные справочная библиотека); 6361132.'"/>
     <x:expect label="$6 580 creates a note property of the Work" test="//bf:Work[1]/bf:note[1]/bf:Note/rdfs:label = 'Формы часть Frances Benjamin Johnston Collection.'"/>
-    <x:expect label="$6 581 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'Инвентаризация американской скульптуры: ксерокопия. 1982.'"/>
-    <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
+    <x:expect label="$6 581 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'Инвентаризация американской скульптуры: ксерокопия. 1982.'"/>
+    <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
     <x:expect label="$6 586 creates an awards property of the Instance" test="//bf:Instance[1]/bf:awards = 'Национальная книжная премия, 1981'"/>
-    <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label = 'Том 2.'"/>
+    <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Том 2.'"/>
     <x:expect label="$6 600,610,611 creates a subject/Topic or subject/Work property of the Work" test="//bf:Work[1]/bf:subject[1]/bf:Topic/madsrdf:authoritativeLabel = 'семьи Кларк--Фантастика.'"/>
     <x:expect label="$6 630 creates a subject/Work property of the Work" test="//bf:Work[1]/bf:subject[2]/bf:Work/madsrdf:authoritativeLabel = 'украинский журнал'"/>
     <x:expect label="$6 648 creates a subject/Temporal property of the Work" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/rdfs:label = 'Доисторические времена'"/>

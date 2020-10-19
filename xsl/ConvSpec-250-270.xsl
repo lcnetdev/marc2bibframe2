@@ -11,6 +11,23 @@
 
   <!-- Conversion specs for 250-270 -->
 
+  <xsl:template match="marc:datafield[@tag='254']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:musicFormat>
+          <bf:MusicFormat>
+            <rdfs:label>
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString" select="marc:subfield[@code='a']"/>
+              </xsl:call-template>
+            </rdfs:label>
+          </bf:MusicFormat>
+        </bf:musicFormat>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='255']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="work255">
@@ -177,35 +194,6 @@
     </xsl:choose>
   </xsl:template>    
   
-  <xsl:template match="marc:datafield[@tag='254']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance254">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='254' or @tag='880']" mode="instance254">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:note>
-          <bf:Note>
-            <bf:noteType>Musical presentation</bf:noteType>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString" select="marc:subfield[@code='a']"/>
-              </xsl:call-template>
-            </rdfs:label>
-          </bf:Note>
-        </bf:note>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>    
-
   <xsl:template match="marc:datafield[@tag='256']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="instance256">
