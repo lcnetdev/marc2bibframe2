@@ -41,45 +41,45 @@
   
   <x:scenario label="257 - COUNTRY OF PRODUCING ENTITY">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="257 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:Production/bf:place[1]/bf:Place/rdfs:label = 'France'"/>
-    <x:expect label="$2 creates a source property of the Place" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:Production/bf:place[1]/bf:Place/bf:source/bf:Source/rdfs:label = 'naf'"/>
+    <x:expect label="257 creates an originPlace/Place property of the Work" test="//bf:Work[1]/bf:originPlace/bf:Place/rdfs:label = 'France'"/>
+    <x:expect label="$2 creates a source property of the Place" test="//bf:Work[1]/bf:originPlace/bf:Place/bf:source/bf:Source/rdfs:label = 'naf'"/>
   </x:scenario>
 
   <x:scenario label="260 - PUBLICATION, DISTRIBUTION, ETC. (IMPRINT)">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="260 creates a provisionActivity/Publication property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="260 creates a provisionActivity/Publication property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...and a provisionActivityStatement from $a $b $c in field order with a semicolon separating the parts if no other punctuation" test="//bf:Instance[1]/bf:provisionActivityStatement[1] = 'Arts Council of Great Britain; London ; Upton Snodsbury : &lt;1981- &gt;'"/>
-    <x:expect label="...if $e, $f, $g, it also creates a provisionActivity/Manufacture property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
-    <x:expect label="ind1 = 3 creates a status property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
-    <x:expect label="$a creates a place property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:place[2]/bf:Place/rdfs:label = 'Upton Snodsbury'"/>
-    <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Arts Council of Great Britain'"/>
-    <x:expect label="$c creates a date property of the publication" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:date = '&lt;1981- &gt;'"/>
+    <x:expect label="...if $e, $f, $g, it also creates a provisionActivity/Manufacture property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
+    <x:expect label="ind1 = 3 creates a status property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
+    <x:expect label="$a creates a place property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place[2]/bf:Place/rdfs:label = 'Upton Snodsbury'"/>
+    <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Arts Council of Great Britain'"/>
+    <x:expect label="$c creates a date property of the publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:date = '&lt;1981- &gt;'"/>
     <x:expect label="$d creates an identifiedBy/PublisherNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:PublisherNumber/rdf:value = '12345'"/>
-    <x:expect label="$e creates a place property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Twickenham'"/>
-    <x:expect label="$f creates an agent property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'CTD Printers'"/>
-    <x:expect label="$g creates a date property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:date = '1974'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1998-'"/>
+    <x:expect label="$e creates a place property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Twickenham'"/>
+    <x:expect label="$f creates an agent property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'CTD Printers'"/>
+    <x:expect label="$g creates a date property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:date = '1974'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1998-'"/>
   </x:scenario>
 
   <x:scenario label="261 - IMPRINT STATEMENT FOR FILMS (Pre-AACR 1 Revised)">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="261 creates a provisionActivity/Production property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Production'"/>
+    <x:expect label="261 creates a provisionActivity/Production property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Production'"/>
     <x:expect label="...and a provisionActivityStatement from $f $a $b $d in field order with a semicolon separating the parts if no other punctuation" test="//bf:Instance[1]/bf:provisionActivityStatement[2] = 'Produzioni europee associate. Rome; Arturo Gonzalez, Madrid; Constantin Film, Munich. Released in the U.S. by United Artists Corp. 1957.'"/>
-    <x:expect label="...if $e, it also creates a provisionActivity/Manufacture property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[8]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
-    <x:expect label="$a creates an agent property of the Production" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:agent[1]/bf:Agent/rdfs:label = 'Produzioni europee associate'"/>
-    <x:expect label="$b creates an agent property of the Production" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:agent[4]/bf:Agent/rdfs:label = 'Released in the U.S. by United Artists Corp'"/>
-    <x:expect label="$d creates a date property of the Production" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:date = '1957'"/>
-    <x:expect label="$e creates an agent property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[8]/bf:ProvisionActivity/bf:agent[1]/bf:Agent/rdfs:label = 'Made by D.C. Chipperfield'"/>
-    <x:expect label="$f creates a place property of the Production" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:place[1]/bf:Place/rdfs:label = 'Rome'"/>
+    <x:expect label="...if $e, it also creates a provisionActivity/Manufacture property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
+    <x:expect label="$a creates an agent property of the Production" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/bf:agent[1]/bf:Agent/rdfs:label = 'Produzioni europee associate'"/>
+    <x:expect label="$b creates an agent property of the Production" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/bf:agent[4]/bf:Agent/rdfs:label = 'Released in the U.S. by United Artists Corp'"/>
+    <x:expect label="$d creates a date property of the Production" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/bf:date = '1957'"/>
+    <x:expect label="$e creates an agent property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[5]/bf:ProvisionActivity/bf:agent[1]/bf:Agent/rdfs:label = 'Made by D.C. Chipperfield'"/>
+    <x:expect label="$f creates a place property of the Production" test="//bf:Instance[1]/bf:provisionActivity[4]/bf:ProvisionActivity/bf:place[1]/bf:Place/rdfs:label = 'Rome'"/>
   </x:scenario>
 
   <x:scenario label="262 - IMPRINT STATEMENT FOR SOUND RECORDINGS (Pre-AACR 2)">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="262 creates a provisionActivity/Publication property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[9]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="262 creates a provisionActivity/Publication property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...and a provisionActivityStatement from $a $b $c in field order with a semicolon separating the parts if no other punctuation" test="//bf:Instance[1]/bf:provisionActivityStatement[3] = 'Louisville Orchestra, Louisville, KY. [1967]'"/>
-    <x:expect label="$a creates a place property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[9]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Louisville, KY.'"/>
-    <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[9]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Louisville Orchestra'"/>
-    <x:expect label="$c creates a date property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[9]/bf:ProvisionActivity/bf:date = '1967'"/>
+    <x:expect label="$a creates a place property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Louisville, KY.'"/>
+    <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'Louisville Orchestra'"/>
+    <x:expect label="$c creates a date property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[6]/bf:ProvisionActivity/bf:date = '1967'"/>
   </x:scenario>
 
   <x:scenario label="263 - PROJECTED PUBLICATION DATE">
@@ -89,16 +89,16 @@
 
   <x:scenario label="264 - PRODUCTION, PUBLICATION, DISTRIBUTION, MANUFACTURE, AND COPYRIGHT NOTICE">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
-    <x:expect label="264 creates a provisionActivity or copyrightDate property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 11"/>
-    <x:expect label="...with resource class determined by ind2" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="264 creates a provisionActivity or copyrightDate property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 8"/>
+    <x:expect label="...with resource class determined by ind2" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...do not create additional class for ProvisionActivity if it can't be determined"
-              test="count(//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/rdf:type) = 0"/>
+              test="count(//bf:Instance[1]/bf:provisionActivity[8]/bf:ProvisionActivity/rdf:type) = 0"/>
     <x:expect label="...and a provisionActivityStatement from $a $b $c in field order with a semicolon separating the parts if no other punctuation" test="//bf:Instance[1]/bf:provisionActivityStatement[4] = 'U.S. G.P.O. Washington : 1981-'"/>
-    <x:expect label="ind1 = 3 creates a status property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1981-'"/>
-    <x:expect label="$a creates a place property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Washington'"/>
-    <x:expect label="$b creates an agent property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'U.S. G.P.O.'"/>
-    <x:expect label="$c creates a date property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bf:date = '1981-'"/>
+    <x:expect label="ind1 = 3 creates a status property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1981-'"/>
+    <x:expect label="$a creates a place property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Washington'"/>
+    <x:expect label="$b creates an agent property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:agent/bf:Agent/rdfs:label = 'U.S. G.P.O.'"/>
+    <x:expect label="$c creates a date property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[7]/bf:ProvisionActivity/bf:date = '1981-'"/>
   </x:scenario>
 
   <x:scenario label="265 - SOURCE FOR ACQUISITION/SUBSCRIPTION ADDRESS [OBSOLETE]">
