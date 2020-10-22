@@ -73,8 +73,18 @@
       <subfield code="b">[publisher not identified],</subfield>
       <subfield code="c">[2010]</subfield>
     </datafield>
+    <datafield tag="264" ind1=" " ind2="4">
+      <subfield code="c">©2002</subfield>
+    </datafield>
     <datafield tag="265" ind1=" " ind2=" ">
       <subfield code="a">U.S. Geological Survey, Reston, Va. 22091</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <controlfield tag="008">      t19721969dk ab  js6   a111 1adan  </controlfield>
+    <datafield tag="264" ind1=" " ind2="4">
+      <subfield code="c">1972, c1969</subfield>
     </datafield>
   </record>
 </collection>

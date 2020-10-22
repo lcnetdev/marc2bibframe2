@@ -279,12 +279,14 @@
       <xsl:when test="$serialization='rdfxml'">
         <xsl:choose>
           <xsl:when test="$vTag='264' and @ind2='4'">
-            <bf:copyrightDate>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="$vStatement"/>
-            </bf:copyrightDate>
+            <xsl:if test="not(substring(../marc:controlfield[@tag='008'],7,1)='t')">
+              <bf:copyrightDate>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="$vStatement"/>
+              </bf:copyrightDate>
+            </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <xsl:if test="marc:subfield[@code='a' or @code='b' or @code='c']">
