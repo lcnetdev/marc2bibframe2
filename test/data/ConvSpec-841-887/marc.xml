@@ -21,15 +21,23 @@
       <subfield code="z">Signed by author</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
-      <subfield code="u">http://www.ref.oclc.org:2000</subfield>
+      <subfield code="u">http://www.ref.loc.gov:2000</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
-      <subfield code="u">http://www.ref.oclc.org:2000</subfield>
+      <subfield code="u">http://www.ref.loc.gov:2000</subfield>
       <subfield code="z">Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text</subfield>
+    </datafield>
+    <!-- sample 856 with ind=2 and no subfields outside of $u -->
+    <datafield tag="856" ind1="4" ind2="2">
+      <subfield code="u">http://www.loc.gov/appendix.html</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="2">
       <subfield code="3">Finding aid</subfield>
       <subfield code="u">http://www.loc.gov/ammem/ead/jackson.sgm</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2=" ">
+      <subfield code="3">Table of Contents</subfield>
+      <subfield code="u">http://www.loc.gov/catdir/toc/onix07/93048623.html</subfield>
     </datafield>
   </record>
   <record>
@@ -41,14 +49,14 @@
       <subfield code="h">[electronic resource].</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
-      <subfield code="u">http://example.org/fakebook.html</subfield>
+      <subfield code="u">http://loc.gov/fakebook.html</subfield>
     </datafield>
     <datafield tag="856" ind1="4" ind2="0">
-      <subfield code="u">http://example.org/fakebook.html</subfield>
+      <subfield code="u">http://loc.gov/fakebook.html</subfield>
       <subfield code="y">Click here for access</subfield>
     </datafield>
     <datafield tag="859" ind1="4" ind2="0">
-      <subfield code="u">http://example.org/fakebook2.html</subfield>
+      <subfield code="u">http://loc.gov/fakebook2.html</subfield>
     </datafield>
   </record>
 </collection>

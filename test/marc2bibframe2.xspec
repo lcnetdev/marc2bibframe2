@@ -793,7 +793,11 @@
             </bf:hasItem>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item856-27">
-                <bf:electronicLocator rdf:resource="http://www.whitehouse.gov"/>
+                <bf:electronicLocator>
+                  <rdfs:Resource>
+                    <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.whitehouse.gov</rdf:value>
+                  </rdfs:Resource>
+                </bf:electronicLocator>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
               </bf:Item>
             </bf:hasItem>
@@ -801,7 +805,7 @@
               <bf:Item rdf:about="http://example.org/12149120#Item856-28">
                 <bf:electronicLocator>
                   <rdfs:Resource>
-                    <bflc:locator rdf:resource="http://lcweb.loc.gov/staff/wpp/whitehouse.html"/>
+                    <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://lcweb.loc.gov/staff/wpp/whitehouse.html</rdf:value>
                     <bf:note>
                       <bf:Note>
                         <rdfs:label>Web site archive</rdfs:label>
@@ -1034,35 +1038,12 @@
                 </bf:title>
               </bf:Work>
             </bf:hasSeries>
-            <bf:hasInstance>
-              <bf:Instance rdf:about="http://example.org/4417401#Instance856-30">
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
-                <bf:title>
-                  <bf:Title>
-                    <rdfs:label>Handbook of practical program evaluation /</rdfs:label>
-                    <bflc:titleSortKey>Handbook of practical program evaluation /</bflc:titleSortKey>
-                    <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-                <bf:hasItem>
-                  <bf:Item rdf:about="http://example.org/4417401#Item856-30">
-                    <bf:electronicLocator>
-                      <rdfs:Resource>
-                        <bflc:target rdf:resource="http://www.loc.gov/catdir/toc/onix07/93048623.html"/>
-                        <bf:note>
-                          <bf:Note>
-                            <rdfs:label>Table of Contents</rdfs:label>
-                          </bf:Note>
-                        </bf:note>
-                      </rdfs:Resource>
-                    </bf:electronicLocator>
-                    <bf:itemOf rdf:resource="http://example.org/4417401#Instance856-30"/>
-                  </bf:Item>
-                </bf:hasItem>
-                <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
-              </bf:Instance>
-            </bf:hasInstance>
-            <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
+            <bf:tableOfContents>
+              <bf:TableOfContents>
+                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/toc/onix07/93048623.html</rdf:value>
+              </bf:TableOfContents>
+            </bf:tableOfContents>
+      <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/4417401#Instance">
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print"/>
@@ -1141,24 +1122,24 @@
             <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
             <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
             <bf:supplementaryContent>
-              <rdfs:Resource>
-                <bflc:locator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html"/>
+              <bf:SupplementaryContent>
+                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/bios/wiley043/93048623.html</rdf:value>
                 <bf:note>
                   <bf:Note>
                     <rdfs:label>Contributor biographical information</rdfs:label>
                   </bf:Note>
                 </bf:note>
-              </rdfs:Resource>
+              </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:supplementaryContent>
-              <rdfs:Resource>
-                <bflc:locator rdf:resource="http://www.loc.gov/catdir/description/wiley036/93048623.html"/>
+              <bf:SupplementaryContent>
+                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/description/wiley036/93048623.html</rdf:value>
                 <bf:note>
                   <bf:Note>
                     <rdfs:label>Publisher description</rdfs:label>
                   </bf:Note>
                 </bf:note>
-              </rdfs:Resource>
+              </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
             <bf:hasItem>

@@ -101,13 +101,22 @@
               <bf:identifiedBy>
                 <xsl:element name="{$vIdentifier}">
                   <rdf:value><xsl:value-of select="$vValue"/></rdf:value>
-                  <xsl:if test="$vSource != '' and $vSource != 'DLC'">
-                    <bf:source>
-                      <bf:Source>
-                        <rdfs:label><xsl:value-of select="$vSource"/></rdfs:label>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:if>
+                  <xsl:choose>
+                    <xsl:when test="$vSource = 'DLC'">
+                      <bf:source>
+                        <bf:Source>
+                          <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:when test="$vSource != ''">
+                      <bf:source>
+                        <bf:Source>
+                          <bf:code><xsl:value-of select="$vSource"/></bf:code>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                  </xsl:choose>
                 </xsl:element>
               </bf:identifiedBy>
             </xsl:for-each>
@@ -242,7 +251,7 @@
     </xsl:variable>
     <xsl:if test="count(../marc:datafield[@tag='490' and @ind1 = '1']) &lt; $pCurrentPos or substring($vTag,1,1)='4' or @tag='880'">
       <xsl:variable name="vStatement">
-        <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[not(contains('vwx012345678',@code))]"/>
+        <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[not(contains('wx012345678',@code))]"/>
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
@@ -254,18 +263,6 @@
           </bf:seriesStatement>
         </xsl:when>
       </xsl:choose>
-      <xsl:for-each select="marc:subfield[@code='v']">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:seriesEnumeration>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString" select="."/>
-                <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
-              </xsl:call-template>
-            </bf:seriesEnumeration>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:for-each>
     </xsl:if>
   </xsl:template>
 

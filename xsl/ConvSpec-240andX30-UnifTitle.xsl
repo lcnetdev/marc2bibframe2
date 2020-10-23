@@ -263,7 +263,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
-          <xsl:when test="@ind2='2'">
+          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i']) = 0">
             <bf:hasPart>
               <bf:Work>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
