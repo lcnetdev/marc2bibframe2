@@ -321,11 +321,6 @@
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:genreForm>
-              <bf:GenreForm>
-                <rdfs:label>sound recording</rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
             <bf:tableOfContents>
               <bf:TableOfContents>
                 <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
@@ -612,11 +607,6 @@
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:genreForm>
-              <bf:GenreForm>
-                <rdfs:label>computer file</rdfs:label>
-              </bf:GenreForm>
-            </bf:genreForm>
             <bf:summary>
               <bf:Summary>
                 <rdfs:label>Features the White House. Highlights the Executive Office of the President, which includes senior policy advisors and offices responsible for the President's correspondence and communications, the Office of the Vice President, and the Office of the First Lady. Posts contact information via mailing address, telephone and fax numbers, and e-mail. Contains the Interactive Citizens' Handbook with information on health, travel and tourism, education and training, and housing. Provides a tour and the history of the White House. Links to White House for Kids.</rdfs:label>
