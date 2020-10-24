@@ -37,7 +37,7 @@
     <x:expect label="$c creates a systemRequirement/bflc:OperatingSystem property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[3]/bflc:OperatingSystem/rdfs:label = 'DOS 1.1'"/>
     <x:expect label="First $0 with a URI after a subfield sets the URI of the object" test="//bf:Instance[1]/bf:systemRequirement[3]/bflc:OperatingSystem/@rdf:about = 'http://example.org/platform/obsolete'"/>
     <x:expect label="Additional $0s create bf:identifiedBy properties of the object" test="//bf:Instance[1]/bf:systemRequirement[3]/bflc:OperatingSystem/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/platform/obsolete'"/>
-    <x:expect label="$2 creates a source property of the object" test="//bf:Instance[1]/bf:systemRequirement[2]/bflc:ProgrammingLanguage/bf:source/bf:Source/rdfs:label = 'exampleplatform'"/>
+    <x:expect label="$2 creates a source property of the object" test="//bf:Instance[1]/bf:systemRequirement[2]/bflc:ProgrammingLanguage/bf:source/bf:Source/bf:code = 'exampleplatform'"/>
   </x:scenario>
   
 </x:description>

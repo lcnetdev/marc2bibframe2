@@ -55,7 +55,7 @@
     <x:expect label="...with rdf:type of madsrdf:ComplexSubject" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#ComplexSubject'"/>
     <x:expect label="$akvxyz creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdfs:label = 'Chauffeurs--France.'"/>
     <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:componentList/madsrdf:Occupation/rdfs:label = 'Chauffeurs'"/>
-    <x:expect label="$2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/bf:source/bf:Source/rdfs:label = 'someCode'"/>
+    <x:expect label="$2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[7]/bf:Topic/bf:source/bf:Source/bf:code = 'someCode'"/>
   </x:scenario>
   
   <x:scenario label="662 - SUBJECT ADDED ENTRY--HIERARCHICAL PLACE NAME">

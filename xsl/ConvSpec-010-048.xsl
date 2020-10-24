@@ -666,7 +666,7 @@
                     <xsl:when test="@code='c'">
                       <bf:source>
                         <bf:Source>
-                          <rdfs:label>ISO 3166</rdfs:label>
+                          <bf:code>ISO 3166</bf:code>
                         </bf:Source>
                       </bf:source>
                     </xsl:when>
@@ -1306,9 +1306,13 @@
                 </bf:StockNumber>
               </bf:identifiedBy>
             </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='b']" mode="subfield2">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <bf:source>
+                <bf:Source>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Source>
+              </bf:source>
+            </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='c']">
               <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
             </xsl:for-each>

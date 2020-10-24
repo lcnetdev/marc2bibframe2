@@ -80,7 +80,7 @@
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="072 creates a subject property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 3"/>
     <x:expect label="$ax creates a code property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:code = 'Z1 .630'"/>
-    <x:expect label="$2 creates source property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:source/bf:Source/rdfs:label = 'mesh'"/>
+    <x:expect label="$2 creates source property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:source/bf:Source/bf:code = 'mesh'"/>
     <x:expect label="...with URI if $2 = 'bisacsh'" test="//bf:Work[1]/bf:subject[3]/bf:Topic/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/classSchemes/bisacsh'"/>
     <x:expect label="ind2 = '0' creates 'agricola' source property of the Topic" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/classSchemes/agricola'"/>
   </x:scenario>
@@ -99,7 +99,7 @@
     <x:expect label="$a creates the classificationPortion of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:classificationPortion = '975.5/4252/00222'"/>
     <x:expect label="$b creates an itemPortion of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:itemPortion = 'Wor'"/>
     <x:expect label="$q creates an assigner property" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationDdc/bf:assigner/bf:Agent/rdfs:label = 'DE-101b'"/>
-    <x:expect label="$2 creates a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:source/bf:Source/rdfs:label = '22'"/>
+    <x:expect label="$2 creates a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:source/bf:Source/bf:code = '22'"/>
     <x:expect label="ind1 creates an edition property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:edition = 'full'"/>
     <x:expect label="ind2 can set an assigner property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
   </x:scenario>
@@ -110,7 +110,7 @@
     <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
     <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
     <x:expect label="$q creates an assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:assigner/bf:Agent/rdfs:label = 'DE-101'"/>
-    <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/rdfs:label = 'sdnb'"/>
+    <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/bf:code = 'sdnb'"/>
     <x:expect label="First $0 that is a URI sets the URI of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/@rdf:about = 'http://example.org/KB112.554'"/>
     <x:expect label="Additional $0s create identifiedBy properties of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/KB112.554'"/>
   </x:scenario>

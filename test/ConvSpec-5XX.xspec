@@ -159,7 +159,7 @@
     <x:expect label="$acfgq creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[1] = 'Photocopying prohibited; 50 Stat.88; CC BY-NC-ND 20190523 DLC'"/>
     <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/>
     <x:expect label="$u creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[2] = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
-    <x:expect label="$2 creates a bf:source property of the UserPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:source/bf:Source/rdfs:label = 'HCO'"/>
+    <x:expect label="$2 creates a bf:source property of the UserPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:source/bf:Source/bf:code = 'HCO'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
@@ -251,7 +251,7 @@
     <x:expect label="$l creates a status property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:status/bf:Status/rdfs:label = 'mutilated'"/>
     <x:expect label="$u creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/rdfs:label[3] = 'http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl'"/>
     <x:expect label="$z creates a note/Note property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:note/bf:Note/rdfs:label = 'Institute for Museum and Library Services grant'"/>
-    <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:source/bf:Source/rdfs:label = 'pda'"/>
+    <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem[2]/bf:Item/bf:note[2]/bf:Note/bf:source/bf:Source/bf:code = 'pda'"/>
   </x:scenario>
 
   <x:scenario label="585 - EXHIBITIONS NOTE">
