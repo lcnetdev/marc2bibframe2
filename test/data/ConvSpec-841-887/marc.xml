@@ -58,5 +58,8 @@
     <datafield tag="859" ind1="4" ind2="0">
       <subfield code="u">http://loc.gov/fakebook2.html</subfield>
     </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://example.org/foo.html</subfield>
+    </datafield>
   </record>
 </collection>

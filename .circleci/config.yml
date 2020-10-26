@@ -21,8 +21,14 @@ jobs:
             sudo apt-get update && sudo apt-get install -y openjdk-11-jre-headless libsaxonhe-java
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
-          name: Run XSpec tests
+          name: Run standard XSpec test suite
           command: "$XSPEC test/marc2bibframe2.xspec"
+      - run:
+          name: Run LoC-specific test suite
+          command: "$XSPEC test/ConvSpec-DLC.xspec"
       - store_artifacts:
           path: test/xspec/marc2bibframe2-result.html
           destination: xspec-tests/marc2bibframe2-result.html
+      - store_artifacts:
+          path: test/xspec/ConvSpec-DLC-result.html
+          destination: xspec-tests/ConvSpec-DLC-result.html
