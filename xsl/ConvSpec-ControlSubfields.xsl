@@ -91,7 +91,7 @@
             <xsl:if test="$source != '' and $source != 'uri'">
               <bf:source>
                 <bf:Source>
-                  <rdfs:label><xsl:value-of select="$source"/></rdfs:label>
+                  <bf:code><xsl:value-of select="$source"/></bf:code>
                 </bf:Source>
               </bf:source>
             </xsl:if>
@@ -104,17 +104,23 @@
   <!-- create a bf:source property from a subfield $2 -->
   <xsl:template match="marc:subfield" mode="subfield2">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
+    <xsl:param name="pVocabStem"/>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:source>
           <bf:Source>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
+            <xsl:if test="$pVocabStem != ''">
+              <xsl:variable name="vNormCode">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(translate(.,$upper,$lower))"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:attribute name="rdf:about"><xsl:value-of
+              select="concat($pVocabStem,.)"/></xsl:attribute>
+            </xsl:if>
+            <bf:code>
               <xsl:value-of select="."/>
-            </rdfs:label>
+            </bf:code>
           </bf:Source>
         </bf:source>
       </xsl:when>

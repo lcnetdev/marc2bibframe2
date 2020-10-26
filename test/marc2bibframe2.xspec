@@ -590,7 +590,7 @@
                 <bf:classificationPortion>975.3</bf:classificationPortion>
                 <bf:source>
                   <bf:Source>
-                    <rdfs:label>13</rdfs:label>
+                    <bf:code>13</bf:code>
                   </bf:Source>
                 </bf:source>
                 <bf:edition>abridged</bf:edition>
@@ -904,7 +904,7 @@
                 <bf:classificationPortion>658.4</bf:classificationPortion>
                 <bf:source>
                   <bf:Source>
-                    <rdfs:label>20</rdfs:label>
+                    <bf:code>20</bf:code>
                   </bf:Source>
                 </bf:source>
                 <bf:edition>full</bf:edition>

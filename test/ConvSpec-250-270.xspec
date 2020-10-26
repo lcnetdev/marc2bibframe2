@@ -42,7 +42,7 @@
   <x:scenario label="257 - COUNTRY OF PRODUCING ENTITY">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="257 creates an originPlace/Place property of the Work" test="//bf:Work[1]/bf:originPlace/bf:Place/rdfs:label = 'France'"/>
-    <x:expect label="$2 creates a source property of the Place" test="//bf:Work[1]/bf:originPlace/bf:Place/bf:source/bf:Source/rdfs:label = 'naf'"/>
+    <x:expect label="$2 creates a source property of the Place" test="//bf:Work[1]/bf:originPlace/bf:Place/bf:source/bf:Source/bf:code = 'naf'"/>
   </x:scenario>
 
   <x:scenario label="260 - PUBLICATION, DISTRIBUTION, ETC. (IMPRINT)">

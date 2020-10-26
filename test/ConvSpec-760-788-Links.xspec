@@ -50,7 +50,7 @@
     <x:expect label="$u creates an identifiedBy/Strn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Strn/rdf:value = 'MPC-387'"/>
     <x:expect label="$v creates a note property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:dataSource[1]/bf:Work/bf:note/bf:Note/rdfs:label = 'Data for reformatting to DEM format'"/>
     <x:expect label="$w creates an identifiedBy/Identifier property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy[2]/bf:Identifier/rdf:value = '4798581'"/>
-    <x:expect label="...with source from parenthetical qualifier" test="//bf:Work[1]/bf:translationOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy[2]/bf:Identifier/bf:source/bf:Source/rdfs:label = 'OCoLC'"/>
+    <x:expect label="...with source from parenthetical qualifier" test="//bf:Work[1]/bf:translationOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy[2]/bf:Identifier/bf:source/bf:Source/bf:code = 'OCoLC'"/>
     <x:expect label="...unless qualifier is DLC, when it creates an Lccn" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy[1]/bf:Lccn/rdf:value = '   78648457 '"/>
     <x:expect label="$x creates an identifiedBy/Issn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:translation[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Issn/rdf:value = '0190-2709'"/>
     <x:expect label="$y creates an identifiedBy/Coden property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Coden/rdf:value = 'FNMMA'"/>
