@@ -115,8 +115,7 @@
                   <xsl:with-param name="str" select="normalize-space(translate(.,$upper,$lower))"/>
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:attribute name="rdf:about"><xsl:value-of
-              select="concat($pVocabStem,.)"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pVocabStem,.)"/></xsl:attribute>
             </xsl:if>
             <bf:code>
               <xsl:value-of select="."/>

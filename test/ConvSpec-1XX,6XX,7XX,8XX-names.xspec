@@ -39,6 +39,7 @@
     <x:expect label="bf:Agent/rdfs:label generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="$0 becomes a bf:identifiedBy property for the bf:Agent" test="//bf:Agent[@rdf:about='http://example.org/1#Agent100-2']/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
     <x:expect label="$2 becomes a bf:source property for the bf:Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bf:source/bf:Source/bf:code = 'naf'"/>
+    <x:expect label="...with URI from nameTitleSchemes" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/nameTitleSchemes/naf'"/>
     <x:expect label="...unless there is a $t, in which case it's the bf:identifiedBy for the bf:Work" test="//bf:Work[@rdf:about='http://example.org/1#Work700-6']/bf:identifiedBy/bf:Identifier/rdf:value = '0000000121358464'"/>
     <x:expect label="...or if it is a URI, it becomes the rdf:about attribute of the bf:Agent or bf:Work" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:agent/bf:Agent/@rdf:about = 'http://id.loc.gov/authorities/names/n81042545'"/>
   </x:scenario>
