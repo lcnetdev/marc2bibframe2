@@ -139,6 +139,7 @@
   <xsl:variable name="musiccompschemes">http://id.loc.gov/vocabulary/musiccompschemes/</xsl:variable>
   <xsl:variable name="mgovtpubtype">http://id.loc.gov/vocabulary/mgovtpubtype/</xsl:variable>
   <xsl:variable name="mencformat">http://id.loc.gov/vocabulary/mencformat/</xsl:variable>
+  <xsl:variable name="nametitleschemes">http://id.loc.gov/vocabulary/nameTitleSchemes/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
