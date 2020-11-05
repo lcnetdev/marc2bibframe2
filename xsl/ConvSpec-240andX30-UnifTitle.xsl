@@ -402,148 +402,71 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
-        <xsl:choose>
-          <xsl:when test="substring($tag,2,2)='30' or substring($tag,2,2)='40'">
-            <xsl:for-each select="marc:subfield[@code='g']">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <rdfs:label>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:for-each>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='g']">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <rdfs:label>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:for-each>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:for-each select="marc:subfield[@code='h']">
-          <bf:genreForm>
-            <bf:GenreForm>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:call-template name="chopBrackets">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:for-each>        
-        <xsl:for-each select="marc:subfield[@code='k']">
-          <bf:natureOfContent>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+        <xsl:for-each select="marc:subfield[@code='l']">
+          <xsl:if test="$pTranslation='true'">
+            <xsl:if test="count(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
+              <bf:language>
+                <xsl:choose>
+                  <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
+                    <xsl:variable name="encoded">
+                      <xsl:call-template name="url-encode">
+                        <xsl:with-param name="str" select="normalize-space(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/>
+                      </xsl:call-template>
+                    </xsl:variable>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <bf:Language>
+                      <rdfs:label><xsl:value-of select="../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
+                    </bf:Language>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </bf:language>
             </xsl:if>
+          </xsl:if>
+        </xsl:for-each>
+        <xsl:if test="not(../marc:datafield[@tag='382'])">
+          <xsl:for-each select="marc:subfield[@code='m']">
+            <bf:musicMedium>
+              <bf:MusicMedium>
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="chopPunctuation">
+                    <xsl:with-param name="chopString">
+                      <xsl:value-of select="."/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </rdfs:label>
+              </bf:MusicMedium>
+            </bf:musicMedium>
+          </xsl:for-each>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='o']">
+          <bflc:arrangementOf>
             <xsl:call-template name="chopPunctuation">
               <xsl:with-param name="chopString">
                 <xsl:value-of select="."/>
               </xsl:with-param>
             </xsl:call-template>
-          </bf:natureOfContent>
-          <bf:genreForm>
-            <bf:GenreForm>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:GenreForm>
-          </bf:genreForm>
-        </xsl:for-each>        
-        <xsl:for-each select="marc:subfield[@code='l']">
-          <xsl:choose>
-            <xsl:when test="$pTranslation='true'">
-              <xsl:if test="count(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
-                <bf:language>
-                  <xsl:choose>
-                    <xsl:when test="../../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
-                      <xsl:variable name="encoded">
-                        <xsl:call-template name="url-encode">
-                          <xsl:with-param name="str" select="normalize-space(../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <bf:Language>
-                        <rdfs:label><xsl:value-of select="../../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
-                      </bf:Language>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </bf:language>
+          </bflc:arrangementOf>
+        </xsl:for-each>
+        <xsl:if test="not(../marc:datafield[@tag='384'])">
+          <xsl:for-each select="marc:subfield[@code='r']">
+            <bf:musicKey>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-              <bf:language>
-                <bf:Language>
-                  <rdfs:label>
-                    <!-- <xsl:if test="$vXmlLang != ''"> -->
-                    <!--   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute> -->
-                    <!-- </xsl:if> -->
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:Language>
-              </bf:language>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='m']">
-          <bf:musicMedium>
-            <bf:MusicMedium>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:MusicMedium>
-          </bf:musicMedium>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='o' or @code='s']">
+              <xsl:call-template name="chopPunctuation">
+                <xsl:with-param name="chopString">
+                  <xsl:value-of select="."/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:musicKey>
+          </xsl:for-each>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='s']">
           <bf:version>
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -554,18 +477,6 @@
               </xsl:with-param>
             </xsl:call-template>
           </bf:version>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='r']">
-          <bf:musicKey>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString">
-                <xsl:value-of select="."/>
-              </xsl:with-param>
-            </xsl:call-template>
-          </bf:musicKey>
         </xsl:for-each>
         <xsl:if test="substring($tag,1,1)='7'"> <!-- $x processed in ConvSpec-Process for 8XX -->
          <xsl:for-each select="marc:subfield[@code='x']">
@@ -791,73 +702,27 @@
       <xsl:when test="substring($tag,2,2)='00'">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='t'] |
-                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                     @code='g' or 
-                                     @code='k' or
-                                     @code='l' or
-                                     @code='m' or
-                                     @code='n' or
-                                     @code='o' or
-                                     @code='p' or
-                                     @code='r' or
-                                     @code='s']"/>
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwx012345678',@code))]"/>
       </xsl:when>
       <xsl:when test="substring($tag,2,2)='10'">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='t'] |
-                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d' or
-                                     @code='f' or
-                                     @code='g' or
-                                     @code='k' or
-                                     @code='l' or
-                                     @code='m' or
-                                     @code='n' or
-                                     @code='o' or
-                                     @code='p' or
-                                     @code='r' or
-                                     @code='s']"/>
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwx012345678',@code))]"/>
       </xsl:when>
       <xsl:when test="substring($tag,2,2)='11'">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="marc:subfield[@code='t'] |
-                                     marc:subfield[@code='t']/following-sibling::marc:subfield[@code='f' or
-                                     @code='g' or
-                                     @code='k' or
-                                     @code='l' or
-                                     @code='n' or
-                                     @code='p' or
-                                     @code='s']"/>
+                                     marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwx012345678',@code))]"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$pTranslation='true'">
             <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='d' or
-                                         @code='f' or
-                                         @code='g' or 
-                                         @code='k' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
+                                 select="marc:subfield[not(contains('ivwx012345678',@code))]"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[@code='a' or
-                                         @code='d' or
-                                         @code='f' or
-                                         @code='g' or 
-                                         @code='k' or
-                                         @code='l' or
-                                         @code='m' or
-                                         @code='n' or
-                                         @code='o' or
-                                         @code='p' or
-                                         @code='r' or
-                                         @code='s']"/>
+                                 select="marc:subfield[not(contains('ivwx012345678',@code))]"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
