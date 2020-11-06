@@ -15,7 +15,7 @@
     <x:expect label="title marc key generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:title30MarcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001'"/>
     <x:expect label="rdfs:label generation" test="//bf:Work[1]/bf:title/bf:Title/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
     <x:expect label="title sort string generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:titleSortKey = 'Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
-    <x:expect label="$a/$t becomes mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture'"/>
+    <x:expect label="$a/$t + $gk becomes mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
     <x:expect label="$n becomes a partNumber" test="//bf:Work[1]/bf:title/bf:Title/bf:partNumber[1] = 'Book 4'"/>
     <x:expect label="$p becomes a partName" test="//bf:Work[1]/bf:title/bf:Title/bf:partName[1] = 'O.T'"/>
   </x:scenario>
@@ -24,7 +24,7 @@
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
     <!-- tests for 830 located in ConvSpec-Process6-Series.xspec -->
     <x:expect label="1XX $t becomes a title of the main Work" test="count(//bf:Work[@rdf:about='http://example.org/2#Work']/bf:title) = 2"/>
-    <x:expect label="130/240 becomes a title of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture'"/>
+    <x:expect label="130/240 becomes a title of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
     <x:expect label="6XX/7XX/8XX $t creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/1#Work700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/2#Work730-4']) = 1"/>
     <x:expect label="630 becomes a subject of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly'"/>
@@ -36,8 +36,12 @@
     <x:expect label="$f becomes the originDate" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:originDate = '[between 1775 and 1800]'"/>
     <x:expect label="$l creates a translationOf property" test="count(//bf:Work[@rdf:about='http://example.org/4#Work']/bf:translationOf) = 1"/>
     <x:expect label="...potentially with a language code from 041 $h" test="//bf:Work[@rdf:about='http://example.org/4#Work']/bf:translationOf/bf:Work/bf:language/@rdf:resource='http://id.loc.gov/vocabulary/languages/epo'"/>
+    <x:expect label="...rdfs:label property does not include $l" test="//bf:Work[@rdf:about='http://example.org/4#Work']/bf:translationOf/bf:Work/rdfs:label='Jara raporto de la Ministro de Supply kaj Servo Kanado sub la Korporacioj kaj Labor Unions Returns Akto.'"/>
+    <x:expect label="...for 240, add contribution from 1XX to stub Work" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:translationOf/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Ferrante, Elena,'"/>
     <x:expect label="$m becomes a musicMedium (if no 382)" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:musicMedium/bf:MusicMedium/rdfs:label = 'violin, viola'"/>
-    <x:expect label="$o becomes a bflc:arrangementOf" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bflc:arrangementOf = 'arr'"/>
+    <x:expect label="$o creates a bflc:arrangementOf/bf:Work" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bflc:arrangementOf/bf:Work) = 1"/>
+    <x:expect label="...with rdfs:label that does not include $o" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bflc:arrangementOf/bf:Work/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. O.T. Book 4. Selections.'"/>
+    <x:expect label="...for 240, add contribution from 1XX to stub Work" test="//bf:Work[@rdf:about='http://example.org/6#Work']/bflc:arrangementOf/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Nefwich, Harvey.'"/>
     <x:expect label="$r becomes a musicKey (if no 384)" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:musicKey = 'D major'"/>
     <x:expect label="$s becomes a version" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bf:version = 'Codex Sinaiticus'"/>
     <x:expect label="$x becomes an Issn" test="//bf:Work[@rdf:about='http://example.org/2#Work730-5']/bf:identifiedBy/bf:Issn = '1234-5678'"/>
