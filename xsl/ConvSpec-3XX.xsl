@@ -909,10 +909,14 @@
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:systemRequirement>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:value-of select="."/>
+            <bf:SystemRequirement>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+            </bf:SystemRequirement>
           </bf:systemRequirement>
         </xsl:when>
       </xsl:choose>
