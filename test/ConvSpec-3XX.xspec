@@ -228,6 +228,8 @@
   <x:scenario label="380 - FORM OF WORK">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="380 creates genreForm properties of the Work" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Play'"/>
+    <x:expect label="$2 creates source property with URI from genreFormSchemes" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/genreFormSchemes/lcgft'"/>
+    <x:expect label="...and code from $2" test="//bf:Work[1]/bf:genreForm[1]/bf:GenreForm/bf:source/bf:Source/bf:code='lcgft'"/>
   </x:scenario>
   
   <x:scenario label="382 - MEDIUM OF PERFORMANCE">

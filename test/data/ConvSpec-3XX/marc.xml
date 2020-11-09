@@ -186,6 +186,7 @@
     </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>
+      <subfield code="2">lcgft</subfield>
     </datafield>
     <datafield tag="382" ind1=" " ind2=" ">
       <subfield code="3">Nach Bach</subfield>

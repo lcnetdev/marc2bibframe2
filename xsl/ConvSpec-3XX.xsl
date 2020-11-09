@@ -342,6 +342,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp">bf:genreForm</xsl:with-param>
           <xsl:with-param name="pResource">bf:GenreForm</xsl:with-param>
+          <xsl:with-param name="pVocabStem" select="$genreFormSchemes"/>
         </xsl:apply-templates>
       </xsl:when>
     </xsl:choose>
