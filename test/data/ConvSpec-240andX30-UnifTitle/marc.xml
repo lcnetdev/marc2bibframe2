@@ -83,4 +83,34 @@
       <subfield code="a">Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act.</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">5</controlfield>
+    <controlfield tag="008">160412r20152013nyu           000 1 eng  </controlfield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">ita</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Ferrante, Elena,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Storia del nuovo cognome.</subfield>
+      <subfield code="l">English</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="4">
+      <subfield code="a">The story of a new name /</subfield>
+      <subfield code="c">Elena Ferrante ; translated from the Italian by Ann Goldstein.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Nefwich, Harvey.</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Sonata for kazoo.</subfield>
+      <subfield code="o">arr.</subfield>
+    </datafield>
+  </record>
 </collection>

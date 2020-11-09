@@ -31,7 +31,7 @@
     <x:expect label="...and a Class from MADSRDF" test="//bf:Work[1]/bf:subject[2]/bf:Work/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#NameTitle'"/>
     <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[2]/bf:Work/madsrdf:authoritativeLabel = 'Bellamy, Edward, 1850-1898. Looking backward, 2000-1887.'"/>
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/rdfs:label = 'Alice''s adventures in Wonderland'"/>
-    <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence'"/>
+    <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Correspondence. Selections'"/>
     <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]/bf:title) = 3"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>

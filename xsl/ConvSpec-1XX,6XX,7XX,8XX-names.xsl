@@ -17,11 +17,17 @@
   <xsl:template match="marc:datafield[@tag='100' or @tag='110' or @tag='111']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pAgentIri"/>
     <xsl:variable name="agentiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
-      </xsl:apply-templates>
+      <xsl:choose>
+        <xsl:when test="$pAgentIri != ''"><xsl:value-of select="$pAgentIri"/></xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="generateUri" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
     <xsl:apply-templates mode="workName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
