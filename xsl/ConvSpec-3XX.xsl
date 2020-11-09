@@ -458,8 +458,8 @@
         <xsl:for-each select="marc:subfield[@code='b']">
           <bf:musicOpusNumber><xsl:value-of select="."/></bf:musicOpusNumber>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='c' or @code='d']">
-          <bf:musicThematicNumber><xsl:value-of select="."/></bf:musicThematicNumber>
+        <xsl:for-each select="marc:subfield[@code='c']">
+          <bf:musicThematicNumber><xsl:value-of select="normalize-space(concat(.,' ',../marc:subfield[@code='d']))"/></bf:musicThematicNumber>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
