@@ -337,11 +337,18 @@
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
     <xsl:param name="pTarget"/>
+    <xsl:param name="pLabel"/>
     <xsl:param name="pProcess"/>
     <xsl:param name="pPunctuation">
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+    <xsl:variable name="vLabel">
+      <xsl:choose>
+        <xsl:when test="$pLabel != ''"><xsl:value-of select="$pLabel"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$pProp}">
@@ -353,23 +360,23 @@
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
                   <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$pProcess='chopParens'">
                   <xsl:call-template name="chopParens">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$pProcess='chopBrackets'">
                   <xsl:call-template name="chopBrackets">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
-                <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                <xsl:otherwise><xsl:value-of select="$vLabel"/></xsl:otherwise>
               </xsl:choose>
             </rdfs:label>
             <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">

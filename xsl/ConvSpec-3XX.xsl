@@ -1315,12 +1315,25 @@
           </xsl:when>
         </xsl:choose>
       </xsl:variable>
+      <xsl:variable name="vLabel">
+        <xsl:choose>
+          <xsl:when test="$vTag='347' and @code='b'">
+            <xsl:choose>
+              <xsl:when test="$vTarget=concat($mvidformat,'bluray')">Blu-Ray</xsl:when>
+              <xsl:when test="$vTarget=concat($mvidformat,'dvd')">DVD video</xsl:when>
+              <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:if test="$vResource != ''">
         <xsl:apply-templates select="." mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp" select="$vProp"/>
           <xsl:with-param name="pResource" select="$vResource"/>
           <xsl:with-param name="pTarget" select="$vTarget"/>
+          <xsl:with-param name="pLabel" select="$vLabel"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:for-each>
