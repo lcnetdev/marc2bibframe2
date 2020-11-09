@@ -270,6 +270,7 @@
     <x:expect label="$m creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Age group'"/>
     <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/age'"/>
     <x:expect label="$2 creates a source property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/bf:code = 'ws'"/>
+    <x:expect label="...with URI from subjectSchemes" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/ws'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nonsense'"/>
   </x:scenario>
   
@@ -281,6 +282,7 @@
     <x:expect label="$m creates a bflc:demographicGroup property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Gender group'"/>
     <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/gen'"/>
     <x:expect label="$2 creates a source property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bf:source/bf:Source/bf:code = 'ericd'"/>
+    <x:expect label="...with URI from subjectSchemes" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/subjectSchemes/ericd'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Other stuff'"/>
   </x:scenario>
   

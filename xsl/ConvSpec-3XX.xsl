@@ -561,6 +561,7 @@
               </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
               </xsl:apply-templates>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
