@@ -182,6 +182,7 @@
       <subfield code="a">foo</subfield>
       <subfield code="l">foobar</subfield>
       <subfield code="0">http://example.org/languages/foo</subfield>
+      <subfield code="2">bazz</subfield>
     </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>

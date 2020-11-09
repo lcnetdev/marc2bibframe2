@@ -263,17 +263,25 @@
             <bf:Language>
               <xsl:choose>
                 <xsl:when test="@code='a'">
-                  <xsl:if test="../@ind2 != '7'">
-                    <xsl:attribute name="rdf:about">
-                      <xsl:value-of select="concat($languages,.)"/>
-                    </xsl:attribute>
-                    <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                    <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </xsl:if>
+                  <xsl:choose>
+                    <xsl:when test="../@ind2=' '">
+                      <xsl:attribute name="rdf:about">
+                        <xsl:value-of select="concat($languages,.)"/>
+                      </xsl:attribute>
+                      <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                      <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <rdf:value><xsl:value-of select="."/></rdf:value>
+                      <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </xsl:when>
                 <xsl:when test="@code='l'">
                   <xsl:variable name="vCurrentNodeUri">

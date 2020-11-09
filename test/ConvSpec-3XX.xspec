@@ -218,7 +218,8 @@
   <x:scenario label="377 - ASSOCIATED LANGUAGE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="Each $a creates a language/Language property of the Work with a URI" test="//bf:Work[1]/bf:language[1]/bf:Language/@rdf:about='http://id.loc.gov/vocabulary/languages/eng'"/>
-    <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[3]/bf:Language/@rdf:about)"/>
+    <x:expect label="...unless ind2=7" test="not(//bf:Work/bf:language[3]/bf:Language/@rdf:about) and //bf:Work/bf:language[3]/bf:Language/rdf:value='foo'"/>
+    <x:expect label="...process $2 if ind2=7" test="//bf:Work/bf:language[3]/bf:Language/bf:source/bf:Source/bf:code='bazz'"/>
     <x:expect label="Each $l creates a language/Language property of the Work" test="//bf:Work[1]/bf:language[4]/bf:Language/rdfs:label='foobar'"/>
     <x:expect label="$0 can set the URI of the Language" test="//bf:Work[1]/bf:language[4]/bf:Language/@rdf:about = 'http://example.org/languages/foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Language" test="//bf:Work[1]/bf:language[1]/bf:Language/bflc:appliesTo = 'Lecture'"/>
