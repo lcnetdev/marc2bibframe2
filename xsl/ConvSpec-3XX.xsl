@@ -748,6 +748,12 @@
   <xsl:template match="marc:datafield[@tag='310' or @tag='321' or @tag='880']" mode="instance310">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -770,6 +776,13 @@
                   <xsl:value-of select="."/>
                 </bf:date>
               </xsl:for-each>
+              <xsl:if test="$vTag='321'">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>former frequency</rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:if>
             </bf:Frequency>
           </bf:frequency>
         </xsl:for-each>
