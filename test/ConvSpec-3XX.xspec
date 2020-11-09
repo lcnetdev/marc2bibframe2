@@ -23,6 +23,7 @@
   <x:scenario label="306 - PLAYING TIME">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="Each 306 $a creates a duration property of the Instance" test="//bf:Instance[1]/bf:duration[1] = '002016' and //bf:Instance[1]/bf:duration[2] = '014500'"/>
+    <x:expect label="...with xs:duration data type" test="//bf:Instance[1]/bf:duration[1]/@rdf:datatype='http://www.w3.org/2001/XMLSchema#duration'"/>
   </x:scenario>
   
   <x:scenario label="310 - CURRENT PUBLICATION FREQUENCY">
