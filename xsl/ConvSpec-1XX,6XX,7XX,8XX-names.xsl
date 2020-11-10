@@ -78,6 +78,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
     <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
@@ -130,19 +131,23 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
           <xsl:choose>
-            <xsl:when test="$vSourceCode != ''">
+            <xsl:when test="$vSourceURI != '' or $vSourceCode != ''">
               <bf:source>
                 <bf:Source>
-                  <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
+                  <xsl:if test="$vSourceURI != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:if test="$vSourceCode != ''">
+                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
+                  </xsl:if>
                 </bf:Source>
               </bf:source>
             </xsl:when>
             <xsl:when test="@ind2='7'">
-              <bf:source>
-                <bf:Source>
-                  <bf:code><xsl:value-of select="marc:subfield[@code='2']"/></bf:code>
-                </bf:Source>
-              </bf:source>
+              <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
+              </xsl:apply-templates>
             </xsl:when>
           </xsl:choose>
         </xsl:variable>

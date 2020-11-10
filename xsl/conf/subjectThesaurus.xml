@@ -8,23 +8,29 @@
   <subject ind2='0'>
     <code>lcsh</code>
     <madsscheme>http://id.loc.gov/authorities/subjects</madsscheme>
+    <bfsource>http://id.loc.gov/authorities/subjects</bfsource>
   </subject>
   <subject ind2='1'>
     <code>lcshac</code>
     <madsscheme>http://id.loc.gov/authorities/subjects</madsscheme>
     <madsscheme>http://id.loc.gov/authorities/childrensSubjects</madsscheme>
+    <bfsource>http://id.loc.gov/authorities/childrensSubjects</bfsource>
   </subject>
   <subject ind2='2'>
     <code>mesh</code>
+    <bfsource>http://id.loc.gov/vocabulary/subjectSchemes/mesh</bfsource>
   </subject>
   <subject ind2='3'>
     <code>nal</code>
+    <bfsource>http://id.loc.gov/vocabulary/subjectSchemes/nal</bfsource>
   </subject>
   <subject ind2='5'>
     <code>cash</code>
+    <bfsource>http://id.loc.gov/vocabulary/subjectSchemes/cash</bfsource>
   </subject>
   <subject ind2='6'>
     <code>rvm</code>
+    <bfsource>http://id.loc.gov/vocabulary/subjectSchemes/rvm</bfsource>
   </subject>
 </subjectThesaurus>
 

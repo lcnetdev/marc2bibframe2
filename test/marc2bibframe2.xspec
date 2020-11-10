@@ -341,7 +341,7 @@
                   </madsrdf:Temporal>
                 </madsrdf:componentList>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -354,7 +354,7 @@
                 <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -619,7 +619,7 @@
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -635,7 +635,7 @@
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -651,7 +651,7 @@
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -667,7 +667,7 @@
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -933,7 +933,7 @@
                         <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -954,7 +954,7 @@
                   </madsrdf:Topic>
                 </madsrdf:componentList>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>

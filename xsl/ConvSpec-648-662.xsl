@@ -70,6 +70,7 @@
         <xsl:otherwise>bf:Topic</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
     <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
@@ -180,19 +181,29 @@
               </bf:note>
             </xsl:for-each>
             <xsl:choose>
-              <xsl:when test="$vSourceCode != ''">
+              <xsl:when test="$vSourceCode != '' or $vSourceURI != ''">
                 <bf:source>
                   <bf:Source>
-                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
+                    <xsl:if test="$vSourceURI != ''">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:if test="$vSourceCode != ''">
+                      <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
+                    </xsl:if>
                   </bf:Source>
                 </bf:source>
               </xsl:when>
               <xsl:when test="@ind2='7'">
-                <bf:source>
-                  <bf:Source>
-                    <bf:code><xsl:value-of select="marc:subfield[@code='2']"/></bf:code>
-                  </bf:Source>
-                </bf:source>
+                <xsl:variable name="vVocabStem">
+                  <xsl:choose>
+                    <xsl:when test="$vTag='655'"><xsl:value-of select="$genreFormSchemes"/></xsl:when>
+                    <xsl:otherwise><xsl:value-of select="$subjectSchemes"/></xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+                <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pVocabStem" select="$vVocabStem"/>
+                </xsl:apply-templates>
               </xsl:when>
             </xsl:choose>
             <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
