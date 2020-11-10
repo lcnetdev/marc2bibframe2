@@ -129,7 +129,7 @@
     <datafield tag="347" ind1=" " ind2=" ">
       <subfield code="3">computer disc</subfield>
       <subfield code="a">image file</subfield>
-      <subfield code="b">Bluray</subfield>
+      <subfield code="b">Blu-ray</subfield>
       <subfield code="0">http://id.loc.gov/vocabulary/mvidformat/bluray</subfield>
       <subfield code="c">182 KB</subfield>
       <subfield code="d">3.1 megapixels</subfield>
@@ -182,9 +182,11 @@
       <subfield code="a">foo</subfield>
       <subfield code="l">foobar</subfield>
       <subfield code="0">http://example.org/languages/foo</subfield>
+      <subfield code="2">bazz</subfield>
     </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>
+      <subfield code="2">lcgft</subfield>
     </datafield>
     <datafield tag="382" ind1=" " ind2=" ">
       <subfield code="3">Nach Bach</subfield>
