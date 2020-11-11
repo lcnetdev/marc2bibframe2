@@ -206,24 +206,16 @@
                 </xsl:apply-templates>
               </xsl:when>
             </xsl:choose>
-            <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pMode">relationship</xsl:with-param>
-              <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
-            </xsl:apply-templates>
-            <xsl:for-each select="marc:subfield[@code='4']">
-              <bflc:relationship>
-                <bflc:Relationship>
-                  <bflc:relation>
-                    <bflc:Relation>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,substring(.,1,3))"/></xsl:attribute>
-                    </bflc:Relation>
-                  </bflc:relation>
-                  <bf:relatedTo>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                  </bf:relatedTo>
-                </bflc:Relationship>
-              </bflc:relationship>
+            <xsl:for-each select="marc:subfield[@code='e']">
+              <bf:role>
+                <bf:Role>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Role>
+              </bf:role>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
               <xsl:if test="position() != 1">
@@ -454,6 +446,17 @@
                 </xsl:element>
               </xsl:for-each>
             </madsrdf:componentList>
+            <xsl:for-each select="marc:subfield[@code='e']">
+              <bf:role>
+                <bf:Role>
+                  <rdfs:label>
+                    <xsl:call-template name="chopPunctuation">
+                      <xsl:with-param name="chopString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </bf:Role>
+              </bf:role>
+            </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
               <xsl:if test="position() != 1">
                 <xsl:apply-templates mode="subfield0orw" select=".">
