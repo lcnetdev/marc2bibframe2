@@ -74,14 +74,14 @@
   <xsl:include href="ConvSpec-006,008.xsl"/>
   <xsl:include href="ConvSpec-010-048.xsl"/>
   <xsl:include href="ConvSpec-050-088.xsl"/>
-  <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
+  <xsl:include href="ConvSpec-1XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-240andX30-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
   <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
   <xsl:include href="ConvSpec-5XX.xsl"/>
-  <xsl:include href="ConvSpec-648-662.xsl"/>
+  <xsl:include href="ConvSpec-600-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
   <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
