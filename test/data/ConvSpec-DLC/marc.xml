@@ -1,0 +1,22 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record xmlns="http://www.loc.gov/MARC21/slim">
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">QE75</subfield>
+      <subfield code="b">.P9 subser.</subfield>
+    </datafield>
+    <datafield tag="051" ind1=" " ind2=" ">
+      <subfield code="a">QE75</subfield>
+      <subfield code="b">.G4</subfield>
+      <subfield code="c">2d set.</subfield>
+    </datafield>
+    <datafield tag="051" ind1=" " ind2=" ">
+      <subfield code="a">Microfilm</subfield>
+      <subfield code="b">3741 HV</subfield>
+      <subfield code="c">Microfilm.</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">Microform 1234</subfield>
+    </datafield>
+  </record>
+</collection>  
