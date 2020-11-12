@@ -16,14 +16,14 @@
   <x:import href="ConvSpec-006,008.xspec"/>
   <x:import href="ConvSpec-010-048.xspec"/>
   <x:import href="ConvSpec-050-088.xspec"/>
-  <x:import href="ConvSpec-1XX,6XX,7XX,8XX-names.xspec"/>
+  <x:import href="ConvSpec-1XX,7XX,8XX-names.xspec"/>
   <x:import href="ConvSpec-200-247not240-Titles.xspec"/>
   <x:import href="ConvSpec-240andX30-UnifTitle.xspec"/>
   <x:import href="ConvSpec-250-270.xspec"/>
   <x:import href="ConvSpec-3XX.xspec"/>
   <x:import href="ConvSpec-490-510-530to535-Links.xspec"/>
   <x:import href="ConvSpec-5XX.xspec"/>
-  <x:import href="ConvSpec-648-662.xspec"/>
+  <x:import href="ConvSpec-600-662.xspec"/>
   <x:import href="ConvSpec-720+740to755.xspec"/>
   <x:import href="ConvSpec-760-788-Links.xspec"/>
   <x:import href="ConvSpec-841-887.xspec"/>
@@ -341,7 +341,7 @@
                   </madsrdf:Temporal>
                 </madsrdf:componentList>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -354,7 +354,7 @@
                 <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -619,7 +619,7 @@
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -635,7 +635,7 @@
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -651,7 +651,7 @@
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -667,7 +667,7 @@
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -933,7 +933,7 @@
                         <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
@@ -954,7 +954,7 @@
                   </madsrdf:Topic>
                 </madsrdf:componentList>
                 <bf:source>
-                  <bf:Source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
                     <bf:code>lcsh</bf:code>
                   </bf:Source>
                 </bf:source>
