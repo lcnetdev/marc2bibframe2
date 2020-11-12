@@ -444,4 +444,22 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- Return a normalized code suitable for constructing a URI -->
+  <xsl:template name="tNormalizeCode">
+    <xsl:param name="pCode"/>
+    <xsl:param name="pStripPunct" select="false()"/>
+    <xsl:variable name="vCode">
+      <xsl:choose>
+        <!-- well, not all punctuation (e.g. quotes), but probably enough -->
+        <xsl:when test="$pStripPunct">
+          <xsl:value-of select="translate($pCode,'.?!,;:-/\()[]{} ','')"/>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="$pCode"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="url-encode">
+      <xsl:with-param name="str" select="translate(normalize-space($vCode),$upper,$lower)"/>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
