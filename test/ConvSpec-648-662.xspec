@@ -67,6 +67,7 @@
     <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
     <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
     <x:expect label="$e creates bf:role property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/bf:role/bf:Role/rdfs:label='setting'"/>
+    <x:expect label="$2 creates source property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/pemracs'"/>
   </x:scenario>
   
 </x:description>
