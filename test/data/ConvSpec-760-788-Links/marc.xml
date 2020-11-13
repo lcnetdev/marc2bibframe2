@@ -80,9 +80,11 @@
       <subfield code="g">Oct. 1940</subfield>
       <subfield code="x">0007-7135</subfield>
       <subfield code="w">(DLC)   31006225 </subfield>
+      <subfield code="4">http://rdaregistry.info/Elements/w/P10145</subfield>
     </datafield>
     <datafield tag="786" ind1="0" ind2=" ">
       <subfield code="a">United States. Defense Mapping Agency.</subfield>
+      <subfield code="j">19181111</subfield>
       <subfield code="t">Reno, NV-CA west digital terrain elevation data</subfield>
       <subfield code="v">Data for reformatting to DEM format</subfield>
     </datafield>

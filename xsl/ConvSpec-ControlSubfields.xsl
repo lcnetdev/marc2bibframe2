@@ -91,6 +91,9 @@
             <xsl:if test="$source != '' and $source != 'uri'">
               <bf:source>
                 <bf:Source>
+                  <xsl:if test="$source='DLC'">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </xsl:if>
                   <bf:code><xsl:value-of select="$source"/></bf:code>
                 </bf:Source>
               </bf:source>
@@ -178,6 +181,29 @@
             </rdfs:label>
           </bflc:AppliesTo>
         </bflc:appliesTo>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
+      create a bf:role property from a subfield $4
+  -->
+  <xsl:template match="marc:subfield" mode="subfield4">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:role>
+          <bf:Role>
+            <xsl:choose>
+              <xsl:when test="contains(.,'://')">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="."/></xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </xsl:otherwise>
+            </xsl:choose>
+          </bf:Role>
+        </bf:role>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
