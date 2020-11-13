@@ -261,6 +261,39 @@
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
+          <!-- special LoC processing for $5 -->
+          <!-- link all properties from fields with $5=DLC to a single Item -->
+          <xsl:if test="$localfields and
+                        not(marc:datafield[@code='051' or (@code='050' and @ind1='0')]) and
+                        marc:datafield[marc:subfield[@code='5']='DLC']">
+            <bf:hasItem>
+              <bf:Item>
+                <xsl:attribute name="rdf:about">
+                  <xsl:value-of select="concat($recordid,'#Item-DLC')"/>
+                </xsl:attribute>
+                <bf:heldBy>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
+                <xsl:apply-templates select="marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="work">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="instance">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <!-- generate Item properties from 541/561/563/583 -->
+                <xsl:apply-templates select="marc:datafield[(@tag='541' or @tag='561' or @tag='563' or @tag='583') and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Item>
+            </bf:hasItem>
+          </xsl:if>
         </bf:Instance>
       </xsl:when>
     </xsl:choose>

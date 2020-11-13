@@ -574,6 +574,22 @@
                   </bf:assigner>
                 </xsl:element>
               </bf:shelfMark>
+              <xsl:if test="generate-id(.)=generate-id(../marc:datafield[(@tag='050' and @ind1='0') or @tag='051'][1])">
+                <xsl:apply-templates select="../marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="work">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="../marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="instance">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <!-- generate Item properties from 541/561/563/583 -->
+                <xsl:apply-templates select="../marc:datafield[(@tag='541' or @tag='561' or @tag='563' or @tag='583') and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
               <bf:itemOf>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
               </bf:itemOf>

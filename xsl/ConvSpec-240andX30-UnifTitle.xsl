@@ -61,16 +61,20 @@
   <xsl:template match="marc:datafield[@tag='730' or @tag='740']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="workiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:apply-templates mode="work730" select=".">
+        <xsl:with-param name="workiri" select="$workiri"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
-    </xsl:variable>
-    <xsl:apply-templates mode="work730" select=".">
-      <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
   
   <xsl:template match="marc:datafield" mode="work730">
