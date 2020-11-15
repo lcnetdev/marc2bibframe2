@@ -442,12 +442,12 @@
   
   <xsl:template mode="instance" match="marc:datafield[@tag='500'] | marc:datafield[@tag='501'] |
                                        marc:datafield[@tag='513'] | marc:datafield[@tag='515'] |
-                                       marc:datafield[@tag='516'] | marc:datafield[@tag='536'] |
-                                       marc:datafield[@tag='544'] | marc:datafield[@tag='545'] |
-                                       marc:datafield[@tag='547'] | marc:datafield[@tag='550'] |
-                                       marc:datafield[@tag='555'] | marc:datafield[@tag='556'] |
-                                       marc:datafield[@tag='581'] | marc:datafield[@tag='585'] |
-                                       marc:datafield[@tag='588']">
+                                       marc:datafield[@tag='516'] | marc:datafield[@tag='530'] |
+                                       marc:datafield[@tag='536'] | marc:datafield[@tag='544'] |
+                                       marc:datafield[@tag='545'] | marc:datafield[@tag='547'] |
+                                       marc:datafield[@tag='550'] | marc:datafield[@tag='555'] |
+                                       marc:datafield[@tag='556'] | marc:datafield[@tag='581'] |
+                                       marc:datafield[@tag='585'] | marc:datafield[@tag='588']">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pHasItem" select="false()"/>
     <!-- note special $5 processing for LoC below -->
@@ -701,6 +701,9 @@
         <xsl:when test="$vTag='513' or $vTag='545'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
         </xsl:when>
+        <xsl:when test="$vTag='530'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abc',@code)]"/>
+        </xsl:when>
         <xsl:when test="$vTag='544'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
         </xsl:when>
@@ -718,6 +721,7 @@
         <xsl:when test="$vTag='513'">report type</xsl:when>
         <xsl:when test="$vTag='515'">issuance information</xsl:when>
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
+        <xsl:when test="$vTag='530'">additional physical form</xsl:when>
         <xsl:when test="$vTag='536'">funding information</xsl:when>
         <xsl:when test="$vTag='544' or $vTag='581'">related material</xsl:when>
         <xsl:when test="$vTag='545'">
@@ -754,6 +758,19 @@
             </xsl:if>
             <!-- special handling for other subfields -->
             <xsl:choose>
+              <xsl:when test="$vTag='530'">
+                <xsl:for-each select="marc:subfield[@code='d']">
+                  <bf:identifiedBy>
+                    <bf:StockNumber>
+                      <rdf:value>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString" select="."/>
+                        </xsl:call-template>
+                      </rdf:value>
+                    </bf:StockNumber>
+                    </bf:identifiedBy>
+                </xsl:for-each>
+              </xsl:when>
               <xsl:when test="$vTag='536'">
                 <xsl:for-each select="marc:subfield[@code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='g' or @code='h']">
                   <xsl:variable name="vDisplayConst">

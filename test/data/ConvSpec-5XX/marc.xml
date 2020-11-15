@@ -95,6 +95,14 @@
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
+    <datafield tag="530" ind1=" " ind2=" ">
+      <subfield code="3">Dispatches from U.S. consuls in Batavia, Java, Netherlands East Indies, 1818-1906</subfield>
+      <subfield code="a">Available in microfilm;</subfield>
+      <subfield code="b">National Archives;</subfield>
+      <subfield code="d">M449;</subfield>
+      <subfield code="c">Standing order account required.</subfield>
+      <subfield code="u">http://www.bartleby.com/99/index.html</subfield>
+    </datafield>
     <datafield tag="532" ind1="1" ind2=" ">
       <subfield code="a">Closed captioning in English</subfield>
     </datafield>

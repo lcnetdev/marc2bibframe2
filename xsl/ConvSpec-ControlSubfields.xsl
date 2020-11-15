@@ -257,10 +257,10 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <rdfs:label>
+        <rdf:value>
           <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
           <xsl:value-of select="."/>
-        </rdfs:label>
+        </rdf:value>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
