@@ -700,6 +700,7 @@
         substring(marc:subfield[@code='v'][1],string-length(marc:subfield[@code='v'][1])) = '=')">
         <!-- parallel titles -->
         <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vStatement">
             <xsl:call-template name="chopPunctuation">
               <xsl:with-param name="chopString" select="."/>
@@ -709,6 +710,12 @@
           <xsl:variable name="vIssn">
             <xsl:apply-templates mode="concat-nodes-space" select="../marc:subfield[@code='x']"/>
           </xsl:variable>
+          <xsl:variable name="vVolume">
+            <xsl:call-template name="chopPunctuation">
+              <xsl:with-param name="chopString" select="following-sibling::marc:subfield[@code='v' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
+              <xsl:with-param name="punctuation"><xsl:text>= </xsl:text></xsl:with-param>
+            </xsl:call-template>
+          </xsl:variable>
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
               <bf:seriesStatement>
@@ -716,7 +723,7 @@
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="concat($vStatement,' ',$vIssn)"/>
+                  <xsl:with-param name="chopString" select="normalize-space(concat($vStatement,' ',$vIssn,' ',$vVolume))"/>
                   <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
                 </xsl:call-template>
               </bf:seriesStatement>
@@ -728,7 +735,7 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vStatement">
-            <xsl:apply-templates mode="concat-nodes-space" select=".|following-sibling::marc:subfield[@code='x' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
+            <xsl:apply-templates mode="concat-nodes-space" select=".|following-sibling::marc:subfield[(@code='x' or @code='v') and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
           </xsl:variable>
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
@@ -746,21 +753,6 @@
         </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:for-each select="marc:subfield[@code='v']">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:seriesEnumeration>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
-            </xsl:call-template>
-          </bf:seriesEnumeration>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='530']" mode="instance">
