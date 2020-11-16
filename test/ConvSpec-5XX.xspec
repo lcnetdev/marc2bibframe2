@@ -51,10 +51,11 @@
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="506 creates a usageAndAccessPolicy/UsageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdfs:label[1] = 'Restricted access; Written permission required; Donor; Members of donor''s family; Title 50, chapter 401, U.S.C. Preview only 20190207 DLC'"/>
-    <x:expect label="$u creates an rdf:value property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/rdf:value = 'https://www.gnu.org/licenses/gpl-3.0.txt'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsageAndAccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:UsageAndAccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
+    <x:expect label="506 creates a usageAndAccessPolicy/AccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdfs:label[1] = 'Restricted access; Written permission required; Donor; Members of donor''s family; Title 50, chapter 401, U.S.C. Preview only 20190207 DLC'"/>
+    <x:expect label="$u creates an rdf:value property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdf:value = 'https://www.gnu.org/licenses/gpl-3.0.txt'"/>
+    <x:expect label="...with datatype xs:anyURI" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdf:value/@rdf:datatype='http://www.w3.org/2001/XMLSchema#anyURI'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
   </x:scenario>
   
   <x:scenario label="507 - SCALE NOTE FOR GRAPHIC MATERIAL">

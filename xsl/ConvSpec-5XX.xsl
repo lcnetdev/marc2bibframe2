@@ -482,7 +482,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:usageAndAccessPolicy>
-          <bf:UsageAndAccessPolicy>
+          <bf:AccessPolicy>
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -498,7 +498,7 @@
             <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
-          </bf:UsageAndAccessPolicy>
+          </bf:AccessPolicy>
         </bf:usageAndAccessPolicy>
       </xsl:when>
     </xsl:choose>
