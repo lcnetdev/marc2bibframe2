@@ -301,7 +301,7 @@
   
   <x:scenario label="586 - AWARDS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="$a creates an awards property of the Instance" test="//bf:Instance[1]/bf:awards = 'National Book Award, 1981'"/>
+    <x:expect label="$a creates an awards property of the Work" test="//bf:Work[1]/bf:awards = 'National Book Award, 1981'"/>
   </x:scenario>
   
   <x:scenario label="588 - SOURCE OF DESCRIPTION NOTE">
