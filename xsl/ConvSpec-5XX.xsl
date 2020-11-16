@@ -443,6 +443,7 @@
   <xsl:template mode="instance" match="marc:datafield[@tag='500'] | marc:datafield[@tag='501'] |
                                        marc:datafield[@tag='513'] | marc:datafield[@tag='515'] |
                                        marc:datafield[@tag='516'] | marc:datafield[@tag='530'] |
+                                       marc:datafield[@tag='533'] | marc:datafield[@tag='534'] |
                                        marc:datafield[@tag='536'] | marc:datafield[@tag='544'] |
                                        marc:datafield[@tag='545'] | marc:datafield[@tag='547'] |
                                        marc:datafield[@tag='550'] | marc:datafield[@tag='555'] |
@@ -704,6 +705,12 @@
         <xsl:when test="$vTag='530'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abc',@code)]"/>
         </xsl:when>
+        <xsl:when test="$vTag='533'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcdefn',@code)]"/>
+        </xsl:when>
+        <xsl:when test="$vTag='534'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcefkmnt',@code)]"/>
+        </xsl:when>
         <xsl:when test="$vTag='544'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
         </xsl:when>
@@ -722,6 +729,8 @@
         <xsl:when test="$vTag='515'">issuance information</xsl:when>
         <xsl:when test="$vTag='516'">type of computer data</xsl:when>
         <xsl:when test="$vTag='530'">additional physical form</xsl:when>
+        <xsl:when test="$vTag='533'">reproduction version</xsl:when>
+        <xsl:when test="$vTag='534'">original version</xsl:when>
         <xsl:when test="$vTag='536'">funding information</xsl:when>
         <xsl:when test="$vTag='544' or $vTag='581'">related material</xsl:when>
         <xsl:when test="$vTag='545'">
@@ -769,6 +778,33 @@
                       </rdf:value>
                     </bf:StockNumber>
                     </bf:identifiedBy>
+                </xsl:for-each>
+              </xsl:when>
+              <xsl:when test="$vTag='533'">
+                <xsl:apply-templates select="marc:subfield[@code='m']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:when>
+              <xsl:when test="$vTag='534'">
+                <xsl:apply-templates select="marc:subfield[@code='p']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="marc:subfield[@code='x' or @code='z']">
+                  <xsl:variable name="vIdClass">
+                    <xsl:choose>
+                      <xsl:when test="@code='x'">bf:Issn</xsl:when>
+                      <xsl:when test="@code='z'">bf:Isbn</xsl:when>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <bf:identifiedBy>
+                    <xsl:element name="{$vIdClass}">
+                      <rdf:value>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString" select="."/>
+                        </xsl:call-template>
+                      </rdf:value>
+                    </xsl:element>
+                  </bf:identifiedBy>
                 </xsl:for-each>
               </xsl:when>
               <xsl:when test="$vTag='536'">

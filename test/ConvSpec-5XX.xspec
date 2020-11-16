@@ -141,17 +141,36 @@
     <x:expect label="532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Closed captioning in English'"/>
   </x:scenario>
   
+  <x:scenario label="533 - REPRODUCTION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="533 creates a note property of the Instance with label from $abcdefn" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Microfilm. Middleton, Conn., Wesleyan University Archives, 1973 35 mm. negative. (Current periodical series : publication no. 2313). Issues for 1853-1856 on reel with: Journal of the American Temperance Union and the New York prohibitionist, v. 21, no. 7 (July 1857)-v. 24 (1860).'"/>
+    <x:expect label="...with noteType 'reproduction version'" test="//bf:Instance[1]/bf:note[7]/bf:Note/bf:noteType = 'reproduction version'"/>
+    <x:expect label="$m creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = '1962-1965'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'Correspondence files'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'ICU'"/>
+  </x:scenario>
+    
+  <x:scenario label="534 - ORIGINAL VERSION NOTE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="534 creates a note property of the Instance with label from $abcefkmnt" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Berlin :Eulenspiegel, c1978, 1st ed. Frederick, John. under title: Luck. 1 art original : oil, col. ; 79 x 64 cm. (International series of monographs on electromagnetic waves ; v. 4). American journal of theology &amp; philosophy, at scale 1:50,000.'"/>
+    <x:expect label="...with noteType 'original version'" test="//bf:Instance[1]/bf:note[8]/bf:Note/bf:noteType = 'original version'"/>
+    <x:expect label="$p creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = 'Reprint. Originally published'"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bf:identifiedBy/bf:Issn/rdf:value = '0228-913X'"/>
+    <x:expect label="$z creates an identifiedBy/Isbn property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bf:identifiedBy/bf:Isbn/rdf:value = '0385061781 (v. 1)'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'vol. 2'"/>
+  </x:scenario>
+
   <x:scenario label="536 - FUNDING INFORMATION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="536 creates a note/Note property of the Instance with noteType 'funding information'" test="//bf:Instance[1]/bf:note[7]/bf:Note/bf:noteType = 'funding information'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[1] = 'Sponsored by the U.S. Air Force'"/>
-    <x:expect label="$b creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[2] = 'Contract: N00014-68-A-0245-0007'"/>
-    <x:expect label="$c creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[3] = 'Grant: EF-77-C-01-2556'"/>
-    <x:expect label="$d creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[4] = '910 3450'"/>
-    <x:expect label="$e creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[5] = 'Program element: 601101F'"/>
-    <x:expect label="$f creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[6] = 'Project: 1LIR'"/>
-    <x:expect label="$g creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[7] = 'Task: 5H'"/>
-    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label[8] = 'Work unit: WUAFGLILIR5H01'"/>
+    <x:expect label="536 creates a note/Note property of the Instance with noteType 'funding information'" test="//bf:Instance[1]/bf:note[9]/bf:Note/bf:noteType = 'funding information'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[1] = 'Sponsored by the U.S. Air Force'"/>
+    <x:expect label="$b creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[2] = 'Contract: N00014-68-A-0245-0007'"/>
+    <x:expect label="$c creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[3] = 'Grant: EF-77-C-01-2556'"/>
+    <x:expect label="$d creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[4] = '910 3450'"/>
+    <x:expect label="$e creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[5] = 'Program element: 601101F'"/>
+    <x:expect label="$f creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[6] = 'Project: 1LIR'"/>
+    <x:expect label="$g creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[7] = 'Task: 5H'"/>
+    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[8] = 'Work unit: WUAFGLILIR5H01'"/>
   </x:scenario>
 
   <x:scenario label="538 - SYSTEM DETAILS NOTE">
@@ -184,16 +203,16 @@
   
   <x:scenario label="544 - LOCATION OF OTHER ARCHIVAL MATERIALS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="544 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[8]/bf:Note/bf:noteType = 'related material'"/>
-    <x:expect label="$abcden create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/rdfs:label = 'Burt Barnes papers; Also located at; State Historical Society of Wisconsin.'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[8]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Flamingo statues'"/>
+    <x:expect label="544 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[10]/bf:Note/bf:noteType = 'related material'"/>
+    <x:expect label="$abcden create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Burt Barnes papers; Also located at; State Historical Society of Wisconsin.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[10]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Flamingo statues'"/>
   </x:scenario>
   
   <x:scenario label="545 - BIOGRAPHICAL OR HISTORICAL DATA">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="545 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[9]/bf:Note/bf:noteType = 'biographical data'"/>
-    <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdfs:label[1] = 'Author and reformer. Born Harriet Elizabeth Beecher.'"/>
-    <x:expect label="$u creates an rdf:value property of the Note" test="//bf:Instance[1]/bf:note[9]/bf:Note/rdf:value = 'https://www.harrietbeecherstowecenter.org/hbs/'"/>
+    <x:expect label="545 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[11]/bf:Note/bf:noteType = 'biographical data'"/>
+    <x:expect label="$ab create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label[1] = 'Author and reformer. Born Harriet Elizabeth Beecher.'"/>
+    <x:expect label="$u creates an rdf:value property of the Note" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdf:value = 'https://www.harrietbeecherstowecenter.org/hbs/'"/>
   </x:scenario>
   
   <x:scenario label="546 - LANGUAGE NOTE">
@@ -205,26 +224,26 @@
 
   <x:scenario label="547 - FORMER TITLE COMPLEXITY NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Edition varies: 1916, New York edition.'"/>
+    <x:expect label="547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Edition varies: 1916, New York edition.'"/>
   </x:scenario>
   
   <x:scenario label="550 - ISSUING BODY NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="550 creates a note/Note property of the Instance with noteType 'issuing body'" test="//bf:Instance[1]/bf:note[11]/bf:Note/bf:noteType = 'issuing body'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Vols. for 1972- issued with: Bureau de recherches géologiques et minières.'"/>
+    <x:expect label="550 creates a note/Note property of the Instance with noteType 'issuing body'" test="//bf:Instance[1]/bf:note[13]/bf:Note/bf:noteType = 'issuing body'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'Vols. for 1972- issued with: Bureau de recherches géologiques et minières.'"/>
   </x:scenario>
   
   <x:scenario label="555 - CUMULATIVE INDEX/FINDING AIDS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="555 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[12]/bf:Note/bf:noteType = 'finding aid'"/>
-    <x:expect label="$abcd create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label[1] = 'Preliminary inventory prepared in 1962; Available in NARS central search room.'"/>
-    <x:expect label="$u creates an rdf:value property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdf:value = 'http://hdl.loc.gov/loc.mss/eadmss.ms996001'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[12]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Claims settled under Treaty of Washington, May 8, 1871'"/>
+    <x:expect label="555 creates a note/Note property of the Instance with noteType from ind1" test="//bf:Instance[1]/bf:note[14]/bf:Note/bf:noteType = 'finding aid'"/>
+    <x:expect label="$abcd create an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label[1] = 'Preliminary inventory prepared in 1962; Available in NARS central search room.'"/>
+    <x:expect label="$u creates an rdf:value property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdf:value = 'http://hdl.loc.gov/loc.mss/eadmss.ms996001'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Claims settled under Treaty of Washington, May 8, 1871'"/>
   </x:scenario>
   
   <x:scenario label="556 - INFORMATION ABOUT DOCUMENTATION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.'"/>
+    <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.'"/>
   </x:scenario>
   
   <x:scenario label="561 - OWNERSHIP AND CUSTODIAL HISTORY">
@@ -245,10 +264,10 @@
   
   <x:scenario label="581 - PUBLICATIONS ABOUT DESCRIBED MATERIALS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="581 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[14]/bf:Note/bf:noteType = 'related material'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Reproduction: Antiques, June 1952, p. 76.'"/>
-    <x:expect label="$z creates an identifiedBy property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/bf:identifiedBy/bf:Isbn/rdf:value = '1234567890'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[14]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Preliminary reports'"/>
+    <x:expect label="581 creates a note/Note property of the Instance with noteType 'related material'" test="//bf:Instance[1]/bf:note[16]/bf:Note/bf:noteType = 'related material'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'Reproduction: Antiques, June 1952, p. 76.'"/>
+    <x:expect label="$z creates an identifiedBy property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/bf:identifiedBy/bf:Isbn/rdf:value = '1234567890'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Preliminary reports'"/>
   </x:scenario>
   
   <x:scenario label="583 - ACTION NOTE">
@@ -266,10 +285,10 @@
 
   <x:scenario label="585 - EXHIBITIONS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="585 creates a note/Note property of the Instance with noteType 'exhibition'" test="//bf:Instance[1]/bf:note[15]/bf:Note/bf:noteType = 'exhibition'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'Exhibited: &quot;Le Brun à Versailles,&quot; sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Color lithographs'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[15]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+    <x:expect label="585 creates a note/Note property of the Instance with noteType 'exhibition'" test="//bf:Instance[1]/bf:note[17]/bf:Note/bf:noteType = 'exhibition'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Exhibited: &quot;Le Brun à Versailles,&quot; sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[17]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Color lithographs'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[17]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
   
   <x:scenario label="586 - AWARDS NOTE">
@@ -279,9 +298,9 @@
   
   <x:scenario label="588 - SOURCE OF DESCRIPTION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="588 creates a note/Note property of the Instance with noteType 'description source'" test="//bf:Instance[1]/bf:note[16]/bf:Note/bf:noteType = 'description source'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[16]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'EZB'"/>
+    <x:expect label="588 creates a note/Note property of the Instance with noteType 'description source'" test="//bf:Instance[1]/bf:note[18]/bf:Note/bf:noteType = 'description source'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label = 'Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[18]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'EZB'"/>
   </x:scenario>
 
 </x:description>

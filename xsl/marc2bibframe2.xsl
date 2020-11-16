@@ -79,7 +79,7 @@
   <xsl:include href="ConvSpec-240andX30-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
-  <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
+  <xsl:include href="ConvSpec-490-510-Links.xsl"/>
   <xsl:include href="ConvSpec-5XX.xsl"/>
   <xsl:include href="ConvSpec-600-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
