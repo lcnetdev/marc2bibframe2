@@ -741,6 +741,15 @@
         <xsl:when test="$vTag='555'">
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']"/>
         </xsl:when>
+        <xsl:when test="$vTag='588'">
+          <xsl:variable name="vDisplayConstant">
+            <xsl:choose>
+              <xsl:when test="@ind1='0'">Source of description:</xsl:when>
+              <xsl:when test="@ind1='1'">Latest issue consulted:</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:value-of select="concat($vDisplayConstant,' ',marc:subfield[@code='a'])"/>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a']"/>
         </xsl:otherwise>

@@ -239,5 +239,8 @@
       <subfield code="a">Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.</subfield>
       <subfield code="5">EZB</subfield>
     </datafield>
+    <datafield tag="588" ind1="0" ind2=" ">
+      <subfield code="a">Volume 2.</subfield>
+    </datafield>
   </record>
 </collection>
