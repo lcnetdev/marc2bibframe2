@@ -166,16 +166,12 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:scale>
           <bf:Scale>
-            <bf:note>
-              <bf:Note>
-                <rdfs:label>
-                  <xsl:if test="$vXmlLang != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="normalize-space($vLabel)"/>
-                </rdfs:label>
-              </bf:Note>
-            </bf:note>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space($vLabel)"/>
+            </rdfs:label>
           </bf:Scale>
         </bf:scale>
       </xsl:when>

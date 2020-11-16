@@ -60,7 +60,7 @@
     <x:expect label="$6 504 creates a supplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
     <x:expect label="$6 505 creates a tableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
     <x:expect label="$6 506 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdfs:label = 'Классифицированная информация.'"/>
-    <x:expect label="$6 507 creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/bf:note/bf:Note/rdfs:label = 'Перспектива карта не в масштабе.'"/>
+    <x:expect label="$6 507 creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/rdfs:label = 'Перспектива карта не в масштабе.'"/>
     <x:expect label="$6 508 creates a credits property of the Instance" test="//bf:Instance[1]/bf:credits[1] = 'Музыка, Майкл Фишбейн; камера, Джордж Mo.'"/>
     <x:expect label="$6 510 creates a bflc:indexedIn or bf:references property of the Work" test="//bf:Work[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'химический рефераты'"/>
     <x:expect label="$6 511 creates a bf:credits property of the Instance" test="//bf:Instance[1]/bf:credits[2] = 'Джеки Гланвилл.'"/>
