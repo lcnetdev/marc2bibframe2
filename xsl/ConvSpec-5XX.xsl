@@ -140,6 +140,9 @@
               </xsl:if>
               <xsl:value-of select="normalize-space($vLabel)"/>
             </rdfs:label>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
           </bf:TableOfContents>
         </bf:tableOfContents>
       </xsl:when>
