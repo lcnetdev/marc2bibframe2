@@ -188,19 +188,50 @@
   <xsl:template match="marc:datafield[@tag='518' or @tag='880']" mode="work518">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:variable name="vLabel">
-      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='d' or @code='o' or @code='p']"/>
-    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:capture>
           <bf:Capture>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="normalize-space($vLabel)"/>
-            </rdfs:label>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='d']">
+              <bf:date>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </bf:date>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='o']">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='p']">
+              <bf:place>
+                <bf:Place>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
+                </bf:Place>
+              </bf:place>
+            </xsl:for-each>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
