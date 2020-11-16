@@ -105,7 +105,8 @@
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="520 creates a summary/Summary property of the Work" test="count(//bf:Work[1]/bf:summary/bf:Summary) = 1"/>
     <x:expect label="$abc create an rdfs:label property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Contains swear words, sex scenes and violence, but otherwise it''s ok. Central County Library'"/>
-    <x:expect label="$u creates a source property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bf:source[1]/bf:Source/rdf:value = 'http://www.mpaa.org'"/>
+    <x:expect label="$u creates an rdf:value property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdf:value = 'http://www.mpaa.org'"/>
+    <x:expect label="...with datatype xs:anyURI" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdf:value/@rdf:datatype='http://www.w3.org/2001/XMLSchema#anyURI'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Summary" test="//bf:Work[1]/bf:summary[1]/bf:Summary/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some other part'"/>
   </x:scenario>
   
