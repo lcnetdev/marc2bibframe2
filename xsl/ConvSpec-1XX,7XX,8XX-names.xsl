@@ -38,23 +38,27 @@
   <xsl:template match="marc:datafield[@tag='700' or @tag='710' or @tag='711' or @tag='720']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="agentiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="agentiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:variable name="workiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:apply-templates mode="work7XX" select=".">
+        <xsl:with-param name="agentiri" select="$agentiri"/>
+        <xsl:with-param name="workiri" select="$workiri"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
-    </xsl:variable>
-    <xsl:variable name="workiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:variable>
-    <xsl:apply-templates mode="work7XX" select=".">
-      <xsl:with-param name="agentiri" select="$agentiri"/>
-      <xsl:with-param name="workiri" select="$workiri"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="work7XX">
@@ -219,6 +223,9 @@
                 </xsl:choose>
               </xsl:otherwise>
             </xsl:choose>
+            <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
           </bf:Contribution>
         </bf:contribution>
       </xsl:when>
@@ -691,9 +698,6 @@
                 <xsl:with-param name="pVocabStem" select="$nametitleschemes"/>
               </xsl:apply-templates>
               <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </xsl:otherwise>

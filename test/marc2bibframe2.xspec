@@ -21,7 +21,7 @@
   <x:import href="ConvSpec-240andX30-UnifTitle.xspec"/>
   <x:import href="ConvSpec-250-270.xspec"/>
   <x:import href="ConvSpec-3XX.xspec"/>
-  <x:import href="ConvSpec-490-510-530to535-Links.xspec"/>
+  <x:import href="ConvSpec-490-510-Links.xspec"/>
   <x:import href="ConvSpec-5XX.xspec"/>
   <x:import href="ConvSpec-600-662.xspec"/>
   <x:import href="ConvSpec-720+740to755.xspec"/>
@@ -234,24 +234,6 @@
               </bf:Note>
             </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
-            <bf:hasItem>
-              <bf:Item rdf:about="http://example.org/13600108#Item050-11">
-                <bf:heldBy>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:heldBy>
-                <bf:shelfMark>
-                  <bf:ShelfMarkLcc>
-                    <rdfs:label>PZ54.A498 2001</rdfs:label>
-                    <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:assigner>
-                  </bf:ShelfMarkLcc>
-                </bf:shelfMark>
-                <bf:itemOf rdf:resource="http://example.org/13600108#Instance"/>
-              </bf:Item>
-            </bf:hasItem>
           </bf:Instance>
         </rdf:RDF>
       </x:expect>
@@ -484,24 +466,6 @@
               </bf:Note>
             </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
-            <bf:hasItem>
-              <bf:Item rdf:about="http://example.org/5637241#Item050-10">
-                <bf:heldBy>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:heldBy>
-                <bf:shelfMark>
-                  <bf:ShelfMark>
-                    <rdfs:label>Atlantic 1259</rdfs:label>
-                    <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:assigner>
-                  </bf:ShelfMark>
-                </bf:shelfMark>
-                <bf:itemOf rdf:resource="http://example.org/5637241#Instance"/>
-              </bf:Item>
-            </bf:hasItem>
           </bf:Instance>
           <bf:Work rdf:about="http://example.org/12149120#Work">
             <bf:adminMetadata>
@@ -773,24 +737,6 @@
               </bf:Note>
             </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
-            <bf:hasItem>
-              <bf:Item rdf:about="http://example.org/12149120#Item050-14">
-                <bf:heldBy>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:heldBy>
-                <bf:shelfMark>
-                  <bf:ShelfMarkLcc>
-                    <rdfs:label>F204.W5</rdfs:label>
-                    <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:assigner>
-                  </bf:ShelfMarkLcc>
-                </bf:shelfMark>
-                <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
-              </bf:Item>
-            </bf:hasItem>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item856-27">
                 <bf:electronicLocator>
@@ -1142,24 +1088,6 @@
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:instanceOf rdf:resource="http://example.org/4417401#Work"/>
-            <bf:hasItem>
-              <bf:Item rdf:about="http://example.org/4417401#Item050-12">
-                <bf:heldBy>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:heldBy>
-                <bf:shelfMark>
-                  <bf:ShelfMarkLcc>
-                    <rdfs:label>H97.H358 1994</rdfs:label>
-                    <bf:assigner>
-                      <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                    </bf:assigner>
-                  </bf:ShelfMarkLcc>
-                </bf:shelfMark>
-                <bf:itemOf rdf:resource="http://example.org/4417401#Instance"/>
-              </bf:Item>
-            </bf:hasItem>
           </bf:Instance>
         </rdf:RDF>
       </x:expect>

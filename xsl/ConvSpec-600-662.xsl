@@ -564,32 +564,37 @@
                        marc:datafield[@tag='655'][@ind1=' ']" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vDefaultUri">
-      <xsl:choose>
-        <xsl:when test="@tag='648'">
-          <xsl:value-of select="$recordid"/>#Temporal<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:when>
-        <xsl:when test="@tag='651'">
-          <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:when>
-        <xsl:when test="@tag='655'">
-          <xsl:value-of select="$recordid"/>#GenreForm<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vTopicUri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <!-- special processing only for 655 -->
+    <xsl:if test="@tag != '655' or $pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="vDefaultUri">
+        <xsl:choose>
+          <xsl:when test="@tag='648'">
+            <xsl:value-of select="$recordid"/>#Temporal<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+          </xsl:when>
+          <xsl:when test="@tag='651'">
+            <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+          </xsl:when>
+          <xsl:when test="@tag='655'">
+            <xsl:value-of select="$recordid"/>#GenreForm<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vTopicUri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:apply-templates select="." mode="work6XXAuth">
+        <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
+        <xsl:with-param name="recordid" select="$recordid"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
-    </xsl:variable>
-    <xsl:apply-templates select="." mode="work6XXAuth">
-      <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
-      <xsl:with-param name="recordid" select="$recordid"/>
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="work6XXAuth">
