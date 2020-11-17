@@ -29,6 +29,7 @@
       <subfield code="t">Water ways</subfield>
       <subfield code="g">(1:57) /</subfield>
       <subfield code="r">by Stephen Paulus.</subfield>
+      <subfield code="u">https://stephenpaulus.com</subfield>
     </datafield>
     <datafield tag="506" ind1=" " ind2=" ">
       <subfield code="3">Office files of Under Secretary</subfield>
@@ -95,8 +96,43 @@
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
+    <datafield tag="530" ind1=" " ind2=" ">
+      <subfield code="3">Dispatches from U.S. consuls in Batavia, Java, Netherlands East Indies, 1818-1906</subfield>
+      <subfield code="a">Available in microfilm;</subfield>
+      <subfield code="b">National Archives;</subfield>
+      <subfield code="d">M449;</subfield>
+      <subfield code="c">Standing order account required.</subfield>
+      <subfield code="u">http://www.bartleby.com/99/index.html</subfield>
+    </datafield>
     <datafield tag="532" ind1="1" ind2=" ">
       <subfield code="a">Closed captioning in English</subfield>
+    </datafield>
+    <datafield tag="533" ind1=" " ind2=" ">
+      <subfield code="3">Correspondence files</subfield>
+      <subfield code="a">Microfilm.</subfield>
+      <subfield code="m">1962-1965.</subfield>
+      <subfield code="b">Middleton, Conn.,</subfield>
+      <subfield code="c">Wesleyan University Archives,</subfield>
+      <subfield code="d">1973</subfield>
+      <subfield code="e">35 mm. negative.</subfield>
+      <subfield code="f">(Current periodical series : publication no. 2313).</subfield>
+      <subfield code="n">Issues for 1853-1856 on reel with: Journal of the American Temperance Union and the New York prohibitionist, v. 21, no. 7 (July 1857)-v. 24 (1860).</subfield>
+      <subfield code="5">ICU</subfield>
+    </datafield>
+    <datafield tag="534" ind1=" " ind2=" ">
+      <subfield code="3">vol. 2</subfield>
+      <subfield code="p">Reprint. Originally published:</subfield>
+      <subfield code="c">Berlin :Eulenspiegel, c1978,</subfield>
+      <subfield code="b">1st ed.</subfield>
+      <subfield code="a">Frederick, John.</subfield>
+      <subfield code="n">under title:</subfield>
+      <subfield code="t">Luck.</subfield>
+      <subfield code="e">1 art original : oil, col. ; 79 x 64 cm.</subfield>
+      <subfield code="f">(International series of monographs on electromagnetic waves ; v. 4).</subfield>
+      <subfield code="k">American journal of theology &amp; philosophy,</subfield>
+      <subfield code="x">0228-913X.</subfield>
+      <subfield code="z">0385061781 (v. 1)</subfield>
+      <subfield code="m">at scale 1:50,000.</subfield>
     </datafield>
     <datafield tag="536" ind1=" " ind2=" ">
       <subfield code="a">Sponsored by the U.S. Air Force</subfield>
@@ -202,6 +238,9 @@
     <datafield tag="588" ind1=" " ind2=" ">
       <subfield code="a">Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.</subfield>
       <subfield code="5">EZB</subfield>
+    </datafield>
+    <datafield tag="588" ind1="0" ind2=" ">
+      <subfield code="a">Volume 2.</subfield>
     </datafield>
   </record>
 </collection>

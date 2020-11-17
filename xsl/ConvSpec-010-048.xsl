@@ -1243,102 +1243,110 @@
   <!-- 026 requires special handling -->
   <xsl:template match="marc:datafield[@tag='026']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="parsed">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']" mode="concat-nodes-space"/>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:identifiedBy>
-          <bf:Fingerprint>
-            <xsl:choose>
-              <xsl:when test="$parsed != ''">
-                <rdf:value><xsl:value-of select="normalize-space($parsed)"/></rdf:value>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:for-each select="marc:subfield[@code='e']">
-                  <rdf:value><xsl:value-of select="."/></rdf:value>
-                </xsl:for-each>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:apply-templates mode="subfield2code" select="marc:subfield[@code='2']">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pUriStem" select="$fingerprintschemes"/>
-            </xsl:apply-templates>
-            <xsl:for-each select="marc:subfield[@code='5']">
-              <xsl:apply-templates select="." mode="subfield5">
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="parsed">
+        <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']" mode="concat-nodes-space"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:identifiedBy>
+            <bf:Fingerprint>
+              <xsl:choose>
+                <xsl:when test="$parsed != ''">
+                  <rdf:value><xsl:value-of select="normalize-space($parsed)"/></rdf:value>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:for-each select="marc:subfield[@code='e']">
+                    <rdf:value><xsl:value-of select="."/></rdf:value>
+                  </xsl:for-each>
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:apply-templates mode="subfield2code" select="marc:subfield[@code='2']">
                 <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pUriStem" select="$fingerprintschemes"/>
               </xsl:apply-templates>
-            </xsl:for-each>
-          </bf:Fingerprint>
-        </bf:identifiedBy>
-      </xsl:when>
-    </xsl:choose>
+              <xsl:for-each select="marc:subfield[@code='5']">
+                <xsl:apply-templates select="." mode="subfield5">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
+            </bf:Fingerprint>
+          </bf:identifiedBy>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='037']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vAcqSource">
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="vAcqSource">
+        <xsl:choose>
+          <xsl:when test="@ind1 = '2'">intervening source</xsl:when>
+          <xsl:when test="@ind1 = '3'">current source</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:choose>
-        <xsl:when test="@ind1 = '2'">intervening source</xsl:when>
-        <xsl:when test="@ind1 = '3'">current source</xsl:when>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:acquisitionSource>
+            <bf:AcquisitionSource>
+              <xsl:if test="$vAcqSource != ''">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="$vAcqSource"/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:if>
+              <xsl:for-each select="marc:subfield[@code='3']">
+                <xsl:apply-templates select="." mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='a']">
+                <bf:identifiedBy>
+                  <bf:StockNumber>
+                    <rdf:value><xsl:value-of select="."/></rdf:value>
+                  </bf:StockNumber>
+                </bf:identifiedBy>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:source>
+                  <bf:Source>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='c']">
+                <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='f']">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='g' or @code='n']">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='5']">
+                <xsl:apply-templates select="." mode="subfield5">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:for-each>
+            </bf:AcquisitionSource>
+          </bf:acquisitionSource>
+        </xsl:when>
       </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:acquisitionSource>
-          <bf:AcquisitionSource>
-            <xsl:if test="$vAcqSource != ''">
-              <bf:note>
-                <bf:Note>
-                  <rdfs:label><xsl:value-of select="$vAcqSource"/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:if>
-            <xsl:for-each select="marc:subfield[@code='3']">
-              <xsl:apply-templates select="." mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='a']">
-              <bf:identifiedBy>
-                <bf:StockNumber>
-                  <rdf:value><xsl:value-of select="."/></rdf:value>
-                </bf:StockNumber>
-              </bf:identifiedBy>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:source>
-                <bf:Source>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Source>
-              </bf:source>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='c']">
-              <bf:acquisitionTerms><xsl:value-of select="."/></bf:acquisitionTerms>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='f']">
-              <bf:note>
-                <bf:Note>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='g' or @code='n']">
-              <bf:note>
-                <bf:Note>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='5']">
-              <xsl:apply-templates select="." mode="subfield5">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:for-each>
-          </bf:AcquisitionSource>
-        </bf:acquisitionSource>
-      </xsl:when>
-    </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

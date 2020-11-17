@@ -573,9 +573,14 @@
   <xsl:template match="marc:datafield[@tag='246']" mode="instance">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates mode="instance246" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:apply-templates mode="instance246" select=".">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pHasItem" select="$pHasItem"/>
+      </xsl:apply-templates>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='246' or @tag='880']" mode="instance246">

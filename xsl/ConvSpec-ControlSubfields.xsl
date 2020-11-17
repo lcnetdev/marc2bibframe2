@@ -108,17 +108,19 @@
   <xsl:template match="marc:subfield" mode="subfield2">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pVocabStem"/>
+    <xsl:param name="pStripPunct" select="false()"/>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:source>
           <bf:Source>
             <xsl:if test="$pVocabStem != ''">
               <xsl:variable name="vNormCode">
-                <xsl:call-template name="url-encode">
-                  <xsl:with-param name="str" select="normalize-space(translate(.,$upper,$lower))"/>
+                <xsl:call-template name="tNormalizeCode">
+                  <xsl:with-param name="pCode" select="."/>
+                  <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pVocabStem,.)"/></xsl:attribute>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pVocabStem,$vNormCode)"/></xsl:attribute>
             </xsl:if>
             <bf:code>
               <xsl:value-of select="."/>
@@ -134,25 +136,17 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pUriStem"/>
     <xsl:param name="pStripPunct" select="false()"/>
-    <xsl:variable name="vCode">
-      <xsl:choose>
-        <!-- well, not all punctuation (e.g. quotes), but probably enough -->
-        <xsl:when test="$pStripPunct">
-          <xsl:value-of select="translate(.,'.?!,;:-/\()[]{} ','')"/>
-        </xsl:when>
-        <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vEncoded">
-      <xsl:call-template name="url-encode">
-        <xsl:with-param name="str" select="translate(normalize-space($vCode),$upper,$lower)"/>
+    <xsl:variable name="vNormCode">
+      <xsl:call-template name="tNormalizeCode">
+        <xsl:with-param name="pCode" select="."/>
+        <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:source>
           <bf:Source>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,$vEncoded)"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,$vNormCode)"/></xsl:attribute>
           </bf:Source>
         </bf:source>
       </xsl:when>
@@ -213,10 +207,17 @@
   -->
   <xsl:template match="marc:subfield" mode="subfield5">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vNormCode">
+      <xsl:call-template name="tNormalizeCode">
+        <xsl:with-param name="pCode" select="."/>
+        <xsl:with-param name="pStripPunct" select="true()"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bflc:applicableInstitution>
           <bf:Agent>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vNormCode)"/></xsl:attribute>
             <bf:code><xsl:value-of select="."/></bf:code>
           </bf:Agent>
         </bflc:applicableInstitution>
@@ -282,10 +283,10 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <rdfs:label>
+        <rdf:value>
           <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
           <xsl:value-of select="."/>
-        </rdfs:label>
+        </rdf:value>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
