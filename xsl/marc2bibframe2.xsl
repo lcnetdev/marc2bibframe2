@@ -288,7 +288,7 @@
                   <xsl:with-param name="pHasItem" select="true()"/>
                 </xsl:apply-templates>
                 <!-- generate Item properties from 541/561/563/583 -->
-                <xsl:apply-templates select="marc:datafield[(@tag='541' or @tag='561' or @tag='563' or @tag='583') and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+                <xsl:apply-templates select="marc:datafield[(((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))) and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Item>

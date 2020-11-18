@@ -916,65 +916,60 @@
   <xsl:template match="marc:datafield[@tag='541' or @tag='561' or @tag='563' or @tag='583']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <!-- note special $5 processing for LoC below -->
-    <xsl:if test="not($localfields)">
-      <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-      <xsl:choose>
-        <xsl:when test="marc:subfield[@code='3' or @code='5']">
-          <xsl:choose>
-            <xsl:when test="$serialization='rdfxml'">
-              <bf:hasItem>
-                <bf:Item>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
-                  <xsl:apply-templates select="." mode="item5XX">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                  <bf:itemOf>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-                  </bf:itemOf>
-                </bf:Item>
-              </bf:hasItem>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:if test="generate-id(.) = generate-id(../marc:datafield[@tag='541' or @tag='561' or @tag='563' or @tag='583'][not(marc:subfield[@code='3' or @code='5'])][position()=1])">
-            <xsl:apply-templates select="../marc:datafield[@tag='541' or @tag='561' or @tag='563' or @tag='583'][not(marc:subfield[@code='3' or @code='5'])]" mode="hasItem5XX">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="recordid" select="$recordid"/>
-              <xsl:with-param name="pItemUri" select="$vItemUri"/>
-            </xsl:apply-templates>
-          </xsl:if>
-        </xsl:otherwise>
-      </xsl:choose>
+    <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
+    <xsl:if test="not(marc:subfield[@code='6'])">
+      <xsl:apply-templates select="." mode="hasItem5XX">
+        <xsl:with-param name="recordid" select="$recordid"/>
+        <xsl:with-param name="serializaiton" select="$serialization"/>
+        <xsl:with-param name="pItemUri" select="$vItemUri"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='541' or @tag='561' or @tag='563' or @tag='583']" mode="hasItem5XX">
+  <xsl:template match="marc:datafield" mode="hasItem5XX">
     <xsl:param name="recordid"/>
-    <xsl:param name="pItemUri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-      <xsl:if test="position() = 1">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
+    <xsl:param name="pItemUri"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="not($localfields)">
+      <xsl:choose>
+        <xsl:when test="$serialization='rdfxml'">
+          <xsl:if test="generate-id(.) = generate-id(../marc:datafield[((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))][not(marc:subfield[@code='3' or @code='5'])][position()=1]) or marc:subfield[@code='3' or @code='5']">
             <bf:hasItem>
               <bf:Item>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$pItemUri"/></xsl:attribute>
-                <xsl:apply-templates select="../marc:datafield[@tag='541' or @tag='561' or @tag='563' or @tag='583'][not(marc:subfield[@code='3' or @code='5'])]" mode="item5XX">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                  <xsl:when test="marc:subfield[@code='3' or @code='5']">
+                    <xsl:apply-templates select="." mode="item5XX">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:apply-templates select="../marc:datafield[((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))][not(marc:subfield[@code='3' or @code='5'])]" mode="item5XX">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:otherwise>
+                </xsl:choose>
                 <bf:itemOf>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
                 </bf:itemOf>
               </bf:Item>
             </bf:hasItem>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+          </xsl:if>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='541']" mode="item5XX">
+  <xsl:template match="marc:datafield[@tag='541' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='541')]" mode="item5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='f' or @code='h' or @code='n' or @code='o']" mode="concat-nodes-space"/>
     </xsl:variable>
@@ -982,7 +977,12 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:immediateAcquisition>
           <bf:ImmediateAcquisition>
-            <rdfs:label><xsl:value-of select="normalize-space($vLabel)"/></rdfs:label>
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space($vLabel)"/>
+            </rdfs:label>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -995,12 +995,18 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='561']" mode="item5XX">
+  <xsl:template match="marc:datafield[@tag='561' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='561')]" mode="item5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:custodialHistory><xsl:value-of select="."/></bf:custodialHistory>
+          <bf:custodialHistory>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </bf:custodialHistory>
         </xsl:for-each>
         <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -1012,15 +1018,21 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='563']" mode="item5XX">
+  <xsl:template match="marc:datafield[@tag='563' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='563')]" mode="item5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
               <bf:noteType>binding</bf:noteType>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
               <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
@@ -1034,40 +1046,66 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='583']" mode="item5XX">
+  <xsl:template match="marc:datafield[@tag='583' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='583')]" mode="item5XX">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
           <bf:Note>
             <bf:noteType>action</bf:noteType>
             <xsl:for-each select="marc:subfield[@code='a']">
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='c']">
               <bf:date><xsl:value-of select="."/></bf:date>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='h']">
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='k']">
               <bf:agent>
                 <bf:Agent>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
                 </bf:Agent>
               </bf:agent>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='l']">
               <bf:status>
                 <bf:Status>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
                 </bf:Status>
               </bf:status>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='z']">
               <bf:note>
                 <bf:Note>
-                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
