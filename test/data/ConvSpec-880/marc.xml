@@ -1,14 +1,6 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
-    <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">130-01/(3</subfield>
-      <subfield code="a">ملحمة دانيال</subfield>
-    </datafield>
-    <datafield ind1="0" ind2="0" tag="880">
-      <subfield code="6">100-01</subfield>
-      <subfield code="a">東海道五十三次絵卷.</subfield>
-    </datafield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">210-01</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>
@@ -43,165 +35,16 @@
       <subfield code="b">под редакцией Пола Уотсона.</subfield>
       <subfield code="3">2000-2006</subfield>
     </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">254-01</subfield>
-      <subfield code="a">Полный счет.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">255-01</subfield>
-      <subfield code="a">Масштаб не дано.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">256-01</subfield>
-      <subfield code="a">Компьютерные данные (2 файлов: 876,000, 775,000 записей).</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">257-01</subfield>
-      <subfield code="a">Франция</subfield>
-    </datafield>
     <datafield tag="880" ind1="3" ind2=" ">
       <subfield code="6">260-01</subfield>
       <subfield code="a">Лондон :</subfield>
       <subfield code="b">Совет искусств Великобритании,</subfield>
       <subfield code="c">1981</subfield>
     </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">261-01</subfield>
-      <subfield code="a">Coronet Фильмы,</subfield>
-      <subfield code="d">1967.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">262-01</subfield>
-      <subfield code="a">Луисвилл, Кентукки.,</subfield>
-      <subfield code="b">Луисвилл оркестр,</subfield>
-      <subfield code="c">[1967]</subfield>
-      <subfield code="k">LS 671.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">263-01</subfield>
-      <subfield code="a">1999--</subfield>
-    </datafield>
     <datafield tag="880" ind1=" " ind2="2">
       <subfield code="6">264-01</subfield>
       <subfield code="a">Сиэтл :</subfield>
       <subfield code="b">Айверсон компании</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">300-01</subfield>
-      <subfield code="3">грампластинки</subfield>
-      <subfield code="a">1</subfield>
-      <subfield code="f">коробка</subfield>
-      <subfield code="g">2 x 4 x 3 1/2 ft.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">306-01</subfield>
-      <subfield code="a">002016</subfield>
-    </datafield>    
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">310-01</subfield>
-      <subfield code="a">годовой,</subfield>
-      <subfield code="b">1983-</subfield>
-    </datafield>    
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">321-01</subfield>
-      <subfield code="a">Полугодовой,</subfield>
-      <subfield code="b">1981-1982</subfield>
-    </datafield>    
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">336-01</subfield>
-      <subfield code="a">исполняемая музыка</subfield>
-      <subfield code="2">rdacontent</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">337-01</subfield>
-      <subfield code="a">аудио</subfield>
-      <subfield code="2">rdamedia</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">338-01</subfield>
-      <subfield code="a">аудиодиск</subfield>
-      <subfield code="2">rdacarrier</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">340-01</subfield>
-      <subfield code="3">Автопортрет</subfield>
-      <subfield code="a">рисовая бумага</subfield>
-      <subfield code="b">7" x 9"</subfield>
-      <subfield code="c">рисовая бумага</subfield>
-      <subfield code="g">цвет</subfield>
-    </datafield>
-    <datafield tag="880" ind1="0" ind2=" ">
-      <subfield code="6">341-01</subfield>
-      <subfield code="a">слуховой</subfield>
-      <subfield code="c">язык знаков</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">344-01</subfield>
-      <subfield code="3">аудиодиск</subfield>
-      <subfield code="a">цифровой</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">345-01</subfield>
-      <subfield code="a">синерама</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">346-01</subfield>
-      <subfield code="a">Бета</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">347-01</subfield>
-      <subfield code="a">файл изображения</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">348-01</subfield>
-      <subfield code="a">клавир</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">350-01</subfield>
-      <subfield code="a">$20.00</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">351-01</subfield>
-      <subfield code="a">SPSS системный файл.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">352-01</subfield>
-      <subfield code="a">Вектор.</subfield>
-    </datafield>
-    <datafield tag="880" ind1="1" ind2=" ">
-      <subfield code="6">362-01</subfield>
-      <subfield code="a">3 выпуска в том. 1, прекратилось с 3 (1983)</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">377-01</subfield>
-      <subfield code="3">лекция</subfield>
-      <subfield code="a">eng</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">380-01</subfield>
-      <subfield code="a">Телевизионная программа</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">382-01</subfield>
-      <subfield code="a">пианино</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">383-01</subfield>
-      <subfield code="a">没有。 14</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">384-01</subfield>
-      <subfield code="a">си минор</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">385-01</subfield>
-      <subfield code="a">Дети</subfield>
-      <subfield code="2">lcsh</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">386-01</subfield>
-      <subfield code="a">Дети</subfield>
-      <subfield code="2">lcsh</subfield>
     </datafield>
     <datafield tag="880" ind1="1" ind2=" ">
       <subfield code="6">490-01</subfield>
@@ -363,72 +206,10 @@
       <subfield code="6">588-01</subfield>
       <subfield code="a">Том 2.</subfield>
     </datafield>
-    <datafield tag="880" ind1="1" ind2="0">
-      <subfield code="6">600-01</subfield>
-      <subfield code="a">семьи Кларк</subfield>
-      <subfield code="v">Фантастика.</subfield>
-    </datafield>
-    <datafield tag="880" ind1="0" ind2="0">
-      <subfield code="6">630-01</subfield>
-      <subfield code="a">украинский журнал</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="0">
-      <subfield code="6">648-01</subfield>
-      <subfield code="a">Доисторические времена</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="0">
-      <subfield code="6">650-01</subfield>
-      <subfield code="a">единороги</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="0">
-      <subfield code="6">651-01</subfield>
-      <subfield code="a">Река Амазонка.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">653-01</subfield>
-      <subfield code="a">топливные элементы</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="2">
-      <subfield code="6">655-01</subfield>
-      <subfield code="a">сборник статей</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="7">
-      <subfield code="6">656-01</subfield>
-      <subfield code="a">Антропологи.</subfield>
-      <subfield code="2">nyet</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2="">
-      <subfield code="6">662-01</subfield>
-      <subfield code="a">日本</subfield>
-      <subfield code="c">北海道</subfield>
-      <subfield code="2">pemrecs</subfield>
-    </datafield>
-    <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">700-01</subfield>
-      <subfield code="a">ملحمة دانيال</subfield>
-    </datafield>
-    <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">730-01</subfield>
-      <subfield code="a">ملحمة دانيال</subfield>
-    </datafield>
-    <datafield ind1=" " ind2=" " tag="880">
-      <subfield code="6">752-01</subfield>
-      <subfield code="a">Англия</subfield>
-      <subfield code="d">Лондон</subfield>
-    </datafield>
     <datafield ind1="0" ind2="6" tag="880">
       <subfield code="6">780-01</subfield>
       <subfield code="t">Графические уведомления и дополнительные данные</subfield>
       <subfield code="w">(OCoLC)4276671</subfield>
-    </datafield>
-    <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">800-01</subfield>
-      <subfield code="a">ملحمة دانيال</subfield>
-      <subfield code="t">東海道五十三次絵卷.</subfield>
-    </datafield>
-    <datafield ind1="0" ind2=" " tag="880">
-      <subfield code="6">830-01</subfield>
-      <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
   </record>
 </collection>
