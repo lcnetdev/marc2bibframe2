@@ -36,6 +36,12 @@
           <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
           <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
           <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+          <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
+            <xsl:value-of select="$vScript6simple"/>
+          </xsl:when>
+          <xsl:when test="string-length($vScript6simple)=3 and string-length(translate($vScript6simple,'0123456789',''))=0">
+            <xsl:value-of select="$scriptMap/xml-scripts/script[@num=$vScript6simple]/@code"/>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:if>

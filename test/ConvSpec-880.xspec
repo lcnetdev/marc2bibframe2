@@ -71,7 +71,9 @@
 
   <x:scenario label="xml:lang attributes from 880">
     <x:context href="data/ConvSpec-880/marc-lang.xml"/>
-    <x:expect label="Language from 008 and script from $6 create an xml:lang attribute of the Resource" test="//bf:Work[1]/bf:title[1]/bf:Title/bf:mainTitle/@xml:lang = 'da-arab'"/>
+    <x:expect label="Language from 008 and MARC8 script code from $6 create an xml:lang attribute of the Resource" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-arab'"/>
+    <x:expect label="Script can come from 4-letter code" test="//bf:Instance[1]/bf:title[2]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-Arab'"/>
+    <x:expect label="Script can come from 3-digit numeric code" test="//bf:Instance[1]/bf:title[3]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-Arab'"/>
   </x:scenario>    
 
 </x:description>

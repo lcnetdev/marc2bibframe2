@@ -3,7 +3,15 @@
     <controlfield tag="001">1</controlfield>
     <controlfield tag="008">040520s2001    dk a   j      000 1 dan  </controlfield>
     <datafield ind1="1" ind2="0" tag="880">
-      <subfield code="6">245-01/(3</subfield>
+      <subfield code="6">246-00/(3</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="880">
+      <subfield code="6">246-00/Arab</subfield>
+      <subfield code="a">ملحمة دانيال</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="880">
+      <subfield code="6">246-00/160</subfield>
       <subfield code="a">ملحمة دانيال</subfield>
     </datafield>
   </record>

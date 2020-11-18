@@ -152,8 +152,9 @@
   <!-- subject thesaurus map -->
   <xsl:variable name="subjectThesaurus" select="document('conf/subjectThesaurus.xml')"/>
 
-  <!-- language map -->
+  <!-- language/script maps -->
   <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
+  <xsl:variable name="scriptMap" select="document('conf/scriptCrosswalk.xml')"/>
 
   <!-- code maps -->
   <xsl:variable name="codeMaps" select="document('conf/codeMaps.xml')"/>
