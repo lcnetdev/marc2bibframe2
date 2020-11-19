@@ -13,28 +13,11 @@
       Conversion specs for handling 880 fields
   -->
 
-  <xsl:template match="marc:datafield[@tag='880']" mode="work">
+  <xsl:template match="marc:datafield[@tag='880']" mode="work880">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$tag='210'">
-        <xsl:if test="@ind2=' '">
-          <xsl:apply-templates mode="title210" select=".">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </xsl:if>
-      </xsl:when>
-      <xsl:when test="$tag='222'">
-        <xsl:apply-templates mode="title222" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='243'">
-        <xsl:apply-templates mode="work243" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
       <xsl:when test="$tag='245'">
         <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
           <xsl:apply-templates mode="work245" select=".">
@@ -124,37 +107,15 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='880']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='880']" mode="instance880">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$tag='210'">
-        <xsl:if test="@ind2='0'">
-          <xsl:apply-templates mode="title210" select=".">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </xsl:if>
-      </xsl:when>
-      <xsl:when test="$tag='242'">
-        <xsl:apply-templates mode="instance242" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
       <xsl:when test="$tag='245'">
         <xsl:apply-templates mode="instance245" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='246'">
-        <xsl:apply-templates mode="instance246" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:when test="$tag='247'">
-        <xsl:apply-templates mode="instance247" select=".">
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
       </xsl:when>
@@ -233,11 +194,11 @@
           <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
           <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
         </xsl:apply-templates>
-      </xsl:when>        
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='880']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='880']" mode="hasItem880">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
