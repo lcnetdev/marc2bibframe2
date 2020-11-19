@@ -349,6 +349,7 @@
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
     <xsl:param name="pVocabStem"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
     <xsl:variable name="vLabel">
       <xsl:choose>
@@ -364,6 +365,9 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$pTarget"/></xsl:attribute>
             </xsl:if>
             <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
                   <xsl:call-template name="chopPunctuation">
