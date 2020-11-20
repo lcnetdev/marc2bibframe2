@@ -23,7 +23,7 @@
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="@ind1=0 or
-                    (@ind1='1' and count(../marc:datafield[(@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='830')) or ((@tag='800' or @tag='810' or @tag='811' or @tag='830') and not(marc:subfield[@code='6']))]) &lt; $vCurrentPos)">
+                    (@ind1='1' and count(../marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) &lt; $vCurrentPos)">
         <xsl:for-each select="marc:subfield[@code='x']">
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
