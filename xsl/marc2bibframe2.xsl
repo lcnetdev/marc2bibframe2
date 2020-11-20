@@ -273,11 +273,6 @@
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-          <!-- transitional: pass 880 fields through 880 templates -->
-          <xsl:apply-templates select="marc:datafield[@tag='880']" mode="hasItem880">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
           <!-- special LoC processing for $5 -->
           <!-- link all properties from fields with $5=DLC to a single Item -->
           <xsl:if test="$localfields and
@@ -294,12 +289,12 @@
                     <bf:code>DLC</bf:code>
                   </bf:Agent>
                 </bf:heldBy>
-                <xsl:apply-templates select="marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="work">
+                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
                   <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
                   <xsl:with-param name="pHasItem" select="true()"/>
                 </xsl:apply-templates>
-                <xsl:apply-templates select="marc:datafield[@tag != '880' and marc:subfield[@code='5']='DLC']" mode="instance">
+                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="instance">
                   <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
                   <xsl:with-param name="pHasItem" select="true()"/>
