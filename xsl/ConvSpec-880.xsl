@@ -18,13 +18,6 @@
     <xsl:param name="serialization"/>
     <xsl:variable name="tag"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$tag='245'">
-        <xsl:if test="not(../marc:datafield[@tag='130']) and not(../marc:datafield[@tag='240'])">
-          <xsl:apply-templates mode="work245" select=".">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
-        </xsl:if>
-      </xsl:when>
       <xsl:when test="$tag='765' or $tag='767' or $tag='770' or $tag='772' or $tag='773' or $tag='774' or $tag='775' or $tag='780' or $tag='785' or $tag='786' or $tag='787'">
         <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
         <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
@@ -44,11 +37,6 @@
     <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work880-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance880-<xsl:value-of select="position()"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="$tag='245'">
-        <xsl:apply-templates mode="instance245" select=".">
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:when>
       <xsl:when test="$tag='760' or $tag='762'">
         <xsl:apply-templates select="." mode="instance7XXLinks">
           <xsl:with-param name="serialization" select="$serialization"/>
