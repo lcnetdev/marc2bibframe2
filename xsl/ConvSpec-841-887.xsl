@@ -15,28 +15,26 @@
 
   <xsl:template match="marc:datafield[@tag='856' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='856')]" mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='856' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:apply-templates select="." mode="work856">
-        <xsl:with-param name="recordid" select="$recordid"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pTagOrd" select="position()"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="work856">
+      <xsl:with-param name="recordid" select="$recordid"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pTagOrd" select="$pPosition"/>
+    </xsl:apply-templates>
   </xsl:template>
   
   <!-- 859 is a local field at LoC -->
   <xsl:template match="marc:datafield[@tag='859' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='859')]" mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='859' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:if test="$localfields">
-        <xsl:apply-templates select="." mode="work856">
-          <xsl:with-param name="recordid" select="$recordid"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pTagOrd" select="position()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+    <xsl:if test="$localfields">
+      <xsl:apply-templates select="." mode="work856">
+        <xsl:with-param name="recordid" select="$recordid"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pTagOrd" select="$pPosition"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
@@ -130,32 +128,23 @@
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='856' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='856')]" mode="instance">
-    <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='856' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:apply-templates select="." mode="instance856">
-        <xsl:with-param name="recordid" select="$recordid"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="instance856">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
   </xsl:template>
   
   <!-- 859 is a local field at LoC -->
   <xsl:template match="marc:datafield[@tag='859' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='859')]" mode="instance">
-    <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='859' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:if test="$localfields">
-        <xsl:apply-templates select="." mode="instance856">
-          <xsl:with-param name="recordid" select="$recordid"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-        </xsl:apply-templates>
-      </xsl:if>
+    <xsl:if test="$localfields">
+      <xsl:apply-templates select="." mode="instance856">
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="instance856">
-    <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
     <xsl:if test="marc:subfield[@code='u'] and @ind2='2' and $vSubfield3 != 'table of contents'">
@@ -173,28 +162,26 @@
           
   <xsl:template match="marc:datafield[@tag='856' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='856')]" mode="hasItem">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='856' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:apply-templates select="." mode="hasItem856">
-        <xsl:with-param name="recordid" select="$recordid"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pTagOrd" select="position()"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="hasItem856">
+      <xsl:with-param name="recordid" select="$recordid"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+      <xsl:with-param name="pTagOrd" select="$pPosition"/>
+    </xsl:apply-templates>
   </xsl:template>
   
   <!-- 859 is a local field at LoC -->
   <xsl:template match="marc:datafield[@tag='859' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='859')]" mode="hasItem">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='859' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:if test="$localfields">
-        <xsl:apply-templates select="." mode="hasItem856">
-          <xsl:with-param name="recordid" select="$recordid"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pTagOrd" select="position()"/>
-        </xsl:apply-templates>
-      </xsl:if>
+    <xsl:if test="$localfields">
+      <xsl:apply-templates select="." mode="hasItem856">
+        <xsl:with-param name="recordid" select="$recordid"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pTagOrd" select="$pPosition"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
@@ -269,6 +256,5 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
   
 </xsl:stylesheet>

@@ -14,61 +14,59 @@
   -->
 
   <!-- bf:Work properties from name fields -->
-  <xsl:template match="marc:datafield[@tag='100' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='100')] |
-                       marc:datafield[@tag='110' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='110')] |
-                       marc:datafield[@tag='111' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='100')]"
+  <xsl:template match="marc:datafield[@tag='100' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')] |
+                       marc:datafield[@tag='110' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='110')] |
+                       marc:datafield[@tag='111' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')]"
                 mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="pAgentIri"/>
-    <xsl:if test="starts-with(@tag,'1') or substring(substring-after(marc:datafield[@code='6'],'-'),1,2)='00'">
-      <xsl:variable name="agentiri">
-        <xsl:choose>
-          <xsl:when test="$pAgentIri != ''"><xsl:value-of select="$pAgentIri"/></xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates mode="generateUri" select=".">
-              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-              <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:apply-templates mode="workName" select=".">
-        <xsl:with-param name="agentiri" select="$agentiri"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='700' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='700')] |
-                       marc:datafield[@tag='710' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='710')] |
-                       marc:datafield[@tag='711' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='711')] |
-                       marc:datafield[@tag='720' or (@tag='880' and substring(marc:datafield[@code='6'],1,3)='720')]"
-                mode="work">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pHasItem" select="false()"/>
-    <xsl:if test="starts-with(@tag,'7') or substring(substring-after(marc:datafield[@code='6'],'-'),1,2)='00'">
-      <!-- note special $5 processing for LoC below -->
-      <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
-        <xsl:variable name="agentiri">
+    <xsl:variable name="agentiri">
+      <xsl:choose>
+        <xsl:when test="$pAgentIri != ''"><xsl:value-of select="$pAgentIri"/></xsl:when>
+        <xsl:otherwise>
           <xsl:apply-templates mode="generateUri" select=".">
-            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
             <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
           </xsl:apply-templates>
-        </xsl:variable>
-        <xsl:variable name="workiri">
-          <xsl:apply-templates mode="generateUri" select=".">
-            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-            <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-          </xsl:apply-templates>
-        </xsl:variable>
-        <xsl:apply-templates mode="work7XX" select=".">
-          <xsl:with-param name="agentiri" select="$agentiri"/>
-          <xsl:with-param name="workiri" select="$workiri"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:apply-templates mode="workName" select=".">
+      <xsl:with-param name="agentiri" select="$agentiri"/>
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[@tag='700' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='700')] |
+                       marc:datafield[@tag='710' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='710')] |
+                       marc:datafield[@tag='711' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='711')] |
+                       marc:datafield[@tag='720' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='720')]"
+                mode="work">
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pPosition" select="position()"/>
+    <xsl:param name="pHasItem" select="false()"/>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="agentiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
         </xsl:apply-templates>
-      </xsl:if>
+      </xsl:variable>
+      <xsl:variable name="workiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:apply-templates mode="work7XX" select=".">
+        <xsl:with-param name="agentiri" select="$agentiri"/>
+        <xsl:with-param name="workiri" select="$workiri"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 

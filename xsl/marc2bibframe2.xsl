@@ -159,6 +159,9 @@
   <!-- code maps -->
   <xsl:variable name="codeMaps" select="document('conf/codeMaps.xml')"/>
 
+  <!-- 880 processing -->
+  <xsl:variable name="map880" select="document('conf/map880.xml')"/>
+
   <xsl:template match="/">
 
     <!-- RDF/XML document frame -->
@@ -206,6 +209,8 @@
     <xsl:variable name="vInstanceType">
       <xsl:apply-templates mode="instanceType" select="marc:leader"/>
     </xsl:variable>
+
+    <xsl:variable name="vCount880"><xsl:value-of select="count(marc:datafield[@tag='880'])"/></xsl:variable>
     
     <!-- generate main Work entity -->
     <xsl:choose>
@@ -226,16 +231,35 @@
                 </bf:GenerationProcess>
               </bf:generationProcess>
               <!-- pass fields through conversion specs for AdminMetadata properties -->
-              <xsl:apply-templates mode="adminmetadata">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:choose>
+                <xsl:when test="$vCount880 = 0">
+                  <xsl:apply-templates mode="adminmetadata">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates mode="mProcessAdminMetadata880">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
             </bf:AdminMetadata>
           </bf:adminMetadata>
           <!-- pass fields through conversion specs for Work properties -->
-          <xsl:apply-templates mode="work">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="work">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessWork880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <!-- transitional: pass 880 fields through 880 templates -->
           <xsl:apply-templates select="marc:datafield[@tag='880']" mode="work880">
             <xsl:with-param name="recordid" select="$recordid"/>
@@ -254,11 +278,22 @@
         <bf:Instance>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           <!-- pass fields through conversion specs for Instance properties -->
-          <xsl:apply-templates mode="instance">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="instance">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessInstance880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <!-- transitional: pass 880 fields through 880 templates -->
           <xsl:apply-templates select="marc:datafield[@tag='880']" mode="instance880">
             <xsl:with-param name="recordid" select="$recordid"/>
@@ -269,10 +304,20 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           </bf:instanceOf>
           <!-- generate hasItem properties -->
-          <xsl:apply-templates mode="hasItem">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="hasItem">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessItem880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <!-- special LoC processing for $5 -->
           <!-- link all properties from fields with $5=DLC to a single Item -->
           <xsl:if test="$localfields and

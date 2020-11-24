@@ -19,45 +19,44 @@
                 mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="@tag='130' or @tag='240' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <xsl:apply-templates mode="workUnifTitle" select=".">
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
-      <!-- create translationOf/arrangementOf properties and Works from uniform title $l/$o -->
-      <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
-        <xsl:variable name="vWorkUri">
-          <xsl:apply-templates mode="generateUri" select="..">
-            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="../@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-            <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-          </xsl:apply-templates>
-        </xsl:variable>
-        <xsl:variable name="vProp">
-          <xsl:choose>
-            <xsl:when test="@code='l'">bf:translationOf</xsl:when>
-            <xsl:when test="@code='o'">bflc:arrangementOf</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
+    <xsl:param name="pPosition" select="position()"/>
+    <xsl:apply-templates mode="workUnifTitle" select=".">
+      <xsl:with-param name="serialization" select="$serialization"/>
+    </xsl:apply-templates>
+    <!-- create translationOf/arrangementOf properties and Works from uniform title $l/$o -->
+    <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
+      <xsl:variable name="vWorkUri">
+        <xsl:apply-templates mode="generateUri" select="..">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="../@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:variable name="vProp">
         <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <xsl:element name="{$vProp}">
-              <bf:Work>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
-                <xsl:apply-templates mode="workUnifTitle" select="..">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pUnifTitleMode">
-                    <xsl:choose>
-                      <xsl:when test="@code='l'">translation</xsl:when>
-                      <xsl:when test="@code='o'">arrangement</xsl:when>
-                    </xsl:choose>
-                  </xsl:with-param>
-                  <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
-                </xsl:apply-templates>
-              </bf:Work>
-            </xsl:element>
-          </xsl:when>
+          <xsl:when test="@code='l'">bf:translationOf</xsl:when>
+          <xsl:when test="@code='o'">bflc:arrangementOf</xsl:when>
         </xsl:choose>
-      </xsl:for-each>
-    </xsl:if>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization='rdfxml'">
+          <xsl:element name="{$vProp}">
+            <bf:Work>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
+              <xsl:apply-templates mode="workUnifTitle" select="..">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pUnifTitleMode">
+                  <xsl:choose>
+                    <xsl:when test="@code='l'">translation</xsl:when>
+                    <xsl:when test="@code='o'">arrangement</xsl:when>
+                  </xsl:choose>
+                </xsl:with-param>
+                <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
+              </xsl:apply-templates>
+            </bf:Work>
+          </xsl:element>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- Processing for 630 tags in ConvSpec-600-662.xsl -->
@@ -67,67 +66,66 @@
                 mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="pHasItem" select="false()"/>
-    <xsl:if test="@tag='730' or @tag='740' or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <!-- note special $5 processing for LoC below -->
-      <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
-        <xsl:variable name="workiri">
-          <xsl:apply-templates mode="generateUri" select=".">
-            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
-            <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-          </xsl:apply-templates>
-        </xsl:variable>
-        <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:choose>
-              <xsl:when test="@ind2='2' and count(marc:subfield[@code='i']) = 0">
-                <bf:hasPart>
-                  <bf:Work>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-                    <xsl:apply-templates select="." mode="workUnifTitle">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </bf:Work>
-                </bf:hasPart>
-              </xsl:when>
-              <xsl:otherwise>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="workiri">
+        <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:choose>
+            <xsl:when test="@ind2='2' and count(marc:subfield[@code='i']) = 0">
+              <bf:hasPart>
+                <bf:Work>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                  <xsl:apply-templates select="." mode="workUnifTitle">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Work>
+              </bf:hasPart>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:relatedTo>
+                <bf:Work>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                  <xsl:apply-templates select="." mode="workUnifTitle">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Work>
+              </bf:relatedTo>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:for-each select="marc:subfield[@code='i']">
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation>
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="chopPunctuation">
+                        <xsl:with-param name="chopString">
+                          <xsl:value-of select="."/>
+                        </xsl:with-param>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bflc:Relation>
+                </bflc:relation>
                 <bf:relatedTo>
-                  <bf:Work>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-                    <xsl:apply-templates select="." mode="workUnifTitle">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </bf:Work>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
                 </bf:relatedTo>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:for-each select="marc:subfield[@code='i']">
-              <bflc:relationship>
-                <bflc:Relationship>
-                  <bflc:relation>
-                    <bflc:Relation>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString">
-                            <xsl:value-of select="."/>
-                          </xsl:with-param>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bflc:Relation>
-                  </bflc:relation>
-                  <bf:relatedTo>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
-                  </bf:relatedTo>
-                </bflc:Relationship>
-              </bflc:relationship>
-            </xsl:for-each>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:if>
+              </bflc:Relationship>
+            </bflc:relationship>
+          </xsl:for-each>
+        </xsl:when>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
 
@@ -168,7 +166,10 @@
           </rdfs:label>
         </xsl:if>
         <xsl:if test=" $tag='240' and ($pUnifTitleMode='translation' or $pUnifTitleMode='arrangement')">
-          <xsl:apply-templates select="../marc:datafield[@tag='100' or @tag='110' or @tag='111']" mode="work">
+          <xsl:apply-templates select="../marc:datafield[@tag='100' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')] |
+                                       ../marc:datafield[@tag='110' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='110')] |
+                                       ../marc:datafield[@tag='111' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='111')]"
+                               mode="mProcessWork880">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pAgentIri" select="concat($pWorkUri,'-Agent')"/>
           </xsl:apply-templates>

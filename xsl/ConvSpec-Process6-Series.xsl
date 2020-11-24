@@ -18,24 +18,24 @@
                        marc:datafield[@tag='400' or @tag='410' or @tag='411' or @tag='440']"
                 mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pHasItem" select="false()"/>
-    <xsl:if test="@tag='800' or @tag='810' or @tag='811' or @tag='830' or starts-with(@tag,'4') or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <!-- note special $5 processing for LoC below -->
-      <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
-        <xsl:variable name="vCurrentPos">
-          <xsl:choose>
-            <xsl:when test="substring(@tag,1,1)='8'">
-              <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) + 1"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:apply-templates select="." mode="work8XX">
-          <xsl:with-param name="recordid" select="$recordid"/>
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
-        </xsl:apply-templates>
-      </xsl:if>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="vCurrentPos">
+        <xsl:choose>
+          <xsl:when test="substring(@tag,1,1)='8'">
+            <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) + 1"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:apply-templates select="." mode="work8XX">
+        <xsl:with-param name="recordid" select="$recordid"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
+        <xsl:with-param name="pPosition" select="$pPosition"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
@@ -43,6 +43,7 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pCurrentPos"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -50,21 +51,18 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vTagOrd">
-      <xsl:apply-templates select="." mode="tagord"/>
-    </xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[not(contains('vwx012345678',@code))]"/>
     </xsl:variable>
     <xsl:variable name="workiri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$vTagOrd"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="agentiri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$vTagOrd"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
@@ -246,21 +244,19 @@
                 mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pHasItem" select="false()"/>
-    <xsl:if test="@tag='800' or @tag='810' or @tag='811' or @tag='830' or starts-with(@tag,'4') or (@tag='880' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')">
-      <!-- note special $5 processing for LoC below -->
-      <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
-        <xsl:variable name="vCurrentPos">
-          <xsl:choose>
-            <xsl:when test="substring(@tag,1,1)='8'">
-              <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) + 1"/>
-            </xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:apply-templates select="." mode="instance8XX">
-          <xsl:with-param name="serialization" select="$serialization"/>
-          <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
-        </xsl:apply-templates>
-      </xsl:if>
+    <!-- note special $5 processing for LoC below -->
+    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
+      <xsl:variable name="vCurrentPos">
+        <xsl:choose>
+          <xsl:when test="substring(@tag,1,1)='8'">
+            <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) + 1"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:apply-templates select="." mode="instance8XX">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
