@@ -260,11 +260,6 @@
               </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
-          <!-- transitional: pass 880 fields through 880 templates -->
-          <xsl:apply-templates select="marc:datafield[@tag='880']" mode="work880">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
           <bf:hasInstance>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           </bf:hasInstance>
@@ -294,12 +289,6 @@
               </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
-          <!-- transitional: pass 880 fields through 880 templates -->
-          <xsl:apply-templates select="marc:datafield[@tag='880']" mode="instance880">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
-          </xsl:apply-templates>
           <bf:instanceOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           </bf:instanceOf>

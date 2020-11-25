@@ -145,6 +145,21 @@
   <datafield tag="740" convertLinked="false"/>
   <datafield tag="752" convertLinked="false"/>
   <datafield tag="753" convertLinked="false"/>
+  <datafield tag="760" convertLinked="true"/>
+  <datafield tag="762" convertLinked="true"/>
+  <datafield tag="765" convertLinked="true"/>
+  <datafield tag="767" convertLinked="true"/>
+  <datafield tag="770" convertLinked="true"/>
+  <datafield tag="772" convertLinked="true"/>
+  <datafield tag="773" convertLinked="true"/>
+  <datafield tag="774" convertLinked="true"/>
+  <datafield tag="775" convertLinked="true"/>
+  <datafield tag="776" convertLinked="true"/>
+  <datafield tag="777" convertLinked="true"/>
+  <datafield tag="780" convertLinked="true"/>
+  <datafield tag="785" convertLinked="true"/>
+  <datafield tag="786" convertLinked="true"/>
+  <datafield tag="787" convertLinked="true"/>
   <datafield tag="800" convertLinked="false"/>
   <datafield tag="810" convertLinked="false"/>
   <datafield tag="811" convertLinked="false"/>
