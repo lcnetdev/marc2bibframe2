@@ -21,12 +21,13 @@
     <x:expect label="773 creates a partOf property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:partOf) = 1"/>
     <x:expect label="774 creates a hasPart property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:hasPart) = 1"/>
     <x:expect label="775 creates an otherEdition property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:otherEdition) = 1"/>
-    <x:expect label="776 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 3"/>
-    <x:expect label="777 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 3"/>
+    <x:expect label="776 creates a hasInstance property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:hasInstance) = 2"/>
+    <x:expect label="...with Instance object with URI" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/@rdf:about='http://example.org/1#Instance776-12'"/>
+    <x:expect label="777 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 2"/>
     <x:expect label="780 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbed) = 1"/>
     <x:expect label="785 creates a property of the Work determined by ind2" test="count(/rdf:RDF/bf:Work[1]/bf:absorbedBy) = 1"/>
     <x:expect label="786 creates a dataSource property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:dataSource) = 1"/>
-    <x:expect label="787 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 3"/>
+    <x:expect label="787 creates a relatedTo property of the Work" test="count(/rdf:RDF/bf:Work[1]/bf:relatedTo) = 2"/>
   </x:scenario>
     
   <x:scenario label="760-788 SUBFIELDS">
@@ -39,21 +40,21 @@
     <x:expect label="$f creates a provisionActivity property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:hasInstance/bf:Instance/bf:provisionActivity/bf:ProvisionActivity/bf:place/bf:Place/@rdf:about= 'http://id.loc.gov/vocabulary/countries/cu'"/>
     <x:expect label="$g creates a part property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:part = '1971'"/>
     <x:expect label="$h creates an extent property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:extent/bf:Extent/rdfs:label = 'file on disc'"/>
-    <x:expect label="$i creates a bflc:relationship property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:relatedTo[3]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Related source work'"/>
-    <x:expect label="...and the linked Instance" test="//bf:Work[1]/bf:relatedTo[3]/bf:Work/bf:hasInstance/bf:Instance/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Related source work'"/>
+    <x:expect label="$i creates a bflc:relationship property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:relatedTo[2]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Related source work'"/>
+    <x:expect label="...except for 776, where it creates the property on the linked Instance" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Additional physical form'"/>
     <x:expect label="$j creates a note property of the linked Instance" test="//bf:Work[1]/bf:dataSource/bf:Work/bf:hasInstance/bf:Instance/bf:note/bf:Note/rdfs:label='19181111'"/>
     <x:expect label="$k creates a seriesStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:seriesStatement = 'Wonders of man series.'"/>
     <x:expect label="$m creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[2]/bf:Note/rdfs:label = '240 x 760px'"/>
     <x:expect label="$n creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[1]/bf:Note/rdfs:label = '[DIAPimage]'"/>
-    <x:expect label="$o creates an identifiedBy/Local property of the linked Instance" test="//bf:Work[1]/bf:relatedTo[3]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Local/rdf:value = '(istc)0A3200912B4A1057'"/>
+    <x:expect label="$o creates an identifiedBy/Local property of the linked Instance" test="//bf:Work[1]/bf:relatedTo[2]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Local/rdf:value = '(istc)0A3200912B4A1057'"/>
     <x:expect label="$p creates a title/AbbreviatedTitle property of the linked Work" test="//bf:Work[1]/bf:partOf/bf:Work/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'ENTOMOL MON MAG'"/>
     <x:expect label="$q creates a note property of the linked Instance" test="//bf:Work[1]/bf:partOf/bf:Work/bf:hasInstance/bf:Instance/bf:note/bf:Note/rdfs:label = '24:B:9&lt;235'"/>
     <x:expect label="$r creates an identifiedBy/ReportNumber property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:supplement/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:ReportNumber/rdf:value = 'APA 3011'"/>
     <x:expect label="Title for linked Work comes from $s" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Publications'"/>
     <x:expect label="...unless there is no $s, then from $t" test="//bf:Work[1]/bf:hasSeries/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Water supply papers'"/>
-    <x:expect label="...if neither then from 245 $ab" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'College English'"/>
+    <x:expect label="...if neither then from 245 $ab" test="//bf:Work[1]/bf:supplement[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'College English'"/>
     <x:expect label="$t creates a title property of the linked Instance" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Water supply papers'"/>
-    <x:expect label="If no $t, pull title from 245 $ab" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'College English'"/>
+    <x:expect label="If no $t, pull title from 245 $ab" test="//bf:Work[1]/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'College English'"/>
     <x:expect label="$u creates an identifiedBy/Strn property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:absorbed[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Strn/rdf:value = 'MPC-387'"/>
     <x:expect label="$v creates a note property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:dataSource[1]/bf:Work/bf:note/bf:Note/rdfs:label = 'Data for reformatting to DEM format'"/>
     <x:expect label="$w creates an identifiedBy/Identifier property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy[2]/bf:Identifier/rdf:value = '4798581'"/>

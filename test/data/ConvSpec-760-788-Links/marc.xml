@@ -24,7 +24,6 @@
       <subfield code="w">(OCoLC)4698159</subfield>
     </datafield>
     <datafield tag="770" ind1="0" ind2=" ">
-      <subfield code="t">Journal of cellular biochemistry. Supplement</subfield>
       <subfield code="r">APA 3011</subfield>
       <subfield code="x">0733-1959</subfield>
     </datafield>
@@ -60,8 +59,10 @@
       <subfield code="w">(OCoLC)2259984</subfield>
     </datafield>
     <datafield tag="776" ind1="0" ind2=" ">
-      <subfield code="c">Original</subfield>
-      <subfield code="w">(DLC)   24020326 </subfield>
+      <subfield code="i">Additional physical form:</subfield>
+      <subfield code="x">0010-0994</subfield>
+      <subfield code="w">(DLC)sc#84007753#</subfield>
+      <subfield code="w">(OCoLC)3546316</subfield>
     </datafield>
     <datafield tag="777" ind1="0" ind2=" ">
       <subfield code="t">Mythprint</subfield>
