@@ -51,7 +51,12 @@
                 </xsl:if>
                 <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="normalize-space($label)"/></bflc:titleSortKey>
+              <bflc:titleSortKey>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="normalize-space($label)"/>
+              </bflc:titleSortKey>
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:mainTitle>
                   <xsl:if test="$vXmlLang != ''">
@@ -116,7 +121,12 @@
                 </xsl:if>
                 <xsl:value-of select="normalize-space($label)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,@ind2+1))"/></bflc:titleSortKey>
+              <bflc:titleSortKey>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="normalize-space(substring($label,@ind2+1))"/>
+              </bflc:titleSortKey>
               <xsl:for-each select="marc:subfield[@code='a']">
                 <bf:mainTitle>
                   <xsl:if test="$vXmlLang != ''">
@@ -168,7 +178,12 @@
                 </xsl:if>
                 <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+              <bflc:titleSortKey>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/>
+              </bflc:titleSortKey>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>
@@ -254,7 +269,12 @@
                 </xsl:if>
                 <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/></bflc:titleSortKey>
+              <bflc:titleSortKey>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="substring($label,@ind2+1,(string-length($label)-@ind2)-1)"/>
+              </bflc:titleSortKey>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>
@@ -527,7 +547,12 @@
               </xsl:otherwise>
             </xsl:choose>
           </rdfs:label>
-          <bflc:titleSortKey><xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/></bflc:titleSortKey>
+          <bflc:titleSortKey>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="substring(normalize-space($label),@ind2+1,(string-length(normalize-space($label))-@ind2))"/>
+          </bflc:titleSortKey>
         </xsl:if>
         <!-- subtitle handling is different for Works and Instances -->
         <xsl:choose>
@@ -770,7 +795,12 @@
                 </xsl:if>
                 <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
               </rdfs:label>
-              <bflc:titleSortKey><xsl:value-of select="substring($label,1,string-length($label)-1)"/></bflc:titleSortKey>
+              <bflc:titleSortKey>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="substring($label,1,string-length($label)-1)"/>
+              </bflc:titleSortKey>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>

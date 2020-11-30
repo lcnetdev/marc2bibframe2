@@ -423,7 +423,12 @@
           </xsl:choose>
           <xsl:if test="$label != ''">
             <rdfs:label><xsl:value-of select="normalize-space($label)"/></rdfs:label>
-            <bflc:titleSortKey><xsl:value-of select="normalize-space(substring($label,$nfi+1))"/></bflc:titleSortKey>
+            <bflc:titleSortKey>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space(substring($label,$nfi+1))"/>
+            </bflc:titleSortKey>
           </xsl:if>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='30' or substring($tag,2,2)='40'">
