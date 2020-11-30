@@ -125,7 +125,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:when>
-            <xsl:when test="@ind2='7'">
+            <xsl:when test="@ind2='4' or @ind2='7'">
               <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
@@ -440,7 +440,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:when>
-            <xsl:when test="@ind2='7'">
+            <xsl:when test="@ind2='4' or @ind2='7'">
               <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
@@ -754,7 +754,7 @@
                   </bf:Source>
                 </bf:source>
               </xsl:when>
-              <xsl:when test="@ind2='7'">
+              <xsl:when test="@ind2='4' or @ind2='7'">
                 <xsl:variable name="vVocabStem">
                   <xsl:choose>
                     <xsl:when test="$vTag='655'"><xsl:value-of select="$genreFormSchemes"/></xsl:when>
