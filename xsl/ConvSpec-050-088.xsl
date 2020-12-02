@@ -536,11 +536,11 @@
         <xsl:choose>
           <xsl:when test="marc:subfield[@code='b']">
             <xsl:choose>
-              <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:when>
-              <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+              <xsl:when test="substring(marc:subfield[@code='b'],1,1) = '.'"><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],marc:subfield[@code='b']))"/></xsl:when>
+              <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='b']))"/></xsl:otherwise>
             </xsl:choose>
           </xsl:when>
-          <xsl:otherwise><xsl:value-of select="normalize-space(concat(marc:subfield[@code='a'],' ',marc:subfield[@code='c']))"/></xsl:otherwise>
+          <xsl:otherwise><xsl:value-of select="marc:subfield[@code='a']"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vValidLCC">
@@ -575,6 +575,13 @@
                   </bf:assigner>
                 </xsl:element>
               </bf:shelfMark>
+              <xsl:for-each select="marc:subfield[@code='c']">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
               <xsl:if test="generate-id(.)=generate-id(../marc:datafield[(@tag='050' and @ind1='0') or @tag='051'][1])">
                 <xsl:apply-templates select="../marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
                   <xsl:with-param name="recordid" select="$recordid"/>
