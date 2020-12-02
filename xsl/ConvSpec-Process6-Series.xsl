@@ -94,40 +94,16 @@
               </xsl:otherwise>
             </xsl:choose>
             <xsl:for-each select="marc:subfield[@code='w']">
-              <xsl:variable name="vSource" select="substring(substring-after(text(),'('),1,string-length(substring-before(text(),')'))-1)"/>
-              <xsl:variable name="vValue">
+              <xsl:variable name="vIdClass">
                 <xsl:choose>
-                  <xsl:when test="$vSource != ''"><xsl:value-of select="substring-after(text(),')')"/></xsl:when>
-                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-                </xsl:choose>
-              </xsl:variable>
-              <xsl:variable name="vIdentifier">
-                <xsl:choose>
-                  <xsl:when test="$vSource='DLC'">bf:Lccn</xsl:when>
+                  <xsl:when test="starts-with(.,'(DLC)')">bf:Lccn</xsl:when>
                   <xsl:otherwise>bf:Identifier</xsl:otherwise>
                 </xsl:choose>
               </xsl:variable>
-              <bf:identifiedBy>
-                <xsl:element name="{$vIdentifier}">
-                  <rdf:value><xsl:value-of select="$vValue"/></rdf:value>
-                  <xsl:choose>
-                    <xsl:when test="$vSource = 'DLC'">
-                      <bf:source>
-                        <bf:Source>
-                          <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dlc</xsl:attribute>
-                        </bf:Source>
-                      </bf:source>
-                    </xsl:when>
-                    <xsl:when test="$vSource != ''">
-                      <bf:source>
-                        <bf:Source>
-                          <bf:code><xsl:value-of select="$vSource"/></bf:code>
-                        </bf:Source>
-                      </bf:source>
-                    </xsl:when>
-                  </xsl:choose>
-                </xsl:element>
-              </bf:identifiedBy>
+              <xsl:apply-templates mode="subfield0orw" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pIdClass" select="$vIdClass"/>
+              </xsl:apply-templates>
             </xsl:for-each>
             <xsl:choose>
               <xsl:when test="marc:subfield[@code='x']">
