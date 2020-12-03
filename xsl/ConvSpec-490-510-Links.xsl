@@ -11,27 +11,18 @@
 
   <!-- Conversion specs for 490, and 510 - Other linking entries -->
 
-  <xsl:template match="marc:datafield[@tag='490']" mode="work">
+  <xsl:template match="marc:datafield[@tag='490' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vCurrentPos">
       <xsl:choose>
         <xsl:when test="@ind1 = '1'">
-          <xsl:value-of select="count(preceding-sibling::marc:datafield[@tag='490' and @ind1='1']) + 1"/>
+          <xsl:value-of select="count(preceding-sibling::marc:datafield[(@tag='880' or (@tag='490' and not(marc:subfield[@code='6']))) and @ind1='1']) + 1"/>
         </xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:apply-templates select="." mode="work490">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
-    </xsl:apply-templates>
-  </xsl:template>
-    
-  <xsl:template match="marc:datafield[@tag='490' or @tag='880']" mode="work490">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pCurrentPos"/>
-    <xsl:if test="@ind1=0 or @tag='880' or
-                  (@ind1='1' and count(../marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830']) &lt; $pCurrentPos)">
+    <xsl:if test="@ind1=0 or
+                  (@ind1='1' and count(../marc:datafield[@tag='800' or @tag='810' or @tag='811' or @tag='830' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='800' or substring(marc:subfield[@code='6'],1,3)='810' or substring(marc:subfield[@code='6'],1,3)='811' or substring(marc:subfield[@code='6'],1,3)='830') and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) &lt; $vCurrentPos)">
       <xsl:for-each select="marc:subfield[@code='x']">
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
@@ -54,14 +45,7 @@
     </xsl:if>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='510']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work510">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='510' or @tag='880']" mode="work510">
+  <xsl:template match="marc:datafield[@tag='510' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='510')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProperty">
@@ -128,20 +112,13 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='490']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance490">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-    
-  <xsl:template match="marc:datafield[@tag='490' or @tag='880']" mode="instance490">
+  <xsl:template match="marc:datafield[@tag='490' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="count(marc:subfield[@code='a']) &gt; 1 and
-        (substring(marc:subfield[@code='a'][1],string-length(marc:subfield[@code='a'][1])) = '=' or
-        substring(marc:subfield[@code='v'][1],string-length(marc:subfield[@code='v'][1])) = '=')">
+                      (substring(marc:subfield[@code='a'][1],string-length(marc:subfield[@code='a'][1])) = '=' or
+                      substring(marc:subfield[@code='v'][1],string-length(marc:subfield[@code='v'][1])) = '=')">
         <!-- parallel titles -->
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>

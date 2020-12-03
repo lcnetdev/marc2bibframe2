@@ -13,24 +13,28 @@
       Conversion specs for 600-662
   -->
 
-  <xsl:template match="marc:datafield[@tag='600' or @tag='610' or @tag='611']" mode="work">
+  <xsl:template match="marc:datafield[@tag='600' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='600')] |
+                       marc:datafield[@tag='610' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='610')] |
+                       marc:datafield[@tag='611' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='611')]"
+                mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="agentiri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="workiri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Topic</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
@@ -121,7 +125,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:when>
-            <xsl:when test="@ind2='7'">
+            <xsl:when test="@ind2='4' or @ind2='7'">
               <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
@@ -358,18 +362,19 @@
     </xsl:choose>
   </xsl:template>
     
-  <xsl:template match="marc:datafield[@tag='630']" mode="work">
+  <xsl:template match="marc:datafield[@tag='630' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='630')]" mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="workiri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
         <xsl:with-param name="pEntity">bf:Topic</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
@@ -435,7 +440,7 @@
                 </bf:Source>
               </bf:source>
             </xsl:when>
-            <xsl:when test="@ind2='7'">
+            <xsl:when test="@ind2='4' or @ind2='7'">
               <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
@@ -560,9 +565,13 @@
     </xsl:choose>
   </xsl:template>    
   
-  <xsl:template match="marc:datafield[@tag='648' or @tag='650' or @tag='651'] |
-                       marc:datafield[@tag='655'][@ind1=' ']" mode="work">
+  <xsl:template match="marc:datafield[@tag='648' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='648')] |
+                       marc:datafield[@tag='650' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='650')] |
+                       marc:datafield[@tag='651' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='651')] |
+                       marc:datafield[@tag='655' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='655')][@ind1=' ']"
+                mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pHasItem" select="false()"/>
     <!-- note special $5 processing for LoC below -->
@@ -571,16 +580,16 @@
       <xsl:variable name="vDefaultUri">
         <xsl:choose>
           <xsl:when test="@tag='648'">
-            <xsl:value-of select="$recordid"/>#Temporal<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+            <xsl:value-of select="$recordid"/>#Temporal<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
           </xsl:when>
           <xsl:when test="@tag='651'">
-            <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+            <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
           </xsl:when>
           <xsl:when test="@tag='655'">
-            <xsl:value-of select="$recordid"/>#GenreForm<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+            <xsl:value-of select="$recordid"/>#GenreForm<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+            <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -745,7 +754,7 @@
                   </bf:Source>
                 </bf:source>
               </xsl:when>
-              <xsl:when test="@ind2='7'">
+              <xsl:when test="@ind2='4' or @ind2='7'">
                 <xsl:variable name="vVocabStem">
                   <xsl:choose>
                     <xsl:when test="$vTag='655'"><xsl:value-of select="$genreFormSchemes"/></xsl:when>
@@ -795,14 +804,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='653']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work653">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="work653">
+  <xsl:template match="marc:datafield[@tag='653' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='653')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProp">
@@ -840,21 +842,13 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='656']" mode="work">
+  <xsl:template match="marc:datafield[@tag='656' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='656')]" mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vDefaultUri">
-      <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+      <xsl:value-of select="$recordid"/>#Topic<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
     </xsl:variable>
-    <xsl:apply-templates select="." mode="work656">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="work656">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pDefaultUri"/>
     <xsl:variable name="vTag">
       <xsl:choose>
         <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
@@ -874,7 +868,7 @@
     </xsl:variable>
     <xsl:variable name="vTopicUri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
+        <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:choose>
@@ -926,21 +920,13 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='662']" mode="work">
+  <xsl:template match="marc:datafield[@tag='662' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='662')]" mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vDefaultUri">
-      <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/>
+      <xsl:value-of select="$recordid"/>#Place<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
     </xsl:variable>
-    <xsl:apply-templates select="." mode="work662">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="work662">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pDefaultUri"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="chopPunctuation">
@@ -954,7 +940,7 @@
     </xsl:variable>
     <xsl:variable name="vPlaceUri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
+        <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:choose>

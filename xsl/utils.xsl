@@ -36,6 +36,12 @@
           <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
           <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
           <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+          <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
+            <xsl:value-of select="$vScript6simple"/>
+          </xsl:when>
+          <xsl:when test="string-length($vScript6simple)=3 and string-length(translate($vScript6simple,'0123456789',''))=0">
+            <xsl:value-of select="$scriptMap/xml-scripts/script[@num=$vScript6simple]/@code"/>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:if>
@@ -343,6 +349,7 @@
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
     <xsl:param name="pVocabStem"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
     <xsl:variable name="vLabel">
       <xsl:choose>
@@ -358,6 +365,9 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$pTarget"/></xsl:attribute>
             </xsl:if>
             <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
                   <xsl:call-template name="chopPunctuation">

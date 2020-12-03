@@ -1,0 +1,46 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>02277cam a2200505 i 4500</leader>
+    <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">160822s2016    cc a     b    000 0dchi  </controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">  2016377151</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Cao Sugong mo ding zhi zuo ji yi /</subfield>
+      <subfield code="c">ben juan zhu bian Xu Ruohai, Xu Sihao.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2="0">
+      <subfield code="6">245-01/$1</subfield>
+      <subfield code="a">&#x66F9;&#x7D20;&#x529F;&#x58A8;&#x952D;&#x5236;&#x4F5C;&#x6280;&#x827A; /</subfield>
+      <subfield code="c">&#x672C;&#x5377;&#x4E3B;&#x7F16;&#x5F90;&#x82E5;&#x6D77;, &#x8BB8;&#x601D;&#x8C6A;.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Di 1 ban.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">250-02/$1</subfield>
+      <subfield code="a">&#x7B2C; 1 &#x7248;.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Cao, Sugong,</subfield>
+      <subfield code="d">1615-1689</subfield>
+      <subfield code="x">Criticism and interpretation.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="4">
+      <subfield code="6">600-04/$1</subfield>
+      <subfield code="a">&#x66F9;&#x7D20;&#x529F;,</subfield>
+      <subfield code="d">1615-1689</subfield>
+      <subfield code="x">Criticism and interpretation.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">700-00/$1</subfield>
+      <subfield code="a">&#x8BB8;&#x601D;&#x8C6A;,</subfield>
+      <subfield code="d">1955-</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+  </record>
+</collection>

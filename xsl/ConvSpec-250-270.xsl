@@ -11,13 +11,17 @@
 
   <!-- Conversion specs for 250-270 -->
 
-  <xsl:template match="marc:datafield[@tag='254']" mode="work">
+  <xsl:template match="marc:datafield[@tag='254' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='254')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:musicFormat>
           <bf:MusicFormat>
             <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
               <xsl:call-template name="chopPunctuation">
                 <xsl:with-param name="chopString" select="marc:subfield[@code='a']"/>
               </xsl:call-template>
@@ -28,14 +32,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='255']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="work255">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='255' or @tag='880']" mode="work255">
+  <xsl:template match="marc:datafield[@tag='255' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='255')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCoordinatesChopPunct">
@@ -164,14 +161,18 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='257']" mode="work">
+  <xsl:template match="marc:datafield[@tag='257' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='257')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:originPlace>
             <bf:Place>
               <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
@@ -184,14 +185,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='250']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance250">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='250' or @tag='880']" mode="instance250">
+  <xsl:template match="marc:datafield[@tag='250' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='250')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vEditionStatementRaw">
@@ -214,14 +208,7 @@
     </xsl:choose>
   </xsl:template>    
   
-  <xsl:template match="marc:datafield[@tag='256']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance256">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='256' or @tag='880']" mode="instance256">
+  <xsl:template match="marc:datafield[@tag='256' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='256')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
@@ -243,14 +230,10 @@
     </xsl:choose>
   </xsl:template>    
 
-  <xsl:template match="marc:datafield[@tag='260' or @tag='262' or @tag='264']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance260">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='260' or @tag='262' or @tag='264' or @tag='880']" mode="instance260">
+  <xsl:template match="marc:datafield[@tag='260' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='260')] |
+                       marc:datafield[@tag='262'] |
+                       marc:datafield[@tag='264' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='264')]"
+                mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -423,14 +406,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='261']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance261">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='261' or @tag='880']" mode="instance261">
+  <xsl:template match="marc:datafield[@tag='261' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='261')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vStatement">
@@ -516,14 +492,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='263']" mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:apply-templates select="." mode="instance263">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='263' or @tag='880']" mode="instance263">
+  <xsl:template match="marc:datafield[@tag='263' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='263')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vDate">
       <xsl:call-template name="edtfFormat">
@@ -542,14 +511,20 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='265']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='265' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='265')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:acquisitionSource>
             <bf:AcquisitionSource>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
             </bf:AcquisitionSource>
           </bf:acquisitionSource>
         </xsl:for-each>

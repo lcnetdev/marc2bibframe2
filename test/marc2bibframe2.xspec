@@ -191,6 +191,7 @@
               </bf:Isbn>
             </bf:identifiedBy>
             <rdfs:label>Ole Lukøie</rdfs:label>
+            <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:title>
               <bf:Title>
                 <rdfs:label>Ole Lukøie</rdfs:label>
@@ -198,7 +199,6 @@
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
@@ -1025,7 +1025,8 @@
                 <rdf:value>1555426573</rdf:value>
               </bf:Isbn>
             </bf:identifiedBy>
-                    <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+            <rdfs:label>Handbook of practical program evaluation</rdfs:label>
+            <bf:responsibilityStatement>Joseph S. Wholey, Harry P. Hatry, Kathryn E. Newcomer, editors</bf:responsibilityStatement>
             <bf:title>
               <bf:Title>
                 <rdfs:label>Handbook of practical program evaluation</rdfs:label>
@@ -1033,7 +1034,6 @@
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:responsibilityStatement>Joseph S. Wholey, Harry P. Hatry, Kathryn E. Newcomer, editors</bf:responsibilityStatement>
             <bf:editionStatement>1st ed</bf:editionStatement>
             <bf:provisionActivity>
               <bf:ProvisionActivity>

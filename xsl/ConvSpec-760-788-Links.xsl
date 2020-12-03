@@ -13,36 +13,27 @@
       Conversion specs for 760-788
   -->
 
-  <xsl:template mode="work" match="marc:datafield[@tag='760'] |
-                                   marc:datafield[@tag='762'] |
-                                   marc:datafield[@tag='765'] |
-                                   marc:datafield[@tag='767'] |
-                                   marc:datafield[@tag='770'] |
-                                   marc:datafield[@tag='772'] |
-                                   marc:datafield[@tag='773'] |
-                                   marc:datafield[@tag='774'] |
-                                   marc:datafield[@tag='775'] |
-                                   marc:datafield[@tag='776'] |
-                                   marc:datafield[@tag='777'] |
-                                   marc:datafield[@tag='780'] |
-                                   marc:datafield[@tag='785'] |
-                                   marc:datafield[@tag='786'] |
-                                   marc:datafield[@tag='787']">
+  <xsl:template match="marc:datafield[@tag='760' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='760')] |
+                       marc:datafield[@tag='762' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='762')] |
+                       marc:datafield[@tag='765' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='765')] |
+                       marc:datafield[@tag='767' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='767')] |
+                       marc:datafield[@tag='770' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='770')] |
+                       marc:datafield[@tag='772' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='772')] |
+                       marc:datafield[@tag='773' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='773')] |
+                       marc:datafield[@tag='774' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='774')] |
+                       marc:datafield[@tag='775' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='775')] |
+                       marc:datafield[@tag='776' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='776')] |
+                       marc:datafield[@tag='777' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='777')] |
+                       marc:datafield[@tag='780' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='780')] |
+                       marc:datafield[@tag='785' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='785')] |
+                       marc:datafield[@tag='786' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='786')] |
+                       marc:datafield[@tag='787' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='787')]"
+                mode="work">
     <xsl:param name="recordid"/>
+    <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="position()"/></xsl:variable>
-    <xsl:apply-templates select="." mode="work7XXLinks">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
-      <xsl:with-param name="pInstanceUri" select="$vInstanceUri"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="work7XXLinks">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pWorkUri"/>
-    <xsl:param name="pInstanceUri"/>
+    <xsl:variable name="vWorkUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:variable>
+    <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:variable>
     <xsl:variable name="vTag">
       <xsl:choose>
         <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
@@ -92,41 +83,24 @@
         <xsl:otherwise>bf:Work</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:apply-templates select="." mode="link7XX">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="pTag" select="$vTag"/>
-      <xsl:with-param name="pProperty" select="$vProperty"/>
-      <xsl:with-param name="pElement" select="$vElement"/>
-      <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
-      <xsl:with-param name="pInstanceUri" select="$pInstanceUri"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="link7XX">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pTag"/>
-    <xsl:param name="pProperty"/>
-    <xsl:param name="pElement"/>
-    <xsl:param name="pWorkUri"/>
-    <xsl:param name="pInstanceUri"/>
     <xsl:variable name="vElementUri">
       <xsl:choose>
-        <xsl:when test="$pTag='776'"><xsl:value-of select="$pInstanceUri"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="$pWorkUri"/></xsl:otherwise>
+        <xsl:when test="$vTag='776'"><xsl:value-of select="$vInstanceUri"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$vWorkUri"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:element name="{$pProperty}">
-          <xsl:element name="{$pElement}">
+        <xsl:element name="{$vProperty}">
+          <xsl:element name="{$vElement}">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$vElementUri"/></xsl:attribute>
             <xsl:choose>
-              <xsl:when test="$pTag='776'">
+              <xsl:when test="$vTag='776'">
                 <xsl:apply-templates select="." mode="link7XXinstance">
                   <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
-                  <xsl:with-param name="pTag" select="$pTag"/>
+                  <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+                  <xsl:with-param name="pTag" select="$vTag"/>
                 </xsl:apply-templates>
               </xsl:when>
               <xsl:otherwise>
@@ -180,7 +154,7 @@
                         </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
-                        <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($pWorkUri,'#')"/>#Work</xsl:attribute>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($vWorkUri,'#')"/>#Work</xsl:attribute>
                       </bf:relatedTo>
                     </bflc:Relationship>
                   </bflc:relationship>
@@ -224,11 +198,11 @@
                 </xsl:apply-templates>
                 <bf:hasInstance>
                   <bf:Instance>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$pInstanceUri"/></xsl:attribute>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
                     <xsl:apply-templates select="." mode="link7XXinstance">
                       <xsl:with-param name="serialization" select="$serialization"/>
-                      <xsl:with-param name="pWorkUri" select="$pWorkUri"/>
-                      <xsl:with-param name="pTag" select="$pTag"/>
+                      <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+                      <xsl:with-param name="pTag" select="$vTag"/>
                     </xsl:apply-templates>
                   </bf:Instance>
                 </bf:hasInstance>

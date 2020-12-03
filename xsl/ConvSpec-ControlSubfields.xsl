@@ -89,14 +89,28 @@
               </xsl:choose>
             </rdf:value>
             <xsl:if test="$source != '' and $source != 'uri'">
-              <bf:source>
-                <bf:Source>
-                  <xsl:if test="$source='DLC'">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                  </xsl:if>
-                  <bf:code><xsl:value-of select="$source"/></bf:code>
-                </bf:Source>
-              </bf:source>
+              <xsl:choose>
+                <xsl:when test="@code='w'">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <xsl:if test="$source='DLC'">
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                      </xsl:if>
+                      <bf:code><xsl:value-of select="$source"/></bf:code>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:source>
+                    <bf:Source>
+                      <xsl:if test="$source='DLC'">
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                      </xsl:if>
+                      <bf:code><xsl:value-of select="$source"/></bf:code>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:if>
           </xsl:element>
         </bf:identifiedBy>

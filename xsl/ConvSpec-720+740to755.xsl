@@ -17,16 +17,7 @@
 
   <!-- Processing of 740 is handled in ConvSpec-X30and240-UnifTitle.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='752']" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="recordid"/>
-    <xsl:apply-templates select="." mode="work752">
-      <xsl:with-param name="serialization" select="$serialization"/>
-      <xsl:with-param name="recordid" select="$recordid"/>
-    </xsl:apply-templates>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield" mode="work752">
+  <xsl:template match="marc:datafield[@tag='752' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='752')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="recordid"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
@@ -126,8 +117,9 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='753']" mode="instance">
+  <xsl:template match="marc:datafield[@tag='753' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='753')]" mode="instance">
     <xsl:param name="serialization" select="$serialization"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
@@ -156,7 +148,12 @@
               <xsl:if test="$vCurrentNodeUri != ''">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="."/>
+              </rdfs:label>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">
