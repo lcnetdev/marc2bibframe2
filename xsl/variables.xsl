@@ -6,6 +6,9 @@
 
   <!-- constants for marc2bibframe2.xsl -->
 
+  <!-- Current marc2bibframe2 version -->
+  <xsl:variable name="vCurrentVersion">v1.6.0</xsl:variable>
+
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
   <xsl:variable name="bflc">http://id.loc.gov/ontologies/bflc/</xsl:variable>

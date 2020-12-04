@@ -15,9 +15,6 @@
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
   <xsl:strip-space elements="*"/>
 
-  <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.6.0-SNAPSHOT</xsl:variable>
-
   <!-- stylesheet parameters -->
 
   <!-- base for minting URIs -->
