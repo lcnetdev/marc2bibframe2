@@ -40,6 +40,9 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_docdir}/marc2bibframe2
 
 %changelog
+* Mon Dec 14 2020 Wayne Schneider <wayne@indexdata.com> - 1.6.1-1.indexdata
+- Release 1.6.1
+
 * Fri Dec 4 2020 Wayne Schneider <wayne@indexdata.com> - 1.6.0-1.indexdata
 - Release 1.6.0
 

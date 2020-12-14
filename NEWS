@@ -1,4 +1,4 @@
---- 1.6.1-SNAPSHOT
+--- 1.6.1 2020/12/14
 
 Fix bad agent URIs minted in 240/X30 processing (https://github.com/lcnetdev/marc2bibframe2/issues/192)
 Fix errant xml:lang attribute assignment for 3XX fields (https://github.com/lcnetdev/marc2bibframe2/issues/191)
