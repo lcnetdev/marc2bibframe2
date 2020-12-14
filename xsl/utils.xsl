@@ -349,7 +349,7 @@
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
     <xsl:param name="pVocabStem"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::marc:datafield" mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
     <xsl:variable name="vLabel">
       <xsl:choose>
