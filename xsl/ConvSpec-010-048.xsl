@@ -425,9 +425,9 @@
               <bf:place>
                 <bf:Place>
                   <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  <xsl:apply-templates mode="subfield2code" select="following-sibling::*[position()=1][@code='2']">
+                  <xsl:apply-templates mode="subfield2" select="following-sibling::*[position()=1][@code='2']">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pUriStem" select="$subjectSchemes"/>
+                    <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
                   </xsl:apply-templates>
                 </bf:Place>
               </bf:place>
@@ -594,9 +594,9 @@
                   <xsl:if test="$vPart != ''">
                     <bf:part><xsl:value-of select="$vPart"/></bf:part>
                   </xsl:if>
-                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2code">
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pUriStem" select="$languageschemes"/>
+                    <xsl:with-param name="pVocabStem" select="$languageschemes"/>
                     <xsl:with-param name="pStripPunct" select="true()"/>
                   </xsl:apply-templates>
                 </bf:Language>
@@ -798,9 +798,9 @@
               <bf:genreForm>
                 <bf:GenreForm>
                   <bf:code><xsl:value-of select="."/></bf:code>
-                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2code">
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pUriStem" select="$musiccompschemes"/>
+                    <xsl:with-param name="pVocabStem" select="$musiccompschemes"/>
                   </xsl:apply-templates>
                 </bf:GenreForm>
               </bf:genreForm>
@@ -1208,9 +1208,9 @@
               <!-- special handling for source ($2) -->
               <xsl:choose>
                 <xsl:when test="$vTag='015'">
-                  <xsl:apply-templates mode="subfield2code" select="../marc:subfield[@code='2']">
+                  <xsl:apply-templates mode="subfield2" select="../marc:subfield[@code='2']">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pUriStem" select="$nationalbibschemes"/>
+                    <xsl:with-param name="pVocabStem" select="$nationalbibschemes"/>
                   </xsl:apply-templates>
                 </xsl:when>
                 <xsl:when test="$vTag='016'">
@@ -1224,9 +1224,9 @@
                       </bf:source>
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:apply-templates mode="subfield2code" select="../marc:subfield[@code='2']">
+                      <xsl:apply-templates mode="subfield2" select="../marc:subfield[@code='2']">
                         <xsl:with-param name="serialization" select="$serialization"/>
-                        <xsl:with-param name="pUriStem" select="$organizations"/>
+                        <xsl:with-param name="pVocabStem" select="$organizations"/>
                       </xsl:apply-templates>
                     </xsl:otherwise>
                   </xsl:choose>
@@ -1307,9 +1307,9 @@
                   </xsl:for-each>
                 </xsl:otherwise>
               </xsl:choose>
-              <xsl:apply-templates mode="subfield2code" select="marc:subfield[@code='2']">
+              <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
                 <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pUriStem" select="$fingerprintschemes"/>
+                <xsl:with-param name="pVocabStem" select="$fingerprintschemes"/>
               </xsl:apply-templates>
               <xsl:for-each select="marc:subfield[@code='5']">
                 <xsl:apply-templates select="." mode="subfield5">
