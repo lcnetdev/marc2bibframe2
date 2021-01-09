@@ -145,28 +145,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- create a bf:source property from a coded subfield $2 -->
-  <xsl:template match="marc:subfield" mode="subfield2code">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pUriStem"/>
-    <xsl:param name="pStripPunct" select="false()"/>
-    <xsl:variable name="vNormCode">
-      <xsl:call-template name="tNormalizeCode">
-        <xsl:with-param name="pCode" select="."/>
-        <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization='rdfxml'">
-        <bf:source>
-          <bf:Source>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pUriStem,$vNormCode)"/></xsl:attribute>
-          </bf:Source>
-        </bf:source>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
   <!--
       create a bflc:appliesTo property from a subfield $3
   -->
