@@ -275,7 +275,7 @@
                 </xsl:variable>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vUri)"/></xsl:attribute>
               </xsl:if>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdf:value><xsl:value-of select="."/></rdf:value>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:for-each>

@@ -182,14 +182,14 @@
     <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/bflc:MetadataLicensor/rdfs:label = 'Uk'"/>
   </x:scenario>
 
-  <x:scenario label="040 - CATALOGING SOURCE">
+  <x:scenario label="040 - CATALOGING SOURCE" focus="040">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="040 creates an assigner property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:assigner[1]/bf:Agent/bf:code = 'NBPol-G'"/>
     <x:expect label="...and a uri if $a = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:assigner[2]/bf:Agent/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
     <x:expect label="$b creates a descriptionLanguage property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionLanguage/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     <x:expect label="final $d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[1]/bf:Agent/bf:code = 'CtY'"/>
     <x:expect label="...with a URI if $d = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[2]/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
-    <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdfs:label = 'NARS Staff Bulletin No. 16'"/>
+    <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdf:value = 'NARS Staff Bulletin No. 16'"/>
     <x:expect label="...if it contains a code, the object has a URI" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[2]/bf:DescriptionConventions/@rdf:about = 'http://id.loc.gov/vocabulary/descriptionConventions/appm'"/>
   </x:scenario>
 
