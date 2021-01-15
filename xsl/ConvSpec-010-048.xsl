@@ -680,6 +680,9 @@
                       <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
                         <xsl:with-param name="serialization" select="$serialization"/>
                       </xsl:apply-templates>
+                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='0']" mode="subfield0orw">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
