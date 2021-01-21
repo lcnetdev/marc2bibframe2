@@ -251,7 +251,7 @@
             </bf:language>
           </xsl:if>
         </xsl:if>
-        <xsl:if test="not(../marc:datafield[@tag='382'])">
+        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
           <xsl:for-each select="marc:subfield[@code='m']">
             <bf:musicMedium>
               <bf:MusicMedium>
@@ -269,7 +269,7 @@
             </bf:musicMedium>
           </xsl:for-each>
         </xsl:if>
-        <xsl:if test="not(../marc:datafield[@tag='384'])">
+        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='384'])">
           <xsl:for-each select="marc:subfield[@code='r']">
             <bf:musicKey>
               <xsl:if test="$vXmlLang != ''">
