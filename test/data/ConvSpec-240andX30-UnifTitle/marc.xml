@@ -50,9 +50,13 @@
       <subfield code="p">Psalms.</subfield>
       <subfield code="s">Codex Sinaiticus.</subfield>
     </datafield>
+    <datafield tag="384" ind1=" " ind2=" ">
+      <subfield code="a">B-flat minor</subfield>
+    </datafield>
     <datafield tag="730" ind1="0" ind2="2">
       <subfield code="i">Parody of (work):</subfield>
       <subfield code="a">[Motets].</subfield>
+      <subfield code="r">E minor</subfield>
       <subfield code="h">Sound recording</subfield>
       <subfield code="x">1234-5678</subfield>
       <subfield code="5">DLC</subfield>

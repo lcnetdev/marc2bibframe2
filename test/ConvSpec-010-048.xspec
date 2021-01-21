@@ -182,7 +182,7 @@
     <x:expect label="038 creates a bflc:metadataLicensor property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bflc:metadataLicensor/bflc:MetadataLicensor/rdfs:label = 'Uk'"/>
   </x:scenario>
 
-  <x:scenario label="040 - CATALOGING SOURCE" focus="040">
+  <x:scenario label="040 - CATALOGING SOURCE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="040 creates an assigner property of the Work AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:assigner[1]/bf:Agent/bf:code = 'NBPol-G'"/>
     <x:expect label="...and a uri if $a = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:assigner[2]/bf:Agent/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
