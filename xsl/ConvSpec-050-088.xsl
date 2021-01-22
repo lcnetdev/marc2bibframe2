@@ -344,9 +344,9 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:classification>
-            <bf:ClassificationDdc>
+        <bf:classification>
+          <bf:ClassificationDdc>
+            <xsl:for-each select="marc:subfield[@code='a']">
               <bf:classificationPortion>
                 <xsl:value-of select="."/>
               </bf:classificationPortion>
@@ -378,9 +378,9 @@
                   </bf:Agent>
                 </bf:assigner>
               </xsl:if>
-            </bf:ClassificationDdc>
-          </bf:classification>
-        </xsl:for-each>
+            </xsl:for-each>
+          </bf:ClassificationDdc>
+        </bf:classification>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
