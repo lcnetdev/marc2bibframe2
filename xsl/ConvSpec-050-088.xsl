@@ -357,28 +357,28 @@
                   </bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
-              <xsl:for-each select="../marc:subfield[@code='q']">
-                <bf:assigner>
-                  <bf:Agent>
-                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  </bf:Agent>
-                </bf:assigner>
-              </xsl:for-each>
-              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-              <xsl:choose>
-                <xsl:when test="../@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
-                <xsl:when test="../@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
-              </xsl:choose>
-              <xsl:if test="../@ind2 = '0'">
-                <bf:assigner>
-                  <bf:Agent>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                  </bf:Agent>
-                </bf:assigner>
-              </xsl:if>
             </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='q']">
+              <bf:assigner>
+                <bf:Agent>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Agent>
+              </bf:assigner>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:choose>
+              <xsl:when test="@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
+              <xsl:when test="@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
+            </xsl:choose>
+            <xsl:if test="@ind2 = '0'">
+              <bf:assigner>
+                <bf:Agent>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                </bf:Agent>
+              </bf:assigner>
+            </xsl:if>
           </bf:ClassificationDdc>
         </bf:classification>
       </xsl:when>
