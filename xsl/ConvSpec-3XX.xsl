@@ -696,6 +696,9 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:frequency>
             <bf:Frequency>
+              <xsl:if test="../marc:subfield[@code='0'][contains(.,'://')]">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="../marc:subfield[@code='0'][contains(.,'://')]"/></xsl:attribute>
+              </xsl:if>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -720,6 +723,12 @@
                   </bf:Note>
                 </bf:note>
               </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="../marc:subfield[@code='0'][not(contains(.,'://'))]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
             </bf:Frequency>
           </bf:frequency>
         </xsl:for-each>

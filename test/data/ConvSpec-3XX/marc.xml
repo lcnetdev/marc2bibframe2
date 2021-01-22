@@ -20,10 +20,14 @@
     <datafield tag="310" ind1=" " ind2=" ">
       <subfield code="a">Annual,</subfield>
       <subfield code="b">1983-</subfield>
+      <subfield code="2">freq</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/frequencies/anl</subfield>
     </datafield>    
     <datafield tag="321" ind1=" " ind2=" ">
       <subfield code="a">Semiannual,</subfield>
       <subfield code="b">1981-1982</subfield>
+      <subfield code="2">freq</subfield>
+      <subfield code="0">(DLC)sma</subfield>
     </datafield>    
     <datafield tag="336" ind1=" " ind2=" ">
       <subfield code="a">performed music</subfield>
