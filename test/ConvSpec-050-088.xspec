@@ -80,8 +80,9 @@
 
   <x:scenario label="082 - DEWEY DECIMAL CLASSIFICATION NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="082 creates a classification/ClassificationDdc property of the Work" test="count(//bf:Work[1]/bf:classification/bf:ClassificationDdc) = 2"/>
+    <x:expect label="082 creates a classification/ClassificationDdc property of the Work" test="count(//bf:Work[1]/bf:classification/bf:ClassificationDdc) = 3"/>
     <x:expect label="$a creates the classificationPortion of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:classificationPortion = '975.5/4252/00222'"/>
+    <x:expect label="Multiple $a create multiple classificationPortion properties" test="count(//bf:Work[1]/bf:classification[9]/bf:ClassificationDdc/bf:classificationPortion) = 2"/>
     <x:expect label="$b creates an itemPortion of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:itemPortion = 'Wor'"/>
     <x:expect label="$q creates an assigner property" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationDdc/bf:assigner/bf:Agent/rdfs:label = 'DE-101b'"/>
     <x:expect label="$2 creates a source property of the ClassificationDdc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationDdc/bf:source/bf:Source/bf:code = '22'"/>
@@ -92,12 +93,12 @@
   <x:scenario label="084 - OTHER CLASSIFICATION NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="084 creates a classification/Classification property of the Work" test="count(//bf:Work[1]/bf:classification/bf:Classification) = 2"/>
-    <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
-    <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
-    <x:expect label="$q creates an assigner property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:assigner/bf:Agent/rdfs:label = 'DE-101'"/>
-    <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:source/bf:Source/bf:code = 'sdnb'"/>
-    <x:expect label="First $0 that is a URI sets the URI of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/@rdf:about = 'http://example.org/KB112.554'"/>
-    <x:expect label="Additional $0s create identifiedBy properties of the Classification" test="//bf:Work[1]/bf:classification[9]/bf:Classification/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/KB112.554'"/>
+    <x:expect label="$a creates the classificationPortion of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/bf:classificationPortion = 'KB112.554'"/>
+    <x:expect label="$b creates an itemPortion of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/bf:itemPortion = 'U62 1980'"/>
+    <x:expect label="$q creates an assigner property of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/bf:assigner/bf:Agent/rdfs:label = 'DE-101'"/>
+    <x:expect label="$2 creates a source property of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/bf:source/bf:Source/bf:code = 'sdnb'"/>
+    <x:expect label="First $0 that is a URI sets the URI of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/@rdf:about = 'http://example.org/KB112.554'"/>
+    <x:expect label="Additional $0s create identifiedBy properties of the Classification" test="//bf:Work[1]/bf:classification[10]/bf:Classification/bf:identifiedBy[1]/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/KB112.554'"/>
   </x:scenario>
   
   <x:scenario label="086 - GOVERNMENT DOCUMENT CLASSIFICATION NUMBER">

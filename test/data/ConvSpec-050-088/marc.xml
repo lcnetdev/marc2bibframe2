@@ -75,6 +75,11 @@
       <subfield code="2">22/ger</subfield>
       <subfield code="q">DE-101b</subfield>
     </datafield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">973.932092</subfield>
+      <subfield code="a">B</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
     <datafield tag="084" ind1=" " ind2=" ">
       <subfield code="a">KB112.554</subfield>
       <subfield code="0">http://example.org/KB112.554</subfield>
