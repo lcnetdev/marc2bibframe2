@@ -86,20 +86,22 @@
                     </rdf:type>
                     <xsl:if test="../marc:datafield[@tag='245']">
                       <bf:title>
-                        <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
-                          <xsl:with-param name="serialization" select="$serialization"/>
-                          <xsl:with-param name="label">
-                            <xsl:apply-templates mode="concat-nodes-space"
-                                                 select="../marc:datafield[@tag='245']/marc:subfield[@code='a' or
-                                                         @code='b' or
-                                                         @code='f' or 
-                                                         @code='g' or
-                                                         @code='k' or
-                                                         @code='n' or
-                                                         @code='p' or
-                                                         @code='s']"/>
-                          </xsl:with-param>
-                        </xsl:apply-templates>
+                        <bf:Title>
+                          <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
+                            <xsl:with-param name="serialization" select="$serialization"/>
+                            <xsl:with-param name="label">
+                              <xsl:apply-templates mode="concat-nodes-space"
+                                                   select="../marc:datafield[@tag='245']/marc:subfield[@code='a' or
+                                                           @code='b' or
+                                                           @code='f' or 
+                                                           @code='g' or
+                                                           @code='k' or
+                                                           @code='n' or
+                                                           @code='p' or
+                                                           @code='s']"/>
+                            </xsl:with-param>
+                          </xsl:apply-templates>
+                        </bf:Title>
                       </bf:title>
                     </xsl:if>
                     <bf:hasItem>
