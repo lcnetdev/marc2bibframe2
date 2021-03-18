@@ -530,9 +530,6 @@
               <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
             </madsrdf:isMemberOfMADSScheme>
           </xsl:for-each>                  
-          <xsl:if test="$pSource != ''">
-            <xsl:copy-of select="$pSource"/>
-          </xsl:if>
           <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pMode">relationship</xsl:with-param>
@@ -559,6 +556,7 @@
           </xsl:for-each>
           <xsl:apply-templates select="." mode="workUnifTitle">
             <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pSource" select="$pSource"/>
           </xsl:apply-templates>
         </bf:Work>
       </xsl:when>

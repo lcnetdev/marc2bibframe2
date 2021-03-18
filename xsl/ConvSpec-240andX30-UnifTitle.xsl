@@ -136,6 +136,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pUnifTitleMode"/>
     <xsl:param name="pWorkUri"/>
+    <xsl:param name="pSource"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -343,9 +344,16 @@
               </xsl:for-each>
             </xsl:otherwise>
           </xsl:choose>
-          <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$pSource != ''">
+              <xsl:copy-of select="$pSource"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>

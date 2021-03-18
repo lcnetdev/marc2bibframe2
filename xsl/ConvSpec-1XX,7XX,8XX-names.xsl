@@ -165,6 +165,7 @@
     <xsl:param name="agentiri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="serialization"/>
+    <xsl:param name="pSource"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -205,6 +206,7 @@
               <xsl:apply-templates mode="agent" select=".">
                 <xsl:with-param name="agentiri" select="$agentiri"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pSource" select="$pSource"/>
               </xsl:apply-templates>
             </bf:agent>
             <xsl:choose>
@@ -242,6 +244,7 @@
     <xsl:if test="marc:subfield[@code='t']">
       <xsl:apply-templates mode="workUnifTitle" select=".">
         <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pSource" select="$pSource"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
@@ -575,9 +578,6 @@
                 </madsrdf:isMemberOfMADSScheme>
               </xsl:for-each>
             </xsl:if>
-            <xsl:if test="$pSource != ''">
-              <xsl:copy-of select="$pSource"/>
-            </xsl:if>
             <xsl:if test="not(marc:subfield[@code='t'])">
               <xsl:choose>
                 <xsl:when test="substring($tag,2,2)='11'">
@@ -702,10 +702,17 @@
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
-              <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pVocabStem" select="$nametitleschemes"/>
-              </xsl:apply-templates>
+              <xsl:choose>
+                <xsl:when test="$pSource != ''">
+                  <xsl:copy-of select="$pSource"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates mode="subfield2" select="marc:subfield[@code='2']">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pVocabStem" select="$nametitleschemes"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
               <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
