@@ -64,7 +64,7 @@
     -->
     
     <xsl:variable name="vWorkUri">
-        <xsl:apply-templates mode="generateUri" select="..">
+        <xsl:apply-templates mode="generateUri" select=".">
             <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="../@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
             <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
         </xsl:apply-templates>
@@ -74,7 +74,7 @@
           <bf:expressionOf>
             <bf:Work>
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
-              <xsl:apply-templates mode="workUnifTitle" select="..">
+              <xsl:apply-templates mode="workUnifTitle" select=".">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pUnifTitleMode">expression</xsl:with-param>
                 <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
@@ -163,6 +163,7 @@
     <xsl:param name="pUnifTitleMode"/>
     <xsl:param name="pWorkUri"/>
     <xsl:param name="pSource"/>
+    <xsl:param name="outputTitle" select="'true'"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -176,7 +177,7 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="label">
       <!-- 8XX fields construct the label differently -->
-      <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4'">
+      <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4' and $outputTitle = 'true'">
         <xsl:apply-templates select="." mode="tTitleLabel">
           <xsl:with-param name="pUnifTitleMode"><xsl:value-of select="$pUnifTitleMode"/></xsl:with-param>
         </xsl:apply-templates>
@@ -193,12 +194,19 @@
             <xsl:with-param name="pAgentIri" select="concat($pWorkUri,'-Agent')"/>
           </xsl:apply-templates>
         </xsl:if>
-        <bf:title>
-          <xsl:apply-templates mode="titleUnifTitle" select=".">
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="label" select="$label"/>
-          </xsl:apply-templates>
-        </bf:title>
+        <!-- 
+            kefo note - 30 Dec 2019
+            "outputTitle" defaults to true because you want it most of the 
+            time when dealing with uniform titles.
+        -->
+        <xsl:if test="$outputTitle = 'true'">
+            <bf:title>
+              <xsl:apply-templates mode="titleUnifTitle" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="label" select="$label"/>
+              </xsl:apply-templates>
+            </bf:title>
+        </xsl:if>
         <xsl:choose>
           <xsl:when test="substring($tag,2,2='10')">
             <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='d']">

@@ -351,7 +351,9 @@
         <xsl:with-param name="chopString" select="$vLabelStr"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:if test="not(../marc:datafield[@tag='130' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) and not(../marc:datafield[@tag='240' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')])">
+    
+    <!-- Always output 245 title for the Work. -->
+    <!-- <xsl:if test="not(../marc:datafield[@tag='130' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) and not(../marc:datafield[@tag='240' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')])"> -->
       <!-- generate Work properties -->
       <xsl:apply-templates mode="work245" select=".">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -387,7 +389,7 @@
           </bf:title>
         </xsl:when>
       </xsl:choose>
-    </xsl:if>
+    <!-- </xsl:if> -->
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
@@ -406,13 +408,15 @@
         </xsl:if>
 
         <bf:title>
-          <xsl:apply-templates mode="title245" select=".">
-            <xsl:with-param name="label" select="$label"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="pStripNonfiling" select="true()"/>
-            <!-- kefo note - Switched this to true. -->
-            <xsl:with-param name="pSubtitle" select="true()"/>
-          </xsl:apply-templates>
+            <bf:Title>
+              <xsl:apply-templates mode="title245" select=".">
+                <xsl:with-param name="label" select="$label"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pStripNonfiling" select="true()"/>
+                <!-- kefo note - Switched this to true. -->
+                <xsl:with-param name="pSubtitle" select="true()"/>
+              </xsl:apply-templates>
+            </bf:Title>
         </bf:title>
 
         <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
@@ -446,7 +450,7 @@
             Moved responsibility statement from Instance.
             This is a violation of the ontology.  
             An argument that this is an often transcribed data point might be in favor
-            of making it an Instance-level property, it details who all were involved
+            of making it an Instance-level property, but it details who all were involved
             in the /creation/ of the Thing, or in this case the Work.  
             The publisher "created" the Instance.
         -->
@@ -555,6 +559,8 @@
             <xsl:value-of select="normalize-space($label)"/>
           </rdfs:label>
         </xsl:if>
+        <!-- kefo note - 12 Apr 2021 - Moved to Work -->
+        <!--
         <xsl:for-each select="marc:subfield[@code='c']">
           <bf:responsibilityStatement>
             <xsl:if test="$vXmlLang != ''">
@@ -568,6 +574,7 @@
             </xsl:call-template>
           </bf:responsibilityStatement>
         </xsl:for-each>
+        -->
       </xsl:when>
     </xsl:choose>
   </xsl:template>
