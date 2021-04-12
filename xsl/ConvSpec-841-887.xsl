@@ -81,7 +81,7 @@
                         contains(marc:subfield[@code='u'],'gpo.gov') or
                         contains(marc:subfield[@code='u'],'hathitrust.org'))">
             <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
-            <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
+            <!-- <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable> -->
             <xsl:choose>
               <xsl:when test="$serialization = 'rdfxml'">
                 <bf:hasInstance>
