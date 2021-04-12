@@ -411,14 +411,7 @@
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='b']">
               <bf:place>
-                <bf:Place>
-                  <rdf:value><xsl:value-of select="normalize-space(concat(.,' ',following-sibling::*[position()=1][@code='c']))"/></rdf:value>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </bf:Place>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="normalize-space(concat('http://id.loc.gov/authorities/classification/G', .,'.',following-sibling::*[position()=1][@code='c']))" /></xsl:attribute>
               </bf:place>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='p']">
