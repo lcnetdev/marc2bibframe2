@@ -1,0 +1,60 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">QE75</subfield>
+      <subfield code="b">.P9 subser.</subfield>
+    </datafield>
+    <datafield tag="051" ind1=" " ind2=" ">
+      <subfield code="a">QE75</subfield>
+      <subfield code="b">.G4</subfield>
+      <subfield code="c">2d set.</subfield>
+    </datafield>
+    <datafield tag="051" ind1=" " ind2=" ">
+      <subfield code="a">Microfilm</subfield>
+      <subfield code="b">3741 HV</subfield>
+      <subfield code="c">Microfilm.</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">Microform 1234</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Title of reissue;</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="538" ind1=" " ind2=" ">
+      <subfield code="3">v.1-49(1927-1975)</subfield>
+      <subfield code="a">Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.</subfield>
+      <subfield code="u">http://www.diglib.org/standards/bmarkfin.htm</subfield>
+      <subfield code="5">NIC</subfield>
+    </datafield>
+    <datafield tag="541" ind1=" " ind2=" ">
+      <subfield code="3">Materials scheduled for permanent retention</subfield>
+      <subfield code="n">25</subfield>
+      <subfield code="o">reels of microfilm</subfield>
+      <subfield code="a">U.S. Department of Transportation;</subfield>
+      <subfield code="c">Transfer under schedule;</subfield>
+      <subfield code="d">1980/01/10.</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="561" ind1=" " ind2=" ">
+      <subfield code="a">On permanent loan from the collection of Paul Mellon.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Annotations (Provenance)</subfield>
+      <subfield code="z">Sweden</subfield>
+      <subfield code="y">18th century.</subfield>
+      <subfield code="2">rbprov</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Jefferson, Thomas,</subfield>
+      <subfield code="d">1743-1826,</subfield>
+      <subfield code="e">former owner.</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+  </record>
+</collection>  

@@ -20,10 +20,14 @@
     <datafield tag="310" ind1=" " ind2=" ">
       <subfield code="a">Annual,</subfield>
       <subfield code="b">1983-</subfield>
+      <subfield code="2">freq</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/frequencies/anl</subfield>
     </datafield>    
     <datafield tag="321" ind1=" " ind2=" ">
       <subfield code="a">Semiannual,</subfield>
       <subfield code="b">1981-1982</subfield>
+      <subfield code="2">freq</subfield>
+      <subfield code="0">(DLC)sma</subfield>
     </datafield>    
     <datafield tag="336" ind1=" " ind2=" ">
       <subfield code="a">performed music</subfield>
@@ -129,7 +133,7 @@
     <datafield tag="347" ind1=" " ind2=" ">
       <subfield code="3">computer disc</subfield>
       <subfield code="a">image file</subfield>
-      <subfield code="b">Bluray</subfield>
+      <subfield code="b">Blu-ray</subfield>
       <subfield code="0">http://id.loc.gov/vocabulary/mvidformat/bluray</subfield>
       <subfield code="c">182 KB</subfield>
       <subfield code="d">3.1 megapixels</subfield>
@@ -182,9 +186,11 @@
       <subfield code="a">foo</subfield>
       <subfield code="l">foobar</subfield>
       <subfield code="0">http://example.org/languages/foo</subfield>
+      <subfield code="2">bazz</subfield>
     </datafield>
     <datafield tag="380" ind1=" " ind2=" ">
       <subfield code="a">Play</subfield>
+      <subfield code="2">lcgft</subfield>
     </datafield>
     <datafield tag="382" ind1=" " ind2=" ">
       <subfield code="3">Nach Bach</subfield>

@@ -21,7 +21,7 @@
       <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
       <xsl:variable name="vScript6simple">
         <xsl:choose>
-          <xsl:when test="contains(vScript6,'/')"><xsl:value-of select="substring-before($vScript6,'/')"/></xsl:when>
+          <xsl:when test="contains($vScript6,'/')"><xsl:value-of select="substring-before($vScript6,'/')"/></xsl:when>
           <xsl:otherwise><xsl:value-of select="$vScript6"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -36,6 +36,12 @@
           <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
           <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
           <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+          <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
+            <xsl:value-of select="$vScript6simple"/>
+          </xsl:when>
+          <xsl:when test="string-length($vScript6simple)=3 and string-length(translate($vScript6simple,'0123456789',''))=0">
+            <xsl:value-of select="$scriptMap/xml-scripts/script[@num=$vScript6simple]/@code"/>
+          </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:if test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:if>
@@ -348,11 +354,20 @@
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
     <xsl:param name="pTarget"/>
+    <xsl:param name="pLabel"/>
     <xsl:param name="pProcess"/>
     <xsl:param name="pPunctuation">
       <xsl:text>.:,;/ </xsl:text>
     </xsl:param>
+    <xsl:param name="pVocabStem"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="../marc:datafield" mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+    <xsl:variable name="vLabel">
+      <xsl:choose>
+        <xsl:when test="$pLabel != ''"><xsl:value-of select="$pLabel"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$pProp}">
@@ -361,26 +376,29 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$pTarget"/></xsl:attribute>
             </xsl:if>
             <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
                   <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$pProcess='chopParens'">
                   <xsl:call-template name="chopParens">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$pProcess='chopBrackets'">
                   <xsl:call-template name="chopBrackets">
-                    <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
+                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
                     <xsl:with-param name="punctuation" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
-                <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                <xsl:otherwise><xsl:value-of select="$vLabel"/></xsl:otherwise>
               </xsl:choose>
             </rdfs:label>
             <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
@@ -391,6 +409,7 @@
             </xsl:apply-templates>
             <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
               <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pVocabStem" select="$pVocabStem"/>
             </xsl:apply-templates>
           </xsl:element>
         </xsl:element>
@@ -444,6 +463,24 @@
         </xsl:call-template>
       </xsl:if>
     </xsl:if>
+  </xsl:template>
+
+  <!-- Return a normalized code suitable for constructing a URI -->
+  <xsl:template name="tNormalizeCode">
+    <xsl:param name="pCode"/>
+    <xsl:param name="pStripPunct" select="false()"/>
+    <xsl:variable name="vCode">
+      <xsl:choose>
+        <!-- well, not all punctuation (e.g. quotes), but probably enough -->
+        <xsl:when test="$pStripPunct">
+          <xsl:value-of select="translate($pCode,'.?!,;:-/\()[]{} ','')"/>
+        </xsl:when>
+        <xsl:otherwise><xsl:value-of select="$pCode"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="url-encode">
+      <xsl:with-param name="str" select="translate(normalize-space($vCode),$upper,$lower)"/>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>

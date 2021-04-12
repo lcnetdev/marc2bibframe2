@@ -10,7 +10,7 @@
       <key field="bflc:name11MatchKey"/>
       <key field="bflc:name00MatchKey"/>
       <key field="bflc:name10MatchKey"/>
-      <server url="http://id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+      <server url="https://id.loc.gov/authorities/names/label/%s" method="HEAD"/>
     </lookup>
   </rdf-lookup>
   <rdf-lookup timeout="3">
@@ -23,7 +23,7 @@
                    //bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org')] |
                    //bf:Work/bf:genreForm/bf:GenreForm[contains(@rdf:about,'example.org')]">
       <key field="rdfs:label"/>
-      <server url="http://id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+      <server url="https://id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
     </lookup>
   </rdf-lookup>
   <rdf-lookup timeout="3">
@@ -33,7 +33,7 @@
     <namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
     <lookup xpath="//bf:Role[not(@rdf:about)] | //bflc:relation/bflc:Relation[not(@rdf:about)]">
       <key field="rdfs:label"/>
-      <server url="http://id.loc.gov/vocabulary/relators/label/%s" method="HEAD"/>
+      <server url="https://id.loc.gov/vocabulary/relators/label/%s" method="HEAD"/>
     </lookup>
   </rdf-lookup>
 </backend>

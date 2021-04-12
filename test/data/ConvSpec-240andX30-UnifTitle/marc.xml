@@ -19,7 +19,7 @@
       <subfield code="a">Latin American lives :</subfield>
       <subfield code="b">selected biographies from the five-volume Encyclopedia of Latin American history and culture.</subfield>
     </datafield>
-    <datafield tag="630" ind1="0" ind2="0">
+    <datafield tag="630" ind1="0" ind2="7">
       <subfield code="a">Ukrainian weekly</subfield>
       <subfield code="e">depicted.</subfield>
       <subfield code="v">Indexes</subfield>
@@ -50,9 +50,13 @@
       <subfield code="p">Psalms.</subfield>
       <subfield code="s">Codex Sinaiticus.</subfield>
     </datafield>
-    <datafield tag="730" ind1="0" ind2=" ">
+    <datafield tag="384" ind1=" " ind2=" ">
+      <subfield code="a">B-flat minor</subfield>
+    </datafield>
+    <datafield tag="730" ind1="0" ind2="2">
       <subfield code="i">Parody of (work):</subfield>
       <subfield code="a">[Motets].</subfield>
+      <subfield code="r">E minor</subfield>
       <subfield code="h">Sound recording</subfield>
       <subfield code="x">1234-5678</subfield>
       <subfield code="5">DLC</subfield>
@@ -81,6 +85,36 @@
     </datafield>
     <datafield tag="245" ind1="0" ind2="0">
       <subfield code="a">Annual report of the Minister of Supply and Service Canada under the Corporations and Labour Unions Returns Act.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">5</controlfield>
+    <controlfield tag="008">160412r20152013nyu           000 1 eng  </controlfield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">ita</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Ferrante, Elena,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Storia del nuovo cognome.</subfield>
+      <subfield code="l">English</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="4">
+      <subfield code="a">The story of a new name /</subfield>
+      <subfield code="c">Elena Ferrante ; translated from the Italian by Ann Goldstein.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Nefwich, Harvey.</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Sonata for kazoo.</subfield>
+      <subfield code="o">arr.</subfield>
     </datafield>
   </record>
 </collection>
