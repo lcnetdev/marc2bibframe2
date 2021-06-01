@@ -445,5 +445,28 @@
       </xsl:if>
     </xsl:if>
   </xsl:template>
-
+  <!--
+      create a bflc:applicableInstitution property from a subfield $5, overrides bib controlsubfields for dlc link
+      This supports authority 050 records and others.
+  -->
+  <xsl:template match="marc:subfield" mode="subfield5auth">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bflc:applicableInstitution>
+          <bf:Agent>
+            <xsl:choose>
+              <xsl:when test="starts-with(.,'DLC')">
+                <xsl:attribute  name="rdf:about"><xsl:value-of select="concat($organizations,translate(.,concat($vUpper,'- ' ),$vLower))"/></xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </xsl:otherwise>
+            </xsl:choose>
+          </bf:Agent>
+        </bflc:applicableInstitution>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 </xsl:stylesheet>

@@ -83,6 +83,7 @@
                 <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="../marc:subfield[@code='5']"><xsl:apply-templates select="." mode="subfield5auth"/></xsl:for-each>	
               </bf:ClassificationLcc>
             </bf:classification>
           </xsl:if>
@@ -220,6 +221,7 @@
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='5']"><xsl:apply-templates select="." mode="subfield5auth"/></xsl:for-each>	
             </bf:ClassificationLcc>
           </bf:classification>
       </xsl:when>
@@ -273,6 +275,7 @@
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              <xsl:for-each select="../marc:subfield[@code='5']"><xsl:apply-templates select="." mode="subfield5auth"/></xsl:for-each>	
             </bf:ClassificationNlm>
           </bf:classification>
         </xsl:for-each>
