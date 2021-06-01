@@ -8,15 +8,11 @@
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
-                xmlns:fn="http://www.w3.org/2005/xpath-function"
-                extension-element-prefixes="date fn"
+                extension-element-prefixes="date"
                 exclude-result-prefixes="xsl marc">
 
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
   <xsl:strip-space elements="*"/>
-
-  <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.6.0-SNAPSHOT</xsl:variable>
 
   <!-- stylesheet parameters -->
 
@@ -45,11 +41,8 @@
       Some fields in the conversion (e.g. 859) are locally defined by
       LoC for conversion. By default these fields will not be
       converted unless this parameter evaluates to true()
-      To run a test of the localfields parameter, uncomment the
-      following line, and uncomment the test in test/ConvSpec-841-887.xspec
   -->
-  <!-- <xsl:param name="localfields" select="true()"/> -->
-  <xsl:param name="localfields"/>
+  <xsl:param name="localfields" select="true()"/>
   
   <!--
       datestamp for generationProcess property of Work adminMetadata
@@ -58,11 +51,8 @@
   -->
   <xsl:param name="pGenerationDatestamp">
     <xsl:choose>
-      <xsl:when test="function-available('date:date-time')">
-        <xsl:value-of select="date:date-time()"/>
-      </xsl:when>
-      <xsl:when test="function-available('fn:current-dateTime')">
-        <xsl:value-of select="fn:current-dateTime()"/>
+      <xsl:when test="function-available('current-dateTime')">
+        <xsl:value-of select="current-dateTime()"/>
       </xsl:when>
     </xsl:choose>
   </xsl:param>
@@ -70,6 +60,7 @@
   <!-- Output serialization. Currently only "rdfxml" is supported -->
   <xsl:param name="serialization" select="'rdfxml'"/>
 
+  <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
   <xsl:include href="ConvSpec-LDR.xsl"/>
@@ -77,81 +68,21 @@
   <xsl:include href="ConvSpec-006,008.xsl"/>
   <xsl:include href="ConvSpec-010-048.xsl"/>
   <xsl:include href="ConvSpec-050-088.xsl"/>
-  <xsl:include href="ConvSpec-1XX,6XX,7XX,8XX-names.xsl"/>
+  <xsl:include href="ConvSpec-1XX,7XX,8XX-names.xsl"/>
   <xsl:include href="ConvSpec-200-247not240-Titles.xsl"/>
   <xsl:include href="ConvSpec-240andX30-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
-  <xsl:include href="ConvSpec-490-510-530to535-Links.xsl"/>
+  <xsl:include href="ConvSpec-490-510-Links.xsl"/>
   <xsl:include href="ConvSpec-5XX.xsl"/>
-  <xsl:include href="ConvSpec-648-662.xsl"/>
+  <xsl:include href="ConvSpec-600-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
   <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-Process6-Series.xsl"/>
-
-  <!-- namespace URIs -->
-  <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
-  <xsl:variable name="bflc">http://id.loc.gov/ontologies/bflc/</xsl:variable>
-  <xsl:variable name="edtf">http://id.loc.gov/datatypes/</xsl:variable>
-  <xsl:variable name="madsrdf">http://www.loc.gov/mads/rdf/v1#</xsl:variable>
-  <xsl:variable name="xs">http://www.w3.org/2001/XMLSchema#</xsl:variable>
-
-  <!-- id.loc.gov vocabulary stems -->
-  <xsl:variable name="carriers">http://id.loc.gov/vocabulary/carriers/</xsl:variable>
-  <xsl:variable name="classSchemes">http://id.loc.gov/vocabulary/classSchemes/</xsl:variable>
-  <xsl:variable name="contentType">http://id.loc.gov/vocabulary/contentTypes/</xsl:variable>
-  <xsl:variable name="countries">http://id.loc.gov/vocabulary/countries/</xsl:variable>
-  <xsl:variable name="demographicTerms">http://id.loc.gov/authorities/demographicTerms/</xsl:variable>
-  <xsl:variable name="descriptionConventions">http://id.loc.gov/vocabulary/descriptionConventions/</xsl:variable>
-  <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
-  <xsl:variable name="geographicAreas">http://id.loc.gov/vocabulary/geographicAreas/</xsl:variable>
-  <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>
-  <xsl:variable name="issuance">http://id.loc.gov/vocabulary/issuance/</xsl:variable>
-  <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
-  <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
-  <xsl:variable name="mcolor">http://id.loc.gov/vocabulary/mcolor/</xsl:variable>
-  <xsl:variable name="mediaType">http://id.loc.gov/vocabulary/mediaTypes/</xsl:variable>
-  <xsl:variable name="mmaterial">http://id.loc.gov/vocabulary/mmaterial/</xsl:variable>
-  <xsl:variable name="mplayback">http://id.loc.gov/vocabulary/mplayback/</xsl:variable>
-  <xsl:variable name="mpolarity">http://id.loc.gov/vocabulary/mpolarity/</xsl:variable>
-  <xsl:variable name="marcauthen">http://id.loc.gov/vocabulary/marcauthen/</xsl:variable>
-  <xsl:variable name="marcmuscomp">http://id.loc.gov/vocabulary/marcmuscomp/</xsl:variable>
-  <xsl:variable name="organizations">http://id.loc.gov/vocabulary/organizations/</xsl:variable>
-  <xsl:variable name="relators">http://id.loc.gov/vocabulary/relators/</xsl:variable>
-  <xsl:variable name="mproduction">http://id.loc.gov/vocabulary/mproduction/</xsl:variable>
-  <xsl:variable name="msoundcontent">http://id.loc.gov/vocabulary/msoundcontent/</xsl:variable>
-  <xsl:variable name="mrecmedium">http://id.loc.gov/vocabulary/mrecmedium/</xsl:variable>
-  <xsl:variable name="mgeneration">http://id.loc.gov/vocabulary/mgeneration/</xsl:variable>
-  <xsl:variable name="mpresformat">http://id.loc.gov/vocabulary/mpresformat/</xsl:variable>
-  <xsl:variable name="mmaspect">http://id.loc.gov/vocabulary/maspect/</xsl:variable>
-  <xsl:variable name="mrectype">http://id.loc.gov/vocabulary/mrectype/</xsl:variable>
-  <xsl:variable name="mspecplayback">http://id.loc.gov/vocabulary/mspecplayback/</xsl:variable>
-  <xsl:variable name="mgroove">http://id.loc.gov/vocabulary/mgroove/</xsl:variable>
-  <xsl:variable name="mvidformat">http://id.loc.gov/vocabulary/mvidformat/</xsl:variable>
-  <xsl:variable name="mbroadstd">http://id.loc.gov/vocabulary/mbroadstd/</xsl:variable>
-  <xsl:variable name="mfiletype">http://id.loc.gov/vocabulary/mfiletype/</xsl:variable>
-  <xsl:variable name="mregencoding">http://id.loc.gov/vocabulary/mregencoding/</xsl:variable>
-  <xsl:variable name="mmusicformat">http://id.loc.gov/vocabulary/mmusicformat/</xsl:variable>
-  <xsl:variable name="genreFormSchemes">http://id.loc.gov/vocabulary/genreFormSchemes/</xsl:variable>
-  <xsl:variable name="subjectSchemes">http://id.loc.gov/vocabulary/subjectSchemes/</xsl:variable>
-
-  <!-- for upper- and lower-case translation (ASCII only) -->
-  <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
-  <xsl:variable name="upper">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
   
-
-  <!-- configuration files -->
-
-  <!-- subject thesaurus map -->
-  <xsl:variable name="subjectThesaurus" select="document('conf/subjectThesaurus.xml')"/>
-
-  <!-- language map -->
-  <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
-
-  <!-- code maps -->
-  <xsl:variable name="codeMaps" select="document('conf/codeMaps.xml')"/>
+  <xsl:include href="lc-local-fields.xsl"/>
 
   <xsl:template match="/">
 
@@ -200,6 +131,8 @@
     <xsl:variable name="vInstanceType">
       <xsl:apply-templates mode="instanceType" select="marc:leader"/>
     </xsl:variable>
+
+    <xsl:variable name="vCount880"><xsl:value-of select="count(marc:datafield[@tag='880'])"/></xsl:variable>
     
     <!-- generate main Work entity -->
     <xsl:choose>
@@ -220,16 +153,35 @@
                 </bf:GenerationProcess>
               </bf:generationProcess>
               <!-- pass fields through conversion specs for AdminMetadata properties -->
-              <xsl:apply-templates mode="adminmetadata">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:choose>
+                <xsl:when test="$vCount880 = 0">
+                  <xsl:apply-templates mode="adminmetadata">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates mode="mProcessAdminMetadata880">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
             </bf:AdminMetadata>
           </bf:adminMetadata>
           <!-- pass fields through conversion specs for Work properties -->
-          <xsl:apply-templates mode="work">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="work">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessWork880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <bf:hasInstance>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           </bf:hasInstance>
@@ -243,19 +195,73 @@
         <bf:Instance>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
           <!-- pass fields through conversion specs for Instance properties -->
-          <xsl:apply-templates mode="instance">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-            <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="instance">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessInstance880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
           <bf:instanceOf>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
           </bf:instanceOf>
           <!-- generate hasItem properties -->
-          <xsl:apply-templates mode="hasItem">
-            <xsl:with-param name="recordid" select="$recordid"/>
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="hasItem">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessItem880">
+                <xsl:with-param name="recordid" select="$recordid"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
+          <!-- special LoC processing for $5 -->
+          <!-- link all properties from fields with $5=DLC to a single Item -->
+          <xsl:if test="$localfields and
+                        not(marc:datafield[@tag='051' or (@tag='050' and @ind1='0')]) and
+                        marc:datafield[marc:subfield[@code='5']='DLC']">
+            <bf:hasItem>
+              <bf:Item>
+                <xsl:attribute name="rdf:about">
+                  <xsl:value-of select="concat($recordid,'#Item-DLC')"/>
+                </xsl:attribute>
+                <bf:heldBy>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:heldBy>
+                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="instance">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHasItem" select="true()"/>
+                </xsl:apply-templates>
+                <!-- generate Item properties from 541/561/563/583 -->
+                <xsl:apply-templates select="marc:datafield[(((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))) and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Item>
+            </bf:hasItem>
+          </xsl:if>
         </bf:Instance>
       </xsl:when>
     </xsl:choose>

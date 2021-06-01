@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="490 - SERIES STATEMENT">
+    <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
+    <x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Instance" test="count(//bf:Instance[1]/bf:seriesStatement) = 4"/>
+    <x:expect label="seriesStatement constructed from $axv" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>
+    <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Instance[1]/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
+    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>
+  </x:scenario>
+  
+  <x:scenario label="510 - CITATION/REFERENCES NOTE">
+    <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
+    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Work[1]/bf:references/bf:Work) = 1"/>
+    <x:expect label="$a creates a title property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
+    <x:expect label="$b creates a note property of the Work object with noteType 'Coverage'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Coverage']/parent::*/rdfs:label = 'v1n1, 1984-'"/>
+    <x:expect label="$c creates a note property of the Work object with noteType 'Location'" test="//bf:Work[1]/bf:references/bf:Work/bf:note/bf:Note/bf:noteType[text()='Location']/parent::*/rdfs:label = 'p. 10, 50, and iii'"/>
+    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Work[1]/bf:references/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
+  </x:scenario>
+
+</x:description>

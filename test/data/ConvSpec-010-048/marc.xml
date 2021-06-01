@@ -128,7 +128,7 @@
       <subfield code="2">lcsh</subfield>
     </datafield>
     <datafield tag="034" ind1="1" ind2=" ">
-      <subfield code="a">a</subfield>
+      <subfield code="a">b</subfield>
       <subfield code="b">744000</subfield>
       <subfield code="c">96000</subfield>
       <subfield code="d">W1800000</subfield>
@@ -170,7 +170,7 @@
     <datafield tag="040" ind1=" " ind2=" ">
       <subfield code="a">NBPol-G</subfield>
       <subfield code="b">fre</subfield>
-      <subfield code="c">CtY</subfield>
+      <subfield code="d">DLC</subfield>
       <subfield code="d">CtY</subfield>
       <subfield code="e">NARS Staff Bulletin No. 16</subfield>
       <subfield code="e">appm</subfield>
@@ -188,7 +188,7 @@
       <subfield code="a">en</subfield>
       <subfield code="a">fr</subfield>
       <subfield code="g">it</subfield>
-      <subfield code="2">iso639-1</subfield>
+      <subfield code="2">ISO 639-1</subfield>
     </datafield>
     <datafield tag="042" ind1=" " ind2=" ">
       <subfield code="a">lc</subfield>

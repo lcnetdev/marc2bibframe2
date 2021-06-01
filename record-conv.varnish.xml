@@ -1,0 +1,486 @@
+<backend syntax="xml">
+	<xslt stylesheet="/marklogic/applications/marc2bibframe2/xsl/marc2bibframe2.xsl">
+		<param name="idsource" value="https://preprod.id.loc.gov/vocabulary/organizations/dlc"/>
+		<param name="localfields" value="true"/>
+		<param name="baseuri" value="http://bibframe.example.org/"/>
+	</xslt>
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Agent[contains(@rdf:about,'bibframe.example.org')][not(string(bf:source/bf:Source/bf:code)='fast')][not(rdf:type/@rdf:resource='http://id.loc.gov/ontologies/bibframe/Family')]">
+			<key field="bflc:name11MatchKey"/>
+			<key field="bflc:name00MatchKey"/>
+			<key field="bflc:name10MatchKey"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- Agent/family lookup in subjects -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Agent[contains(@rdf:about,'bibframe.example.org')][rdf:type/@rdf:resource='http://id.loc.gov/ontologies/bibframe/Family']">
+			<key field="bflc:name11MatchKey"/>
+			<key field="bflc:name00MatchKey"/>
+			<key field="bflc:name10MatchKey"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- bf:Places in names 1 of 4 simple -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org') or not (@rdf:about)][not(string(bf:source/bf:Source/bf:code)='fast')][not(rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#ComplexSubject') and not(madsrdf:componentList)]">
+			<key field="madsrdf:authoritativeLabel"/>
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- places in names 2 of 4 nonfast hiearchical components-->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org') or not (@rdf:about)][not(string(bf:source/bf:Source/bf:code)='fast')][rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#HierarchicalGeographic']/madsrdf:componentList/*">
+			<key field="madsrdf:authoritativeLabel"/>
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- places in names 3 of 4 geo components -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[contains(@rdf:about,'example.org') or not (@rdf:about)]/madsrdf:componentList/madsrdf:Geographic">
+			<key field="madsrdf:authoritativeLabel"/>
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- places in names 4 of 4 type geo -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Topic[rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#Geographic'][contains(@rdf:about,'example.org') or not (@rdf:about)]">
+			<key field="madsrdf:authoritativeLabel"/>
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+
+
+
+
+
+	<!-- subjects -->
+	<!-- nate added componentlist and moved genreForm 2018-04-18 
+	nate changed to only lookup lcsh or blank source				   
+	added back genreform if subject code is lcsh
+	-->
+	<!-- split into 6
+	<rdf-lookup timeout="3" >
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Temporal[contains(@rdf:about,'example.org')] |    
+		      //bf:Work/bf:subject/bf:Topic/madsrdf:componentList/madsrdf:Temporal[contains(@rdf:about,'example.org') or not(@rdf:about)]|    
+		      //bf:Work/bf:subject/bf:Topic[string(bf:source/bf:Source/bf:code)='lcsh'][not(rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#Geographic')][contains(@rdf:about,'example.org')] |
+	       //bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='lcsh']/madsrdf:componentList/madsrdf:Topic[contains(@rdf:about,'example.org') or not(@rdf:about)]|   
+		       //bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org')][not(string(bf:source/bf:Source/bf:code)='fast')][rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#ComplexSubject']|
+			    //bf:Work/bf:subject/bf:Topic[string(bf:source/bf:Source/bf:code)='lcsh' ]/madsrdf:componentList/madsrdf:GenreForm[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup> -->
+	<!-- subjects 1 of 6 temporal-->
+
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Temporal[contains(@rdf:about,'example.org')]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- subjects 2 of 6 temporal as component-->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Topic/madsrdf:componentList/madsrdf:Temporal[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- subjects 3 of 6 topics that are lcsh but not geographic-->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Topic[string(bf:source/bf:Source/bf:code)='lcsh'][not(rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#Geographic')][contains(@rdf:about,'example.org')]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- subjects 4 of 6 nodes that are lcsh and a component that is a Topic-->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='lcsh']/madsrdf:componentList/madsrdf:Topic[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- subjects 5 of 6 Places that are  NOT fast but are components  ?? -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:Place[contains(@rdf:about,'example.org')][not(string(bf:source/bf:Source/bf:code)='fast')][rdf:type/@rdf:resource='http://www.loc.gov/mads/rdf/v1#ComplexSubject']">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- subjects 6 of 6 nodes that are lcsh and a component that is a GenreForm -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='lcsh' ]/madsrdf:componentList/madsrdf:GenreForm[contains(@rdf:about,'example.org') or not(@rdf:about)]">">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/subjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- childrenssubjects -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<!-- nate added 2018-11-23-->
+		<lookup xpath="//bf:Work/bf:subject/*/madsrdf:componentList/*[string(bf:source/bf:Source/bf:code)='lcshac'][contains(@rdf:about,'example.org') or not(@rdf:about)]|                          //bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='lcshac'][contains(@rdf:about,'example.org') or not(@rdf:about)]       ">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/childrensSubjects/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreform 1 of 5 -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work//bf:genreForm/bf:GenreForm[string(bf:source/bf:Source/bf:code)='gmgpc' or string(bf:source/bf:Source/bf:code)='lctgm'][contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/graphicMaterials/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreform 2 of 5 subjects not complex -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='gmgpc' or string(bf:source/bf:Source/bf:code)='lctgm'][contains(@rdf:about,'example.org') or not(@rdf:about)][not(madsrdf:componentList)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/graphicMaterials/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreform 3 of 5 subject componentlist Genreform-->
+	<rdf-lookup timeout="3">
+
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='gmgpc' or string(bf:source/bf:Source/bf:code)='lctgm']/madsrdf:componentList/madsrdf:GenreForm[contains(@rdf:about,'example.org') or not(@rdf:about)] ">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/graphicMaterials/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreform 4 of 5 subject componentlist Topic-->
+	<rdf-lookup timeout="3">
+
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/*[string(bf:source/bf:Source/bf:code)='gmgpc' or string(bf:source/bf:Source/bf:code)='lctgm']/madsrdf:componentList/madsrdf:Topic[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/graphicMaterials/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreform 5 of 5 -->
+	<rdf-lookup timeout="3">
+		<!-- nate added tgm 2018-05-08 graphicMaterials -->
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:genreForm/bf:GenreForm[string(bf:source/bf:Source/bf:code)='gmgpc' or string(bf:source/bf:Source/bf:code)='lctgm']/madsrdf:componentList/madsrdf:GenreForm[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/graphicMaterials/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<rdf-lookup timeout="3">
+		<!-- nate added intendedAudience lcdgt 2019-1218  -->
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:intendedAudience/bf:IntendedAudience[string(bf:source/bf:Source/bf:code)='lcdgt' or string(bf:source/bf:Source/rdfs:label)='lcdgt' ]">
+			<key field="rdfs:label"/>
+
+			<server url="https://preprod.id.loc.gov/vocabulary/demographicTerms/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreForms 1 of 4 this may include subjects-->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work//bf:genreForm/bf:GenreForm[not(bf:source/bf:Source/bf:code) or (string(bf:source/bf:Source/bf:code)!='lcsh' or string(bf:source/bf:Source/bf:code)!='gmgpc' and string(bf:source/bf:Source/bf:code)!='lctgm')][contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/genreForms/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreForms 2 of 4 -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject/bf:GenreForm[not(bf:source/bf:Source/bf:code) or (string(bf:source/bf:Source/bf:code)!='gmgpc' and string(bf:source/bf:Source/bf:code)!='lctgm')][contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/genreForms/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreForms 3 of 4 -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:subject//madsrdf:componentList/madsrdf:GenreForm[not(bf:source/bf:Source/bf:code) or (string(bf:source/bf:Source/bf:code)!='lcsh' or string(bf:source/bf:Source/bf:code)!='gmgpc' and string(bf:source/bf:Source/bf:code)!='lctgm')][contains(@rdf:about,'example.org') or not(@rdf:about)] ">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/genreForms/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- genreForms 4 of 4 -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:genreForm/bf:GenreForm/madsrdf:componentList/madsrdf:GenreForm[not(bf:source/bf:Source/bf:code) or (string(bf:source/bf:Source/bf:code)!='lcsh' or string(bf:source/bf:Source/bf:code)!='gmgpc' and string(bf:source/bf:Source/bf:code)!='lctgm')][contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/genreForms/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- imprints: any provision -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Instance//bf:provisionActivity/bf:ProvisionActivity/bf:agent/bf:Agent[contains(@rdf:about,'example.org') or not(@rdf:about)]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/entities/providers/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- geo may be in names or subjects? -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work//bf:subject/madsrdf:Geographic[contains(@rdf:about,'example.org')][string(bf:source/bf:Source/bf:code)='lcsh']|      //bf:Work/bf:subject//madsrdf:componentList/madsrdf:Geographic[not(@rdf:about)][string(bf:source/bf:Source/bf:code)='lcsh']">
+			<key field="madsrdf:authoritativeLabel"/>
+			<server url="https://preprod.id.loc.gov/authorities/names/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- relators using new code service 2018-12-18 -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Role[not(@rdf:about)]">
+			<key field="bflc:relatorMatchKey"/>
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/relators/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- http://id.loc.gov/authorities/performanceMediums/label/mixed%20chorus  nate test -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:musicMedium[not(@rdf:resource)]/bf:MusicMedium[not(@rdf:about)][not(bf:note)]">
+			<!-- <lookup xpath="//bf:MusicMedium[not(@rdf:about)][not(@rdf:resource)][bf:source/bf:Source/rdfs:label='lcmpt'][not(bf:note)]">       -->
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/authorities/performanceMediums/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- bflc:Relation/rdfs:label -->
+
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bflc:Relation[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/entities/relationships/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- language -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Language[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/languages/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- org code
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier/bf:Agent[rdfs:label]|   
+		              //bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Source[rdf:type='http://id.loc.gov/ontologies/bibframe/Agent'][rdfs:label] |       
+					  //bf:adminMetadata/bf:AdminMetadata/bf:source/bf:Agent[rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/organizations/code/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	 -->
+	<!-- 336 contentType if not code -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:content/bf:Content[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/contentTypes/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- 337 mediatype if not code -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Instance/bf:media/bf:Media[not(@rdf:about)][rdfs:label]    ">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/mediaTypes/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- 338 carrier if not $b  -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Instance/bf:carrier/bf:Carrier[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/carriers/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- scale -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:scale/bf:Scale[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/mscale/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+	<!-- supplementary content http://mlvlp04.loc.gov:8081/vocabulary/msupplcont/historicalinfo.html -->
+	<rdf-lookup timeout="3">
+		<namespace prefix="bf" href="http://id.loc.gov/ontologies/bibframe/"/>
+		<namespace prefix="bflc" href="http://id.loc.gov/ontologies/bflc/"/>
+		<namespace prefix="rdf" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+		<namespace prefix="madsrdf" href="http://www.loc.gov/mads/rdf/v1#"/>
+		<namespace prefix="rdfs" href="http://www.w3.org/2000/01/rdf-schema#"/>
+		<lookup xpath="//bf:Work/bf:supplementaryContent/bf:SupplementaryContent[not(@rdf:about)][rdfs:label]">
+			<key field="rdfs:label"/>
+			<server url="https://preprod.id.loc.gov/vocabulary/msupplcont/label/%s" method="HEAD"/>
+		</lookup>
+	</rdf-lookup>
+</backend>

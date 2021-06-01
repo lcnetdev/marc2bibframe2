@@ -45,7 +45,7 @@ an XML file containing MARCXML as the second:
     xsltproc xsl/marc2bibframe2.xsl test/data/marc.xml
 
 ### Converter parameters
-The converter supports four optional parameters:
+The converter supports several optional parameters:
 - `baseuri` - the URI stem for generated entities. Default is
   `http://example.org/`, which will result in minting URIs like
   `http://example.org/<record ID>#Work`
@@ -63,8 +63,10 @@ The converter supports four optional parameters:
   `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
   by default, resulting in no source property being defined.
 
-- `localfield` - if true, process fields that are local to the Library
-  of Congress records. Right now, the only field affected is the 859.
+- `localfields` - if true, apply special local processing for Library
+of Congress records. This includes:
+  - Process 859 fields the same as 856 fields
+  - Only convert 856/859 fields with particular URL values
 
 - `pGenerationDatestamp` - a value to be used as the datestamp for the
   bf:generationProcess property for the Work AdminMetadata. Defaults
@@ -147,6 +149,15 @@ the command (for Mac OS or Linux):
     xspec.sh test/marc2bibframe2.xspec
 
 Test reports will be output in the test/xspec directory.
+
+### Testing for LoC-specific conversion
+
+There are a few conversion behaviors that are specific to the Library
+of Congress. For example, the Library of Congress uses a
+locally-defined 859 field as an analogue to the standard 856. To test
+LoC-specific conversions, run only the ConvSpec-DLC.xspec test suite:
+
+    xspec.sh test/ConvSpec-DLC.xspec
 
 ## Active record conversion
 

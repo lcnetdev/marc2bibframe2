@@ -89,11 +89,28 @@
               </xsl:choose>
             </rdf:value>
             <xsl:if test="$source != '' and $source != 'uri'">
-              <bf:source>
-                <bf:Source>
-                  <rdfs:label><xsl:value-of select="$source"/></rdfs:label>
-                </bf:Source>
-              </bf:source>
+              <xsl:choose>
+                <xsl:when test="@code='w'">
+                  <bf:assigner>
+                    <bf:Agent>
+                      <xsl:if test="$source='DLC'">
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                      </xsl:if>
+                      <bf:code><xsl:value-of select="$source"/></bf:code>
+                    </bf:Agent>
+                  </bf:assigner>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:source>
+                    <bf:Source>
+                      <xsl:if test="$source='DLC'">
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                      </xsl:if>
+                      <bf:code><xsl:value-of select="$source"/></bf:code>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:if>
           </xsl:element>
         </bf:identifiedBy>
@@ -103,18 +120,25 @@
 
   <!-- create a bf:source property from a subfield $2 -->
   <xsl:template match="marc:subfield" mode="subfield2">
-    <xsl:param name="serialization" select="'rdfxsml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pVocabStem"/>
+    <xsl:param name="pStripPunct" select="false()"/>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bf:source>
           <bf:Source>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
+            <xsl:if test="$pVocabStem != ''">
+              <xsl:variable name="vNormCode">
+                <xsl:call-template name="tNormalizeCode">
+                  <xsl:with-param name="pCode" select="."/>
+                  <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pVocabStem,$vNormCode)"/></xsl:attribute>
+            </xsl:if>
+            <bf:code>
               <xsl:value-of select="."/>
-            </rdfs:label>
+            </bf:code>
           </bf:Source>
         </bf:source>
       </xsl:when>
@@ -148,14 +172,44 @@
   </xsl:template>
 
   <!--
+      create a bf:role property from a subfield $4
+  -->
+  <xsl:template match="marc:subfield" mode="subfield4">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:role>
+          <bf:Role>
+            <xsl:choose>
+              <xsl:when test="contains(.,'://')">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="."/></xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </xsl:otherwise>
+            </xsl:choose>
+          </bf:Role>
+        </bf:role>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       create a bflc:applicableInstitution property from a subfield $5
   -->
   <xsl:template match="marc:subfield" mode="subfield5">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vNormCode">
+      <xsl:call-template name="tNormalizeCode">
+        <xsl:with-param name="pCode" select="."/>
+        <xsl:with-param name="pStripPunct" select="true()"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <bflc:applicableInstitution>
           <bf:Agent>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vNormCode)"/></xsl:attribute>
             <bf:code><xsl:value-of select="."/></bf:code>
           </bf:Agent>
         </bflc:applicableInstitution>
@@ -221,10 +275,10 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <rdfs:label>
+        <rdf:value>
           <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
           <xsl:value-of select="."/>
-        </rdfs:label>
+        </rdf:value>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
