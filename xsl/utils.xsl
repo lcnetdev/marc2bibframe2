@@ -464,7 +464,7 @@
       </xsl:if>
     </xsl:if>
   </xsl:template>
-
+  
   <!--
       create a bflc:applicableInstitution property from a subfield $5, overrides bib controlsubfields for dlc link
       This supports authority 050 records and others.
@@ -489,7 +489,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
 
   <!-- Return a normalized code suitable for constructing a URI -->
   <xsl:template name="tNormalizeCode">
