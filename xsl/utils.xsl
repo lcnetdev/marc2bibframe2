@@ -478,7 +478,7 @@
           <bf:Agent>
             <xsl:choose>
               <xsl:when test="starts-with(.,'DLC')">
-                <xsl:attribute  name="rdf:about"><xsl:value-of select="concat($organizations,translate(.,concat($vUpper,'- ' ),$vLower))"/></xsl:attribute>
+                <xsl:attribute  name="rdf:about"><xsl:value-of select="concat($organizations,translate(.,concat($upper,'- ' ),$lower))"/></xsl:attribute>
               </xsl:when>
               <xsl:otherwise>
                 <bf:code><xsl:value-of select="."/></bf:code>
