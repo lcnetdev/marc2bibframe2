@@ -179,11 +179,11 @@
   
   <x:scenario label="351 - ORGANIZATION AND ARRANGEMENT OF MATERIALS">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="351 creates an arrangement/Arrangement property of the Work" test="count(//bf:Work[1]/bf:arrangement/bf:Arrangement) = 1"/>
-    <x:expect label="$a creates an organization property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:organization = 'Hierarchical'"/>
-    <x:expect label="$b creates a pattern property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:pattern = 'Arranged by form of material'"/>
-    <x:expect label="$c creates a hierarchicalLevel property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:hierarchicalLevel = 'Series'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
+    <x:expect label="351 creates a collectionArrangement/CollectionArrangement property of the Work" test="count(//bf:Work[1]/bf:collectionArrangement/bf:CollectionArrangement) = 1"/>
+    <x:expect label="$a creates a collectionOrganization property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:collectionOrganization = 'Hierarchical'"/>
+    <x:expect label="$b creates a pattern property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:pattern = 'Arranged by form of material'"/>
+    <x:expect label="$c creates a hierarchicalLevel property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:hierarchicalLevel = 'Series'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
   </x:scenario>
   
   <x:scenario label="352 - DIGITAL GRAPHIC REPRESENTATION">
