@@ -1229,7 +1229,7 @@
     </xsl:if>
     <xsl:variable name="vPos22Code">
       <xsl:choose>
-        <xsl:when test="substring($dataElements,5,1) = ' '">r</xsl:when>
+        <xsl:when test="substring($dataElements,5,1) = ' '">skip</xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,5,1)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
