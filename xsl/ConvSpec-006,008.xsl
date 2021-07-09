@@ -1162,19 +1162,6 @@
   <xsl:template name="instance008maps">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="substring($dataElements,8,1) = 'b' and
-                  (not(../marc:leader) or not(contains('bs',substring(../marc:leader,8,1))))">
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <bf:issuance>
-            <bf:Issuance>
-              <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/issuance/serl</xsl:attribute>
-              <rdfs:label>serial</rdfs:label>
-            </bf:Issuance>
-          </bf:issuance>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
       <xsl:variable name="vPos23Code">
         <xsl:choose>

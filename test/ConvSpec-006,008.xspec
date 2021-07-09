@@ -70,9 +70,6 @@
       <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bflc:relief/bflc:Relief/@rdf:about = 'http://id.loc.gov/vocabulary/mrelief/shad'"/>
       <x:expect label="pos 22-23 creates a cartographicAttributes property of the Work" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/rdfs:label = 'Krovak'"/>
       <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/@rdf:about = 'http://id.loc.gov/vocabulary/mprojection/bk'"/>
-      <x:expect label="pos 25 = 'b' may create an issuance property of the Instance" test="//bf:Instance[5]/bf:issuance[1]/bf:Issuance/rdfs:label = 'serial'"/>
-      <x:expect label="...with a URI" test="//bf:Instance[5]/bf:issuance[1]/bf:Issuance/@rdf:about = 'http://id.loc.gov/vocabulary/issuance/serl'"/>
-      <x:expect label="...unless already assigned by LDR/07" test="count(//bf:Instance[11]/bf:issuance) = 1"/>
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'playing cards'"/>
       <x:expect label="...with a URI" test="//bf:Work[5]/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2017027252'"/>
     </x:scenario>
