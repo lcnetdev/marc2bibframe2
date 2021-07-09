@@ -161,7 +161,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='257' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='257')]" mode="work">
+  <xsl:template match="marc:datafield[@tag='257' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='257')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
