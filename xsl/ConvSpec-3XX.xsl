@@ -1153,10 +1153,10 @@
                 </xsl:variable>
                 <xsl:choose>
                   <xsl:when test="$vNormalizedFormat='bluray'">
-                    <xsl:value-of select="concat($mvidformat,'bluray')"/>
+                    <xsl:value-of select="concat($mencformat,'bluray')"/>
                   </xsl:when>
                   <xsl:when test="$vNormalizedFormat='dvd video'">
-                    <xsl:value-of select="concat($mvidformat,'dvd')"/>
+                    <xsl:value-of select="concat($mencformat,'dvd')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>
@@ -1256,8 +1256,8 @@
         <xsl:choose>
           <xsl:when test="$vTag='347' and @code='b'">
             <xsl:choose>
-              <xsl:when test="$vTarget=concat($mvidformat,'bluray')">Blu-Ray</xsl:when>
-              <xsl:when test="$vTarget=concat($mvidformat,'dvd')">DVD video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-ray</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'dvd')">DVD video</xsl:when>
               <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
             </xsl:choose>
           </xsl:when>
