@@ -23,7 +23,7 @@
     <xsl:apply-templates mode="workUnifTitle" select=".">
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
-    <!-- create translationOf/arrangementOf properties and Works from uniform title $l/$o -->
+    
     <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
       <xsl:variable name="vWorkUri">
         <xsl:apply-templates mode="generateUri" select="..">
@@ -31,12 +31,8 @@
           <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
         </xsl:apply-templates>
       </xsl:variable>
-      <xsl:variable name="vProp">
-        <xsl:choose>
-          <xsl:when test="@code='l'">bf:translationOf</xsl:when>
-          <xsl:when test="@code='o'">bflc:arrangementOf</xsl:when>
-        </xsl:choose>
-      </xsl:variable>
+      <!-- kefo note - all 240s generate an expressionOf relationship to a Hub. -->
+      <xsl:variable name="vProp" select="'bf:expressionOf'" />
       <xsl:choose>
         <xsl:when test="$serialization='rdfxml'">
           <xsl:element name="{$vProp}">
@@ -44,12 +40,7 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
               <xsl:apply-templates mode="workUnifTitle" select="..">
                 <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pUnifTitleMode">
-                  <xsl:choose>
-                    <xsl:when test="@code='l'">translation</xsl:when>
-                    <xsl:when test="@code='o'">arrangement</xsl:when>
-                  </xsl:choose>
-                </xsl:with-param>
+                <xsl:with-param name="pUnifTitleMode" select='expression' />
                 <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
               </xsl:apply-templates>
             </bf:Work>
@@ -148,6 +139,12 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <!-- 
+      kefo note - 20210715
+      We should evaluate the value of these labels.  The label does not include the contributors.
+      THat makes them not very useful since a title frequently means nothing without the context
+      of a contributor when one exists.
+    -->
     <xsl:variable name="label">
       <!-- 8XX fields construct the label differently -->
       <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4'">
@@ -166,7 +163,7 @@
             <xsl:value-of select="normalize-space($label)"/>
           </rdfs:label>
         </xsl:if>
-        <xsl:if test=" $tag='240' and ($pUnifTitleMode='translation' or $pUnifTitleMode='arrangement')">
+        <xsl:if test="$tag='240'">
           <xsl:apply-templates select="../marc:datafield[@tag='100' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')] |
                                        ../marc:datafield[@tag='110' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='110')] |
                                        ../marc:datafield[@tag='111' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='111')]"
@@ -231,6 +228,7 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
+        <!-- 
         <xsl:if test="$pUnifTitleMode='translation'">
           <xsl:if test="count(../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
             <bf:language>
@@ -252,6 +250,7 @@
             </bf:language>
           </xsl:if>
         </xsl:if>
+        -->
         <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
           <xsl:for-each select="marc:subfield[@code='m']">
             <bf:musicMedium>
