@@ -20,9 +20,12 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
-    <xsl:apply-templates mode="workUnifTitle" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
+    <!-- 
+      kefo note - 20210715
+      Removed outputting any information about the 130/240 at the main Work
+      level.  130/240 information is related to the Hub resource.  Perhaps in 
+      some cases it relates to the Thing in the 245, but that's not universal.
+    -->
     
     <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
       <xsl:variable name="vWorkUri">
@@ -251,7 +254,21 @@
           </xsl:if>
         </xsl:if>
         -->
-        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
+        <!-- 
+          kefo note - I'm really not clear what this rule is for. 
+          The first 'not' will evaluate to true if tag is not 130 or 240.
+          The second 'not' will evaluate to true if the record does NOT contain a 382.
+          So if it is a 730 (or anything other than a 130 or 240), it will evaluate to true because the first 'not' will be true and so the code will always run.
+          If it is a 240 with a 382, the first will evaluate to false and the second will also evaluate to false, and so the If will not run.
+          If it is a 240 with NO 382, the first will be false and the second will be true, because there's no 382, and the code will run.
+          In short, the code will run if not 130 or 240;  that makes sense.
+          And it will run if it is a 130 or 240 and there is no 382.  That's not what we want.
+            For a Hub, we want to take the $m and leave the 382 business for the Work/Expression.
+          Man, that warped my mind.
+          <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
+          
+          Basically, we always want the $m used.  Going to remove the If.
+        -->
           <xsl:for-each select="marc:subfield[@code='m']">
             <bf:musicMedium>
               <bf:MusicMedium>
@@ -268,8 +285,11 @@
               </bf:MusicMedium>
             </bf:musicMedium>
           </xsl:for-each>
-        </xsl:if>
-        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='384'])">
+        
+        <!-- 
+          See long comment above.  Same issue here.
+          <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='384'])">
+        -->
           <xsl:for-each select="marc:subfield[@code='r']">
             <bf:musicKey>
               <xsl:if test="$vXmlLang != ''">
@@ -282,7 +302,7 @@
               </xsl:call-template>
             </bf:musicKey>
           </xsl:for-each>
-        </xsl:if>
+
         <xsl:for-each select="marc:subfield[@code='s']">
           <bf:version>
             <xsl:if test="$vXmlLang != ''">

@@ -25,28 +25,28 @@
     <!-- tests for 630 located in ConvSpec-600-662.xspec -->
     <!-- tests for 830 located in ConvSpec-Process6-Series.xspec -->
     <x:expect label="1XX $t becomes a title of the main Work" test="count(//bf:Work[@rdf:about='http://example.org/2#Work']/bf:title) = 2"/>
-    <x:expect label="130/240 becomes a title of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
+    <x:expect label="130/240 becomes a title of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
     <x:expect label="6XX/7XX/8XX $t creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/1#Work700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/2#Work730-4']) = 1"/>
     <x:expect label="730 I2=2 with no $i becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Bible'"/>
     <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle = '[Motets]'"/>
     <x:expect label="$i becomes a bflc:relationship of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label='Parody of (work)' and //bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bf:relatedTo/@rdf:resource='http://example.org/2#Work730-6'"/>
-    <x:expect label="$d becomes a legalDate" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:legalDate = '1952'"/>
-    <x:expect label="$f becomes the originDate" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:originDate = '[between 1775 and 1800]'"/>
+    <x:expect label="$d becomes a legalDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:legalDate = '1952'"/>
+    <x:expect label="$f becomes the originDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:originDate = '[between 1775 and 1800]'"/>
     <x:expect label="130 creates an expressionOf property" test="count(//bf:Work[@rdf:about='http://example.org/4#Work']/bf:expressionOf) = 1"/>
     <x:expect label="...rdfs:label property includes $l" test="//bf:Work[@rdf:about='http://example.org/4#Work']/bf:expressionOf/bf:Work/rdfs:label='Jara raporto de la Ministro de Supply kaj Servo Kanado sub la Korporacioj kaj Labor Unions Returns Akto. English.'"/>
     <x:expect label="...for 240, add contribution from 1XX to stub Work" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Ferrante, Elena,'"/>
     <x:expect label="...with URI that matches stub work" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://example.org/5#Work240-5-Agent'"/>
-    <x:expect label="$m becomes a musicMedium (if no 382)" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:musicMedium/bf:MusicMedium/rdfs:label = 'violin, viola'"/>
+    <x:expect label="$m becomes a musicMedium of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:musicMedium/bf:MusicMedium/rdfs:label = 'violin, viola'"/>
     <x:expect label="130 creates a bf:expressionOf/bf:Work" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work) = 1"/>
     <x:expect label="...with rdfs:label that includes $o" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
     <x:expect label="240 creates expressionOf and adds contribution from 1XX to stub Work" test="//bf:Work[@rdf:about='http://example.org/6#Work']/bf:expressionOf/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Nefwich, Harvey.'"/>
-    <x:expect label="$r becomes a musicKey (if no 384)" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:musicKey = 'D major'"/>
+    <x:expect label="$r becomes a musicKey" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:musicKey = 'D major'"/>
     <x:expect label="$r always becomes a musicKey if uniform title is not a main entry" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relatedTo/bf:Work/bf:musicKey = 'E minor'"/>
     <x:expect label="$s becomes a version" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bf:version = 'Codex Sinaiticus'"/>
     <x:expect label="$x becomes an Issn" test="//bf:Work[@rdf:about='http://example.org/2#Work730-6']/bf:identifiedBy/bf:Issn = '1234-5678'"/>
     <x:expect label="$2 becomes a source" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bf:source/bf:Source/bf:code='example'"/>
-    <x:expect label="$0 becomes an identifiedBy" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:identifiedBy[1]/bf:Identifier/rdf:value = '0001'"/>
+    <x:expect label="$0 becomes an identifiedBy of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:identifiedBy[1]/bf:Identifier/rdf:value = '0001'"/>
     <x:expect label="$0/$w, if a URI, becomes the rdf:about attribute of the bf:Work for 630, 730, 830" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/@rdf:about = 'http://example.org/9999#Work'"/>
     <x:expect label="$3 becomes a bflc:appliesTo" test="//bf:Work[@rdf:about='http://example.org/2#Work730-4']/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1980'"/>
     <x:expect label="$5 becomes a bflc:applicableInstitution" test="//bf:Work[@rdf:about='http://example.org/2#Work730-6']/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
