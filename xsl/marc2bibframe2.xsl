@@ -43,7 +43,7 @@
       LoC for conversion. By default these fields will not be
       converted unless this parameter evaluates to true()
   -->
-  <xsl:param name="localfields"/>
+  <xsl:param name="localfields" select="true()"/>
   
   <!--
       datestamp for generationProcess property of Work adminMetadata
@@ -85,6 +85,7 @@
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-Process6-Series.xsl"/>
+  <xsl:include href="lc-local-fields.xsl"/>
 
   <xsl:template match="/">
 
