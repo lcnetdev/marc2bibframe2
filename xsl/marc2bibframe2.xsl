@@ -65,7 +65,7 @@
   <!-- Output serialization. Currently only "rdfxml" is supported -->
   <xsl:param name="serialization" select="'rdfxml'"/>
   <!-- suppression is a local param -->
-  <xsl:param name="suppressed">suppressed</xsl:param> 
+  <xsl:param name="suppressed"></xsl:param> 
   
   <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
