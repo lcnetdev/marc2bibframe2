@@ -72,11 +72,20 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:creationDate>
+                <lclocal:d906 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=906     $a 7 $b cbc $c orignew $d 3 $e ncip $f 20 $g y-gencatlg</lclocal:d906>
+                <lclocal:d925 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=925  0  $a acquire $b 1 shelf copy $x policy default</lclocal:d925>
+                <lclocal:d955 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=955     $a of10 05-20-04 to HLCD; $c ld04 2004-07-19 telework; to subj. $d ld07 2004-07-22 $e ld11 2004-09-15 to BCCD</lclocal:d955>                
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
                     <bf:code>DLC</bf:code>
                   </bf:Agent>
                 </bf:assigner>
+                <bf:status>
+                  <bf:Status>
+                    <rdf:type rdf:resource="https://id.loc.gov/vocabulary/mstatus/supp"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">opac suppressed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -279,11 +288,20 @@
                 </bf:identifiedBy>
                 <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
                 <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
+                <lclocal:d906 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=906     $a 0 $b ibc $c copycat $d 1 $e ncip $f 20 $g y-gencompf</lclocal:d906>
+                <lclocal:d925 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=925  0  $a undetermined $x web preservation project (wpp)</lclocal:d925>
+                <lclocal:d955 xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/">=955     $a vb07 (stars done) 08-19-00 to HLCD lk00; AA3s lk29 received for subject Aug 25, 2000; to DEWEY 08-25-00; aa11 08-28-00</lclocal:d955>                
                 <bf:assigner>
                   <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
                     <bf:code>DLC</bf:code>
                   </bf:Agent>
                 </bf:assigner>
+                <bf:status>
+                  <bf:Status>
+                    <rdf:type rdf:resource="https://id.loc.gov/vocabulary/mstatus/supp"/>
+                    <rdfs:label>opac suppressed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>

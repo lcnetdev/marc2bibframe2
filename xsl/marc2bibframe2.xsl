@@ -9,6 +9,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
                 xmlns:fn="http://www.w3.org/2005/xpath-function"
+                xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/"
                 extension-element-prefixes="date fn"
                 exclude-result-prefixes="xsl marc">
 
@@ -63,7 +64,9 @@
   
   <!-- Output serialization. Currently only "rdfxml" is supported -->
   <xsl:param name="serialization" select="'rdfxml'"/>
-
+  <!-- suppression is a local param -->
+  <xsl:param name="suppressed">suppressed</xsl:param> 
+  
   <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
@@ -168,6 +171,9 @@
                   </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
+              <xsl:if test="$suppressed!=''">
+                <xsl:call-template name="marc993" />                
+              </xsl:if>
             </bf:AdminMetadata>
           </bf:adminMetadata>
           <!-- pass fields through conversion specs for Work properties -->
