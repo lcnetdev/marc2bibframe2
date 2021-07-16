@@ -135,8 +135,8 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:arrangement>
-          <bf:Arrangement>
+        <bf:collectionArrangement>
+          <bf:CollectionArrangement>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
@@ -151,14 +151,14 @@
               </bf:hierarchicalLevel>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='a']">
-              <bf:organization>
+              <bf:collectionOrganization>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="chopPunctuation">
                   <xsl:with-param name="chopString"><xsl:value-of select="."/></xsl:with-param>
                 </xsl:call-template>
-              </bf:organization>
+              </bf:collectionOrganization>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='b']">
               <bf:pattern>
@@ -170,8 +170,8 @@
                 </xsl:call-template>
               </bf:pattern>
             </xsl:for-each>
-          </bf:Arrangement>
-        </bf:arrangement>
+          </bf:CollectionArrangement>
+        </bf:collectionArrangement>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -1153,10 +1153,10 @@
                 </xsl:variable>
                 <xsl:choose>
                   <xsl:when test="$vNormalizedFormat='bluray'">
-                    <xsl:value-of select="concat($mvidformat,'bluray')"/>
+                    <xsl:value-of select="concat($mencformat,'bluray')"/>
                   </xsl:when>
                   <xsl:when test="$vNormalizedFormat='dvd video'">
-                    <xsl:value-of select="concat($mvidformat,'dvd')"/>
+                    <xsl:value-of select="concat($mencformat,'dvd')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>
@@ -1256,8 +1256,8 @@
         <xsl:choose>
           <xsl:when test="$vTag='347' and @code='b'">
             <xsl:choose>
-              <xsl:when test="$vTarget=concat($mvidformat,'bluray')">Blu-Ray</xsl:when>
-              <xsl:when test="$vTarget=concat($mvidformat,'dvd')">DVD video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-ray</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'dvd')">DVD video</xsl:when>
               <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
             </xsl:choose>
           </xsl:when>

@@ -150,14 +150,14 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a digitalCharacteristic/FileType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/rdfs:label = 'image file'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/@rdf:about = 'http://id.loc.gov/vocabulary/mfiletype/image'"/>
-    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-Ray'"/>
-    <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mvidformat/bluray'"/>
+    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-ray'"/>
+    <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mencformat/bluray'"/>
     <x:expect label="$c creates a digitalCharacteristic/FileSize property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[3]/bf:FileSize/rdfs:label = '182 KB'"/>
     <x:expect label="$d creates a digitalCharacteristic/Resolution property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[4]/bf:Resolution/rdfs:label = '3.1 megapixels'"/>
     <x:expect label="$e creates a digitalCharacteristic/RegionalEncoding property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[5]/bf:RegionalEncoding/rdfs:label = 'region 4'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[5]/bf:RegionalEncoding/@rdf:about = 'http://id.loc.gov/vocabulary/mregencoding/region4'"/>
     <x:expect label="$f creates a digitalCharacteristic/EncodedBitrate property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[6]/bf:EncodedBitrate/rdfs:label = '32 kbps'"/>
-    <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mvidformat/bluray'"/>
+    <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mencformat/bluray'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/bf:source/bf:Source/bf:code = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'computer disc'"/>
   </x:scenario>
@@ -179,11 +179,11 @@
   
   <x:scenario label="351 - ORGANIZATION AND ARRANGEMENT OF MATERIALS">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="351 creates an arrangement/Arrangement property of the Work" test="count(//bf:Work[1]/bf:arrangement/bf:Arrangement) = 1"/>
-    <x:expect label="$a creates an organization property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:organization = 'Hierarchical'"/>
-    <x:expect label="$b creates a pattern property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:pattern = 'Arranged by form of material'"/>
-    <x:expect label="$c creates a hierarchicalLevel property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bf:hierarchicalLevel = 'Series'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the Arrangement" test="//bf:Work[1]/bf:arrangement[1]/bf:Arrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
+    <x:expect label="351 creates a collectionArrangement/CollectionArrangement property of the Work" test="count(//bf:Work[1]/bf:collectionArrangement/bf:CollectionArrangement) = 1"/>
+    <x:expect label="$a creates a collectionOrganization property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:collectionOrganization = 'Hierarchical'"/>
+    <x:expect label="$b creates a pattern property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:pattern = 'Arranged by form of material'"/>
+    <x:expect label="$c creates a hierarchicalLevel property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bf:hierarchicalLevel = 'Series'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the CollectionArrangement" test="//bf:Work[1]/bf:collectionArrangement[1]/bf:CollectionArrangement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Records'"/>
   </x:scenario>
   
   <x:scenario label="352 - DIGITAL GRAPHIC REPRESENTATION">
