@@ -20,10 +20,13 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
-    <xsl:apply-templates mode="workUnifTitle" select=".">
-      <xsl:with-param name="serialization" select="$serialization"/>
-    </xsl:apply-templates>
-    <!-- create translationOf/arrangementOf properties and Works from uniform title $l/$o -->
+    <!-- 
+      kefo note - 20210715
+      Removed outputting any information about the 130/240 at the main Work
+      level.  130/240 information is related to the Hub resource.  Perhaps in 
+      some cases it relates to the Thing in the 245, but that's not universal.
+    -->
+    
     <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
       <xsl:variable name="vWorkUri">
         <xsl:apply-templates mode="generateUri" select="..">
@@ -31,12 +34,8 @@
           <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
         </xsl:apply-templates>
       </xsl:variable>
-      <xsl:variable name="vProp">
-        <xsl:choose>
-          <xsl:when test="@code='l'">bf:translationOf</xsl:when>
-          <xsl:when test="@code='o'">bflc:arrangementOf</xsl:when>
-        </xsl:choose>
-      </xsl:variable>
+      <!-- kefo note - all 240s generate an expressionOf relationship to a Hub. -->
+      <xsl:variable name="vProp" select="'bf:expressionOf'" />
       <xsl:choose>
         <xsl:when test="$serialization='rdfxml'">
           <xsl:element name="{$vProp}">
@@ -44,12 +43,7 @@
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
               <xsl:apply-templates mode="workUnifTitle" select="..">
                 <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pUnifTitleMode">
-                  <xsl:choose>
-                    <xsl:when test="@code='l'">translation</xsl:when>
-                    <xsl:when test="@code='o'">arrangement</xsl:when>
-                  </xsl:choose>
-                </xsl:with-param>
+                <xsl:with-param name="pUnifTitleMode" select='expression' />
                 <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
               </xsl:apply-templates>
             </bf:Work>
@@ -148,6 +142,12 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <!-- 
+      kefo note - 20210715
+      We should evaluate the value of these labels.  The label does not include the contributors.
+      THat makes them not very useful since a title frequently means nothing without the context
+      of a contributor when one exists.
+    -->
     <xsl:variable name="label">
       <!-- 8XX fields construct the label differently -->
       <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4'">
@@ -166,7 +166,7 @@
             <xsl:value-of select="normalize-space($label)"/>
           </rdfs:label>
         </xsl:if>
-        <xsl:if test=" $tag='240' and ($pUnifTitleMode='translation' or $pUnifTitleMode='arrangement')">
+        <xsl:if test="$tag='240'">
           <xsl:apply-templates select="../marc:datafield[@tag='100' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')] |
                                        ../marc:datafield[@tag='110' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='110')] |
                                        ../marc:datafield[@tag='111' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='111')]"
@@ -231,6 +231,7 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
+        <!-- 
         <xsl:if test="$pUnifTitleMode='translation'">
           <xsl:if test="count(../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
             <bf:language>
@@ -252,7 +253,22 @@
             </bf:language>
           </xsl:if>
         </xsl:if>
-        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
+        -->
+        <!-- 
+          kefo note - I'm really not clear what this rule is for. 
+          The first 'not' will evaluate to true if tag is not 130 or 240.
+          The second 'not' will evaluate to true if the record does NOT contain a 382.
+          So if it is a 730 (or anything other than a 130 or 240), it will evaluate to true because the first 'not' will be true and so the code will always run.
+          If it is a 240 with a 382, the first will evaluate to false and the second will also evaluate to false, and so the If will not run.
+          If it is a 240 with NO 382, the first will be false and the second will be true, because there's no 382, and the code will run.
+          In short, the code will run if not 130 or 240;  that makes sense.
+          And it will run if it is a 130 or 240 and there is no 382.  That's not what we want.
+            For a Hub, we want to take the $m and leave the 382 business for the Work/Expression.
+          Man, that warped my mind.
+          <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='382'])">
+          
+          Basically, we always want the $m used.  Going to remove the If.
+        -->
           <xsl:for-each select="marc:subfield[@code='m']">
             <bf:musicMedium>
               <bf:MusicMedium>
@@ -269,8 +285,11 @@
               </bf:MusicMedium>
             </bf:musicMedium>
           </xsl:for-each>
-        </xsl:if>
-        <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='384'])">
+        
+        <!-- 
+          See long comment above.  Same issue here.
+          <xsl:if test="not($tag='130' or $tag='240') or not(../marc:datafield[@tag='384'])">
+        -->
           <xsl:for-each select="marc:subfield[@code='r']">
             <bf:musicKey>
               <xsl:if test="$vXmlLang != ''">
@@ -283,7 +302,7 @@
               </xsl:call-template>
             </bf:musicKey>
           </xsl:for-each>
-        </xsl:if>
+
         <xsl:for-each select="marc:subfield[@code='s']">
           <bf:version>
             <xsl:if test="$vXmlLang != ''">

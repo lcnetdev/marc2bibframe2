@@ -77,7 +77,7 @@
     <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc) = 1"/>
     <x:expect label="...can also come from $2" test="count(//bf:Instance[1]/bf:identifiedBy[17]/bf:Istc) = 1"/>
     <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc/rdf:value = 'NLC018413261'"/>
-    <x:expect label="...except if $2 = 'eidr', then it creates an identifiedBy property on the Work" test="//bf:Work[1]/bf:identifiedBy[6]/bflc:Eidr/rdf:value = '10.5240/EA73-79D7-1B2B-B378-3A73-M'"/>
+    <x:expect label="...except if $2 = 'eidr', then it creates an identifiedBy property on the Work" test="//bf:Work[1]/bf:identifiedBy[6]/bf:Eidr/rdf:value = '10.5240/EA73-79D7-1B2B-B378-3A73-M'"/>
     <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:Identifier/bf:qualifier = 'v. 1'"/>
     <x:expect label="$c creates an acquisitionTerms property of the instance" test="//bf:Instance[1]/bf:acquisitionTerms[3] = 'EUR28.50'"/>
     <x:expect label="$d creates a note property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Ean/bf:note/bf:Note/rdfs:label = '51000'"/>

@@ -336,7 +336,9 @@
         <xsl:with-param name="chopString" select="$vLabelStr"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:if test="not(../marc:datafield[@tag='130' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) and not(../marc:datafield[@tag='240' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')])">
+
+    <!-- We always want the 245 title at the Work/Expression level. -->  
+    <!-- <xsl:if test="not(../marc:datafield[@tag='130' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')]) and not(../marc:datafield[@tag='240' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='130' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)='00')])"> -->
       <!-- generate Work properties -->
       <xsl:apply-templates mode="work245" select=".">
         <xsl:with-param name="serialization" select="$serialization"/>
@@ -372,7 +374,7 @@
           </bf:title>
         </xsl:when>
       </xsl:choose>
-    </xsl:if>
+
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
