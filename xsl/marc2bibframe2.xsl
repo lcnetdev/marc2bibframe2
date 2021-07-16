@@ -42,7 +42,7 @@
       LoC for conversion. By default these fields will not be
       converted unless this parameter evaluates to true()
   -->
-  <xsl:param name="localfields"/>
+  <xsl:param name="localfields" select="true()"/>
   
   <!--
       datestamp for generationProcess property of Work adminMetadata
