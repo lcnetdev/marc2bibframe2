@@ -215,7 +215,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
           <bf:Note>
-            <bf:noteType>Computer file characteristics</bf:noteType>
+            <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/computer" />
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
