@@ -626,12 +626,10 @@
         <xsl:for-each select="marc:subfield[@code='b' or @code='e']">
           <bf:note>
             <bf:Note>
-              <bf:noteType>
                 <xsl:choose>
-                  <xsl:when test="@code='b'">Physical details</xsl:when>
-                  <xsl:when test="@code='e'">Accompanying materials</xsl:when>
+                  <xsl:when test="@code='b'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical" /></xsl:when>
+                  <xsl:when test="@code='e'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/accmat" /></xsl:when>
                 </xsl:choose>
-              </bf:noteType>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -1485,7 +1483,7 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:note>
           <bf:Note>
-            <bf:noteType>Numbering</bf:noteType>
+            <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/number" />
             <rdfs:label>
               <xsl:if test="$pXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
