@@ -655,7 +655,7 @@
         <xsl:when test="$vTag='588'">
           <xsl:variable name="vDisplayConstant">
             <xsl:choose>
-              <xsl:when test="@ind1='0'">Source of description:</xsl:when>
+              <xsl:when test="@ind1='0'">Description based on:</xsl:when>
               <xsl:when test="@ind1='1'">Latest issue consulted:</xsl:when>
             </xsl:choose>
           </xsl:variable>
