@@ -331,10 +331,16 @@
   <!-- used in 008/21 for continuing resources -->
   <crtype>
     <d href="http://id.loc.gov/vocabulary/mserialpubtype/database">database</d>
+    <g href="http://id.loc.gov/vocabulary/mserialpubtype/mag">magazine</g>
+    <h href="http://id.loc.gov/vocabulary/mserialpubtype/blog">blog</h>
+    <j href="http://id.loc.gov/vocabulary/mserialpubtype/journal">journal</j>
     <l href="http://id.loc.gov/vocabulary/mserialpubtype/looseleaf">loose leaf</l>
     <m href="http://id.loc.gov/vocabulary/mserialpubtype/monoseries">monographic series</m>
     <n href="http://id.loc.gov/vocabulary/mserialpubtype/newspaper">newspaper</n>
     <p href="http://id.loc.gov/vocabulary/mserialpubtype/periodical">periodical</p>
+    <r href="http://id.loc.gov/vocabulary/mserialpubtype/repo">repository</r>
+    <s href="http://id.loc.gov/vocabulary/mserialpubtype/newsletter">newsletter</s>
+    <t href="http://id.loc.gov/vocabulary/mserialpubtype/direct">directory</t>
     <w href="http://id.loc.gov/vocabulary/mserialpubtype/web">web site</w>
   </crtype>
   <!-- continuing resource original script -->
