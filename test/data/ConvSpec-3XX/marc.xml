@@ -1,4 +1,5 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
+
   <record>
     <controlfield tag="001">1</controlfield>
     <datafield tag="300" ind1=" " ind2=" ">
@@ -253,6 +254,37 @@
       <subfield code="a">Youngsters</subfield>
       <subfield code="b">aaa</subfield>
       <subfield code="0">(DLC)dg2015060010</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="b">optical</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mrecmedium/opt</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="g">mono</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mplayback/mon</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">digital</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mrectype/digital</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="b">optical</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mrecmedium/opt</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="g">mono</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mplayback/mon</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="h">Dolby</subfield>
+      <subfield code="0">http://id.loc.gov/vocabulary/mspecplayback/dolby</subfield>
+      <subfield code="2">rda</subfield>
     </datafield>
   </record>
 </collection>

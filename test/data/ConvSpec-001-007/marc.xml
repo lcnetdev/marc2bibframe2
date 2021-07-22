@@ -90,4 +90,28 @@
     <controlfield tag="001">17</controlfield>
     <controlfield tag="007">vd cvaizu</controlfield>
   </record>
+  <record>
+    <controlfield tag="001">18</controlfield>
+    <controlfield tag="007">vf bbahom</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">analog</subfield>
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">mono</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="346" ind1=" " ind2=" ">
+      <subfield code="a">VHS</subfield>
+      <subfield code="b">NTSC</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">19</controlfield>
+    <controlfield tag="007">vd cvaizs</controlfield>
+    <datafield tag="347" ind1=" " ind2=" ">
+      <subfield code="a">video file</subfield>
+      <subfield code="b">DVD video</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
 </collection>

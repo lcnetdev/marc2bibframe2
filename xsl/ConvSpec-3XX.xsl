@@ -1262,7 +1262,8 @@
           <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <xsl:if test="$vResource != ''">
+      <!-- We need to eliminate duplicates. The second condition looks for a preceding tag with the same value. -->
+      <xsl:if test="$vResource != '' and count(../preceding-sibling::marc:datafield[@tag = $vTag and marc:subfield[. = $vLabel]]) = 0">
         <xsl:apply-templates select="." mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pProp" select="$vProp"/>
