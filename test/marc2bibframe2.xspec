@@ -223,7 +223,7 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <bf:noteType>Physical details</bf:noteType>
+                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>col. ill.</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -454,7 +454,7 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <bf:noteType>Physical details</bf:noteType>
+                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>analog, 33 1/3 rpm</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -705,7 +705,7 @@
             </bf:title>
             <bf:note>
               <bf:Note>
-                <bf:noteType>Computer file characteristics</bf:noteType>
+                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/computer"/>
                 <rdfs:label>Computer data</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -1059,7 +1059,7 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <bf:noteType>Physical details</bf:noteType>
+                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>ill.</rdfs:label>
               </bf:Note>
             </bf:note>
