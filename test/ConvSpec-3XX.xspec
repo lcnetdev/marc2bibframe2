@@ -125,8 +125,6 @@
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'audio disc'"/>
     
     <x:expect label="One soundCharacteristic/RecordingMedium property when multiple, equal 344s present" test="count(//bf:Instance[2]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'optical']) = 1"/>
-    <x:expect label="One soundCharacteristic/RecordingMedium property when 007 and 344 each define the same recording medium" test="count(//bf:Instance[3]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magnetic']) = 1"/>
-    <x:expect label="One soundCharacteristic/RecordingMedium property when 007 and 344 each define the same recording medium" test="count(//bf:Instance[3]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'mono']) = 1"/>
 
   </x:scenario>
   
