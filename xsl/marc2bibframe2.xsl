@@ -8,8 +8,7 @@
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
-                xmlns:fn="http://www.w3.org/2005/xpath-function"
-                extension-element-prefixes="date fn"
+                extension-element-prefixes="date"
                 exclude-result-prefixes="xsl marc">
 
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
@@ -55,8 +54,8 @@
       <xsl:when test="function-available('date:date-time')">
         <xsl:value-of select="date:date-time()"/>
       </xsl:when>
-      <xsl:when test="function-available('fn:current-dateTime')">
-        <xsl:value-of select="fn:current-dateTime()"/>
+      <xsl:when test="function-available('current-dateTime')">
+        <xsl:value-of select="current-dateTime()"/>
       </xsl:when>
     </xsl:choose>
   </xsl:param>
