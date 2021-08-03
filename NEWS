@@ -1,3 +1,7 @@
+--- 1.7.0-SNAPSHOT
+
+Remove namespace declaration for xpath-functions (fix bug with current-dateTime())
+
 --- 1.6.1 2020/12/14
 
 Fix bad agent URIs minted in 240/X30 processing (https://github.com/lcnetdev/marc2bibframe2/issues/192)
