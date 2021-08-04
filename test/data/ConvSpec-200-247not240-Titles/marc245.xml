@@ -47,4 +47,17 @@
       <subfield code="h">[sound recording].</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">7</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Smith, John</subfield>
+    </datafield>
+    <datafield tag="240">
+      <subfield code="a">Collected works.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="4">
+      <subfield code="a">The works of John Smith :</subfield>
+      <subfield code="b">collected at last.</subfield>
+    </datafield>
+  </record>
 </collection>

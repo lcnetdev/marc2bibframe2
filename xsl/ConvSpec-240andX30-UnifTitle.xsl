@@ -20,37 +20,28 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
-    <!-- 
-      kefo note - 20210715
-      Removed outputting any information about the 130/240 at the main Work
-      level.  130/240 information is related to the Hub resource.  Perhaps in 
-      some cases it relates to the Thing in the 245, but that's not universal.
-    -->
-    
-    <xsl:for-each select="marc:subfield[@code='l' or @code='o']">
-      <xsl:variable name="vWorkUri">
-        <xsl:apply-templates mode="generateUri" select="..">
-          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="../@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:variable>
-      <!-- kefo note - all 240s generate an expressionOf relationship to a Hub. -->
-      <xsl:variable name="vProp" select="'bf:expressionOf'" />
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <xsl:element name="{$vProp}">
-            <bf:Work>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
-              <xsl:apply-templates mode="workUnifTitle" select="..">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pUnifTitleMode" select='expression' />
-                <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
-              </xsl:apply-templates>
-            </bf:Work>
-          </xsl:element>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
+    <!-- kefo note - all main entry uniform titles generate an expressionOf relationship to a Hub. -->
+    <xsl:variable name="vWorkUri">
+      <xsl:apply-templates mode="generateUri" select=".">
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+      </xsl:apply-templates>
+    </xsl:variable>
+    <xsl:variable name="vProp" select="'bf:expressionOf'" />
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:element name="{$vProp}">
+          <bf:Work>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
+            <xsl:apply-templates mode="workUnifTitle" select=".">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pUnifTitleMode" select='expression' />
+              <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
+            </xsl:apply-templates>
+          </bf:Work>
+        </xsl:element>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!-- Processing for 630 tags in ConvSpec-600-662.xsl -->

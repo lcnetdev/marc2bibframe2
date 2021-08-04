@@ -123,6 +123,13 @@
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="becomes a Work version" test="//bf:Work[4]/bf:version = 'Member release'"/>
     </x:scenario>
+    <x:scenario label="Work/Instance/Uniform title">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
+      <x:expect label="245 generates title property in Instance" test="//bf:Instance[@rdf:about='http://example.org/7#Instance']/bf:title/bf:Title/rdfs:label = 'The works of John Smith : collected at last.'"/>
+      <x:expect label="245 generates title property in Work" test="//bf:Work[@rdf:about='http://example.org/7#Work']/bf:title/bf:Title/rdfs:label = 'works of John Smith : collected at last.'"/>
+      <x:expect label="245 generates rdfs:label property in Work" test="//bf:Work[@rdf:about='http://example.org/7#Work']/rdfs:label = 'The works of John Smith : collected at last.'"/>
+      <x:expect label="Uniform title does not create title property in work" test="//bf:Work[@rdf:about='http://example.org/7#Work']/bf:title/bf:Title/rdfs:label != 'Collected works.'"/>
+    </x:scenario>
   </x:scenario>
 
   <x:scenario label="246 - VARYING FORM OF TITLE">

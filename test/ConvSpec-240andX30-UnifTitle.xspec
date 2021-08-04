@@ -8,16 +8,17 @@
                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
-  <x:scenario label="Uniform title bf:Title creation">
+  <x:scenario label="Uniform title Hub Work/bf:Title creation">
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
-    <x:expect label="Work rdfs:label generation" test="//bf:Work[1]/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
-    <x:expect label="title match key generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:title30MatchKey = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
-    <x:expect label="title marc key generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:title30MarcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001'"/>
-    <x:expect label="rdfs:label generation" test="//bf:Work[1]/bf:title/bf:Title/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
-    <x:expect label="title sort string generation" test="//bf:Work[1]/bf:title/bf:Title/bflc:titleSortKey = 'Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
-    <x:expect label="$a/$t + $gk becomes mainTitle" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
-    <x:expect label="$n becomes a partNumber" test="//bf:Work[1]/bf:title/bf:Title/bf:partNumber[1] = 'Book 4'"/>
-    <x:expect label="$p becomes a partName" test="//bf:Work[1]/bf:title/bf:Title/bf:partName[1] = 'O.T'"/>
+    <x:expect label="130/240 creates a bf:expressionOf property of the Work with a Work as the object" test="count(//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work) = 1"/>
+    <x:expect label="Work rdfs:label generation" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="title match key generation" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bflc:title30MatchKey = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="title marc key generation" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bflc:title30MarcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001'"/>
+    <x:expect label="rdfs:label generation" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/rdfs:label = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="title sort string generation" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bflc:titleSortKey = 'Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="$a/$t + $gk becomes mainTitle" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
+    <x:expect label="$n becomes a partNumber" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bf:partNumber[1] = 'Book 4'"/>
+    <x:expect label="$p becomes a partName" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bf:partName[1] = 'O.T'"/>
   </x:scenario>
 
   <x:scenario label="Work properties from uniform titles">
@@ -25,7 +26,6 @@
     <!-- tests for 630 located in ConvSpec-600-662.xspec -->
     <!-- tests for 830 located in ConvSpec-Process6-Series.xspec -->
     <x:expect label="1XX $t becomes a title of the main Work" test="count(//bf:Work[@rdf:about='http://example.org/2#Work']/bf:title) = 2"/>
-    <x:expect label="130/240 becomes a title of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Work/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. Manuscripts, Latin. Selections'"/>
     <x:expect label="6XX/7XX/8XX $t creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/1#Work700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Work entity" test="count(//bf:Work[@rdf:about='http://example.org/2#Work730-4']) = 1"/>
     <x:expect label="730 I2=2 with no $i becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Bible'"/>
