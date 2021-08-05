@@ -20,7 +20,7 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
-    <!-- kefo note - all main entry uniform titles generate an expressionOf relationship to a Hub. -->
+    <!-- kefo note - all 130/240 uniform titles generate an expressionOf relationship to a Hub. -->
     <xsl:variable name="vWorkUri">
       <xsl:apply-templates mode="generateUri" select=".">
         <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
@@ -35,7 +35,6 @@
             <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
             <xsl:apply-templates mode="workUnifTitle" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pUnifTitleMode" select='expression' />
               <xsl:with-param name="pWorkUri"><xsl:value-of select="$vWorkUri"/></xsl:with-param>
             </xsl:apply-templates>
           </bf:Work>
@@ -119,7 +118,6 @@
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="workUnifTitle">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pUnifTitleMode"/>
     <xsl:param name="pWorkUri"/>
     <xsl:param name="pSource"/>
     <xsl:variable name="tag">
@@ -142,9 +140,7 @@
     <xsl:variable name="label">
       <!-- 8XX fields construct the label differently -->
       <xsl:if test="substring($tag,1,1) != '8' and substring($tag,1,1) != '4'">
-        <xsl:apply-templates select="." mode="tTitleLabel">
-          <xsl:with-param name="pUnifTitleMode"><xsl:value-of select="$pUnifTitleMode"/></xsl:with-param>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="tTitleLabel"/>
       </xsl:if>
     </xsl:variable>
     <xsl:choose>
@@ -222,29 +218,6 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
-        <!-- 
-        <xsl:if test="$pUnifTitleMode='translation'">
-          <xsl:if test="count(../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])=1">
-            <bf:language>
-              <xsl:choose>
-                <xsl:when test="../marc:datafield[@tag='041' and @ind1='1' and marc:subfield[@code='h']]/@ind2 = ' '">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h'])"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:Language>
-                    <rdfs:label><xsl:value-of select="../marc:datafield[@tag='041' and @ind1='1']/marc:subfield[@code='h']"/></rdfs:label>
-                  </bf:Language>
-                </xsl:otherwise>
-              </xsl:choose>
-            </bf:language>
-          </xsl:if>
-        </xsl:if>
-        -->
         <!-- 
           kefo note - I'm really not clear what this rule is for. 
           The first 'not' will evaluate to true if tag is not 130 or 240.
@@ -530,7 +503,6 @@
 
   <!-- can be applied by templates above or by name/subject templates -->
   <xsl:template match="marc:datafield" mode="tTitleLabel">
-    <xsl:param name="pUnifTitleMode"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -558,20 +530,8 @@
                                      marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwx012345678',@code))]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:choose>
-          <xsl:when test="$pUnifTitleMode='translation'">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[not(contains('ilvwx012345678',@code))]"/>
-          </xsl:when>
-          <xsl:when test="$pUnifTitleMode='arrangement'">
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[not(contains('iovwx012345678',@code))]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates mode="concat-nodes-space"
-                                 select="marc:subfield[not(contains('ivwx012345678',@code))]"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[not(contains('ivwx012345678',@code))]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
