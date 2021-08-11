@@ -345,7 +345,7 @@
     <xsl:if test="@ind1='7' and marc:subfield[@code='2' and text()='eidr']">
       <xsl:apply-templates select="." mode="instanceId">
         <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pIdentifier">bflc:Eidr</xsl:with-param>
+        <xsl:with-param name="pIdentifier">bf:Eidr</xsl:with-param>
         <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
         <xsl:with-param name="pChopPunct" select="true()"/>
       </xsl:apply-templates>
@@ -1196,7 +1196,6 @@
                   <xsl:for-each select="../marc:subfield[@code='d']">
                     <bf:note>
                       <bf:Note>
-                        <bf:noteType>additional codes</bf:noteType>
                         <rdfs:label>
                           <xsl:if test="$vXmlLang != ''">
                             <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>

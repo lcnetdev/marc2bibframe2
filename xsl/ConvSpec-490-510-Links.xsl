@@ -76,12 +76,10 @@
             <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
               <bf:note>
                 <bf:Note>
-                  <bf:noteType>
                     <xsl:choose>
-                      <xsl:when test="@code='b'">Coverage</xsl:when>
-                      <xsl:when test="@code='c'">Location</xsl:when>
+                      <xsl:when test="@code='b'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/coverage" /></xsl:when>
+                      <xsl:when test="@code='c'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/loc" /></xsl:when>
                     </xsl:choose>
-                  </bf:noteType>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
