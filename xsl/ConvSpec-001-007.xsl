@@ -1699,7 +1699,7 @@
                 </bf:Carrier>
               </bf:carrier>
             </xsl:if>
-            <xsl:if test="$vPresentationFormat != ''">
+            <xsl:if test="$vPresentationFormat != '' and count(../marc:datafield[@tag='345']/marc:subfield[. = $vPresentationFormat]) = 0">
               <bf:projectionCharacteristic>
                 <bf:PresentationFormat>
                   <xsl:if test="$vPresentationFormatURI != ''">
@@ -2114,7 +2114,7 @@
                 </bf:PlaybackCharacteristic>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$recordingMethod != ''">
+            <xsl:if test="$recordingMethod != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMethod]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMethod>
                   <xsl:if test="$recordingMethodURI != ''">
