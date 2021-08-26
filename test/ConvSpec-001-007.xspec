@@ -153,10 +153,12 @@
       <x:expect label="...and an rdfs:label" test="//bf:Work[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/@rdf:about = 'http://id.loc.gov/vocabulary/mrecmedium/opt'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'optical'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[22]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magnetic']) = 1"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 007" test="//bf:Instance[7]/bf:dimensions = '16 mm.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[8]/bf:dimensions = '1 2/5 in.'"/>
       <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/mon'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'mono'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[22]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'stereo']) = 1"/>
       <x:expect label="pos 9 creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm/bf:GenreForm/rdfs:label = 'outtakes'"/>
       <x:expect label="pos 10 creates a polarity property of the Instance" test="//bf:Instance[7]/bf:polarity/bf:Polarity/rdfs:label = 'positive'"/>
       <x:expect label="pos 11 creates a generation/Generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/viewcopy'"/>

@@ -137,6 +137,10 @@
   <record>
     <controlfield tag="001">22</controlfield>"
     <controlfield tag="007">mr ccaedsnnepnn</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">stereo</subfield>
+    </datafield>
     <datafield tag="345" ind1=" " ind2=" ">
       <subfield code="a">3D</subfield>
     </datafield>

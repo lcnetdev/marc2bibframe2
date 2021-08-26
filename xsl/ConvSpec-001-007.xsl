@@ -1709,7 +1709,7 @@
                 </bf:PresentationFormat>
               </bf:projectionCharacteristic>
             </xsl:if>
-            <xsl:if test="$recordingMedium != ''">
+            <xsl:if test="$recordingMedium != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMedium]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
