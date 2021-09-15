@@ -51,8 +51,8 @@
         <xsl:when test="$vTag='773'">bf:partOf</xsl:when>
         <xsl:when test="$vTag='774'">bf:hasPart</xsl:when>
         <xsl:when test="$vTag='775'">bf:otherEdition</xsl:when>
-        <xsl:when test="$vTag='776'">bf:hasInstance</xsl:when>
-        <xsl:when test="$vTag='777'">bf:relatedTo</xsl:when>
+        <xsl:when test="$vTag='776'">bf:otherPhysicalFormat</xsl:when>
+        <xsl:when test="$vTag='777'">bf:issuedWith</xsl:when>
         <xsl:when test="$vTag='780'">
           <xsl:choose>
             <xsl:when test="@ind2='0'">bf:continues</xsl:when>
@@ -77,137 +77,116 @@
         <xsl:when test="$vTag='787'">bf:relatedTo</xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vElement">
-      <xsl:choose>
-        <xsl:when test="$vTag='776'">bf:Instance</xsl:when>
-        <xsl:otherwise>bf:Work</xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vElementUri">
-      <xsl:choose>
-        <xsl:when test="$vTag='776'"><xsl:value-of select="$vInstanceUri"/></xsl:when>
-        <xsl:otherwise><xsl:value-of select="$vWorkUri"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
+    <xsl:variable name="vElement">bf:Work</xsl:variable>
+    <xsl:variable name="vElementUri"><xsl:value-of select="$vWorkUri"/></xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$vProperty}">
           <xsl:element name="{$vElement}">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$vElementUri"/></xsl:attribute>
-            <xsl:choose>
-              <xsl:when test="$vTag='776'">
-                <xsl:apply-templates select="." mode="link7XXinstance">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
-                  <xsl:with-param name="pTag" select="$vTag"/>
-                </xsl:apply-templates>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:apply-templates select="." mode="tLink7XXTitle">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pTitleType" select="'work'"/>
-                </xsl:apply-templates>
-                <xsl:for-each select="marc:subfield[@code='a']">
-                  <bf:contribution>
-                    <bflc:PrimaryContribution>
-                      <bf:agent>
-                        <bf:Agent>
-                          <rdfs:label>
-                            <xsl:if test="$vXmlLang != ''">
-                              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                            </xsl:if>
-                            <xsl:value-of select="."/>
-                          </rdfs:label>
-                        </bf:Agent>
-                      </bf:agent>
-                    </bflc:PrimaryContribution>
-                  </bf:contribution>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='e']">
-                  <xsl:variable name="encoded">
-                    <xsl:call-template name="url-encode">
-                      <xsl:with-param name="str" select="normalize-space(.)"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <bf:language>
-                    <bf:Language>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-                    </bf:Language>
-                  </bf:language>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='i']">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation>
-                          <rdfs:label>
-                            <xsl:if test="$vXmlLang != ''">
-                              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                            </xsl:if>
-                            <xsl:call-template name="chopPunctuation">
-                              <xsl:with-param name="chopString">
-                                <xsl:value-of select="."/>
-                              </xsl:with-param>
-                            </xsl:call-template>
-                          </rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
-                      <bf:relatedTo>
-                        <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($vWorkUri,'#')"/>#Work</xsl:attribute>
-                      </bf:relatedTo>
-                    </bflc:Relationship>
-                  </bflc:relationship>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='p']">
-                  <bf:title>
-                    <bf:AbbreviatedTitle>
-                      <bf:mainTitle>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:value-of select="."/>
-                      </bf:mainTitle>
-                    </bf:AbbreviatedTitle>
-                  </bf:title>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='v']">
-                  <bf:note>
-                    <bf:Note>
+            <xsl:apply-templates select="." mode="tLink7XXTitle">
+              <xsl:with-param name="serialization" select="$serialization"/>
+              <xsl:with-param name="pTitleType" select="'work'"/>
+            </xsl:apply-templates>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:contribution>
+                <bflc:PrimaryContribution>
+                  <bf:agent>
+                    <bf:Agent>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                         </xsl:if>
                         <xsl:value-of select="."/>
                       </rdfs:label>
-                    </bf:Note>
-                  </bf:note>
-                </xsl:for-each>
-                <xsl:for-each select="marc:subfield[@code='x']">
-                  <bf:identifiedBy>
-                    <bf:Issn>
-                      <rdf:value><xsl:value-of select="."/></rdf:value>
-                    </bf:Issn>
-                  </bf:identifiedBy>
-                </xsl:for-each>
-                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                    </bf:Agent>
+                  </bf:agent>
+                </bflc:PrimaryContribution>
+              </bf:contribution>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='e']">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(.)"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <bf:language>
+                <bf:Language>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
+                </bf:Language>
+              </bf:language>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='i']">
+              <bflc:relationship>
+                <bflc:Relationship>
+                  <bflc:relation>
+                    <bflc:Relation>
+                      <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:call-template name="chopPunctuation">
+                          <xsl:with-param name="chopString">
+                            <xsl:value-of select="."/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </rdfs:label>
+                    </bflc:Relation>
+                  </bflc:relation>
+                  <bf:relatedTo>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($vWorkUri,'#')"/>#Work</xsl:attribute>
+                  </bf:relatedTo>
+                </bflc:Relationship>
+              </bflc:relationship>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='p']">
+              <bf:title>
+                <bf:AbbreviatedTitle>
+                  <bf:mainTitle>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </bf:mainTitle>
+                </bf:AbbreviatedTitle>
+              </bf:title>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='v']">
+              <bf:note>
+                <bf:Note>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                  </rdfs:label>
+                </bf:Note>
+              </bf:note>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='x']">
+              <bf:identifiedBy>
+                <bf:Issn>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                </bf:Issn>
+              </bf:identifiedBy>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='4']" mode="subfield4">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <bf:hasInstance>
+              <bf:Instance>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
+                <xsl:apply-templates select="." mode="link7XXinstance">
                   <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
+                  <xsl:with-param name="pTag" select="$vTag"/>
                 </xsl:apply-templates>
-                <xsl:apply-templates select="marc:subfield[@code='4']" mode="subfield4">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-                <bf:hasInstance>
-                  <bf:Instance>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
-                    <xsl:apply-templates select="." mode="link7XXinstance">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                      <xsl:with-param name="pWorkUri" select="$vWorkUri"/>
-                      <xsl:with-param name="pTag" select="$vTag"/>
-                    </xsl:apply-templates>
-                  </bf:Instance>
-                </bf:hasInstance>
-              </xsl:otherwise>
-            </xsl:choose>
+              </bf:Instance>
+            </bf:hasInstance>
           </xsl:element>
         </xsl:element>
       </xsl:when>
@@ -277,31 +256,6 @@
             </bf:Extent>
           </bf:extent>
         </xsl:for-each>
-        <xsl:if test="$pTag='776'">
-          <xsl:for-each select="marc:subfield[@code='i']">
-            <bflc:relationship>
-              <bflc:Relationship>
-                <bflc:relation>
-                  <bflc:Relation>
-                    <rdfs:label>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString">
-                          <xsl:value-of select="."/>
-                        </xsl:with-param>
-                      </xsl:call-template>
-                    </rdfs:label>
-                  </bflc:Relation>
-                </bflc:relation>
-                <bf:relatedTo>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($pWorkUri,'#')"/>#Work</xsl:attribute>
-                </bf:relatedTo>
-              </bflc:Relationship>
-            </bflc:relationship>
-          </xsl:for-each>
-        </xsl:if>
         <xsl:for-each select="marc:subfield[@code='j' or @code='m' or @code='n' or @code='q']">
           <bf:note>
             <bf:Note>
@@ -369,14 +323,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
         <bf:instanceOf>
-          <xsl:choose>
-            <xsl:when test="$pTag='776'">
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="substring-before($pWorkUri,'#')"/>#Work</xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="$pWorkUri"/></xsl:attribute>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="$pWorkUri"/></xsl:attribute>
         </bf:instanceOf>
       </xsl:when>
     </xsl:choose>
@@ -431,7 +378,5 @@
       </xsl:choose>
     </xsl:if>
   </xsl:template>
-                      
-    
 
 </xsl:stylesheet>
