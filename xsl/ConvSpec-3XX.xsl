@@ -627,8 +627,16 @@
           <bf:note>
             <bf:Note>
                 <xsl:choose>
-                  <xsl:when test="@code='b'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical" /></xsl:when>
-                  <xsl:when test="@code='e'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/accmat" /></xsl:when>
+                  <xsl:when test="@code='b'">
+                    <rdf:type>
+                      <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/physical</xsl:attribute>
+                    </rdf:type>
+                  </xsl:when>
+                  <xsl:when test="@code='e'">
+                    <rdf:type>
+                      <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/accmat</xsl:attribute>
+                    </rdf:type>
+                  </xsl:when>
                 </xsl:choose>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
@@ -1484,7 +1492,9 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:note>
           <bf:Note>
-            <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/number" />
+            <rdf:type>
+              <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/number</xsl:attribute>
+            </rdf:type>
             <rdfs:label>
               <xsl:if test="$pXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>

@@ -75,7 +75,9 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/metaentry"/>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/metaentry</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="$convention"/></rdfs:label>
             </bf:Note>
           </bf:note>
@@ -1241,7 +1243,9 @@
               <xsl:if test="@href">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
               </xsl:if>
-              <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/orig" />
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/orig</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Note>
           </bf:note>

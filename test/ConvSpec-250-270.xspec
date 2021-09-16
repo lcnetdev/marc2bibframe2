@@ -36,7 +36,7 @@
   <x:scenario label="256 - COMPUTER FILE CHARACTERISTICS">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="256 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Computer data (2 files : 876,000, 775,000 records)'"/>
-    <x:expect label="...with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/computer'" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/computer'"/>  
+    <x:expect label="...with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/computer'" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/computer'"/>  
   </x:scenario>
   
   <x:scenario label="257 - COUNTRY OF PRODUCING ENTITY">

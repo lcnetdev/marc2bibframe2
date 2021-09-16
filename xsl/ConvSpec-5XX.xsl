@@ -707,7 +707,11 @@
               </rdfs:label>
             </xsl:if>
             <xsl:if test="$vNoteType != ''">
-              <rdf:type rdfs:resource="{concat('http://id.loc.gov/vocabulary/mnotetype/', $vNoteType)}" /> 
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">
+                  <xsl:value-of select="concat('http://id.loc.gov/vocabulary/mnotetype/', $vNoteType)"/>
+                </xsl:attribute>
+              </rdf:type>
             </xsl:if>
             <!-- special handling for other subfields -->
             <xsl:choose>
@@ -912,7 +916,9 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:note>
             <bf:Note>
-              <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/binding" />
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/binding</xsl:attribute>
+              </rdf:type>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -939,7 +945,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
           <bf:Note>
-            <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/action" />
+            <rdf:type>
+              <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/action</xsl:attribute>
+            </rdf:type>
             <xsl:for-each select="marc:subfield[@code='a']">
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">

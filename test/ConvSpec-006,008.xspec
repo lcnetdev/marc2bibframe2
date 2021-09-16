@@ -98,7 +98,7 @@
       <x:expect label="pos 22 does not create a note property of the Instance when pos 22=blank space" test="count(//bf:Instance[12]/bf:note[1]/bf:Note/rdfs:label) = 0"/>
       <x:expect label="pos 33 creates a notation property of the Work" test="//bf:Work[7]/bf:notation/bf:Script/rdfs:label = 'Basic roman'"/>
       <x:expect label="...with a URI" test="//bf:Work[7]/bf:notation/bf:Script/@rdf:about = 'http://id.loc.gov/vocabulary/mscript/a'"/>
-      <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/metaentry']/rdfs:label = '0 - successive'"/>
+      <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/metaentry']/rdfs:label = '0 - successive'"/>
     </x:scenario>
 
     <x:scenario label="VISUAL MATERIALS">

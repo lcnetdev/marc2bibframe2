@@ -77,8 +77,16 @@
               <bf:note>
                 <bf:Note>
                     <xsl:choose>
-                      <xsl:when test="@code='b'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/coverage" /></xsl:when>
-                      <xsl:when test="@code='c'"><rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/loc" /></xsl:when>
+                      <xsl:when test="@code='b'">
+                        <rdf:type>
+                          <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/coverage</xsl:attribute>
+                        </rdf:type>
+                      </xsl:when>
+                      <xsl:when test="@code='c'">
+                        <rdf:type>
+                          <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/loc</xsl:attribute>
+                        </rdf:type>
+                      </xsl:when>
                     </xsl:choose>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
