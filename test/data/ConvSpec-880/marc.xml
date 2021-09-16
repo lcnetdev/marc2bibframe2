@@ -218,6 +218,10 @@
       <subfield code="6">586-00</subfield>
       <subfield code="a">Национальная книжная премия, 1981</subfield>
     </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">740-00</subfield>
+      <subfield code="a">Руководство гадалки.</subfield>
+    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">588-00</subfield>
       <subfield code="a">Том 2.</subfield>
