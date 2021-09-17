@@ -24,6 +24,14 @@
       <subfield code="6">250-02/$1</subfield>
       <subfield code="a">&#x7B2C; 1 &#x7248;.</subfield>
     </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">From the works of the Chase Family</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-03/(N</subfield>
+      <subfield code="a">Из работ семьи Chase.</subfield>
+    </datafield>
     <datafield tag="600" ind1="1" ind2="0">
       <subfield code="6">880-04</subfield>
       <subfield code="a">Cao, Sugong,</subfield>
