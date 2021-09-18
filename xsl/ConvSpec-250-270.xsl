@@ -640,19 +640,13 @@
 
   <xsl:template match="marc:datafield[@tag='263' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='263')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vDate">
-      <xsl:call-template name="edtfFormat">
-        <xsl:with-param name="pDateString" select="marc:subfield[@code='a']"/>
-      </xsl:call-template>
-    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$vDate != ''">
+        <xsl:for-each select="marc:subfield[@code='a']">
           <bflc:projectedProvisionDate>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
-            <xsl:value-of select="$vDate"/>
+            <xsl:value-of select="."/>
           </bflc:projectedProvisionDate>
-        </xsl:if>
+        </xsl:for-each>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
