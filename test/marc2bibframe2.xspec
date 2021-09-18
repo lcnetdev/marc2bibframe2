@@ -215,7 +215,6 @@
                 <bf:date>c2001</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>[København?] : Lindhardt og Ringhof, c2001.</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 v. (unpaged)</rdfs:label>
@@ -446,7 +445,6 @@
                 <bf:date>1957?</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>New York, N.Y. : Atlantic, [1957?]</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 sound disc</rdfs:label>
@@ -725,7 +723,6 @@
                 <bf:date>1994-</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
             <bf:systemRequirement>
               <bf:SystemRequirement>
                 <rdfs:label>Mode of access: Internet.</rdfs:label>
@@ -1051,7 +1048,6 @@
                 <bf:date>c1994</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>San Francisco : Jossey-Bass, c1994.</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>xxiii, 622 p.</rdfs:label>
