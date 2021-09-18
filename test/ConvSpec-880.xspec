@@ -87,6 +87,8 @@
     <x:expect label="245/880 pair create single bf:Title" test="count(//bf:Work[1]/bf:title/bf:Title) = 1"/>
     <x:expect label="...with properties drawn from both fields" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle = 'Cao Sugong mo ding zhi zuo ji yi' and //bf:Work[1]/bf:title/bf:Title/bf:mainTitle = '曹素功墨锭制作技艺'"/>
     <x:expect label="250/880 pair create multiple editionStatement properties of the Instance" test="count(//bf:Instance[1]/bf:editionStatement) = 2"/>
+    <x:expect label="260 or 264 paired with 880 create single provisionActivity property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 2"/> <!-- one provisionActivity generated from 008 -->
+    <x:expect label="...with multiple labels on ProvisionActivity property objects" test="count(//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label) = 2"/>
     <x:expect label="880 pair configured to convert regular field" test="count(//bf:Work[1]/bf:subject) = 1 and //bf:Work[1]/bf:subject/bf:Topic/madsrdf:authoritativeLabel = 'Cao, Sugong, 1615-1689--Criticism and interpretation.'"/>
     <x:expect label="880 pair configured to convert 880" test="count(//bf:Instance[1]/bf:note) = 1 and //bf:Instance[1]/bf:note/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
   </x:scenario>

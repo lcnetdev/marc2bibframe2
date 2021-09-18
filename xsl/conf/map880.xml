@@ -50,11 +50,11 @@
   <datafield tag="255" convertLinked="false"/>
   <datafield tag="256" convertLinked="false"/>
   <datafield tag="257" convertLinked="false"/>
-  <datafield tag="260" convertLinked="true"/>
+  <datafield tag="260" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="261" convertLinked="false"/>
   <datafield tag="262" convertLinked="false"/>
   <datafield tag="263" convertLinked="false"/>
-  <datafield tag="264" convertLinked="true"/>
+  <datafield tag="264" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="265" convertLinked="false"/>
   <datafield tag="300" convertLinked="false"/>
   <datafield tag="306" convertLinked="false"/>

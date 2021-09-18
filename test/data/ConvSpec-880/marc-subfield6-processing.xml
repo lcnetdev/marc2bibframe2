@@ -24,6 +24,17 @@
       <subfield code="6">250-02/$1</subfield>
       <subfield code="a">&#x7B2C; 1 &#x7248;.</subfield>
     </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Shinjuku-ku, Tokyo</subfield>
+      <subfield code="b">Fujiwara Shoten</subfield>
+      <subfield code="c">2013</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">260-05/$1</subfield>
+      <subfield code="a">東京都新宿区</subfield>
+      <subfield code="b">藤原書店</subfield>
+    </datafield>
     <datafield tag="500" ind1=" " ind2=" ">
       <subfield code="6">880-03</subfield>
       <subfield code="a">From the works of the Chase Family</subfield>
