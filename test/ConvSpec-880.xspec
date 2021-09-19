@@ -27,7 +27,7 @@
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
-    <x:expect label="$6 504 creates a supplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
+    <x:expect label="$6 504 creates a supplementaryContent property of the Instance" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Литература цитируется&quot;: стр. 67-68.'"/>
     <x:expect label="$6 505 creates a tableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents/bf:TableOfContents/rdfs:label = 'Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.'"/>
     <x:expect label="$6 506 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdfs:label = 'Классифицированная информация.'"/>
     <x:expect label="$6 507 creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/rdfs:label = 'Перспектива карта не в масштабе.'"/>
@@ -42,7 +42,7 @@
     <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 524 creates a preferredCitation property of the Instance" test="//bf:Instance[1]/bf:preferredCitation = 'Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.'"/>
-    <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
+    <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a note/Note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Доступно на микрофиши.'"/>
     <x:expect label="$6 532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Субтитры на английском языке'"/>
     <x:expect label="$6 533 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Микрофильмов.'"/>

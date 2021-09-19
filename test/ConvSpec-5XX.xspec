@@ -37,9 +37,9 @@
   
   <x:scenario label="504 - BIBLIOGRAPHY, ETC. NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="504 creates a supplementaryContent property of the Work" test="count(//bf:Work[1]/bf:supplementaryContent) = 2"/>
-    <x:expect label="$a creates an rdfs:label property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Literature cited&quot;: p. 67-68.'"/>
-    <x:expect label="$b creates a count property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/bf:count = '19'"/>
+    <x:expect label="504 creates a supplementaryContent property of the Instance" test="count(//bf:Instance[1]/bf:supplementaryContent) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the SupplementaryContent" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Literature cited&quot;: p. 67-68.'"/>
+    <x:expect label="$b creates a count property of the SupplementaryContent" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/bf:count = '19'"/>
   </x:scenario>
     
   <x:scenario label="505 - FORMATTED CONTENTS NOTE">
@@ -130,7 +130,7 @@
 
   <x:scenario label="525 - SUPPLEMENT NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[2]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
+    <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
   </x:scenario>
 
   <x:scenario label="530 - ADDITIONAL PHYSICAL FORM AVAILABLE NOTE">

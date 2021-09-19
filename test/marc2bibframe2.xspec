@@ -872,11 +872,6 @@
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:supplementaryContent>
-              <bf:SupplementaryContent>
-                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
-              </bf:SupplementaryContent>
-            </bf:supplementaryContent>
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/4417401#Topic650-20">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
@@ -1069,6 +1064,11 @@
             </bf:note>
             <bf:dimensions>26 cm.</bf:dimensions>
             <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent>
+                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
             <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
             <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
             <bf:supplementaryContent>
