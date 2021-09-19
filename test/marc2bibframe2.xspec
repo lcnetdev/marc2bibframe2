@@ -294,6 +294,14 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                </bf:assigner>
+                <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
             <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>

@@ -24,16 +24,16 @@
       <x:expect label="050 creates an Item if ind1=0" test="count(//bf:Instance[1]/bf:hasItem/bf:Item[contains(@rdf:about,'http://example.org/1#Item050')])= 2"/>
       <x:expect label="...and a heldBy property of the Item" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:heldBy/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
       <x:expect label="...with a code for the Agent" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:heldBy/bf:Agent/bf:code = 'DLC'"/>
-      <x:expect label="If the first $a is of form ABC123... 050 creates a ShelfMarkLcc object of the shelfMark property" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'QE75.P9 subser.'"/>
-      <x:expect label="otherwise it creates a ShelfMark object of the shelfMark property" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-5']/bf:shelfMark/bf:ShelfMark/rdfs:label = 'Microform 1234'"/>
+      <x:expect label="050 creates a ShelfMarkLcc object of the shelfMark property" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'QE75.P9 subser.'"/>
+      <x:expect label="...regardless of the form of the $a" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-5']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'Microform 1234'"/>
       <x:expect label="ind2 = '0' creates an assigner property of the ShelfMarcLcc" test="//bf:Item[@rdf:about ='http://example.org/1#Item050-2']/bf:shelfMark/bf:ShelfMarkLcc/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     </x:scenario>
 
     <x:scenario label="051 Item creation">
       <x:context href="data/ConvSpec-DLC/marc.xml"/>
       <x:expect label="051 creates an Item" test="count(//bf:Instance[1]/bf:hasItem/bf:Item[contains(@rdf:about,'http://example.org/1#Item051')]) = 2"/>
-      <x:expect label="If $a is of form ABC123, 051 creates a shelfMark/ShelfMarkLcc property with label $ab" test="//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item051-3']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'QE75.G4'"/>
-      <x:expect label="otherwise it creates a shelfMark/ShelfMark property" test="//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item051-4']/bf:shelfMark/bf:ShelfMark/rdfs:label = 'Microfilm 3741 HV'"/>
+      <x:expect label="051 creates a shelfMark/ShelfMarkLcc property with label $ab" test="//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item051-3']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'QE75.G4'"/>
+      <x:expect label="... regardless of the form of the $a" test="//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item051-4']/bf:shelfMark/bf:ShelfMarkLcc/rdfs:label = 'Microfilm 3741 HV'"/>
       <x:expect label="$c creates a note/Note property of the Item" test="//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item051-3']/bf:note/bf:Note/rdfs:label = '2d set.'"/>
     </x:scenario>
 

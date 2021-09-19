@@ -18,11 +18,6 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <xsl:variable name="vValidLCC">
-            <xsl:call-template name="validateLCC">
-              <xsl:with-param name="pCall" select="text()"/>
-            </xsl:call-template>
-          </xsl:variable>
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vCurrentNodeUri">
             <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
@@ -36,42 +31,40 @@
               </xsl:if>
             </xsl:for-each>
           </xsl:variable>
-          <xsl:if test="$vValidLCC='true'">
-            <bf:classification>
-              <bf:ClassificationLcc>
-                <xsl:if test="$vCurrentNodeUri != ''">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
-                </xsl:if>
-                <xsl:if test="../@ind2 = '0'">
-                  <bf:assigner>
-                    <bf:Agent>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                    </bf:Agent>
-                  </bf:assigner>
-                </xsl:if>
-                <bf:classificationPortion>
-                  <xsl:value-of select="."/>
-                </bf:classificationPortion>
-                <xsl:if test="position() = 1">
-                  <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
-                    <bf:itemPortion>
-                      <xsl:value-of select="."/>
-                    </bf:itemPortion>
-                  </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                  <xsl:if test="position() != 1">
-                    <xsl:apply-templates select="." mode="subfield0orw">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </xsl:if>
+          <bf:classification>
+            <bf:ClassificationLcc>
+              <xsl:if test="$vCurrentNodeUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+              </xsl:if>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:if>
+              <bf:classificationPortion>
+                <xsl:value-of select="."/>
+              </bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                  <bf:itemPortion>
+                    <xsl:value-of select="."/>
+                  </bf:itemPortion>
                 </xsl:for-each>
-                <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:ClassificationLcc>
-            </bf:classification>
-          </xsl:if>
+              </xsl:if>
+              <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+                <xsl:if test="position() != 1">
+                  <xsl:apply-templates select="." mode="subfield0orw">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+              </xsl:for-each>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:ClassificationLcc>
+          </bf:classification>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -543,17 +536,6 @@
           <xsl:otherwise><xsl:value-of select="marc:subfield[@code='a']"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <xsl:variable name="vValidLCC">
-        <xsl:call-template name="validateLCC">
-          <xsl:with-param name="pCall" select="marc:subfield[@code='a'][1]"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:variable name="vShelfMarkClass">
-        <xsl:choose>
-          <xsl:when test="$vValidLCC='true'">bf:ShelfMarkLcc</xsl:when>
-          <xsl:otherwise>bf:ShelfMark</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:hasItem>
@@ -566,14 +548,14 @@
                 </bf:Agent>
               </bf:heldBy>
               <bf:shelfMark>
-                <xsl:element name="{$vShelfMarkClass}">
+                <bf:ShelfMarkLcc>
                   <rdfs:label><xsl:value-of select="$vShelfMark"/></rdfs:label>
                   <bf:assigner>
                     <bf:Agent>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                     </bf:Agent>
                   </bf:assigner>
-                </xsl:element>
+                </bf:ShelfMarkLcc>
               </bf:shelfMark>
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:note>
