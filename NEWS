@@ -4,6 +4,7 @@ Changes towards updated v1.7 specifications:
   ConvSpec-001-007: Prefer MARC 3XX fields for video format, encoding, medium, etc.
   ConvSpec-006-008: URI updates, note generation
   ConvSpec-010-048: Ontology update
+  ConvSpec-050-088: Updated processing for 050, 052
   ConvSpec-200-247: Note generation
   ConvSpec-250-270:
     Do not generate bf:provisionActivityStatement
