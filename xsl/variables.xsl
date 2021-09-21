@@ -62,6 +62,7 @@
   <xsl:variable name="mencformat">http://id.loc.gov/vocabulary/mencformat/</xsl:variable>
   <xsl:variable name="nametitleschemes">http://id.loc.gov/vocabulary/nameTitleSchemes/</xsl:variable>
   <xsl:variable name="musiccodeschemes">http://id.loc.gov/vocabulary/musiccodeschemes/</xsl:variable>
+  <xsl:variable name="classG">http://id.loc.gov/authorities/classification/G</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>

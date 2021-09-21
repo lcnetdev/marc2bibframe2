@@ -70,43 +70,18 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='052' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='052')]" mode="work">
+  <xsl:template match="marc:datafield[(@tag='052' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='052')) and @ind1=' ']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vNodeUri">
-      <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
-        <xsl:choose>
-          <xsl:when test="starts-with(.,'(uri)')">
-            <xsl:value-of select="substring-after(.,'(uri)')"/>
-          </xsl:when>
-          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-    </xsl:variable>
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='b']">
         <xsl:for-each select="marc:subfield[@code='b']">
-          <xsl:variable name="vValue">
-            <xsl:apply-templates select="../marc:subfield[@code='a']|." mode="concat-nodes-space"/>
+          <xsl:variable name="vUri">
+            <xsl:value-of select="concat($classG,../marc:subfield[@code='a'],'.',.)"/>
           </xsl:variable>
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
               <bf:geographicCoverage>
-                <bf:GeographicCoverage>
-                  <xsl:if test="$vNodeUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vNodeUri"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="../@ind1 = ' '">
-                    <bf:source>
-                      <bf:Source>
-                        <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
-                      </bf:Source>
-                    </bf:source>
-                  </xsl:if>
-                  <rdf:value><xsl:value-of select="normalize-space($vValue)"/></rdf:value>
-                  <xsl:apply-templates select=".." mode="work052">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                </bf:GeographicCoverage>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vUri"/></xsl:attribute>
               </bf:geographicCoverage>
             </xsl:when>
           </xsl:choose>
@@ -115,26 +90,11 @@
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <bf:geographicCoverage>
-              <bf:GeographicCoverage>
-                <xsl:if test="$vNodeUri != ''">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vNodeUri"/></xsl:attribute>
-                </xsl:if>
-                <xsl:if test="@ind1 = ' '">
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:if>
-                <xsl:for-each select="marc:subfield[@code='a']">
-                  <rdf:value><xsl:value-of select="."/></rdf:value>
-                </xsl:for-each>
-                <xsl:apply-templates select="." mode="work052">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:GeographicCoverage>
-            </bf:geographicCoverage>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:geographicCoverage>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($classG,.)"/></xsl:attribute>
+              </bf:geographicCoverage>
+            </xsl:for-each>
           </xsl:when>
         </xsl:choose>
       </xsl:otherwise>
