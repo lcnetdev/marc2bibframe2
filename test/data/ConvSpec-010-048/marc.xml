@@ -50,6 +50,7 @@
       <subfield code="y">0046-2254</subfield>
       <subfield code="z">0361-7106</subfield>
       <subfield code="2">DEU-6</subfield>
+      <subfield code="0">(uri)http://issn.org/resource/ISSN/1234-1231#ISSN</subfield>
     </datafield>
     <datafield tag="024" ind1="0" ind2=" ">
       <subfield code="a">NLC018413261</subfield>

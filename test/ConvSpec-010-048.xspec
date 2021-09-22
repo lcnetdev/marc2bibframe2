@@ -69,6 +69,7 @@
     <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Work[1]/bf:identifiedBy[2]/bf:Issn/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
     <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[3]/bf:Issn/bf:status/bf:Status/rdfs:label = 'canceled'"/>
+    <x:expect label="$0 becomes the URI of the Issn/L" test="//bf:Work/bf:identifiedBy[1]/bf:Issn/@rdf:about='http://issn.org/resource/ISSN/1234-1231#ISSN'"/>
     <x:expect label="$2 creates an assigner property of the Issn" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Issn/bf:assigner/bf:Agent/bf:code = 'DEU-6'"/>
   </x:scenario>
   

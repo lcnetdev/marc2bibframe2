@@ -306,11 +306,21 @@
   
   <xsl:template match="marc:datafield[@tag='022' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='022')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vUri">
+      <xsl:if test="contains(marc:subfield[@code='0'],'://')">
+        <xsl:variable name="vSource" select="substring(substring-after(marc:subfield[@code='0'],'('),1,string-length(substring-before(marc:subfield[@code='0'],')'))-1)"/>
+        <xsl:choose>
+          <xsl:when test="$vSource != ''"><xsl:value-of select="substring-after(marc:subfield[@code='0'],')')"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="marc:subfield[@code='0']"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:variable>
     <xsl:apply-templates select="." mode="instanceId">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pIdentifier">bf:Issn</xsl:with-param>
       <xsl:with-param name="pIncorrectLabel">incorrect</xsl:with-param>
       <xsl:with-param name="pInvalidLabel">canceled</xsl:with-param>
+      <xsl:with-param name="pUri" select="$vUri"/>
     </xsl:apply-templates>
     <xsl:for-each select="marc:subfield[@code='l'] | marc:subfield[@code='m']">
       <xsl:choose>
@@ -1050,6 +1060,7 @@
     <xsl:param name="pIncorrectLabel" select="'incorrect'"/>
     <xsl:param name="pInvalidLabel" select="'invalid'"/>
     <xsl:param name="pChopPunct" select="false()"/>
+    <xsl:param name="pUri"/>
     <xsl:variable name="vTag">
       <xsl:choose>
         <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
@@ -1074,6 +1085,9 @@
           </xsl:variable>
           <bf:identifiedBy>
             <xsl:element name="{$pIdentifier}">
+              <xsl:if test="$pUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$pUri"/></xsl:attribute>
+              </xsl:if>
               <rdf:value>
                 <xsl:choose>
                   <xsl:when test="$pChopPunct">
