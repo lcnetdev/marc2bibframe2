@@ -190,7 +190,7 @@
     <x:expect label="$b creates a descriptionLanguage property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionLanguage/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/fre'"/>
     <x:expect label="final $d creates a descriptionModifier property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[1]/bf:Agent/bf:code = 'CtY'"/>
     <x:expect label="...with a URI if $d = DLC" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionModifier[2]/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
-    <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/rdf:value = 'NARS Staff Bulletin No. 16'"/>
+    <x:expect label="$e creates a descriptionConventions property of the AdminMetadata" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[1]/bf:DescriptionConventions/bf:code = 'NARS Staff Bulletin No. 16'"/>
     <x:expect label="...if it contains a code, the object has a URI" test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions[2]/bf:DescriptionConventions/@rdf:about = 'http://id.loc.gov/vocabulary/descriptionConventions/appm'"/>
   </x:scenario>
 
