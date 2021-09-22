@@ -435,5 +435,55 @@
     <d href="http://id.loc.gov/vocabulary/mcapturestorage/dist">Electrical capture, digital storage</d>
     <e href="http://id.loc.gov/vocabulary/mcapturestorage/aes">Electrical capture, Analog electrical storage</e>
     <u href="http://id.loc.gov/vocabulary/mcapturestorage/unk">Unknown capture and storage</u>
-  </captureStorage> 
+  </captureStorage>
+  <!-- record metadata status -->
+  <!-- used in LDR/05 -->
+  <mstatus>
+    <a href="http://id.loc.gov/vocabulary/mstatus/c">changed</a>
+    <c href="http://id.loc.gov/vocabulary/mstatus/c">changed</c>
+    <d href="http://id.loc.gov/vocabulary/mstatus/d">deleted</d>
+    <n href="http://id.loc.gov/vocabulary/mstatus/n">new</n>
+    <p href="http://id.loc.gov/vocabulary/mstatus/p">prepublication</p>
+  </mstatus>
+  <!-- record content type -->
+  <!-- used in LDR/06 -->
+  <contentTypes>
+    <a href="http://id.loc.gov/vocabulary/contentTypes/txt" class="Text">text</a>
+    <c href="http://id.loc.gov/vocabulary/contentTypes/ntm" class="NotatedMusic">notated music</c>
+    <d href="http://id.loc.gov/vocabulary/contentTypes/ntm" class="NotatedMusic">notated music</d>
+    <e href="http://id.loc.gov/vocabulary/contentTypes/cri" class="Cartography">cartographic image</e>
+    <f href="http://id.loc.gov/vocabulary/contentTypes/cri" class="Cartography">cartographic image</f>
+    <g href="http://id.loc.gov/vocabulary/contentTypes/tdi" class="MovingImage">two-dimensional moving image</g>
+    <i href="http://id.loc.gov/vocabulary/contentTypes/spw" class="Audio">spoken word</i>
+    <j href="http://id.loc.gov/vocabulary/contentTypes/prm" class="Audio">performed music</j>
+    <k href="http://id.loc.gov/vocabulary/contentTypes/sti" class="StillImage">still image</k>
+    <m href="http://id.loc.gov/vocabulary/contentTypes/cop" class="Multimedia">computer program</m>
+    <o href="http://id.loc.gov/vocabulary/contentTypes/txt" class="MixedMaterial">text</o>
+    <p href="http://id.loc.gov/vocabulary/contentTypes/txt" class="MixedMaterial">text</p>
+    <r href="http://id.loc.gov/vocabulary/contentTypes/tdf" class="Object">three-dimensional form</r>
+    <t href="http://id.loc.gov/vocabulary/contentTypes/txt" class="Text">text</t>
+  </contentTypes>
+  <!-- record encoding level -->
+  <!-- used in LDR/17 -->
+  <menclvl>
+    <!-- tag names are weird because of blank/number values used in LDR -->
+    <_0 href="http://id.loc.gov/vocabulary/menclvl/f">full</_0>
+    <_1 href="http://id.loc.gov/vocabulary/menclvl/1">full not examined</_1>
+    <_2 href="http://id.loc.gov/vocabulary/menclvl/7">minimal</_2>
+    <_3 href="http://id.loc.gov/vocabulary/menclvl/3">abbreviated</_3>
+    <_4 href="http://id.loc.gov/vocabulary/menclvl/4">core</_4>
+    <_5 href="http://id.loc.gov/vocabulary/menclvl/5">preliminary</_5>
+    <_7 href="http://id.loc.gov/vocabulary/menclvl/7">minimal</_7>
+    <_8 href="http://id.loc.gov/vocabulary/menclvl/8">prepublication</_8>
+  </menclvl>
+  <!-- record description conventions -->
+  <!-- used in LDR/18 -->
+  <descriptionConventions>
+    <_ href="http://id.loc.gov/vocabulary/descriptionConventions/local">local</_>
+    <a href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</a>
+    <c href="http://id.loc.gov/vocabulary/descriptionConventions/isbd">isbd</c>
+    <i href="http://id.loc.gov/vocabulary/descriptionConventions/isbd">isbd</i>
+    <p href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</p>
+    <r href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</r>
+  </descriptionConventions>
 </maps>

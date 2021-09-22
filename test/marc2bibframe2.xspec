@@ -45,9 +45,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>corrected or revised</rdfs:label>
-                    <bf:code>c</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label>changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -251,9 +250,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
                     <rdfs:label>new</rdfs:label>
-                    <bf:code>n</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -483,9 +481,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>corrected or revised</rdfs:label>
-                    <bf:code>c</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label>changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -778,9 +775,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>increase in encoding level from prepublication</rdfs:label>
-                    <bf:code>p</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
+                    <rdfs:label>prepublication</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>

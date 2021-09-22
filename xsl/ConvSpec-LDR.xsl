@@ -28,182 +28,67 @@
   
   <xsl:template match="marc:leader" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vDescrConventions">
+    <xsl:variable name="vStatus" select="substring(.,6,1)"/>
+    <xsl:for-each select="$codeMaps/maps/mstatus/*[name() = $vStatus]">
       <xsl:choose>
-        <xsl:when test="substring(.,19,1) = ' '">local</xsl:when>
-        <xsl:when test="substring(.,19,1) = 'a'">aacr</xsl:when>
-        <xsl:when test="substring(.,19,1) = 'c'">isbd</xsl:when>
-        <xsl:when test="substring(.,19,1) = 'i'">isbd</xsl:when>
-        <xsl:when test="substring(.,19,1) = 'p'">aacr</xsl:when>
-        <xsl:when test="substring(.,19,1) = 'r'">aacr</xsl:when>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:status>
+            <bf:Status>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Status>
+          </bf:status>
+        </xsl:when>
       </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:choose>
-          <xsl:when test="substring(.,6,1) = 'a'">
-            <bf:status>
-              <bf:Status>
-                <rdfs:label>increase in encoding level</rdfs:label>
-                <bf:code>c</bf:code>
-              </bf:Status>
-            </bf:status>
-          </xsl:when>
-          <xsl:when test="substring(.,6,1) = 'c'">
-            <bf:status>
-              <bf:Status>
-                <rdfs:label>corrected or revised</rdfs:label>
-                <bf:code>c</bf:code>
-              </bf:Status>
-            </bf:status>
-          </xsl:when>
-          <xsl:when test="substring(.,6,1) = 'd'">
-            <bf:status>
-              <bf:Status>
-                <rdfs:label>deleted</rdfs:label>
-                <bf:code>d</bf:code>
-              </bf:Status>
-            </bf:status>
-          </xsl:when>
-          <xsl:when test="substring(.,6,1) = 'n'">
-            <bf:status>
-              <bf:Status>
-                <rdfs:label>new</rdfs:label>
-                <bf:code>n</bf:code>
-              </bf:Status>
-            </bf:status>
-          </xsl:when>
-          <xsl:when test="substring(.,6,1) = 'p'">
-            <bf:status>
-              <bf:Status>
-                <rdfs:label>increase in encoding level from prepublication</rdfs:label>
-                <bf:code>p</bf:code>
-              </bf:Status>
-            </bf:status>
-          </xsl:when>
-        </xsl:choose>
-        <bflc:encodingLevel>
-          <bflc:EncodingLevel>
-            <xsl:choose>
-              <xsl:when test="substring(.,18,1) = ' '">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/f</xsl:attribute>
-                <rdfs:label>full</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '1'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/1</xsl:attribute>
-                <rdfs:label>full not examined</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '2'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/7</xsl:attribute>
-                <rdfs:label>less than full not examined</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '3'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/3</xsl:attribute>
-                <rdfs:label>abbreviated</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '4'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/4</xsl:attribute>
-                <rdfs:label>core</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '5'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/5</xsl:attribute>
-                <rdfs:label>preliminary</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '7'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/7</xsl:attribute>
-                <rdfs:label>minimal</rdfs:label>
-              </xsl:when>
-              <xsl:when test="substring(.,18,1) = '8'">
-                <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/menclvl/8</xsl:attribute>
-                <rdfs:label>prepublication</rdfs:label>
-              </xsl:when>
-            </xsl:choose>
-          </bflc:EncodingLevel>
-        </bflc:encodingLevel>
-        <xsl:if test="$vDescrConventions != ''">
+    </xsl:for-each>
+    <xsl:variable name="vEncLvl" select="concat('_',translate(substring(.,18,1),' ','0'))"/>
+    <xsl:for-each select="$codeMaps/maps/menclvl/*[name() = $vEncLvl]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bflc:encodingLevel>
+            <bflc:EncodingLevel>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bflc:EncodingLevel>
+          </bflc:encodingLevel>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
+    <xsl:variable name="vDescriptionConventions" select="translate(substring(.,19,1),' ','_')"/>
+    <xsl:for-each select="$codeMaps/maps/descriptionConventions/*[name() = $vDescriptionConventions]">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($descriptionConventions,$vDescrConventions)"/></xsl:attribute>
-              <rdfs:label><xsl:value-of select="$vDescrConventions"/></rdfs:label>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
-        </xsl:if>
-      </xsl:when>
-    </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="marc:leader" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workType">
-      <xsl:choose>
-        <xsl:when test="substring(.,7,1) = 'a'">Text</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'c'">NotatedMusic</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'd'">NotatedMusic</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'e'">Cartography</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'f'">Cartography</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'g'">MovingImage</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'i'">Audio</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'j'">Audio</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'k'">StillImage</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'm'">Multimedia</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'o'">MixedMaterial</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'p'">MixedMaterial</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'r'">Object</xsl:when>
-        <xsl:when test="substring(.,7,1) = 't'">Text</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="vContentType">
-      <xsl:choose>
-        <xsl:when test="substring(.,7,1) = 'a'">txt</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'c'">ntm</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'd'">ntm</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'e'">cri</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'f'">cri</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'g'">tdi</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'i'">spw</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'j'">prm</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'k'">sti</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'm'">cop</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'o'">txt</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'p'">txt</xsl:when>
-        <xsl:when test="substring(.,7,1) = 'r'">tdf</xsl:when>
-        <xsl:when test="substring(.,7,1) = 't'">txt</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:if test="$workType != ''">
+    <xsl:variable name="vContentType" select="substring(.,7,1)"/>
+    <xsl:for-each select="$codeMaps/maps/contentTypes/*[name() = $vContentType]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$workType)"/></xsl:attribute>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,@class)"/></xsl:attribute>
           </rdf:type>
+          <xsl:if test="not(../marc:datafield[@tag='336'])">
+            <bf:content>
+              <bf:Content>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:Content>
+            </bf:content>
+          </xsl:if>
         </xsl:when>
       </xsl:choose>
-    </xsl:if>
-    <xsl:if test="$vContentType != '' and
-                  not(../marc:datafield[@tag='336'])">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:content>
-            <bf:Content>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($contentType,$vContentType)"/></xsl:attribute>
-              <rdfs:label>
-                <xsl:choose>
-                  <xsl:when test="$vContentType='txt'">text</xsl:when>
-                  <xsl:when test="$vContentType='ntm'">notated music</xsl:when>
-                  <xsl:when test="$vContentType='cri'">cartographic image</xsl:when>
-                  <xsl:when test="$vContentType='tdi'">two-dimensional moving image</xsl:when>
-                  <xsl:when test="$vContentType='spw'">spoken word</xsl:when>
-                  <xsl:when test="$vContentType='prm'">performed music</xsl:when>
-                  <xsl:when test="$vContentType='sti'">still image</xsl:when>
-                  <xsl:when test="$vContentType='cop'">computer program</xsl:when>
-                  <xsl:when test="$vContentType='tdf'">three-dimensional form</xsl:when>
-                </xsl:choose>
-              </rdfs:label>
-            </bf:Content>
-          </bf:content>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="marc:leader" mode="instance">

@@ -1,6 +1,8 @@
 --- 1.7.0-SNAPSHOT
 
 Changes towards updated v1.7 specifications:
+  ConvSpec-LDR:
+    Update processing of LDR/05, LDR/18
   ConvSpec-001-007: Prefer MARC 3XX fields for video format, encoding, medium, etc.
   ConvSpec-006-008: URI updates, note generation
   ConvSpec-010-048: Ontology update

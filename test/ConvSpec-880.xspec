@@ -79,7 +79,7 @@
 
   <x:scenario label="Subfield 6 processing">
     <x:context href="data/ConvSpec-880/marc-subfield6-processing.xml"/>
-    <x:expect label="LDR always processed" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/bf:code = 'c'"/>
+    <x:expect label="LDR always processed" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/rdfs:label = 'changed'"/>
     <x:expect label="marc:controlfield nodes always processed" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:identifiedBy/bf:Local/rdf:value = '1'"/>
     <x:expect label="Fields without $6 always processed" test="//bf:Instance[1]/bf:identifiedBy/bf:Lccn/rdf:value = '  2016377151'"/>
     <x:expect label="880 fields with no regular field match always processed" test="//bf:Work[1]/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = '许思豪, 1955-'"/>
