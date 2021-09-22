@@ -35,6 +35,16 @@
       <subfield code="a">東京都新宿区</subfield>
       <subfield code="b">藤原書店</subfield>
     </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">Policy series / CES ;</subfield>
+      <subfield code="v">1</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">490-06/(N</subfield>
+      <subfield code="a">Серия политик / CES ;</subfield>
+      <subfield code="v">1</subfield>
+    </datafield>
     <datafield tag="500" ind1=" " ind2=" ">
       <subfield code="6">880-03</subfield>
       <subfield code="a">From the works of the Chase Family</subfield>

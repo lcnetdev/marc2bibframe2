@@ -83,7 +83,7 @@
   <datafield tag="385" convertLinked="false"/>
   <datafield tag="386" convertLinked="false"/>
   <datafield tag="440" convertLinked="false"/>
-  <datafield tag="490" convertLinked="true"/>
+  <!-- omit field 490 to force both 250 and linked 880 to be converted -->
   <datafield tag="500" convertLinked="true"/>
   <datafield tag="501" convertLinked="true"/>
   <datafield tag="502" convertLinked="true"/>
