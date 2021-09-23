@@ -21,6 +21,7 @@ Changes towards updated v1.7 specifications:
   ConvSpec-5XX: Note generation
   ConvSpec-720,740-758: Updated processing for 740
   ConvSpec-760-788: Updated processing for 776, 777
+  ConvSpec-NumericSubfields: Updated processing for 250, 26X, 490 (6.3 spec)
 
 Remove namespace declaration for xpath-functions (fix bug with current-dateTime())
 
