@@ -327,11 +327,7 @@
                     <madsrdf:authoritativeLabel>1951-1960</madsrdf:authoritativeLabel>
                   </madsrdf:Temporal>
                 </madsrdf:componentList>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:subject>
@@ -340,11 +336,7 @@
                 <rdfs:label>Piano with jazz ensemble.</rdfs:label>
                 <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:contribution>
@@ -588,11 +580,7 @@
                 <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61020$aWhite House (Washington, D.C.)</bflc:name10MarcKey>
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -604,11 +592,7 @@
                 <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:name10MarcKey>
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -620,11 +604,7 @@
                 <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:name10MarcKey>
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -636,11 +616,7 @@
                 <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:name10MarcKey>
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:contribution>
@@ -874,11 +850,7 @@
                 <rdfs:label>Policy sciences.</rdfs:label>
                         <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:subject>
@@ -895,11 +867,7 @@
                     <madsrdf:authoritativeLabel>Evaluation</madsrdf:authoritativeLabel>
                   </madsrdf:Topic>
                 </madsrdf:componentList>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:contribution>

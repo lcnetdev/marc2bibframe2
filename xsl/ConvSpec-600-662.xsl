@@ -61,7 +61,6 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -113,16 +112,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
           <xsl:choose>
-            <xsl:when test="$vSourceURI != '' or $vSourceCode != ''">
+            <xsl:when test="$vSourceURI != ''">
               <bf:source>
-                <bf:Source>
-                  <xsl:if test="$vSourceURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="$vSourceCode != ''">
-                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                  </xsl:if>
-                </bf:Source>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
               </bf:source>
             </xsl:when>
             <xsl:when test="@ind2='4' or @ind2='7'">
@@ -156,7 +148,7 @@
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                       </madsrdf:isMemberOfMADSScheme>
                     </xsl:for-each>                  
-                    <xsl:if test="$vSource != ''">
+                    <xsl:if test="$vSource">
                       <xsl:copy-of select="$vSource"/>
                     </xsl:if>
                     <!-- build the ComplexSubject -->
@@ -219,7 +211,7 @@
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                       </madsrdf:isMemberOfMADSScheme>
                     </xsl:for-each>                  
-                    <xsl:if test="$vSource != ''">
+                    <xsl:if test="$vSource">
                       <xsl:copy-of select="$vSource"/>
                     </xsl:if>
                     <!-- build the ComplexSubject -->
@@ -399,7 +391,6 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -428,16 +419,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
           <xsl:choose>
-            <xsl:when test="$vSourceURI != '' or $vSourceCode != ''">
+            <xsl:when test="$vSourceURI != ''">
               <bf:source>
-                <bf:Source>
-                  <xsl:if test="$vSourceURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="$vSourceCode != ''">
-                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                  </xsl:if>
-                </bf:Source>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
               </bf:source>
             </xsl:when>
             <xsl:when test="@ind2='4' or @ind2='7'">
@@ -469,7 +453,7 @@
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                   </madsrdf:isMemberOfMADSScheme>
                 </xsl:for-each>                  
-                <xsl:if test="$vSource != ''">
+                <xsl:if test="$vSource">
                   <xsl:copy-of select="$vSource"/>
                 </xsl:if>
                 <!-- build the ComplexSubject -->
@@ -630,7 +614,6 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -740,16 +723,9 @@
               </bf:note>
             </xsl:for-each>
             <xsl:choose>
-              <xsl:when test="$vSourceCode != '' or $vSourceURI != ''">
+              <xsl:when test="$vSourceURI != ''">
                 <bf:source>
-                  <bf:Source>
-                    <xsl:if test="$vSourceURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:if test="$vSourceCode != ''">
-                      <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                    </xsl:if>
-                  </bf:Source>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
                 </bf:source>
               </xsl:when>
               <xsl:when test="@ind2='4' or @ind2='7'">

@@ -703,7 +703,7 @@
                 </xsl:if>
               </xsl:for-each>
               <xsl:choose>
-                <xsl:when test="$pSource != ''">
+                <xsl:when test="$pSource">
                   <xsl:copy-of select="$pSource"/>
                 </xsl:when>
                 <xsl:otherwise>
