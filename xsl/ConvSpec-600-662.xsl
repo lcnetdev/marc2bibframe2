@@ -26,10 +26,10 @@
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
-    <xsl:variable name="workiri">
+    <xsl:variable name="vHubIri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
@@ -40,7 +40,7 @@
     </xsl:variable>
     <xsl:apply-templates mode="work6XXName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
-      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pHubIri" select="$vHubIri"/>
       <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -49,7 +49,7 @@
 
   <xsl:template match="marc:datafield" mode="work6XXName">
     <xsl:param name="agentiri"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pTopicUri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -153,9 +153,9 @@
                     </xsl:if>
                     <!-- build the ComplexSubject -->
                     <madsrdf:componentList rdf:parseType="Collection">
-                      <xsl:apply-templates select="." mode="work6XXWork">
+                      <xsl:apply-templates select="." mode="work6XXHub">
                         <xsl:with-param name="serialization" select="$serialization"/>
-                        <xsl:with-param name="workiri" select="$workiri"/>
+                        <xsl:with-param name="pHubIri" select="$pHubIri"/>
                         <xsl:with-param name="agentiri" select="$agentiri"/>
                         <xsl:with-param name="recordid" select="$recordid"/>
                         <xsl:with-param name="pMADSClass" select="NameTitle"/>
@@ -177,9 +177,9 @@
                   </bf:Topic>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:apply-templates select="." mode="work6XXWork">
+                  <xsl:apply-templates select="." mode="work6XXHub">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="workiri" select="$workiri"/>
+                    <xsl:with-param name="pHubIri" select="$pHubIri"/>
                     <xsl:with-param name="agentiri" select="$agentiri"/>
                     <xsl:with-param name="recordid" select="$recordid"/>
                     <xsl:with-param name="pMADSClass" select="$vMADSClass"/>
@@ -255,9 +255,9 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield" mode="work6XXWork">
+  <xsl:template match="marc:datafield" mode="work6XXHub">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="agentiri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="pMADSClass"/>
@@ -267,9 +267,9 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Work>
-          <xsl:if test="$workiri != ''">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+        <bf:Hub>
+          <xsl:if test="$pHubIri != ''">
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
           </xsl:if>
           <xsl:if test="$pMADSClass != ''">
             <rdf:type>
@@ -349,7 +349,7 @@
             <xsl:with-param name="agentiri" select="$agentiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-        </bf:Work>
+        </bf:Hub>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -358,10 +358,10 @@
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri">
+    <xsl:variable name="vHubIri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
@@ -371,7 +371,7 @@
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="work630" select=".">
-      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pHubIri" select="$vHubIri"/>
       <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -380,7 +380,7 @@
 
   <xsl:template match="marc:datafield" mode="work630">
     <xsl:param name="recordid"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pTopicUri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
@@ -458,9 +458,9 @@
                 </xsl:if>
                 <!-- build the ComplexSubject -->
                 <madsrdf:componentList rdf:parseType="Collection">
-                  <xsl:apply-templates select="." mode="work630Work">
+                  <xsl:apply-templates select="." mode="work630Hub">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="workiri" select="$workiri"/>
+                    <xsl:with-param name="pHubIri" select="$pHubIri"/>
                     <xsl:with-param name="recordid" select="$recordid"/>
                     <xsl:with-param name="pMADSClass" select="Title"/>
                     <xsl:with-param name="pMADSLabel">
@@ -480,9 +480,9 @@
               </bf:Topic>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select="." mode="work630Work">
+              <xsl:apply-templates select="." mode="work630Hub">
                 <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="workiri" select="$workiri"/>
+                <xsl:with-param name="pHubIri" select="$pHubIri"/>
                 <xsl:with-param name="recordid" select="$recordid"/>
                 <xsl:with-param name="pMADSClass" select="Title"/>
                 <xsl:with-param name="pMADSLabel" select="$vMADSLabel"/>
@@ -495,16 +495,16 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield" mode="work630Work">
+  <xsl:template match="marc:datafield" mode="work630Hub">
     <xsl:param name="recordid"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pMADSClass"/>
     <xsl:param name="pMADSLabel"/>
     <xsl:param name="pSource"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Work>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+        <bf:Hub>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
           </rdf:type>
@@ -538,11 +538,11 @@
               </bflc:Relationship>
             </bflc:relationship>
           </xsl:for-each>
-          <xsl:apply-templates select="." mode="workUnifTitle">
+          <xsl:apply-templates select="." mode="hubUnifTitle">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pSource" select="$pSource"/>
           </xsl:apply-templates>
-        </bf:Work>
+        </bf:Hub>
       </xsl:when>
     </xsl:choose>
   </xsl:template>    

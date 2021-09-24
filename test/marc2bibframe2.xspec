@@ -899,37 +899,37 @@
               </bf:Contribution>
             </bf:contribution>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-25">
-                <rdfs:label>Jossey-Bass public administration series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass public administration series.</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-26">
-                <rdfs:label>Jossey-Bass nonprofit sector series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass nonprofit sector series.</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-27">
-                <rdfs:label>Jossey-Bass social and behavioral science series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass social and behavioral science series.</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:tableOfContents>
               <bf:TableOfContents>

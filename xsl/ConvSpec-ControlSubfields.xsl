@@ -26,7 +26,7 @@
               <xsl:when test="$pEntity='bf:Agent'">
                 <xsl:value-of select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
               </xsl:when>
-              <xsl:when test="$pEntity='bf:Work'">
+              <xsl:when test="$pEntity='bf:Work' or $pEntity = 'bf:Hub'">
                 <xsl:value-of select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
               </xsl:when>
             </xsl:choose>

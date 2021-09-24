@@ -51,13 +51,10 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vLabel">
-      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[not(contains('vwx012345678',@code))]"/>
-    </xsl:variable>
-    <xsl:variable name="workiri">
+    <xsl:variable name="vHubIri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="agentiri">
@@ -66,24 +63,20 @@
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space"
+                           select="marc:subfield[not(contains('hvwx012345678',@code))]"/>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:hasSeries>
-          <bf:Work>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString" select="$vLabel"/>
-                <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
-              </xsl:call-template>
-            </rdfs:label>
+          <bf:Hub>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
             <xsl:choose>
               <xsl:when test="$vTag='830' or $vTag='440'">
-                <xsl:apply-templates mode="workUnifTitle" select=".">
+                <xsl:apply-templates mode="hubUnifTitle" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pLabel" select="$vLabel"/>
                 </xsl:apply-templates>
               </xsl:when>
               <xsl:otherwise>
@@ -137,14 +130,14 @@
                 </xsl:if>
               </xsl:otherwise>
             </xsl:choose>
-            <!-- $3 processed by workUnifTitle template -->
+            <!-- $3 processed by hubUnifTitle template -->
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
             <xsl:apply-templates mode="subfield7" select="marc:subfield[@code='7']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
-          </bf:Work>
+          </bf:Hub>
         </bf:hasSeries>
       </xsl:when>
     </xsl:choose>

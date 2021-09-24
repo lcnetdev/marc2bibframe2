@@ -56,15 +56,15 @@
           <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
         </xsl:apply-templates>
       </xsl:variable>
-      <xsl:variable name="workiri">
+      <xsl:variable name="vHubIri">
         <xsl:apply-templates mode="generateUri" select=".">
-          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-          <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+          <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
         </xsl:apply-templates>
       </xsl:variable>
       <xsl:apply-templates mode="work7XX" select=".">
         <xsl:with-param name="agentiri" select="$agentiri"/>
-        <xsl:with-param name="workiri" select="$workiri"/>
+        <xsl:with-param name="pHubIri" select="$vHubIri"/>
         <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
     </xsl:if>
@@ -72,7 +72,7 @@
 
   <xsl:template match="marc:datafield" mode="work7XX">
     <xsl:param name="agentiri"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
@@ -82,24 +82,24 @@
             <xsl:choose>
               <xsl:when test="@ind2='2' and count(marc:subfield[@code='i']) = 0">
                 <bf:hasPart>
-                  <bf:Work>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                  <bf:Hub>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
-                  </bf:Work>
+                  </bf:Hub>
                 </bf:hasPart>
               </xsl:when>
               <xsl:otherwise>
                 <bf:relatedTo>
-                  <bf:Work>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+                  <bf:Hub>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
-                  </bf:Work>
+                  </bf:Hub>
                 </bf:relatedTo>
               </xsl:otherwise>
             </xsl:choose>
@@ -121,7 +121,7 @@
                     </bflc:Relation>
                   </bflc:relation>
                   <bf:relatedTo>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$workiri"/></xsl:attribute>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$pHubIri"/></xsl:attribute>
                   </bf:relatedTo>
                 </bflc:Relationship>
               </bflc:relationship>
@@ -242,10 +242,27 @@
       </xsl:when>
     </xsl:choose>
     <xsl:if test="marc:subfield[@code='t']">
-      <xsl:apply-templates mode="workUnifTitle" select=".">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pSource" select="$pSource"/>
-      </xsl:apply-templates>
+      <xsl:choose>
+        <xsl:when test="substring($tag,1,1) = '1'">
+          <bf:expressionOf>
+            <bf:Hub>
+              <xsl:attribute name="rdf:about">
+                <xsl:value-of select="concat(substring-before($agentiri,'#Agent'),'#Hub',substring-after($agentiri,'#Agent'))"/>
+              </xsl:attribute>
+              <xsl:apply-templates mode="hubUnifTitle" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pSource" select="$pSource"/>
+              </xsl:apply-templates>
+            </bf:Hub>
+          </bf:expressionOf>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="hubUnifTitle" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pSource" select="$pSource"/>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
   
