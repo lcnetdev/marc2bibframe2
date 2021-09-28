@@ -58,7 +58,6 @@
               <xsl:if test="marc:subfield[@code='a']">
                 <bf:title>
                   <bf:Title>
-                    <rdfs:label><xsl:value-of select="marc:subfield[@code='a']"/></rdfs:label>
                     <bf:mainTitle><xsl:value-of select="$vmainTitle"/></bf:mainTitle>
                   </bf:Title>
                 </bf:title>
