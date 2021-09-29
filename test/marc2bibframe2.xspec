@@ -29,6 +29,7 @@
   <x:import href="ConvSpec-841-887.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-Process6-Series.xspec"/>
+  <x:import href="ConvSpec-Process7-Punctuation.xspec"/>
 
   <x:scenario label="Regression">
     <x:scenario label="Simple transform">
