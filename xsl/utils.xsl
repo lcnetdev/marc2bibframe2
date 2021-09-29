@@ -98,12 +98,18 @@
           <xsl:when test="$vCloseIndex &gt; 2">
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="concat(substring($vNormString,2,$vCloseIndex - 2),substring($vNormString,$vCloseIndex+1))"/>
+              <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+              <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+              <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+              <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+              <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+              <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
             </xsl:call-template>
           </xsl:otherwise>
@@ -114,6 +120,9 @@
       <xsl:when test="contains($pLeadPunct,substring($vNormString,1,1))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
@@ -122,18 +131,27 @@
       <xsl:when test="substring($vNormString,$vLength,1)=')' and not(contains($vNormString,'('))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,$vLength,1)='}}' and not(contains($vNormString,'{{'))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,$vLength,1)='&quot;' and not(contains(substring($vNormString,1,$vLength - 1),'&quot;'))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
@@ -142,18 +160,27 @@
       <xsl:when test="substring($vNormString,1,1)='(' and not(contains($vNormString,')'))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,1,1)='{{' and not(contains($vNormString,'}}'))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,1,1)='&quot;' and not(contains(substring($vNormString,2),'&quot;'))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>
@@ -167,6 +194,9 @@
           <xsl:when test="string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,''))">
 	    <xsl:call-template name="tChopPunct">
 	      <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+              <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+              <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+              <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	    </xsl:call-template>
           </xsl:when>
@@ -180,6 +210,9 @@
       <xsl:when test="contains($pEndPunct, substring($vNormString,$vLength,1))">
 	<xsl:call-template name="tChopPunct">
 	  <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
 	</xsl:call-template>
       </xsl:when>

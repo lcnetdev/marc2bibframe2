@@ -59,5 +59,12 @@
       </x:call>
       <x:expect select="'[New York : HarperCollins]'"/>
     </x:scenario>
+    <x:scenario label="Set end punctuation to strip">
+      <x:call template="tChopPunct">
+        <x:param name="pString" select="'s-bl---'"/>
+        <x:param name="pEndPunct" select="'-'"/>
+      </x:call>
+      <x:expect select="'s-bl'"/>
+    </x:scenario>
   </x:scenario>
 </x:description>
