@@ -78,4 +78,12 @@
     </x:call>
     <x:expect select="'Hatry, Harry P.'"/>
   </x:scenario>
+  <x:scenario label="Chop parentheses but don't strip end punctuation">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'(Lond.)'"/>
+      <x:param name="pEndPunct" select="' '"/>
+      <x:param name="pChopParens" select="true()"/>
+    </x:call>
+    <x:expect select="'Lond.'"/>
+  </x:scenario>
 </x:description>

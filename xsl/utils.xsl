@@ -200,7 +200,7 @@
       <!-- do not remove if we think it is an initial -->
       <!-- do not remove if we there there are multiple sentences -->
       <!-- do not fire if $pForceTerm = true() -->
-      <xsl:when test="not($pForceTerm) and substring($vNormString,$vLength,1)='.'">
+      <xsl:when test="contains($pEndPunct,'.') and not($pForceTerm) and substring($vNormString,$vLength,1)='.'">
         <xsl:choose>
           <!-- Let's say it's an initial if the previous 2 characters are [ .][A-Z] -->
           <xsl:when test="contains($upper,substring($vNormString,$vLength - 1,1)) and
