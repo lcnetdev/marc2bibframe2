@@ -72,4 +72,10 @@
     </x:call>
     <x:expect select="'s-bl'"/>
   </x:scenario>
+  <x:scenario label="Preserve period after initial at end of string">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Hatry, Harry P.'"/>
+    </x:call>
+    <x:expect select="'Hatry, Harry P.'"/>
+  </x:scenario>
 </x:description>

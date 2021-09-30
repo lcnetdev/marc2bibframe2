@@ -197,13 +197,21 @@
       </xsl:when>
 
       <!-- special handling for ending periods -->
-      <!-- do not remove if there is other terminal punctuation in the string -->
-      <!-- assume that means this string has multiple sentences -->
-      <!-- has the side effect of retaining end punctuation for strings that end in initials (e.g. "Washington, D.C.") -->
+      <!-- do not remove if we think it is an initial -->
+      <!-- do not remove if we there there are multiple sentences -->
       <!-- do not fire if $pForceTerm = true() -->
       <xsl:when test="not($pForceTerm) and substring($vNormString,$vLength,1)='.'">
         <xsl:choose>
-          <xsl:when test="string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,''))">
+          <!-- Let's say it's an initial if the previous 2 characters are [ .][A-Z] -->
+          <xsl:when test="contains($upper,substring($vNormString,$vLength - 1,1)) and
+                          contains(' .',substring($vNormString,$vLength - 2,1))">
+            <xsl:value-of select="$vNormString"/>
+          </xsl:when>
+          <!-- Let's say there are multiple sentences if terminal punctuation can be found in the rest of the string -->
+          <xsl:when test="not(string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,'')))">
+            <xsl:value-of select="$vNormString"/>
+          </xsl:when>
+          <xsl:otherwise>
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
               <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
@@ -212,9 +220,6 @@
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
             </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$vNormString"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
