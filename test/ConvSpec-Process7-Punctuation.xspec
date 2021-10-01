@@ -21,6 +21,12 @@
       <x:expect select="'Part I arranged in three series. Series 1: 1 Early Family Papers, 1762-1910; Series 2: General Correspondence, 1934-1964; Series 3: Special Correspondence, 1946-1963.'"/>
     </x:call>
   </x:scenario>
+  <x:scenario label="...unless string contains initials">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Proceedings of I.C.C., no. 4.'"/>
+    </x:call>
+    <x:expect select="'Proceedings of I.C.C., no. 4'"/>
+  </x:scenario>
   <x:scenario label="Strip end terminal punctuation when forced">
     <x:call template="tChopPunct">
       <x:param name="pString" select="'Nixon, Richard M. (Richard Milhouse), 1913-1994.'"/>

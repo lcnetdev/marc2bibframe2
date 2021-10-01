@@ -198,14 +198,30 @@
 
       <!-- special handling for ending periods -->
       <!-- do not remove if we think it is an initial -->
-      <!-- do not remove if we there there are multiple sentences -->
+      <!-- do not remove if we there there are multiple sentences, unless the string contains initials -->
+      <!-- note that for multiple sentences where string contains initials, end punctuation will be stripped -->
       <!-- do not fire if $pForceTerm = true() -->
       <xsl:when test="contains($pEndPunct,'.') and not($pForceTerm) and substring($vNormString,$vLength,1)='.'">
+        <xsl:variable name="vInitials">
+          <xsl:call-template name="tFindInitials">
+            <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+          </xsl:call-template>
+        </xsl:variable>
         <xsl:choose>
           <!-- Let's say it's an initial if the previous 2 characters are [ .][A-Z] -->
           <xsl:when test="contains($upper,substring($vNormString,$vLength - 1,1)) and
                           contains(' .',substring($vNormString,$vLength - 2,1))">
             <xsl:value-of select="$vNormString"/>
+          </xsl:when>
+          <xsl:when test="$vInitials='true'">
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
+              <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+              <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+              <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
+              <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
+              <xsl:with-param name="pChopParens" select="$pChopParens"/>
+            </xsl:call-template>
           </xsl:when>
           <!-- Let's say there are multiple sentences if terminal punctuation can be found in the rest of the string -->
           <xsl:when test="not(string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,'')))">
@@ -292,6 +308,33 @@
           </xsl:call-template>
         </xsl:variable>
         <xsl:value-of select="concat($vHalf2,$vHalf1)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- Let's say there are initials in the string if we find an uppercase letter
+       followed by "." and preceded by [ .] -->
+  <xsl:template name="tFindInitials">
+    <xsl:param name="pString"/>
+    <xsl:variable name="vLength" select="string-length($pString)"/>
+    <xsl:choose>
+      <xsl:when test="contains($upper,substring($pString,$vLength,1)) and
+                      contains(' .',substring($pString,$vLength - 1,1))">
+        <xsl:value-of select="true()"/>
+      </xsl:when>
+      <xsl:when test="contains($pString,'.')">
+        <xsl:variable name="vLastPeriod">
+          <xsl:call-template name="tLastIndex">
+            <xsl:with-param name="pString" select="$pString"/>
+            <xsl:with-param name="pSearch" select="'.'"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:call-template name="tFindInitials">
+          <xsl:with-param name="pString" select="substring($pString,1,$vLastPeriod - 1)"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="false()"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
