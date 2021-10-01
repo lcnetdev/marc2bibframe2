@@ -353,68 +353,6 @@
   </xsl:template>
 
   <!--
-      Chop [ ] from beginning and end of a string
-  -->
-  <xsl:template name="chopBrackets">
-    <xsl:param name="chopString"/>
-    <xsl:param name="punctuation">
-      <xsl:text>.:,;/ </xsl:text>
-    </xsl:param>
-    <xsl:variable name="string">
-      <xsl:call-template name="chopPunctuation">
-	<xsl:with-param name="chopString" select="$chopString"/>
-        <xsl:with-param name="punctuation" select="$punctuation"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="substring($string,1,1)='['">
-        <xsl:call-template name="chopBrackets">
-          <xsl:with-param name="chopString" select="substring-after($string,'[')"/>
-          <xsl:with-param name="punctuation" select="$punctuation"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="substring($string,string-length($string),1) = ']'">
-        <xsl:call-template name="chopBrackets">
-          <xsl:with-param name="chopString" select="substring($string,1,string-length($string)-1)"/>
-          <xsl:with-param name="punctuation" select="$punctuation"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise><xsl:value-of select="$string"/></xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!--
-      Chop ( ) from beginning and end of a string
-  -->
-  <xsl:template name="chopParens">
-    <xsl:param name="chopString"/>
-    <xsl:param name="punctuation">
-      <xsl:text>.:,;/ </xsl:text>
-    </xsl:param>
-    <xsl:variable name="string">
-      <xsl:call-template name="chopPunctuation">
-	<xsl:with-param name="chopString" select="$chopString"/>
-        <xsl:with-param name="punctuation" select="$punctuation"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="substring($string,1,1)='('">
-        <xsl:call-template name="chopParens">
-          <xsl:with-param name="chopString" select="substring-after($string,'(')"/>
-          <xsl:with-param name="punctuation" select="$punctuation"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="substring($string,string-length($string),1) = ')'">
-        <xsl:call-template name="chopParens">
-          <xsl:with-param name="chopString" select="substring($string,1,string-length($string)-1)"/>
-          <xsl:with-param name="punctuation" select="$punctuation"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise><xsl:value-of select="$string"/></xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!--
       Chop leading padding character on string
       Used mostly to chop leading '0'
   -->
@@ -434,32 +372,6 @@
     </xsl:choose>
   </xsl:template>
   
-  <!--
-      Chop trailing punctuation
-      .:,;/ and space
-      From MARC21slimUtils.xsl
-  -->
-  <xsl:template name="chopPunctuation">
-    <xsl:param name="chopString"/>
-    <xsl:param name="punctuation">
-      <xsl:text>.:,;/ </xsl:text>
-    </xsl:param>
-    <xsl:variable name="length" select="string-length($chopString)"/>
-    <xsl:choose>
-      <xsl:when test="$length=0"/>
-      <xsl:when test="contains($punctuation, substring($chopString,$length,1))">
-	<xsl:call-template name="chopPunctuation">
-	  <xsl:with-param name="chopString" select="substring($chopString,1,$length - 1)"/>
-	  <xsl:with-param name="punctuation" select="$punctuation"/>
-	</xsl:call-template>
-      </xsl:when>
-      <xsl:when test="not($chopString)"/>
-      <xsl:otherwise>
-	<xsl:value-of select="$chopString"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
   <!--
       generate a recordid base from user config
   -->
