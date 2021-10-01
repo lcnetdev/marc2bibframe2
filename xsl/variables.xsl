@@ -83,5 +83,8 @@
 
   <!-- 880 processing -->
   <xsl:variable name="map880" select="document('conf/map880.xml')"/>
+
+  <!-- abbreviations for punctuation processing -->
+  <xsl:variable name="abbreviations" select="document('conf/abbreviations.xml')"/>
   
 </xsl:stylesheet>

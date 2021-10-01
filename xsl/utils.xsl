@@ -198,14 +198,23 @@
 
       <!-- special handling for ending periods -->
       <!-- do not remove if we think it is an initial -->
+      <!-- do not remove if we think it is an abbreviation -->
       <!-- do not remove if we there there are multiple sentences, unless the string contains initials -->
       <!-- note that for multiple sentences where string contains initials, end punctuation will be stripped -->
+      <!-- note that abbreviations within the string will be detected as multiple sentences -->
       <!-- do not fire if $pForceTerm = true() -->
       <xsl:when test="contains($pEndPunct,'.') and not($pForceTerm) and substring($vNormString,$vLength,1)='.'">
         <xsl:variable name="vInitials">
           <xsl:call-template name="tFindInitials">
             <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
           </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="vEndAbbrev">
+          <xsl:for-each select="$abbreviations/abbreviations/abbrev">
+            <xsl:if test="concat(' ',@text) = substring($vNormString,$vLength - string-length(@text))">
+              <xsl:value-of select="true()"/>
+            </xsl:if>
+          </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
           <!-- Let's say it's an initial if the previous 2 characters are [ .][A-Z] -->
@@ -222,6 +231,9 @@
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
             </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="$vEndAbbrev='true'">
+            <xsl:value-of select="$vNormString"/>
           </xsl:when>
           <!-- Let's say there are multiple sentences if terminal punctuation can be found in the rest of the string -->
           <xsl:when test="not(string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,'')))">

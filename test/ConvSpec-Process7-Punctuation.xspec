@@ -92,4 +92,10 @@
     </x:call>
     <x:expect select="'Lond.'"/>
   </x:scenario>
+  <x:scenario label="Preserve end period for configured abbreviations">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'23 cm.'"/>
+    </x:call>
+    <x:expect select="'23 cm.'"/>
+  </x:scenario>
 </x:description>

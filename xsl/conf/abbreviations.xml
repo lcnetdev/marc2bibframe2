@@ -1,0 +1,8 @@
+<abbreviations>
+  <!-- Abbreviations to look for to avoid stripping punctuation -->
+  <abbrev text="arr."/>
+  <abbrev text="ed."/>
+  <abbrev text="cm."/>
+  <abbrev text="ill."/>
+  <abbrev text="in."/>
+</abbreviations>
