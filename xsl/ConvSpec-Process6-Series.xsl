@@ -104,9 +104,8 @@
                   <bf:identifiedBy>
                     <bf:Issn>
                       <rdf:value>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
-                          <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdf:value>
                     </bf:Issn>
@@ -167,9 +166,8 @@
             <xsl:when test="$vParallel != ''">
               <xsl:choose>
                 <xsl:when test="$pCompositePos=$pLastPos">
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="../marc:datafield[((@tag='880' and substring(marc:subfield[@code='6'],1,3)='490') or (@tag='490' and not(marc:subfield[@code='6']))) and @ind1='1'][$pCurrentPos]/marc:subfield[@code='x'][1]"/>
-                    <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="../marc:datafield[((@tag='880' and substring(marc:subfield[@code='6'],1,3)='490') or (@tag='490' and not(marc:subfield[@code='6']))) and @ind1='1'][$pCurrentPos]/marc:subfield[@code='x'][1]"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
@@ -185,9 +183,8 @@
               <xsl:for-each select="../marc:datafield[((@tag='880' and substring(marc:subfield[@code='6'],1,3)='490') or (@tag='490' and not(marc:subfield[@code='6']))) and @ind1='1'][$pCurrentPos]/marc:subfield[@code='a']">
                 <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
                 <xsl:if test="$pCompositePos + position() - 1 = $pLastPos">
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="following-sibling::marc:subfield[@code='x' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
-                    <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="following-sibling::marc:subfield[@code='x' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
                   </xsl:call-template>
                 </xsl:if>
               </xsl:for-each>
@@ -249,9 +246,8 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="$vStatement"/>
-              <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="$vStatement"/>
             </xsl:call-template>
           </bf:seriesStatement>
         </xsl:when>

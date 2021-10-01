@@ -12,8 +12,8 @@
 
   <x:scenario label="MARC tag 880">
     <x:context href="data/ConvSpec-880/marc.xml"/>
-    <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:mainTitle='東海道五十三次絵卷'"/>
-    <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Work[1]/bf:title[1]/bf:KeyTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
+    <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:mainTitle='東海道五十三次絵卷.'"/>
+    <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Work[1]/bf:title[1]/bf:KeyTitle/bf:mainTitle = '東海道五十三次絵卷.'"/>
     <x:expect label="$6 242-xx should make a VariantTitle with varientType 'translated'" test="//bf:Instance[1]/bf:title[2]/bf:VariantTitle/bf:variantType = 'translated'"/>
     <x:expect label="$6 243-xx should make a CollectiveTitle" test="//bf:Work[1]/bf:title[2]/bf:CollectiveTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
@@ -53,7 +53,7 @@
     <x:expect label="$6 541 creates an immediateAcquisition/ImmediateAcquisition property of an Item" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:immediateAcquisition/bf:ImmediateAcquisition = 'Источник неизвестен.'"/>
     <x:expect label="$6 544 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[10]/bf:Note/rdfs:label = 'Департамент здравоохранения Fonds, Услуги здравоохранения Отдел файлов.'"/>
     <x:expect label="$6 545 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[11]/bf:Note/rdfs:label = 'Автор и реформатор.'"/>
-    <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском'"/>
+    <x:expect label="$6 546 creates a language property of the Work" test="//bf:Work[1]/bf:language[1]/bf:Language/bf:note/bf:Note/rdfs:label = 'На французском.'"/>
     <x:expect label="$6 547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Издание меняется: 1916, Нью-Йорк издания.'"/>
     <x:expect label="$6 550 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[13]/bf:Note/rdfs:label = 'Орган клуба Потомак на стороне естествоиспытателей.'"/>
     <x:expect label="$6 555 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[14]/bf:Note/rdfs:label = 'Совокупный индекс с учетом включенных в каждом томе, -V. 29.'"/>

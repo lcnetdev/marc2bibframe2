@@ -23,7 +23,7 @@
     <x:expect label="Brief work description has rdf:type bflc:Uncontrolled" test="//bf:Work[1]/bf:relatedTo/bf:Work/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
     <x:expect label="$a generates title/Title/mainTitle of the brief work" test="//bf:Work[1]/bf:hasPart/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Joint Legislative Committee on Matrimonial and Family Laws, proposed statute'"/>
     <x:expect label="$n generates partNumber of brief work" test="//bf:Work[1]/bf:hasPart[1]/bf:Work/bf:partNumber = 'Part 1'"/>
-    <x:expect label="$p generates partName of brief work" test="//bf:Work[1]/bf:hasPart[1]/bf:Work/bf:partName = 'Economic aspects, custody, taxes.'"/>
+    <x:expect label="$p generates partName of brief work" test="//bf:Work[1]/bf:hasPart[1]/bf:Work/bf:partName = 'Economic aspects, custody, taxes'"/>
     <x:expect label="$5 generates bflc:applicableInstitution property of brief work" test="//bf:Work[1]/bf:hasPart[1]/bf:Work/bflc:applicableInstitution/bf:Agent/bf:code = 'MnMHCL'"/>
   </x:scenario>
 

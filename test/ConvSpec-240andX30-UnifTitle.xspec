@@ -10,19 +10,19 @@
 
   <x:scenario label="Uniform title bf:Title creation">
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
-    <x:expect label="title match key generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:title30MatchKey = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="title match key generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:title30MatchKey = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections'"/>
     <x:expect label="title marc key generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:title30MarcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001'"/>
-    <x:expect label="title sort string generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:titleSortKey = 'Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections.'"/>
+    <x:expect label="title sort string generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:titleSortKey = 'Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections'"/>
     <x:expect label="All title subfields except $h, $0-8 become mainTitle" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections'"/>
     <x:expect label="$n becomes a partNumber" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:partNumber[1] = 'Book 4'"/>
-    <x:expect label="$p becomes a partName" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:partName[1] = 'O.T'"/>
+    <x:expect label="$p becomes a partName" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:partName[1] = 'O.T.'"/>
   </x:scenario>
 
   <x:scenario label="Work properties from uniform titles">
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
     <!-- tests for 630 located in ConvSpec-600-662.xspec -->
     <!-- tests for 830 located in ConvSpec-Process6-Series.xspec -->
-    <x:expect label="1XX $t becomes the title of the Hub" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Selections. 1987'"/>
+    <x:expect label="1XX $t becomes the title of the Hub" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Selections. 1987.'"/>
     <x:expect label="6XX/7XX/8XX $t creates new Hub entity" test="count(//bf:Hub[@rdf:about='http://example.org/1#Hub700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Hub entity" test="count(//bf:Hub[@rdf:about='http://example.org/2#Hub730-4']) = 1"/>
     <x:expect label="730 I2=2 with no $i becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Bible. O.T. Psalms. Codex Sinaiticus'"/>
@@ -31,7 +31,7 @@
     <x:expect label="$d becomes a legalDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:legalDate = '1952'"/>
     <x:expect label="$f becomes the originDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:originDate = '[between 1775 and 1800]'"/>
     <x:expect label="$l creates a language property of the Hub" test="//bf:Work[@rdf:about='http://example.org/4#Work']/bf:expressionOf/bf:Hub/bf:language/bf:Language/rdfs:label = 'English'"/>
-    <x:expect label="...for 240, add contribution from 1XX to Hub" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Ferrante, Elena,'"/>
+    <x:expect label="...for 240, add contribution from 1XX to Hub" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Ferrante, Elena'"/>
     <x:expect label="...with URI that matches Hub" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://example.org/5#Hub240-5-Agent'"/>
     <x:expect label="$m becomes a musicMedium of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:musicMedium/bf:MusicMedium/rdfs:label = 'violin, viola'"/>
     <x:expect label="$o creates an rdf:type property of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Arrangement'"/>

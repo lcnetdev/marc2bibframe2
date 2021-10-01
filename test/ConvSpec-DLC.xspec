@@ -49,7 +49,7 @@
       <x:expect label="Do not create additional Item if 050/051 Item" test="not(//bf:Instance[1]/bf:hasItem/bf:Item[@rdf:about='http://example.org/1#Item-DLC'])"/>
       <x:expect label="Do not process field if $5 != 'DLC'" test="not(//bf:Instance[1]/bf:systemRequirement)"/>
       <x:expect label="If no 050/051, create an Item from the first $5=DLC" test="count(//bf:Instance[2]/bf:hasItem/bf:Item) = 1"/>
-      <x:expect label="...link properties from all matching data fields with that Item" test="//bf:Instance[2]/bf:hasItem/bf:Item[@rdf:about='http://example.org/2#Item-DLC']/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Jefferson, Thomas, 1743-1826,'"/>
+      <x:expect label="...link properties from all matching data fields with that Item" test="//bf:Instance[2]/bf:hasItem/bf:Item[@rdf:about='http://example.org/2#Item-DLC']/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label='Jefferson, Thomas, 1743-1826'"/>
     </x:scenario>
 
   </x:scenario>

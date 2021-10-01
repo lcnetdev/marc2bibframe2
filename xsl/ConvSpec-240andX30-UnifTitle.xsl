@@ -93,10 +93,8 @@
                       <xsl:if test="$vXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                       </xsl:if>
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString">
-                          <xsl:value-of select="."/>
-                        </xsl:with-param>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
                     </rdfs:label>
                   </bflc:Relation>
@@ -169,14 +167,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:call-template name="chopParens">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                  <xsl:with-param name="pChopParens" select="true()"/>
                 </xsl:call-template>
               </bf:legalDate>
             </xsl:for-each>
@@ -187,14 +180,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:call-template name="chopParens">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
-                    </xsl:call-template>
-                  </xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                  <xsl:with-param name="pChopParens" select="true()"/>
                 </xsl:call-template>
               </bf:legalDate>
             </xsl:for-each>
@@ -205,10 +193,8 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString">
-                <xsl:value-of select="."/>
-              </xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
@@ -219,10 +205,8 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
             </bf:Language>
@@ -235,10 +219,8 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString">
-                    <xsl:value-of select="."/>
-                  </xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
             </bf:MusicMedium>
@@ -249,10 +231,8 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString">
-                <xsl:value-of select="."/>
-              </xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </bf:musicKey>
         </xsl:for-each>
@@ -261,10 +241,8 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString">
-                <xsl:value-of select="."/>
-              </xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </bf:version>
         </xsl:for-each>
@@ -273,8 +251,8 @@
            <bf:identifiedBy>
              <bf:Issn>
                <rdf:value>
-                 <xsl:call-template name="chopPunctuation">
-                   <xsl:with-param name="chopString" select="."/>
+                 <xsl:call-template name="tChopPunct">
+                   <xsl:with-param name="pString" select="."/>
                  </xsl:call-template>
                </rdf:value>
              </bf:Issn>
@@ -372,31 +350,51 @@
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
               <xsl:if test="$label != ''">
-                <bflc:title00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title00MatchKey>
+                <bflc:title00MatchKey>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="normalize-space($label)"/>
+                  </xsl:call-template>
+                </bflc:title00MatchKey>
               </xsl:if>
               <bflc:title00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title00MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
-                <bflc:title10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title10MatchKey>
+                <bflc:title10MatchKey>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="normalize-space($label)"/>
+                  </xsl:call-template>
+                </bflc:title10MatchKey>                  
               </xsl:if>
               <bflc:title10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title10MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
-                <bflc:title11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title11MatchKey>
+                <bflc:title11MatchKey>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="normalize-space($label)"/>
+                  </xsl:call-template>
+                </bflc:title11MatchKey>                  
               </xsl:if>
               <bflc:title11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title11MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
               <xsl:if test="$label != ''">
-                <bflc:title30MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title30MatchKey>
+                <bflc:title30MatchKey>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="normalize-space($label)"/>
+                  </xsl:call-template>
+                </bflc:title30MatchKey>                  
               </xsl:if>
               <bflc:title30MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title30MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
               <xsl:if test="$label != ''">
-                <bflc:title40MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:title40MatchKey>
+                <bflc:title40MatchKey>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="normalize-space($label)"/>
+                  </xsl:call-template>
+                </bflc:title40MatchKey>                  
               </xsl:if>
               <bflc:title40MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title40MarcKey>
             </xsl:when>
@@ -406,15 +404,17 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:value-of select="normalize-space(substring($label,$nfi+1))"/>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="normalize-space(substring($label,$nfi+1))"/>
+              </xsl:call-template>
             </bflc:titleSortKey>
           </xsl:if>
           <bf:mainTitle>
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString"><xsl:value-of select="$label"/></xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="$label"/>
             </xsl:call-template>
           </bf:mainTitle>
           <xsl:choose>
@@ -424,10 +424,8 @@
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString">
-                      <xsl:value-of select="."/>
-                    </xsl:with-param>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
                   </xsl:call-template>
                 </bf:partNumber>
               </xsl:for-each>
@@ -438,10 +436,8 @@
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString">
-                      <xsl:value-of select="."/>
-                    </xsl:with-param>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
                   </xsl:call-template>
                 </bf:partNumber>
               </xsl:for-each>
@@ -452,10 +448,8 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="."/>
               </xsl:call-template>
             </bf:partName>
           </xsl:for-each>

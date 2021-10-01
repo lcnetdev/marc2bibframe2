@@ -159,10 +159,8 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="."/>
               </xsl:call-template>
             </rdfs:label>
           </bflc:AppliesTo>

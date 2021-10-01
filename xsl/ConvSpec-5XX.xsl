@@ -30,7 +30,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
               </bf:degree>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='c']">
@@ -40,7 +42,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Agent>
               </bf:grantingInstitution>
@@ -50,7 +54,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
               </bf:date>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='g']">
@@ -60,7 +66,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
               </bf:note>
@@ -68,7 +76,11 @@
             <xsl:for-each select="marc:subfield[@code='o']">
               <bf:identifiedBy>
                 <bf:DissertationIdentifier>
-                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                  <rdf:value>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
+                  </rdf:value>
                 </bf:DissertationIdentifier>
               </bf:identifiedBy>
             </xsl:for-each>
@@ -145,7 +157,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
               </bf:date>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='o']">
@@ -155,7 +169,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
               </bf:note>
@@ -167,7 +183,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Place>
               </bf:place>
@@ -308,8 +326,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                      <xsl:with-param name="pEndPunct" select="':;,/='"/>
                     </xsl:call-template>
                   </rdfs:label>
                   <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
@@ -327,8 +346,8 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
@@ -424,7 +443,11 @@
               </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='b']">
-              <bf:count><xsl:value-of select="."/></bf:count>
+              <bf:count>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </bf:count>
             </xsl:for-each>
           </bf:SupplementaryContent>
         </bf:supplementaryContent>
@@ -588,8 +611,8 @@
               </rdfs:label>
               <xsl:for-each select="marc:subfield[@code='d']">
                 <xsl:variable name="vNoteLabel">
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString" select="."/>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
                   </xsl:call-template>
                 </xsl:variable>
                 <bf:note>
@@ -720,8 +743,8 @@
                   <bf:identifiedBy>
                     <bf:StockNumber>
                       <rdf:value>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdf:value>
                     </bf:StockNumber>
@@ -747,8 +770,8 @@
                   <bf:identifiedBy>
                     <xsl:element name="{$vIdClass}">
                       <rdf:value>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString" select="."/>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdf:value>
                     </xsl:element>
@@ -771,7 +794,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="concat($vDisplayConst,.)"/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </xsl:for-each>
               </xsl:when>
@@ -779,7 +804,11 @@
                 <xsl:for-each select="marc:subfield[@code='z']">
                   <bf:identifiedBy>
                     <bf:Isbn>
-                      <rdf:value><xsl:value-of select="."/></rdf:value>
+                      <rdf:value>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </rdf:value>
                     </bf:Isbn>
                   </bf:identifiedBy>
                 </xsl:for-each>
@@ -957,7 +986,11 @@
               </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='c']">
-              <bf:date><xsl:value-of select="."/></bf:date>
+              <bf:date>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </bf:date>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='h']">
               <rdfs:label>
@@ -974,7 +1007,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Agent>
               </bf:agent>
@@ -986,7 +1021,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Status>
               </bf:status>
@@ -998,7 +1035,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
               </bf:note>

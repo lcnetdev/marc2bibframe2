@@ -95,7 +95,7 @@
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="518 creates a capture/Capture property of the Work" test="count(//bf:Work[1]/bf:capture/bf:Capture) = 2"/>
     <x:expect label="$a creates an rdfs:label property of the Capture" test="//bf:Work[1]/bf:capture[1]/bf:Capture/rdfs:label = 'Found on March 5, 1975, in Richmond, Tex.'"/>
-    <x:expect label="$d creates a date property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bf:date = '1976 January through June.'"/>
+    <x:expect label="$d creates a date property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bf:date = '1976 January through June'"/>
     <x:expect label="$o creates a note property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bf:note/bf:Note/rdfs:label = 'Filmed on location'"/>
     <x:expect label="$p creates a place property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bf:place/bf:Place/rdfs:label = 'Rome and Venice'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Capture" test="//bf:Work[1]/bf:capture[2]/bf:Capture/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Part of the work'"/>

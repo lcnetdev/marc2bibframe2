@@ -41,7 +41,7 @@
     <x:expect label="$h creates an extent property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:extent/bf:Extent/rdfs:label = 'file on disc'"/>
     <x:expect label="$i creates a bflc:relationship property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:relatedTo[1]/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Related source work'"/>
     <x:expect label="$j creates a note property of the linked Instance" test="//bf:Work[1]/bf:dataSource/bf:Work/bf:hasInstance/bf:Instance/bf:note/bf:Note/rdfs:label='19181111'"/>
-    <x:expect label="$k creates a seriesStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:seriesStatement = 'Wonders of man series.'"/>
+    <x:expect label="$k creates a seriesStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:seriesStatement = 'Wonders of man series'"/>
     <x:expect label="$m creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[2]/bf:Note/rdfs:label = '240 x 760px'"/>
     <x:expect label="$n creates a note property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:hasPart[1]/bf:Work/bf:hasInstance/bf:Instance/bf:note[1]/bf:Note/rdfs:label = '[DIAPimage]'"/>
     <x:expect label="$o creates an identifiedBy/Local property of the linked Instance" test="//bf:Work[1]/bf:relatedTo[1]/bf:Work/bf:hasInstance/bf:Instance/bf:identifiedBy/bf:Local/rdf:value = '(istc)0A3200912B4A1057'"/>

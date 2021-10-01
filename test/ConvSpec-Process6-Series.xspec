@@ -15,7 +15,7 @@
     <x:expect label="Each 8XX creates a hasSeries/Hub property of the Work" test="count(//bf:Work/bf:hasSeries/bf:Hub) = 9"/>
     <x:expect label="Title subfields become title/Title/mainTitle property of Hub" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
     <x:expect label="8XX can create a contribution property of the Hub" test="//bf:Work[4]/bf:hasSeries[1]/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
-    <x:expect label="8XX with no matching 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Fernando, A. Denis N. Resource maps of Sri Lanka ; pt. 2.'"/>
+    <x:expect label="8XX with no matching 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Fernando, A. Denis N. Resource maps of Sri Lanka ; pt. 2'"/>
     <x:expect label="8XX $w creates an identifiedBy/Identifier property of the Hub" test="//bf:Work[1]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Identifier/rdf:value = '550955267'"/>
     <x:expect label="...with an assigner from the prefixed parenthetical" test="//bf:Work[1]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Identifier/bf:assigner/bf:Agent/bf:code = 'DE-101'"/>
     <x:expect label="...unless the source is DLC, in which case create an identifiedBy/Lccn" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Lccn/rdf:value = '83641640'"/>

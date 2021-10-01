@@ -112,10 +112,8 @@
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                         </xsl:if>
-                        <xsl:call-template name="chopPunctuation">
-                          <xsl:with-param name="chopString">
-                            <xsl:value-of select="."/>
-                          </xsl:with-param>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdfs:label>
                     </bflc:Relation>
@@ -143,10 +141,8 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString">
-                        <xsl:value-of select="."/>
-                      </xsl:with-param>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bflc:Relation>
@@ -338,7 +334,9 @@
                         <xsl:if test="$pXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                         </xsl:if>
-                        <xsl:value-of select="$vRole"/>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="$vRole"/>
+                        </xsl:call-template>
                       </rdfs:label>
                     </bf:Role>
                   </bf:role>
@@ -352,7 +350,9 @@
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                             </xsl:if>
-                            <xsl:value-of select="$vRole"/>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$vRole"/>
+                            </xsl:call-template>
                           </rdfs:label>
                         </bflc:Relation>
                       </bflc:relation>
@@ -388,7 +388,9 @@
                         <xsl:if test="$pXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                         </xsl:if>
-                        <xsl:value-of select="normalize-space(substring-before($roleString,' and'))"/>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="normalize-space(substring-before($roleString,' and'))"/>
+                        </xsl:call-template>
                       </rdfs:label>
                     </bf:Role>
                   </bf:role>
@@ -402,7 +404,9 @@
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                             </xsl:if>
-                            <xsl:value-of select="$vRole"/>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$vRole"/>
+                            </xsl:call-template>
                           </rdfs:label>
                         </bflc:Relation>
                       </bflc:relation>
@@ -436,7 +440,9 @@
                         <xsl:if test="$pXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                         </xsl:if>
-                        <xsl:value-of select="normalize-space(substring-before($roleString,'&amp;'))"/>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="normalize-space(substring-before($roleString,'&amp;'))"/>
+                        </xsl:call-template>
                       </rdfs:label>
                     </bf:Role>
                   </bf:role>
@@ -450,7 +456,9 @@
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                             </xsl:if>
-                            <xsl:value-of select="$vRole"/>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$vRole"/>
+                            </xsl:call-template>
                           </rdfs:label>
                         </bflc:Relation>
                       </bflc:relation>
@@ -482,7 +490,9 @@
                       <xsl:if test="$pXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                       </xsl:if>
-                      <xsl:value-of select="normalize-space($roleString)"/>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="$roleString"/>
+                      </xsl:call-template>
                     </rdfs:label>
                   </bf:Role>
                 </bf:role>
@@ -496,7 +506,9 @@
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
                             </xsl:if>
-                            <xsl:value-of select="normalize-space($roleString)"/>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$roleString"/>
+                            </xsl:call-template>
                           </rdfs:label>
                         </bflc:Relation>
                       </bflc:relation>
@@ -535,7 +547,12 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="tNameLabel"/>
+      <xsl:variable name="vUnchopped">
+        <xsl:apply-templates select="." mode="tNameLabel"/>
+      </xsl:variable>
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pString" select="$vUnchopped"/>
+      </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="marckey">
       <xsl:apply-templates mode="marcKey"/>
@@ -586,7 +603,9 @@
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
-                  <xsl:value-of select="$pMADSLabel"/>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="$pMADSLabel"/>
+                  </xsl:call-template>
                 </madsrdf:authoritativeLabel>
               </xsl:if>
               <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
@@ -653,29 +672,29 @@
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
               <xsl:if test="$label != ''">
-                <bflc:name00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name00MatchKey>
+                <bflc:name00MatchKey><xsl:value-of select="$label"/></bflc:name00MatchKey>
                 <xsl:if test="substring($tag,1,1) = '1'">
-                  <bflc:primaryContributorName00MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName00MatchKey>
+                  <bflc:primaryContributorName00MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName00MatchKey>
                 </xsl:if>
               </xsl:if>
               <bflc:name00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name00MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
-                <bflc:name10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name10MatchKey>
+                <bflc:name10MatchKey><xsl:value-of select="$label"/></bflc:name10MatchKey>
               </xsl:if>
               <bflc:name10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name10MarcKey>
                 <xsl:if test="substring($tag,1,1) = '1'">
-                  <bflc:primaryContributorName10MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName10MatchKey>
+                  <bflc:primaryContributorName10MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName10MatchKey>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
-                <bflc:name11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:name11MatchKey>
+                <bflc:name11MatchKey><xsl:value-of select="$label"/></bflc:name11MatchKey>
               </xsl:if>
               <bflc:name11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:name11MarcKey>
                 <xsl:if test="substring($tag,1,1) = '1'">
-                  <bflc:primaryContributorName11MatchKey><xsl:value-of select="normalize-space($label)"/></bflc:primaryContributorName11MatchKey>
+                  <bflc:primaryContributorName11MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName11MatchKey>
                 </xsl:if>
             </xsl:when>
           </xsl:choose>
@@ -684,7 +703,7 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:value-of select="normalize-space($label)"/>
+              <xsl:value-of select="$label"/>
             </rdfs:label>
           </xsl:if>
           <xsl:choose>

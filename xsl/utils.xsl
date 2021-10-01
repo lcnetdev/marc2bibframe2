@@ -626,9 +626,7 @@
     <xsl:param name="pTarget"/>
     <xsl:param name="pLabel"/>
     <xsl:param name="pProcess"/>
-    <xsl:param name="pPunctuation">
-      <xsl:text>.:,;/ </xsl:text>
-    </xsl:param>
+    <xsl:param name="pPunctuation" select="'.:;,/='"/>
     <xsl:param name="pVocabStem"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="../marc:datafield" mode="xmllang"/></xsl:variable>
     <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
@@ -651,21 +649,16 @@
               </xsl:if>
               <xsl:choose>
                 <xsl:when test="$pProcess='chopPunctuation'">
-                  <xsl:call-template name="chopPunctuation">
-                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
-                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString"><xsl:value-of select="$vLabel"/></xsl:with-param>
+                    <xsl:with-param name="pEndPunct" select="$pPunctuation"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$pProcess='chopParens'">
-                  <xsl:call-template name="chopParens">
-                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
-                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:when test="$pProcess='chopBrackets'">
-                  <xsl:call-template name="chopBrackets">
-                    <xsl:with-param name="chopString"><xsl:value-of select="$vLabel"/></xsl:with-param>
-                    <xsl:with-param name="punctuation" select="$pPunctuation"/>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString"><xsl:value-of select="$vLabel"/></xsl:with-param>
+                    <xsl:with-param name="pEndPunct" select="$pPunctuation"/>
+                    <xsl:with-param name="pChopParens" select="true()"/>
                   </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise><xsl:value-of select="$vLabel"/></xsl:otherwise>

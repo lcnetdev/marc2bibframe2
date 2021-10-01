@@ -118,10 +118,10 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
-                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:primaryContributorName00MatchKey>
+                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:name00MatchKey>
+                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:primaryContributorName00MatchKey>
                     <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
-                    <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
+                    <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -139,9 +139,9 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Dickmeiss, Otto,</bflc:name00MatchKey>
+                    <bflc:name00MatchKey>Dickmeiss, Otto</bflc:name00MatchKey>
                     <bflc:name00MarcKey>7001 $aDickmeiss, Otto,$eill.</bflc:name00MarcKey>
-                    <rdfs:label>Dickmeiss, Otto,</rdfs:label>
+                    <rdfs:label>Dickmeiss, Otto</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -198,7 +198,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:place>
                   <bf:Place>
-                    <rdfs:label>København?</rdfs:label>
+                    <rdfs:label>[København?]</rdfs:label>
                   </bf:Place>
                 </bf:place>
                 <bf:agent>
@@ -431,7 +431,7 @@
                     <rdfs:label>Atlantic</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
-                <bf:date>1957?</bf:date>
+                <bf:date>[1957?]</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:extent>
@@ -613,9 +613,9 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
-                    <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
+                    <bflc:name10MatchKey>White House Web Team</bflc:name10MatchKey>
                     <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
-                    <rdfs:label>White House Web Team.</rdfs:label>
+                    <rdfs:label>White House Web Team</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -903,7 +903,7 @@
               <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
                 <bf:title>
                   <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass public administration series.</bflc:title30MatchKey>
+                    <bflc:title30MatchKey>Jossey-Bass public administration series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
                   </bf:Title>
@@ -914,7 +914,7 @@
               <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
                 <bf:title>
                   <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass nonprofit sector series.</bflc:title30MatchKey>
+                    <bflc:title30MatchKey>Jossey-Bass nonprofit sector series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
                   </bf:Title>
@@ -925,7 +925,7 @@
               <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
                 <bf:title>
                   <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass social and behavioral science series.</bflc:title30MatchKey>
+                    <bflc:title30MatchKey>Jossey-Bass social and behavioral science series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
                   </bf:Title>
@@ -979,7 +979,7 @@
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:editionStatement>1st ed</bf:editionStatement>
+            <bf:editionStatement>1st ed.</bf:editionStatement>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
@@ -1014,8 +1014,8 @@
                 <rdfs:label>Includes bibliographical references and index.</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
-            <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
-            <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass nonprofit sector series</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass social and behavioral science series</bf:seriesStatement>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/bios/wiley043/93048623.html</rdf:value>

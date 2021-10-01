@@ -31,8 +31,8 @@
                 <bf:identifiedBy>
                   <bf:Issn>
                     <rdf:value>
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString" select="."/>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
                     </rdf:value>
                   </bf:Issn>
@@ -65,9 +65,8 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </bf:mainTitle>
                 </bf:Title>
@@ -92,9 +91,8 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
@@ -104,9 +102,8 @@
               <bf:identifiedBy>
                 <bf:Issn>
                   <rdf:value>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
-                      <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdf:value>
                 </bf:Issn>
@@ -129,19 +126,16 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vStatement">
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
-              <xsl:with-param name="punctuation"><xsl:text>= </xsl:text></xsl:with-param>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
+              <xsl:with-param name="pEndPunct" select="'='"/>
             </xsl:call-template>
           </xsl:variable>
           <xsl:variable name="vIssn">
             <xsl:apply-templates mode="concat-nodes-space" select="../marc:subfield[@code='x']"/>
           </xsl:variable>
           <xsl:variable name="vVolume">
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="following-sibling::marc:subfield[@code='v' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode]"/>
-              <xsl:with-param name="punctuation"><xsl:text>= </xsl:text></xsl:with-param>
-            </xsl:call-template>
+            <xsl:value-of select="normalize-space(following-sibling::marc:subfield[@code='v' and generate-id(preceding-sibling::marc:subfield[@code='a'][1])=$vCurrentNode])"/>
           </xsl:variable>
           <xsl:choose>
             <xsl:when test="$serialization = 'rdfxml'">
@@ -149,9 +143,8 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="normalize-space(concat($vStatement,' ',$vIssn,' ',$vVolume))"/>
-                  <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="concat($vStatement,' ',$vIssn,' ',$vVolume)"/>
                 </xsl:call-template>
               </bf:seriesStatement>
             </xsl:when>
@@ -170,9 +163,8 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="chopPunctuation">
-                  <xsl:with-param name="chopString" select="$vStatement"/>
-                  <xsl:with-param name="punctuation"><xsl:text>=:,;/ </xsl:text></xsl:with-param>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="$vStatement"/>
                 </xsl:call-template>
               </bf:seriesStatement>
             </xsl:when>

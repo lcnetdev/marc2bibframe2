@@ -108,7 +108,11 @@
         <xsl:for-each select="marc:subfield[@code='d']">
           <bf:place>
             <bf:Place>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <rdfs:label>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
             </bf:Place>
           </bf:place>
         </xsl:for-each>

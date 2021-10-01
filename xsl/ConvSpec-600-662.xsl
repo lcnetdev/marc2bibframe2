@@ -94,12 +94,11 @@
       <xsl:apply-templates select="." mode="tTitleLabel"/>
     </xsl:variable>
     <xsl:variable name="vMADSLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
-          <xsl:call-template name="chopPunctuation">
-            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="concat($vNameLabel,' ',$vTitleLabel)"/>
           </xsl:call-template>
           <xsl:text>--</xsl:text>
           <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
@@ -160,9 +159,8 @@
                         <xsl:with-param name="recordid" select="$recordid"/>
                         <xsl:with-param name="pMADSClass" select="NameTitle"/>
                         <xsl:with-param name="pMADSLabel">
-                          <xsl:call-template name="chopPunctuation">
-                            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-                            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
                           </xsl:call-template>
                         </xsl:with-param>
                         <xsl:with-param name="pSource" select="$vSource"/>
@@ -222,9 +220,8 @@
                         <xsl:with-param name="recordid" select="$recordid"/>
                         <xsl:with-param name="pMADSClass" select="$vMADSNameClass"/>
                         <xsl:with-param name="pMADSLabel">
-                          <xsl:call-template name="chopPunctuation">
-                            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-                            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
                           </xsl:call-template>
                         </xsl:with-param>
                         <xsl:with-param name="pSource" select="$vSource"/>
@@ -401,12 +398,11 @@
       <xsl:apply-templates select="." mode="tTitleLabel"/>
     </xsl:variable>
     <xsl:variable name="vMADSLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
-          <xsl:call-template name="chopPunctuation">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
+          <xsl:call-template name="tChopPunct">
             <xsl:with-param name="chopString" select="$vTitleLabel"/>
-            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
           </xsl:call-template>
           <xsl:text>--</xsl:text>
           <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
@@ -464,9 +460,8 @@
                     <xsl:with-param name="recordid" select="$recordid"/>
                     <xsl:with-param name="pMADSClass" select="Title"/>
                     <xsl:with-param name="pMADSLabel">
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString" select="normalize-space($vTitleLabel)"/>
-                        <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="normalize-space($vTitleLabel)"/>
                       </xsl:call-template>
                     </xsl:with-param>
                     <xsl:with-param name="pSource" select="$vSource"/>
@@ -634,9 +629,9 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:choose>
             <xsl:when test="$vTag='650'">
               <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']">
@@ -717,7 +712,9 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
               </bf:note>
@@ -745,8 +742,8 @@
               <bf:role>
                 <bf:Role>
                   <rdfs:label>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bf:Role>
@@ -807,7 +804,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
               </rdfs:label>
             </xsl:element>
           </xsl:element>
@@ -831,9 +830,9 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
             <xsl:value-of select="concat(.,'--')"/>
           </xsl:for-each>
@@ -903,9 +902,9 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='f' or @code='g' or @code='h']">
             <xsl:value-of select="concat(.,'--')"/>
           </xsl:for-each>
@@ -951,8 +950,8 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </xsl:element>
@@ -962,8 +961,8 @@
               <bf:role>
                 <bf:Role>
                   <rdfs:label>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bf:Role>
@@ -1034,8 +1033,8 @@
             <xsl:if test="$pXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </xsl:element>
         </xsl:element>
