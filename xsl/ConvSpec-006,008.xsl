@@ -439,8 +439,10 @@
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
         <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
-          <xsl:call-template name="chopLeadingPadding">
-            <xsl:with-param name="chopString" select="substring($dataElements,1,3)"/>
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="substring($dataElements,1,3)"/>
+            <xsl:with-param name="pEndPunct" select="' '"/>
+            <xsl:with-param name="pLeadPunct" select="'0'"/>
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>

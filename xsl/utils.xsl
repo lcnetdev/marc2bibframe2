@@ -353,26 +353,6 @@
   </xsl:template>
 
   <!--
-      Chop leading padding character on string
-      Used mostly to chop leading '0'
-  -->
-  <xsl:template name="chopLeadingPadding">
-    <xsl:param name="chopString"/>
-    <xsl:param name="padding" select="'0'"/>
-    <xsl:variable name="length" select="string-length($chopString)"/>
-    <xsl:choose>
-      <xsl:when test="$length=0"/>
-      <xsl:when test="contains($padding,substring($chopString,1,1))">
-        <xsl:call-template name="chopLeadingPadding">
-          <xsl:with-param name="chopString" select="substring($chopString,2)"/>
-          <xsl:with-param name="padding" select="$padding"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise><xsl:value-of select="$chopString"/></xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  
-  <!--
       generate a recordid base from user config
   -->
   <xsl:template match="marc:record" mode="recordid">
