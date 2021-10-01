@@ -211,7 +211,8 @@
         </xsl:variable>
         <xsl:variable name="vEndAbbrev">
           <xsl:for-each select="$abbreviations/abbreviations/abbrev">
-            <xsl:if test="concat(' ',@text) = substring($vNormString,$vLength - string-length(@text))">
+            <xsl:if test="concat(' ',@text) = substring($vNormString,$vLength - string-length(@text)) or
+                          @text = $vNormString">
               <xsl:value-of select="true()"/>
             </xsl:if>
           </xsl:for-each>

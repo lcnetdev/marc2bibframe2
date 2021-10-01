@@ -98,4 +98,16 @@
     </x:call>
     <x:expect select="'23 cm.'"/>
   </x:scenario>
+  <x:scenario label="Preserve end period for configured abbreviation when complete string is the abbrev">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'arr.'"/>
+    </x:call>
+    <x:expect select="'arr.'"/>
+  </x:scenario>
+  <x:scenario label="Preserve end period for initials when complete string is the initial">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'W.'"/>
+    </x:call>
+    <x:expect select="'W.'"/>
+  </x:scenario>
 </x:description>
