@@ -19,6 +19,9 @@
   <record>
     <controlfield tag="001">4</controlfield>
     <controlfield tag="007">gs cjbdjd</controlfield>
+    <datafield tag="344">
+      <subfield code="b">magneto-optical</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">5</controlfield>

@@ -1171,11 +1171,11 @@
                 </bf:BaseMaterial>
               </bf:baseMaterial>
             </xsl:if>
-            <xsl:if test="$recordingMedium != ''">
+            <xsl:if test="$recordingMedium != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMedium]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
                 </bf:RecordingMedium>

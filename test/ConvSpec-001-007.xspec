@@ -97,6 +97,7 @@
       <x:expect label="...and an rdfs:label" test="//bf:Work[4]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/@rdf:about = 'http://id.loc.gov/vocabulary/mrecmedium/magopt'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label = 'magneto-optical'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magneto-optical']) = 1"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 007" test="//bf:Instance[4]/bf:dimensions = '2x2 in. or 5x5 cm.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[14]/bf:dimensions = '1 2/5 in.'"/>
       <x:expect label="pos 8 creates a mount property of the Instance" test="//bf:Instance[4]/bf:mount/bf:Mount/rdfs:label = 'glass'"/>
