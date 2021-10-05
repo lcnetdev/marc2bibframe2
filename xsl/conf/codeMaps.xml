@@ -343,6 +343,19 @@
     <t href="http://id.loc.gov/vocabulary/mserialpubtype/direct">directory</t>
     <w href="http://id.loc.gov/vocabulary/mserialpubtype/web">web site</w>
   </crtype>
+  <!-- form of original item -->
+  <!-- used in 008/22 for continuing resources -->
+  <crorigform>
+    <a>Microfilm</a>
+    <b>Microfiche</b>
+    <c>Microopaque</c>
+    <d>Large print</d>
+    <e>Newspaper format</e>
+    <f>Braille</f>
+    <o>Online</o>
+    <q>Direct electronic</q>
+    <s>Electronic</s>
+  </crorigform>
   <!-- continuing resource original script -->
   <!-- used in 008/33 for continuing resources -->
   <crscript>

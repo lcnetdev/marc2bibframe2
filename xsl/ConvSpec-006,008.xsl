@@ -1237,14 +1237,11 @@
         <xsl:otherwise><xsl:value-of select="substring($dataElements,5,1)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $vPos22Code]">
+    <xsl:for-each select="$codeMaps/maps/crorigform/*[name() = $vPos22Code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <xsl:if test="@href">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              </xsl:if>
               <rdf:type>
                 <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/orig</xsl:attribute>
               </rdf:type>
