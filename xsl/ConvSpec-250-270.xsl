@@ -343,14 +343,32 @@
                   </xsl:for-each>
                   <xsl:for-each select="marc:subfield[@code='b']">
                     <xsl:variable name="vLabel">
+                      <!-- detect if there are unmatched brackets in preceding or following subfield -->
+                      <xsl:variable name="vAddBrackets"
+                                    select="(not(contains(.,'[')) and
+                                            not(contains(.,']')) and
+                                            ((contains(preceding-sibling::marc:subfield[@code='a'][1],'[') and
+                                            not(contains(preceding-sibling::marc:subfield[@code='a'][1],']'))) or
+                                            (contains(following-sibling::marc:subfield[@code='c'][1],']') and
+                                            not(contains(following-sibling::marc:subfield[@code='c'][1],'['))))) = true()"/>
                       <xsl:call-template name="tChopPunct">
                         <xsl:with-param name="pString" select="."/>
+                        <xsl:with-param name="pAddBrackets" select="$vAddBrackets"/>
                       </xsl:call-template>
                     </xsl:variable>
                     <xsl:variable name="vLinkedLabel">
                       <xsl:if test="$vOccurrence and $vOccurrence != '00'">
+                        <!-- detect if there are unmatched brackets in preceding or following subfield -->
+                        <xsl:variable name="vAddBrackets"
+                                      select="(not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()],'[')) and
+                                              not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()],']')) and
+                                              ((contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()]/preceding-sibling::marc:subfield[@code='a'][1],'[') and
+                                              not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()]/preceding-sibling::marc:subfield[@code='a'][1],']'))) or
+                                              (contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()]/following-sibling::marc:subfield[@code='c'][1],']') and
+                                              not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()]/following-sibling::marc:subfield[@code='c'][1],'['))))) = true()"/>
                         <xsl:call-template name="tChopPunct">
                           <xsl:with-param name="pString" select="../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()]"/>
+                          <xsl:with-param name="pAddBrackets" select="$vAddBrackets"/>
                         </xsl:call-template>
                       </xsl:if>
                     </xsl:variable>
