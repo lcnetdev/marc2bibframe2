@@ -14,7 +14,7 @@
     <x:expect label="ind2 = # creates AbbreviatedTitle in Work, not Instance" test="count(//bf:Work[2]/bf:title/bf:AbbreviatedTitle) = 1 and count(//bf:Instance[2]/bf:title/bf:AbbreviatedTitle) = 0"/>
     <x:expect label="ind2 = 0 creates AbbreviatedTitle in Instance, not Work" test="count(//bf:Instance[1]/bf:title/bf:AbbreviatedTitle) = 2 and count(//bf:Work[1]/bf:title/bf:AbbreviatedTitle) = 0"/>
     <x:expect label="$a generates mainTitle" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:mainTitle = 'Idler'"/>
-    <x:expect label="$b generates qualifier" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:qualifier = 'Lond.'"/>
+    <x:expect label="$b generates qualifier" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:qualifier = '(Lond.)'"/>
     <x:expect label="if ind2 = 0, $2 becomes the assigner" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:assigner/bf:Agent/bf:code = 'DNLM'"/>
     <x:expect label="if ind2 = #, assigner is 'issnkey'" test="//bf:Work[2]/bf:title/bf:AbbreviatedTitle/bf:assigner/bf:Agent/bf:code='issnkey'"/>
   </x:scenario>
@@ -24,7 +24,7 @@
     <x:expect label="MARC 222 should create title/KeyTitle properties in Work" test="count(//bf:Work[1]/bf:title/bf:KeyTitle) = 2"/>
     <x:expect label="@ind2 should create the appropriate titleSortKey" test="//bf:Work/bf:title[2]/bf:KeyTitle/bflc:titleSortKey = 'Vagrant (London)'"/>
     <x:expect label= "$a generates mainTitle" test="//bf:Work/bf:title[1]/bf:KeyTitle/bf:mainTitle = 'Idler'"/>
-    <x:expect label= "$b generates qualifier" test="//bf:Work/bf:title[1]/bf:KeyTitle/bf:qualifier = 'London'"/>
+    <x:expect label= "$b generates qualifier" test="//bf:Work/bf:title[1]/bf:KeyTitle/bf:qualifier = '(London)'"/>
   </x:scenario>
 
   <x:scenario label="242 - TRANSLATION OF TITLE BY CATALOGING AGENCY">

@@ -54,11 +54,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                  <xsl:with-param name="pEndPunct" select="' '"/>
-                  <xsl:with-param name="pChopParens" select="true()"/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </bf:qualifier>
             </xsl:for-each>
             <xsl:choose>
@@ -117,11 +113,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                  <xsl:with-param name="pEndPunct" select="' '"/>
-                  <xsl:with-param name="pChopParens" select="true()"/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </bf:qualifier>
             </xsl:for-each>
           </bf:KeyTitle>
