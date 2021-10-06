@@ -77,6 +77,13 @@
     </x:call>
     <x:expect select="'[s.l.]'"/>
   </x:scenario>
+  <x:scenario label="Add brackets if requested">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'s.n.,'"/>
+      <x:param name="pAddBrackets" select="true()"/>
+    </x:call>
+    <x:expect select="'[s.n.]'"/>
+  </x:scenario>
   <x:scenario label="Set end punctuation to strip">
     <x:call template="tChopPunct">
       <x:param name="pString" select="'s-bl---'"/>

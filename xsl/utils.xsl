@@ -81,6 +81,7 @@
     <xsl:param name="pLeadPunct" select="';='"/>
     <xsl:param name="pForceTerm" select="false()"/>
     <xsl:param name="pChopParens" select="false()"/>
+    <xsl:param name="pAddBrackets" select="false()"/>
     <xsl:variable name="vNormString" select="normalize-space($pString)"/>
     <xsl:variable name="vLength" select="string-length($vNormString)"/>
     <xsl:choose>
@@ -105,6 +106,7 @@
               <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
@@ -115,6 +117,7 @@
               <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
@@ -129,6 +132,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       
@@ -141,6 +145,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,$vLength,1)='}}' and not(contains($vNormString,'{{'))">
@@ -151,6 +156,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,$vLength,1)='&quot;' and not(contains(substring($vNormString,1,$vLength - 1),'&quot;'))">
@@ -161,6 +167,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       
@@ -173,6 +180,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,1,1)='{{' and not(contains($vNormString,'}}'))">
@@ -183,6 +191,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="substring($vNormString,1,1)='&quot;' and not(contains(substring($vNormString,2),'&quot;'))">
@@ -193,6 +202,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
 
@@ -223,6 +233,7 @@
                           contains(' .',substring($vNormString,$vLength - 2,1))">
             <xsl:call-template name="tBalanceBrackets">
               <xsl:with-param name="pString" select="$vNormString"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$vInitials='true'">
@@ -233,17 +244,20 @@
               <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$vEndAbbrev='true'">
             <xsl:call-template name="tBalanceBrackets">
               <xsl:with-param name="pString" select="$vNormString"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:when>
           <!-- Let's say there are multiple sentences if terminal punctuation can be found in the rest of the string -->
           <xsl:when test="not(string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,'')))">
             <xsl:call-template name="tBalanceBrackets">
               <xsl:with-param name="pString" select="$vNormString"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
@@ -254,6 +268,7 @@
               <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
               <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
               <xsl:with-param name="pChopParens" select="$pChopParens"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
             </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
@@ -268,6 +283,7 @@
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
           <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
           <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
 	</xsl:call-template>
       </xsl:when>
       
@@ -275,6 +291,7 @@
         <!-- add matching square brackets if missing -->
         <xsl:call-template name="tBalanceBrackets">
           <xsl:with-param name="pString" select="$vNormString"/>
+              <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
@@ -355,12 +372,16 @@
 
   <xsl:template name="tBalanceBrackets">
     <xsl:param name="pString"/>
+    <xsl:param name="pAddBrackets" select="false()"/>
     <xsl:choose>
       <xsl:when test="contains($pString,'[') and not(contains(substring-after($pString,'['),']'))">
         <xsl:value-of select="concat($pString,']')"/>
       </xsl:when>
       <xsl:when test="contains($pString,']') and not(contains(substring-before($pString,']'),'['))">
         <xsl:value-of select="concat('[',$pString)"/>
+      </xsl:when>
+      <xsl:when test="$pAddBrackets">
+        <xsl:value-of select="concat('[',$pString,']')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$pString"/>
