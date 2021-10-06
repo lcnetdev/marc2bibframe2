@@ -124,6 +124,8 @@
       <subfield code="a">Cinerama</subfield>
       <subfield code="0">http://id.loc.gov/vocabulary/mpresformat/ciner</subfield>
       <subfield code="b">24 fps</subfield>
+      <subfield code="c">16:9</subfield>
+      <subfield code="d">wide screen</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="346" ind1=" " ind2=" ">

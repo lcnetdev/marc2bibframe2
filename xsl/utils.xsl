@@ -553,6 +553,7 @@
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
     <xsl:param name="pTarget"/>
+    <xsl:param name="pObjStringProp" select="'rdfs:label'"/>
     <xsl:param name="pLabel"/>
     <xsl:param name="pProcess"/>
     <xsl:param name="pPunctuation" select="'.:;,/='"/>
@@ -572,7 +573,7 @@
             <xsl:if test="$pTarget != ''">
               <xsl:attribute name="rdf:about"><xsl:value-of select="$pTarget"/></xsl:attribute>
             </xsl:if>
-            <rdfs:label>
+            <xsl:element name="{$pObjStringProp}">
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
@@ -592,7 +593,7 @@
                 </xsl:when>
                 <xsl:otherwise><xsl:value-of select="$vLabel"/></xsl:otherwise>
               </xsl:choose>
-            </rdfs:label>
+            </xsl:element>
             <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode]" mode="subfield0orw">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>

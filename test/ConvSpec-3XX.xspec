@@ -138,6 +138,8 @@
     <x:expect label="$a creates a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'Cinerama'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mpresformat/ciner'"/>
     <x:expect label="$b creates a projectionCharacteristic/ProjectionSpeed property of the Instance" test="//bf:Instance[1]/bf:projectionCharacteristic[2]/bf:ProjectionSpeed/rdfs:label = '24 fps'"/>
+    <x:expect label="$c creates an aspectRatio/AspectRatio/rdf:value property of the Instance" test="//bf:Instance[1]/bf:aspectRatio[1]/bf:AspectRatio/rdf:value = '16:9'"/>
+    <x:expect label="$d creates an aspectRatio/AspectRatio/rdfs:label property of the Instance" test="//bf:Instance[1]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide screen'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mpresformat/ciner'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bf:source/bf:Source/bf:code = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'filmstrip'"/>

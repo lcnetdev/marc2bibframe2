@@ -1016,16 +1016,21 @@
         <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="vProp">
-      <xsl:choose>
-        <xsl:when test="$vTag='344'">bf:soundCharacteristic</xsl:when>
-        <xsl:when test="$vTag='345'">bf:projectionCharacteristic</xsl:when>
-        <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
-        <xsl:when test="$vTag='347'">bf:digitalCharacteristic</xsl:when>
-        <xsl:when test="$vTag='348'">bf:musicFormat</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:for-each select="marc:subfield">
+      <xsl:variable name="vProp">
+        <xsl:choose>
+          <xsl:when test="$vTag='344'">bf:soundCharacteristic</xsl:when>
+          <xsl:when test="$vTag='345'">
+            <xsl:choose>
+              <xsl:when test="@code='c' or @code='d'">bf:aspectRatio</xsl:when>
+              <xsl:otherwise>bf:projectionCharacteristic</xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
+          <xsl:when test="$vTag='347'">bf:digitalCharacteristic</xsl:when>
+          <xsl:when test="$vTag='348'">bf:musicFormat</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:variable name="vResource">
         <xsl:choose>
           <xsl:when test="$vTag='344'">
@@ -1044,6 +1049,7 @@
             <xsl:choose>
               <xsl:when test="@code='a'">bf:PresentationFormat</xsl:when>
               <xsl:when test="@code='b'">bf:ProjectionSpeed</xsl:when>
+              <xsl:when test="@code='c' or @code='d'">bf:AspectRatio</xsl:when>
             </xsl:choose>
           </xsl:when>
           <xsl:when test="$vTag='346'">
@@ -1409,6 +1415,12 @@
           <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
+      <xsl:variable name="vObjStringProp">
+        <xsl:choose>
+          <xsl:when test="$vTag='345' and @code='c'">rdf:value</xsl:when>
+          <xsl:otherwise>rdfs:label</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <!-- We need to eliminate duplicates. The second condition looks for a preceding tag with the same value. -->
       <xsl:if test="$vResource != '' and count(../preceding-sibling::marc:datafield[@tag = $vTag and marc:subfield[. = $vLabel]]) = 0">
         <xsl:apply-templates select="." mode="generateProperty">
@@ -1417,6 +1429,7 @@
           <xsl:with-param name="pResource" select="$vResource"/>
           <xsl:with-param name="pTarget" select="$vTarget"/>
           <xsl:with-param name="pLabel" select="$vLabel"/>
+          <xsl:with-param name="pObjStringProp" select="$vObjStringProp"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:for-each>
