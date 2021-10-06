@@ -111,6 +111,7 @@
       <subfield code="a">analog</subfield>
       <subfield code="c">78 rpm</subfield>
       <subfield code="d">coarse groove</subfield>
+      <subfield code="i">sound</subfield>
     </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
       <subfield code="3">audio tape</subfield>

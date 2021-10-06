@@ -123,6 +123,8 @@
     <x:expect label="...with an rdf:about attribute if 'mono', 'quadraphonic', 'stereo', or 'surround'" test="//bf:Instance[1]/bf:soundCharacteristic[3]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/mul'"/>
     <x:expect label="$h creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby'"/>
     <x:expect label="...with an rdf:about attribute if recognized value (see specs for details)" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mspecplayback/dolby'"/>
+    <x:expect label="$i creates a soundContent/SoundContent property of the Work" test="//bf:Work[1]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
+    <x:expect label="...with an rdf:about attribute if 'silent' or 'sound'" test="//bf:Work[1]/bf:soundContent/bf:SoundContent/@rdf:about = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mspecplayback/dolby'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/bf:source/bf:Source/bf:code = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'audio disc'"/>
