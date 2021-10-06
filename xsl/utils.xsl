@@ -221,7 +221,9 @@
           <!-- Let's say it's an initial if the previous 2 characters are [ .][A-Z] -->
           <xsl:when test="contains($upper,substring($vNormString,$vLength - 1,1)) and
                           contains(' .',substring($vNormString,$vLength - 2,1))">
-            <xsl:value-of select="$vNormString"/>
+            <xsl:call-template name="tBalanceBrackets">
+              <xsl:with-param name="pString" select="$vNormString"/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:when test="$vInitials='true'">
             <xsl:call-template name="tChopPunct">
@@ -234,11 +236,15 @@
             </xsl:call-template>
           </xsl:when>
           <xsl:when test="$vEndAbbrev='true'">
-            <xsl:value-of select="$vNormString"/>
+            <xsl:call-template name="tBalanceBrackets">
+              <xsl:with-param name="pString" select="$vNormString"/>
+            </xsl:call-template>
           </xsl:when>
           <!-- Let's say there are multiple sentences if terminal punctuation can be found in the rest of the string -->
           <xsl:when test="not(string-length(substring($vNormString,1,$vLength - 1)) = string-length(translate(substring($vNormString,1,$vLength - 1),$pTermPunct,'')))">
-            <xsl:value-of select="$vNormString"/>
+            <xsl:call-template name="tBalanceBrackets">
+              <xsl:with-param name="pString" select="$vNormString"/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="tChopPunct">
@@ -265,16 +271,11 @@
 	</xsl:call-template>
       </xsl:when>
       
-      <!-- add matching square brackets if missing -->
-      <xsl:when test="contains($vNormString,'[') and not(contains(substring-after($vNormString,'['),']'))">
-        <xsl:value-of select="concat($vNormString,']')"/>
-      </xsl:when>
-      <xsl:when test="contains($vNormString,']') and not(contains(substring-before($vNormString,']'),'['))">
-        <xsl:value-of select="concat('[',$vNormString)"/>
-      </xsl:when>
-
       <xsl:otherwise>
-	<xsl:value-of select="$vNormString"/>
+        <!-- add matching square brackets if missing -->
+        <xsl:call-template name="tBalanceBrackets">
+          <xsl:with-param name="pString" select="$vNormString"/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -348,6 +349,21 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="false()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="tBalanceBrackets">
+    <xsl:param name="pString"/>
+    <xsl:choose>
+      <xsl:when test="contains($pString,'[') and not(contains(substring-after($pString,'['),']'))">
+        <xsl:value-of select="concat($pString,']')"/>
+      </xsl:when>
+      <xsl:when test="contains($pString,']') and not(contains(substring-before($pString,']'),'['))">
+        <xsl:value-of select="concat('[',$pString)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$pString"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
