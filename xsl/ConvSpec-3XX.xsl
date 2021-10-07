@@ -1299,11 +1299,11 @@
                   <xsl:value-of select="normalize-space(translate(translate(normalize-space(.),$upper,$lower),'-',''))"/>
                 </xsl:variable>
                 <xsl:choose>
-                  <xsl:when test="$vNormalizedFormat='bluray'">
+                  <xsl:when test="contains($vNormalizedFormat,'bluray')">
                     <xsl:value-of select="concat($mencformat,'bluray')"/>
                   </xsl:when>
-                  <xsl:when test="$vNormalizedFormat='dvd video'">
-                    <xsl:value-of select="concat($mencformat,'dvd')"/>
+                  <xsl:when test="contains($vNormalizedFormat,'dvd')">
+                    <xsl:value-of select="concat($mencformat,'dvdv')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>
@@ -1403,8 +1403,8 @@
         <xsl:choose>
           <xsl:when test="$vTag='347' and @code='b'">
             <xsl:choose>
-              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-ray</xsl:when>
-              <xsl:when test="$vTarget=concat($mencformat,'dvd')">DVD video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-Ray video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'dvdv')">DVD video</xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString" select="."/>
