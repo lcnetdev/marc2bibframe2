@@ -259,19 +259,9 @@
   
   <x:scenario label="382 - MEDIUM OF PERFORMANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']) = 1"/>
-    <x:expect label="$n creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']/parent::*/bf:count = '2'"/>
-    <x:expect label="$e creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='orchestra']/parent::*/bf:count = '1'"/>
-    <x:expect label="$v immediately following $a/$b/$d/$p creates a note property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']/parent::*/bf:note/bf:Note/rdfs:label = 'played on altered piano'"/>
-    <x:expect label="$b creates a musicMedium property of the Work with 'soloist' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute soloist']) = 1"/>
-    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='doubling synthesizer']) = 1"/>
-    <x:expect label="$p creates a musicMedium/MusicMedium property of the Work with 'alternate' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']) = 1"/>
-    <x:expect label="$r creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[8]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers alongside ensembles: 1'"/>
-    <x:expect label="$s creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[4]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers: 2'"/>
-    <x:expect label="$t creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[9]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total ensembles: 1'"/>
-    <x:expect label="$v after $r/$s/$t creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[5]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'piano is prominent, but not all other instruments are not identified'"/>
-    <x:expect label="$2 creates a source property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/bf:code = 'lcmpt'"/>
-    <x:expect label="...with URI from musiccodeschemes" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/musiccodeschemes/lcmpt'"/>
+    <x:expect label="382 creates a musicMedium/MusicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium) = 1"/>
+    <x:expect label="If ind1=1, generate status property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/partial'"/>
+    <x:expect label="Generate bflc:readMarc382 property of the MusicMedium from all subfields" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bflc:readMarc382 = '$3Nach Bach$apiano$n1$vplayed on altered piano$pbaritone horn$n2$dsynthesizer$n1$s2$vpiano is prominent, but not all other instruments are not identified$2lcmpt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
   </x:scenario>
 

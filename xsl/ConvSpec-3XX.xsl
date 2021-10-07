@@ -474,95 +474,26 @@
 
   <xsl:template match="marc:datafield[@tag='382' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='382')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='d' or @code='p']">
-          <xsl:variable name="vNodeId" select="generate-id()"/>
-          <xsl:variable name="vTerm">
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </xsl:variable>
-          <bf:musicMedium>
-            <bf:MusicMedium>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:choose>
-                  <xsl:when test="@code='b'"><xsl:value-of select="concat($vTerm,' soloist')"/></xsl:when>
-                  <xsl:when test="@code='d'"><xsl:value-of select="concat('doubling ',$vTerm)"/></xsl:when>
-                  <xsl:when test="@code='p'"><xsl:value-of select="concat('alternate ',$vTerm)"/></xsl:when>
-                  <xsl:otherwise><xsl:value-of select="$vTerm"/></xsl:otherwise>
-                </xsl:choose>
-              </rdfs:label>
-              <xsl:for-each select="following-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p' or @code='r' or @code='s' or @code='t'][position()=1]/preceding-sibling::marc:subfield[@code='n' or @code='e']">
-                <xsl:if test="generate-id(preceding-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p'][position()=1])=$vNodeId">
-                  <bf:count>
-                    <xsl:call-template name="tChopPunct">
-                      <xsl:with-param name="pString" select="."/>
-                    </xsl:call-template>
-                  </bf:count>
-                </xsl:if>
-              </xsl:for-each>
-              <xsl:for-each select="following-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p' or @code='r' or @code='s' or @code='t'][position()=1]/preceding-sibling::marc:subfield[@code='v']">
-                <xsl:if test="generate-id(preceding-sibling::marc:subfield[@code='a' or @code='b' or @code='d' or @code='p'][position()=1])=$vNodeId">
-                  <bf:note>
-                    <bf:Note>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="tChopPunct">
-                          <xsl:with-param name="pString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bf:Note>
-                  </bf:note>
-                </xsl:if>
-              </xsl:for-each>
-              <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pVocabStem" select="$musiccodeschemes"/>
-              </xsl:apply-templates>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:MusicMedium>
-          </bf:musicMedium>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='r' or @code='s' or @code='t'] | marc:subfield[@code='v'][preceding-sibling::marc:subfield[@code='r' or @code='s' or @code='t']]">
-          <xsl:variable name="vDisplayConstant">
-            <xsl:choose>
-              <xsl:when test="@code='r'">Total performers alongside ensembles: </xsl:when>
-              <xsl:when test="@code='s'">Total performers: </xsl:when>
-              <xsl:when test="@code='t'">Total ensembles: </xsl:when>
-            </xsl:choose>
-          </xsl:variable>
-          <xsl:variable name="vNum">
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </xsl:variable>
-          <bf:musicMedium>
-            <bf:MusicMedium>
-              <bf:note>
-                <bf:Note>
-                  <rdfs:label>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:value-of select="concat($vDisplayConstant,$vNum)"/>
-                  </rdfs:label>
-                </bf:Note>
-              </bf:note>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:MusicMedium>
-          </bf:musicMedium>
-        </xsl:for-each>
+        <bf:musicMedium>
+          <bf:MusicMedium>
+            <xsl:if test="@ind1='1'">
+              <bf:status>
+                <bf:Status>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'partial')"/></xsl:attribute>
+                  <rdfs:label>partial</rdfs:label>
+                </bf:Status>
+              </bf:status>
+            </xsl:if>
+            <bflc:readMarc382>
+              <xsl:apply-templates select="marc:subfield" mode="marcKey"/>
+            </bflc:readMarc382>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:MusicMedium>
+        </bf:musicMedium>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

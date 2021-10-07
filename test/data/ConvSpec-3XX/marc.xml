@@ -205,7 +205,7 @@
       <subfield code="a">Play</subfield>
       <subfield code="2">lcgft</subfield>
     </datafield>
-    <datafield tag="382" ind1=" " ind2=" ">
+    <datafield tag="382" ind1="1" ind2=" ">
       <subfield code="3">Nach Bach</subfield>
       <subfield code="a">piano</subfield>
       <subfield code="n">1</subfield>
@@ -216,16 +216,6 @@
       <subfield code="n">1</subfield>
       <subfield code="s">2</subfield>
       <subfield code="v">piano is prominent, but not all other instruments are not identified</subfield>
-      <subfield code="2">lcmpt</subfield>
-    </datafield>
-    <datafield tag="382" ind1=" " ind2=" ">
-      <subfield code="3">Stuff</subfield>
-      <subfield code="b">flute</subfield>
-      <subfield code="n">1</subfield>
-      <subfield code="a">orchestra</subfield>
-      <subfield code="e">1</subfield>
-      <subfield code="r">1</subfield>
-      <subfield code="t">1</subfield>
       <subfield code="2">lcmpt</subfield>
     </datafield>
     <datafield tag="383" ind1=" " ind2=" ">
