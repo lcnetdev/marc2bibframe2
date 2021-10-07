@@ -224,6 +224,19 @@
     </xsl:for-each>
   </xsl:template>
     
+  <xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp">bf:notation</xsl:with-param>
+          <xsl:with-param name="pResource">bf:Notation</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='351' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='351')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>

@@ -151,6 +151,7 @@
       <subfield code="a">vocal score</subfield>
       <subfield code="0">(foo)12345</subfield>
       <subfield code="b">voc</subfield>
+      <subfield code="c">staff notation</subfield>
       <subfield code="2">foo</subfield>
     </datafield>
     <datafield tag="350" ind1=" " ind2=" ">
