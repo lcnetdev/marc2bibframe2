@@ -65,6 +65,12 @@
     </x:call>
     <x:expect select="'Washington, D.C.'"/>
   </x:scenario>
+  <x:scenario label="Strip unmatched enclosing punctuation anywhere in string">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'[Printed by Prichard and Hall)]'"/>
+    </x:call>
+    <x:expect select="'[Printed by Prichard and Hall]'"/>
+  </x:scenario>
   <x:scenario label="Add matching square brackets if needed">
     <x:call template="tChopPunct">
       <x:param name="pString" select="'[New York : HarperCollins'"/>

@@ -136,45 +136,17 @@
         </xsl:call-template>
       </xsl:when>
       
-      <!-- remove end enclosing punctuation if start character is not in string -->
-      <xsl:when test="substring($vNormString,$vLength,1)=')' and not(contains($vNormString,'('))">
-        <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
-          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
-          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
-          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
-          <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
-          <xsl:with-param name="pChopParens" select="$pChopParens"/>
-          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="substring($vNormString,$vLength,1)='}}' and not(contains($vNormString,'{{'))">
-        <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
-          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
-          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
-          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
-          <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
-          <xsl:with-param name="pChopParens" select="$pChopParens"/>
-          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="substring($vNormString,$vLength,1)='&quot;' and not(contains(substring($vNormString,1,$vLength - 1),'&quot;'))">
-        <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,1,$vLength - 1)"/>
-          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
-          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
-          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
-          <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
-          <xsl:with-param name="pChopParens" select="$pChopParens"/>
-          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
-        </xsl:call-template>
-      </xsl:when>
-      
+      <!--
+          enclosing punctuation routines do not take into account
+          multiple parenthetical clauses that are unbalanced
+          e.g.: '(something) (something else' will not strip the second
+          open parens
+      -->
+
       <!-- remove lead enclosing punctuation if end character is not in string -->
-      <xsl:when test="substring($vNormString,1,1)='(' and not(contains($vNormString,')'))">
+      <xsl:when test="contains($vNormString,'(') and not(contains(substring-after($vNormString,'('),')'))">
         <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pString" select="concat(substring-before($vNormString,'('),substring-after($vNormString,'('))"/>
           <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
           <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
@@ -183,9 +155,9 @@
           <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="substring($vNormString,1,1)='{{' and not(contains($vNormString,'}}'))">
+      <xsl:when test="contains($vNormString,'{{') and not(contains(substring-after($vNormString,'{{'),'}}'))">
         <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pString" select="concat(substring-before($vNormString,'{{'),substring-after($vNormString,'{{'))"/>
           <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
           <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
@@ -194,9 +166,10 @@
           <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="substring($vNormString,1,1)='&quot;' and not(contains(substring($vNormString,2),'&quot;'))">
+      <!-- actually this accounts well enough for both lead and closing quotes -->
+      <xsl:when test="contains($vNormString,'&quot;') and not(contains(substring-after($vNormString,'&quot;'),'&quot;'))">
         <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="substring($vNormString,2)"/>
+          <xsl:with-param name="pString" select="concat(substring-before($vNormString,'&quot;'),substring-after($vNormString,'&quot;'))"/>
           <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
           <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
           <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
@@ -206,6 +179,30 @@
         </xsl:call-template>
       </xsl:when>
 
+      <!-- remove end enclosing punctuation if start character is not in string -->
+      <xsl:when test="contains($vNormString,')') and not(contains(substring-before($vNormString,')'),'('))">
+        <xsl:call-template name="tChopPunct">
+          <xsl:with-param name="pString" select="concat(substring-before($vNormString,')'),substring-after($vNormString,')'))"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
+          <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
+          <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="contains($vNormString,'}}') and not(contains(substring-before($vNormString,'}}'),'{{'))">
+        <xsl:call-template name="tChopPunct">
+          <xsl:with-param name="pString" select="concat(substring-before($vNormString,'}}'),substring-after($vNormString,'}}'))"/>
+          <xsl:with-param name="pEndPunct" select="$pEndPunct"/>
+          <xsl:with-param name="pLeadPunct" select="$pLeadPunct"/>
+          <xsl:with-param name="pTermPunct" select="$pTermPunct"/>
+          <xsl:with-param name="pForceTerm" select="$pForceTerm"/>
+          <xsl:with-param name="pChopParens" select="$pChopParens"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
+        </xsl:call-template>
+      </xsl:when>
+      
       <!-- special handling for ending periods -->
       <!-- do not remove if we think it is an initial -->
       <!-- do not remove if we think it is an abbreviation -->
