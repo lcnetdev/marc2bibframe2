@@ -171,6 +171,13 @@
       <subfield code="c">(20171) ;</subfield>
       <subfield code="q">ARC/INFO export.</subfield>
     </datafield>
+    <datafield tag="353" ind1=" " ind2=" ">
+      <subfield code="3">Bio supplement</subfield>
+      <subfield code="a">biography of creator</subfield>
+      <subfield code="b">creatorbio</subfield>
+      <subfield code="0">http://example.com/bio</subfield>
+      <subfield code="2">msupplcont</subfield>
+    </datafield>
     <datafield tag="362" ind1="0" ind2=" ">
       <subfield code="a">Vol. 1, no. 1 (Apr. 1983)-v. 1, no. 3 (June 1983)</subfield>
     </datafield>
