@@ -420,15 +420,18 @@
               </xsl:for-each>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='b']">
+              <xsl:variable name="vClass">
+                <xsl:choose>
+                  <xsl:when test="following-sibling::*[position()=1][@code='c']">
+                    <xsl:value-of select="concat(normalize-space(.),'.',normalize-space(following-sibling::*[position()=1][@code='c']))"/>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
               <bf:place>
-                <bf:Place>
-                  <rdf:value><xsl:value-of select="normalize-space(concat(.,' ',following-sibling::*[position()=1][@code='c']))"/></rdf:value>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </bf:Place>
+                <xsl:attribute name="rdf:resource">
+                  <xsl:value-of select="concat($classG,$vClass)"/>
+                </xsl:attribute>
               </bf:place>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='p']">
