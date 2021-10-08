@@ -521,12 +521,8 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
-            <bf:geographicCoverage>
-              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
-            </bf:geographicCoverage>
-            <bf:geographicCoverage>
-              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
-            </bf:geographicCoverage>
+            <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
+            <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:assigner>
