@@ -800,6 +800,40 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='046' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='046')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:if test="marc:subfield[@code='k']">
+      <xsl:variable name="vDate1">
+        <xsl:call-template name="tMarcToEdtf">
+          <xsl:with-param name="pDateString" select="marc:subfield[@code='k']"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="vDate2">
+        <xsl:if test="marc:subfield[@code='l']">
+          <xsl:call-template name="tMarcToEdtf">
+            <xsl:with-param name="pDateString" select="marc:subfield[@code='l']"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:variable>
+      <xsl:variable name="vDateString">
+        <xsl:choose>
+          <xsl:when test="$vDate2 != ''">
+            <xsl:value-of select="concat($vDate1,'/',$vDate2)"/>
+          </xsl:when>
+          <xsl:otherwise><xsl:value-of select="$vDate1"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:originDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
+            <xsl:value-of select="$vDateString"/>
+          </bf:originDate>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='047' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='047')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>

@@ -224,6 +224,12 @@
     <x:expect label="$a creates a temporalCoverage property of the Work" test="//bf:Work/bf:temporalCoverage[1] = '-02XX/096X'"/>
     <x:expect label="$b creates a temporalCoverage property of the Work" test="//bf:Work/bf:temporalCoverage[2] = '-0221/0960'"/>
   </x:scenario>
+
+  <x:scenario label="046 - SPECIAL CODED DATES">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="046 $k generates an originDate property of the Work" test="//bf:Work/bf:originDate = '1998-10-22/1999-12-31T23:59:59.0'"/>
+    <x:expect label="...with EDTF data type" test="//bf:Work/bf:originDate/@rdf:datatype = 'http://id.loc.gov/datatypes/edtf'"/>
+  </x:scenario>
   
   <x:scenario label="047 - FORM OF MUSICAL COMPOSITION CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>

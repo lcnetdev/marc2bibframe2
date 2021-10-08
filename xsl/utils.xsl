@@ -539,6 +539,39 @@
   </xsl:template>
 
   <!--
+      Take a date in the format specified in 046 $j,$k,$l,$m,$n,$o,$p
+      Transform to EDTF-conformant date (yyyy-mm-Thh:mm:ss.f with no
+      timezone)
+  -->
+  <xsl:template name="tMarcToEdtf">
+    <xsl:param name="pDateString"/>
+    <xsl:variable name="vYear"><xsl:value-of select="substring($pDateString,1,4)"/></xsl:variable>
+    <xsl:variable name="vMonth"><xsl:value-of select="substring($pDateString,5,2)"/></xsl:variable>
+    <xsl:variable name="vDay"><xsl:value-of select="substring($pDateString,7,2)"/></xsl:variable>
+    <xsl:variable name="vHour"><xsl:value-of select="substring($pDateString,9,2)"/></xsl:variable>
+    <xsl:variable name="vMinute"><xsl:value-of select="substring($pDateString,11,2)"/></xsl:variable>
+    <xsl:variable name="vSecond"><xsl:value-of select="substring($pDateString,13)"/></xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$vSecond != ''">
+        <xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay,'T',$vHour,':',$vMinute,':',$vSecond)"/>
+      </xsl:when>
+      <xsl:when test="$vMinute != ''">
+        <xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay,'T',$vHour,':',$vMinute)"/>
+      </xsl:when>
+      <xsl:when test="$vHour != ''">
+        <xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay,'T',$vHour)"/>
+      </xsl:when>
+      <xsl:when test="$vDay != ''">
+        <xsl:value-of select="concat($vYear,'-',$vMonth,'-',$vDay)"/>
+      </xsl:when>
+      <xsl:when test="$vMonth != ''">
+        <xsl:value-of select="concat($vYear,'-',$vMonth)"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$vYear"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       generate a property with a blank node Resource, and an rdfs:label
       process $3 and $2, if necessary
       Inspired by processing 340, may be useful elsewhere (actually
