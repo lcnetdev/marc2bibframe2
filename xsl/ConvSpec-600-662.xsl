@@ -157,7 +157,7 @@
                         <xsl:with-param name="pHubIri" select="$pHubIri"/>
                         <xsl:with-param name="agentiri" select="$agentiri"/>
                         <xsl:with-param name="recordid" select="$recordid"/>
-                        <xsl:with-param name="pMADSClass" select="NameTitle"/>
+                        <xsl:with-param name="pMADSClass" select="'NameTitle'"/>
                         <xsl:with-param name="pMADSLabel">
                           <xsl:call-template name="tChopPunct">
                             <xsl:with-param name="pString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
@@ -402,7 +402,7 @@
         <xsl:with-param name="pEndPunct" select="'-'"/>
         <xsl:with-param name="pString">
           <xsl:call-template name="tChopPunct">
-            <xsl:with-param name="chopString" select="$vTitleLabel"/>
+            <xsl:with-param name="pString" select="$vTitleLabel"/>
           </xsl:call-template>
           <xsl:text>--</xsl:text>
           <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
@@ -458,7 +458,7 @@
                     <xsl:with-param name="serialization" select="$serialization"/>
                     <xsl:with-param name="pHubIri" select="$pHubIri"/>
                     <xsl:with-param name="recordid" select="$recordid"/>
-                    <xsl:with-param name="pMADSClass" select="Title"/>
+                    <xsl:with-param name="pMADSClass" select="'Title'"/>
                     <xsl:with-param name="pMADSLabel">
                       <xsl:call-template name="tChopPunct">
                         <xsl:with-param name="pString" select="normalize-space($vTitleLabel)"/>
@@ -479,7 +479,7 @@
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pHubIri" select="$pHubIri"/>
                 <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="pMADSClass" select="Title"/>
+                <xsl:with-param name="pMADSClass" select="'Title'"/>
                 <xsl:with-param name="pMADSLabel" select="$vMADSLabel"/>
                 <xsl:with-param name="pSource" select="$vSource"/>
               </xsl:apply-templates>
@@ -500,9 +500,11 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Hub>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
-          </rdf:type>
+          <xsl:if test="$pMADSClass != ''">
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
+            </rdf:type>
+          </xsl:if>
           <madsrdf:authoritativeLabel><xsl:value-of select="$pMADSLabel"/></madsrdf:authoritativeLabel>
           <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
             <madsrdf:isMemberOfMADSScheme>
