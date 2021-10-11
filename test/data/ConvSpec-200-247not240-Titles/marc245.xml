@@ -47,4 +47,16 @@
       <subfield code="h">[sound recording].</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">7</controlfield>
+    <datafield tag="046" ind1=" " ind2=" ">
+      <subfield code="k">1760</subfield>
+      <subfield code="l">1878</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Short-Harrison-Symmes family papers,</subfield>
+      <subfield code="f">1760-1878.</subfield>
+      <subfield code="s">Member release.</subfield>
+    </datafield>
+  </record>
 </collection>

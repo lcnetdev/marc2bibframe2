@@ -312,7 +312,20 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='f' or @code='g']">
+        <xsl:if test="not(../marc:datafield[@tag='046']/marc:subfield[@code='k'])">
+          <xsl:for-each select="marc:subfield[@code='f']">
+            <bf:originDate>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="."/>
+                <xsl:with-param name="pForceTerm" select="true()"/>
+              </xsl:call-template>
+            </bf:originDate>
+          </xsl:for-each>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='g']">
           <bf:originDate>
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>

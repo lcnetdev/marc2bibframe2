@@ -86,6 +86,7 @@
     <x:scenario label="$f">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
       <x:expect label="becomes a Work originDate" test="//bf:Work[4]/bf:originDate = '1760-1878'"/>
+      <x:expect label="...but prefer the 046 $k" test="count(//bf:Work[7]/bf:originDate) = 1 and //bf:Work[7]/bf:originDate = '1760/1878'"/>
     </x:scenario>
     <x:scenario label="$g">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
