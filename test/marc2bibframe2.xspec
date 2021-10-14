@@ -57,7 +57,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -256,7 +256,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -475,7 +475,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -745,7 +745,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>

@@ -61,7 +61,7 @@
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
               <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              <bf:code><xsl:value-of select="."/></bf:code>
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:when>
