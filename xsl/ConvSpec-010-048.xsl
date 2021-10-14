@@ -1300,7 +1300,7 @@
                   <xsl:if test="$vSource != ''">
                     <xsl:variable name="vEncoded">
                       <xsl:call-template name="url-encode">
-                        <xsl:with-param name="str" select="translate(normalize-space($vSource),$upper,$lower)"/>
+                        <xsl:with-param name="str" select="translate(translate(normalize-space($vSource),'-',''),$upper,$lower)"/>
                       </xsl:call-template>
                     </xsl:variable>
                     <bf:assigner>

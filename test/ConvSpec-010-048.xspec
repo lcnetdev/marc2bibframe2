@@ -154,13 +154,14 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Local/rdf:value = '814782'"/>
     <x:expect label="value in parens creates an assigner property of the Local" test="//bf:Instance[1]/bf:identifiedBy[28]/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/ocolc'"/>
+    <x:expect label="...final element in URL should be lowercase with hyphens removed" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/rsbebcd'"/>
     <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[29]/bf:Local/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
-    <x:expect label="$b creates an assigner property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:StudyNumber/bf:assigner/bf:Agent/rdfs:label = 'Centre national de la recherche scientifique'"/>
+    <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
+    <x:expect label="$b creates an assigner property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:StudyNumber/bf:assigner/bf:Agent/rdfs:label = 'Centre national de la recherche scientifique'"/>
   </x:scenario>
   
   <x:scenario label="037 - SOURCE OF ACQUISITION">
