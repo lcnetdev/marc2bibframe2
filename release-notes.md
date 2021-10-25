@@ -1,5 +1,19 @@
 # marc2bibframe2 release notes
 
+## v1.7.0
+
+Conversion updates based on specifications v1.7. See the Library of Congress' [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in this distribution in the [spec](spec/) directory. Changes of note:
+
+* Uniform titles in 130, 240, 6XX, and 8XX fields now generate stub "Hub" records rather than creating properties on the described Work or Instance.
+
+* Major overhaul of punctuation handling, based on the [PCC Guidelines for Minimally Punctuated MARC Records](https://loc.gov/aba/pcc/documents/PCC-Guidelines-for-Minimally-Punctuated-MARC-Data-v.1.2.docx). See "Process 7" in the [Process0-7 doc](spec/ConvSpec-Process0-7-v1.7.docx).
+
+* MARC 880 fields that are paired with 245, 250, 26X, and 490 fields are processed along with the standard MARC field, generating additional properties on the specified object with an xml:lang designation.
+
+* Updates based on the BIBFRAME ontology v2.1.0.
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v1.6 in the specifications are marked in red.
+
 ## v1.6.0
 
 Conversion updates based on specifications v1.6. See the Library of Congress' [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in this distribution in the [spec](spec/) directory. Changes of note:
