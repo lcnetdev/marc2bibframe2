@@ -1,11 +1,13 @@
---- 1.7.0-SNAPSHOT
+--- 1.7.0 2021/10/25
 
 Changes towards updated v1.7 specifications:
   ConvSpec-LDR:
     Update processing of LDR/05, LDR/18
   ConvSpec-001-007: Prefer MARC 3XX fields for video format, encoding, medium, etc.
   ConvSpec-006-008: URI updates, note generation
-  ConvSpec-010-048: Ontology update
+  ConvSpec-010-048:
+    Ontology updates
+    Add conversion for MARC 046
   ConvSpec-050-088: Updated processing for 050, 052
   ConvSpec-1XX,7XX,8XX-Names: Hub implementation
   ConvSpec-200-247:
@@ -28,15 +30,19 @@ Changes towards updated v1.7 specifications:
     Update processing of linked 880s for 490
     Note generation for 510
   ConvSpec-5XX: Note generation
-  ConvSpec-600-662: Hub implementation
+  ConvSpec-600-662:
+    Hub implementation
   ConvSpec-720,740-758: Updated processing for 740
   ConvSpec-760-788: Updated processing for 776, 777
   ConvSpec-NumericSubfields: Updated processing for 250, 26X, 490 (6.3 spec)
   ConvSpec-Process0-6:
     Update title processing
     Update series processing (hub implementation)
+  ConvSpec-Process7: Updated punctuation processing
 
-Remove namespace declaration for xpath-functions (fix bug with current-dateTime())
+Bug fixes:
+  Remove namespace declaration for xpath-functions (fix bug with current-dateTime())
+  Generate correct MADSRDF class for name/title and title authorities.
 
 --- 1.6.2 2021/10/11
 
