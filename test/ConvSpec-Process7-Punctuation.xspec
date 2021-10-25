@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tests for punctuation processing -->
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+  <x:scenario label="7.1 Strip end punctuation">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'New York :'"/>
+    </x:call>
+    <x:expect select="'New York'"/>
+  </x:scenario>
+  <x:scenario label="7.2 retain medial punctuation but strip end">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'New York : HarperCollins, 2020.'"/>
+    </x:call>
+    <x:expect select="'New York : HarperCollins, 2020'"/>
+  </x:scenario>
+  <x:scenario label="7.2.2 retain end punctuation at end if terminal punctuation elsewhere in string">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Part I arranged in three series. Series 1: 1 Early Family Papers, 1762-1910; Series 2: General Correspondence, 1934-1964; Series 3: Special Correspondence, 1946-1963.'"/>
+      <x:expect select="'Part I arranged in three series. Series 1: 1 Early Family Papers, 1762-1910; Series 2: General Correspondence, 1934-1964; Series 3: Special Correspondence, 1946-1963.'"/>
+    </x:call>
+  </x:scenario>
+  <x:scenario label="...unless string contains initials">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Proceedings of I.C.C., no. 4.'"/>
+    </x:call>
+    <x:expect select="'Proceedings of I.C.C., no. 4'"/>
+  </x:scenario>
+  <x:scenario label="Strip end terminal punctuation when forced">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Nixon, Richard M. (Richard Milhouse), 1913-1994.'"/>
+      <x:param name="pForceTerm" select="true()"/>
+    </x:call>
+    <x:expect select="'Nixon, Richard M. (Richard Milhouse), 1913-1994'"/>
+  </x:scenario>
+  <x:scenario label="7.3 retain square brackets">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'[Charles and Ray Eames, designers, looking at the chair at their office] /'"/>
+      <x:expect select="'[Charles and Ray Eames, designers, looking at the chair at their office]'"/>
+    </x:call>
+  </x:scenario>
+  <x:scenario label="Strip leading ';' and '='">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'; Devo unmasked'"/>
+      <x:expect select="'Devo unmasked'"/>
+    </x:call>
+  </x:scenario>
+  <x:scenario label="Strip parentheses">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'(hardback)'"/>
+      <x:param name="pChopParens" select="true()"/>
+    </x:call>
+    <x:expect select="'hardback'"/>
+  </x:scenario>
+  <x:scenario label="Strip lead enclosing punctuation without match">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'(2016 :'"/>
+    </x:call>
+    <x:expect select="'2016'"/>
+  </x:scenario>
+  <x:scenario label="Strip end enclosing punctuation without match">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Washington, D.C.),'"/>
+    </x:call>
+    <x:expect select="'Washington, D.C.'"/>
+  </x:scenario>
+  <x:scenario label="Strip unmatched enclosing punctuation anywhere in string">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'[Printed by Prichard and Hall)]'"/>
+    </x:call>
+    <x:expect select="'[Printed by Prichard and Hall]'"/>
+  </x:scenario>
+  <x:scenario label="Add matching square brackets if needed">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'[New York : HarperCollins'"/>
+    </x:call>
+    <x:expect select="'[New York : HarperCollins]'"/>
+  </x:scenario>
+  <x:scenario label="...even when dealing with abbreviations and terminal punctuation">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'[s.l. :'"/>
+    </x:call>
+    <x:expect select="'[s.l.]'"/>
+  </x:scenario>
+  <x:scenario label="Add brackets if requested">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'s.n.,'"/>
+      <x:param name="pAddBrackets" select="true()"/>
+    </x:call>
+    <x:expect select="'[s.n.]'"/>
+  </x:scenario>
+  <x:scenario label="Set end punctuation to strip">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'s-bl---'"/>
+      <x:param name="pEndPunct" select="'-'"/>
+    </x:call>
+    <x:expect select="'s-bl'"/>
+  </x:scenario>
+  <x:scenario label="Preserve period after initial at end of string">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'Hatry, Harry P.'"/>
+    </x:call>
+    <x:expect select="'Hatry, Harry P.'"/>
+  </x:scenario>
+  <x:scenario label="Chop parentheses but don't strip end punctuation">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'(Lond.)'"/>
+      <x:param name="pEndPunct" select="' '"/>
+      <x:param name="pChopParens" select="true()"/>
+    </x:call>
+    <x:expect select="'Lond.'"/>
+  </x:scenario>
+  <x:scenario label="Preserve end period for configured abbreviations">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'23 cm.'"/>
+    </x:call>
+    <x:expect select="'23 cm.'"/>
+  </x:scenario>
+  <x:scenario label="Preserve end period for configured abbreviation when complete string is the abbrev">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'arr.'"/>
+    </x:call>
+    <x:expect select="'arr.'"/>
+  </x:scenario>
+  <x:scenario label="Preserve end period for initials when complete string is the initial">
+    <x:call template="tChopPunct">
+      <x:param name="pString" select="'W.'"/>
+    </x:call>
+    <x:expect select="'W.'"/>
+  </x:scenario>
+</x:description>

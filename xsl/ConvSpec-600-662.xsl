@@ -26,10 +26,10 @@
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
-    <xsl:variable name="workiri">
+    <xsl:variable name="vHubIri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
@@ -40,7 +40,7 @@
     </xsl:variable>
     <xsl:apply-templates mode="work6XXName" select=".">
       <xsl:with-param name="agentiri" select="$agentiri"/>
-      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pHubIri" select="$vHubIri"/>
       <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -49,7 +49,7 @@
 
   <xsl:template match="marc:datafield" mode="work6XXName">
     <xsl:param name="agentiri"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pTopicUri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -61,7 +61,6 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -95,12 +94,11 @@
       <xsl:apply-templates select="." mode="tTitleLabel"/>
     </xsl:variable>
     <xsl:variable name="vMADSLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
-          <xsl:call-template name="chopPunctuation">
-            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="concat($vNameLabel,' ',$vTitleLabel)"/>
           </xsl:call-template>
           <xsl:text>--</xsl:text>
           <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
@@ -113,16 +111,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
           <xsl:choose>
-            <xsl:when test="$vSourceURI != '' or $vSourceCode != ''">
+            <xsl:when test="$vSourceURI != ''">
               <bf:source>
-                <bf:Source>
-                  <xsl:if test="$vSourceURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="$vSourceCode != ''">
-                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                  </xsl:if>
-                </bf:Source>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
               </bf:source>
             </xsl:when>
             <xsl:when test="@ind2='4' or @ind2='7'">
@@ -156,21 +147,20 @@
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                       </madsrdf:isMemberOfMADSScheme>
                     </xsl:for-each>                  
-                    <xsl:if test="$vSource != ''">
+                    <xsl:if test="$vSource">
                       <xsl:copy-of select="$vSource"/>
                     </xsl:if>
                     <!-- build the ComplexSubject -->
                     <madsrdf:componentList rdf:parseType="Collection">
-                      <xsl:apply-templates select="." mode="work6XXWork">
+                      <xsl:apply-templates select="." mode="work6XXHub">
                         <xsl:with-param name="serialization" select="$serialization"/>
-                        <xsl:with-param name="workiri" select="$workiri"/>
+                        <xsl:with-param name="pHubIri" select="$pHubIri"/>
                         <xsl:with-param name="agentiri" select="$agentiri"/>
                         <xsl:with-param name="recordid" select="$recordid"/>
-                        <xsl:with-param name="pMADSClass" select="NameTitle"/>
+                        <xsl:with-param name="pMADSClass" select="'NameTitle'"/>
                         <xsl:with-param name="pMADSLabel">
-                          <xsl:call-template name="chopPunctuation">
-                            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-                            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
                           </xsl:call-template>
                         </xsl:with-param>
                         <xsl:with-param name="pSource" select="$vSource"/>
@@ -185,9 +175,9 @@
                   </bf:Topic>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:apply-templates select="." mode="work6XXWork">
+                  <xsl:apply-templates select="." mode="work6XXHub">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="workiri" select="$workiri"/>
+                    <xsl:with-param name="pHubIri" select="$pHubIri"/>
                     <xsl:with-param name="agentiri" select="$agentiri"/>
                     <xsl:with-param name="recordid" select="$recordid"/>
                     <xsl:with-param name="pMADSClass" select="$vMADSClass"/>
@@ -219,7 +209,7 @@
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                       </madsrdf:isMemberOfMADSScheme>
                     </xsl:for-each>                  
-                    <xsl:if test="$vSource != ''">
+                    <xsl:if test="$vSource">
                       <xsl:copy-of select="$vSource"/>
                     </xsl:if>
                     <!-- build the ComplexSubject -->
@@ -230,9 +220,8 @@
                         <xsl:with-param name="recordid" select="$recordid"/>
                         <xsl:with-param name="pMADSClass" select="$vMADSNameClass"/>
                         <xsl:with-param name="pMADSLabel">
-                          <xsl:call-template name="chopPunctuation">
-                            <xsl:with-param name="chopString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
-                            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="normalize-space(concat($vNameLabel,' ',$vTitleLabel))"/>
                           </xsl:call-template>
                         </xsl:with-param>
                         <xsl:with-param name="pSource" select="$vSource"/>
@@ -263,9 +252,9 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield" mode="work6XXWork">
+  <xsl:template match="marc:datafield" mode="work6XXHub">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="agentiri"/>
     <xsl:param name="recordid"/>
     <xsl:param name="pMADSClass"/>
@@ -275,9 +264,9 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Work>
-          <xsl:if test="$workiri != ''">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
+        <bf:Hub>
+          <xsl:if test="$pHubIri != ''">
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
           </xsl:if>
           <xsl:if test="$pMADSClass != ''">
             <rdf:type>
@@ -357,7 +346,7 @@
             <xsl:with-param name="agentiri" select="$agentiri"/>
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
-        </bf:Work>
+        </bf:Hub>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -366,10 +355,10 @@
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="workiri">
+    <xsl:variable name="vHubIri">
       <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Work</xsl:with-param>
+        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="vTopicUri">
@@ -379,7 +368,7 @@
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:apply-templates mode="work630" select=".">
-      <xsl:with-param name="workiri" select="$workiri"/>
+      <xsl:with-param name="pHubIri" select="$vHubIri"/>
       <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
       <xsl:with-param name="recordid" select="$recordid"/>
       <xsl:with-param name="serialization" select="$serialization"/>
@@ -388,7 +377,7 @@
 
   <xsl:template match="marc:datafield" mode="work630">
     <xsl:param name="recordid"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pTopicUri"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
@@ -399,7 +388,6 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -410,12 +398,11 @@
       <xsl:apply-templates select="." mode="tTitleLabel"/>
     </xsl:variable>
     <xsl:variable name="vMADSLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
-          <xsl:call-template name="chopPunctuation">
-            <xsl:with-param name="chopString" select="$vTitleLabel"/>
-            <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="$vTitleLabel"/>
           </xsl:call-template>
           <xsl:text>--</xsl:text>
           <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
@@ -428,16 +415,9 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
           <xsl:choose>
-            <xsl:when test="$vSourceURI != '' or $vSourceCode != ''">
+            <xsl:when test="$vSourceURI != ''">
               <bf:source>
-                <bf:Source>
-                  <xsl:if test="$vSourceURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="$vSourceCode != ''">
-                    <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                  </xsl:if>
-                </bf:Source>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
               </bf:source>
             </xsl:when>
             <xsl:when test="@ind2='4' or @ind2='7'">
@@ -469,20 +449,19 @@
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                   </madsrdf:isMemberOfMADSScheme>
                 </xsl:for-each>                  
-                <xsl:if test="$vSource != ''">
+                <xsl:if test="$vSource">
                   <xsl:copy-of select="$vSource"/>
                 </xsl:if>
                 <!-- build the ComplexSubject -->
                 <madsrdf:componentList rdf:parseType="Collection">
-                  <xsl:apply-templates select="." mode="work630Work">
+                  <xsl:apply-templates select="." mode="work630Hub">
                     <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="workiri" select="$workiri"/>
+                    <xsl:with-param name="pHubIri" select="$pHubIri"/>
                     <xsl:with-param name="recordid" select="$recordid"/>
-                    <xsl:with-param name="pMADSClass" select="Title"/>
+                    <xsl:with-param name="pMADSClass" select="'Title'"/>
                     <xsl:with-param name="pMADSLabel">
-                      <xsl:call-template name="chopPunctuation">
-                        <xsl:with-param name="chopString" select="normalize-space($vTitleLabel)"/>
-                        <xsl:with-param name="punctuation"><xsl:text>:,;/ </xsl:text></xsl:with-param>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="normalize-space($vTitleLabel)"/>
                       </xsl:call-template>
                     </xsl:with-param>
                     <xsl:with-param name="pSource" select="$vSource"/>
@@ -496,11 +475,11 @@
               </bf:Topic>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select="." mode="work630Work">
+              <xsl:apply-templates select="." mode="work630Hub">
                 <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="workiri" select="$workiri"/>
+                <xsl:with-param name="pHubIri" select="$pHubIri"/>
                 <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="pMADSClass" select="Title"/>
+                <xsl:with-param name="pMADSClass" select="'Title'"/>
                 <xsl:with-param name="pMADSLabel" select="$vMADSLabel"/>
                 <xsl:with-param name="pSource" select="$vSource"/>
               </xsl:apply-templates>
@@ -511,19 +490,21 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield" mode="work630Work">
+  <xsl:template match="marc:datafield" mode="work630Hub">
     <xsl:param name="recordid"/>
-    <xsl:param name="workiri"/>
+    <xsl:param name="pHubIri"/>
     <xsl:param name="pMADSClass"/>
     <xsl:param name="pMADSLabel"/>
     <xsl:param name="pSource"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Work>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$workiri"/></xsl:attribute>
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
-          </rdf:type>
+        <bf:Hub>
+          <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
+          <xsl:if test="$pMADSClass != ''">
+            <rdf:type>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
+            </rdf:type>
+          </xsl:if>
           <madsrdf:authoritativeLabel><xsl:value-of select="$pMADSLabel"/></madsrdf:authoritativeLabel>
           <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
             <madsrdf:isMemberOfMADSScheme>
@@ -554,11 +535,11 @@
               </bflc:Relationship>
             </bflc:relationship>
           </xsl:for-each>
-          <xsl:apply-templates select="." mode="workUnifTitle">
+          <xsl:apply-templates select="." mode="hubUnifTitle">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pSource" select="$pSource"/>
           </xsl:apply-templates>
-        </bf:Work>
+        </bf:Hub>
       </xsl:when>
     </xsl:choose>
   </xsl:template>    
@@ -630,7 +611,6 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
-    <xsl:variable name="vSourceCode"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/code"/></xsl:variable>
     <xsl:variable name="vMADSClass">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
@@ -651,9 +631,9 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:choose>
             <xsl:when test="$vTag='650'">
               <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']">
@@ -734,22 +714,17 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
                   </rdfs:label>
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
             <xsl:choose>
-              <xsl:when test="$vSourceCode != '' or $vSourceURI != ''">
+              <xsl:when test="$vSourceURI != ''">
                 <bf:source>
-                  <bf:Source>
-                    <xsl:if test="$vSourceURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:if test="$vSourceCode != ''">
-                      <bf:code><xsl:value-of select="$vSourceCode"/></bf:code>
-                    </xsl:if>
-                  </bf:Source>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$vSourceURI"/></xsl:attribute>
                 </bf:source>
               </xsl:when>
               <xsl:when test="@ind2='4' or @ind2='7'">
@@ -769,8 +744,8 @@
               <bf:role>
                 <bf:Role>
                   <rdfs:label>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bf:Role>
@@ -831,7 +806,9 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="."/>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
               </rdfs:label>
             </xsl:element>
           </xsl:element>
@@ -855,9 +832,9 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:for-each select="marc:subfield[@code='a' or @code='z']">
             <xsl:value-of select="concat(.,'--')"/>
           </xsl:for-each>
@@ -927,9 +904,9 @@
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:call-template name="chopPunctuation">
-        <xsl:with-param name="punctuation"><xsl:text>- </xsl:text></xsl:with-param>
-        <xsl:with-param name="chopString">
+      <xsl:call-template name="tChopPunct">
+        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pString">
           <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='f' or @code='g' or @code='h']">
             <xsl:value-of select="concat(.,'--')"/>
           </xsl:for-each>
@@ -975,8 +952,8 @@
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                     </xsl:if>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </xsl:element>
@@ -986,8 +963,8 @@
               <bf:role>
                 <bf:Role>
                   <rdfs:label>
-                    <xsl:call-template name="chopPunctuation">
-                      <xsl:with-param name="chopString" select="."/>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
                 </bf:Role>
@@ -1058,8 +1035,8 @@
             <xsl:if test="$pXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="chopPunctuation">
-              <xsl:with-param name="chopString" select="."/>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </xsl:element>
         </xsl:element>

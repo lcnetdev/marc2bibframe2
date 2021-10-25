@@ -87,4 +87,12 @@
       <subfield code="c">1972, c1969</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">[Philadelphia :</subfield>
+      <subfield code="b">s.n.,</subfield>
+      <subfield code="c">1829]</subfield>
+    </datafield>
+  </record>
 </collection>

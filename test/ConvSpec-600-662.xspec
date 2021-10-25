@@ -19,19 +19,19 @@
     <x:expect label="...Topic also has a Class from MADSRDF" test="//bf:Work[1]/bf:subject[1]/bf:Topic/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#ComplexSubject'"/>
     <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[1]/bf:Topic/madsrdf:authoritativeLabel = 'Nixon, Richard M. (Richard Milhouse), 1913---Psychology.'"/>
     <x:expect label="...and a madsrdf:isMemberOfMADSScheme property" test="//bf:Work[1]/bf:subject[1]/bf:Topic/madsrdf:isMemberOfMADSScheme/@rdf:resource = 'http://id.loc.gov/authorities/subjects'"/>
-    <x:expect label="...ind2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:source/bf:Source/bf:code = 'lcsh'"/>
-    <x:expect label="600,610,611 with $t creates a subject/Work property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Work) = 1"/>
-    <x:expect label="...with contribution from Name portion of field" test="//bf:Work[1]/bf:subject[2]/bf:Work/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Bellamy, Edward, 1850-1898.'"/>
-    <x:expect label="...and title from the Title portion" test="//bf:Work[1]/bf:subject[2]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Looking backward, 2000-1887'"/>
-    <x:expect label="...and a Class from MADSRDF" test="//bf:Work[1]/bf:subject[2]/bf:Work/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#NameTitle'"/>
-    <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[2]/bf:Work/madsrdf:authoritativeLabel = 'Bellamy, Edward, 1850-1898. Looking backward, 2000-1887.'"/>
+    <x:expect label="...ind2 creates a source property of the Topic" test="//bf:Work[1]/bf:subject[1]/bf:Topic/bf:source/@rdf:resource = 'http://id.loc.gov/authorities/subjects'"/>
+    <x:expect label="600,610,611 with $t creates a subject/Hub property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Hub) = 1"/>
+    <x:expect label="...with contribution from Name portion of field" test="//bf:Work[1]/bf:subject[2]/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Bellamy, Edward, 1850-1898'"/>
+    <x:expect label="...and title from the Title portion" test="//bf:Work[1]/bf:subject[2]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Looking backward, 2000-1887'"/>
+    <x:expect label="...and a Class from MADSRDF" test="//bf:Work[1]/bf:subject[2]/bf:Hub/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#NameTitle'"/>
+    <x:expect label="...and a madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[2]/bf:Hub/madsrdf:authoritativeLabel = 'Bellamy, Edward, 1850-1898. Looking backward, 2000-1887.'"/>
   </x:scenario>
 
   <x:scenario label="630 - SUBJECT ADDED ENTRY--UNIFORM TITLE">
     <!-- other tests for uniform title fields in ConvSpec-240andX30-UnifTitle.xspec -->
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
-    <x:expect label="630 becomes a subject of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly'"/>
-    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Work/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted.'"/>
+    <x:expect label="630 becomes a subject of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly depicted'"/>
+    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Hub/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted'"/>
   </x:scenario>    
 
   <x:scenario label="648 - SUBJECT ADDED ENTRY--CHRONOLOGICAL TERM">

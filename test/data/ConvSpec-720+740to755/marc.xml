@@ -5,8 +5,11 @@
       <subfield code="a">Theodore K. Hepburn</subfield>
       <subfield code="e">inventor</subfield>
     </datafield>
-    <datafield tag="740" ind1="0" ind2="2">
-      <subfield code="a">Joint Legislative Committee on Matrimonial and Family Laws, proposed statute.</subfield>
+    <datafield tag="740" ind1="4" ind2="2">
+      <subfield code="a">The Joint Legislative Committee on Matrimonial and Family Laws, proposed statute.</subfield>
+      <subfield code="n">Part 1</subfield>
+      <subfield code="p">Economic aspects, custody, taxes.</subfield>
+      <subfield code="5">MnMHCL</subfield>
     </datafield>
     <datafield tag="740" ind1="0" ind2=" ">
       <subfield code="a">Manual del adivino.</subfield>

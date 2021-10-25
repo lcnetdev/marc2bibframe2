@@ -26,7 +26,7 @@
               <xsl:when test="$pEntity='bf:Agent'">
                 <xsl:value-of select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
               </xsl:when>
-              <xsl:when test="$pEntity='bf:Work'">
+              <xsl:when test="$pEntity='bf:Work' or $pEntity = 'bf:Hub'">
                 <xsl:value-of select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
               </xsl:when>
             </xsl:choose>
@@ -159,10 +159,8 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:call-template name="chopPunctuation">
-                <xsl:with-param name="chopString">
-                  <xsl:value-of select="."/>
-                </xsl:with-param>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="."/>
               </xsl:call-template>
             </rdfs:label>
           </bflc:AppliesTo>

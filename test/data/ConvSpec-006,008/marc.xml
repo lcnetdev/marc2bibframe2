@@ -56,4 +56,9 @@
     <controlfield tag="001">11</controlfield>
     <controlfield tag="008">830317s1977    pl ab  bk b  f    epeng  </controlfield>
   </record>
+  <record>
+    <leader>02579cas a2200577 a 4500</leader>
+    <controlfield tag="001">12</controlfield>
+    <controlfield tag="008">911115d19692013iluwn p o     0   a0eng c</controlfield>
+  </record>
 </collection>

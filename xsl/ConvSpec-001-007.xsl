@@ -1171,11 +1171,11 @@
                 </bf:BaseMaterial>
               </bf:baseMaterial>
             </xsl:if>
-            <xsl:if test="$recordingMedium != ''">
+            <xsl:if test="$recordingMedium != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMedium]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$recordingMediumURI"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$recordingMedium"/></rdfs:label>
                 </bf:RecordingMedium>
@@ -1699,7 +1699,7 @@
                 </bf:Carrier>
               </bf:carrier>
             </xsl:if>
-            <xsl:if test="$vPresentationFormat != ''">
+            <xsl:if test="$vPresentationFormat != '' and count(../marc:datafield[@tag='345']/marc:subfield[. = $vPresentationFormat]) = 0">
               <bf:projectionCharacteristic>
                 <bf:PresentationFormat>
                   <xsl:if test="$vPresentationFormatURI != ''">
@@ -1709,7 +1709,7 @@
                 </bf:PresentationFormat>
               </bf:projectionCharacteristic>
             </xsl:if>
-            <xsl:if test="$recordingMedium != ''">
+            <xsl:if test="$recordingMedium != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMedium]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
@@ -1722,7 +1722,7 @@
             <xsl:if test="count(../marc:datafield[@tag='300']/marc:subfield[@code='c']) = 0 and $dimensions != ''">
               <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
             </xsl:if>
-            <xsl:if test="$playbackChannels != ''">
+            <xsl:if test="$playbackChannels != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $playbackChannels]) = 0">
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">
@@ -2026,7 +2026,7 @@
                 </bf:PlayingSpeed>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$playbackChannels != ''">
+            <xsl:if test="$playbackChannels != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $playbackChannels]) = 0">  
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">
@@ -2036,7 +2036,7 @@
                 </bf:PlaybackChannels>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$grooveCharacteristic != ''">
+            <xsl:if test="$grooveCharacteristic != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $grooveCharacteristic]) =0">
               <bf:soundCharacteristic>
                 <bf:GrooveCharacteristic>
                   <xsl:if test="$grooveCharacteristicURI != ''">
@@ -2104,7 +2104,7 @@
                 </bf:GrooveCharacteristic>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$playbackCharacteristic != ''">
+            <xsl:if test="$playbackCharacteristic != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $playbackCharacteristic]) = 0">
               <bf:soundCharacteristic>
                 <bf:PlaybackCharacteristic>
                   <xsl:if test="$playbackCharacteristicURI != ''">
@@ -2114,7 +2114,7 @@
                 </bf:PlaybackCharacteristic>
               </bf:soundCharacteristic>
             </xsl:if>
-            <xsl:if test="$recordingMethod != ''">
+            <xsl:if test="$recordingMethod != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMethod]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMethod>
                   <xsl:if test="$recordingMethodURI != ''">
@@ -2271,7 +2271,7 @@
                 </bf:carrier>
               </xsl:if>
             </xsl:if>
-            <xsl:if test="$videoFormat != ''">
+            <xsl:if test="$videoFormat != '' and count(../marc:datafield[@tag='346']/marc:subfield[. = $videoFormat]) = 0">
               <bf:videoCharacteristic>
                 <bf:VideoFormat>
                   <xsl:if test="$videoFormatURI != ''">
@@ -2281,7 +2281,7 @@
                 </bf:VideoFormat>
               </bf:videoCharacteristic>
             </xsl:if>
-            <xsl:if test="$vEncodingFormat != ''">
+            <xsl:if test="$vEncodingFormat != '' and count(../marc:datafield[@tag='347']/marc:subfield[. = $vEncodingFormat]) = 0">
               <bf:digitalCharacteristic>
                 <bf:EncodingFormat>
                   <xsl:if test="$vEncodingFormatUri != ''">
@@ -2291,7 +2291,7 @@
                 </bf:EncodingFormat>
               </bf:digitalCharacteristic>
             </xsl:if>
-            <xsl:if test="$recordingMedium != ''">
+            <xsl:if test="$recordingMedium != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $recordingMedium]) = 0">
               <bf:soundCharacteristic>
                 <bf:RecordingMedium>
                   <xsl:if test="$recordingMediumURI != ''">
@@ -2306,7 +2306,7 @@
                     <bf:dimensions><xsl:value-of select="$dimensions"/></bf:dimensions>
                 </xsl:if>
             </xsl:if>
-            <xsl:if test="$playbackChannels != ''">
+            <xsl:if test="$playbackChannels != '' and count(../marc:datafield[@tag='344']/marc:subfield[. = $playbackChannels]) = 0">
               <bf:soundCharacteristic>
                 <bf:PlaybackChannels>
                   <xsl:if test="$playbackUri != ''">

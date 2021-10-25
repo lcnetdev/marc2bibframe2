@@ -75,7 +75,9 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <bf:noteType>metadata entry convention</bf:noteType>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/metaentry</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="$convention"/></rdfs:label>
             </bf:Note>
           </bf:note>
@@ -437,8 +439,10 @@
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
         <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
-          <xsl:call-template name="chopLeadingPadding">
-            <xsl:with-param name="chopString" select="substring($dataElements,1,3)"/>
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="substring($dataElements,1,3)"/>
+            <xsl:with-param name="pEndPunct" select="' '"/>
+            <xsl:with-param name="pLeadPunct" select="'0'"/>
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>
@@ -1162,19 +1166,6 @@
   <xsl:template name="instance008maps">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="substring($dataElements,8,1) = 'b' and
-                  (not(../marc:leader) or not(contains('bs',substring(../marc:leader,8,1))))">
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <bf:issuance>
-            <bf:Issuance>
-              <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/issuance/serl</xsl:attribute>
-              <rdfs:label>serial</rdfs:label>
-            </bf:Issuance>
-          </bf:issuance>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
     <xsl:if test="not(../marc:datafield[@tag='338'])">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
@@ -1242,19 +1233,18 @@
     </xsl:if>
     <xsl:variable name="vPos22Code">
       <xsl:choose>
-        <xsl:when test="substring($dataElements,5,1) = ' '">r</xsl:when>
+        <xsl:when test="substring($dataElements,5,1) = ' '">skip</xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,5,1)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $vPos22Code]">
+    <xsl:for-each select="$codeMaps/maps/crorigform/*[name() = $vPos22Code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <xsl:if test="@href">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              </xsl:if>
-              <bf:noteType>form of original item</bf:noteType>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/orig</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Note>
           </bf:note>

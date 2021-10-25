@@ -19,6 +19,9 @@
   <record>
     <controlfield tag="001">4</controlfield>
     <controlfield tag="007">gs cjbdjd</controlfield>
+    <datafield tag="344">
+      <subfield code="b">magneto-optical</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">5</controlfield>
@@ -89,5 +92,60 @@
   <record>
     <controlfield tag="001">17</controlfield>
     <controlfield tag="007">vd cvaizu</controlfield>
+  </record>
+  <record>
+    <controlfield tag="001">18</controlfield>
+    <controlfield tag="007">vf bbahom</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">analog</subfield>
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">mono</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="346" ind1=" " ind2=" ">
+      <subfield code="a">VHS</subfield>
+      <subfield code="b">NTSC</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">19</controlfield>
+    <controlfield tag="007">vd cvaizs</controlfield>
+    <datafield tag="347" ind1=" " ind2=" ">
+      <subfield code="a">video file</subfield>
+      <subfield code="b">DVD video</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">20</controlfield>"
+    <controlfield tag="007">sd bsmennmplfe</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">analog</subfield>
+      <subfield code="d">microgroove</subfield>
+      <subfield code="g">stereo</subfield>
+      <subfield code="h">Dolby-A encoded</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">21</controlfield>
+    <controlfield tag="007">sd fsngnnmmned</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">digital</subfield>
+      <subfield code="b">optical</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    </record>
+  <record>
+    <controlfield tag="001">22</controlfield>"
+    <controlfield tag="007">mr ccaedsnnepnn</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">stereo</subfield>
+    </datafield>
+    <datafield tag="345" ind1=" " ind2=" ">
+      <subfield code="a">3D</subfield>
+    </datafield>
   </record>
 </collection>

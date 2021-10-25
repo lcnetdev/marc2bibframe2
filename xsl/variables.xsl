@@ -7,7 +7,7 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.7.0-SNAPSHOT</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v1.7.0</xsl:variable>
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
@@ -62,6 +62,9 @@
   <xsl:variable name="mencformat">http://id.loc.gov/vocabulary/mencformat/</xsl:variable>
   <xsl:variable name="nametitleschemes">http://id.loc.gov/vocabulary/nameTitleSchemes/</xsl:variable>
   <xsl:variable name="musiccodeschemes">http://id.loc.gov/vocabulary/musiccodeschemes/</xsl:variable>
+  <xsl:variable name="classG">http://id.loc.gov/authorities/classification/G</xsl:variable>
+  <xsl:variable name="msupplcont">http://id.loc.gov/vocabulary/msupplcont/</xsl:variable>
+  <xsl:variable name="mstatus">http://id.loc.gov/vocabulary/mstatus/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
@@ -82,5 +85,8 @@
 
   <!-- 880 processing -->
   <xsl:variable name="map880" select="document('conf/map880.xml')"/>
+
+  <!-- abbreviations for punctuation processing -->
+  <xsl:variable name="abbreviations" select="document('conf/abbreviations.xml')"/>
   
 </xsl:stylesheet>
