@@ -97,6 +97,7 @@
       <x:expect label="...and an rdfs:label" test="//bf:Work[4]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/@rdf:about = 'http://id.loc.gov/vocabulary/mrecmedium/magopt'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label = 'magneto-optical'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[4]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magneto-optical']) = 1"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 007" test="//bf:Instance[4]/bf:dimensions = '2x2 in. or 5x5 cm.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[14]/bf:dimensions = '1 2/5 in.'"/>
       <x:expect label="pos 8 creates a mount property of the Instance" test="//bf:Instance[4]/bf:mount/bf:Mount/rdfs:label = 'glass'"/>
@@ -145,6 +146,7 @@
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[7]/bf:colorContent/bf:ColorContent/rdfs:label = 'color'"/>
       <x:expect label="pos 4 may create a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/@rdf:about='http://id.loc.gov/vocabulary/mpresformat/sound'"/>
       <x:expect label="...with an rdfs:label " test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label = 'standard sound aperture'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 345" test="count(//bf:Instance[22]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label[. = '3D']) = 1"/>
       <x:expect label="...or an aspectRatio/AspectRatio property of the Work" test="//bf:Work[8]/bf:aspectRatio/bf:AspectRatio[1]/@rdf:about = 'http://id.loc.gov/vocabulary/maspect/nonana'"/>
       <x:expect label="...and a second" test="//bf:Work[8]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide-screen'"/>
       <x:expect label="...and a third with a note" test="//bf:Work[8]/bf:aspectRatio[3]/bf:AspectRatio/bf:note/bf:Note/rdfs:label = 'non-anamorphic (wide-screen)'"/>
@@ -152,10 +154,12 @@
       <x:expect label="...and an rdfs:label" test="//bf:Work[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/@rdf:about = 'http://id.loc.gov/vocabulary/mrecmedium/opt'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/rdfs:label = 'optical'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[22]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magnetic']) = 1"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 007" test="//bf:Instance[7]/bf:dimensions = '16 mm.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[8]/bf:dimensions = '1 2/5 in.'"/>
       <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/mon'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'mono'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[22]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'stereo']) = 1"/>
       <x:expect label="pos 9 creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm/bf:GenreForm/rdfs:label = 'outtakes'"/>
       <x:expect label="pos 10 creates a polarity property of the Instance" test="//bf:Instance[7]/bf:polarity/bf:Polarity/rdfs:label = 'positive'"/>
       <x:expect label="pos 11 creates a generation/Generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/viewcopy'"/>
@@ -173,8 +177,10 @@
       <x:expect label="pos 3 creates a soundCharacteristic/PlayingSpeed property of the Instance - uri check" test="//bf:Instance[9]/bf:soundCharacteristic[1]/bf:PlayingSpeed/@rdf:about = 'http://id.loc.gov/vocabulary/mplayspeed/o'"/>
       <x:expect label="pos 4 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/ste'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'stereo'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 344" test="count(//bf:Instance[20]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'stereo']) = 1"/>
       <x:expect label="pos 5 creates a soundCharacteristic/GrooveCharacteristic property of the Instance" test="//bf:Instance[10]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mgroove/finepitch'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[3]/bf:GrooveCharacteristic/rdfs:label = 'coarse groove'"/>
+      <x:expect label="...but only 1 present when a duplicate value found in 344" test="count(//bf:Instance[20]/bf:soundCharacteristic/bf:GrooveCharacteristic/rdfs:label[. = 'microgroove']) = 1"/>
       <x:expect label="pos 6 creates a dimensions property of the Instance" test="//bf:Instance[9]/bf:dimensions[1] = '7 in.'"/>
       <x:expect label="pos 7 creates a dimensions property of the Instance (tape width)" test="//bf:Instance[9]/bf:dimensions[2] = '1/4 in. tape width'"/>
       <x:expect label="pos 6, 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[10]/bf:dimensions[1] = '2 in.'"/>
@@ -188,7 +194,10 @@
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[5]/bf:GrooveCharacteristic/rdfs:label = 'lateral or combined cutting'"/>
       <x:expect label="pos 12 creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mspecplayback/dolbyb'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
-      <x:expect label="...or it may create a soundCharacteristic/RecordingMethod property" test="//bf:Instance[11]/bf:soundCharacteristic[6]/bf:RecordingMethod/rdfs:label = 'digital'"/>
+      <x:expect label="...but only 1 present when a duplicate value found in 344" test="count(//bf:Instance[20]/bf:soundCharacteristic/bf:PlaybackCharacteristic/rdfs:label[. = 'Dolby-A encoded']) = 1"/>
+      <x:expect label="...or it may create a soundCharacteristic/RecordingMethod property" test="//bf:Instance[11]/bf:soundCharacteristic/bf:RecordingMethod/@rdf:about = 'http://id.loc.gov/vocabulary/mrectype/digital'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[11]/bf:soundCharacteristic/bf:RecordingMethod/rdfs:label = 'digital'"/>
+      <x:expect label="...but only 1 present when a duplicate value found in 344" test="count(//bf:Instance[21]/bf:soundCharacteristic/bf:RecordingMethod/rdfs:label[. = 'digital']) = 1"/>
       <x:expect label="pos 13 creates a soundCharacteristic/bflc:CaptureStorage property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/@rdf:about = 'http://id.loc.gov/vocabulary/mcapturestorage/aes'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/rdfs:label = 'Electrical capture, Analog electrical storage'"/>
     </x:scenario>
@@ -201,8 +210,8 @@
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[12]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/v'"/>
       <x:expect label="pos 1 creates a carrier property of the Instance if no 338" test="//bf:Instance[12]/bf:carrier/bf:Carrier/rdfs:label = 'videocassette'"/>
       <x:expect label="pos 3 creates a colorContent property of the Work" test="//bf:Work[12]/bf:colorContent/bf:ColorContent/rdfs:label = 'color'"/>
-      <x:expect label="pos 4 creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[12]/bf:videoCharacteristic/bf:VideoFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mvidformat/betamax'"/>
-      <x:expect label="...and an rdfs:label" test="//bf:Instance[12]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label = 'Betamax'"/>
+      <x:expect label="pos 4 creates a videoCharacteristic/VideoFormat property of the Instance" test="//bf:Instance[18]/bf:videoCharacteristic/bf:VideoFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mvidformat/vhs'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[18]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label = 'VHS'"/>
       <x:expect label="...but only 1 present when duplicate value found in 346" test="count(//bf:Instance[18]/bf:videoCharacteristic/bf:VideoFormat/rdfs:label[. = 'VHS']) = 1"/>
       <x:expect label="...or a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[17]/bf:digitalCharacteristic/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mencformat/dvdv'"/>
       <x:expect label="...but only 1 present when duplicate value found in 347" test="count(//bf:Instance[19]/bf:digitalCharacteristic/bf:EncodingFormat/rdfs:label[. = 'DVD video']) = 1"/>

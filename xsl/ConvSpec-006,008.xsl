@@ -75,7 +75,9 @@
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/metaentry"/>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/metaentry</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="$convention"/></rdfs:label>
             </bf:Note>
           </bf:note>
@@ -437,8 +439,10 @@
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
         <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
-          <xsl:call-template name="chopLeadingPadding">
-            <xsl:with-param name="chopString" select="substring($dataElements,1,3)"/>
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="substring($dataElements,1,3)"/>
+            <xsl:with-param name="pEndPunct" select="' '"/>
+            <xsl:with-param name="pLeadPunct" select="'0'"/>
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise><xsl:value-of select="substring($dataElements,1,3)"/></xsl:otherwise>
@@ -1233,15 +1237,14 @@
         <xsl:otherwise><xsl:value-of select="substring($dataElements,5,1)"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $vPos22Code]">
+    <xsl:for-each select="$codeMaps/maps/crorigform/*[name() = $vPos22Code]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:note>
             <bf:Note>
-              <xsl:if test="@href">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              </xsl:if>
-              <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/orig" />
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/orig</xsl:attribute>
+              </rdf:type>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
             </bf:Note>
           </bf:note>

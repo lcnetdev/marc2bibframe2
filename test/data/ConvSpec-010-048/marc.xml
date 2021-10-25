@@ -50,6 +50,7 @@
       <subfield code="y">0046-2254</subfield>
       <subfield code="z">0361-7106</subfield>
       <subfield code="2">DEU-6</subfield>
+      <subfield code="0">(uri)http://issn.org/resource/ISSN/1234-1231#ISSN</subfield>
     </datafield>
     <datafield tag="024" ind1="0" ind2=" ">
       <subfield code="a">NLC018413261</subfield>
@@ -143,6 +144,7 @@
     <datafield tag="035" ind1=" " ind2=" ">
       <subfield code="a">(OCoLC)814782</subfield>
       <subfield code="z">(OCoLC)7374506</subfield>
+      <subfield code="z">(RS-BeBCD)12345</subfield>
     </datafield>
     <datafield tag="036" ind1=" " ind2=" ">
       <subfield code="a">CNRS 84115</subfield>
@@ -212,6 +214,10 @@
       <subfield code="a">d7n6</subfield>
       <subfield code="b">c0221</subfield>
       <subfield code="b">d0960</subfield>
+    </datafield>
+    <datafield tag="046" ind1=" " ind2=" ">
+      <subfield code="k">19981022</subfield>
+      <subfield code="l">19991231235959.0</subfield>
     </datafield>
     <datafield tag="047" ind1=" " ind2=" ">
       <subfield code="a">or</subfield>

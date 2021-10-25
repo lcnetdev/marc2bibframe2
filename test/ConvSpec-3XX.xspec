@@ -14,9 +14,11 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="300 creates an extent property of the Instance" test="count(//bf:Instance[1]/bf:extent) = 2"/>
     <x:expect label="$a, $f, $g create the rdfs:label property of the Extent" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/rdfs:label = '1 box 2 x 4 x 3 1/2 ft.'"/>
-    <x:expect label="$b creates a 'Physical details' note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'ill.'"/>
+    <x:expect label="$b creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'ill.'"/>
+    <x:expect label="...with rdf:type mnotetype/physical" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/physical'"/>
     <x:expect label="$c creates a dimensions property of the Instance" test="//bf:Instance[1]/bf:dimensions[1] = '21 cm.'"/>
-    <x:expect label="$e creates an 'Accompanying material' note property of the Instance"  test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = '1 answer book'"/>
+    <x:expect label="$e creates a note property of the Instance"  test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = '1 answer book'"/>
+    <x:expect label="...with rdf:type mnotetype/accmat" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/accmat'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Extent and the Notes" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'records'"/>
   </x:scenario>
 
@@ -82,12 +84,13 @@
     <x:expect label="$e creates a mount property of the Instance" test="//bf:Instance[1]/bf:mount[1]/bf:Mount/rdfs:label = 'none'"/>
     <x:expect label="$f creates a reductionRatio property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:label = '48x'"/>
     <x:expect label="$g creates a colorContent property of the Work" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/rdfs:label = 'color'"/>
-    <x:expect label="$i creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Ibord Model 74 tape reader.'"/>
+    <x:expect label="$i creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Ibord Model 74 tape reader'"/>
     <x:expect label="$j creates a generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'original'"/>
     <x:expect label="$k creates a layout property of the Instance" test="//bf:Instance[1]/bf:layout[1]/bf:Layout/rdfs:label = 'double-sided'"/>
     <x:expect label="$m creates a bookFormat property of the Instance" test="//bf:Instance[1]/bf:bookFormat[1]/bf:BookFormat/rdfs:label = 'folio'"/>
     <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
     <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
+    <x:expect label="$p creates an illustrativeContent property of the Work" test="//bf:Work[1]/bf:illustrativeContent/bf:Illustration/rdfs:label = 'illustrations'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/bf:identifiedBy/bf:Identifier/rdf:value = '123456'"/>
     <x:expect label="...or sets the URI of the generated object" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/@rdf:about = 'http://rdaregistry.info/termList/fontSize/1001'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/bf:code = 'rda'"/>
@@ -120,6 +123,8 @@
     <x:expect label="...with an rdf:about attribute if 'mono', 'quadraphonic', 'stereo', or 'surround'" test="//bf:Instance[1]/bf:soundCharacteristic[3]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/mul'"/>
     <x:expect label="$h creates a soundCharacteristic/PlaybackCharacteristic property of the Instance" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby'"/>
     <x:expect label="...with an rdf:about attribute if recognized value (see specs for details)" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/@rdf:about = 'http://id.loc.gov/vocabulary/mspecplayback/dolby'"/>
+    <x:expect label="$i creates a soundContent/SoundContent property of the Work" test="//bf:Work[1]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
+    <x:expect label="...with an rdf:about attribute if 'silent' or 'sound'" test="//bf:Work[1]/bf:soundContent/bf:SoundContent/@rdf:about = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:soundCharacteristic[4]/bf:PlaybackCharacteristic/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mspecplayback/dolby'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/bf:source/bf:Source/bf:code = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:soundCharacteristic[1]/bf:RecordingMethod/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'audio disc'"/>
@@ -133,6 +138,8 @@
     <x:expect label="$a creates a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/rdfs:label = 'Cinerama'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mpresformat/ciner'"/>
     <x:expect label="$b creates a projectionCharacteristic/ProjectionSpeed property of the Instance" test="//bf:Instance[1]/bf:projectionCharacteristic[2]/bf:ProjectionSpeed/rdfs:label = '24 fps'"/>
+    <x:expect label="$c creates an aspectRatio/AspectRatio/rdf:value property of the Instance" test="//bf:Instance[1]/bf:aspectRatio[1]/bf:AspectRatio/rdf:value = '16:9'"/>
+    <x:expect label="$d creates an aspectRatio/AspectRatio/rdfs:label property of the Instance" test="//bf:Instance[1]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide screen'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://id.loc.gov/vocabulary/mpresformat/ciner'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bf:source/bf:Source/bf:code = 'rda'"/>
     <x:expect label="$3 creates a bflc:appliesTo property on generated Resources" test="//bf:Instance[1]/bf:projectionCharacteristic[1]/bf:PresentationFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'filmstrip'"/>
@@ -153,7 +160,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a digitalCharacteristic/FileType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/rdfs:label = 'image file'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/@rdf:about = 'http://id.loc.gov/vocabulary/mfiletype/image'"/>
-    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-ray'"/>
+    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-Ray video'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mencformat/bluray'"/>
     <x:expect label="$c creates a digitalCharacteristic/FileSize property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[3]/bf:FileSize/rdfs:label = '182 KB'"/>
     <x:expect label="$d creates a digitalCharacteristic/Resolution property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[4]/bf:Resolution/rdfs:label = '3.1 megapixels'"/>
@@ -170,6 +177,7 @@
     <x:expect label="348 creates a musicFormat/MusicFormat property of the Instance" test="count(//bf:Instance[1]/bf:musicFormat) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/rdfs:label = 'vocal score'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mmusicformat/vocalscore'"/>
+    <x:expect label="$b creates a notation/Notation property of the Work" test="//bf:Work[1]/bf:notation/bf:Notation/rdfs:label = 'staff notation'"/>
     <x:expect label="$0 creates an identifiedBy property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:identifiedBy/bf:Identifier/rdf:value = '12345'"/>
     <x:expect label="$2 creates a source property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:source/bf:Source/bf:code = 'foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'enclosed score'"/>
@@ -196,19 +204,29 @@
     <x:expect label="$c creates a digitalCharacteristic/ObjectCount property of the CartographicObjectType" test="//bf:Instance[1]/bf:digitalCharacteristic[9]/bf:CartographicObjectType/bf:count = '13671'"/>
     <x:expect label="$q creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[8]/bf:EncodingFormat/rdfs:label = 'ARC/INFO export'"/>
   </x:scenario>
+
+  <x:scenario label="353 - SUPPLEMENTARY CONTENT CHARACTERISTICS">
+    <x:context href="data/ConvSpec-3XX/marc.xml"/>
+    <x:expect label="353 creates a supplementaryContent/SupplementaryContent property of the Work" test="count(//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent) = 1"/>
+    <x:expect label="$a creates rdfs:label of SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/rdfs:label = 'biography of creator'"/>
+    <x:expect label="$b generates URI for SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/@rdf:about = 'http://id.loc.gov/vocabulary/msupplcont/creatorbio'"/>
+    <x:expect label="$0 creates an identifiedBy property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/bio'"/>
+    <x:expect label="$2 creates a source property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:source/bf:Source/bf:code='msupplcont'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Bio supplement'"/>
+  </x:scenario>
   
   <x:scenario label="362 - DATES OF PUBLICATION AND/OR SEQUENTIAL DESIGNATION">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="ind1=0 creates a firstIssue/lastIssue property of the Instance" test="//bf:Instance[1]/bf:firstIssue = 'Vol. 1, no. 1 (Apr. 1983)' and //bf:Instance[1]/bf:lastIssue = 'v. 1, no. 3 (June 1983)'"/>
-    <x:expect label="ind1=1 creates a note property of the Instance with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/number'" test="//bf:Instance[1]/bf:note/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = '3 issues in vol. 1, ceased with 3 (1983)'"/>
+    <x:expect label="ind1=1 creates a note property of the Instance with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/number'" test="//bf:Instance[1]/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = '3 issues in vol. 1, ceased with 3 (1983)'"/>
   </x:scenario>
 
   <x:scenario label="362 - edge cases">
     <x:context href="data/ConvSpec-3XX/marc362-edge.xml"/>
-    <x:expect label="Unformatted dates create a note property" test="//bf:Instance[1]/bf:note[1]/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = 'Began in 1989'"/>
-    <x:expect label="Pre-AACR2 formatting creates a note" test="//bf:Instance[1]/bf:note[2]/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = 'no. 1-3; 1975-1977.'"/>
+    <x:expect label="Unformatted dates create a note property" test="//bf:Instance[1]/bf:note[1]/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = 'Began in 1989'"/>
+    <x:expect label="Pre-AACR2 formatting creates a note" test="//bf:Instance[1]/bf:note[2]/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = 'no. 1-3; 1975-1977.'"/>
     <x:expect label="Parallel statements create multiple firstIssue/lastIssue elements" test="//bf:Instance[1]/bf:firstIssue[1] = 'Vol. 62 (May 1959)' and //bf:Instance[1]/bf:firstIssue[2] = 'No. 768'"/>
-    <x:expect label="Some dates can't be reliably split, so they create a note" test="//bf:Instance[1]/bf:note[3]/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = '[Dai 1-gō] (Shōwa 41-nen 12-gatsu [Dec. 1966])'"/>
+    <x:expect label="Some dates can't be reliably split, so they create a note" test="//bf:Instance[1]/bf:note[3]/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/number']/rdfs:label = '[Dai 1-gō] (Shōwa 41-nen 12-gatsu [Dec. 1966])'"/>
     <x:expect label="But we should be able to parse if there is a ')-' in the string" test="//bf:Instance[1]/bf:firstIssue[3] = 'Vol. 1 (1865-1866)'"/>
     <x:expect label="Trailing hyphen creates only firstIssue property" test="//bf:Instance[2]/bf:firstIssue = 'No. 1' and count(//bf:Instance[2]/bf:lastIssue) = 0"/>
     <x:expect label="Leading hyphen creates only lastIssue property" test="//bf:Instance[3]/bf:lastIssue = '6th (Sept. 28, 1972).' and count(//bf:Instance[3]/bf:firstIssue) = 0"/>
@@ -241,19 +259,9 @@
   
   <x:scenario label="382 - MEDIUM OF PERFORMANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a musicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']) = 1"/>
-    <x:expect label="$n creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']/parent::*/bf:count = '2'"/>
-    <x:expect label="$e creates a count property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='orchestra']/parent::*/bf:count = '1'"/>
-    <x:expect label="$v immediately following $a/$b/$d/$p creates a note property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='piano']/parent::*/bf:note/bf:Note/rdfs:label = 'played on altered piano'"/>
-    <x:expect label="$b creates a musicMedium property of the Work with 'soloist' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='flute soloist']) = 1"/>
-    <x:expect label="$d creates a musicMedium/MusicMedium property of the Work with 'doubling' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='doubling synthesizer']) = 1"/>
-    <x:expect label="$p creates a musicMedium/MusicMedium property of the Work with 'alternate' constant" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium/rdfs:label[text()='alternate baritone horn']) = 1"/>
-    <x:expect label="$r creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[8]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers alongside ensembles: 1'"/>
-    <x:expect label="$s creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[4]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total performers: 2'"/>
-    <x:expect label="$t creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[9]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'Total ensembles: 1'"/>
-    <x:expect label="$v after $r/$s/$t creates a musicMedium/MusicMedium property of the Work with a note property" test="//bf:Work[1]/bf:musicMedium[5]/bf:MusicMedium/bf:note/bf:Note/rdfs:label = 'piano is prominent, but not all other instruments are not identified'"/>
-    <x:expect label="$2 creates a source property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/bf:code = 'lcmpt'"/>
-    <x:expect label="...with URI from musiccodeschemes" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/musiccodeschemes/lcmpt'"/>
+    <x:expect label="382 creates a musicMedium/MusicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium) = 1"/>
+    <x:expect label="If ind1=1, generate status property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/partial'"/>
+    <x:expect label="Generate bflc:readMarc382 property of the MusicMedium from all subfields" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bflc:readMarc382 = '$3Nach Bach$apiano$n1$vplayed on altered piano$pbaritone horn$n2$dsynthesizer$n1$s2$vpiano is prominent, but not all other instruments are not identified$2lcmpt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
   </x:scenario>
 

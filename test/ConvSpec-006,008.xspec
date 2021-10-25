@@ -94,11 +94,12 @@
       <x:expect label="...with a URI" test="//bf:Instance[7]/bf:frequency[2]/bf:Frequency/@rdf:about = 'http://id.loc.gov/vocabulary/frequencies/irr'"/>
       <x:expect label="pos 21 creates a bflc:serialPubType property of the Work" test="//bf:Work[7]/bflc:serialPubType[1]/bflc:SerialPubType/@rdf:about = 'http://id.loc.gov/vocabulary/mserialpubtype/periodical'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[7]/bflc:serialPubType[1]/bflc:SerialPubType/rdfs:label = 'periodical'"/>
-      <x:expect label="pos 22 creates a note property of the Instance" test="//bf:Instance[7]/bf:note[1]/bf:Note/rdfs:label = 'other computer carrier'"/>
+      <x:expect label="pos 22 creates a note/Note property of the Instance with rdf:type mnotetype" test="//bf:Instance[7]/bf:note[1]/bf:Note/rdf:type/@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/orig'"/>
+      <x:expect label="pos 22 with appropriate note text" test="//bf:Instance[7]/bf:note[1]/bf:Note/rdfs:label = 'Electronic'"/>
       <x:expect label="pos 22 does not create a note property of the Instance when pos 22=blank space" test="count(//bf:Instance[12]/bf:note[1]/bf:Note/rdfs:label) = 0"/>
       <x:expect label="pos 33 creates a notation property of the Work" test="//bf:Work[7]/bf:notation/bf:Script/rdfs:label = 'Basic roman'"/>
       <x:expect label="...with a URI" test="//bf:Work[7]/bf:notation/bf:Script/@rdf:about = 'http://id.loc.gov/vocabulary/mscript/a'"/>
-      <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note[rdf:type/@rdfs:resource = 'http://id.loc.gov/vocabulary/mnotetype/metaentry']/rdfs:label = '0 - successive'"/>
+      <x:expect label="pos 34 creates a note property of the AdminMetadata" test="//bf:Work[7]/bf:adminMetadata/bf:AdminMetadata/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/metaentry']/rdfs:label = '0 - successive'"/>
     </x:scenario>
 
     <x:scenario label="VISUAL MATERIALS">

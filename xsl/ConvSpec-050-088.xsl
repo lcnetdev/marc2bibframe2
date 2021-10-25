@@ -18,11 +18,6 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <xsl:variable name="vValidLCC">
-            <xsl:call-template name="validateLCC">
-              <xsl:with-param name="pCall" select="text()"/>
-            </xsl:call-template>
-          </xsl:variable>
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vCurrentNodeUri">
             <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
@@ -36,105 +31,105 @@
               </xsl:if>
             </xsl:for-each>
           </xsl:variable>
-          <xsl:if test="$vValidLCC='true'">
-            <bf:classification>
-              <bf:ClassificationLcc>
-                <xsl:if test="$vCurrentNodeUri != ''">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
-                </xsl:if>
-                <xsl:if test="../@ind2 = '0'">
-                  <bf:assigner>
-                    <bf:Agent>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                    </bf:Agent>
-                  </bf:assigner>
-                </xsl:if>
-                <bf:classificationPortion>
-                  <xsl:value-of select="."/>
-                </bf:classificationPortion>
-                <xsl:if test="position() = 1">
-                  <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
-                    <bf:itemPortion>
-                      <xsl:value-of select="."/>
-                    </bf:itemPortion>
-                  </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                  <xsl:if test="position() != 1">
-                    <xsl:apply-templates select="." mode="subfield0orw">
-                      <xsl:with-param name="serialization" select="$serialization"/>
-                    </xsl:apply-templates>
-                  </xsl:if>
+          <bf:classification>
+            <bf:ClassificationLcc>
+              <xsl:if test="$vCurrentNodeUri != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+              </xsl:if>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:if>
+              <bf:classificationPortion>
+                <xsl:value-of select="."/>
+              </bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                  <bf:itemPortion>
+                    <xsl:value-of select="."/>
+                  </bf:itemPortion>
                 </xsl:for-each>
-                <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:ClassificationLcc>
-            </bf:classification>
-          </xsl:if>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="marc:datafield[@tag='052' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='052')]" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vLabel1">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='b']" mode="concat-nodes-space"/>
-    </xsl:variable>
-    <xsl:variable name="vLabel2">
-      <xsl:if test="marc:subfield[@code='d']">
-        <xsl:apply-templates select="marc:subfield[@code='a' or @code='d']" mode="concat-nodes-space"/>
-      </xsl:if>
-    </xsl:variable>
-    <xsl:variable name="vNodeUri">
-      <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
-        <xsl:choose>
-          <xsl:when test="starts-with(.,'(uri)')">
-            <xsl:value-of select="substring-after(.,'(uri)')"/>
-          </xsl:when>
-          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-    </xsl:variable>
-    <xsl:if test="($vLabel1 != '') or ($vLabel2 != '') or ($vNodeUri != '')">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:geographicCoverage>
-            <bf:GeographicCoverage>
-              <xsl:if test="$vNodeUri != ''">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$vNodeUri"/></xsl:attribute>
               </xsl:if>
-              <xsl:if test="@ind1 = ' '">
-                <bf:source>
-                  <bf:Source>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/classification/G</xsl:attribute>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
-              <xsl:if test="$vLabel1 != ''">
-                <rdfs:label><xsl:value-of select="normalize-space($vLabel1)"/></rdfs:label>
-              </xsl:if>
-              <xsl:if test="$vLabel2 != ''">
-                <rdfs:label><xsl:value-of select="normalize-space($vLabel2)"/></rdfs:label>
-              </xsl:if>
-              <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
+              <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
                 </xsl:if>
               </xsl:for-each>
-              <xsl:for-each select="marc:subfield[@code='0' and not(contains(text(),'://'))]">
-                <xsl:apply-templates select="." mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </xsl:for-each>
-            </bf:GeographicCoverage>
-          </bf:geographicCoverage>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
+              <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:ClassificationLcc>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield[(@tag='052' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='052')) and @ind1=' ']" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="marc:subfield[@code='b']">
+        <xsl:for-each select="marc:subfield[@code='b']">
+          <xsl:variable name="vUri">
+            <xsl:value-of select="concat($classG,../marc:subfield[@code='a'],'.',.)"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:geographicCoverage>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vUri"/></xsl:attribute>
+              </bf:geographicCoverage>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:geographicCoverage>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($classG,.)"/></xsl:attribute>
+              </bf:geographicCoverage>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield" mode="work052">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='d']">
+          <bf:place>
+            <bf:Place>
+              <rdfs:label>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:Place>
+          </bf:place>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
+          <xsl:if test="position() != 1">
+            <xsl:apply-templates select="." mode="subfield0orw">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </xsl:if>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='0' and not(contains(text(),'://'))]">
+          <xsl:apply-templates select="." mode="subfield0orw">
+            <xsl:with-param name="serialization" select="$serialization"/>
+          </xsl:apply-templates>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='055' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='055')]" mode="work">
@@ -543,17 +538,6 @@
           <xsl:otherwise><xsl:value-of select="marc:subfield[@code='a']"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <xsl:variable name="vValidLCC">
-        <xsl:call-template name="validateLCC">
-          <xsl:with-param name="pCall" select="marc:subfield[@code='a'][1]"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:variable name="vShelfMarkClass">
-        <xsl:choose>
-          <xsl:when test="$vValidLCC='true'">bf:ShelfMarkLcc</xsl:when>
-          <xsl:otherwise>bf:ShelfMark</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:hasItem>
@@ -566,14 +550,14 @@
                 </bf:Agent>
               </bf:heldBy>
               <bf:shelfMark>
-                <xsl:element name="{$vShelfMarkClass}">
+                <bf:ShelfMarkLcc>
                   <rdfs:label><xsl:value-of select="$vShelfMark"/></rdfs:label>
                   <bf:assigner>
                     <bf:Agent>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                     </bf:Agent>
                   </bf:assigner>
-                </xsl:element>
+                </bf:ShelfMarkLcc>
               </bf:shelfMark>
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:note>

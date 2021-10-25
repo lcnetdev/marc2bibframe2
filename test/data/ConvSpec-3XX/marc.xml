@@ -59,6 +59,7 @@
       <subfield code="e">none</subfield>
       <subfield code="g">color</subfield>
       <subfield code="0">(lnl)123456</subfield>
+      <subfield code="p">illustrations</subfield>
       <subfield code="h">between entry for April 7 and April 19, 1843.</subfield>
     </datafield>
     <datafield tag="340" ind1=" " ind2=" ">
@@ -110,6 +111,7 @@
       <subfield code="a">analog</subfield>
       <subfield code="c">78 rpm</subfield>
       <subfield code="d">coarse groove</subfield>
+      <subfield code="i">sound</subfield>
     </datafield>
     <datafield tag="344" ind1=" " ind2=" ">
       <subfield code="3">audio tape</subfield>
@@ -122,6 +124,8 @@
       <subfield code="a">Cinerama</subfield>
       <subfield code="0">http://id.loc.gov/vocabulary/mpresformat/ciner</subfield>
       <subfield code="b">24 fps</subfield>
+      <subfield code="c">16:9</subfield>
+      <subfield code="d">wide screen</subfield>
       <subfield code="2">rda</subfield>
     </datafield>
     <datafield tag="346" ind1=" " ind2=" ">
@@ -147,6 +151,7 @@
       <subfield code="a">vocal score</subfield>
       <subfield code="0">(foo)12345</subfield>
       <subfield code="b">voc</subfield>
+      <subfield code="c">staff notation</subfield>
       <subfield code="2">foo</subfield>
     </datafield>
     <datafield tag="350" ind1=" " ind2=" ">
@@ -165,6 +170,13 @@
       <subfield code="b">string</subfield>
       <subfield code="c">(20171) ;</subfield>
       <subfield code="q">ARC/INFO export.</subfield>
+    </datafield>
+    <datafield tag="353" ind1=" " ind2=" ">
+      <subfield code="3">Bio supplement</subfield>
+      <subfield code="a">biography of creator</subfield>
+      <subfield code="b">creatorbio</subfield>
+      <subfield code="0">http://example.com/bio</subfield>
+      <subfield code="2">msupplcont</subfield>
     </datafield>
     <datafield tag="362" ind1="0" ind2=" ">
       <subfield code="a">Vol. 1, no. 1 (Apr. 1983)-v. 1, no. 3 (June 1983)</subfield>
@@ -193,7 +205,7 @@
       <subfield code="a">Play</subfield>
       <subfield code="2">lcgft</subfield>
     </datafield>
-    <datafield tag="382" ind1=" " ind2=" ">
+    <datafield tag="382" ind1="1" ind2=" ">
       <subfield code="3">Nach Bach</subfield>
       <subfield code="a">piano</subfield>
       <subfield code="n">1</subfield>
@@ -204,16 +216,6 @@
       <subfield code="n">1</subfield>
       <subfield code="s">2</subfield>
       <subfield code="v">piano is prominent, but not all other instruments are not identified</subfield>
-      <subfield code="2">lcmpt</subfield>
-    </datafield>
-    <datafield tag="382" ind1=" " ind2=" ">
-      <subfield code="3">Stuff</subfield>
-      <subfield code="b">flute</subfield>
-      <subfield code="n">1</subfield>
-      <subfield code="a">orchestra</subfield>
-      <subfield code="e">1</subfield>
-      <subfield code="r">1</subfield>
-      <subfield code="t">1</subfield>
       <subfield code="2">lcmpt</subfield>
     </datafield>
     <datafield tag="383" ind1=" " ind2=" ">

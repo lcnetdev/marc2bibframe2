@@ -29,6 +29,7 @@
   <x:import href="ConvSpec-841-887.xspec"/>
   <x:import href="ConvSpec-880.xspec"/>
   <x:import href="ConvSpec-Process6-Series.xspec"/>
+  <x:import href="ConvSpec-Process7-Punctuation.xspec"/>
 
   <x:scenario label="Regression">
     <x:scenario label="Simple transform">
@@ -45,9 +46,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>corrected or revised</rdfs:label>
-                    <bf:code>c</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label>changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -57,7 +57,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -118,10 +118,10 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:name00MatchKey>
-                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875.</bflc:primaryContributorName00MatchKey>
+                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:name00MatchKey>
+                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:primaryContributorName00MatchKey>
                     <bflc:name00MarcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:name00MarcKey>
-                    <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875.</rdfs:label>
+                    <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -129,11 +129,8 @@
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
-            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -142,9 +139,9 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Dickmeiss, Otto,</bflc:name00MatchKey>
+                    <bflc:name00MatchKey>Dickmeiss, Otto</bflc:name00MatchKey>
                     <bflc:name00MarcKey>7001 $aDickmeiss, Otto,$eill.</bflc:name00MarcKey>
-                    <rdfs:label>Dickmeiss, Otto,</rdfs:label>
+                    <rdfs:label>Dickmeiss, Otto</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -190,12 +187,9 @@
                 <rdf:value>8759517352</rdf:value>
               </bf:Isbn>
             </bf:identifiedBy>
-            <rdfs:label>Ole Lukøie</rdfs:label>
             <bf:responsibilityStatement>H.C. Andersen ; illustrationer af Otto Dickmeiss</bf:responsibilityStatement>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Ole Lukøie</rdfs:label>
-                <bflc:titleSortKey>Ole Lukøie</bflc:titleSortKey>
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -204,7 +198,7 @@
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:place>
                   <bf:Place>
-                    <rdfs:label>København?</rdfs:label>
+                    <rdfs:label>[København?]</rdfs:label>
                   </bf:Place>
                 </bf:place>
                 <bf:agent>
@@ -215,7 +209,6 @@
                 <bf:date>c2001</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>[København?] : Lindhardt og Ringhof, c2001.</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 v. (unpaged)</rdfs:label>
@@ -223,7 +216,7 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>col. ill.</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -252,9 +245,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
                     <rdfs:label>new</rdfs:label>
-                    <bf:code>n</bf:code>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -264,7 +256,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -295,10 +287,16 @@
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
-            <rdfs:label>The Great Ray Charles</rdfs:label>
+            <bf:classification>
+              <bf:ClassificationLcc>
+                <bf:assigner>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
+                </bf:assigner>
+                <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
+              </bf:ClassificationLcc>
+            </bf:classification>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Great Ray Charles</rdfs:label>
                 <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
@@ -322,11 +320,7 @@
                     <madsrdf:authoritativeLabel>1951-1960</madsrdf:authoritativeLabel>
                   </madsrdf:Temporal>
                 </madsrdf:componentList>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:subject>
@@ -335,11 +329,7 @@
                 <rdfs:label>Piano with jazz ensemble.</rdfs:label>
                 <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:contribution>
@@ -422,10 +412,8 @@
                 </bf:assigner>
               </bf:AudioIssueNumber>
             </bf:identifiedBy>
-            <rdfs:label>The Great Ray Charles</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The Great Ray Charles</rdfs:label>
                 <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
@@ -443,10 +431,9 @@
                     <rdfs:label>Atlantic</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
-                <bf:date>1957?</bf:date>
+                <bf:date>[1957?]</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>New York, N.Y. : Atlantic, [1957?]</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 sound disc</rdfs:label>
@@ -454,7 +441,7 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>analog, 33 1/3 rpm</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -477,9 +464,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>corrected or revised</rdfs:label>
-                    <bf:code>c</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label>changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -489,7 +475,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -535,12 +521,8 @@
                 <rdfs:label>general</rdfs:label>
               </bf:IntendedAudience>
             </bf:intendedAudience>
-            <bf:geographicCoverage>
-              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
-            </bf:geographicCoverage>
-            <bf:geographicCoverage>
-              <bf:GeographicCoverage rdf:about="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
-            </bf:geographicCoverage>
+            <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us-dc"/>
+            <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:assigner>
@@ -563,10 +545,8 @@
                 </bf:assigner>
               </bf:ClassificationDdc>
             </bf:classification>
-            <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>White House</rdfs:label>
                 <bflc:titleSortKey>White House</bflc:titleSortKey>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
@@ -585,11 +565,7 @@
                 <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61020$aWhite House (Washington, D.C.)</bflc:name10MarcKey>
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -601,11 +577,7 @@
                 <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:name10MarcKey>
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -617,11 +589,7 @@
                 <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:name10MarcKey>
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:subject>
@@ -633,11 +601,7 @@
                 <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
                 <bflc:name10MarcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:name10MarcKey>
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
             <bf:contribution>
@@ -645,9 +609,9 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
-                    <bflc:name10MatchKey>White House Web Team.</bflc:name10MatchKey>
+                    <bflc:name10MatchKey>White House Web Team</bflc:name10MatchKey>
                     <bflc:name10MarcKey>7102 $aWhite House Web Team.</bflc:name10MarcKey>
-                    <rdfs:label>White House Web Team.</rdfs:label>
+                    <rdfs:label>White House Web Team</rdfs:label>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -695,17 +659,15 @@
                 </bf:assigner>
               </bf:Local>
             </bf:identifiedBy>
-            <rdfs:label>The White House</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>The White House</rdfs:label>
                 <bflc:titleSortKey>White House</bflc:titleSortKey>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
             </bf:title>
             <bf:note>
               <bf:Note>
-                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/computer"/>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/computer"/>
                 <rdfs:label>Computer data</rdfs:label>
               </bf:Note>
             </bf:note>
@@ -725,7 +687,6 @@
                 <bf:date>1994-</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>Washington, D.C. : White House Web Team, 1994-</bf:provisionActivityStatement>
             <bf:systemRequirement>
               <bf:SystemRequirement>
                 <rdfs:label>Mode of access: Internet.</rdfs:label>
@@ -773,9 +734,8 @@
                   </bf:GenerationProcess>
                 </bf:generationProcess>
                 <bf:status>
-                  <bf:Status>
-                    <rdfs:label>increase in encoding level from prepublication</rdfs:label>
-                    <bf:code>p</bf:code>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
+                    <rdfs:label>prepublication</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bflc:encodingLevel>
@@ -785,7 +745,7 @@
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/aacr">
-                    <rdfs:label>aacr</rdfs:label>
+                    <bf:code>aacr</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
                 <bf:identifiedBy>
@@ -859,30 +819,18 @@
                 </bf:assigner>
               </bf:ClassificationDdc>
             </bf:classification>
-            <rdfs:label>Handbook of practical program evaluation</rdfs:label>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Handbook of practical program evaluation</rdfs:label>
-                <bflc:titleSortKey>Handbook of practical program evaluation</bflc:titleSortKey>
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:supplementaryContent>
-              <bf:SupplementaryContent>
-                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
-              </bf:SupplementaryContent>
-            </bf:supplementaryContent>
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/4417401#Topic650-20">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
                 <rdfs:label>Policy sciences.</rdfs:label>
                         <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:subject>
@@ -899,11 +847,7 @@
                     <madsrdf:authoritativeLabel>Evaluation</madsrdf:authoritativeLabel>
                   </madsrdf:Topic>
                 </madsrdf:componentList>
-                <bf:source>
-                  <bf:Source rdf:about="http://id.loc.gov/authorities/subjects">
-                    <bf:code>lcsh</bf:code>
-                  </bf:Source>
-                </bf:source>
+                <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
             </bf:subject>
             <bf:contribution>
@@ -952,37 +896,37 @@
               </bf:Contribution>
             </bf:contribution>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-25">
-                <rdfs:label>Jossey-Bass public administration series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass public administration series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-26">
-                <rdfs:label>Jossey-Bass nonprofit sector series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass nonprofit sector series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:hasSeries>
-              <bf:Work rdf:about="http://example.org/4417401#Work830-27">
-                <rdfs:label>Jossey-Bass social and behavioral science series.</rdfs:label>
+              <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
                 <bf:title>
                   <bf:Title>
+                    <bflc:title30MatchKey>Jossey-Bass social and behavioral science series</bflc:title30MatchKey>
                     <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
                     <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
                   </bf:Title>
                 </bf:title>
-              </bf:Work>
+              </bf:Hub>
             </bf:hasSeries>
             <bf:tableOfContents>
               <bf:TableOfContents>
@@ -1025,16 +969,13 @@
                 <rdf:value>1555426573</rdf:value>
               </bf:Isbn>
             </bf:identifiedBy>
-            <rdfs:label>Handbook of practical program evaluation</rdfs:label>
             <bf:responsibilityStatement>Joseph S. Wholey, Harry P. Hatry, Kathryn E. Newcomer, editors</bf:responsibilityStatement>
             <bf:title>
               <bf:Title>
-                <rdfs:label>Handbook of practical program evaluation</rdfs:label>
-                <bflc:titleSortKey>Handbook of practical program evaluation</bflc:titleSortKey>
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:editionStatement>1st ed</bf:editionStatement>
+            <bf:editionStatement>1st ed.</bf:editionStatement>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
@@ -1051,7 +992,6 @@
                 <bf:date>c1994</bf:date>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bf:provisionActivityStatement>San Francisco : Jossey-Bass, c1994.</bf:provisionActivityStatement>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>xxiii, 622 p.</rdfs:label>
@@ -1059,14 +999,19 @@
             </bf:extent>
             <bf:note>
               <bf:Note>
-                <rdf:type rdfs:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
                 <rdfs:label>ill.</rdfs:label>
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm.</bf:dimensions>
             <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
-            <bf:seriesStatement>Jossey-Bass nonprofit sector series.</bf:seriesStatement>
-            <bf:seriesStatement>Jossey-Bass social and behavioral science series.</bf:seriesStatement>
+            <bf:supplementaryContent>
+              <bf:SupplementaryContent>
+                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
+              </bf:SupplementaryContent>
+            </bf:supplementaryContent>
+            <bf:seriesStatement>Jossey-Bass nonprofit sector series</bf:seriesStatement>
+            <bf:seriesStatement>Jossey-Bass social and behavioral science series</bf:seriesStatement>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/bios/wiley043/93048623.html</rdf:value>

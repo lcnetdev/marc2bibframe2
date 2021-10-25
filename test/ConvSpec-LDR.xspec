@@ -12,8 +12,8 @@
 
   <x:scenario label="LDR">
     <x:context href="data/ConvSpec-LDR/marc.xml"/>
-    <x:expect label="pos 5 should set the status code in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/bf:code = 'c'"/>
-    <x:expect label="...along with a label" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/rdfs:label = 'corrected or revised'"/>
+    <x:expect label="pos 5 should set the status/Status URI in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/c'"/>
+    <x:expect label="...along with a label" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/rdfs:label = 'changed'"/>
     <x:expect label="pos 6 should set the rdf:type of the Work" test="//bf:Work[2]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/NotatedMusic'"/>
     <x:expect label="pos 6 can also set the rdf:type of the Instance" test="//bf:Instance[2]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manuscript'"/>
     <x:expect label="pos 6 should create a content property of the Work" test="//bf:Work[1]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/txt'"/>
@@ -24,7 +24,7 @@
     <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Archival'"/>
     <x:expect label="pos 17 should set the encodingLevel in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/rdfs:label = 'full'"/>
     <x:expect label="...along with an IRI for the EncodingLevel resource" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/@rdf:about = 'http://id.loc.gov/vocabulary/menclvl/f'"/>
-    <x:expect label="pos 18 should set the descriptionConventions in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/rdfs:label = 'aacr'"/>
+    <x:expect label="pos 18 should set the descriptionConventions in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/bf:code = 'aacr'"/>
     <x:expect label="...along with an IRI for the DescriptionConventions resource" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:descriptionConventions/bf:DescriptionConventions/@rdf:about = 'http://id.loc.gov/vocabulary/descriptionConventions/aacr'"/>
   </x:scenario>
   
