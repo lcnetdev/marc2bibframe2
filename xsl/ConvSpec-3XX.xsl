@@ -481,7 +481,7 @@
             <xsl:if test="@ind1='1'">
               <bf:status>
                 <bf:Status>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'partial')"/></xsl:attribute>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'part')"/></xsl:attribute>
                   <rdfs:label>partial</rdfs:label>
                 </bf:Status>
               </bf:status>
