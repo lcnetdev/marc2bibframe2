@@ -473,6 +473,7 @@
     <m href="http://id.loc.gov/vocabulary/contentTypes/cop" class="Multimedia">computer program</m>
     <o href="http://id.loc.gov/vocabulary/contentTypes/txt" class="MixedMaterial">text</o>
     <p href="http://id.loc.gov/vocabulary/contentTypes/txt" class="MixedMaterial">text</p>
+    <q class="Hub">hub</q>
     <r href="http://id.loc.gov/vocabulary/contentTypes/tdf" class="Object">three-dimensional form</r>
     <t href="http://id.loc.gov/vocabulary/contentTypes/txt" class="Text">text</t>
   </contentTypes>

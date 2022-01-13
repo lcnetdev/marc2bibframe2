@@ -78,7 +78,7 @@
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,@class)"/></xsl:attribute>
           </rdf:type>
-          <xsl:if test="not(../marc:datafield[@tag='336'])">
+          <xsl:if test="not(../marc:datafield[@tag='336']) and not($vContentType='q')">
             <bf:content>
               <bf:Content>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:record xmlns:marc="http://www.loc.gov/MARC21/slim">
+  <marc:leader>     nqu a22      u 4500</marc:leader>
+  <marc:controlfield tag="001">no2020106889</marc:controlfield>
+  <marc:controlfield tag="003">DLC</marc:controlfield>
+  <marc:controlfield tag="005">20200912070012.0</marc:controlfield>
+  <marc:controlfield tag="008">200911|        ||||||||||||||||||||    c</marc:controlfield>
+  <marc:datafield tag="010" ind1=" " ind2=" ">
+    <marc:subfield code="a">no2020106889</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="035" ind1=" " ind2=" ">
+    <marc:subfield code="a">(OCoLC)oca13172524</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="040" ind1=" " ind2=" ">
+    <marc:subfield code="a">ICrlF</marc:subfield>
+    <marc:subfield code="b">eng</marc:subfield>
+    <marc:subfield code="e">rda</marc:subfield>
+    <marc:subfield code="c">ICrlF</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="100" ind1="1" ind2=" ">
+    <marc:subfield code="a">Borges, Jorge Luis,</marc:subfield>
+    <marc:subfield code="d">1899-1986.</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="240" ind1=" " ind2="0">
+    <marc:subfield code="a">Short stories.</marc:subfield>
+    <marc:subfield code="k">Selections (Aleph)</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="587" ind1=" " ind2=" ">
+    <marc:subfield code="a">Borges, Jorge Luis. El aleph [ER], 2011 :</marc:subfield>
+    <marc:subfield code="b">table of contents frame (Lists 16 short stories including the title story El Aleph) title page frame (Jorge Luis Borges. Debolsillo)</marc:subfield>
+  </marc:datafield>
+  <marc:datafield tag="884" ind1=" " ind2=" ">
+    <marc:subfield code="a">DLC mta2mbh v1.0.0-SNAPSHOT</marc:subfield>
+    <marc:subfield code="g">20220113063053.0</marc:subfield>
+    <marc:subfield code="k">no2020106889</marc:subfield>
+    <marc:subfield code="q">DLC</marc:subfield>
+    <marc:subfield code="u">https://github.com/lcnetdev/mta2mbh</marc:subfield>
+  </marc:datafield>
+</marc:record>
