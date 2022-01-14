@@ -238,4 +238,15 @@
       <subfield code="a">zz</subfield>
     </datafield>
   </record>
+  <!-- MTA hub example -->
+  <record>
+    <leader>     nqu a22      u 4500</leader>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="a">500010879</subfield>
+      <subfield code="0">http://vocab.getty.edu/ulan/500010879</subfield>
+      <subfield code="1">http://vocab.getty.edu/ulan/500010879-agent</subfield>
+      <subfield code="2">gettyulan</subfield>
+    </datafield>
+  </record>
 </collection>
