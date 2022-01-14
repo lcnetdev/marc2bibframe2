@@ -70,32 +70,24 @@
         </xsl:apply-templates>
       </xsl:variable>
       <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+      <xsl:variable name="vProp">
+        <xsl:choose>
+          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">bf:hasPart</xsl:when>
+          <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">bflc:hasVariantEntry</xsl:when>
+          <xsl:otherwise>bf:relatedTo</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <xsl:choose>
-            <xsl:when test="@ind2='2' and count(marc:subfield[@code='i']) = 0">
-              <bf:hasPart>
-                <bf:Hub>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
-                  <xsl:apply-templates select="." mode="hubUnifTitle">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pHubIri" select="$vHubIri"/>
-                  </xsl:apply-templates>
-                </bf:Hub>
-              </bf:hasPart>
-            </xsl:when>
-            <xsl:otherwise>
-              <bf:relatedTo>
-                <bf:Hub>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
-                  <xsl:apply-templates select="." mode="hubUnifTitle">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pHubIri" select="$vHubIri"/>
-                  </xsl:apply-templates>
-                </bf:Hub>
-              </bf:relatedTo>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:element name="{$vProp}">
+            <bf:Hub>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
+              <xsl:apply-templates select="." mode="hubUnifTitle">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pHubIri" select="$vHubIri"/>
+              </xsl:apply-templates>
+            </bf:Hub>
+          </xsl:element>
           <xsl:for-each select="marc:subfield[@code='i']">
             <bflc:relationship>
               <bflc:Relationship>

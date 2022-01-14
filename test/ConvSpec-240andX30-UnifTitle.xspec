@@ -26,6 +26,7 @@
     <x:expect label="6XX/7XX/8XX $t creates new Hub entity" test="count(//bf:Hub[@rdf:about='http://example.org/1#Hub700-5']) = 1"/>
     <x:expect label="630/730/830 creates new Hub entity" test="count(//bf:Hub[@rdf:about='http://example.org/2#Hub730-4']) = 1"/>
     <x:expect label="730 I2=2 with no $i becomes a hasPart of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:hasPart/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Bible. O.T. Psalms. Codex Sinaiticus'"/>
+    <x:expect label="730 ind2=4 becomes bflc:hasVariantEntry" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bflc:hasVariantEntry/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Apocrypha'"/>
     <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = '[Motets]. E minor'"/>
     <x:expect label="$i becomes a bflc:relationship of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label='Parody of (work)' and //bf:Work[@rdf:about='http://example.org/2#Work']/bflc:relationship/bflc:Relationship/bf:relatedTo/@rdf:resource='http://example.org/2#Hub730-6'"/>
     <x:expect label="$d becomes a legalDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:legalDate = '1952'"/>

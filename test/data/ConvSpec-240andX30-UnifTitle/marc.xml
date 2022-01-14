@@ -61,6 +61,10 @@
       <subfield code="x">1234-5678</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <!-- MTA Hub example -->
+    <datafield ind1="0" ind2="4" tag="730">
+      <subfield code="a">Apocrypha</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">3</controlfield>
