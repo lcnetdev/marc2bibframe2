@@ -20,24 +20,36 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
-    <xsl:variable name="vHubIri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
-      </xsl:apply-templates>
-    </xsl:variable>
+    <xsl:param name="pInstanceType"/>
+    <!-- For MTA Hub records, process title directly on Work entity, otherwise create stub Hub entity -->
     <xsl:choose>
-      <xsl:when test="$serialization='rdfxml'">
-        <bf:expressionOf>
-          <bf:Hub>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
-            <xsl:apply-templates mode="hubUnifTitle" select=".">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pHubIri" select="$vHubIri"/>
-            </xsl:apply-templates>
-          </bf:Hub>
-        </bf:expressionOf>
+      <xsl:when test="$pInstanceType='Hub'">
+        <xsl:apply-templates mode="hubUnifTitle" select=".">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+        </xsl:apply-templates>
       </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="vHubIri">
+          <xsl:apply-templates mode="generateUri" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="$serialization='rdfxml'">
+            <bf:expressionOf>
+              <bf:Hub>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
+                <xsl:apply-templates mode="hubUnifTitle" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="pHubIri" select="$vHubIri"/>
+                </xsl:apply-templates>
+              </bf:Hub>
+            </bf:expressionOf>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
@@ -118,6 +130,7 @@
     <xsl:param name="pHubIri"/>
     <xsl:param name="pSource"/>
     <xsl:param name="pLabel"/>
+    <xsl:param name="pInstanceType"/>
     <xsl:variable name="tag">
       <xsl:choose>
         <xsl:when test="@tag=880">
@@ -145,7 +158,7 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Arrangement')"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:if test="$tag='240'">
+        <xsl:if test="$tag='240' and $pInstanceType != 'Hub'">
           <xsl:apply-templates select="../marc:datafield[@tag='100' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='100')] |
                                        ../marc:datafield[@tag='110' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='110')] |
                                        ../marc:datafield[@tag='111' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='111')]"

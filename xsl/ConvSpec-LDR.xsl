@@ -20,6 +20,7 @@
       <xsl:when test="substring(.,7,1) = 'f'">Manuscript</xsl:when>
       <xsl:when test="substring(.,7,1) = 'm'">Electronic</xsl:when>
       <xsl:when test="substring(.,7,1) = 't'">Manuscript</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
       <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when>
       <xsl:when test="substring(.,8,1) = 'c'">Collection</xsl:when>
       <xsl:when test="substring(.,8,1) = 'd'">Collection</xsl:when>
@@ -105,7 +106,8 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="$pInstanceType != ''">
+        <!-- setting rdf:type for Hub is redundant here, already set in Work template -->
+        <xsl:if test="$pInstanceType != '' and $pInstanceType != 'Hub'">
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$pInstanceType)"/></xsl:attribute>
           </rdf:type>

@@ -41,7 +41,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -240,7 +240,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -459,7 +459,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -729,7 +729,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -1040,13 +1040,18 @@
     <x:scenario label="Simple Hub from title authority transform">
       <x:context href="data/mtahub.xml"/>
       <x:expect label="should match expected">
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                 xmlns:marc="http://www.loc.gov/MARC21/slim"
+                 xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
           <bf:Work rdf:about="http://example.org/no2020106889#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -1078,7 +1083,7 @@
                   </bf:Agent>
                 </bf:assigner>
                 <bf:descriptionLanguage>
-                  <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
+                  <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng" />
                 </bf:descriptionLanguage>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/rda">
@@ -1087,13 +1092,13 @@
                 </bf:descriptionConventions>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub"/>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub" />
             <bf:contribution>
               <bf:Contribution>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution" />
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/no2020106889#Agent100-9">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person" />
                     <bflc:name00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:name00MatchKey>
                     <bflc:primaryContributorName00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:primaryContributorName00MatchKey>
                     <bflc:name00MarcKey>1001 $aBorges, Jorge Luis,$d1899-1986.</bflc:name00MarcKey>
@@ -1101,41 +1106,17 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb" />
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
-            <bf:expressionOf>
-              <bf:Hub rdf:about="http://example.org/no2020106889#Hub240-10">
-                <bf:contribution>
-                  <bf:Contribution>
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>
-                    <bf:agent>
-                      <bf:Agent rdf:about="http://example.org/no2020106889#Hub240-10-Agent">
-                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                        <bflc:name00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:name00MatchKey>
-                        <bflc:primaryContributorName00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:primaryContributorName00MatchKey>
-                        <bflc:name00MarcKey>1001 $aBorges, Jorge Luis,$d1899-1986.</bflc:name00MarcKey>
-                        <rdfs:label>Borges, Jorge Luis, 1899-1986</rdfs:label>
-                      </bf:Agent>
-                    </bf:agent>
-                    <bf:role>
-                      <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
-                    </bf:role>
-                  </bf:Contribution>
-                </bf:contribution>
-                <bf:title>
-                  <bf:Title>
-                    <bflc:title40MatchKey>Short stories. Selections (Aleph)</bflc:title40MatchKey>
-                    <bflc:title40MarcKey>240 0$aShort stories.$kSelections (Aleph)</bflc:title40MarcKey>
-                    <bf:mainTitle>Short stories. Selections (Aleph)</bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-              </bf:Hub>
-            </bf:expressionOf>
-            <bf:hasInstance rdf:resource="http://example.org/no2020106889#Instance"/>
-          </bf:Work>
-          <bf:Instance rdf:about="http://example.org/no2020106889#Instance">
+            <bf:title>
+              <bf:Title>
+                <bflc:title40MatchKey>Short stories. Selections (Aleph)</bflc:title40MatchKey>
+                <bflc:title40MarcKey>240 0$aShort stories.$kSelections (Aleph)</bflc:title40MarcKey>
+                <bf:mainTitle>Short stories. Selections (Aleph)</bf:mainTitle>
+              </bf:Title>
+            </bf:title>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>no2020106889</rdf:value>
@@ -1145,12 +1126,11 @@
               <bf:Local>
                 <rdf:value>oca13172524</rdf:value>
                 <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/ocolc"/>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/ocolc" />
                 </bf:assigner>
               </bf:Local>
             </bf:identifiedBy>
-            <bf:instanceOf rdf:resource="http://example.org/no2020106889#Work"/>
-          </bf:Instance>
+          </bf:Work>
         </rdf:RDF>
       </x:expect>
     </x:scenario>
