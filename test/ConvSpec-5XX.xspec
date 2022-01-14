@@ -303,6 +303,15 @@
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="$a creates an awards property of the Work" test="//bf:Work[1]/bf:awards = 'National Book Award, 1981'"/>
   </x:scenario>
+
+  <x:scenario label="587 - DATA SOURCE">
+    <x:context href="data/ConvSpec-5XX/marc.xml"/>
+    <x:expect label="587 creates a note/Note property of the Work with noteType from ind1" test="//bf:Work[1]/bf:note[2]/bf:Note/bf:noteType = 'data source'"/>
+    <x:expect label="$a creates preferredCitation property of the Note" test="//bf:Work[1]/bf:note[2]/bf:Note/bf:preferredCitation = 'Borges, Jorge Luis. El aleph [ER], 2011'"/>
+    <x:expect label="$b creates an rdfs:label on the Note" test="//bf:Work[1]/bf:note[2]/bf:Note/rdfs:label = 'table of contents frame (Lists 16 short stories including the title story El Aleph) title page frame (Jorge Luis Borges. Debolsillo)'"/>
+    <x:expect label="$u create an rdf:value property of the Note" test="//bf:Work[1]/bf:note[2]/bf:Note/rdf:value = 'https://toc.content.gov'"/>
+    <x:expect label="... with datatype xs:anyURI" test="//bf:Work[1]/bf:note[2]/bf:Note/rdf:value/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#anyURI'"/>
+  </x:scenario>
   
   <x:scenario label="588 - SOURCE OF DESCRIPTION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>

@@ -398,6 +398,41 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="marc:datafield[@tag='587' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='587')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vNoteType">
+      <xsl:choose>
+        <xsl:when test="@ind1=' '">data source</xsl:when>
+        <xsl:when test="@ind1='0'">data not found</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization='rdfxml'">
+        <bf:note>
+          <bf:Note>
+            <xsl:if test="$vNoteType != ''">
+              <bf:noteType><xsl:value-of select="$vNoteType"/></bf:noteType>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='a']">
+              <bf:preferredCitation>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </bf:preferredCitation>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='b']">
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Note>
+        </bf:note>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="marc:datafield[@tag='500' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='500')] |
                        marc:datafield[@tag='501' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='501')] |
                        marc:datafield[@tag='513' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='513')] |

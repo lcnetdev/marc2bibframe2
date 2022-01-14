@@ -1118,6 +1118,13 @@
                 <bf:mainTitle>Short stories. Selections (Aleph)</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bf:note>
+              <bf:Note>
+                <bf:noteType>data source</bf:noteType>
+                <bf:preferredCitation>Borges, Jorge Luis. El aleph [ER], 2011</bf:preferredCitation>
+                <rdfs:label>table of contents frame (Lists 16 short stories including the title story El Aleph) title page frame (Jorge Luis Borges. Debolsillo)</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>no2020106889</rdf:value>
