@@ -131,14 +131,14 @@
       <xsl:when test="substring(.,1,1) = 'a'">
         <xsl:variable name="genreForm">
           <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'd'">atlases</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">graphs</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">maps</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">cartographic materials</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'">models (representations)</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'">remote-sensing images</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">geological cross-sections</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'y'">views</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">Atlases</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">Graphs</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">Maps</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">Cartographic materials</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'q'">Models (representations)</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'r'">Remote-sensing images</xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'">Geological cross-sections</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'y'">Views</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreUri">
@@ -251,10 +251,10 @@
       <xsl:when test="substring(.,1,1) = 'd'">
         <xsl:variable name="genreForm">
           <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'">celestial globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'b'">globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'">globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'a'">Celestial globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'b'">Globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">Globes</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">Globes</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreFormURI">
@@ -396,19 +396,19 @@
       <xsl:when test="substring(.,1,1) = 'k'">
         <xsl:variable name="genreForm">
           <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'c'">collages</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'd'">drawing</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">paintings</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'f'">photomechanical print</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">negatives (photographs)</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'h'">photographic prints</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'">picture</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">prints</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">posters</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'">scientific illustrations</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'n'">wall charts</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'p'">postcards</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'v'">photographs</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'c'">Collages</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'd'">Drawing</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'e'">Paintings</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'f'">Photomechanical print</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'g'">Negatives (photographs)</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'h'">Photographic prints</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'i'">Picture</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'j'">Prints</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'k'">Posters</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'l'">Scientific illustrations</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'n'">Wall charts</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'p'">Postcards</xsl:when>
+            <xsl:when test="substring(.,2,1) = 'v'">Photographs</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreFormUri">
@@ -537,8 +537,8 @@
         </xsl:variable>
         <xsl:variable name="genreForm2">
           <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'c'">outtakes</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'">rushes</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'c'">Outtakes</xsl:when>
+            <xsl:when test="substring(.,10,1) = 'd'">Rushes</xsl:when>
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="genreForm2Uri">
