@@ -253,7 +253,7 @@
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2016026082')"/></xsl:attribute>
-              <rdfs:label>festschriften</rdfs:label>
+              <rdfs:label>Festschriften</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
         </xsl:if>
@@ -596,12 +596,14 @@
     <xsl:if test="$code = '1'">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:if test="$genreForms != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForms]) = 0">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreForms,'gf2014026068')"/></xsl:attribute>
-              <rdfs:label>conference papers and proceedings</rdfs:label>
+              <rdfs:label>Conference papers and proceedings</rdfs:label>
             </bf:GenreForm>
           </bf:genreForm>
+          </xsl:if>
         </xsl:when>
       </xsl:choose>
     </xsl:if>
