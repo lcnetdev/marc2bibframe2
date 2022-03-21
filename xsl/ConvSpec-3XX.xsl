@@ -1333,7 +1333,7 @@
                   <xsl:when test="text()='region B'">
                     <xsl:value-of select="concat($mregencoding,'regionB')"/>
                   </xsl:when>
-                  <xsl:when test="text()='region C (Blu-Ray)'">
+                  <xsl:when test="text()='region C (Blu-ray)'">
                     <xsl:value-of select="concat($mregencoding,'regionCblu')"/>
                   </xsl:when>
                   <xsl:when test="text()='region C (video game)'">
@@ -1394,7 +1394,7 @@
         <xsl:choose>
           <xsl:when test="$vTag='347' and @code='b'">
             <xsl:choose>
-              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-Ray video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-ray video</xsl:when>
               <xsl:when test="$vTarget=concat($mencformat,'dvdv')">DVD video</xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="tChopPunct">
