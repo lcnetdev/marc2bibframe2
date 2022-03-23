@@ -1,6 +1,16 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="e">honoree.</subfield>
+      <subfield code="4">hon</subfield>
+    </datafield>
+    <datafield tag="630" ind1=" " ind2="0">
+      <subfield code="a">Bible</subfield>
+      <subfield code="4">cmp</subfield>
+    </datafield>
     <datafield tag="648" ind1=" " ind2="7">
       <subfield code="a">1900-1999</subfield>
       <subfield code="2">fast</subfield>
@@ -14,6 +24,9 @@
       <subfield code="g">Miscellania</subfield>
       <subfield code="x">History</subfield>
     </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Baseball cards.</subfield>
+    </datafield>
     <datafield tag="651" ind1=" " ind2="0">
       <subfield code="a">Kenwood (Chicago, Ill.)</subfield>
       <subfield code="0">http://id.loc.gov/authorities/names/n97057532</subfield>
@@ -26,6 +39,22 @@
     <datafield tag="655" ind1=" " ind2="2">
       <subfield code="a">Festschrift.</subfield>
     </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Hymnals</subfield>
+      <subfield code="z">Massachusetts</subfield>
+      <subfield code="y">18th century.</subfield>
+      <subfield code="2">rbgenr</subfield>
+    </datafield>   
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Photomechanical prints</subfield>
+      <subfield code="x">Color</subfield>
+      <subfield code="y">2020-2030.</subfield>
+      <subfield code="2">gmgpc</subfield>
+    </datafield> 
     <datafield tag="656" ind1=" " ind2="7">
       <subfield code="a">Chauffeurs</subfield>
       <subfield code="z">France.</subfield>

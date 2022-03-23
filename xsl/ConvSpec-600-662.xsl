@@ -289,6 +289,7 @@
           <xsl:if test="$pSource != ''">
             <xsl:copy-of select="$pSource"/>
           </xsl:if>
+          <!-- remove creating bf:role
           <xsl:choose>
             <xsl:when test="substring($pTag,2,2)='11'">
               <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
@@ -304,7 +305,7 @@
                 <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
               </xsl:apply-templates>
             </xsl:otherwise>
-          </xsl:choose>
+          </xsl:choose> -->
           <xsl:for-each select="marc:subfield[@code='4']">
             <xsl:variable name="vRelationUri">
               <xsl:choose>
@@ -321,25 +322,18 @@
                 </xsl:when>
               </xsl:choose>
             </xsl:variable>
-            <bflc:relationship>
-              <bflc:Relationship>
-                <bflc:relation>
-                  <bflc:Relation>
-                    <xsl:choose>
-                      <xsl:when test="$vRelationUri != ''">
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <bf:code><xsl:value-of select="."/></bf:code>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </bflc:Relation>
-                </bflc:relation>
-                <bf:relatedTo>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                </bf:relatedTo>
-              </bflc:Relationship>
-            </bflc:relationship>
+            <bf:role>
+              <bf:Role>
+                <xsl:choose>
+                  <xsl:when test="$vRelationUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <bf:code><xsl:value-of select="."/></bf:code>
+                  </xsl:otherwise>
+                </xsl:choose>              
+              </bf:Role>
+            </bf:role>
           </xsl:for-each>
           <xsl:apply-templates select="." mode="workName">
             <xsl:with-param name="recordid" select="$recordid"/>
@@ -510,30 +504,41 @@
             <madsrdf:isMemberOfMADSScheme>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
             </madsrdf:isMemberOfMADSScheme>
-          </xsl:for-each>                  
+          </xsl:for-each> 
+          <!-- remove creating bf:role
           <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pMode">relationship</xsl:with-param>
             <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
-          </xsl:apply-templates>
+          </xsl:apply-templates> -->
           <xsl:for-each select="marc:subfield[@code='4']">
-            <xsl:variable name="encoded">
-              <xsl:call-template name="url-encode">
-                <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
-              </xsl:call-template>
+            <xsl:variable name="vRelationUri">
+              <xsl:choose>
+                <xsl:when test="string-length(.) = 3">
+                  <xsl:variable name="encoded">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="."/>
+                    </xsl:call-template>
+                  </xsl:variable>
+                  <xsl:value-of select="concat($relators,$encoded)"/>
+                </xsl:when>
+                <xsl:when test="contains(.,'://')">
+                  <xsl:value-of select="."/>
+                </xsl:when>
+              </xsl:choose>
             </xsl:variable>
-            <bflc:relationship>
-              <bflc:Relationship>
-                <bflc:relation>
-                  <bflc:Relation>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
-                  </bflc:Relation>
-                </bflc:relation>
-                <bf:relatedTo>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                </bf:relatedTo>
-              </bflc:Relationship>
-            </bflc:relationship>
+            <bf:role>
+              <bf:Role>
+                <xsl:choose>
+                  <xsl:when test="$vRelationUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <bf:code><xsl:value-of select="."/></bf:code>
+                  </xsl:otherwise>
+                </xsl:choose>              
+              </bf:Role>
+            </bf:role>
           </xsl:for-each>
           <xsl:apply-templates select="." mode="hubUnifTitle">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -740,7 +745,8 @@
                 </xsl:apply-templates>
               </xsl:when>
             </xsl:choose>
-            <xsl:for-each select="marc:subfield[@code='e']">
+            <!-- remove creating bf:role
+              <xsl:for-each select="marc:subfield[@code='e']">
               <bf:role>
                 <bf:Role>
                   <rdfs:label>
@@ -750,7 +756,7 @@
                   </rdfs:label>
                 </bf:Role>
               </bf:role>
-            </xsl:for-each>
+            </xsl:for-each> -->
             <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
               <xsl:if test="position() != 1">
                 <xsl:apply-templates mode="subfield0orw" select=".">
@@ -959,6 +965,7 @@
                 </xsl:element>
               </xsl:for-each>
             </madsrdf:componentList>
+            <!-- remove creating bf:role
             <xsl:for-each select="marc:subfield[@code='e']">
               <bf:role>
                 <bf:Role>
@@ -969,7 +976,7 @@
                   </rdfs:label>
                 </bf:Role>
               </bf:role>
-            </xsl:for-each>
+            </xsl:for-each> -->
             <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
               <xsl:if test="position() != 1">
                 <xsl:apply-templates mode="subfield0orw" select=".">

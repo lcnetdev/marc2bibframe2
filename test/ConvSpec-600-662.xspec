@@ -29,9 +29,9 @@
 
   <x:scenario label="630 - SUBJECT ADDED ENTRY--UNIFORM TITLE">
     <!-- other tests for uniform title fields in ConvSpec-240andX30-UnifTitle.xspec -->
-    <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
-    <x:expect label="630 becomes a subject of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Ukrainian weekly depicted'"/>
-    <x:expect label="...with bflc:relationship carried over from $e/$4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Hub/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'depicted'"/>
+    <x:context href="data/ConvSpec-648-662/marc.xml"/>
+    <x:expect label="630 becomes a subject Hub of the main Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[2]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Bible'"/>
+    <x:expect label=" ... with a bf:role carried over from $4" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[2]/bf:Hub/bf:role/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/cmp'"/>
   </x:scenario>    
 
   <x:scenario label="648 - SUBJECT ADDED ENTRY--CHRONOLOGICAL TERM">
@@ -47,7 +47,7 @@
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="650 creates a subject/Topic property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 5"/>
     <x:expect label="$abcdvxyz create the rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/rdfs:label = 'Caracas--Bolivar Statue--Far away--Long ago--History'"/>
-    <x:expect label="$e creates a bf:role property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:role/bf:Role/rdfs:label = 'depicted'"/>
+<!--    <x:expect label="$e creates a bf:role property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:role/bf:Role/rdfs:label = 'depicted'"/> -->
     <x:expect label="$g creates a note property of the Topic" test="//bf:Work[1]/bf:subject[2]/bf:Topic/bf:note/bf:Note/rdfs:label = 'Miscellania'"/>
     <x:expect label="$abcdvxyz create a madsrdf:componentList property of the Topic" test="count(//bf:Work[1]/bf:subject[2]/bf:Topic/madsrdf:componentList) = 1"/>
     <x:expect label="...with components from the subfields" test="//bf:Work[1]/bf:subject[2]/bf:Topic/madsrdf:componentList/madsrdf:Topic[2]/madsrdf:authoritativeLabel = 'Bolivar Statue'"/>
@@ -90,7 +90,7 @@
     <x:expect label="$abcdfgh creates an rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[8]/bf:Place/rdfs:label = 'Japan--Hokkaido--Asahi-dake.'"/>
     <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
     <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
-    <x:expect label="$e creates bf:role property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/bf:role/bf:Role/rdfs:label='setting'"/>
+<!--    <x:expect label="$e creates bf:role property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/bf:role/bf:Role/rdfs:label='setting'"/> -->
     <x:expect label="$2 creates source property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/pemracs'"/>
   </x:scenario>
   
