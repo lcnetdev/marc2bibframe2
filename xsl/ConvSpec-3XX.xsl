@@ -842,12 +842,21 @@
                   </xsl:call-template>
                 </bf:date>
               </xsl:for-each>
+              <xsl:if test="$vTag='310'">
+                <bf:status>
+                  <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/current</xsl:attribute>
+                    <rdfs:label>current</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
               <xsl:if test="$vTag='321'">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>former frequency</rdfs:label>
-                  </bf:Note>
-                </bf:note>
+                <bf:status>
+                  <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/former</xsl:attribute>
+                    <rdfs:label>former</rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </xsl:if>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
