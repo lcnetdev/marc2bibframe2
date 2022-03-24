@@ -67,5 +67,16 @@
       <subfield code="e">setting</subfield>
       <subfield code="2">pemracs</subfield>
     </datafield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="t">Tale of two cities</subfield>
+    </datafield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="t">Tale of two cities</subfield>
+      <subfield code="x">History and criticism.</subfield>
+    </datafield>
   </record>
 </collection>

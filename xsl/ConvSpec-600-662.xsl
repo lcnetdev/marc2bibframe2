@@ -305,7 +305,7 @@
                 <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
               </xsl:apply-templates>
             </xsl:otherwise>
-          </xsl:choose> -->
+          </xsl:choose>
           <xsl:for-each select="marc:subfield[@code='4']">
             <xsl:variable name="vRelationUri">
               <xsl:choose>
@@ -334,7 +334,7 @@
                 </xsl:choose>              
               </bf:Role>
             </bf:role>
-          </xsl:for-each>
+          </xsl:for-each> -->
           <xsl:apply-templates select="." mode="workName">
             <xsl:with-param name="recordid" select="$recordid"/>
             <xsl:with-param name="agentiri" select="$agentiri"/>
@@ -510,7 +510,7 @@
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pMode">relationship</xsl:with-param>
             <xsl:with-param name="pRelatedTo"><xsl:value-of select="$recordid"/>#Work</xsl:with-param>
-          </xsl:apply-templates> -->
+          </xsl:apply-templates>
           <xsl:for-each select="marc:subfield[@code='4']">
             <xsl:variable name="vRelationUri">
               <xsl:choose>
@@ -539,7 +539,7 @@
                 </xsl:choose>              
               </bf:Role>
             </bf:role>
-          </xsl:for-each>
+          </xsl:for-each> -->
           <xsl:apply-templates select="." mode="hubUnifTitle">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pSource" select="$pSource"/>
