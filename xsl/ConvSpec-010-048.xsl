@@ -388,6 +388,7 @@
     </xsl:variable>
     <xsl:variable name="vNote">
       <xsl:choose>
+        <xsl:when test="@ind2 = '0'">capture</xsl:when>
         <xsl:when test="@ind2 = '1'">broadcast</xsl:when>
         <xsl:when test="@ind2 = '2'">finding</xsl:when>
       </xsl:choose>
