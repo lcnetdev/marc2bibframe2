@@ -1392,8 +1392,6 @@
                 </bf:identifiedBy>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='b']">
-                <bf:source>
-                  <bf:Source>
                     <rdfs:label>
                       <xsl:if test="$vXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -1402,8 +1400,6 @@
                         <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
                     </rdfs:label>
-                  </bf:Source>
-                </bf:source>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:acquisitionTerms>
