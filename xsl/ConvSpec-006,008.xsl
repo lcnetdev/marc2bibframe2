@@ -923,18 +923,20 @@
                 </bf:date>
                 <xsl:choose>
                   <xsl:when test="substring(.,7,1) = 'c'">
-                    <bf:note>
-                      <bf:Note>
-                        <rdfs:label>Currently published</rdfs:label>
-                      </bf:Note>
-                    </bf:note>
+                    <bf:status>
+                      <bf:Status>
+                        <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/current</xsl:attribute>
+                        <rdfs:label>current</rdfs:label>
+                      </bf:Status>
+                    </bf:status>
                   </xsl:when>
                   <xsl:when test="substring(.,7,1) = 'd'">
-                    <bf:note>
-                      <bf:Note>
-                        <rdfs:label>Ceased publication</rdfs:label>
-                      </bf:Note>
-                    </bf:note>
+                    <bf:status>
+                      <bf:Status>
+                        <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/ceased</xsl:attribute>
+                        <rdfs:label>ceased</rdfs:label>
+                      </bf:Status>
+                    </bf:status>
                   </xsl:when>
                 </xsl:choose>
                 <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">

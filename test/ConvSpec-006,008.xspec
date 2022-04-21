@@ -21,7 +21,8 @@
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
       <x:expect label="pos 0-5 should set the AdminMetadata creationDate property of the Work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:creationDate = '2004-05-20'"/>
       <x:expect label="pos 6-14 date handling" test="//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bf:date = '200X'"/>
-      <x:expect label="c or d in pos 6 adds a note" test="//bf:Instance[7]/bf:provisionActivity/bf:ProvisionActivity/bf:note/bf:Note/rdfs:label = 'Ceased publication'"/>
+      <x:expect label="c or d in pos 6 adds a status" test="//bf:Instance[7]/bf:provisionActivity/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'ceased'"/>
+      <x:expect label="...with URI" test="//bf:Instance[7]/bf:provisionActivity/bf:ProvisionActivity/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/ceased'"/>
       <x:expect label="| in pos 6 handled like s or m" test="//bf:Instance[10]/bf:provisionActivity/bf:ProvisionActivity/bf:date = '1981'"/>
       <x:expect label="pos 15-17 publication place" test="//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bf:place/bf:Place/@rdf:about='http://id.loc.gov/vocabulary/countries/dk'"/>
       <x:expect label="||| in pos 15-17 should not create ProvisionActivity/place" test="not(//bf:Instance[10]/bf:provisionActivity/bf:ProvisionActivity/bf:place)"/>
@@ -47,7 +48,8 @@
       <x:expect label="pos 28 creates a bflc:governmentPubType property of the Work" test="//bf:Work[1]/bflc:governmentPubType/bflc:GovernmentPubType/@rdf:about = 'http://id.loc.gov/vocabulary/mgovtpubtype/a'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bflc:governmentPubType/bflc:GovernmentPubType/rdfs:label = 'autonomous'"/>
       <x:expect label="pos 29 creates a genreForm for a conference pub" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026068'"/>
-      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'Conference papers and proceedings'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'Conference papers and proceedings.'"/>
+      <x:expect label="...but only 1 present when duplicate value found in 655" test="count(//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label[. = 'Conference papers and proceedings']) = 1"/>
       <x:expect label="pos 30 creates a genreForm for a festschrift" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2016026082'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[3]/bf:GenreForm/rdfs:label = 'Festschriften'"/>
       <x:expect label="pos 31 creates a supplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'index'"/>
@@ -56,7 +58,7 @@
       <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[4]/bf:GenreForm/rdfs:label = 'Fiction'"/>
       <x:expect label="pos 34 creates a genreForm for biography" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026047'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[1]/bf:genreForm[5]/bf:GenreForm/rdfs:label = 'Autobiographies'"/>
-      <x:expect label="One genreForm property when multiple, equal 655s present" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label[. = 'Conference papers and proceedings']) = 1"/>
+      <x:expect label="One genreForm property when multiple, equal 655s present" test="count(//bf:Work[1]/bf:genreForm[2]/bf:GenreForm/rdfs:label[. = 'Conference papers and proceedings']) = 1"/>
     </x:scenario>
 
     <x:scenario label="COMPUTER FILES">
