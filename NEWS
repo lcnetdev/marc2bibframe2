@@ -1,3 +1,8 @@
+--- 1.8.0-SNAPSHOT
+
+Bug fixes:
+  Correct processing of $2 codes in 336/337/338 (https://github.com/lcnetdev/marc2bibframe2/issues/219)
+
 --- 1.7.0 2021/10/25
 
 Changes towards updated v1.7 specifications:
