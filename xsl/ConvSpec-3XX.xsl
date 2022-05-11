@@ -481,7 +481,7 @@
             <xsl:if test="@ind1='1'">
               <bf:status>
                 <bf:Status>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'partial')"/></xsl:attribute>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'part')"/></xsl:attribute>
                   <rdfs:label>partial</rdfs:label>
                 </bf:Status>
               </bf:status>
@@ -662,9 +662,14 @@
                 </xsl:apply-templates>
               </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='2']">
+                <xsl:variable name="vCode">
+                  <xsl:call-template name="tNormalizeCode">
+                    <xsl:with-param name="pCode" select="."/>
+                  </xsl:call-template>
+                </xsl:variable>
                 <bf:source>
                   <bf:Source>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreFormSchemes,.)"/></xsl:attribute>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreFormSchemes,$vCode)"/></xsl:attribute>
                   </bf:Source>
                 </bf:source>
               </xsl:for-each>

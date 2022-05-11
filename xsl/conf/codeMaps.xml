@@ -454,7 +454,7 @@
   <mstatus>
     <a href="http://id.loc.gov/vocabulary/mstatus/c">changed</a>
     <c href="http://id.loc.gov/vocabulary/mstatus/c">changed</c>
-    <d href="http://id.loc.gov/vocabulary/mstatus/d">deleted</d>
+    <d href="http://id.loc.gov/vocabulary/mstatus/d">deleted or deprecated</d>
     <n href="http://id.loc.gov/vocabulary/mstatus/n">new</n>
     <p href="http://id.loc.gov/vocabulary/mstatus/p">prepublication</p>
   </mstatus>

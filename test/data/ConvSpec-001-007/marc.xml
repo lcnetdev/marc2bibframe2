@@ -15,6 +15,9 @@
     <controlfield tag="001">3</controlfield>
     <controlfield tag="003"></controlfield>
     <controlfield tag="007">dc cef</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Globes.</subfield>"
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">4</controlfield>
@@ -30,10 +33,16 @@
   <record>
     <controlfield tag="001">6</controlfield>
     <controlfield tag="007">kh coo</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Photographic prints.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">7</controlfield>
     <controlfield tag="007">mr caaadmcartauac198606</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Outtakes.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">8</controlfield>
@@ -146,6 +155,13 @@
     </datafield>
     <datafield tag="345" ind1=" " ind2=" ">
       <subfield code="a">3D</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">23</controlfield>"
+    <controlfield tag="007">ag aanzn</controlfield>"
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Graphs.</subfield>"
     </datafield>
   </record>
 </collection>
