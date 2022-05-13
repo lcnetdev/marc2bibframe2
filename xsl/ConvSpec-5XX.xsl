@@ -403,8 +403,8 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vNoteType">
       <xsl:choose>
-        <xsl:when test="@ind1=' '">data source</xsl:when>
-        <xsl:when test="@ind1='0'">data not found</xsl:when>
+        <xsl:when test="@ind1=' '">http://id.loc.gov/vocabulary/mnotetype/datasource</xsl:when>
+        <xsl:when test="@ind1='0'">http://id.loc.gov/vocabulary/mnotetype/datanf</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
@@ -412,7 +412,9 @@
         <bf:note>
           <bf:Note>
             <xsl:if test="$vNoteType != ''">
-              <bf:noteType><xsl:value-of select="$vNoteType"/></bf:noteType>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vNoteType"/></xsl:attribute>
+              </rdf:type>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:preferredCitation>
