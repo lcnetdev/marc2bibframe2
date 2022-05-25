@@ -81,6 +81,8 @@
           <xsl:choose>
             <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">bf:hasPart</xsl:when>
             <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">bflc:hasVariantEntry</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">bf:arrangementOf</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">bf:translationOf</xsl:when>
             <xsl:otherwise>bf:relatedTo</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -95,7 +97,7 @@
                 </xsl:apply-templates>
               </bf:Hub>
             </xsl:element>
-            <xsl:for-each select="marc:subfield[@code='i']">
+            <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
               <bflc:relationship>
                 <bflc:Relationship>
                   <bflc:relation>
