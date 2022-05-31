@@ -918,11 +918,6 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="substring(../marc:leader,7,1) != 'm'">
-              <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:attribute>
-              </rdf:type>
-            </xsl:if>
             <xsl:if test="$carrier != '' and not(../marc:datafield[@tag='338'])">
               <bf:carrier>
                 <bf:Carrier>

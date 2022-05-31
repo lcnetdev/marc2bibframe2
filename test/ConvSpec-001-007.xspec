@@ -58,7 +58,6 @@
     <x:scenario label="ELECTRONIC RESOURCE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
       <x:expect label="pos 0 = 'c' sets Work rdf:type to 'Multimedia'" test="count(//bf:Work[2]/rdf:type/@rdf:resource[contains(.,'Multimedia')]) = 1"/>
-      <x:expect label="...and sets Instance rdf:type to 'Electronic'" test="count(//bf:Instance[2]/rdf:type/@rdf:resource[contains(.,'Electronic')]) = 1"/>
       <x:expect label="...and sets the media property of the Instance if no 337" test="//bf:Instance[2]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/c'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[2]/bf:media/bf:Media/rdfs:label = 'computer'"/>
       <x:expect label="pos 1 sets the carrier property of the Instance if no 338" test="//bf:Instance[2]/bf:carrier/bf:Carrier/rdfs:label = 'computer disc'"/>
