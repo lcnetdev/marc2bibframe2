@@ -1,0 +1,38 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">performed music</subfield>
+      <subfield code="b">prm</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/contentTypes/prm</subfield>
+      <subfield code="2">rdacontent</subfield>
+      <subfield code="3">record</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>      
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">audio</subfield>
+      <subfield code="b">s</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/mediaTypes/s</subfield>
+      <subfield code="2">rdamedia</subfield>
+      <subfield code="3">soundtrack</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">audio disc</subfield>
+      <subfield code="b">sd</subfield>
+      <subfield code="0">(uri)http://id.loc.gov/vocabulary/carriers/sd</subfield>
+      <subfield code="2">rdacarrier</subfield>
+      <subfield code="3">soundtrack</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="b">vd</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+  </record>
+</collection>

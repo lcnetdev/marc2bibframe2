@@ -712,6 +712,19 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
+    <xsl:variable name="vCarrierURIs">
+      <xsl:variable name="vCarriers338">
+        <xsl:apply-templates select="ancestor::marc:record" mode="mURI33X">
+          <xsl:with-param name="pTag" select="'338'"/>
+          <xsl:with-param name="pCode" select = "'b'"/>
+          <xsl:with-param name="pStem" select="$carriers"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:variable name="vCarrier008">
+        <xsl:apply-templates select="ancestor::marc:record" mode="mCarrier008URI"/>
+      </xsl:variable>
+      <xsl:value-of select="normalize-space(concat($vCarriers338,' ',$vCarrier008))"/>
+    </xsl:variable>
     <xsl:choose>
       <!-- map -->
       <xsl:when test="substring(.,1,1) = 'a'">
@@ -815,12 +828,10 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$vCarrierLabel != '' and not(../marc:datafield[@tag='338'])">
+            <xsl:if test="$vCarrierUri != '' and not(contains($vCarrierURIs,$vCarrierUri))">
               <bf:carrier>
                 <bf:Carrier>
-                  <xsl:if test="$vCarrierUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vCarrierUri"/></xsl:attribute>
-                  </xsl:if>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vCarrierUri"/></xsl:attribute>
                   <rdfs:label><xsl:value-of select="$vCarrierLabel"/></rdfs:label>
                 </bf:Carrier>
               </bf:carrier>
@@ -918,12 +929,10 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$carrier != '' and not(../marc:datafield[@tag='338'])">
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
               <bf:carrier>
                 <bf:Carrier>
-                  <xsl:if test="$carrierUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                  </xsl:if>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
                   <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
                 </bf:Carrier>
               </bf:carrier>
@@ -992,7 +1001,7 @@
                 </bf:Media>
               </bf:media>
             </xsl:if>
-            <xsl:if test="not(../marc:datafield[@tag='338'])">
+            <xsl:if test="not(contains($vCarrierURIs,'http://id.loc.gov/vocabulary/carriers/nr'))">
               <bf:carrier>
                 <bf:Carrier>
                   <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/carriers/nr</xsl:attribute>
@@ -1146,12 +1155,10 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$carrier != '' and not(../marc:datafield[@tag='338'])">
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
               <bf:carrier>
                 <bf:Carrier>
-                  <xsl:if test="$carrierUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                  </xsl:if>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
                   <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
                 </bf:Carrier>
               </bf:carrier>
@@ -1331,7 +1338,7 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $vCarrier != ''">
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
               <bf:carrier>
                 <bf:Carrier>
                   <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
@@ -1514,7 +1521,7 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $vCarrier != ''">
+            <xsl:if test="$vCarrierUri != '' and not(contains($vCarrierURIs,$vCarrierUri))">
               <bf:carrier>
                 <bf:Carrier>
                   <xsl:attribute name="rdf:about"><xsl:value-of select="$vCarrierUri"/></xsl:attribute>
@@ -1684,12 +1691,10 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0 and $carrier != ''">
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
               <bf:carrier>
                 <bf:Carrier>
-                  <xsl:if test="$carrierUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                  </xsl:if>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
                   <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
                 </bf:Carrier>
               </bf:carrier>
@@ -1999,17 +2004,13 @@
         
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrier != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:if test="$carrierUri != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
             <xsl:if test="$playingSpeed != ''">
               <bf:soundCharacteristic>
@@ -2254,17 +2255,13 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="count(../marc:datafield[@tag='338']) = 0">
-              <xsl:if test="$carrier != ''">
-                <bf:carrier>
-                  <bf:Carrier>
-                    <xsl:if test="$carrierUri != ''">
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
-                  </bf:Carrier>
-                </bf:carrier>
-              </xsl:if>
+            <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
+              <bf:carrier>
+                <bf:Carrier>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$carrierUri"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="$carrier"/></rdfs:label>
+                </bf:Carrier>
+              </bf:carrier>
             </xsl:if>
             <xsl:if test="$videoFormat != '' and count(../marc:datafield[@tag='346']/marc:subfield[. = $videoFormat]) = 0">
               <bf:videoCharacteristic>

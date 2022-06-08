@@ -27,6 +27,58 @@
       </xsl:if>
     </xsl:if>
   </xsl:template>
+
+  <!-- return the material type for the 008 from the leader -->
+  <xsl:template match="marc:leader" mode="mMaterialType008">
+    <xsl:choose>
+      <xsl:when test="(substring(.,7,1) = 'a' or substring(.,7,1 = 't')) and
+                      (substring(.,8,1) = 'a' or substring(.,8,1) = 'c' or substring(.,8,1) = 'd' or substring(.,8,1) = 'm')">BK</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'm'">CF</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'e' or substring(.,7,1) = 'f'">MP</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'c' or
+                      substring(.,7,1) = 'd' or
+                      substring(.,7,1) = 'i' or
+                      substring(.,7,1) = 'j'">MU</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'a' and
+                      (substring(.,8,1) = 'b' or
+                       substring(.,8,1) = 'i' or
+                       substring(.,8,1) = 's')">CR</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'g' or
+                      substring(.,7,1) = 'k' or
+                      substring(.,7,1) = 'o' or
+                      substring(.,7,1) = 'r'">VM</xsl:when>
+      <xsl:when test="substring(.,7,1) = 'p'">MX</xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- return the carrier URI from the 008 -->
+  <xsl:template match="marc:record" mode="mCarrier008URI">
+    <xsl:variable name="vMaterialType">
+      <xsl:apply-templates select="marc:leader" mode="mMaterialType008"/>
+    </xsl:variable>
+    <xsl:variable name="vCode">
+      <xsl:choose>
+        <xsl:when test="contains('BK CF MU CR MX',$vMaterialType)">
+          <xsl:value-of select="substring(marc:controlfield[@tag='008'],24,1)"/>
+        </xsl:when>
+        <xsl:when test="contains('MP VM',$vMaterialType)">
+          <xsl:value-of select="substring(marc:controlfield[@tag='008'],30,1)"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vCodeLookup">
+      <xsl:choose>
+        <xsl:when test="$vMaterialType='CF' and ($vCode='o' or $vCode='q')">
+          <xsl:value-of select="$vCode"/>
+        </xsl:when>
+        <xsl:when test="$vMaterialType != 'CF' and $vCode=' '">r</xsl:when>
+        <xsl:otherwise><xsl:value-of select="$vCode"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $vCodeLookup]">
+      <xsl:value-of select="@href"/>
+    </xsl:for-each>
+  </xsl:template>
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -96,6 +148,7 @@
         <xsl:call-template name="work008books">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
@@ -103,6 +156,7 @@
         <xsl:call-template name="work008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
@@ -111,6 +165,7 @@
         <xsl:call-template name="work008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
@@ -121,6 +176,7 @@
         <xsl:call-template name="work008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
@@ -128,6 +184,7 @@
         <xsl:call-template name="work008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
@@ -138,6 +195,7 @@
         <xsl:call-template name="work008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
@@ -167,54 +225,47 @@
         </xsl:if>
       </xsl:when>
     </xsl:choose>
+    <xsl:variable name="vMaterialType">
+      <xsl:apply-templates select="../marc:leader" mode="mMaterialType008"/>
+    </xsl:variable>
     <xsl:choose>
       <!-- books -->
-      <xsl:when test="(substring(../marc:leader,7,1) = 'a' or substring(../marc:leader,7,1 = 't')) and
-                      (substring(../marc:leader,8,1) = 'a' or substring(../marc:leader,8,1) = 'c' or substring(../marc:leader,8,1) = 'd' or substring(../marc:leader,8,1) = 'm')">
+      <xsl:when test="$vMaterialType='BK'">
         <xsl:call-template name="work008books">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'm'">
+      <xsl:when test="$vMaterialType='CF'">
         <xsl:call-template name="work008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'e' or substring(../marc:leader,7,1) = 'f'">
+      <xsl:when test="$vMaterialType='MP'">
         <xsl:call-template name="work008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'c' or
-                      substring(../marc:leader,7,1) = 'd' or
-                      substring(../marc:leader,7,1) = 'i' or
-                      substring(../marc:leader,7,1) = 'j'">
+      <xsl:when test="$vMaterialType='MU'">
         <xsl:call-template name="work008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'a' and
-                      (substring(../marc:leader,8,1) = 'b' or
-                        substring(../marc:leader,8,1) = 'i' or
-                        substring(../marc:leader,8,1) = 's')">
+      <xsl:when test="$vMaterialType='CR'">
         <xsl:call-template name="work008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'g' or
-                      substring(../marc:leader,7,1) = 'k' or
-                      substring(../marc:leader,7,1) = 'o' or
-                      substring(../marc:leader,7,1) = 'r'">
+      <xsl:when test="$vMaterialType='VM'">
         <xsl:call-template name="work008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -227,6 +278,7 @@
   <xsl:template name="work008books">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:call-template name="illustrativeContent008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="illustrations" select="substring($dataElements,1,4)"/>
@@ -294,6 +346,7 @@
   <xsl:template name="work008computerfiles">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:call-template name="intendedAudience008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
@@ -322,6 +375,7 @@
   <xsl:template name="work008maps">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:call-template name="cartographicAttributes008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="relief" select="substring($dataElements,1,4)"/>
@@ -362,6 +416,7 @@
   <xsl:template name="work008music">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:call-template name="intendedAudience008">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,5,1)"/>
@@ -388,6 +443,7 @@
   <xsl:template name="work008cr">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:for-each select="$codeMaps/maps/crtype/*[name() = substring($dataElements,4,1)]">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
@@ -432,6 +488,7 @@
   <xsl:template name="work008visual">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:variable name="duration">
       <xsl:choose>
         <xsl:when test="substring($dataElements,1,3) = '000'">more than 999 minutes</xsl:when>
@@ -739,6 +796,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
@@ -747,6 +805,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
@@ -756,6 +815,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- mixed materials -->
@@ -764,6 +824,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
@@ -775,6 +836,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
@@ -783,6 +845,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
@@ -794,6 +857,7 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,2,17)"/>
           <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+          <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
@@ -999,10 +1063,12 @@
         </xsl:choose>
       </xsl:when>
     </xsl:choose>
+    <xsl:variable name="vMaterialType">
+      <xsl:apply-templates select="../marc:leader" mode="mMaterialType008"/>
+    </xsl:variable>
     <xsl:choose>
       <!-- books -->
-      <xsl:when test="(substring(../marc:leader,7,1) = 'a' or substring(../marc:leader,7,1 = 't')) and
-                      (substring(../marc:leader,8,1) = 'a' or substring(../marc:leader,8,1) = 'c' or substring(../marc:leader,8,1) = 'd' or substring(../marc:leader,8,1) = 'm')">
+      <xsl:when test="$vMaterialType='BK'">
         <xsl:call-template name="instance008books">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1011,7 +1077,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'm'">
+      <xsl:when test="$vMaterialType='CF'">
         <xsl:call-template name="instance008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1019,7 +1085,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'e' or substring(../marc:leader,7,1) = 'f'">
+      <xsl:when test="$vMaterialType='MP'">
         <xsl:call-template name="instance008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1027,10 +1093,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'c' or
-                      substring(../marc:leader,7,1) = 'd' or
-                      substring(../marc:leader,7,1) = 'i' or
-                      substring(../marc:leader,7,1) = 'j'">
+      <xsl:when test="$vMaterialType='MU'">
         <xsl:call-template name="instance008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1038,10 +1101,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'a' and
-                      (substring(../marc:leader,8,1) = 'b' or
-                        substring(../marc:leader,8,1) = 'i' or
-                        substring(../marc:leader,8,1) = 's')">
+      <xsl:when test="$vMaterialType='CR'">
         <xsl:call-template name="instance008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1049,10 +1109,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'g' or
-                      substring(../marc:leader,7,1) = 'k' or
-                      substring(../marc:leader,7,1) = 'o' or
-                      substring(../marc:leader,7,1) = 'r'">
+      <xsl:when test="$vMaterialType='VM'">
         <xsl:call-template name="instance008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1060,7 +1117,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- mixed materials -->
-      <xsl:when test="substring(../marc:leader,7,1) = 'p'">
+      <xsl:when test="$vMaterialType='MX'">
         <xsl:call-template name="instance008mixed">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -1075,7 +1132,8 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
     <xsl:param name="pInstanceType"/>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
@@ -1087,16 +1145,6 @@
         <xsl:with-param name="code" select="$vPos23Code"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:variable name="vAddInstanceType">
-      <xsl:choose>
-        <xsl:when test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 's'">
-          <xsl:if test="$pInstanceType != 'Electronic'">Electronic</xsl:if>
-        </xsl:when>
-        <xsl:when test="substring($dataElements,6,1) = 'r'">
-          <xsl:if test="$pInstanceType != 'Print'">Print</xsl:if>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:variable name="vMediaType">
       <xsl:if test="not(../marc:datafield[@tag='337'])">
         <xsl:choose>
@@ -1125,26 +1173,23 @@
             </bf:Media>
           </bf:media>
         </xsl:if>
-        <xsl:choose>
-          <xsl:when test="substring($dataElements,6,1) = 'd'">
-            <bf:fontSize>
-              <bf:FontSize rdf:about="http://id.loc.gov/vocabulary/mfont/lp">
-                <rdfs:label>large print</rdfs:label>
-              </bf:FontSize>
-            </bf:fontSize>
-          </xsl:when>
-          <xsl:when test="substring($dataElements,6,1) = 'f'">
-            <bf:notation>
-              <bf:TactileNotation rdf:about="http://id.loc.gov/vocabulary/mtactile/brail">
-                <rdfs:label>braille code</rdfs:label>
-              </bf:TactileNotation>
-            </bf:notation>
-          </xsl:when>
-        </xsl:choose>
-        <xsl:if test="$vAddInstanceType != ''">
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$vAddInstanceType)"/></xsl:attribute>
-          </rdf:type>
+        <xsl:if test="$pTag='008'">
+          <xsl:choose>
+            <xsl:when test="substring($dataElements,6,1) = 'd'">
+              <bf:fontSize>
+                <bf:FontSize rdf:about="http://id.loc.gov/vocabulary/mfont/lp">
+                  <rdfs:label>large print</rdfs:label>
+                </bf:FontSize>
+              </bf:fontSize>
+            </xsl:when>
+            <xsl:when test="substring($dataElements,6,1) = 'f'">
+              <bf:notation>
+                <bf:TactileNotation rdf:about="http://id.loc.gov/vocabulary/mtactile/brail">
+                  <rdfs:label>braille code</rdfs:label>
+                </bf:TactileNotation>
+              </bf:notation>
+            </xsl:when>
+          </xsl:choose>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
@@ -1154,11 +1199,14 @@
   <xsl:template name="instance008computerfiles">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 'q' and not(../marc:datafield[@tag='338'])">
-      <xsl:call-template name="carrier008">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
-      </xsl:call-template>
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
+      <xsl:if test="substring($dataElements,6,1) = 'o' or substring($dataElements,6,1) = 'q'">
+        <xsl:call-template name="carrier008">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="code" select="substring($dataElements,6,1)"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:if>
   </xsl:template>  
 
@@ -1166,7 +1214,8 @@
   <xsl:template name="instance008maps">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,12,1) = ' '">r</xsl:when>
@@ -1184,7 +1233,8 @@
   <xsl:template name="instance008music">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
@@ -1202,6 +1252,7 @@
   <xsl:template name="instance008cr">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
+    <xsl:param name="pTag" select="'008'"/>
     <xsl:variable name="regularity">
       <xsl:value-of select="substring($dataElements,2,1)"/>
     </xsl:variable>
@@ -1251,7 +1302,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
@@ -1269,7 +1320,8 @@
   <xsl:template name="instance008visual">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,12,1) = ' '">r</xsl:when>
@@ -1287,7 +1339,8 @@
   <xsl:template name="instance008mixed">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="dataElements"/>
-    <xsl:if test="not(../marc:datafield[@tag='338'])">
+    <xsl:param name="pTag" select="'008'"/>
+    <xsl:if test="$pTag='008'">
       <xsl:variable name="vPos23Code">
         <xsl:choose>
           <xsl:when test="substring($dataElements,6,1) = ' '">r</xsl:when>
@@ -1330,19 +1383,26 @@
   <xsl:template name="carrier008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
+    <xsl:variable name="vCarrierUris">
+      <xsl:apply-templates select="ancestor::marc:record" mode="mURI33X">
+        <xsl:with-param name="pTag" select="'338'"/>
+        <xsl:with-param name="pCode" select = "'b'"/>
+        <xsl:with-param name="pStem" select="$carriers"/>
+      </xsl:apply-templates>
+    </xsl:variable>
     <xsl:for-each select="$codeMaps/maps/carrier/*[name() = $code]">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:carrier>
-            <bf:Carrier>
-              <xsl:if test="@href">
+      <xsl:if test="not(contains($vCarrierUris,@href))">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:carrier>
+              <bf:Carrier>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              </xsl:if>
-              <rdfs:label><xsl:value-of select="."/></rdfs:label>
-            </bf:Carrier>
-          </bf:carrier>
-        </xsl:when>
-      </xsl:choose>
+                <rdfs:label><xsl:value-of select="."/></rdfs:label>
+              </bf:Carrier>
+            </bf:carrier>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:if>
     </xsl:for-each>
   </xsl:template>
 

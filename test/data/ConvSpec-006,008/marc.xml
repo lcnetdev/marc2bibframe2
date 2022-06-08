@@ -42,7 +42,7 @@
   <record>
     <leader>01402nas a2200385 a 4500</leader>
     <controlfield tag="001">9</controlfield>
-    <controlfield tag="006">ab   |||||||||||||</controlfield>
+    <controlfield tag="006">ab   |o||||||||||</controlfield>
     <controlfield tag="007">ta</controlfield>
     <controlfield tag="008">000703d20002010enkfr p       0   a0eng  </controlfield>
   </record>
@@ -60,5 +60,15 @@
     <leader>02579cas a2200577 a 4500</leader>
     <controlfield tag="001">12</controlfield>
     <controlfield tag="008">911115d19692013iluwn p o     0   a0eng c</controlfield>
+  </record>
+  <record>
+    <leader>01094cam a2200229 a 4500</leader>
+    <controlfield tag="001">13</controlfield>
+    <controlfield tag="008">040520s200u    dk ab  js6   a111 1adan  </controlfield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">other computer carrier</subfield>
+      <subfield code="b">cz</subfield>
+      <subfield code="c">rdacarrier</subfield>
+    </datafield>
   </record>
 </collection>

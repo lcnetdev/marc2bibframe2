@@ -1693,4 +1693,26 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- generate a list of URIs from MARC 33X -->
+  <xsl:template match="marc:record" mode="mURI33X">
+    <xsl:param name="pTag"/>
+    <xsl:param name="pCode" select="'b'"/>
+    <xsl:param name="pStem"/>
+    <xsl:variable name="vURIList">
+      <xsl:for-each select="marc:datafield[@tag=$pTag]">
+        <xsl:for-each select="marc:subfield[@code=$pCode]">
+          <xsl:variable name="vEncoded">
+            <xsl:call-template name="url-encode">
+              <xsl:with-param name="str" select="normalize-space(.)"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:if test="$vEncoded != ''">
+            <xsl:value-of select="concat($pStem,$vEncoded,' ')"/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($vURIList)"/>
+  </xsl:template>
+
 </xsl:stylesheet>

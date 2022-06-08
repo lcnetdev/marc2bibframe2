@@ -1,0 +1,146 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>01094cam a2200229 a 4500</leader>
+    <controlfield tag="001">1</controlfield>
+    <controlfield tag="007">cz |||||||||||</controlfield>
+    <controlfield tag="008">040520s200u    dk ab  js6   a111 1adan  </controlfield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">other computer carrier</subfield>
+      <subfield code="b">cz</subfield>
+      <subfield code="c">rdacarrier</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>"
+    <controlfield tag="007">ag aanzn</controlfield>"
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Graphs.</subfield>"
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <controlfield tag="007">co cjammmaadda</controlfield>
+    <datafield tag="300">
+        <subfield code="c">9.8 x 6.3 cm</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">4</controlfield>
+    <controlfield tag="003"></controlfield>
+    <controlfield tag="007">dc cef</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Globes.</subfield>"
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">5</controlfield>
+    <controlfield tag="007">gs cjbdfd</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">6</controlfield>
+    <controlfield tag="007">gs cjbdjd</controlfield>
+    <datafield tag="344">
+      <subfield code="b">magneto-optical</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">7</controlfield>
+    <controlfield tag="007">he bfb024baca</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">8</controlfield>
+    <controlfield tag="007">kh coo</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Photographic prints.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">9</controlfield>"
+    <controlfield tag="007">mr ccaedsnnepnn</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">stereo</subfield>
+    </datafield>
+    <datafield tag="345" ind1=" " ind2=" ">
+      <subfield code="a">3D</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">10</controlfield>
+    <controlfield tag="007">mr cbaafmaartauac198606</controlfield>
+    <datafield tag="300">
+        <subfield code="c">1 2/5 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">11</controlfield>
+    <controlfield tag="007">mr caaadmcartauac198606</controlfield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Outtakes.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">12</controlfield>"
+    <controlfield tag="007">sd bsmennmplfe</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">analog</subfield>
+      <subfield code="d">microgroove</subfield>
+      <subfield code="g">stereo</subfield>
+      <subfield code="h">Dolby-A encoded</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">13</controlfield>
+    <controlfield tag="007">sd ismcmcmglce</controlfield>
+    <datafield tag="300">
+        <subfield code="c">2 in.</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">14</controlfield>
+    <controlfield tag="007">sd fsngnnmmned</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">digital</subfield>
+      <subfield code="b">optical</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">15</controlfield>
+    <controlfield tag="007">vf bbahom</controlfield>
+    <datafield tag="344" ind1=" " ind2=" ">
+      <subfield code="a">analog</subfield>
+      <subfield code="b">magnetic</subfield>
+      <subfield code="g">mono</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+    <datafield tag="346" ind1=" " ind2=" ">
+      <subfield code="a">VHS</subfield>
+      <subfield code="b">NTSC</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">16</controlfield>
+    <controlfield tag="007">vd cvaizs</controlfield>
+    <datafield tag="347" ind1=" " ind2=" ">
+      <subfield code="a">video file</subfield>
+      <subfield code="b">DVD video</subfield>
+      <subfield code="2">rda</subfield>
+    </datafield>
+  </record>
+  <record>
+    <controlfield tag="001">17</controlfield>
+    <controlfield tag="007">vf caahps</controlfield>
+    <datafield tag="300">
+        <subfield code="c">25.4 mm.</subfield>
+    </datafield>
+  </record>
+</collection>

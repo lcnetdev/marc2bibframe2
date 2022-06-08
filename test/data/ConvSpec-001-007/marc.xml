@@ -72,38 +72,10 @@
   </record>
   <record>
     <controlfield tag="001">13</controlfield>
-    <controlfield tag="007">co cjammmaadda</controlfield>
-    <datafield tag="300">
-        <subfield code="c">9.8 x 6.3 cm</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">14</controlfield>
-    <controlfield tag="007">gs cjbdfd</controlfield>
-    <datafield tag="300">
-        <subfield code="c">1 2/5 in.</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">15</controlfield>
-    <controlfield tag="007">he bfb024baca</controlfield>
-    <datafield tag="300">
-        <subfield code="c">1 2/5 in.</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">16</controlfield>
-    <controlfield tag="007">vf caahps</controlfield>
-    <datafield tag="300">
-        <subfield code="c">25.4 mm.</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">17</controlfield>
     <controlfield tag="007">vd cvaizu</controlfield>
   </record>
   <record>
-    <controlfield tag="001">18</controlfield>
+    <controlfield tag="001">14</controlfield>
     <controlfield tag="007">vf bbahom</controlfield>
     <datafield tag="344" ind1=" " ind2=" ">
       <subfield code="a">analog</subfield>
@@ -115,53 +87,6 @@
       <subfield code="a">VHS</subfield>
       <subfield code="b">NTSC</subfield>
       <subfield code="2">rda</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">19</controlfield>
-    <controlfield tag="007">vd cvaizs</controlfield>
-    <datafield tag="347" ind1=" " ind2=" ">
-      <subfield code="a">video file</subfield>
-      <subfield code="b">DVD video</subfield>
-      <subfield code="2">rda</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">20</controlfield>"
-    <controlfield tag="007">sd bsmennmplfe</controlfield>
-    <datafield tag="344" ind1=" " ind2=" ">
-      <subfield code="a">analog</subfield>
-      <subfield code="d">microgroove</subfield>
-      <subfield code="g">stereo</subfield>
-      <subfield code="h">Dolby-A encoded</subfield>
-      <subfield code="2">rda</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">21</controlfield>
-    <controlfield tag="007">sd fsngnnmmned</controlfield>
-    <datafield tag="344" ind1=" " ind2=" ">
-      <subfield code="a">digital</subfield>
-      <subfield code="b">optical</subfield>
-      <subfield code="2">rda</subfield>
-    </datafield>
-    </record>
-  <record>
-    <controlfield tag="001">22</controlfield>"
-    <controlfield tag="007">mr ccaedsnnepnn</controlfield>
-    <datafield tag="344" ind1=" " ind2=" ">
-      <subfield code="b">magnetic</subfield>
-      <subfield code="g">stereo</subfield>
-    </datafield>
-    <datafield tag="345" ind1=" " ind2=" ">
-      <subfield code="a">3D</subfield>
-    </datafield>
-  </record>
-  <record>
-    <controlfield tag="001">23</controlfield>"
-    <controlfield tag="007">ag aanzn</controlfield>"
-    <datafield tag="655" ind1=" " ind2="7">
-      <subfield code="a">Graphs.</subfield>"
     </datafield>
   </record>
 </collection>
