@@ -45,5 +45,13 @@
     <x:expect label="$3 becomes a bflc:appliesTo of the Hub" test="//bf:Hub[@rdf:about='http://example.org/2#Hub730-4']/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1980'"/>
     <x:expect label="$5 becomes a bflc:applicableInstitution of the Hub" test="//bf:Hub[@rdf:about='http://example.org/2#Hub730-6']/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
+  
+  <x:scenario label="Relationships processed correctly">
+    <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
+    <!-- tests for 630 located in ConvSpec-600-662.xspec -->
+    <!-- tests for 830 located in ConvSpec-Process6-Series.xspec -->
+    <x:expect label="730 with $i='is translation of' converts to bf:translationOf relationship and links to Hub." test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:translationOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Etrusques et lEurope'"/>
+    <x:expect label="730 with $i='is arrangement of' converts to bf:arrangementOf relationship and links to Hub." test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:arrangementOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Partita, clarinets (2), bassoon, E♭ major'"/>
+  </x:scenario>
 
 </x:description>
