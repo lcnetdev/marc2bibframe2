@@ -52,9 +52,11 @@
   -->
   <xsl:param name="pGenerationDatestamp">
     <xsl:choose>
+      <!--
       <xsl:when test="function-available('date:date-time')">
         <xsl:value-of select="date:date-time()"/>
       </xsl:when>
+      -->
       <xsl:when test="function-available('current-dateTime')">
         <xsl:value-of select="current-dateTime()"/>
       </xsl:when>
