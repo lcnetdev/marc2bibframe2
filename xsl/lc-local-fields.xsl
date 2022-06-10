@@ -19,16 +19,26 @@
 
  <!-- enter here any special transforms for tags not dealt with in other conversion spec stylesheets -->
   
-  
-  <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">
+  <!--some opac suppress flags are in 985, not 993-->
+  <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">    
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="normalizedText">
       <xsl:value-of select="normalize-space(translate(translate(normalize-space(marc:subfield[@code='a' or @code='e'][1]),$upper,$lower),' ',''))"/>
     </xsl:variable>
+    <xsl:variable name="suppressTest">
+      <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
+    </xsl:variable>
     <xsl:if test="$localfields and $normalizedText='bibframepilot2'">
       <lclocal:batch>BibframePilot2</lclocal:batch>
     </xsl:if>
+    <xsl:if test="$localfields='true' and contains($suppressTest,'opacsuppress')">
+      <xsl:call-template name="marc993"/>         
+    </xsl:if>
+    
+    <xsl:call-template name="make-literal">          
+      <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
+    </xsl:call-template>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='906']" mode="adminmetadata">    
@@ -39,9 +49,11 @@
               <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
           </xsl:call-template>          
         </xsl:when>
-      </xsl:choose>
+      </xsl:choose>   
+    
   </xsl:template>
   
+ 
   <xsl:template match="marc:datafield[@tag='925']" mode="adminmetadata">    
     <xsl:param name="serialization" select="'rdfxml'"/>                               
         <xsl:call-template name="make-literal">         
@@ -76,22 +88,23 @@
   <!-- mode="adminmetadata" suppressed by batch-->
   <xsl:template name="marc993" >        
       <bf:status>      
-          <bf:Status>
-            <rdf:type rdf:resource="https://id.loc.gov/vocabulary/mstatus/supp"></rdf:type>
+          <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/s">
             <rdfs:label>opac suppressed</rdfs:label>
           </bf:Status>               
       </bf:status>
-  </xsl:template>
+  </xsl:template>  
   <xsl:template match="marc:datafield[@tag='993']" mode="adminmetadata">    
-    <xsl:choose><xsl:when test="marc:subfield[@code='a']!=''">
-      <xsl:variable name="status">
-        <xsl:choose><xsl:when test="marc:subfield[@code='a']='opacsuppress'">https://id.loc.gov/vocabulary/mstatus/supp</xsl:when>
-          <xsl:when test="marc:subfield[@code='a']='opacunsuppress'">https://id.loc.gov/vocabulary/mstatus/unsupp</xsl:when>
-        </xsl:choose>
-      </xsl:variable>
-      <bf:status>        
-          <bf:Status>
-            <rdf:type rdf:resource="{$status}"></rdf:type>
+  <xsl:if test="marc:subfield[@code='a']!=''">
+    <xsl:variable name="suppressTest">
+      <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
+    </xsl:variable>
+      <xsl:if test="contains($suppressTest, 'opacsuppress')">
+          <!--<xsl:when test="marc:subfield[@code='a']='opacunsuppress'">http://id.loc.gov/vocabulary/mstatus/unsupp</xsl:when>-->
+       <xsl:choose>         
+         <xsl:when test="marc:subfield[@code='b' or @code='c' or @code='n']"> 
+            <bf:status>        
+            <bf:Status> <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mstatus/s"/>
+        
             <rdfs:label>opac suppressed</rdfs:label>
             <xsl:if test="marc:subfield[@code='b']!=''">
               <bflc:catalogerId><xsl:value-of select="marc:subfield[@code='b']"/></bflc:catalogerId>
@@ -107,7 +120,10 @@
             </xsl:if>
           </bf:Status>               
       </bf:status>
-    </xsl:when>
-    </xsl:choose>
+       </xsl:when>
+         <xsl:otherwise><xsl:call-template name="marc993"/></xsl:otherwise>
+       </xsl:choose>
+      </xsl:if>
+  </xsl:if>
   </xsl:template>
 </xsl:stylesheet>
