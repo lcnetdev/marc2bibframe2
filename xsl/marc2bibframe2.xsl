@@ -8,6 +8,7 @@
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:date="http://exslt.org/dates-and-times"
+                xmlns:lclocal="http://id.loc.gov/ontologies/lclocal/"
                 extension-element-prefixes="date"
                 exclude-result-prefixes="xsl marc">
 
@@ -42,7 +43,7 @@
       LoC for conversion. By default these fields will not be
       converted unless this parameter evaluates to true()
   -->
-  <xsl:param name="localfields"/>
+  <xsl:param name="localfields" select="true()"/>
   
   <!--
       datestamp for generationProcess property of Work adminMetadata
@@ -62,7 +63,9 @@
   
   <!-- Output serialization. Currently only "rdfxml" is supported -->
   <xsl:param name="serialization" select="'rdfxml'"/>
-
+  <!-- suppression is a local param -->
+  <xsl:param name="suppressed"></xsl:param> 
+  
   <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
   <xsl:include href="ConvSpec-ControlSubfields.xsl"/>
@@ -85,6 +88,7 @@
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-Process6-Series.xsl"/>
+  <xsl:include href="lc-local-fields.xsl"/>
 
   <xsl:template match="/">
 
@@ -167,6 +171,9 @@
                   </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
+              <xsl:if test="$suppressed!=''">
+                <xsl:call-template name="marc993" />                
+              </xsl:if>
             </bf:AdminMetadata>
           </bf:adminMetadata>
           <!-- pass fields through conversion specs for Work properties -->

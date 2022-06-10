@@ -1,0 +1,10 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+    <record>
+<datafield ind1=" " ind2=" " tag="993">
+    <subfield code="a">opacsuppress</subfield>
+    <subfield code="b">ntra</subfield>
+    <subfield code="c">reason</subfield>
+    <subfield code="d">2021-07-15</subfield>
+    <subfield code="n">further explication</subfield>
+</datafield>
+    </record></collection>
