@@ -21,7 +21,8 @@
     <x:expect label="...otherwise role of  bf:Contribution is ctb" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:role/bf:Role/@rdf:about = 'http://id.loc.gov/vocabulary/relators/ctb'"/>
     <x:expect label="7XX with $t creates a bf:relatedTo" test="//bf:Work[1]/bf:relatedTo[1]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Alice''s adventures in Wonderland'"/>
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Correspondence. Selections. 1777.'"/>
-    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]//bf:title) = 3"/>
+    <x:expect label="...or ind2=4, in which case it's a hasVariantEntry" test="//bf:Work[1]/bflc:hasVariantEntry/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Patchwork planet'"/>
+    <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]//bf:title) = 6"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891$2naf'"/>
@@ -31,6 +32,12 @@
     <x:expect label="...with URI from nameTitleSchemes" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/nameTitleSchemes/naf'"/>
     <x:expect label="...unless there is a $t, in which case it's the bf:identifiedBy for the bf:Hub" test="//bf:Hub[@rdf:about='http://example.org/1#Hub700-6']/bf:identifiedBy/bf:Identifier/rdf:value = '0000000121358464'"/>
     <x:expect label="...or if it is a URI, it becomes the rdf:about attribute of the bf:Agent or bf:Work" test="//bf:Work[1]/bf:contribution[3]/bf:Contribution/bf:agent/bf:Agent/@rdf:about = 'http://id.loc.gov/authorities/names/n81042545'"/>
+  </x:scenario>
+  
+  <x:scenario label="Process 1 - hub relationships">
+    <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc.xml"/>
+    <x:expect label="700 with $i='is translation of' converts to bf:translationOf relationship and links to Hub." test="//bf:Work/bf:translationOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Avventure di Pinocchio'"/>
+    <x:expect label="700 with $i='is arrangement of' converts to bf:arrangementOf relationship and links to Hub." test="//bf:Work/bf:arrangementOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Cottage by the sea'"/>
   </x:scenario>
 
 </x:description>

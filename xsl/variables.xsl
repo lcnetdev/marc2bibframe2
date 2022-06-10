@@ -7,7 +7,7 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v1.8.0-SNAPSHOT</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v1.8.0-SNAPSHOT-MTA</xsl:variable>
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>

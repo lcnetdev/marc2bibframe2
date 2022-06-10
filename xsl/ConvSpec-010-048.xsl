@@ -993,6 +993,15 @@
             <xsl:otherwise>bf:Identifier</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="vUri">
+          <xsl:if test="contains(marc:subfield[@code='0'],'://')">
+            <xsl:variable name="vSource" select="substring(substring-after(marc:subfield[@code='0'],'('),1,string-length(substring-before(marc:subfield[@code='0'],')'))-1)"/>
+            <xsl:choose>
+              <xsl:when test="$vSource != ''"><xsl:value-of select="substring-after(marc:subfield[@code='0'],')')"/></xsl:when>
+              <xsl:otherwise><xsl:value-of select="marc:subfield[@code='0']"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:if>
+        </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization='rdfxml'">
             <xsl:for-each select="marc:subfield[@code='c']">
@@ -1013,6 +1022,7 @@
             <xsl:with-param name="pIdentifier"><xsl:value-of select="$vIdentifier"/></xsl:with-param>
             <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
             <xsl:with-param name="pChopPunct" select="true()"/>
+            <xsl:with-param name="pUri" select="$vUri"/>
           </xsl:apply-templates>
         </xsl:if>
       </xsl:when>

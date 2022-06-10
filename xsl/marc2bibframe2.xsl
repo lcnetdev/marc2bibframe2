@@ -76,6 +76,7 @@
   <xsl:include href="ConvSpec-240andX30-UnifTitle.xsl"/>
   <xsl:include href="ConvSpec-250-270.xsl"/>
   <xsl:include href="ConvSpec-3XX.xsl"/>
+  <xsl:include href="ConvSpec-460-468-SeriesTreat.xsl"/>
   <xsl:include href="ConvSpec-490-510-Links.xsl"/>
   <xsl:include href="ConvSpec-5XX.xsl"/>
   <xsl:include href="ConvSpec-600-662.xsl"/>
@@ -174,98 +175,125 @@
               <xsl:apply-templates mode="work">
                 <xsl:with-param name="recordid" select="$recordid"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
               </xsl:apply-templates>
             </xsl:when>
             <xsl:otherwise>
               <xsl:apply-templates mode="mProcessWork880">
                 <xsl:with-param name="recordid" select="$recordid"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
               </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
-          <bf:hasInstance>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-          </bf:hasInstance>
+          <!-- for MTA Hub records, put Instance properties on the Work, do not generate Instance -->
+          <xsl:choose>
+            <xsl:when test="$vInstanceType = 'Hub'">
+              <xsl:choose>
+                <xsl:when test="$vCount880 = 0">
+                  <xsl:apply-templates mode="instance">
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+                  </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates mode="mProcessInstance880">
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
+                  </xsl:apply-templates>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:hasInstance>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
+              </bf:hasInstance>
+            </xsl:otherwise>
+          </xsl:choose>
         </bf:Work>
       </xsl:when>
     </xsl:choose>
     
-    <!-- generate main Instance entity -->
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:Instance>
-          <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
-          <!-- pass fields through conversion specs for Instance properties -->
-          <xsl:choose>
-            <xsl:when test="$vCount880 = 0">
-              <xsl:apply-templates mode="instance">
-                <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
-              </xsl:apply-templates>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates mode="mProcessInstance880">
-                <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
-          <bf:instanceOf>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-          </bf:instanceOf>
-          <!-- generate hasItem properties -->
-          <xsl:choose>
-            <xsl:when test="$vCount880 = 0">
-              <xsl:apply-templates mode="hasItem">
-                <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates mode="mProcessItem880">
-                <xsl:with-param name="recordid" select="$recordid"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:otherwise>
-          </xsl:choose>
-          <!-- special LoC processing for $5 -->
-          <!-- link all properties from fields with $5=DLC to a single Item -->
-          <xsl:if test="$localfields and
-                        not(marc:datafield[@tag='051' or (@tag='050' and @ind1='0')]) and
-                        marc:datafield[marc:subfield[@code='5']='DLC']">
-            <bf:hasItem>
-              <bf:Item>
-                <xsl:attribute name="rdf:about">
-                  <xsl:value-of select="concat($recordid,'#Item-DLC')"/>
-                </xsl:attribute>
-                <bf:heldBy>
-                  <bf:Agent>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:heldBy>
-                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
+    <!-- generate main Instance entity (except for MTA Hub records) -->
+    <xsl:if test="$vInstanceType != 'Hub'">
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <bf:Instance>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Instance</xsl:attribute>
+            <!-- pass fields through conversion specs for Instance properties -->
+            <xsl:choose>
+              <xsl:when test="$vCount880 = 0">
+                <xsl:apply-templates mode="instance">
                   <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pHasItem" select="true()"/>
+                  <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
                 </xsl:apply-templates>
-                <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="instance">
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates mode="mProcessInstance880">
                   <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
-                  <xsl:with-param name="pHasItem" select="true()"/>
+                  <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
                 </xsl:apply-templates>
-                <!-- generate Item properties from 541/561/563/583 -->
-                <xsl:apply-templates select="marc:datafield[(((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))) and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+              </xsl:otherwise>
+            </xsl:choose>
+            <bf:instanceOf>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+            </bf:instanceOf>
+            <!-- generate hasItem properties -->
+            <xsl:choose>
+              <xsl:when test="$vCount880 = 0">
+                <xsl:apply-templates mode="hasItem">
+                  <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
-              </bf:Item>
-            </bf:hasItem>
-          </xsl:if>
-        </bf:Instance>
-      </xsl:when>
-    </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates mode="mProcessItem880">
+                  <xsl:with-param name="recordid" select="$recordid"/>
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:otherwise>
+            </xsl:choose>
+            <!-- special LoC processing for $5 -->
+            <!-- link all properties from fields with $5=DLC to a single Item -->
+            <xsl:if test="$localfields and
+                          not(marc:datafield[@tag='051' or (@tag='050' and @ind1='0')]) and
+                          marc:datafield[marc:subfield[@code='5']='DLC']">
+              <bf:hasItem>
+                <bf:Item>
+                  <xsl:attribute name="rdf:about">
+                    <xsl:value-of select="concat($recordid,'#Item-DLC')"/>
+                  </xsl:attribute>
+                  <bf:heldBy>
+                    <bf:Agent>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                      <bf:code>DLC</bf:code>
+                    </bf:Agent>
+                  </bf:heldBy>
+                  <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pHasItem" select="true()"/>
+                  </xsl:apply-templates>
+                  <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="instance">
+                    <xsl:with-param name="recordid" select="$recordid"/>
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pHasItem" select="true()"/>
+                  </xsl:apply-templates>
+                  <!-- generate Item properties from 541/561/563/583 -->
+                  <xsl:apply-templates select="marc:datafield[(((@tag='541' or @tag='561' or @tag='563' or @tag='583') and not(marc:subfield[@code='6'])) or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='541' or substring(marc:subfield[@code='6'],1,3)='561' or substring(marc:subfield[@code='6'],1,3)='563' or substring(marc:subfield[@code='6'],1,3)='583'))) and (marc:subfield[@code='5']='DLC' or not(marc:subfield[@code='5']))]" mode="item5XX">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Item>
+              </bf:hasItem>
+            </xsl:if>
+          </bf:Instance>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
 
   </xsl:template>
 

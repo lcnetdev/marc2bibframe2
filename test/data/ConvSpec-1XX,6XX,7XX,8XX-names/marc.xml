@@ -53,5 +53,22 @@
       <subfield code="4">http://id.loc.gov/vocabulary/relators/adi</subfield>
       <subfield code="0">http://id.loc.gov/authorities/names/n81042545</subfield>
     </datafield>
+    <!-- MTA Hub examples -->
+    <datafield tag="700" ind1="1" ind2="4">
+      <subfield code="a">Tyler, Anne.</subfield>
+      <subfield code="t">Patchwork planet</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="i">is translation of</subfield>
+      <subfield code="a">Collodi, Carlo,</subfield>
+      <subfield code="d">1826-1890.</subfield>
+      <subfield code="t">Avventure di Pinocchio.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="i">is arrangement of</subfield>
+      <subfield code="a">Thomas, John Rogers,</subfield>
+      <subfield code="d">1829-1896.</subfield>
+      <subfield code="t">Cottage by the sea;</subfield>
+    </datafield>
   </record>
 </collection>
