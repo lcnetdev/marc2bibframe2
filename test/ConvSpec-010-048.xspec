@@ -43,7 +43,6 @@
     <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/rdf:value='JP732'"/>
     <x:expect label="$b creates an assigner property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:assigner/bf:Agent/rdfs:label = 'U.S. Copyright Office'"/>
     <x:expect label="$d creates a date property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:date = '1951-05-04'"/>
-    <x:expect label="$i creates a note property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[6]/bf:CopyrightNumber/bf:note/bf:Note/rdfs:label = 'Suppl. reg.'"/>
     <x:expect label="$z creates a status/Status property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[8]/bf:CopyrightNumber/bf:status/bf:Status/rdfs:label = 'invalid'"/>
   </x:scenario>
@@ -170,7 +169,7 @@
     <x:expect label="037 creates an acquisitionSource property of the Instance" test="count(//bf:Instance[1]/bf:acquisitionSource) = 2"/>
     <x:expect label="ind1 creates a note on the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:note[1]/bf:Note/rdfs:label = 'current source'"/>
     <x:expect label="$a creates an identifiedBy/StockNumber property of the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:identifiedBy/bf:StockNumber/rdf:value = 'FSWEC-77/0420'"/>
-    <x:expect label="$b creates a source property of the AcquistionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:source/bf:Source/rdfs:label = 'National Technical Information Service, Springfield, VA 22161'"/>
+    <x:expect label="$b creates a source property of the AcquistionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/rdfs:label = 'National Technical Information Service, Springfield, VA 22161'"/>
     <x:expect label="$c creates an acquisitionTerms property of the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:acquisitionTerms = '$175.00'"/>
     <x:expect label="$f creates a note property of the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource[2]/bf:AcquisitionSource/bf:note/bf:Note/rdfs:label = 'Stone tablet'"/>
     <x:expect label="$g creates a note on the AcquisitionSource" test="//bf:Instance[1]/bf:acquisitionSource[1]/bf:AcquisitionSource/bf:note[3]/bf:Note/rdfs:label = 'ASCII recording mode; available with no internal labels or with ANSI standard labels; logical record length is 1024 bytes; block size is a multiple of 1024 up to 31744 bytes; 1600 or 6250 characters per inch'"/>
@@ -237,7 +236,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="047 creates a genreForm property of the Work" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:code = 'rgg'"/>
     <x:expect label="if ind2 = ' ', use 008/18-19 music conversion on each $a to set URI" test="//bf:Work/bf:genreForm[2]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2014026688'"/>
-    <x:expect label="...and label" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'oratorios'"/>
+    <x:expect label="...and label" test="//bf:Work/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Oratorios'"/>
     <x:expect label="if ind2 = '7', $2 sets the source of the GenreForm" test="//bf:Work/bf:genreForm[3]/bf:GenreForm/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/musiccompschemes/iamlmf'"/>
   </x:scenario>
   

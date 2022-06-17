@@ -388,6 +388,7 @@
     </xsl:variable>
     <xsl:variable name="vNote">
       <xsl:choose>
+        <xsl:when test="@ind2 = '0'">capture</xsl:when>
         <xsl:when test="@ind2 = '1'">broadcast</xsl:when>
         <xsl:when test="@ind2 = '2'">finding</xsl:when>
       </xsl:choose>
@@ -1229,20 +1230,6 @@
                     <xsl:value-of select="$dateformatted"/>
                   </bf:date>
                 </xsl:if>
-                <xsl:for-each select="../marc:subfield[@code='i']">
-                  <bf:note>
-                    <bf:Note>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="tChopPunct">
-                          <xsl:with-param name="pString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bf:Note>
-                  </bf:note>
-                </xsl:for-each>
               </xsl:if>
               <!-- special handling for 024 -->
               <xsl:if test="$vTag='024'">
@@ -1415,8 +1402,6 @@
                 </bf:identifiedBy>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='b']">
-                <bf:source>
-                  <bf:Source>
                     <rdfs:label>
                       <xsl:if test="$vXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -1425,8 +1410,6 @@
                         <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
                     </rdfs:label>
-                  </bf:Source>
-                </bf:source>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='c']">
                 <bf:acquisitionTerms>

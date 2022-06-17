@@ -71,4 +71,28 @@
       <subfield code="t">Cottage by the sea;</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="e">honoree.</subfield>
+      <subfield code="4">hon</subfield>
+    </datafield>
+    <datafield tag="630" ind1=" " ind2="0">
+      <subfield code="a">Bible</subfield>
+      <subfield code="4">cmp</subfield>
+    </datafield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="t">Tale of two cities</subfield>
+    </datafield>
+    <datafield tag="600" ind1=" " ind2="0">
+      <subfield code="a">Dickens, Charles,</subfield>
+      <subfield code="d">1812-1870</subfield>
+      <subfield code="t">Tale of two cities</subfield>
+      <subfield code="x">History and criticism.</subfield>
+    </datafield>
+  </record>
 </collection>

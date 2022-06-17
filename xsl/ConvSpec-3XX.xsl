@@ -847,12 +847,21 @@
                   </xsl:call-template>
                 </bf:date>
               </xsl:for-each>
+              <xsl:if test="$vTag='310'">
+                <bf:status>
+                  <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/current</xsl:attribute>
+                    <rdfs:label>current</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+              </xsl:if>
               <xsl:if test="$vTag='321'">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>former frequency</rdfs:label>
-                  </bf:Note>
-                </bf:note>
+                <bf:status>
+                  <bf:Status>
+                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/mstatus/former</xsl:attribute>
+                    <rdfs:label>former</rdfs:label>
+                  </bf:Status>
+                </bf:status>
               </xsl:if>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -1338,7 +1347,7 @@
                   <xsl:when test="text()='region B'">
                     <xsl:value-of select="concat($mregencoding,'regionB')"/>
                   </xsl:when>
-                  <xsl:when test="text()='region C (Blu-Ray)'">
+                  <xsl:when test="text()='region C (Blu-ray)'">
                     <xsl:value-of select="concat($mregencoding,'regionCblu')"/>
                   </xsl:when>
                   <xsl:when test="text()='region C (video game)'">
@@ -1399,7 +1408,7 @@
         <xsl:choose>
           <xsl:when test="$vTag='347' and @code='b'">
             <xsl:choose>
-              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-Ray video</xsl:when>
+              <xsl:when test="$vTarget=concat($mencformat,'bluray')">Blu-ray video</xsl:when>
               <xsl:when test="$vTarget=concat($mencformat,'dvdv')">DVD video</xsl:when>
               <xsl:otherwise>
                 <xsl:call-template name="tChopPunct">

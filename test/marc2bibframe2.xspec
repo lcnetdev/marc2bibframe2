@@ -42,7 +42,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -110,7 +110,7 @@
             </bf:intendedAudience>
             <bf:genreForm>
               <bf:GenreForm rdf:about="http://id.loc.gov/authorities/genreForms/gf2014026339">
-                <rdfs:label>fiction</rdfs:label>
+                <rdfs:label>Fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
             <bf:classification>
@@ -250,7 +250,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -478,7 +478,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -748,7 +748,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -1070,7 +1070,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.8.0-SNAPSHOT-MTA</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
