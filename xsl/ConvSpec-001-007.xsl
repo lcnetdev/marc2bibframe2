@@ -2191,7 +2191,7 @@
         </xsl:variable>
         <xsl:variable name="vEncodingFormat">
           <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 's'">Blu-Ray video</xsl:when>
+            <xsl:when test="substring(.,5,1) = 's'">Blu-ray video</xsl:when>
             <xsl:when test="substring(.,5,1) = 'v'">DVD video</xsl:when>
           </xsl:choose>
         </xsl:variable>
