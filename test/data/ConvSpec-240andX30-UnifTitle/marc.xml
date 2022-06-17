@@ -61,6 +61,20 @@
       <subfield code="x">1234-5678</subfield>
       <subfield code="5">DLC</subfield>
     </datafield>
+    <!-- MTA Hub examples -->
+    <datafield ind1="0" ind2="4" tag="730">
+      <subfield code="a">Apocrypha</subfield>
+    </datafield>
+    <datafield tag="730" ind1=" " ind2=" ">
+      <subfield code="i">is arrangement of</subfield>
+      <subfield code="a">Partita,</subfield>
+      <subfield code="m">clarinets (2), bassoon,</subfield>
+      <subfield code="r">E♭ major;</subfield>
+    </datafield>
+    <datafield tag="730" ind1=" " ind2=" ">
+      <subfield code="i">is translation of</subfield>
+      <subfield code="a">Etrusques et lEurope.</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">3</controlfield>

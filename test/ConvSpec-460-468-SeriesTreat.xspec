@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
+
+  <x:scenario label="462 - SERIES DATES OF PUBLICATION AND/OR SEQUENTIAL DESIGNATION">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="462 generates bflc:seriesTreatment/bflc:SeriesSequentialDesignation of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesSequentialDesignation/rdfs:label = 'Calendar year 1982 pub. in 1983'"/>
+    <x:expect label="...with source from $z" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesSequentialDesignation/bf:source/bf:Source/rdfs:label = 'p. 3'"/>
+  </x:scenario>
+  
+  <x:scenario label="463 - SERIES NUMBERING PECULIARITIES">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="463 generates bflc:seriesTreatment/bflc:SeriesNumberingPeculiarities of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesNumberingPeculiarities/rdfs:label = 'Double numbering discontinued with t. 179'"/>
+    <x:expect label="...with source from $z" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesNumberingPeculiarities/bf:source/bf:Source/rdfs:label = 't. 179, t.p.'"/>
+  </x:scenario>
+
+  <x:scenario label="464 - SERIES NUMBERING EXAMPLE">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="464 generates bflc:seriesTreatment/bflc:SeriesNumbering of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesNumbering/rdfs:label = 'no. 19'"/>
+    <x:expect label="...with part from $d" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesNumbering/bf:part = 'items published &lt;1982&gt;'"/>
+    <x:expect label="...and bflc:applicableInstitution from $5" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesNumbering/bflc:applicableInstitution/bf:Agent/rdfs:label = 'DLC'"/>
+  </x:scenario>
+
+  <x:scenario label="465 - SERIES PLACE AND PUBLISHER/ISSUING BODY">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="465 generates bflc:seriesTreatment/bflc:SeriesProvider of the Work" test="count(//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesProvider) = 1"/>
+    <x:expect label="...with place from $a" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesProvider/bf:place/bf:Place/rdfs:label = 'Lisboa'"/>
+    <x:expect label="...and agent from $b" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesProvider/bf:agent/bf:Agent/rdfs:label = 'Instituto de Investigação Científica Tropical/Junta de Investigações Científicas do Ultramar'"/>
+    <x:expect label="...and part from $d" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesProvider/bf:part = 'no. 137-'"/>
+  </x:scenario>
+  
+  <x:scenario label="466 - SERIES ANALYSIS PRACTICE">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="466 generates bflc:seriesTreatment/bflc:SeriesAnalysis of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesAnalysis/bf:code = 'f'"/>
+    <x:expect label="...with label from $a" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesAnalysis/rdfs:label = 'analyzed in full'"/>
+    <x:expect label="...and note from $b" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesAnalysis/bf:note/bf:Note/rdfs:label = 'except v. 10, no. 1-3, v. 19, no. 4'"/>
+    <x:expect label="...and part from $d" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesAnalysis/bf:part = 'analyzable parts'"/>
+    <x:expect label="...and bflc:applicableInstitution from $5" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesAnalysis/bflc:applicableInstitution/bf:Agent/rdfs:label = 'DLC'"/>
+  </x:scenario>
+  
+  <x:scenario label="467 - SERIES TRACING PRACTICE">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="467 generates bflc:seriesTreatment/bflc:SeriesTracing of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesTracing/bf:code = 't'"/>
+    <x:expect label="...with label from $a" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesTracing/rdfs:label = 'traced'"/>
+    <x:expect label="...and part from $d" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesTracing/bf:part = 'items cataloged after Dec. 31, 1980'"/>
+    <x:expect label="...and bflc:applicableInstitution from $5" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesTracing/bflc:applicableInstitution/bf:Agent/rdfs:label = 'DLC'"/>
+  </x:scenario>
+  
+  <x:scenario label="468 - SERIES CLASSIFICATION PRACTICE">
+    <x:context href="data/ConvSpec-460-468-SeriesTreat/marc.xml"/>
+    <x:expect label="468 generates bflc:seriesTreatment/bflc:SeriesClassification of the Work" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesClassification/bf:code = 'c'"/>
+    <x:expect label="...with label from $a" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesClassification/rdfs:label = 'classed together'"/>
+    <x:expect label="...and part from $d" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesClassification/bf:part = 'no. 65-'"/>
+    <x:expect label="...and bflc:applicableInstitution from $5" test="//bf:Work[1]/bflc:seriesTreatment/bflc:SeriesClassification/bflc:applicableInstitution/bf:Agent/rdfs:label = 'DLC'"/>
+  </x:scenario>
+  
+</x:description>

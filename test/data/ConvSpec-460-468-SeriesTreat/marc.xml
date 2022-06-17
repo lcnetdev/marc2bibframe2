@@ -1,0 +1,39 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <datafield tag="462" ind1="1" ind2=" ">
+      <subfield code="a">Calendar year 1982 pub. in 1983</subfield>
+      <subfield code="z">p. 3</subfield>
+    </datafield>
+    <datafield tag="463" ind1=" " ind2=" ">
+      <subfield code="a">Double numbering discontinued with t. 179</subfield>
+      <subfield code="z">t. 179, t.p.</subfield>
+    </datafield>
+    <datafield tag="464" ind1=" " ind2=" ">
+      <subfield code="a">no. 19</subfield>
+      <subfield code="d">items published &lt;1982&gt;</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="465" ind1=" " ind2=" ">
+      <subfield code="a">Lisboa</subfield>
+      <subfield code="b">Instituto de Investigação Científica Tropical/Junta de Investigações Científicas do Ultramar</subfield>
+      <subfield code="d">no. 137-</subfield>
+    </datafield>
+    <datafield tag="466" ind1=" " ind2=" ">
+      <subfield code="a">f</subfield>
+      <subfield code="b">except v. 10, no. 1-3, v. 19, no. 4</subfield>
+      <subfield code="d">analyzable parts</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="467" ind1=" " ind2=" ">
+      <subfield code="a">t</subfield>
+      <subfield code="d">items cataloged after Dec. 31, 1980</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="468" ind1=" " ind2=" ">
+      <subfield code="a">c</subfield>
+      <subfield code="d">no. 65-</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+  </record>
+</collection>

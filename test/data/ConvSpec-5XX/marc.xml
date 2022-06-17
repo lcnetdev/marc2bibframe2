@@ -235,6 +235,11 @@
       <subfield code="3">Accompanying material</subfield>
       <subfield code="a">National Book Award, 1981</subfield>
     </datafield>
+    <datafield tag="587" ind1=" " ind2=" ">
+      <subfield code="a">Borges, Jorge Luis. El aleph [ER], 2011 :</subfield>
+      <subfield code="b">table of contents frame (Lists 16 short stories including the title story El Aleph) title page frame (Jorge Luis Borges. Debolsillo)</subfield>
+      <subfield code="u">https://toc.content.gov</subfield>
+    </datafield>
     <datafield tag="588" ind1=" " ind2=" ">
       <subfield code="a">Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.</subfield>
       <subfield code="5">EZB</subfield>

@@ -15,6 +15,7 @@
     <x:expect label="pos 5 should set the status/Status URI in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/c'"/>
     <x:expect label="...along with a label" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:status/bf:Status/rdfs:label = 'changed'"/>
     <x:expect label="pos 6 should set the rdf:type of the Work" test="//bf:Work[2]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/NotatedMusic'"/>
+    <x:expect label="LDR/06=q sets rdf:type to bf:Hub" test="//bf:Work[5]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Hub'"/>
     <x:expect label="pos 6 can also set the rdf:type of the Instance" test="//bf:Instance[2]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manuscript'"/>
     <x:expect label="pos 6 should create a content property of the Work" test="//bf:Work[1]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/txt'"/>
     <x:expect label="...unless content is derived by 336" test="//bf:Work[3]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
