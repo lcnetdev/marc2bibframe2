@@ -31,6 +31,7 @@
   <x:scenario label="310 - CURRENT PUBLICATION FREQUENCY">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="310 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/rdfs:label = 'Annual'"/>
+    <x:expect label=" ... with a bf:status of 'current'" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/bf:status[1]/bf:Status/rdfs:label = 'current'"/>
     <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/bf:date = '1983-'"/>
     <x:expect label="$2 creates a source property of the Frequency" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/bf:source/bf:Source/bf:code='freq'"/>
     <x:expect label="$0 can set the URI of the Frequency" test="//bf:Instance[1]/bf:frequency[1]/bf:Frequency/@rdf:about='http://id.loc.gov/vocabulary/frequencies/anl'"/>
@@ -39,7 +40,7 @@
   <x:scenario label="321 - FORMER PUBLICATION FREQ.">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="321 creates a frequency property of the Instance" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/rdfs:label = 'Semiannual'"/>
-    <x:expect label="...with a note labelling it as 'former frequency'" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:note/bf:Note/rdfs:label='former frequency'"/>
+    <x:expect label=" ... with a bf:status of 'former'" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:status/bf:Status/rdfs:label='former'"/>
     <x:expect label="$b creates a date property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:date = '1981-1982'"/>
     <x:expect label="$2 creates a source property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:source/bf:Source/bf:code='freq'"/>
     <x:expect label="$0 can create an identifier property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:identifiedBy/bf:Identifier/rdf:value='sma'"/>
@@ -179,7 +180,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="$a creates a digitalCharacteristic/FileType property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/rdfs:label = 'image file'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[1]/bf:FileType/@rdf:about = 'http://id.loc.gov/vocabulary/mfiletype/image'"/>
-    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-Ray video'"/>
+    <x:expect label="$b creates a digitalCharacteristic/EncodingFormat property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/rdfs:label = 'Blu-ray video'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:digitalCharacteristic[2]/bf:EncodingFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mencformat/bluray'"/>
     <x:expect label="$c creates a digitalCharacteristic/FileSize property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[3]/bf:FileSize/rdfs:label = '182 KB'"/>
     <x:expect label="$d creates a digitalCharacteristic/Resolution property of the Instance" test="//bf:Instance[1]/bf:digitalCharacteristic[4]/bf:Resolution/rdfs:label = '3.1 megapixels'"/>

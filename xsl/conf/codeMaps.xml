@@ -49,49 +49,49 @@
   <!-- used in 008/24-27 for books and continuing resources -->
   <marcgt>
     <b href="http://id.loc.gov/vocabulary/msupplcont/bibliography">bibliography</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026057">catalogs</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026086">dictionaries</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026092">encyclopedias</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2014026109">handbooks and manuals</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</g>
-    <h href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026112">indexes</i>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2011026438">patents</j>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026057">Catalogs</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026086">Dictionaries</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026092">Encyclopedias</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2014026109">Handbooks and manuals</f>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2011026351">Law materials</g>
+    <h href="http://id.loc.gov/authorities/genreForms/gf2014026049">Biographies</h>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026112">Indexes</i>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2011026438">Patents</j>
     <k href="http://id.loc.gov/vocabulary/msupplcont/discography">discography</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026039">academic theses</m>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2011026351">Law materials</l>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026039">Academic theses</m>
     <q href="http://id.loc.gov/vocabulary/msupplcont/film">filmography</q>
-    <r href="http://id.loc.gov/authorities/genreForms/gf2014026087">directories</r>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2014026181">statistics</s>
-    <t href="http://id.loc.gov/authorities/genreForms/gf2015026093">technical reports</t>
-    <v href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</v>
-    <w href="http://id.loc.gov/authorities/genreForms/gf2011026351">law materials</w>
-    <y href="http://id.loc.gov/authorities/genreForms/gf2014026208">yearbooks</y>
-    <z href="http://id.loc.gov/authorities/genreForms/gf2011026707">treaties</z>
-    <x5 href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</x5>
-    <x6 href="http://id.loc.gov/authorities/genreForms/gf2014026266">comics (graphic works)</x6>
+    <r href="http://id.loc.gov/authorities/genreForms/gf2014026087">Directories</r>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2014026181">Statistics</s>
+    <t href="http://id.loc.gov/authorities/genreForms/gf2015026093">Technical reports</t>
+    <v href="http://id.loc.gov/authorities/genreForms/gf2011026351">Law materials</v>
+    <w href="http://id.loc.gov/authorities/genreForms/gf2011026351">Law materials</w>
+    <y href="http://id.loc.gov/authorities/genreForms/gf2014026208">Yearbooks</y>
+    <z href="http://id.loc.gov/authorities/genreForms/gf2011026707">Treaties</z>
+    <x5 href="http://id.loc.gov/authorities/genreForms/gf2014026055">Calendars</x5>
+    <x6 href="http://id.loc.gov/authorities/genreForms/gf2014026266">Comics (Graphic works)</x6>
   </marcgt>
   <!-- literary form -->
   <!-- used in 008/33 for books -->
   <litform>
-    <x1 href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</x1>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2015026020">novels</f>
-    <h href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026141">personal correspondence</i>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2014026542">short stories</j>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</m>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</s>
+    <x1 href="http://id.loc.gov/authorities/genreForms/gf2014026339">Fiction</x1>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">Drama</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">Essays</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2015026020">Novels</f>
+    <h href="http://id.loc.gov/authorities/genreForms/gf2014026110">Humor</h>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026141">Personal correspondence</i>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2014026542">Short stories</j>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026339">Fiction</m>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">Poetry</p>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2011026363">Speeches</s>
   </litform>
   <!-- biography -->
   <!-- used in 008/34 for books -->
   <bioform>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
-    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</d>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">Autobiographies</a>
+    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">Biographies</b>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026049">Biographies</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026049">Biographies</d>
   </bioform>
   <!-- computer file type -->
   <!-- used in 008/26 for computer files -->
@@ -174,85 +174,85 @@
   <!-- map special format characteristics -->
   <!-- used on 008/33-34 for maps -->
   <mapform>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2011026385">manuscript maps</e>
-    <j href="http://id.loc.gov/authorities/genreForms/gf2014026151">postcards</j>
-    <k href="http://id.loc.gov/authorities/genreForms/gf2014026055">calendars</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</l>
-    <n href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</n>
-    <o href="http://id.loc.gov/authorities/genreForms/gf2011026728">wall maps</o>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2017027252">playing cards</p>
-    <r href="http://id.loc.gov/authorities/genreForms/gf2011026373">loose-leaf services</r>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2011026385">Manuscript maps</e>
+    <j href="http://id.loc.gov/authorities/genreForms/gf2014026151">Postcards</j>
+    <k href="http://id.loc.gov/authorities/genreForms/gf2014026055">Calendars</k>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2014026158">Puzzles and games</l>
+    <n href="http://id.loc.gov/authorities/genreForms/gf2014026158">Puzzles and games</n>
+    <o href="http://id.loc.gov/authorities/genreForms/gf2011026728">Wall maps</o>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2017027252">Playing cards</p>
+    <r href="http://id.loc.gov/authorities/genreForms/gf2011026373">Loose-leaf services</r>
   </mapform>
   <!-- music composition forms -->
   <!-- Used in 008/18-19 for music and in 047 -->
   <musicCompForm>
-    <an href="http://id.loc.gov/authorities/genreForms/gf2014026635">anthems</an>
-    <bd href="http://id.loc.gov/authorities/genreForms/gf2014026648">ballads</bd>
-    <bg href="http://id.loc.gov/authorities/genreForms/gf2014026664">bluegrass music</bg>
-    <bl href="http://id.loc.gov/authorities/genreForms/gf2014026665">blues (music)</bl>
-    <bt href="http://id.loc.gov/authorities/genreForms/gf2014026650">ballets (music)</bt>
-    <ca href="http://id.loc.gov/authorities/genreForms/gf2014026701">chaconnes</ca>
-    <cb href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cb>
-    <cc href="http://id.loc.gov/authorities/genreForms/gf2014026707">chants</cc>
-    <cg href="http://id.loc.gov/authorities/genreForms/gf2014026724">concerti grossi</cg>
-    <ch href="http://id.loc.gov/authorities/genreForms/gf2014026713">chorales</ch>
-    <cl href="http://id.loc.gov/authorities/genreForms/gf2014026712">chorale preludes</cl>
-    <cn href="http://id.loc.gov/authorities/genreForms/gf2014026687">canons (music)</cn>
-    <co href="http://id.loc.gov/authorities/genreForms/gf2014026725">concertos</co>
-    <cp href="http://id.loc.gov/authorities/genreForms/gf2014027007">polyphonic chansons</cp>
-    <cr href="http://id.loc.gov/authorities/genreForms/gf2014026695">carols</cr>
-    <cs href="http://id.loc.gov/authorities/genreForms/gf2014026624">aleatory music</cs>
-    <ct href="http://id.loc.gov/authorities/genreForms/gf2014026688">cantatas</ct>
-    <cy href="http://id.loc.gov/authorities/genreForms/gf2014026739">country music</cy>
-    <cz href="http://id.loc.gov/authorities/genreForms/gf2018026012">canzonas (instrumental music)</cz>
-    <df href="http://id.loc.gov/authorities/genreForms/gf2014026753">dance music</df>
-    <dv href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</dv>
-    <fg href="http://id.loc.gov/authorities/genreForms/gf2014026818">fugues</fg>
-    <fl href="http://id.loc.gov/authorities/genreForms/gf2014026806">flamenco music</fl>
-    <fm href="http://id.loc.gov/authorities/genreForms/gf2014026809">folk music</fm>
-    <ft href="http://id.loc.gov/authorities/genreForms/gf2018026018">fantasias (music)</ft>
-    <gm href="http://id.loc.gov/authorities/genreForms/gf2014026839">gospel music</gm>
-    <hy href="http://id.loc.gov/authorities/genreForms/gf2014026872">hymns</hy>
-    <jz href="http://id.loc.gov/authorities/genreForms/gf2014026879">jazz</jz>
-    <mc href="http://id.loc.gov/authorities/genreForms/gf2014027050">revues</mc>
-    <md href="http://id.loc.gov/authorities/genreForms/gf2014026915">madrigals (music)</md>
-    <mi href="http://id.loc.gov/authorities/genreForms/gf2014026940">minuets (music)</mi>
-    <mo href="http://id.loc.gov/authorities/genreForms/gf2014026949">motets</mo>
-    <mp href="http://id.loc.gov/authorities/genreForms/gf2014026950">motion picture music</mp>
-    <mr href="http://id.loc.gov/authorities/genreForms/gf2014026922">marches (music)</mr>
-    <ms href="http://id.loc.gov/authorities/genreForms/gf2014026926">masses</ms>
-    <mz href="http://id.loc.gov/authorities/genreForms/gf2014026928">mazurkas</mz>
-    <nc href="http://id.loc.gov/authorities/genreForms/gf2017026144">nocturnes (music)</nc>
-    <op href="http://id.loc.gov/authorities/genreForms/gf2014026976">operas</op>
-    <or href="http://id.loc.gov/authorities/genreForms/gf2014026977">oratorios</or>
-    <ov href="http://id.loc.gov/authorities/genreForms/gf2014026980">overtures</ov>
-    <pg href="http://id.loc.gov/authorities/genreForms/gf2014027017">program music</pg>
+    <an href="http://id.loc.gov/authorities/genreForms/gf2014026635">Anthems</an>
+    <bd href="http://id.loc.gov/authorities/genreForms/gf2014026648">Ballads</bd>
+    <bg href="http://id.loc.gov/authorities/genreForms/gf2014026664">Bluegrass music</bg>
+    <bl href="http://id.loc.gov/authorities/genreForms/gf2014026665">Blues (Music)</bl>
+    <bt href="http://id.loc.gov/authorities/genreForms/gf2014026650">Ballets (Music)</bt>
+    <ca href="http://id.loc.gov/authorities/genreForms/gf2014026701">Chaconnes</ca>
+    <cb href="http://id.loc.gov/authorities/genreForms/gf2014026707">Chants</cb>
+    <cc href="http://id.loc.gov/authorities/genreForms/gf2014026707">Chants</cc>
+    <cg href="http://id.loc.gov/authorities/genreForms/gf2014026724">Concerti grossi</cg>
+    <ch href="http://id.loc.gov/authorities/genreForms/gf2014026713">Chorales</ch>
+    <cl href="http://id.loc.gov/authorities/genreForms/gf2014026712">Chorale preludes</cl>
+    <cn href="http://id.loc.gov/authorities/genreForms/gf2014026687">Canons (Music)</cn>
+    <co href="http://id.loc.gov/authorities/genreForms/gf2014026725">Concertos</co>
+    <cp href="http://id.loc.gov/authorities/genreForms/gf2014027007">Polyphonic chansons</cp>
+    <cr href="http://id.loc.gov/authorities/genreForms/gf2014026695">Carols</cr>
+    <cs href="http://id.loc.gov/authorities/genreForms/gf2014026624">Aleatory music</cs>
+    <ct href="http://id.loc.gov/authorities/genreForms/gf2014026688">Cantatas</ct>
+    <cy href="http://id.loc.gov/authorities/genreForms/gf2014026739">Country music</cy>
+    <cz href="http://id.loc.gov/authorities/genreForms/gf2018026012">Canzonas (Instrumental music)</cz>
+    <df href="http://id.loc.gov/authorities/genreForms/gf2014026753">Dance music</df>
+    <dv href="http://id.loc.gov/authorities/genreForms/gf2014027116">Suites</dv>
+    <fg href="http://id.loc.gov/authorities/genreForms/gf2014026818">Fugues</fg>
+    <fl href="http://id.loc.gov/authorities/genreForms/gf2014026806">Flamenco music</fl>
+    <fm href="http://id.loc.gov/authorities/genreForms/gf2014026809">Folk music</fm>
+    <ft href="http://id.loc.gov/authorities/genreForms/gf2018026018">Fantasias (Music)</ft>
+    <gm href="http://id.loc.gov/authorities/genreForms/gf2014026839">Gospel music</gm>
+    <hy href="http://id.loc.gov/authorities/genreForms/gf2014026872">Hymns</hy>
+    <jz href="http://id.loc.gov/authorities/genreForms/gf2014026879">Jazz</jz>
+    <mc href="http://id.loc.gov/authorities/genreForms/gf2014027050">Revues</mc>
+    <md href="http://id.loc.gov/authorities/genreForms/gf2014026915">Madrigals (Music)</md>
+    <mi href="http://id.loc.gov/authorities/genreForms/gf2014026940">Minuets (Music)</mi>
+    <mo href="http://id.loc.gov/authorities/genreForms/gf2014026949">Motets</mo>
+    <mp href="http://id.loc.gov/authorities/genreForms/gf2014026950">Motion picture music</mp>
+    <mr href="http://id.loc.gov/authorities/genreForms/gf2014026922">Marches (Music)</mr>
+    <ms href="http://id.loc.gov/authorities/genreForms/gf2014026926">Masses</ms>
+    <mz href="http://id.loc.gov/authorities/genreForms/gf2014026928">Mazurkas</mz>
+    <nc href="http://id.loc.gov/authorities/genreForms/gf2017026144">Nocturnes (Music)</nc>
+    <op href="http://id.loc.gov/authorities/genreForms/gf2014026976">Operas</op>
+    <or href="http://id.loc.gov/authorities/genreForms/gf2014026977">Oratorios</or>
+    <ov href="http://id.loc.gov/authorities/genreForms/gf2014026980">Overtures</ov>
+    <pg href="http://id.loc.gov/authorities/genreForms/gf2014027017">Program music</pg>
     <pm href="http://id.loc.gov/authorities/genreForms/gf2014026861">Holy Week music</pm>
-    <po href="http://id.loc.gov/authorities/genreForms/gf2014027005">polonaises (music)</po>
-    <pp href="http://id.loc.gov/authorities/genreForms/gf2014027009">popular music</pp>
-    <pr href="http://id.loc.gov/authorities/genreForms/gf2014027013">preludes (music)</pr>
-    <ps href="http://id.loc.gov/authorities/genreForms/gf2014026989">passacaglias</ps>
-    <pt href="http://id.loc.gov/authorities/genreForms/gf2014026984">part songs</pt>
-    <pv href="http://id.loc.gov/authorities/genreForms/gf2014026994">pavans (music)</pv>
-    <rc href="http://id.loc.gov/authorities/genreForms/gf2014027054">rock music</rc>
-    <rd href="http://id.loc.gov/authorities/genreForms/gf2014027057">rondos</rd>
-    <rg href="http://id.loc.gov/authorities/genreForms/gf2014027034">ragtime music</rg>
-    <ri href="http://id.loc.gov/authorities/genreForms/gf2017026128">ricercars</ri>
-    <rp href="http://id.loc.gov/authorities/genreForms/gf2014027051">rhapsodies (music)</rp>
-    <rq href="http://id.loc.gov/authorities/genreForms/gf2014027048">requiems</rq>
-    <sd href="http://id.loc.gov/authorities/genreForms/gf2014027111">square dance music</sd>
-    <sg href="http://id.loc.gov/authorities/genreForms/gf2014027103">songs</sg>
-    <sn href="http://id.loc.gov/authorities/genreForms/gf2014027099">sonatas</sn>
-    <sp href="http://id.loc.gov/authorities/genreForms/gf2014027120">symphonic poems</sp>
-    <st href="http://id.loc.gov/authorities/genreForms/gf2014027115">studies (music)</st>
-    <su href="http://id.loc.gov/authorities/genreForms/gf2014027116">suites</su>
-    <sy href="http://id.loc.gov/authorities/genreForms/gf2014027121">symphonies</sy>
-    <tc href="http://id.loc.gov/authorities/genreForms/gf2014027140">toccatas</tc>
-    <ts href="http://id.loc.gov/authorities/genreForms/gf2014027099">sonatas</ts>
-    <vi href="http://id.loc.gov/authorities/genreForms/gf2017026025">villancicos (music)</vi>
-    <vr href="http://id.loc.gov/authorities/genreForms/gf2014027156">variations (music)</vr>
-    <wz href="http://id.loc.gov/authorities/genreForms/gf2014027167">waltzes (music)</wz>
-    <za href="http://id.loc.gov/authorities/genreForms/gf2016026059">zarzuelas</za>
+    <po href="http://id.loc.gov/authorities/genreForms/gf2014027005">Polonaises (Music)</po>
+    <pp href="http://id.loc.gov/authorities/genreForms/gf2014027009">Popular music</pp>
+    <pr href="http://id.loc.gov/authorities/genreForms/gf2014027013">Preludes (Music)</pr>
+    <ps href="http://id.loc.gov/authorities/genreForms/gf2014026989">Passacaglias</ps>
+    <pt href="http://id.loc.gov/authorities/genreForms/gf2014026984">Part songs</pt>
+    <pv href="http://id.loc.gov/authorities/genreForms/gf2014026994">Pavans (Music)</pv>
+    <rc href="http://id.loc.gov/authorities/genreForms/gf2014027054">Rock music</rc>
+    <rd href="http://id.loc.gov/authorities/genreForms/gf2014027057">Rondos</rd>
+    <rg href="http://id.loc.gov/authorities/genreForms/gf2014027034">Ragtime music</rg>
+    <ri href="http://id.loc.gov/authorities/genreForms/gf2017026128">Ricercars</ri>
+    <rp href="http://id.loc.gov/authorities/genreForms/gf2014027051">Rhapsodies (Music)</rp>
+    <rq href="http://id.loc.gov/authorities/genreForms/gf2014027048">Requiems</rq>
+    <sd href="http://id.loc.gov/authorities/genreForms/gf2014027111">Square dance music</sd>
+    <sg href="http://id.loc.gov/authorities/genreForms/gf2014027103">Songs</sg>
+    <sn href="http://id.loc.gov/authorities/genreForms/gf2014027099">Sonatas</sn>
+    <sp href="http://id.loc.gov/authorities/genreForms/gf2014027120">Symphonic poems</sp>
+    <st href="http://id.loc.gov/authorities/genreForms/gf2014027115">Studies (Music)</st>
+    <su href="http://id.loc.gov/authorities/genreForms/gf2014027116">Suites</su>
+    <sy href="http://id.loc.gov/authorities/genreForms/gf2014027121">Symphonies</sy>
+    <tc href="http://id.loc.gov/authorities/genreForms/gf2014027140">Toccatas</tc>
+    <ts href="http://id.loc.gov/authorities/genreForms/gf2014027099">Sonatas</ts>
+    <vi href="http://id.loc.gov/authorities/genreForms/gf2017026025">Villancicos (Music)</vi>
+    <vr href="http://id.loc.gov/authorities/genreForms/gf2014027156">Variations (Music)</vr>
+    <wz href="http://id.loc.gov/authorities/genreForms/gf2014027167">Waltzes (Music)</wz>
+    <za href="http://id.loc.gov/authorities/genreForms/gf2016026059">Zarzuelas</za>
   </musicCompForm>
   <!-- music format -->
   <!-- used in 008/20 for music -->
@@ -288,24 +288,24 @@
   <!-- literary text for sound -->
   <!-- used in 008/30-31 for music -->
   <musicTextForm>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</a>
-    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">biographies</b>
-    <c href="http://id.loc.gov/authorities/genreForms/gf2014026068">conference papers and proceedings</c>
-    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">drama</d>
-    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">essays</e>
-    <f href="http://id.loc.gov/authorities/genreForms/gf2014026339">fiction</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2014026113">informational works</g>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2014026047">Autobiographies</a>
+    <b href="http://id.loc.gov/authorities/genreForms/gf2014026049">Biographies</b>
+    <c href="http://id.loc.gov/authorities/genreForms/gf2014026068">Conference papers and proceedings</c>
+    <d href="http://id.loc.gov/authorities/genreForms/gf2014026297">Drama</d>
+    <e href="http://id.loc.gov/authorities/genreForms/gf2014026094">Essays</e>
+    <f href="http://id.loc.gov/authorities/genreForms/gf2014026339">Fiction</f>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2014026113">Informational works</g>
     <h href="http://id.loc.gov/vocabulary/marcgt/his">history</h>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2014026114">instructional and educational works</i>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2014026114">Instructional and educational works</i>
     <j href="http://id.loc.gov/vocabulary/marcgt/lan">language instruction</j>
-    <k href="http://id.loc.gov/authorities/genreForms/gf2014026110">humor</k>
-    <l href="http://id.loc.gov/authorities/genreForms/gf2011026363">speeches</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2014026047">autobiographies</m>
-    <o href="http://id.loc.gov/authorities/genreForms/gf2014026344">folk tales</o>
-    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">poetry</p>
+    <k href="http://id.loc.gov/authorities/genreForms/gf2014026110">Humor</k>
+    <l href="http://id.loc.gov/authorities/genreForms/gf2011026363">Speeches</l>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2014026047">Autobiographies</m>
+    <o href="http://id.loc.gov/authorities/genreForms/gf2014026344">Folk tales</o>
+    <p href="http://id.loc.gov/authorities/genreForms/gf2014026481">Poetry</p>
     <r href="http://id.loc.gov/vocabulary/marcgt/reh">rehearsals</r>
-    <s href="http://id.loc.gov/authorities/genreForms/gf2011026594">sound recordings</s>
-    <t href="http://id.loc.gov/authorities/genreForms/gf2014026115">interviews</t>
+    <s href="http://id.loc.gov/authorities/genreForms/gf2011026594">Sound recordings</s>
+    <t href="http://id.loc.gov/authorities/genreForms/gf2014026115">Interviews</t>
   </musicTextForm>
   <!-- frequency -->
   <!-- used in 008/18 for continuing resources -->
@@ -375,24 +375,24 @@
   <!-- visual material type -->
   <!-- used in 008/33 for visual materials -->
   <visualtype>
-    <a href="http://id.loc.gov/authorities/genreForms/gf2017027218">art</a>
+    <a href="http://id.loc.gov/authorities/genreForms/gf2017027218">Art</a>
     <b href="http://id.loc.gov/vocabulary/marcgt/kit">kit</b>
     <c href="http://id.loc.gov/vocabulary/marcgt/art">art reproduction</c>
     <d href="http://id.loc.gov/vocabulary/marcgt/dio">diorama</d>
     <f href="http://id.loc.gov/vocabulary/marcgt/fls">filmstrip</f>
-    <g href="http://id.loc.gov/authorities/genreForms/gf2014026158">puzzles and games</g>
-    <i href="http://id.loc.gov/authorities/genreForms/gf2017027251">pictures</i>
+    <g href="http://id.loc.gov/authorities/genreForms/gf2014026158">Puzzles and games</g>
+    <i href="http://id.loc.gov/authorities/genreForms/gf2017027251">Pictures</i>
     <k href="http://id.loc.gov/vocabulary/marcgt/gra">graphic</k>
     <l href="http://id.loc.gov/vocabulary/marcgt/ted">technical drawing</l>
-    <m href="http://id.loc.gov/authorities/genreForms/gf2011026406">motion pictures</m>
+    <m href="http://id.loc.gov/authorities/genreForms/gf2011026406">Motion pictures</m>
     <n href="http://id.loc.gov/vocabulary/marcgt/cha">chart</n>
     <o href="http://id.loc.gov/vocabulary/marcgt/fla">flash card</o>
     <p href="http://id.loc.gov/vocabulary/marcgt/mic">microscope slide</p>
-    <q href="http://id.loc.gov/authorities/genreForms/gf2017027245">models (representations)</q>
+    <q href="http://id.loc.gov/authorities/genreForms/gf2017027245">Models (Representations)</q>
     <r href="http://id.loc.gov/vocabulary/marcgt/rea">realia</r>
     <s href="http://id.loc.gov/vocabulary/marcgt/sli">slide</s>
     <t href="http://id.loc.gov/vocabulary/marcgt/tra">transparency</t>
-    <v href="http://id.loc.gov/authorities/genreForms/gf2011026723">video recordings</v>
+    <v href="http://id.loc.gov/authorities/genreForms/gf2011026723">Video recordings</v>
     <w href="http://id.loc.gov/vocabulary/marcgt/toy">toy</w>
   </visualtype>
   <!-- technique -->
@@ -443,9 +443,9 @@
   <!-- capture storage  -->
   <!-- used in 007/12 for sound recordings -->
   <captureStorage> 
-    <a href="http://id.loc.gov/vocabulary/mcapturestorage/acds">Acoustical capture, direct storage</a>
-    <b href="http://id.loc.gov/vocabulary/mcapturestorage/dsna">Electrical capture, direct storage</b>
-    <d href="http://id.loc.gov/vocabulary/mcapturestorage/dist">Electrical capture, digital storage</d>
+    <a href="http://id.loc.gov/vocabulary/mcapturestorage/acds">Acoustical capture, Direct storage</a>
+    <b href="http://id.loc.gov/vocabulary/mcapturestorage/dsna">Electrical capture, Direct storage</b>
+    <d href="http://id.loc.gov/vocabulary/mcapturestorage/dist">Electrical capture, Digital storage</d>
     <e href="http://id.loc.gov/vocabulary/mcapturestorage/aes">Electrical capture, Analog electrical storage</e>
     <u href="http://id.loc.gov/vocabulary/mcapturestorage/unk">Unknown capture and storage</u>
   </captureStorage>
