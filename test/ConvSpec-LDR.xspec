@@ -20,7 +20,7 @@
     <x:expect label="pos 6 should create a content property of the Work" test="//bf:Work[1]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/txt'"/>
     <x:expect label="...unless content is derived by 336" test="//bf:Work[3]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/prm'"/>
     <x:expect label="pos 7 should set the issuance of the Instance" test="//bf:Instance[1]/bf:issuance/bf:Issuance/@rdf:about = 'http://id.loc.gov/vocabulary/issuance/mono'"/>
-    <x:expect label="pos 7 can also set the rdf:type of the Instance" test="//bf:Instance[3]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Collection'"/>
+    <x:expect label="pos 7 can set the rdf:type of the Work to Collection" test="//bf:Work[3]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Collection'"/>
     <x:expect label="pos 6-7 combination can set the rdf:type of the Instance" test="//bf:Instance[1]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Print'"/>
     <x:expect label="pos 8 can set the rdf:type of the Instance" test="//bf:Instance[4]/rdf:type[2]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Archival'"/>
     <x:expect label="pos 17 should set the encodingLevel in Work adminMetadata" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bflc:encodingLevel/bflc:EncodingLevel/rdfs:label = 'full'"/>
