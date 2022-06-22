@@ -22,8 +22,6 @@
       <xsl:when test="substring(.,7,1) = 't'">Manuscript</xsl:when>
       <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
       <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when>
-      <xsl:when test="substring(.,8,1) = 'c'">Collection</xsl:when>
-      <xsl:when test="substring(.,8,1) = 'd'">Collection</xsl:when>
     </xsl:choose>
   </xsl:template>
   
@@ -90,6 +88,17 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:variable name="additionalType">
+      <xsl:choose>
+        <xsl:when test="substring(.,8,1) = 'c'">Collection</xsl:when>
+        <xsl:when test="substring(.,8,1) = 'd'">Collection</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$additionalType != ''">
+      <rdf:type>
+        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf, $additionalType)"/></xsl:attribute>
+      </rdf:type>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:leader" mode="instance">
