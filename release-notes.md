@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v1.7.1
+
+Conversion updates based on specifications v1.7.1. See the Library of Congress' [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in this distribution in the [spec](spec/) directory. Changes of note:
+
+* Deduping between 007 and 008, and other MARC fields.
+
+* Convert MARC BibHubs to BF Hubs.
+
+* Frequency notes changed to status resources. Use Note URIs not labels.
+
+* Address issues #207 and #218.
+
+ 
 ## v1.7.0
 
 Conversion updates based on specifications v1.7. See the Library of Congress' [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in this distribution in the [spec](spec/) directory. Changes of note:

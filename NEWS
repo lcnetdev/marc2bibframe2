@@ -1,4 +1,4 @@
---- 1.8.0-SNAPSHOT
+--- 1.7.1 2022/06/23
 
 Bug fixes:
   Correct processing of $2 codes in 336/337/338 (https://github.com/lcnetdev/marc2bibframe2/issues/219)
