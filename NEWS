@@ -1,8 +1,37 @@
---- 1.8.0-SNAPSHOT
+--- 1.7.1 2022/06/23
 
+Changes towards updated v1.7.1 specifications:
+  ConvSpec-LDR:
+    Prefer 3XX content type value for Leader/06
+    bf:Collection from Instance to Work
+    Accommodate Leader/07=q (for BIbHubs)
+  ConvSpec-001-007: 
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Map characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Electronic Resource characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Globe characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Projected Graphic characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Microform characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Non-projeted Graphic characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Motion Picture characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Sound Recording characteristics.
+     Prefer MARC 3XX fields (336, 337, 338, etc.) for Video recording characteristics.
+  ConvSpec-006-008: 
+     Prefer MARC 3XX fields and 655 fields over 006/008 values if identical
+     Publication status
+  ConvSpec-010-048:
+     033 ind2 note label 'capture'
+     037 $b simple rdfs:label (not bf:source)
+  ConvSpec-3XX: 
+     Use Frequency status for 310 and 321.
+  ConvSpec-5XX: Handle experimental 587 field (for BibHubs).
+  ConvSpec-600-662:
+    Ignore $e and $4 on 6XX.
+    
 Bug fixes:
   Correct processing of $2 codes in 336/337/338 (https://github.com/lcnetdev/marc2bibframe2/issues/219)
-
+  https://github.com/lcnetdev/marc2bibframe2/issues/207
+  https://github.com/lcnetdev/marc2bibframe2/issues/218
+  
 --- 1.7.0 2021/10/25
 
 Changes towards updated v1.7 specifications:
