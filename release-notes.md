@@ -12,6 +12,8 @@ Conversion updates based on specifications v1.7.1. See the Library of Congress' 
 
 * Address issues #207 and #218.
 
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v1.7 in the specifications are marked in red.
+
  
 ## v1.7.0
 
