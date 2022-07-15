@@ -33,10 +33,10 @@
     <xsl:variable name="v880Title">
       <xsl:if test="marc:subfield[@code='6']">            
         <xsl:for-each select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
-          <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+          <xsl:variable name="v880Lang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
           <bf:mainTitle>       
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            <xsl:if test="$v880Lang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$v880Lang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="marc:subfield[@code='a']"/>
@@ -48,10 +48,10 @@
     <xsl:variable name="v880Enumeration">
       <xsl:if test="marc:subfield[@code='6']">            
         <xsl:for-each select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
-          <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+          <xsl:variable name="v880Lang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
           <bf:mainTitle>       
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            <xsl:if test="$v880Lang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$v880Lang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="marc:subfield[@code='v']"/>
@@ -140,10 +140,7 @@
                           <bf:mainTitle><xsl:value-of select="$vTitle"/></bf:mainTitle>
                            <xsl:if test="$v880Title !='' ">
                              <xsl:copy-of select="$v880Title"/>
-                          </xsl:if>
-                         <!-- <xsl:if test="$vEnumeration !='' ">
-                            <bf:partName><xsl:value-of select="$vEnumeration"/></bf:partName>
-                          </xsl:if>-->
+                          </xsl:if>                        
                         </bf:Title>
                       </bf:title>
                       <xsl:if test="$vParallelTitle!='' ">
