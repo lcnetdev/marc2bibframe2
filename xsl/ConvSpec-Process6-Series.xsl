@@ -29,15 +29,18 @@
             <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
             <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
           </xsl:apply-templates>
-        </xsl:variable
-      <xsl:variable name="hasParallel">
+        </xsl:variable>
+      
+        <xsl:variable name="hasParallel">
         <xsl:choose>
           <xsl:when test="count(marc:subfield[@code='a']) &gt; 1 and
             (substring(marc:subfield[@code='a'][1],string-length(marc:subfield[@code='a'][1])) = '=' or
-            substring(marc:subfield[@code='v'][1],string-length(marc:subfield[@code='v'][1])) = '=')"><xsl:value-of select="true()"/></xsl:when>
+            substring(marc:subfield[@code='v'][1],string-length(marc:subfield[@code='v'][1])) = '=')">
+              <xsl:value-of select="true()"/>
+          </xsl:when>
           <xsl:otherwise><xsl:value-of select="true()"/></xsl:otherwise>
         </xsl:choose>
-      </xsl:variable>
+        </xsl:variable>
     <!--for 880 pairing-->
     <xsl:variable name="vOccurrence">
       <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
