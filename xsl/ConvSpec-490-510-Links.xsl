@@ -15,7 +15,7 @@
   
   <!--uses wayne's code START HERE -->
   <!--or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490')-->
-  <xsl:template match="marc:datafield[@tag='490' ]" mode="work">
+  <xsl:template match="marc:datafield[@tag='490']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="hasParallel">
@@ -54,7 +54,7 @@
               <xsl:attribute name="xml:lang"><xsl:value-of select="$v880Lang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="marc:subfield[@code='v']"/>
+              <xsl:with-param name="pString" select="normalize-space(marc:subfield[@code='v'])"/>
             </xsl:call-template>
           </bf:mainTitle>
         </xsl:for-each>
@@ -63,8 +63,8 @@
     <xsl:for-each select="marc:subfield[@code='a']">
       <xsl:choose>
         <!--skip secondary subfield a's if hasparallel; don't build a new one-->
-        <xsl:when test="preceding-sibling::subfield[@code='a'] and $hasParallel">
-          <xsl:message >skipping bulding series because this is a jus parallel title</xsl:message>
+        <xsl:when test="preceding-sibling::marc:subfield[@code='a'] and $hasParallel">
+        <!--  <xsl:message >skipping bulding series because this is  just a parallel title</xsl:message>-->
         </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
