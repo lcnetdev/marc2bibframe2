@@ -69,21 +69,20 @@
         <xsl:otherwise>
           <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
           <xsl:variable name="vTitle">
-            <xsl:choose>
-              <xsl:when test="$hasParallel">
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                  <xsl:with-param name="pEndPunct" select="'='"/>
-                </xsl:call-template>               
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                  <xsl:with-param name="pEndPunct" select="';,'"/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>            
-          </xsl:variable> 
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="."/>
+              <xsl:with-param name="pEndPunct">
+                <xsl:choose>
+                  <xsl:when test="$hasParallel">                
+                    <xsl:value-of select="'='"/>
+                  </xsl:when>
+                <xsl:otherwise>                
+                  <xsl:value-of select="';,'"/>           
+               </xsl:otherwise>
+                </xsl:choose>            
+              </xsl:with-param>
+            </xsl:call-template>
+           </xsl:variable> 
           
           <xsl:variable name="vParallelTitle">
              <xsl:for-each select="following-sibling::marc:subfield[@code='a'][text()]">
@@ -191,7 +190,7 @@
                   <xsl:if test="$vEnumeration !='' ">
                     <bf:seriesEnumeration><xsl:value-of select="$vEnumeration"/></bf:seriesEnumeration>
                   </xsl:if>
-                  <xsl:if test="$v880Enumeration !='' ">
+                  <xsl:if test="$v880Enumeration !='' and not($vEnumeration=$v880Enumeration) ">
                     <bf:seriesEnumeration><xsl:value-of select="$v880Enumeration"/></bf:seriesEnumeration>
                   </xsl:if>
                 </bflc:Relationship>                         

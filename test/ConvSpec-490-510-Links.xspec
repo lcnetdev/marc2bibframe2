@@ -12,10 +12,11 @@
 
   <x:scenario label="490 - SERIES STATEMENT">
     <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
-    <x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Instance" test="count(//bf:Instance[1]/bf:seriesStatement) = 4"/>
-    <x:expect label="seriesStatement constructed from $axv" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>
+    <x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 8"/>
+    <!--<x:expect label="seriesStatement constructed from $axv" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
+    <!--<x:expect label="seriesStatement constructed from $axv" test="//Work[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
     <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Instance[1]/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
-    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>
+    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>
   </x:scenario>
   
   <x:scenario label="510 - CITATION/REFERENCES NOTE">
