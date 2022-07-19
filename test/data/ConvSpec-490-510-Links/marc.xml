@@ -62,9 +62,9 @@
       <subfield code="3">dlc</subfield>
       <subfield code="a">Two Papers and documents in a series ;</subfield>
       <subfield code="v">no. 3 =</subfield>
-      <subfield code="l">linking issn</subfield>
+      <subfield code="l">lcclass</subfield>
       <subfield code="x">1234-5678 ;</subfield>
-      <subfield code="z">no 3</subfield>
+      <subfield code="z">1234-5999</subfield>
       
     </datafield>
     <datafield tag="490" ind1="0" ind2=" ">
