@@ -17,15 +17,8 @@
     <xsl:variable name="vXIssn">
       <xsl:value-of select="normalize-space(marc:subfield[@code = 'x'])"/>
     </xsl:variable>
-    <xsl:choose>
-      <!--there's a matching issn between 490 and 8xx, or even there's supposed to be a link and I found an 8xx: use the 8xx and  supplement 490 issn if necessary -->
-      <xsl:when
-        test="normalize-space(../marc:datafield[@tag = '800' or @tag = '810' or @tag = '811' or @tag = '830'][1]/marc:subfield[@code = 'x']) = $vXIssn
-        or        
-        @ind1=1 and ../marc:datafield[@tag = '800' or @tag = '810' or @tag = '811' or @tag = '830'] ">
-        <!--<xsl:message>skip this 490 and use the 8xx</xsl:message>       -->
-      </xsl:when>
-      <xsl:otherwise>
+    <!--490 and 880 are now decoupled -->
+  
         <!--from here down, make a series hub-->
         <xsl:variable name="vHubIri">
           <xsl:apply-templates mode="generateUri" select=".">
@@ -116,7 +109,6 @@
                   </xsl:with-param>
                 </xsl:call-template>
               </xsl:variable>
-
               <xsl:variable name="vParallelTitle">
                 <xsl:for-each select="following-sibling::marc:subfield[@code = 'a'][text()]">
                   <xsl:variable name="vParallelNode" select="generate-id(.)"/>
@@ -249,9 +241,7 @@
                                 <xsl:value-of select="$vAppliesTo"/>
                               </bflc:AppliesTo>
                             </bflc:appliesTo>
-
                           </xsl:if>
-
                         </bf:Hub>
                       </bf:relatedTo>
                       <xsl:if test="$vEnumeration != ''">
@@ -266,19 +256,14 @@
                         </bf:seriesEnumeration>
                       </xsl:if>
                     </bflc:Relationship>
-
                   </bflc:relationship>
-
                 </xsl:when>
               </xsl:choose>
-
               <!--end building a series  -->
             </xsl:otherwise>
           </xsl:choose>
         </xsl:for-each>
-        <!--not paired with 8xx-->
-      </xsl:otherwise>
-    </xsl:choose>
+        
   </xsl:template>
   <xsl:template
     match="
@@ -388,101 +373,52 @@
                     <xsl:with-param name="serialization" select="$serialization"/>
                     <xsl:with-param name="pIdClass" select="$vIdClass"/>
                   </xsl:apply-templates>
+                </xsl:for-each>              
+                <xsl:for-each select="marc:subfield[@code = 'x']">
+                    <bf:identifiedBy>
+                      <bf:Issn>
+                        <rdf:value>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="."/>
+                          </xsl:call-template>
+                        </rdf:value>
+                      </bf:Issn>
+                    </bf:identifiedBy>
+                  </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code = 'y']">
+                  <bf:identifiedBy>
+                    <bf:Issn>
+                      <rdf:value>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </rdf:value>
+                      <bf:status>
+                        <bf:Status
+                          rdf:about="http://id.loc.gov/vocabulary/mstatus/incorrect">
+                          <rdfs:label>incorrect</rdfs:label>
+                        </bf:Status>
+                      </bf:status>
+                    </bf:Issn>
+                  </bf:identifiedBy>
                 </xsl:for-each>
-                <xsl:choose>
-                  <xsl:when test="marc:subfield[@code = 'x']">
-                    <xsl:for-each select="marc:subfield[@code = 'x']">
-                      <bf:identifiedBy>
-                        <bf:Issn>
-                          <rdf:value>
-                            <xsl:call-template name="tChopPunct">
-                              <xsl:with-param name="pString" select="."/>
-                            </xsl:call-template>
-                          </rdf:value>
-                        </bf:Issn>
-                      </bf:identifiedBy>
-                    </xsl:for-each>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:if
-                      test="substring($vTag, 1, 1) = '8' and count(../marc:datafield[@tag = '490' and @ind1 = '1']) &gt; 0">
-                      <xsl:variable name="vLcc">
-                        <xsl:call-template name="tIdentifier490">
-                          <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                          <xsl:with-param name="pCode">l</xsl:with-param>
+                <xsl:for-each select="marc:subfield[@code = 'z']">
+                  <bf:identifiedBy>
+                    <bf:Issn>
+                      <rdf:value>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:if test="$vLcc != ''">
-                        <bf:classification>
-                          <bf:ClassificationLcc>
-                            <bf:assigner>
-                              <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                            </bf:assigner>
-                            <bf:classificationPortion>
-                              <xsl:value-of select="$vLcc"/>
-                            </bf:classificationPortion>
-                          </bf:ClassificationLcc>
-                        </bf:classification>
-                      </xsl:if>
-                      <xsl:variable name="vIssn">
-                        <xsl:call-template name="tIdentifier490">
-                          <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                          <xsl:with-param name="pCode">x</xsl:with-param>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:if test="$vIssn != ''">
-                        <bf:identifiedBy>
-                          <bf:Issn>
-                            <rdf:value>
-                              <xsl:value-of select="$vIssn"/>
-                            </rdf:value>
-                          </bf:Issn>
-                        </bf:identifiedBy>
-                      </xsl:if>
-                      <xsl:variable name="vYIssn">
-                        <xsl:call-template name="tIdentifier490">
-                          <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                          <xsl:with-param name="pCode">y</xsl:with-param>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:if test="$vYIssn != ''">
-                        <bf:identifiedBy>
-                          <bf:Issn>
-                            <rdf:value>
-                              <xsl:value-of select="$vYIssn"/>
-                            </rdf:value>
-                            <bf:status>
-                              <bf:Status
-                                rdf:about="http://id.loc.gov/vocabulary/mstatus/incorrect">
-                                <rdfs:label>incorrect</rdfs:label>
-                              </bf:Status>
-                            </bf:status>
-                          </bf:Issn>
-                        </bf:identifiedBy>
-                      </xsl:if>
-                      <xsl:variable name="vZIssn">
-                        <xsl:call-template name="tIdentifier490">
-                          <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                          <xsl:with-param name="pCode">z</xsl:with-param>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:if test="$vZIssn != ''">
-                        <bf:identifiedBy>
-                          <bf:Issn>
-                            <rdf:value>
-                              <xsl:value-of select="$vZIssn"/>
-                            </rdf:value>
-                            <bf:status>
-                              <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/cancinv">
-                                <rdfs:label>canceled</rdfs:label>
-                              </bf:Status>
-                            </bf:status>
-                          </bf:Issn>
-                        </bf:identifiedBy>
-                      </xsl:if>
-                    </xsl:if>
-                  </xsl:otherwise>
-                </xsl:choose>
+                      </rdf:value>
+                      <bf:status>
+                        <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/cancinv">
+                          <rdfs:label>canceled</rdfs:label>
+                        </bf:Status>
+                      </bf:status>
+                    </bf:Issn>
+                  </bf:identifiedBy>
+                </xsl:for-each>              
+              
                 <!-- $3 processed by hubUnifTitle template -->
                 <xsl:apply-templates mode="subfield5" select="marc:subfield[@code = '5']">
                   <xsl:with-param name="serialization" select="$serialization"/>
@@ -492,28 +428,12 @@
                 </xsl:apply-templates>
               </bf:Hub>
             </bf:relatedTo>
-            <xsl:variable name="vStatement">
-              <xsl:call-template name="tIdentifier490">
-                <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                <xsl:with-param name="pCode">a</xsl:with-param>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:if test="$vStatement != ''">
+            <xsl:for-each select="marc:subfield[@code = 'v']">
               <bf:seriesStatement>
-                <xsl:value-of select="$vStatement"/>
-              </bf:seriesStatement>
-            </xsl:if>
-            <xsl:variable name="vEnumeration">
-              <xsl:call-template name="tIdentifier490">
-                <xsl:with-param name="pLastPos" select="$pCurrentPos"/>
-                <xsl:with-param name="pCode">v</xsl:with-param>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:if test="$vEnumeration != ''">
-              <bf:seriesEnumeration>
-                <xsl:value-of select="$vEnumeration"/>
-              </bf:seriesEnumeration>
-            </xsl:if>
+                <xsl:value-of  select="."/>                
+              </bf:seriesStatement>                
+            </xsl:for-each>
+            
           </bflc:Relationship>
         </bflc:relationship>
 
