@@ -9,27 +9,32 @@
                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
-
-  <x:scenario label="490/8XX SERIES STATEMENT and SERIES ADDED ENTRY">
+  <x:scenario label="490 - SERIES STATEMENT">
+    <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
+    <x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 8"/>
+    <!--<x:expect label="seriesStatement constructed from $axv" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
+    <!--<x:expect label="seriesStatement constructed from $axv" test="//Work[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
+    <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
+    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>
+  </x:scenario>
+  
+  <x:scenario label="8XX SERIES STATEMENT and SERIES ADDED ENTRY">
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
-    <x:expect label="Each 8XX creates a hasSeries/Hub property of the Work" test="count(//bf:Work/bf:hasSeries/bf:Hub) = 9"/>
-    <x:expect label="Title subfields become title/Title/mainTitle property of Hub" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
-    <x:expect label="8XX can create a contribution property of the Hub" test="//bf:Work[4]/bf:hasSeries[1]/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
-    <x:expect label="8XX with no matching 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Fernando, A. Denis N. Resource maps of Sri Lanka ; pt. 2'"/>
-    <x:expect label="8XX $w creates an identifiedBy/Identifier property of the Hub" test="//bf:Work[1]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Identifier/rdf:value = '550955267'"/>
-    <x:expect label="...with an assigner from the prefixed parenthetical" test="//bf:Work[1]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Identifier/bf:assigner/bf:Agent/bf:code = 'DE-101'"/>
-    <x:expect label="...unless the source is DLC, in which case create an identifiedBy/Lccn" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Lccn/rdf:value = '83641640'"/>
-    <x:expect label="...with a assigner property with the DLC URI" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Lccn/bf:assigner/bf:Agent/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
-    <x:expect label="8XX $x creates an identifiedBy/Issn property of the Hub" test="//bf:Work[2]/bf:hasSeries[2]/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '0276-4733'"/>
-    <x:expect label="...with fallback to associated 490 $x" test="//bf:Work[3]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '8765-4321'"/>
+    <x:expect label="Each 8XX creates a related (hasSeries) Hub property of the Work" test="count(//bf:Work/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 9"/>
+    <x:expect label="Title subfields become title/Title/mainTitle property of Hub" test="////bf:Work/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
+    <x:expect label="8XX can create a contribution property of the Hub" test="//bf:Work[4]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
+    <x:expect label="8XX $w creates an identifiedBy/Identifier property of the Hub" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Identifier/rdf:value = '550955267'"/>
+    <x:expect label="...with an assigner from the prefixed parenthetical" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Identifier/bf:assigner/bf:Agent/bf:code = 'DE-101'"/>
+    <x:expect label="...unless the source is DLC, in which case create an identifiedBy/Lccn" test="//bf:Work[2]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Lccn/rdf:value = '83641640'"/>
+    <x:expect label="...with a assigner property with the DLC URI" test="//bf:Work[2]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Lccn/bf:assigner/bf:Agent/@rdf:about='http://id.loc.gov/vocabulary/organizations/dlc'"/>
+    <x:expect label="8XX $x creates an identifiedBy/Issn property of the Hub" test="//bf:Work[2]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '0276-4733'"/>
+    <x:expect label="...with fallback to associated 490 $x" test="//bf:Work[3]bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '8765-4321'"/>
     <x:expect label="8XX $3 creates a bflc:appliesTo property of the Hub" test="//bf:Work[2]/bf:hasSeries[1]/bf:Hub/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1969-1979'"/>
-    <x:expect label="8XX $7 sets the rdf:type of the Hub" test="//bf:Work[3]/bf:hasSeries/bf:Hub/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Text'"/>
-    <x:expect label="8XX $7 sets the issuance of the Hub" test="//bf:Work[3]/bf:hasSeries/bf:Hub/bf:issuance/bf:Issuance/bf:code = 's'"/>
-    <x:expect label="Subseries in 490 with repeated $a matches multiple 8XX" test="//bf:Work[4]/bf:hasSeries[2]/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '2345-6789'"/>
-    <x:expect label="Two 8XX, one 490 - second 8XX should generate seriesStatement property on Instance"
-              test="//bf:Instance[6]/bf:seriesStatement[2] = 'Zoku Teikoku bunko ; dai 34-hen, etc.'"/>
-    <x:expect label="Two 830s, one 490 with $x - Subseries in 490 with single $a matches first 8XX (recursion issue, plus added scenario)" test="//bf:Work[6]/bf:hasSeries[1]/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = 'issn123456789'"/>
-    <x:expect label="Obsolete 4XX fields treated like 8XX without 490 match" test="//bf:Work[5]/bf:hasSeries[1]/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
+    <x:expect label="8XX $7 sets the rdf:type of the Hub" test="//bf:Work[3]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Series'"/>
+    <x:expect label="8XX $7 sets the issuance of the Hub" test="//bf:Work[3]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:issuance/bf:Issuance/bf:code = 's'"/>
+    <x:expect label="Subseries in 490 with repeated $a matches multiple 8XX" test="//bf:Work[4]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '2345-6789'"/>
+    <x:expect label="Two 830s, one 490 with $x - Subseries in 490 with single $a matches first 8XX (recursion issue, plus added scenario)" test="//bf:Work[6]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = 'issn123456789'"/>
+    <x:expect label="Obsolete 4XX fields treated like 8XX without 490 match" test="//bf:Work[5]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
   </x:scenario>
 
 </x:description>

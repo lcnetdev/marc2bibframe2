@@ -14,6 +14,9 @@
     <xsl:variable name="vXmlLang">
       <xsl:apply-templates select="." mode="xmllang"/>
     </xsl:variable>
+    <xsl:variable name="vUncontrolled">       
+      <xsl:if test="@ind1 = '0'">uncontrolled</xsl:if>          
+    </xsl:variable>
     <xsl:variable name="vXIssn">
       <xsl:value-of select="normalize-space(marc:subfield[@code = 'x'])"/>
     </xsl:variable>
@@ -71,8 +74,7 @@
               select="../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '490' and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $vOccurrence]">
               <xsl:variable name="v880Lang">
                 <xsl:apply-templates select="." mode="xmllang"/>
-              </xsl:variable>
-              <bf:mainTitle>
+              </xsl:variable>          
                 <xsl:if test="$v880Lang != ''">
                   <xsl:attribute name="xml:lang">
                     <xsl:value-of select="$v880Lang"/>
@@ -81,8 +83,7 @@
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString"
                     select="normalize-space(marc:subfield[@code = 'v'])"/>
-                </xsl:call-template>
-              </bf:mainTitle>
+                </xsl:call-template>              
             </xsl:for-each>
           </xsl:if>
         </xsl:variable>
@@ -166,8 +167,15 @@
                           <xsl:attribute name="rdf:about">
                             <xsl:value-of select="$vHubIri"/>
                           </xsl:attribute>
-                          <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
-                          <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
+                          <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>                          
+                          <xsl:if test="$vUncontrolled != ''">
+                            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
+                          </xsl:if>
+                          <bf:status>
+                            <bf:Status  rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
+                              <rdfs:label>transcribed</rdfs:label>
+                            </bf:Status>
+                          </bf:status>
                           <bf:title>
                             <bf:Title>
                               <bf:mainTitle>
@@ -221,6 +229,7 @@
                               </bf:status>
                             </identifiedBy>
                           </xsl:if>
+                          
                           <xsl:if test="$vLcc != ''">
                             <bf:classification>
                               <bf:ClassificationLcc>
@@ -235,14 +244,15 @@
                             </bf:classification>
 
                           </xsl:if>
-                          <xsl:if test="$vAppliesTo != ''">
-                            <bflc:appliesTo>
-                              <bflc:AppliesTo>
-                                <xsl:value-of select="$vAppliesTo"/>
-                              </bflc:AppliesTo>
-                            </bflc:appliesTo>
-                          </xsl:if>
+                                                   
                         </bf:Hub>
+                        <xsl:if test="$vAppliesTo != ''">
+                          <bflc:appliesTo>
+                            <bflc:AppliesTo>
+                              <xsl:value-of select="$vAppliesTo"/>
+                            </bflc:AppliesTo>
+                          </bflc:appliesTo>
+                        </xsl:if>
                       </bf:relatedTo>
                       <xsl:if test="$vEnumeration != ''">
                         <bf:seriesEnumeration>
@@ -348,20 +358,20 @@
                   <xsl:value-of select="$vHubIri"/>
                 </xsl:attribute>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
-                <xsl:choose>
-                  <xsl:when test="$vTag = '830' or $vTag = '440'">
+                <!--<xsl:choose>
+                  <xsl:when test="$vTag = '830' or $vTag = '440'">-->
                     <xsl:apply-templates mode="hubUnifTitle" select=".">
                       <xsl:with-param name="serialization" select="$serialization"/>
                       <xsl:with-param name="pLabel" select="$vLabel"/>
                     </xsl:apply-templates>
-                  </xsl:when>
-                  <xsl:otherwise>
+                <!--</xsl:when>
+                  <xsl:otherwise>-->
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
-                  </xsl:otherwise>
-                </xsl:choose>
+                  <!--</xsl:otherwise>
+                </xsl:choose>-->
                 <xsl:for-each select="marc:subfield[@code = 'w']">
                   <xsl:variable name="vIdClass">
                     <xsl:choose>
@@ -429,9 +439,9 @@
               </bf:Hub>
             </bf:relatedTo>
             <xsl:for-each select="marc:subfield[@code = 'v']">
-              <bf:seriesStatement>
+              <bf:seriesEnumeration>
                 <xsl:value-of  select="."/>                
-              </bf:seriesStatement>                
+              </bf:seriesEnumeration>                
             </xsl:for-each>
             
           </bflc:Relationship>
