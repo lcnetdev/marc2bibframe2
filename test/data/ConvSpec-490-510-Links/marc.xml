@@ -94,6 +94,19 @@
       <subfield code="6">490-03/$1</subfield>
       <subfield code="a">ロマン・ブックス</subfield>
     </datafield>
+    <datafield ind1="0" ind2=" " tag="800">
+    <subfield code="6">490-03/$1</subfield>
+      <subfield code="a">creator of 800</subfield>
+    <subfield code="t">title of 800</subfield>
+      <subfield code="n">part number</subfield>
+      <subfield code="p">part name</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="830">
+      <subfield code="6">490-03/$1</subfield>
+      <subfield code="a">test of 800title </subfield>
+      <subfield code="n">part number</subfield>
+      <subfield code="p">part name</subfield>
+    </datafield>
     <datafield tag="510" ind1="4" ind2=" ">
       <subfield code="a">Index Medicus,</subfield>
       <subfield code="x">0019-3879,</subfield>

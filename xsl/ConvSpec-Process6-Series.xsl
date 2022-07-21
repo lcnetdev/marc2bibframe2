@@ -74,16 +74,19 @@
               select="../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '490' and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $vOccurrence]">
               <xsl:variable name="v880Lang">
                 <xsl:apply-templates select="." mode="xmllang"/>
-              </xsl:variable>          
-                <xsl:if test="$v880Lang != ''">
-                  <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="$v880Lang"/>
-                  </xsl:attribute>
+              </xsl:variable>
+              <bf:seriesEnumeration>
+                <xsl:if test="$v880Lang != ''">                
+                    <xsl:attribute name="xml:lang">
+                      <xsl:value-of select="$v880Lang"/>
+                    </xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString"
-                    select="normalize-space(marc:subfield[@code = 'v'])"/>
-                </xsl:call-template>              
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString"
+                        select="normalize-space(marc:subfield[@code = 'v'])"/>
+                    </xsl:call-template>                  
+              </bf:seriesEnumeration>
+                              
             </xsl:for-each>
           </xsl:if>
         </xsl:variable>
@@ -261,9 +264,9 @@
                       </xsl:if>
                       <xsl:if
                         test="$v880Enumeration != '' and not($vEnumeration = $v880Enumeration)">
-                        <bf:seriesEnumeration>
-                          <xsl:value-of select="$v880Enumeration"/>
-                        </bf:seriesEnumeration>
+                        
+                          <xsl:copy-of select="$v880Enumeration"/>
+                        
                       </xsl:if>
                     </bflc:Relationship>
                   </bflc:relationship>
@@ -358,20 +361,49 @@
                   <xsl:value-of select="$vHubIri"/>
                 </xsl:attribute>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
-                <!--<xsl:choose>
-                  <xsl:when test="$vTag = '830' or $vTag = '440'">-->
+               <xsl:choose>
+                  <xsl:when test="$vTag = '830' or $vTag = '440'">
                     <xsl:apply-templates mode="hubUnifTitle" select=".">
                       <xsl:with-param name="serialization" select="$serialization"/>
                       <xsl:with-param name="pLabel" select="$vLabel"/>
                     </xsl:apply-templates>
-                <!--</xsl:when>
-                  <xsl:otherwise>-->
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:if test="marc:subfield[@code='t' or @code='n' or @code='p']">
+                      <bf:title><bf:Title>
+                    <xsl:for-each select="marc:subfield[@code='t']">
+                      
+                      <bf:maintitle>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </bf:maintitle>
+                    </xsl:for-each>
+                      <xsl:for-each select="marc:subfield[@code='n']">
+                        <bf:partNumber>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="."/>
+                          </xsl:call-template>
+                        </bf:partNumber>
+                      </xsl:for-each>
+                        <xsl:for-each select="marc:subfield[@code='p']">
+                          <bf:partName>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="."/>
+                          </xsl:call-template>
+                        </bf:partName>
+                      </xsl:for-each>
+                      </bf:Title></bf:title>
+                    </xsl:if>
+                  </xsl:otherwise>
+               </xsl:choose>
+                <xsl:if  test="$vTag != '830' and $vTag != '440'">
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
-                  <!--</xsl:otherwise>
-                </xsl:choose>-->
+                </xsl:if>
+                 
                 <xsl:for-each select="marc:subfield[@code = 'w']">
                   <xsl:variable name="vIdClass">
                     <xsl:choose>
