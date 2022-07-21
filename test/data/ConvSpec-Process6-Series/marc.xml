@@ -8,7 +8,7 @@
       <subfield code="w">(DE-101)550955267</subfield>
     </datafield>
   </record>
-  <record>
+<!--  <record>
     <controlfield tag="001">2</controlfield>
     <datafield tag="490" ind1="1" ind2=" ">
       <subfield code="a">DHEW publication</subfield>
@@ -112,4 +112,4 @@
         <subfield code="v">no 3</subfield>
       </datafield>   
    </record>
-  </collection>
+-->  </collection>

@@ -10,17 +10,17 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
   <x:scenario label="490 - SERIES STATEMENT">
-    <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
-    <x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 8"/>
-    <!--<x:expect label="seriesStatement constructed from $axv" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
-    <!--<x:expect label="seriesStatement constructed from $axv" test="//Work[1]/bf:seriesStatement[1] = 'Lund studies in geography, 1400-1144 ; 101'"/>-->
+    <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
+    <!--<x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 1"/>
+    
     <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
-    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>
+    <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>-->
   </x:scenario>
   
   <x:scenario label="8XX SERIES STATEMENT and SERIES ADDED ENTRY">
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
-    <x:expect label="Each 8XX creates a related (hasSeries) Hub property of the Work" test="count(//bf:Work/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 9"/>
+    <x:expect label="Each 8XX  creates a hasSeries Hub property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 1"/>
+    <!--<x:expect label="Each 8XX creates a related (hasSeries) Hub property of the Work" test="count(//bf:Work/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 9"/>
     <x:expect label="Title subfields become title/Title/mainTitle property of Hub" test="////bf:Work/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'DHEW publication'"/>
     <x:expect label="8XX can create a contribution property of the Hub" test="//bf:Work[4]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'United States. Department of State.'"/>
     <x:expect label="8XX $w creates an identifiedBy/Identifier property of the Hub" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Identifier/rdf:value = '550955267'"/>
@@ -35,6 +35,7 @@
     <x:expect label="Subseries in 490 with repeated $a matches multiple 8XX" test="//bf:Work[4]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '2345-6789'"/>
     <x:expect label="Two 830s, one 490 with $x - Subseries in 490 with single $a matches first 8XX (recursion issue, plus added scenario)" test="//bf:Work[6]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = 'issn123456789'"/>
     <x:expect label="Obsolete 4XX fields treated like 8XX without 490 match" test="//bf:Work[5]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Resource maps of Sri Lanka'"/>
-  </x:scenario>
+  -->
+    </x:scenario>
 
 </x:description>
