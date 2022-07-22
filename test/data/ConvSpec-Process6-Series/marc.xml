@@ -4,9 +4,42 @@
     <datafield tag="800" ind1="1" ind2=" ">
       <subfield code="a">Fernando, A. Denis N.</subfield>
       <subfield code="t">Resource maps of Sri Lanka ;</subfield>
+      <subfield code="n">partnum ;</subfield>
+      <subfield code="p">Part Name ;</subfield>
+      
       <subfield code="v">pt. 2.</subfield>
       <subfield code="w">(DE-101)550955267</subfield>
     </datafield>
+    <datafield tag="830" ind1="1" ind2=" ">
+      <subfield code="3">1980</subfield>
+      <subfield code="a">DHEW publication,</subfield>
+      <subfield code="x">0090-0206</subfield>
+      
+    </datafield>    
+    
+  </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Conference proceedings =</subfield>
+      <subfield code="a">Atti di conferenze ;</subfield>
+      <subfield code="v">v. 27</subfield>
+    </datafield>
+    
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Department of State publication ;</subfield>
+      <subfield code="v">7846</subfield>
+      <subfield code="a">Department and Foreign Service series ;</subfield>
+      <subfield code="x">2345-6789</subfield>
+      <subfield code="v">128</subfield>
+    </datafield>
+   
+    
+    
+    
   </record>
 <!--  <record>
     <controlfield tag="001">2</controlfield>

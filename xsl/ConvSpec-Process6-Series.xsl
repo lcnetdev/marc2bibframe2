@@ -21,27 +21,15 @@
       <xsl:value-of select="normalize-space(marc:subfield[@code = 'x'])"/>
     </xsl:variable>
     <!--490 and 880 are now decoupled -->
-  
-        <!--from here down, make a series hub-->
-        <xsl:variable name="vHubIri">
-          <xsl:apply-templates mode="generateUri" select=".">
-            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-            <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
-          </xsl:apply-templates>
-        </xsl:variable>
-
+           
         <xsl:variable name="hasParallel">
           <xsl:choose>
             <xsl:when
               test="
                 count(marc:subfield[@code = 'a']) &gt; 1 and
                 (substring(marc:subfield[@code = 'a'][1], string-length(marc:subfield[@code = 'a'][1])) = '=' or
-                substring(marc:subfield[@code = 'v'][1], string-length(marc:subfield[@code = 'v'][1])) = '=')">
-              <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="true()"/>
-            </xsl:otherwise>
+                substring(marc:subfield[@code = 'v'][1], string-length(marc:subfield[@code = 'v'][1])) = '=')">parallel</xsl:when>
+            <xsl:otherwise>separate</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
         <!--for 880 pairing-->
@@ -90,13 +78,13 @@
             </xsl:for-each>
           </xsl:if>
         </xsl:variable>
-        <xsl:for-each select="marc:subfield[@code = 'a']">
-          <xsl:choose>
-            <!--skip secondary subfield a's if hasparallel; don't build a new one-->
-            <xsl:when test="preceding-sibling::marc:subfield[@code = 'a'] and $hasParallel">
-              <!--  <xsl:message >skipping bulding series because this is  just a parallel title</xsl:message>-->
+        <xsl:for-each select="marc:subfield[@code = 'a']">          
+          <xsl:choose>            
+            <xsl:when test="preceding-sibling::*[@code = 'a'] and $hasParallel = 'parallel'">
+            <!-- skip this a; it's the parallel title on the previous Hub-->
             </xsl:when>
             <xsl:otherwise>
+              <!--<build a new rel-->
               <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
               <xsl:variable name="vTitle">
                 <xsl:call-template name="tChopPunct">
@@ -113,7 +101,15 @@
                   </xsl:with-param>
                 </xsl:call-template>
               </xsl:variable>
+              <xsl:variable name="vPosition"><xsl:value-of select="position() * $pPosition"/></xsl:variable>
+              <xsl:variable name="vHubIri">
+                <xsl:apply-templates mode="generateUri" select="parent::marc:datafield">
+                  <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="../@tag"/>-<xsl:value-of select="$vPosition"/></xsl:with-param>
+                  <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+                </xsl:apply-templates>
+              </xsl:variable>
               <xsl:variable name="vParallelTitle">
+                <xsl:if test="$hasParallel = 'parallel' ">
                 <xsl:for-each select="following-sibling::marc:subfield[@code = 'a'][text()]">
                   <xsl:variable name="vParallelNode" select="generate-id(.)"/>
                   <xsl:variable name="vParallelEnumeration">
@@ -132,6 +128,7 @@
                     </bf:ParallelTitle>
                   </bf:title>
                 </xsl:for-each>
+                </xsl:if>
               </xsl:variable>
               <xsl:variable name="vLcc">
                 <xsl:value-of
@@ -233,22 +230,23 @@
                             </identifiedBy>
                           </xsl:if>
                           
-                          <xsl:if test="$vLcc != ''">
-                            <bf:classification>
-                              <bf:ClassificationLcc>
-                                <bf:assigner>
-                                  <bf:Agent
-                                    rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                                </bf:assigner>
-                                <bf:classificationPortion>
-                                  <xsl:value-of select="$vLcc"/>
-                                </bf:classificationPortion>
-                              </bf:ClassificationLcc>
-                            </bf:classification>
-
-                          </xsl:if>
-                                                   
+                          
                         </bf:Hub>
+                        <xsl:if test="$vLcc != ''">
+                          <bf:classification>
+                            <bf:ClassificationLcc>
+                              <bf:assigner>
+                                <bf:Agent
+                                  rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                              </bf:assigner>
+                              <bf:classificationPortion>
+                                <xsl:value-of select="$vLcc"/>
+                              </bf:classificationPortion>
+                            </bf:ClassificationLcc>
+                          </bf:classification>
+                          
+                        </xsl:if>
+                        
                         <xsl:if test="$vAppliesTo != ''">
                           <bflc:appliesTo>
                             <bflc:AppliesTo>
@@ -275,8 +273,9 @@
               <!--end building a series  -->
             </xsl:otherwise>
           </xsl:choose>
+            
         </xsl:for-each>
-        
+  
   </xsl:template>
   <xsl:template
     match="
@@ -342,10 +341,10 @@
         <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
       </xsl:apply-templates>
     </xsl:variable>
-    <xsl:variable name="vLabel">
+  <!--  <xsl:variable name="vLabel">
       <xsl:apply-templates mode="concat-nodes-space"
         select="marc:subfield[not(contains('hvwx012345678', @code))]"/>
-    </xsl:variable>
+    </xsl:variable>-->
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bflc:relationship>
@@ -361,6 +360,7 @@
                   <xsl:value-of select="$vHubIri"/>
                 </xsl:attribute>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                <!--see if this works  for 830, and 8xx both names and titles eg-->              
                <xsl:choose>
                   <xsl:when test="$vTag = '830' or $vTag = '440'">
                     <xsl:apply-templates mode="hubUnifTitle" select=".">
@@ -368,41 +368,13 @@
                       <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/>                      
                     </xsl:apply-templates>
                   </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:if test="marc:subfield[@code='t' or @code='n' or @code='p']">
-                      <bf:title><bf:Title>
-                    <xsl:for-each select="marc:subfield[@code='t']">
-                      
-                      <bf:maintitle>
-                        <xsl:call-template name="tChopPunct">
-                          <xsl:with-param name="pString" select="."/>
-                        </xsl:call-template>
-                      </bf:maintitle>
-                    </xsl:for-each>
-                      <xsl:for-each select="marc:subfield[@code='n']">
-                        <bf:partNumber>
-                          <xsl:call-template name="tChopPunct">
-                            <xsl:with-param name="pString" select="."/>
-                          </xsl:call-template>
-                        </bf:partNumber>
-                      </xsl:for-each>
-                        <xsl:for-each select="marc:subfield[@code='p']">
-                          <bf:partName>
-                          <xsl:call-template name="tChopPunct">
-                            <xsl:with-param name="pString" select="."/>
-                          </xsl:call-template>
-                        </bf:partName>
-                      </xsl:for-each>
-                      </bf:Title></bf:title>
-                    </xsl:if>
-                  </xsl:otherwise>
-               </xsl:choose>
-                <xsl:if  test="$vTag != '830' and $vTag != '440'">
+              <xsl:otherwise>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
                     </xsl:apply-templates>
-                </xsl:if>
+              </xsl:otherwise>
+               </xsl:choose>
                  
                 <xsl:for-each select="marc:subfield[@code = 'w']">
                   <xsl:variable name="vIdClass">
@@ -487,8 +459,9 @@
       extract ISSN for series from matching 490
       if there is no matching 490 (or the matching 490 has no $x),
       return empty string
+      2022-07-22 No longer matching up 490/8xx.
   -->
-  <xsl:template name="tIdentifier490">
+  <!--<xsl:template name="tIdentifier490">
     <xsl:param name="pCurrentPos" select="1"/>
     <xsl:param name="pLastPos"/>
     <xsl:param name="pCompositePos" select="1"/>
@@ -557,72 +530,6 @@
       </xsl:choose>
     </xsl:if>
   </xsl:template>
-
-  <!--<xsl:template
-    match="
-      marc:datafield[@tag = '800' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '800')] |
-      marc:datafield[@tag = '810' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '810')] |
-      marc:datafield[@tag = '811' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '811')] |
-      marc:datafield[@tag = '830' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '830')] |
-      marc:datafield[@tag = '400' or @tag = '410' or @tag = '411' or @tag = '440']"
-    mode="instance">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pHasItem" select="false()"/>
-    <!-\- note special $5 processing for LoC below -\->
-    <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code = '5'])">
-      <xsl:variable name="vCurrentPos">
-        <xsl:choose>
-          <xsl:when test="substring(@tag, 1, 1) = '8'">
-            <xsl:value-of
-              select="count(preceding-sibling::marc:datafield[@tag = '800' or @tag = '810' or @tag = '811' or @tag = '830' or (@tag = '880' and (substring(marc:subfield[@code = '6'], 1, 3) = '800' or substring(marc:subfield[@code = '6'], 1, 3) = '810' or substring(marc:subfield[@code = '6'], 1, 3) = '811' or substring(marc:subfield[@code = '6'], 1, 3) = '830') and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = '00')]) + 1"
-            />
-          </xsl:when>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:apply-templates select="." mode="instance8XX">
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pCurrentPos" select="$vCurrentPos"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:template>-->
-
- <!-- <xsl:template match="marc:datafield" mode="instance8XX">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pCurrentPos" select="1"/>
-    <xsl:variable name="vXmlLang">
-      <xsl:apply-templates select="." mode="xmllang"/>
-    </xsl:variable>
-    <xsl:variable name="vTag">
-      <xsl:choose>
-        <xsl:when test="@tag = '880'">
-          <xsl:value-of select="substring(marc:subfield[@code = '6'], 1, 3)"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="@tag"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:if
-      test="count(../marc:datafield[((@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '490') or (@tag = '490' and not(marc:subfield[@code = '6']))) and @ind1 = '1']) &lt; $pCurrentPos or substring($vTag, 1, 1) = '4'">
-      <xsl:variable name="vStatement">
-        <xsl:apply-templates mode="concat-nodes-space"
-          select="marc:subfield[not(contains('wx012345678', @code))]"/>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:seriesStatement>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang">
-                <xsl:value-of select="$vXmlLang"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="$vStatement"/>
-            </xsl:call-template>
-          </bf:seriesStatement>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
-  </xsl:template>-->
-
+-->
+  
 </xsl:stylesheet>
