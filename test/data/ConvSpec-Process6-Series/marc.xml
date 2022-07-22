@@ -37,8 +37,21 @@
       <subfield code="v">128</subfield>
     </datafield>
    
-    
-    
+  <datafield tag="800" ind1="1" ind2=" ">
+    <subfield code="a">Balcziak, Bill,</subfield>
+    <subfield code="d">1962-</subfield>
+    <subfield code="t">Imagination series.</subfield>
+    <subfield code="p">Tall tales.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">
+        Frontiers in artificial intelligence and applications,
+      </subfield>
+      <subfield code="x">0922-6389 ;</subfield>
+      <subfield code="v">v. 79.</subfield>
+      <subfield code="a">Knowledge-based intelligent engineering systems ;</subfield>
+      <subfield code="v">v. 3</subfield>
+    </datafield>
     
   </record>
 <!--  <record>

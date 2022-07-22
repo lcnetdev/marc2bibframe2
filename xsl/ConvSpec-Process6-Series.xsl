@@ -17,9 +17,7 @@
     <xsl:variable name="vUncontrolled">       
       <xsl:if test="@ind1 = '0'">uncontrolled</xsl:if>          
     </xsl:variable>
-    <xsl:variable name="vXIssn">
-      <xsl:value-of select="normalize-space(marc:subfield[@code = 'x'])"/>
-    </xsl:variable>
+  
     <!--490 and 880 are now decoupled -->
            
         <xsl:variable name="hasParallel">
@@ -129,6 +127,12 @@
                   </bf:title>
                 </xsl:for-each>
                 </xsl:if>
+              </xsl:variable>
+              <xsl:variable name="vXIssn">
+              
+                <xsl:value-of
+                  select="normalize-space(following-sibling::marc:subfield[@code = 'x' and generate-id(preceding-sibling::marc:subfield[@code = 'a'][1]) = $vCurrentNode])"
+                />
               </xsl:variable>
               <xsl:variable name="vLcc">
                 <xsl:value-of
@@ -369,9 +373,11 @@
                     </xsl:apply-templates>
                   </xsl:when>
               <xsl:otherwise>
+                
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
+                             
                     </xsl:apply-templates>
               </xsl:otherwise>
                </xsl:choose>
