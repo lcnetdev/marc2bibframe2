@@ -101,7 +101,7 @@
                   </xsl:with-param>
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:variable name="vPosition"><xsl:value-of select="position() * $pPosition"/></xsl:variable>
+              <xsl:variable name="vPosition"><xsl:value-of select="position() + $pPosition"/></xsl:variable>
               <xsl:variable name="vHubIri">
                 <xsl:apply-templates mode="generateUri" select="parent::marc:datafield">
                   <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="../@tag"/>-<xsl:value-of select="$vPosition"/></xsl:with-param>
