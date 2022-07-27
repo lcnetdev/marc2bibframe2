@@ -52,12 +52,14 @@
   -->
   <xsl:param name="pGenerationDatestamp">
     <xsl:choose>
+      
       <xsl:when test="function-available('date:date-time')">
         <xsl:value-of select="date:date-time()"/>
       </xsl:when>
       <xsl:when test="function-available('current-dateTime')">
         <xsl:value-of select="current-dateTime()"/>
       </xsl:when>
+      
     </xsl:choose>
   </xsl:param>
   
@@ -89,6 +91,7 @@
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-Process6-Series.xsl"/>
+  <xsl:include href="ConvSpec-Process8-ProvAct.xsl"/>
   <xsl:include href="lc-local-fields.xsl"/>
 
   <xsl:template match="/">

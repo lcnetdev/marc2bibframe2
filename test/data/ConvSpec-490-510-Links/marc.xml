@@ -1,10 +1,40 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">220416s2020    cc            00| 0|chi  </controlfield>
     <datafield tag="245" ind1="1" ind2="0">
       <subfield code="a">Ole Lukøie /</subfield>
       <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
+    </datafield    >
+    <!--https://preprod-8230.id.loc.gov/resources/bibs/11231211-->
+    <datafield ind1="1" ind2=" " tag="490">
+      <subfield code="6">880-01</subfield>
+      <subfield code="3">1969-1971:</subfield>
+      <subfield code="a">Chijŏng t'onggye ;</subfield>
+      <subfield code="v">che 10-ho =</subfield>
+      <subfield code="a">Designated statistics ;</subfield>
+      <subfield code="v">no. 10</subfield>
     </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Dong nan da xue jian zhu xi li lun yu chuang zuo cong shu =</subfield>
+      <subfield code="a">Book series for theory &amp; design of Architectural Department of Southeast University</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="490">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Roman bukkusu</subfield>
+    </datafield>
+    
+    <datafield ind1="1" ind2=" " tag="490">
+      <subfield code="3">2002- :</subfield>
+      <subfield code="a">FAO fisheries report =</subfield>
+      <subfield code="a">FAO rapport sur les pêches =</subfield>
+      <subfield code="a">FAO informe de pesca,</subfield>
+      <subfield code="x">0429-9337</subfield>
+    </datafield>
+  
+    
+    
     <datafield tag="490" ind1="1" ind2=" ">
       <subfield code="3">1972/73-1975-76: </subfield>
       <subfield code="a">Lund studies in geography,</subfield>
@@ -20,6 +50,62 @@
       <subfield code="a">Travaux et documents de l'I.C.I. Série C, Bibliographies ;</subfield>
       <subfield code="x">1234-5678 ;</subfield>
       <subfield code="v">no 3</subfield>
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="a">One Papers and documents in a series ;</subfield>
+      <subfield code="v">no. 3 =</subfield>
+      <subfield code="a">=Same series in a different lang;</subfield>
+      <subfield code="x">1234-5678 ;</subfield>
+      <subfield code="v">no 3</subfield>
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="3">dlc</subfield>
+      <subfield code="a">Two Papers and documents in a series ;</subfield>
+      <subfield code="v">no. 3 =</subfield>
+      <subfield code="l">lcclass</subfield>
+      <subfield code="x">1234-5678 ;</subfield>
+      <subfield code="z">1234-5999</subfield>
+      
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="3">dlc</subfield>
+      <subfield code="a">three Papers and documents in a series ;</subfield>
+      <subfield code="v">no. 3</subfield>
+      <subfield code="l">linking issn</subfield>
+      <subfield code="x">1234-5678 ;</subfield>
+      <subfield code="z">no 3</subfield>
+      
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="880">
+      <subfield code="6">490-01/$1</subfield>
+      <subfield code="3">1969-1971:</subfield>
+      <subfield code="a">지정 통계 ;</subfield>
+      <subfield code="v">제 10호 =</subfield>
+      <subfield code="a">Designated statistics ;</subfield>
+      <subfield code="v">no. 10</subfield>
+    </datafield>
+    
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">490-02/$1</subfield>
+      <subfield code="a">东南大学建筑系理论与创作丛书 =</subfield>
+      <subfield code="a">Book series for theory &amp; design of Architectural Department of Southeat University</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="880">
+      <subfield code="6">490-03/$1</subfield>
+      <subfield code="a">ロマン・ブックス</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="800">
+    <subfield code="6">490-03/$1</subfield>
+      <subfield code="a">creator of 800</subfield>
+    <subfield code="t">title of 800</subfield>
+      <subfield code="n">part number</subfield>
+      <subfield code="p">part name</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="830">
+      <subfield code="6">490-03/$1</subfield>
+      <subfield code="a">test of 800title </subfield>
+      <subfield code="n">part number</subfield>
+      <subfield code="p">part name</subfield>
     </datafield>
     <datafield tag="510" ind1="4" ind2=" ">
       <subfield code="a">Index Medicus,</subfield>

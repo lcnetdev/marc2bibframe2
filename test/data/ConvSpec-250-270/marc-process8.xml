@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+    <record>
+        <controlfield tag="001">7334561</controlfield>
+        <!-- <controlfield tag="008">821208s1927    nyuh          000 0 eng  </controlfield> -->
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">New York,</subfield>
+            <subfield code="b">The Macmillan company;</subfield>
+            <subfield code="a">London,</subfield>
+            <subfield code="b">Macmillan and company,</subfield>
+            <subfield code="c">1927.</subfield>
+        </datafield>
+    </record>
+    <record>
+        <controlfield tag="001">5295609</controlfield>
+        <controlfield tag="008">970908s1987    ja       b    000 0 jpn  </controlfield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="6">880-02</subfield>
+            <subfield code="a">[S.l. :</subfield>
+            <subfield code="b">s.n.,</subfield>
+            <subfield code="c">Shōwa 62 i.e. 1987]</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2=" ">
+            <subfield code="6">260-02/$1</subfield>
+            <subfield code="a">[S.l. :</subfield>
+            <subfield code="b">s.n.,</subfield>
+            <subfield code="c">昭和 62 i.e. 1987]</subfield>
+        </datafield>
+    </record>
+</collection>
