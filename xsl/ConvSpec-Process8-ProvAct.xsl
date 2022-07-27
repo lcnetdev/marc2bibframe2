@@ -420,7 +420,7 @@
                     <xsl:attribute name="ind2">
                         <xsl:choose>
                             <xsl:when
-                                test="$parsedSfs/marc:sf[@gpos = $g][1][@code = 'e' or @code = 'f' or @code = 'g']"
+                                test="$parsedSfs/marc:sf[@gpos = $g][1][@type = 'Manufacture']"
                                 >3</xsl:when>
                             <xsl:when test="$df/@tag = '264'">
                                 <xsl:value-of select="$df/@ind2"/>
@@ -468,7 +468,7 @@
                 <m sfCode="f">b</m>
                 <m sfCode="g">c</m>
             </xsl:variable>
-            <marc:sf>
+            <marc:sf type="Manufacture">
                 <xsl:attribute name="code">
                     <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
                 </xsl:attribute>
