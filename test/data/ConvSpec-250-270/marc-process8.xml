@@ -40,4 +40,15 @@
             <subfield code="c">©2019</subfield>
         </datafield>
     </record>
+    <record>
+        <controlfield tag="001">1972268</controlfield>
+        <controlfield tag="008">880804s1983    ndua          000 0deng  </controlfield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">[Milnor, N.D. :</subfield>
+            <subfield code="b">Milnor Centennial Corp.,</subfield>
+            <subfield code="c">1983?]</subfield>
+            <subfield code="e">(Gwiner, N.D. :</subfield>
+            <subfield code="f">J &amp; M Print.)</subfield>
+        </datafield>
+    </record>
 </collection>
