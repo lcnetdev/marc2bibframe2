@@ -88,7 +88,7 @@
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
   <xsl:include href="ConvSpec-Process6-Series.xsl"/>
-
+  <xsl:include href="ConvSpec-Process8-ProvAct.xsl"/>
   <xsl:template match="/">
 
     <!-- RDF/XML document frame -->
