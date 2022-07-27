@@ -14,6 +14,20 @@
             marc:datafield[@tag = '264' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '264')]"
         mode="instance">
 
+        <!-- 
+            This variable looks like:
+            <paGroup>
+                <type>Publication</type>
+                <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1987</bf:date>
+                <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/ja"/>
+            </paGroup>
+            ...
+        -->
+        <xsl:variable name="cf008data">
+            <xsl:apply-templates select="../marc:controlfield[@tag = '008']" mode="process8"/>
+        </xsl:variable>
+        <!--<xsl:copy-of select="$cf008data" />-->
+
         <xsl:variable name="vTag">
             <xsl:choose>
                 <xsl:when test="@tag = '880'">
@@ -26,19 +40,37 @@
         </xsl:variable>
 
         <xsl:variable name="v880Occurrence">
-            <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
+            <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"
+            />
         </xsl:variable>
         <xsl:variable name="v880Ref">
             <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
         </xsl:variable>
 
+        <!--
+            This variable looks like:
+            <marc:sfGroup xmlns:marc="http://www.loc.gov/MARC21/slim" tag="264">
+                <marc:df tag="880" ind1=" " ind2=" ">
+                    <marc:sf code="6">260-02/$1</marc:sf>
+                    <marc:sf code="a">[S.l. :</marc:sf>
+                    <marc:sf code="b">s.n.,</marc:sf>
+                    <marc:sf code="c">昭和 62 i.e. 1987]</marc:sf>
+                </marc:df>
+                <marc:df tag="264" ind1=" " ind2="1">
+                    <marc:sf code="a" gpos="2" pos="2">[S.l. :</marc:sf>
+                    <marc:sf code="b" gpos="2" pos="3">s.n.,</marc:sf>
+                    <marc:sf code="c" gpos="2" pos="4">Shōwa 62 i.e. 1987]</marc:sf>
+                </marc:df>
+            </marc:sfGroup>
+            ...
+        -->
         <xsl:variable name="sfblocks">
             <xsl:call-template name="blockize26x">
                 <xsl:with-param name="df" select="self::node()"/>
                 <xsl:with-param name="v880Ref" select="$v880Ref"/>
             </xsl:call-template>
         </xsl:variable>
-        <!-- <xsl:copy-of select="$sfblocks"/> -->
+        <!--<xsl:copy-of select="$sfblocks"/>-->
 
         <xsl:variable name="has880">
             <xsl:choose>
@@ -65,12 +97,13 @@
         <xsl:for-each select="$sfblocks/marc:sfGroup">
             <xsl:variable name="sfgTag" select="@tag"/>
             <xsl:variable name="df" select="marc:df[@tag = $sfgTag]"/>
+            <xsl:variable name="ind2val" select="$df/@ind2"/>
             <xsl:variable name="vProvisionActivity">
                 <xsl:choose>
-                    <xsl:when test="$df/@ind2 = '0'">Production</xsl:when>
-                    <xsl:when test="$df/@ind2 = '1'">Publication</xsl:when>
-                    <xsl:when test="$df/@ind2 = '2'">Distribution</xsl:when>
-                    <xsl:when test="$df/@ind2 = '3'">Manufacture</xsl:when>
+                    <xsl:when test="$ind2val = '0'">Production</xsl:when>
+                    <xsl:when test="$ind2val = '1'">Publication</xsl:when>
+                    <xsl:when test="$ind2val = '2'">Distribution</xsl:when>
+                    <xsl:when test="$ind2val = '3'">Manufacture</xsl:when>
                 </xsl:choose>
             </xsl:variable>
             <xsl:variable name="vStatement">
@@ -87,33 +120,39 @@
             <xsl:choose>
                 <xsl:when test="$serialization = 'rdfxml'">
                     <xsl:choose>
-                        <xsl:when test="$vTag = '264' and @ind2 = '4'">
-                            <xsl:if
-                                test="not(substring(../marc:controlfield[@tag = '008'], 7, 1) = 't')">
-                                <bf:copyrightDate>
-                                    <xsl:if test="$vXmlLang != ''">
-                                        <xsl:attribute name="xml:lang">
-                                            <xsl:value-of select="$vXmlLang"/>
-                                        </xsl:attribute>
-                                    </xsl:if>
-                                    <xsl:call-template name="tChopPunct">
-                                        <xsl:with-param name="pString" select="$vStatement"/>
-                                    </xsl:call-template>
-                                </bf:copyrightDate>
-                                <xsl:if test="$vLinkedStatement != ''">
+                        <xsl:when test="$sfgTag = '264' and $df/@ind2 = '4'">
+                            <xsl:choose>
+                                <xsl:when test="$cf008data/paGroup[type = 'Copyright']">
+                                    <xsl:copy-of
+                                        select="$cf008data/paGroup[type = 'Copyright']/bf:*"/>
+                                </xsl:when>
+                                <xsl:otherwise>
                                     <bf:copyrightDate>
-                                        <xsl:if test="$vLinkedXmlLang != ''">
+                                        <xsl:if test="$vXmlLang != ''">
                                             <xsl:attribute name="xml:lang">
-                                                <xsl:value-of select="$vLinkedXmlLang"/>
+                                                <xsl:value-of select="$vXmlLang"/>
                                             </xsl:attribute>
                                         </xsl:if>
                                         <xsl:call-template name="tChopPunct">
-                                            <xsl:with-param name="pString"
-                                                select="$vLinkedStatement"/>
+                                            <xsl:with-param name="pString" select="$vStatement"/>
                                         </xsl:call-template>
                                     </bf:copyrightDate>
-                                </xsl:if>
-                            </xsl:if>
+                                    <xsl:if test="$vLinkedStatement != ''">
+                                        <bf:copyrightDate>
+                                            <xsl:if test="$vLinkedXmlLang != ''">
+                                                <xsl:attribute name="xml:lang">
+                                                  <xsl:value-of select="$vLinkedXmlLang"/>
+                                                </xsl:attribute>
+                                            </xsl:if>
+                                            <xsl:call-template name="tChopPunct">
+                                                <xsl:with-param name="pString"
+                                                  select="$vLinkedStatement"/>
+                                            </xsl:call-template>
+                                        </bf:copyrightDate>
+                                    </xsl:if>
+                                </xsl:otherwise>
+
+                            </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
                             <bf:provisionActivity>
@@ -125,6 +164,12 @@
                                                   select="concat($bf, $vProvisionActivity)"/>
                                             </xsl:attribute>
                                         </rdf:type>
+                                        <xsl:if
+                                            test="not(preceding-sibling::marc:sfGroup) or preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 != $ind2val]">
+                                            <xsl:copy-of
+                                                select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*"
+                                            />
+                                        </xsl:if>
                                     </xsl:if>
                                     <xsl:if test="$df/@ind1 = '3'">
                                         <bf:status>
@@ -474,4 +519,216 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template match="marc:controlfield[@tag = '008']" mode="process8">
+        <xsl:variable name="vDate1">
+            <xsl:choose>
+                <xsl:when test="substring(., 8, 4) = '    '"/>
+                <xsl:when test="substring(., 8, 4) = '||||'"/>
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(., 8.4)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="vDate2">
+            <xsl:choose>
+                <xsl:when test="substring(., 12, 4) = '    '"/>
+                <xsl:when test="substring(., 12, 4) = '||||'"/>
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(., 12, 4)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="provisionDate">
+            <xsl:choose>
+                <xsl:when test="substring(., 7, 1) = 'c'">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString" select="concat(substring(., 8, 4), '/..')"
+                        />
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when
+                    test="
+                        substring(., 7, 1) = 'd' or
+                        substring(., 7, 1) = 'i' or
+                        substring(., 7, 1) = 'k' or
+                        substring(., 7, 1) = 'm' or
+                        substring(., 7, 1) = 'q' or
+                        substring(., 7, 1) = 'u' or
+                        (substring(., 7, 1) = '|' and $vDate1 != '' and $vDate2 != '')">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString"
+                            select="concat(substring(., 8, 4), '/', substring(., 12, 4))"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when
+                    test="
+                        substring(., 7, 1) = 'e' or
+                        (substring(., 7, 1) = '|' and $vDate1 != '' and $vDate2 != '')">
+                    <xsl:choose>
+                        <xsl:when test="substring(., 14, 2) = '  '">
+                            <xsl:call-template name="u2x">
+                                <xsl:with-param name="dateString"
+                                    select="concat(substring(., 8, 4), '-', substring(., 12, 2))"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="u2x">
+                                <xsl:with-param name="dateString"
+                                    select="concat(substring(., 8, 4), '-', substring(., 12, 2), '-', substring(., 14, 2))"
+                                />
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when
+                    test="
+                        substring(., 7, 1) = 'p' or
+                        substring(., 7, 1) = 'r' or
+                        substring(., 7, 1) = 's' or
+                        substring(., 7, 1) = 't' or
+                        (substring(., 7, 1) = '|' and $vDate1 != '')">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString" select="substring(., 8, 4)"/>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="pubPlace">
+            <xsl:choose>
+                <xsl:when test="substring(., 18, 1) = ' '">
+                    <xsl:value-of select="substring(., 16, 2)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(., 16, 3)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:choose>
+            <xsl:when test="$provisionDate != ''">
+                <paGroup>
+                    <xsl:choose>
+                        <xsl:when
+                            test="
+                                substring(., 7, 1) = 'c' or
+                                substring(., 7, 1) = 'd' or
+                                substring(., 7, 1) = 'e' or
+                                substring(., 7, 1) = 'm' or
+                                substring(., 7, 1) = 'q' or
+                                substring(., 7, 1) = 'r' or
+                                substring(., 7, 1) = 's' or
+                                substring(., 7, 1) = 't' or
+                                substring(., 7, 1) = 'u' or
+                                substring(., 7, 1) = '|'">
+                            <type>Publication</type>
+                        </xsl:when>
+                        <xsl:when
+                            test="
+                                substring(., 7, 1) = 'i' or
+                                substring(., 7, 1) = 'k'">
+                            <type>Production</type>
+                            <bf:note>
+                                <bf:Note>
+                                    <xsl:choose>
+                                        <xsl:when test="substring(., 7, 1) = 'i'">
+                                            <rdfs:label>inclusive collection dates</rdfs:label>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <rdfs:label>bulk collection dates</rdfs:label>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </bf:Note>
+                            </bf:note>
+                        </xsl:when>
+                        <xsl:when test="substring(., 7, 1) = 'p'">
+                            <type>Distribution</type>
+                        </xsl:when>
+                    </xsl:choose>
+                    <bf:date>
+                        <xsl:attribute name="rdf:datatype">
+                            <xsl:value-of select="concat($edtf, 'edtf')"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$provisionDate"/>
+                    </bf:date>
+                    <xsl:choose>
+                        <xsl:when test="substring(., 7, 1) = 'c'">
+                            <bf:status>
+                                <bf:Status>
+                                    <xsl:attribute name="rdf:about"
+                                        >http://id.loc.gov/vocabulary/mstatus/current</xsl:attribute>
+                                    <rdfs:label>current</rdfs:label>
+                                </bf:Status>
+                            </bf:status>
+                        </xsl:when>
+                        <xsl:when test="substring(., 7, 1) = 'd'">
+                            <bf:status>
+                                <bf:Status>
+                                    <xsl:attribute name="rdf:about"
+                                        >http://id.loc.gov/vocabulary/mstatus/ceased</xsl:attribute>
+                                    <rdfs:label>ceased</rdfs:label>
+                                </bf:Status>
+                            </bf:status>
+                        </xsl:when>
+                    </xsl:choose>
+                    <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
+                        <xsl:variable name="pubPlaceEncoded">
+                            <xsl:call-template name="url-encode">
+                                <xsl:with-param name="str" select="normalize-space($pubPlace)"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <bf:place>
+                            <xsl:attribute name="rdf:resource">
+                                <xsl:value-of select="concat($countries, $pubPlaceEncoded)"/>
+                            </xsl:attribute>
+                        </bf:place>
+                    </xsl:if>
+                </paGroup>
+                <xsl:choose>
+                    <xsl:when test="substring(., 7, 1) = 'p'">
+                        <paGroup>
+                            <type>Production</type>
+                            <bf:date>
+                                <xsl:attribute name="rdf:datatype">
+                                    <xsl:value-of select="concat($edtf, 'edtf')"/>
+                                </xsl:attribute>
+                                <xsl:call-template name="u2x">
+                                    <xsl:with-param name="dateString" select="substring(., 12, 4)"/>
+                                </xsl:call-template>
+                            </bf:date>
+                        </paGroup>
+                    </xsl:when>
+                    <xsl:when test="substring(., 7, 1) = 't'">
+                        <paGroup>
+                            <type>Copyright</type>
+                            <bf:copyrightDate>
+                                <xsl:attribute name="rdf:datatype">
+                                    <xsl:value-of select="concat($edtf, 'edtf')"/>
+                                </xsl:attribute>
+                                <xsl:call-template name="u2x">
+                                    <xsl:with-param name="dateString" select="substring(., 12, 4)"/>
+                                </xsl:call-template>
+                            </bf:copyrightDate>
+                        </paGroup>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="$pubPlace != '' and $pubPlace != '|||'">
+                    <xsl:variable name="pubPlaceEncoded">
+                        <xsl:call-template name="url-encode">
+                            <xsl:with-param name="str" select="normalize-space($pubPlace)"/>
+                        </xsl:call-template>
+                    </xsl:variable>
+                    <paGroup>
+                        <type>Publication</type>
+                        <bf:place>
+                            <xsl:attribute name="rdf:resource">
+                                <xsl:value-of select="concat($countries, $pubPlaceEncoded)"/>
+                            </xsl:attribute>
+                        </bf:place>
+                    </paGroup>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 </xsl:stylesheet>

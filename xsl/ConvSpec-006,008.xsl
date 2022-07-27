@@ -868,7 +868,7 @@
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pInstanceType"/>
-    <xsl:variable name="vDate1">
+    <!--<xsl:variable name="vDate1">
       <xsl:choose>
         <xsl:when test="substring(.,8,4) = '    '"/>
         <xsl:when test="substring(.,8,4) = '||||'"/>
@@ -1066,7 +1066,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
-    </xsl:choose>
+    </xsl:choose>-->
     <xsl:variable name="vMaterialType">
       <xsl:apply-templates select="../marc:leader" mode="mMaterialType008"/>
     </xsl:variable>
