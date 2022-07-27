@@ -51,4 +51,23 @@
             <subfield code="f">J &amp; M Print.)</subfield>
         </datafield>
     </record>
+    <record>
+        <controlfield tag="001">11457859</controlfield>
+        <controlfield tag="008">920430c19929999caubr p       0   a0eng c</controlfield>
+        <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">New York, NY :</subfield>
+            <subfield code="b">Out Publishing, Inc.,</subfield>
+            <subfield code="c">[1992]-</subfield>
+        </datafield>
+        <datafield ind1="2" ind2="1" tag="264">
+            <subfield code="3">&lt;February 2010-&gt;:</subfield>
+            <subfield code="a">Los Angeles, CA :</subfield>
+            <subfield code="b">Here Publishing, Inc.</subfield>
+        </datafield>
+        <datafield ind1="3" ind2="1" tag="264">
+            <subfield code="3">&lt;November 2019-&gt;:</subfield>
+            <subfield code="a">Los Angeles, CA :</subfield>
+            <subfield code="b">Pride Publishing Inc.</subfield>
+        </datafield>
+    </record>
 </collection>

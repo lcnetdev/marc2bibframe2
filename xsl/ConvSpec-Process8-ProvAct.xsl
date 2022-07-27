@@ -7,13 +7,18 @@
 
     <!-- Conversion specs for Process8 -->
 
-    <xsl:template
+    <!--<xsl:template
         match="
             marc:datafield[@tag = '260' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '260')] |
             marc:datafield[@tag = '262'] |
             marc:datafield[@tag = '264' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '264')]"
-        mode="instance">
-
+        mode="instance">-->
+    <!-- Why did the above also select 880s?  Is it possible to have 880s but no 26X.  If so, would that even have output anything? -->
+    <xsl:template name="process8">
+        
+        <xsl:variable name="v26xFields" select="../marc:datafield[@tag = '260']|../marc:datafield[@tag = '262']|../marc:datafield[@tag = '264']" />
+        <xsl:variable name="v880Fields" select="../marc:datafield[@tag = '880']" />
+        
         <!-- 
             This variable looks like:
             <paGroup>
@@ -27,25 +32,6 @@
             <xsl:apply-templates select="../marc:controlfield[@tag = '008']" mode="process8"/>
         </xsl:variable>
         <!--<xsl:copy-of select="$cf008data" />-->
-
-        <xsl:variable name="vTag">
-            <xsl:choose>
-                <xsl:when test="@tag = '880'">
-                    <xsl:value-of select="substring(marc:subfield[@code = '6'], 1, 3)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="@tag"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="v880Occurrence">
-            <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"
-            />
-        </xsl:variable>
-        <xsl:variable name="v880Ref">
-            <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
-        </xsl:variable>
 
         <!--
             This variable looks like:
@@ -65,34 +51,31 @@
             ...
         -->
         <xsl:variable name="sfblocks">
+            <xsl:for-each select="$v26xFields">
+                <xsl:variable name="vTag">
+                    <xsl:choose>
+                        <xsl:when test="@tag = '880'">
+                            <xsl:value-of select="substring(marc:subfield[@code = '6'], 1, 3)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="@tag"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                
+                <xsl:variable name="v880Occurrence">
+                    <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
+                </xsl:variable>
+                <xsl:variable name="v880Ref">
+                    <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
+                </xsl:variable>
             <xsl:call-template name="blockize26x">
                 <xsl:with-param name="df" select="self::node()"/>
                 <xsl:with-param name="v880Ref" select="$v880Ref"/>
             </xsl:call-template>
+            </xsl:for-each>
         </xsl:variable>
         <!--<xsl:copy-of select="$sfblocks"/>-->
-
-        <xsl:variable name="has880">
-            <xsl:choose>
-                <xsl:when test="$sfblocks/marc:sfGroup[1]/marc:df[@tag = '880']">
-                    <xsl:value-of select="true()"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="false()"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="vXmlLang">
-            <xsl:apply-templates select="." mode="xmllang"/>
-        </xsl:variable>
-        <xsl:variable name="vLinkedXmlLang">
-            <xsl:if test="$has880">
-                <xsl:apply-templates
-                    select="../marc:datafield[@tag = '880' and contains(marc:subfield[@code = '6'], $v880Ref)]"
-                    mode="xmllang"/>
-            </xsl:if>
-        </xsl:variable>
 
         <xsl:for-each select="$sfblocks/marc:sfGroup">
             <xsl:variable name="sfgTag" select="@tag"/>
@@ -106,14 +89,38 @@
                     <xsl:when test="$ind2val = '3'">Manufacture</xsl:when>
                 </xsl:choose>
             </xsl:variable>
+            <xsl:variable name="vcf008">
+                <xsl:if test="  $vProvisionActivity != '' and
+                                ( 
+                                    not(preceding-sibling::marc:sfGroup) 
+                                    or 
+                                    preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 != $ind2val]
+                                )
+                        ">
+                    <xsl:copy-of select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*" />
+                </xsl:if>
+            </xsl:variable>
             <xsl:variable name="vStatement">
                 <xsl:apply-templates select="$df/marc:sf[@code = 'a' or @code = 'b' or @code = 'c']"
                     mode="concat-nodes-delimited"/>
             </xsl:variable>
+            <xsl:variable name="has880">
+                <xsl:choose>
+                    <xsl:when test="marc:df[@tag = '880']">
+                        <xsl:value-of select="true()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="false()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="v880"><xsl:copy-of select="marc:df[@tag = '880']" /></xsl:variable>
+            <xsl:variable name="vXmlLang"><xsl:value-of select="$df/@xmllang" /></xsl:variable>
+            <xsl:variable name="vLinkedXmlLang"><xsl:value-of select="marc:df[@tag = '880']/@xmllang" /></xsl:variable>
             <xsl:variable name="vLinkedStatement">
-                <xsl:if test="marc:df[@tag = '880']">
+                <xsl:if test="$has880">
                     <xsl:apply-templates
-                        select="marc:df[@tag = '880']/marc:sf[@code = 'a' or @code = 'b' or @code = 'c']"
+                        select="$v880/marc:sf[@code = 'a' or @code = 'b' or @code = 'c']"
                         mode="concat-nodes-delimited"/>
                 </xsl:if>
             </xsl:variable>
@@ -164,38 +171,20 @@
                                                   select="concat($bf, $vProvisionActivity)"/>
                                             </xsl:attribute>
                                         </rdf:type>
-                                        <xsl:if
-                                            test="not(preceding-sibling::marc:sfGroup) or preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 != $ind2val]">
-                                            <xsl:copy-of
-                                                select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*"
-                                            />
-                                        </xsl:if>
+                                        <xsl:copy-of select="$vcf008"/>
                                     </xsl:if>
-                                    <xsl:if test="$df/@ind1 = '3'">
+                                    <xsl:if test="not($vcf008/bf:status) and $df/@ind1 = '3'">
                                         <bf:status>
-                                            <bf:Status>
+                                            <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/current">
                                                 <rdfs:label>current</rdfs:label>
                                             </bf:Status>
                                         </bf:status>
                                     </xsl:if>
-                                    <xsl:choose>
-                                        <xsl:when test="$has880">
-                                            <xsl:apply-templates select="marc:subfield[@code = '3']"
-                                                mode="subfield3">
-                                                <xsl:with-param name="serialization"
-                                                  select="$serialization"/>
-                                            </xsl:apply-templates>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:apply-templates
-                                                select="marc:subfield[@code = '3'] | ../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:subfield[@code = '3']"
-                                                mode="subfield3">
-                                                <xsl:with-param name="serialization"
-                                                  select="$serialization"/>
-                                            </xsl:apply-templates>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-
+                                    <xsl:apply-templates
+                                        select="$df/marc:sf[@code = '3'] | marc:df[@tag = '880']/marc:sf[@code = '3']"
+                                        mode="subfield3">
+                                        <xsl:with-param name="serialization" select="$serialization"/>
+                                    </xsl:apply-templates>
                                     <xsl:for-each select="$df/marc:sf[@code = 'a']">
                                         <xsl:variable name="sfPos" select="@pos"/>
                                         <xsl:variable name="vLabel">
@@ -237,12 +226,20 @@
                                             <!-- detect if there are unmatched brackets in preceding or following subfield -->
                                             <xsl:variable name="vAddBrackets"
                                                 select="
-                                                    (not(contains(., '[')) and
-                                                    not(contains(., ']')) and
-                                                    ((contains(preceding-sibling::marc:sf[@code = 'a'][1], '[') and
-                                                    not(contains(preceding-sibling::marc:sf[@code = 'a'][1], ']'))) or
-                                                    (contains(following-sibling::marc:sf[@code = 'c'][1], ']') and
-                                                    not(contains(following-sibling::marc:sf[@code = 'c'][1], '['))))) = true()"/>
+                                                    (
+                                                        not(contains(., '[')) and
+                                                        not(contains(., ']')) and
+                                                        (
+                                                            (
+                                                                contains(preceding-sibling::marc:sf[@code = 'a'][1], '[') and
+                                                                not(contains(preceding-sibling::marc:sf[@code = 'a'][1], ']'))
+                                                            ) or
+                                                            (
+                                                                contains(following-sibling::marc:sf[@code = 'c'][1], ']') and
+                                                                not(contains(following-sibling::marc:sf[@code = 'c'][1], '['))
+                                                            )
+                                                        )
+                                                    ) = true()"/>
                                             <xsl:call-template name="tChopPunct">
                                                 <xsl:with-param name="pString" select="."/>
                                                 <xsl:with-param name="pAddBrackets"
@@ -253,13 +250,22 @@
                                             <xsl:if test="$has880">
                                                 <!-- detect if there are unmatched brackets in preceding or following subfield -->
                                                 <xsl:variable name="vAddBrackets"
-                                                  select="
-                                                        (not(contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()], '[')) and
-                                                        not(contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()], ']')) and
-                                                        ((contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()]/preceding-sibling::marc:sf[@code = 'a'][1], '[') and
-                                                        not(contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()]/preceding-sibling::marc:sf[@code = 'a'][1], ']'))) or
-                                                        (contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()]/following-sibling::marc:sf[@code = 'c'][1], ']') and
-                                                        not(contains(../../marc:df[@tag = '880' and substring(marc:sf[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:sf[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:sf[@code = 'b'][position()]/following-sibling::marc:sf[@code = 'c'][1], '['))))) = true()"/>
+                                                    select="
+                                                    (
+                                                    not(contains($v880/marc:sf[@code = 'b'][position()], '[')) and
+                                                    not(contains($v880/marc:sf[@code = 'b'][position()], ']')) and
+                                                        (
+                                                            (
+                                                                contains($v880/marc:sf[@code = 'b'][position()]/preceding-sibling::marc:sf[@code = 'a'][1], '[') and
+                                                                not(contains($v880/marc:sf[@code = 'b'][position()]/preceding-sibling::marc:sf[@code = 'a'][1], ']'))
+                                                            ) or
+                                                            (
+                                                                contains($v880/marc:sf[@code = 'b'][position()]/following-sibling::marc:sf[@code = 'c'][1], ']') and
+                                                                not(contains($v880/marc:sf[@code = 'b'][position()]/following-sibling::marc:sf[@code = 'c'][1], '['))
+                                                            )
+                                                         )
+                                                      ) = true()"/>
+                                                
                                                 <xsl:call-template name="tChopPunct">
                                                   <xsl:with-param name="pString"
                                                   select="$df/../marc:df[@tag = '880']/marc:sf[position() = $sfPos]"/>
@@ -326,41 +332,16 @@
                             </bf:provisionActivity>
                         </xsl:otherwise>
                     </xsl:choose>
-
-                    <xsl:if test="$vTag = '260'">
-                        <xsl:for-each select="marc:subfield[@code = 'd']">
-                            <xsl:variable name="vLinkedValue">
-                                <xsl:if test="$v880Occurrence and $v880Occurrence != '00'">
-                                    <xsl:value-of
-                                        select="../../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:subfield[@code = 'd'][position()]"
-                                    />
-                                </xsl:if>
-                            </xsl:variable>
-                            <bf:identifiedBy>
-                                <bf:PublisherNumber>
-                                    <rdf:value>
-                                        <xsl:value-of select="."/>
-                                    </rdf:value>
-                                    <xsl:if test="$vLinkedValue != ''">
-                                        <rdf:value>
-                                            <xsl:value-of select="$vLinkedValue"/>
-                                        </rdf:value>
-                                    </xsl:if>
-                                </bf:PublisherNumber>
-                            </bf:identifiedBy>
-                        </xsl:for-each>
-                    </xsl:if>
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
 
     </xsl:template>
 
+
     <xsl:template name="blockize26x">
         <xsl:param name="df"/>
-        <xsl:param name="vXmlLang"/>
         <xsl:param name="v880Ref"/>
-        <xsl:param name="vLinkedXmlLang"/>
 
         <!-- Parse the subfields in this datafield. -->
         <xsl:variable name="parsedSfs">
@@ -400,6 +381,9 @@
                 </xsl:variable>
                 <marc:df>
                     <xsl:copy-of select="$related880/marc:datafield/@*"/>
+                    <xsl:attribute name="xmllang">
+                        <xsl:apply-templates select="$df/../marc:datafield[@tag = '880' and contains(marc:subfield[@code = '6'], $v880Ref)]" mode="xmllang"/>
+                    </xsl:attribute>
                     <xsl:for-each select="$related880/marc:datafield/marc:subfield">
                         <marc:sf>
                             <xsl:copy-of select="@*"/>
@@ -428,6 +412,15 @@
                             <xsl:otherwise>1</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
+                    <xsl:attribute name="xmllang">
+                        <xsl:apply-templates select="$df" mode="xmllang"/>
+                    </xsl:attribute>
+                    <xsl:for-each select="$df/marc:subfield[@code = '3']">
+                        <marc:sf>
+                            <xsl:copy-of select="@*"/>
+                            <xsl:copy-of select="text()"/>
+                        </marc:sf>
+                    </xsl:for-each>
                     <xsl:for-each select="$parsedSfs/marc:sf[@gpos = $g]">
                         <xsl:copy-of select="."/>
                     </xsl:for-each>

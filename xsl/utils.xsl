@@ -15,7 +15,7 @@
       Determine the xml:lang code from $6
   -->
 
-  <xsl:template match="marc:datafield" mode="xmllang">
+  <xsl:template match="marc:datafield|marc:df" mode="xmllang">
     <xsl:if test="marc:subfield[@code='6'] and ../marc:controlfield[@tag='008']">
       <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
       <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
