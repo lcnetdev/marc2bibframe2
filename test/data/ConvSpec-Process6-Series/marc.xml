@@ -1,14 +1,60 @@
-<collection xmlns="http://www.loc.gov/MARC21/slim">
+<collection xmlns="http://www.loc.gov/MARC21/slim">  
   <record>
     <controlfield tag="001">1</controlfield>
     <datafield tag="800" ind1="1" ind2=" ">
       <subfield code="a">Fernando, A. Denis N.</subfield>
       <subfield code="t">Resource maps of Sri Lanka ;</subfield>
+      <subfield code="n">partnum ;</subfield>
+      <subfield code="p">Part Name ;</subfield>
+      
       <subfield code="v">pt. 2.</subfield>
       <subfield code="w">(DE-101)550955267</subfield>
     </datafield>
+    <datafield tag="830" ind1="1" ind2=" ">
+      <subfield code="3">1980</subfield>
+      <subfield code="a">DHEW publication,</subfield>
+      <subfield code="x">0090-0206</subfield>
+      
+    </datafield>    
+    
   </record>
   <record>
+    <controlfield tag="001">2</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Conference proceedings =</subfield>
+      <subfield code="a">Atti di conferenze ;</subfield>
+      <subfield code="v">v. 27</subfield>
+    </datafield>
+    
+  </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Department of State publication ;</subfield>
+      <subfield code="v">7846</subfield>
+      <subfield code="a">Department and Foreign Service series ;</subfield>
+      <subfield code="x">2345-6789</subfield>
+      <subfield code="v">128</subfield>
+    </datafield>
+   
+  <datafield tag="800" ind1="1" ind2=" ">
+    <subfield code="a">Balcziak, Bill,</subfield>
+    <subfield code="d">1962-</subfield>
+    <subfield code="t">Imagination series.</subfield>
+    <subfield code="p">Tall tales.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">
+        Frontiers in artificial intelligence and applications,
+      </subfield>
+      <subfield code="x">0922-6389 ;</subfield>
+      <subfield code="v">v. 79.</subfield>
+      <subfield code="a">Knowledge-based intelligent engineering systems ;</subfield>
+      <subfield code="v">v. 3</subfield>
+    </datafield>
+    
+  </record>
+<!--  <record>
     <controlfield tag="001">2</controlfield>
     <datafield tag="490" ind1="1" ind2=" ">
       <subfield code="a">DHEW publication</subfield>
@@ -88,5 +134,28 @@
       <subfield code="a">Zoku Teikoku bunko ;</subfield>
       <subfield code="v">dai 34-hen, etc.</subfield>
     </datafield>
-  </record>
-</collection>
+  </record>  
+    <record>
+      <controlfield tag="001">7</controlfield>
+      <datafield tag="245" ind1="1" ind2="0">
+        <subfield code="a">Ole Lukøie /</subfield>
+        <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
+      </datafield>
+      <datafield tag="490" ind1="1" ind2=" ">
+        <subfield code="3">1972/73-1975-76: </subfield>
+        <subfield code="a">Lund studies in geography,</subfield>
+        <subfield code="x">1400-1144 ;</subfield>
+        <subfield code="v">101</subfield>
+        <subfield code="a">Ser. B, Human geography,</subfield>
+        <subfield code="x">0076-1478 ;</subfield>
+        <subfield code="v">48</subfield>
+      </datafield>
+      <datafield tag="490" ind1="0" ind2=" ">
+        <subfield code="a">Papers and documents of the I.C.I. Series C, Bibliographies ;</subfield>
+        <subfield code="v">no. 3 =</subfield>
+        <subfield code="a">Travaux et documents de l'I.C.I. Série C, Bibliographies ;</subfield>
+        <subfield code="x">1234-5678 ;</subfield>
+        <subfield code="v">no 3</subfield>
+      </datafield>   
+   </record>
+-->  </collection>
