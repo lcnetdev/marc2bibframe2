@@ -148,7 +148,7 @@
   <!--
       create a bflc:appliesTo property from a subfield $3
   -->
-  <xsl:template match="marc:subfield" mode="subfield3">
+  <xsl:template match="marc:subfield|marc:sf" mode="subfield3">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="parent::*" mode="xmllang"/></xsl:variable>
     <xsl:choose>

@@ -211,7 +211,40 @@
         </bf:note>
       </xsl:when>
     </xsl:choose>
-  </xsl:template>    
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='260']" mode="instance">
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="v880Occurrence">
+      <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+    </xsl:variable>
+    <xsl:for-each select="marc:subfield[@code = 'd']">
+      <xsl:variable name="vLinkedValue">
+        <xsl:if test="$v880Occurrence and $v880Occurrence != '00'">
+          <xsl:value-of
+            select="../../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = $vTag and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $v880Occurrence]/marc:subfield[@code = 'd'][position()]"
+          />
+        </xsl:if>
+      </xsl:variable>
+      <bf:identifiedBy>
+        <bf:PublisherNumber>
+          <rdf:value>
+            <xsl:value-of select="."/>
+          </rdf:value>
+          <xsl:if test="$vLinkedValue != ''">
+            <rdf:value>
+              <xsl:value-of select="$vLinkedValue"/>
+            </rdf:value>
+          </xsl:if>
+        </bf:PublisherNumber>
+      </bf:identifiedBy>
+    </xsl:for-each>
+  </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='260' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='260')] |
                        marc:datafield[@tag='262'] |
