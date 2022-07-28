@@ -16,7 +16,7 @@
     <!-- Why did the above also select 880s?  Is it possible to have 880s but no 26X.  If so, would that even have output anything? -->
     <xsl:template name="process8">
         
-        <xsl:variable name="v26xFields" select="../marc:datafield[@tag = '260']|../marc:datafield[@tag = '262']|../marc:datafield[@tag = '264']" />
+        <xsl:variable name="v26xFields" select="../marc:datafield[@tag = '260']|../marc:datafield[@tag = '261']|../marc:datafield[@tag = '262']|../marc:datafield[@tag = '264']" />
         <xsl:variable name="v880Fields" select="../marc:datafield[@tag = '880']" />
         
         <!-- 
@@ -90,12 +90,9 @@
                 </xsl:choose>
             </xsl:variable>
             <xsl:variable name="vcf008">
-                <xsl:if test="  $vProvisionActivity != '' and
-                                ( 
-                                    not(preceding-sibling::marc:sfGroup) 
-                                    or 
-                                    preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 != $ind2val]
-                                )
+                <xsl:if test="  $vProvisionActivity != '' 
+                                and
+                                count(preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 = $ind2val]) = 0
                         ">
                     <xsl:copy-of select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*" />
                 </xsl:if>
@@ -335,6 +332,35 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
+        
+        <!-- Need to check for any paGroups from the 008 that did not match a group from the 26x. -->
+        <xsl:for-each select="$cf008data/paGroup">
+            <xsl:variable name="vProvisionActivity"><xsl:value-of select="type"/></xsl:variable>
+            <xsl:variable name="ind2val">
+                <xsl:choose>
+                    <xsl:when test="$vProvisionActivity = 'Production'">0</xsl:when>
+                    <xsl:when test="$vProvisionActivity = 'Publication'">1</xsl:when>
+                    <xsl:when test="$vProvisionActivity = 'Distribution'">2</xsl:when>
+                    <xsl:when test="$vProvisionActivity = 'Manufacture'">3</xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:if test="$vProvisionActivity != 'Copyright' and not($sfblocks/marc:sfGroup/marc:df[@tag = '264' and @ind2 = $ind2val])">
+                <bf:provisionActivity>
+                    <bf:ProvisionActivity>
+                        <rdf:type>
+                            <xsl:attribute name="rdf:resource">
+                                <xsl:value-of
+                                    select="concat($bf, $vProvisionActivity)"/>
+                            </xsl:attribute>
+                        </rdf:type>
+                        <xsl:copy-of select="bf:*"/>
+                    </bf:ProvisionActivity>
+                </bf:provisionActivity>
+            </xsl:if>
+            <xsl:if test="$vProvisionActivity = 'Copyright' and not($sfblocks/marc:sfGroup/marc:df[@tag = '264' and @ind2 = '4'])">
+                <xsl:copy-of select="bf:*"/>
+            </xsl:if>
+        </xsl:for-each>
 
     </xsl:template>
 
@@ -404,6 +430,15 @@
                     <xsl:attribute name="ind2">
                         <xsl:choose>
                             <xsl:when
+                                test="$parsedSfs/marc:sf[@gpos = $g][1][@type = 'Production']"
+                                >0</xsl:when>
+                            <xsl:when
+                                test="$parsedSfs/marc:sf[@gpos = $g][1][@type = 'Publication']"
+                                >1</xsl:when>
+                            <xsl:when
+                                test="$parsedSfs/marc:sf[@gpos = $g][1][@type = 'Distribution']"
+                                >2</xsl:when>
+                            <xsl:when
                                 test="$parsedSfs/marc:sf[@gpos = $g][1][@type = 'Manufacture']"
                                 >3</xsl:when>
                             <xsl:when test="$df/@tag = '264'">
@@ -443,7 +478,7 @@
 
         <xsl:variable name="sf" select="$df/marc:subfield[$pos]"/>
 
-        <xsl:if test="$sf/@code = 'a' or $sf/@code = 'b' or $sf/@code = 'c'">
+        <!--<xsl:if test="$df/@tag != '261' and ($sf/@code = 'a' or $sf/@code = 'b' or $sf/@code = 'c')">
             <marc:sf>
                 <xsl:copy-of select="$sf/@*"/>
                 <xsl:attribute name="gpos">
@@ -455,7 +490,7 @@
                 <xsl:copy-of select="$sf/text()"/>
             </marc:sf>
         </xsl:if>
-        <xsl:if test="$sf/@code = 'e' or $sf/@code = 'f' or $sf/@code = 'g'">
+        <xsl:if test="$df/@tag != '261' and ($sf/@code = 'e' or $sf/@code = 'f' or $sf/@code = 'g')">
             <xsl:variable name="map260sfs">
                 <m sfCode="e">a</m>
                 <m sfCode="f">b</m>
@@ -474,13 +509,153 @@
                 <xsl:copy-of select="$sf/text()"/>
             </marc:sf>
         </xsl:if>
+        <xsl:if test="$df/@tag = '261' and ($sf/@code = 'a' or $sf/@code = 'b') or $sf/@code = 'd' or $sf/@code = 'f'">
+            <xsl:variable name="map260sfs">
+                <m sfCode="a">b</m>
+                <m sfCode="b">b</m>
+                <m sfCode="f">a</m>
+                <m sfCode="d">c</m>
+            </xsl:variable>
+            <marc:sf type="Production">
+                <xsl:attribute name="code">
+                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                </xsl:attribute>
+                <xsl:attribute name="gpos">
+                    <xsl:value-of select="$gpos"/>
+                </xsl:attribute>
+                <xsl:attribute name="pos">
+                    <xsl:value-of select="$pos"/>
+                </xsl:attribute>
+                <xsl:copy-of select="$sf/text()"/>
+            </marc:sf>
+        </xsl:if>
+        <xsl:if test="$df/@tag = '261' and $sf/@code = 'e' or $sf/@code = 'd' or $sf/@code = 'f'">
+            <xsl:variable name="map260sfs">
+                <m sfCode="e">b</m>
+                <m sfCode="f">a</m>
+                <m sfCode="d">c</m>
+            </xsl:variable>
+            <marc:sf type="Manufacture">
+                <xsl:attribute name="code">
+                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                </xsl:attribute>
+                <xsl:attribute name="gpos">
+                    <xsl:value-of select="$gpos"/>
+                </xsl:attribute>
+                <xsl:attribute name="pos">
+                    <xsl:value-of select="$pos"/>
+                </xsl:attribute>
+                <xsl:copy-of select="$sf/text()"/>
+            </marc:sf>
+        </xsl:if>-->
+        
+        <xsl:choose>
+            <xsl:when test="$df/@tag = '261' and ($sf/@code = 'a' or $sf/@code = 'b')">
+                <xsl:variable name="map260sfs">
+                    <m sfCode="a">b</m>
+                    <m sfCode="b">b</m>
+                </xsl:variable>
+                <marc:sf type="Production">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="gpos">
+                        <xsl:value-of select="$gpos"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="pos">
+                        <xsl:value-of select="$pos"/>
+                    </xsl:attribute>
+                    <xsl:copy-of select="$sf/text()"/>
+                </marc:sf>
+            </xsl:when>
+            <xsl:when test="$df/@tag = '261' and $sf/@code = 'e'">
+                <xsl:variable name="map260sfs">
+                    <m sfCode="e">b</m>
+                </xsl:variable>
+                <marc:sf type="Manufacture">
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="gpos">
+                        <xsl:value-of select="$gpos"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="pos">
+                        <xsl:value-of select="$pos"/>
+                    </xsl:attribute>
+                    <xsl:copy-of select="$sf/text()"/>
+                </marc:sf>
+            </xsl:when>
+            <xsl:when test="$df/@tag = '261' and ($sf/@code = 'd' or $sf/@code = 'f')">
+                <xsl:variable name="map260sfs">
+                    <m sfCode="f">a</m>
+                    <m sfCode="d">c</m>
+                </xsl:variable>
+                <!--<xsl:variable name="sfType">
+                    <xsl:if test="$sf/@code = 'f'">
+                        <xsl:choose>
+                            <xsl:when test="$df/marc:subfield[$pos - 1][@code = 'a' or @code = 'b']">Production</xsl:when>
+                            <xsl:when test="$df/marc:subfield[$pos - 1][@code = 'e']">Manufacture</xsl:when>
+                            <xsl:otherwise>Publication</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                </xsl:variable>-->
+                <marc:sf>
+                    <!--<xsl:if test="$sfType != ''">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="$sfType"/>
+                        </xsl:attribute>
+                    </xsl:if>-->
+                    <xsl:attribute name="code">
+                        <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="gpos">
+                        <xsl:value-of select="$gpos"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="pos">
+                        <xsl:value-of select="$pos"/>
+                    </xsl:attribute>
+                    <xsl:copy-of select="$sf/text()"/>
+                </marc:sf>
+            </xsl:when>
+            <xsl:when test="$sf/@code = 'a' or $sf/@code = 'b' or $sf/@code = 'c'">
+            <marc:sf>
+                <xsl:copy-of select="$sf/@*"/>
+                <xsl:attribute name="gpos">
+                    <xsl:value-of select="$gpos"/>
+                </xsl:attribute>
+                <xsl:attribute name="pos">
+                    <xsl:value-of select="$pos"/>
+                </xsl:attribute>
+                <xsl:copy-of select="$sf/text()"/>
+            </marc:sf>
+        </xsl:when>
+        <xsl:when test="$sf/@code = 'e' or $sf/@code = 'f' or $sf/@code = 'g'">
+            <xsl:variable name="map260sfs">
+                <m sfCode="e">a</m>
+                <m sfCode="f">b</m>
+                <m sfCode="g">c</m>
+            </xsl:variable>
+            <marc:sf type="Manufacture">
+                <xsl:attribute name="code">
+                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                </xsl:attribute>
+                <xsl:attribute name="gpos">
+                    <xsl:value-of select="$gpos"/>
+                </xsl:attribute>
+                <xsl:attribute name="pos">
+                    <xsl:value-of select="$pos"/>
+                </xsl:attribute>
+                <xsl:copy-of select="$sf/text()"/>
+            </marc:sf>
+        </xsl:when>
+        </xsl:choose>
 
         <xsl:variable name="next_gpos" select="$gpos + 1"/>
         <xsl:variable name="next_pos" select="$pos + 1"/>
 
         <xsl:choose>
             <xsl:when
-                test="$df/marc:subfield[$next_pos][@code = 'b' or @code = 'c' or @code = 'f' or @code = 'g']">
+                test="$df/marc:subfield[$next_pos][@code = 'b' or @code = 'c' or @code = 'd' or @code = 'f' or @code = 'g']">
                 <xsl:call-template name="parse26x">
                     <xsl:with-param name="df" select="$df"/>
                     <xsl:with-param name="gpos" select="$gpos"/>
