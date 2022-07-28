@@ -70,4 +70,14 @@
             <subfield code="b">Pride Publishing Inc.</subfield>
         </datafield>
     </record>
+    <record>
+        <controlfield tag="001">21009588</controlfield>
+        <controlfield tag="008">190607p19981996mnucyn|           | eng d</controlfield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">Minneapolis, MN :</subfield>
+            <subfield code="b">Dominion :</subfield>
+            <subfield code="b">Manufactured and distributed in the U.S. by K-tel International,</subfield>
+            <subfield code="c">[1998?], ℗1997.</subfield>
+        </datafield>
+    </record>
 </collection>
