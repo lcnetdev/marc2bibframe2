@@ -249,7 +249,7 @@
   <xsl:template match="marc:datafield[@tag='260' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='260')] |
                        marc:datafield[@tag='262'] |
                        marc:datafield[@tag='264' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='264')]"
-                mode="notouch">
+                mode="norun">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -597,7 +597,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='261' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='261')]" mode="instance">
+  <xsl:template match="marc:datafield[@tag='261' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='261')]" mode="norun">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
