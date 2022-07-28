@@ -89,6 +89,7 @@
   </record>
   <record>
     <controlfield tag="001">3</controlfield>
+    <controlfield tag="008">               xxk</controlfield>
     <datafield tag="260" ind1=" " ind2=" ">
       <subfield code="a">[Philadelphia :</subfield>
       <subfield code="b">s.n.,</subfield>

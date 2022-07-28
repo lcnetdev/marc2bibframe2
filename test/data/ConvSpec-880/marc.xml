@@ -1,6 +1,7 @@
 <collection xmlns="http://www.loc.gov/MARC21/slim">
   <record>
     <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">               xxk</controlfield>
     <datafield ind1="0" ind2="0" tag="880">
       <subfield code="6">210-00</subfield>
       <subfield code="a">東海道五十三次絵卷.</subfield>
