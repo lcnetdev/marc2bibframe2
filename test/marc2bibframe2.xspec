@@ -42,7 +42,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.0-SNAPSHOT</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -163,9 +163,10 @@
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">2001</bf:date>
-                <bf:place>
-                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dk"/>
-                </bf:place>
+                <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/dk"/>
+                <bflc:simplePlace>[København?]</bflc:simplePlace>
+                <bflc:simpleAgent>Lindhardt og Ringhof</bflc:simpleAgent>
+                <bflc:simpleDate>c2001</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:carrier>
@@ -194,22 +195,6 @@
                 <bf:mainTitle>Ole Lukøie</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:provisionActivity>
-              <bf:ProvisionActivity>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:place>
-                  <bf:Place>
-                    <rdfs:label>[København?]</rdfs:label>
-                  </bf:Place>
-                </bf:place>
-                <bf:agent>
-                  <bf:Agent>
-                    <rdfs:label>Lindhardt og Ringhof</rdfs:label>
-                  </bf:Agent>
-                </bf:agent>
-                <bf:date>c2001</bf:date>
-              </bf:ProvisionActivity>
-            </bf:provisionActivity>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 v. (unpaged)</rdfs:label>
@@ -241,7 +226,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.0-SNAPSHOT</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -388,9 +373,10 @@
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1957</bf:date>
-                <bf:place>
-                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/nyu"/>
-                </bf:place>
+                <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/nyu"/>
+                <bflc:simplePlace xmlns:bflc="http://id.loc.gov/ontologies/bflc/">New York, N.Y.</bflc:simplePlace>
+                <bflc:simpleAgent xmlns:bflc="http://id.loc.gov/ontologies/bflc/">Atlantic</bflc:simpleAgent>
+                <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[1957?]</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:carrier>
@@ -419,22 +405,6 @@
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
-            <bf:provisionActivity>
-              <bf:ProvisionActivity>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:place>
-                  <bf:Place>
-                    <rdfs:label>New York, N.Y.</rdfs:label>
-                  </bf:Place>
-                </bf:place>
-                <bf:agent>
-                  <bf:Agent>
-                    <rdfs:label>Atlantic</rdfs:label>
-                  </bf:Agent>
-                </bf:agent>
-                <bf:date>[1957?]</bf:date>
-              </bf:ProvisionActivity>
-            </bf:provisionActivity>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 sound disc</rdfs:label>
@@ -460,7 +430,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.0-SNAPSHOT</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -642,9 +612,10 @@
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                 <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1994/9999</bf:date>
-                <bf:place>
-                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/dcu"/>
-                </bf:place>
+                <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/dcu"/>
+                <bflc:simplePlace>Washington, D.C.</bflc:simplePlace>
+                <bflc:simpleAgent>White House Web Team</bflc:simpleAgent>
+                <bflc:simpleDate>1994-</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:identifiedBy>
@@ -672,22 +643,6 @@
                 <rdfs:label>Computer data</rdfs:label>
               </bf:Note>
             </bf:note>
-            <bf:provisionActivity>
-              <bf:ProvisionActivity>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:place>
-                  <bf:Place>
-                    <rdfs:label>Washington, D.C.</rdfs:label>
-                  </bf:Place>
-                </bf:place>
-                <bf:agent>
-                  <bf:Agent>
-                    <rdfs:label>White House Web Team</rdfs:label>
-                  </bf:Agent>
-                </bf:agent>
-                <bf:date>1994-</bf:date>
-              </bf:ProvisionActivity>
-            </bf:provisionActivity>
             <bf:systemRequirement>
               <bf:SystemRequirement>
                 <rdfs:label>Mode of access: Internet.</rdfs:label>
@@ -730,7 +685,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.0-SNAPSHOT</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -945,9 +900,10 @@
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
                         <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1994</bf:date>
-                <bf:place>
-                  <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/cau"/>
-                </bf:place>
+                <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/cau"/>
+                <bflc:simplePlace xmlns:bflc="http://id.loc.gov/ontologies/bflc/">San Francisco</bflc:simplePlace>
+                <bflc:simpleAgent xmlns:bflc="http://id.loc.gov/ontologies/bflc/">Jossey-Bass</bflc:simpleAgent>
+                <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">c1994</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bf:carrier>
@@ -977,22 +933,6 @@
               </bf:Title>
             </bf:title>
             <bf:editionStatement>1st ed.</bf:editionStatement>
-            <bf:provisionActivity>
-              <bf:ProvisionActivity>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
-                <bf:place>
-                  <bf:Place>
-                    <rdfs:label>San Francisco</rdfs:label>
-                  </bf:Place>
-                        </bf:place>
-                <bf:agent>
-                  <bf:Agent>
-                    <rdfs:label>Jossey-Bass</rdfs:label>
-                  </bf:Agent>
-                </bf:agent>
-                <bf:date>c1994</bf:date>
-              </bf:ProvisionActivity>
-            </bf:provisionActivity>
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>xxiii, 622 p.</rdfs:label>
@@ -1052,7 +992,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v1.7.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.0-SNAPSHOT</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
