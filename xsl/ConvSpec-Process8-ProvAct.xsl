@@ -17,8 +17,8 @@
     <xsl:template name="process8">
         
         <xsl:variable name="v26xFields" select="../marc:datafield[@tag = '260']|../marc:datafield[@tag = '261']|../marc:datafield[@tag = '262']|../marc:datafield[@tag = '264']" />
-        <xsl:variable name="v880Fields" select="../marc:datafield[@tag = '880']" />
-        
+        <xsl:variable name="v880Fields" select="../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 2) = '26' and substring(marc:subfield[@code = '6'], 1, 3) != '263']" />
+
         <!-- 
             This variable looks like:
             <paGroup>
@@ -73,6 +73,43 @@
                 <xsl:with-param name="df" select="self::node()"/>
                 <xsl:with-param name="v880Ref" select="$v880Ref"/>
             </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="$v880Fields">
+                <xsl:variable name="vTag">
+                    <xsl:value-of select="substring(marc:subfield[@code = '6'], 1, 3)"/>
+                </xsl:variable>
+                
+                <xsl:variable name="v880Occurrence">
+                    <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
+                </xsl:variable>
+                <xsl:variable name="v880Ref">
+                    <xsl:value-of select="concat('880-', $v880Occurrence)"/>
+                </xsl:variable>
+                <xsl:variable name="relatedField">
+                    <xsl:copy-of
+                        select="../marc:datafield[@tag = $vTag and contains(marc:subfield[@code = '6'], $v880Ref)]"
+                    />
+                </xsl:variable>
+                <xsl:if test="count($relatedField/marc:*) = 0">
+                    <xsl:variable name="dfFrom880">
+                        <marc:datafield>
+                            <xsl:attribute name="tag"><xsl:value-of select="$vTag"/></xsl:attribute>
+                            <xsl:copy-of select="@ind1" />
+                            <xsl:copy-of select="@ind2" />
+                            <xsl:for-each select="marc:subfield[@code != '6']">
+                                <marc:subfield>
+                                    <xsl:attribute name="code"><xsl:value-of select="@code"/></xsl:attribute>
+                                    <xsl:value-of select="."/>
+                                </marc:subfield>
+                            </xsl:for-each>
+                            <!-- <xsl:copy-of select="marc:subfield[@code != '6']"/> -->
+                        </marc:datafield>
+                    </xsl:variable>
+                <xsl:call-template name="blockize26x">
+                    <xsl:with-param name="df" select="$dfFrom880/marc:datafield"/>
+                    <xsl:with-param name="v880Ref" select="'bananas'"/>
+                </xsl:call-template>
+                </xsl:if>
             </xsl:for-each>
         </xsl:variable>
         <!--<xsl:copy-of select="$sfblocks"/>-->

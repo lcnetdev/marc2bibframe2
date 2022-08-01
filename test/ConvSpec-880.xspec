@@ -20,8 +20,8 @@
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Work[1]/bf:title[4]/bf:ParallelTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Work[1]/bf:title[5]/bf:VariantTitle/bf:variantType = 'former'"/>
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
-    <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Лондон'"/>
-    <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:place/bf:Place/rdfs:label = 'Сиэтл'"/>
+    <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simplePlace = 'Лондон'"/>
+    <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'Сиэтл'"/>
     <x:expect label="$6 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Книги пеликан 1234-5678'"/>
     <x:expect label="...$x creates a hasSeries property of the Work if ind1 = 1" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn = '1234-5678'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
