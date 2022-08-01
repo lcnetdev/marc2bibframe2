@@ -83,13 +83,13 @@
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="$a creates a bflc:projectedProvisionDate property of the Instance" test="//bf:Instance[1]/bflc:projectedProvisionDate = '1999--'"/>
   </x:scenario>
-
+  
   <x:scenario label="264 - PRODUCTION, PUBLICATION, DISTRIBUTION, MANUFACTURE, AND COPYRIGHT NOTICE">
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="264 creates a provisionActivity or copyrightDate property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 12"/>
     <x:expect label="...with resource class determined by ind2" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...do not create additional class for ProvisionActivity if it can't be determined"
-              test="count(//bf:Instance[1]/bf:provisionActivity[12]/bf:ProvisionActivity/rdf:type) = 0"/>
+      test="count(//bf:Instance[1]/bf:provisionActivity[12]/bf:ProvisionActivity/rdf:type) = 0"/>
     <x:expect label="ind1 = 3 creates a status property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1981-'"/>
     <x:expect label="$a creates a place property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:simplePlace = 'Washington'"/>
@@ -97,6 +97,44 @@
     <x:expect label="$c creates a date property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:simpleDate = '1981-'"/>
     <x:expect label="...unless ind2=4, then do not create ProvisionActivity, but create copyrightDate property of the Instance" test="//bf:Instance[1]/bf:copyrightDate='©2002'"/>
     <x:expect label="...unless 008/06=t, then ignore (copyrightDate from 008/11-14)" test="count(//bf:Instance[2]/bf:copyrightDate)=1 and //bf:Instance[2]/bf:copyrightDate='1969'"/>
+  </x:scenario>
+
+  <x:scenario label="26X - Extra tests after Process8 introduced">
+    <x:context href="data/ConvSpec-250-270/marc-process8.xml"/>
+    <x:expect label="260 creates two provisionActivity resources" test="count(//bf:Instance[1]/bf:provisionActivity) = 2"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...and the other is Publication: number 2" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...008 date is coded in first PA resource" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1927'"/>
+    <x:expect label="...simplePlace of 2nd PA resource is London" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'London'"/>
+    
+    <x:expect label="260 creates one provisionActivity resources" test="count(//bf:Instance[2]/bf:provisionActivity) = 1"/>
+    <x:expect label="...it is Publication." test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...008 place is coded in PA resource" test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/bf:place/@rdf:resource = 'http://id.loc.gov/vocabulary/countries/ja'"/>
+    <x:expect label="...simpleDate with language tag, from matching 880" test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/bflc:simpleDate[@xml:lang='ja-jpan'] = '[昭和 62 i.e. 1987]'"/>
+    
+    <x:expect label="Two 264s create one provisionActivity resource" test="count(//bf:Instance[3]/bf:provisionActivity) = 1"/>
+    <x:expect label="...and one copyright date" test="count(//bf:Instance[3]/bf:copyrightDate) = 1"/>
+    
+    <x:expect label="260 creates two provisionActivity resources" test="count(//bf:Instance[4]/bf:provisionActivity) = 2"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[4]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...and the other is Manufacture: number 2" test="//bf:Instance[4]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
+    <x:expect label="...008 date is coded in first PA resource" test="//bf:Instance[4]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1983'"/>
+    <x:expect label="...simpleAgent of 1st PA resource has brackets" test="//bf:Instance[4]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simpleAgent = '[Milnor Centennial Corp]'"/>
+    
+    <x:expect label="Three 264s create three provisionActivity resources" test="count(//bf:Instance[5]/bf:provisionActivity) = 3"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[5]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...and the third is Publication: number 3" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...status is 'current' in first PA resource" test="//bf:Instance[5]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/current'"/>
+    <x:expect label="...and the third PA resource" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/current'"/>
+    <x:expect label="...and 3rd has the stupid appliesTo" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '&lt;November 2019-&gt;'"/>
+    
+    <x:expect label="260 creates one provisionActivity resources and 008 two" test="count(//bf:Instance[6]/bf:provisionActivity) = 3"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[6]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...one is Distribution: number 1" test="//bf:Instance[6]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Distribution'"/>
+    <x:expect label="...one is Production: number 1" test="//bf:Instance[6]/bf:provisionActivity[3]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Production'"/>
+    <x:expect label="...008 date is coded in second PA resource" test="//bf:Instance[6]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1998'"/>
+    <x:expect label="...008 date is coded in the third PA resource too" test="//bf:Instance[6]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1996'"/>
+    <x:expect label="...and has two simpleAgent resources in 1st PA" test="count(//bf:Instance[6]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simpleAgent) = 2"/>
   </x:scenario>
 
   <x:scenario label="265 - SOURCE FOR ACQUISITION/SUBSCRIPTION ADDRESS [OBSOLETE]">
