@@ -123,6 +123,8 @@
       <xsl:choose>
         <xsl:when test="substring(.,8,1) = 'a'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'b'"><xsl:value-of select="concat($issuance,'serl')"/></xsl:when>
+        <xsl:when test="substring(.,8,1) = 'c'"><xsl:value-of select="concat($issuance,'mulm')"/></xsl:when>
+        <xsl:when test="substring(.,8,1) = 'd'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'i'"><xsl:value-of select="concat($issuance,'intg')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'm'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 's'"><xsl:value-of select="concat($issuance,'serl')"/></xsl:when>
@@ -136,11 +138,10 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$pInstanceType)"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:if test="$issuanceUri != ''">
+        <!-- Output an issuance type based on Leader/07 if there is no 334 present in record. -->
+        <xsl:if test="$issuanceUri != '' and not (../marc:datafield[@tag = '334'])">
           <bf:issuance>
-            <bf:Issuance>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
-            </bf:Issuance>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
           </bf:issuance>
         </xsl:if>
       </xsl:when>
