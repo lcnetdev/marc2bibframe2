@@ -246,6 +246,12 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!-- 
+    This is set to "norun," so it won't run.  
+    Want to leave for a release cycle or two and, if there is no reversion, remove.
+    Slated to remove as dead code after version 2.1
+  -->
+  <!--
   <xsl:template match="marc:datafield[@tag='260' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='260')] |
                        marc:datafield[@tag='262'] |
                        marc:datafield[@tag='264' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='264')]"
@@ -376,7 +382,7 @@
                   </xsl:for-each>
                   <xsl:for-each select="marc:subfield[@code='b']">
                     <xsl:variable name="vLabel">
-                      <!-- detect if there are unmatched brackets in preceding or following subfield -->
+                      <!-\- detect if there are unmatched brackets in preceding or following subfield -\->
                       <xsl:variable name="vAddBrackets"
                                     select="(not(contains(.,'[')) and
                                             not(contains(.,']')) and
@@ -391,7 +397,7 @@
                     </xsl:variable>
                     <xsl:variable name="vLinkedLabel">
                       <xsl:if test="$vOccurrence and $vOccurrence != '00'">
-                        <!-- detect if there are unmatched brackets in preceding or following subfield -->
+                        <!-\- detect if there are unmatched brackets in preceding or following subfield -\->
                         <xsl:variable name="vAddBrackets"
                                       select="(not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()],'[')) and
                                               not(contains(../../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='b'][position()],']')) and
@@ -596,7 +602,14 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+  -->
   
+  <!-- 
+    This is set to "norun," so it won't run.  
+    Want to leave for a release cycle or two and, if there is no reversion, remove.
+    Slated to remove as dead code after version 2.1
+  -->
+  <!--
   <xsl:template match="marc:datafield[@tag='261' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='261')]" mode="norun">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
@@ -673,7 +686,7 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
+  -->
   <xsl:template match="marc:datafield[@tag='263' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='263')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
