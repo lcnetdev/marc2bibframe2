@@ -14,6 +14,14 @@
   -->
 
   <!-- determine rdf:type for Instance from LDR -->
+  <!-- 
+     At this time - 3 Aug 2022 - the notion of Instance type is close to non-existent,
+     at least with respect to default typing for every MARC record.  (An Instance can
+     still receive typing from the 007.)  This is basically a Hub check (is it a Hub?).
+     vinstanceType, which tends to be set as a result of this, doesn't appear to be used.
+     Point is this:  A future refactor could involve rewriting this to be a simple Hub
+     check and then not passing vinstanceType all over since it is not really used.
+  -->
   <xsl:template match="marc:leader" mode="instanceType">
     <xsl:choose>
       <!--
