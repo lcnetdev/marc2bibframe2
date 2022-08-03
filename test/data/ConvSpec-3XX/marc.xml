@@ -29,7 +29,11 @@
       <subfield code="b">1981-1982</subfield>
       <subfield code="2">freq</subfield>
       <subfield code="0">(DLC)sma</subfield>
-    </datafield>    
+    </datafield> 
+    <datafield tag="334" ind1=" " ind2=" ">
+      <subfield code="a">single unit</subfield>
+      <subfield code="b">mono</subfield>
+    </datafield>
     <datafield tag="336" ind1=" " ind2=" ">
       <subfield code="a">performed music</subfield>
       <subfield code="b">prm</subfield>
