@@ -14,6 +14,14 @@
   -->
 
   <!-- determine rdf:type for Instance from LDR -->
+  <!-- 
+     At this time - 3 Aug 2022 - the notion of Instance type is close to non-existent,
+     at least with respect to default typing for every MARC record.  (An Instance can
+     still receive typing from the 007.)  This is basically a Hub check (is it a Hub?).
+     vinstanceType, which tends to be set as a result of this, doesn't appear to be used.
+     Point is this:  A future refactor could involve rewriting this to be a simple Hub
+     check and then not passing vinstanceType all over since it is not really used.
+  -->
   <xsl:template match="marc:leader" mode="instanceType">
     <xsl:choose>
       <!--
@@ -115,6 +123,8 @@
       <xsl:choose>
         <xsl:when test="substring(.,8,1) = 'a'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'b'"><xsl:value-of select="concat($issuance,'serl')"/></xsl:when>
+        <xsl:when test="substring(.,8,1) = 'c'"><xsl:value-of select="concat($issuance,'mulm')"/></xsl:when>
+        <xsl:when test="substring(.,8,1) = 'd'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'i'"><xsl:value-of select="concat($issuance,'intg')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'm'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 's'"><xsl:value-of select="concat($issuance,'serl')"/></xsl:when>
@@ -128,11 +138,10 @@
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$pInstanceType)"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
-        <xsl:if test="$issuanceUri != ''">
+        <!-- Output an issuance type based on Leader/07 if there is no 334 present in record. -->
+        <xsl:if test="$issuanceUri != '' and not (../marc:datafield[@tag = '334'])">
           <bf:issuance>
-            <bf:Issuance>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
-            </bf:Issuance>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
           </bf:issuance>
         </xsl:if>
       </xsl:when>
