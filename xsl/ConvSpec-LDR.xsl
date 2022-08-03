@@ -16,12 +16,14 @@
   <!-- determine rdf:type for Instance from LDR -->
   <xsl:template match="marc:leader" mode="instanceType">
     <xsl:choose>
+      <!--
       <xsl:when test="substring(.,7,1) = 'd'">Manuscript</xsl:when>
       <xsl:when test="substring(.,7,1) = 'f'">Manuscript</xsl:when>
       <xsl:when test="substring(.,7,1) = 'm'">Electronic</xsl:when>
       <xsl:when test="substring(.,7,1) = 't'">Manuscript</xsl:when>
+      -->
       <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
-      <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when>
+      <!-- <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when> -->
     </xsl:choose>
   </xsl:template>
   
@@ -77,7 +79,7 @@
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,@class)"/></xsl:attribute>
           </rdf:type>
-          <xsl:if test="not(../marc:datafield[@tag='336']) and not($vContentType='q')">
+          <xsl:if test="not(../marc:datafield[@tag='336']) and not($vContentType='q') and @href">
             <bf:content>
               <bf:Content>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -88,15 +90,20 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:variable name="additionalType">
+    <xsl:variable name="vleader07Type">
       <xsl:choose>
+        <xsl:when test="substring(.,8,1) = 'a'">Monograph</xsl:when>
+        <xsl:when test="substring(.,8,1) = 'b'">Serial</xsl:when>
         <xsl:when test="substring(.,8,1) = 'c'">Collection</xsl:when>
         <xsl:when test="substring(.,8,1) = 'd'">Collection</xsl:when>
+        <xsl:when test="substring(.,8,1) = 'm'">Monograph</xsl:when>
+        <xsl:when test="substring(.,8,1) = 'i'">Integrating</xsl:when>
+        <xsl:when test="substring(.,8,1) = 's'">Serial</xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:if test="$additionalType != ''">
+    <xsl:if test="$vleader07Type != ''">
       <rdf:type>
-        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf, $additionalType)"/></xsl:attribute>
+        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf, $vleader07Type)"/></xsl:attribute>
       </rdf:type>
     </xsl:if>
   </xsl:template>
@@ -119,11 +126,6 @@
         <xsl:if test="$pInstanceType != '' and $pInstanceType != 'Hub'">
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,$pInstanceType)"/></xsl:attribute>
-          </rdf:type>
-        </xsl:if>
-        <xsl:if test="substring(.,9,1) = 'a'">
-          <rdf:type>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Archival')"/></xsl:attribute>
           </rdf:type>
         </xsl:if>
         <xsl:if test="$issuanceUri != ''">

@@ -464,11 +464,13 @@
     <a href="http://id.loc.gov/vocabulary/contentTypes/txt" class="Text">text</a>
     <c href="http://id.loc.gov/vocabulary/contentTypes/ntm" class="NotatedMusic">notated music</c>
     <d href="http://id.loc.gov/vocabulary/contentTypes/ntm" class="NotatedMusic">notated music</d>
+    <d class="Manuscript">manuscript</d>
     <e href="http://id.loc.gov/vocabulary/contentTypes/cri" class="Cartography">cartographic image</e>
     <f href="http://id.loc.gov/vocabulary/contentTypes/cri" class="Cartography">cartographic image</f>
+    <f class="Manuscript">manuscript</f>
     <g href="http://id.loc.gov/vocabulary/contentTypes/tdi" class="MovingImage">two-dimensional moving image</g>
-    <i href="http://id.loc.gov/vocabulary/contentTypes/spw" class="Audio">spoken word</i>
-    <j href="http://id.loc.gov/vocabulary/contentTypes/prm" class="Audio">performed music</j>
+    <i href="http://id.loc.gov/vocabulary/contentTypes/spw" class="NonMusicAudio">spoken word</i>
+    <j href="http://id.loc.gov/vocabulary/contentTypes/prm" class="MusicAudio">performed music</j>
     <k href="http://id.loc.gov/vocabulary/contentTypes/sti" class="StillImage">still image</k>
     <m href="http://id.loc.gov/vocabulary/contentTypes/cop" class="Multimedia">computer program</m>
     <o href="http://id.loc.gov/vocabulary/contentTypes/txt" class="MixedMaterial">text</o>
@@ -476,6 +478,7 @@
     <q class="Hub">hub</q>
     <r href="http://id.loc.gov/vocabulary/contentTypes/tdf" class="Object">three-dimensional form</r>
     <t href="http://id.loc.gov/vocabulary/contentTypes/txt" class="Text">text</t>
+    <t class="Manuscript">manuscript</t>
   </contentTypes>
   <!-- record encoding level -->
   <!-- used in LDR/17 -->
