@@ -95,6 +95,7 @@
                 <rdfs:label>text</rdfs:label>
               </bf:Content>
             </bf:content>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/dan"/>
             </bf:language>
@@ -164,7 +165,6 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print" />
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
@@ -282,12 +282,13 @@
                 </bf:status>
               </bf:AdminMetadata>
             </bf:adminMetadata>
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Audio"/>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/MusicAudio"/>
             <bf:content>
               <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/prm">
                 <rdfs:label>performed music</rdfs:label>
               </bf:Content>
             </bf:content>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
@@ -502,6 +503,7 @@
                 <rdfs:label>computer program</rdfs:label>
               </bf:Content>
             </bf:content>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
@@ -611,8 +613,6 @@
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Electronic"/>
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Archival"/>
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
@@ -752,6 +752,7 @@
                 <rdfs:label>text</rdfs:label>
               </bf:Content>
             </bf:content>
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
             <bf:language>
               <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
             </bf:language>
@@ -910,7 +911,6 @@
       <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/4417401#Instance">
-            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Print"/>
             <bf:issuance>
               <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
             </bf:issuance>
