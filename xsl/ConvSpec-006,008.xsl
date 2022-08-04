@@ -15,9 +15,9 @@
       See lookup tables in conf/codeMaps.xml for code conversions
   -->
 
-  <xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
+  <!--<xsl:template match="marc:controlfield[@tag='006']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <!-- continuing resources -->
+    <!-\- continuing resources -\->
     <xsl:if test="substring(.,1,1) = 's'">
       <xsl:if test="substring(.,18,1) != '|'">
         <xsl:call-template name="entryConvention008">
@@ -26,7 +26,7 @@
         </xsl:call-template>
       </xsl:if>
     </xsl:if>
-  </xsl:template>
+  </xsl:template>-->
 
   <!-- return the material type for the 008 from the leader -->
   <xsl:template match="marc:leader" mode="mMaterialType008">
@@ -138,11 +138,11 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:controlfield[@tag='006']" mode="work">
+  <!--<xsl:template match="marc:controlfield[@tag='006']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <!-- select call appropriate 008 template based on pos 0 -->
+    <!-\- select call appropriate 008 template based on pos 0 -\->
     <xsl:choose>
-      <!-- books -->
+      <!-\- books -\->
       <xsl:when test="substring(.,1,1) = 'a' or
                       substring(.,1,1) = 't'">
         <xsl:call-template name="work008books">
@@ -151,7 +151,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- computer files -->
+      <!-\- computer files -\->
       <xsl:when test="substring(.,1,1) = 'm'">
         <xsl:call-template name="work008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -159,7 +159,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- maps -->
+      <!-\- maps -\->
       <xsl:when test="substring(.,1,1) = 'e' or
                       substring(.,1,1) = 'f'">
         <xsl:call-template name="work008maps">
@@ -168,7 +168,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- music -->
+      <!-\- music -\->
       <xsl:when test="substring(.,1,1) = 'c' or
                       substring(.,1,1) = 'd' or
                       substring(.,1,1) = 'i' or
@@ -179,7 +179,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- continuing resources -->
+      <!-\- continuing resources -\->
       <xsl:when test="substring(.,1,1) = 's'">
         <xsl:call-template name="work008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -187,7 +187,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- visual materials -->
+      <!-\- visual materials -\->
       <xsl:when test="substring(.,1,1) = 'g' or
                       substring(.,1,1) = 'k' or
                       substring(.,1,1) = 'o' or
@@ -199,7 +199,7 @@
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template>-->
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -786,12 +786,12 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:controlfield[@tag='006']" mode="instance">
+  <!--<xsl:template match="marc:controlfield[@tag='006']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pInstanceType"/>
-    <!-- select call appropriate 008 template based on pos 0 -->
+    <!-\- select call appropriate 008 template based on pos 0 -\->
     <xsl:choose>
-      <!-- books -->
+      <!-\- books -\->
       <xsl:when test="substring(.,1,1) = 'a' or
                       substring(.,1,1) = 't'">
         <xsl:call-template name="instance008books">
@@ -801,7 +801,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- computer files -->
+      <!-\- computer files -\->
       <xsl:when test="substring(.,1,1) = 'm'">
         <xsl:call-template name="instance008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -810,7 +810,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- maps -->
+      <!-\- maps -\->
       <xsl:when test="substring(.,1,1) = 'e' or
                       substring(.,1,1) = 'f'">
         <xsl:call-template name="instance008maps">
@@ -820,7 +820,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- mixed materials -->
+      <!-\- mixed materials -\->
       <xsl:when test="substring(.,1,1) = 'p'">
         <xsl:call-template name="instance008mixed">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -829,7 +829,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- music -->
+      <!-\- music -\->
       <xsl:when test="substring(.,1,1) = 'c' or
                       substring(.,1,1) = 'd' or
                       substring(.,1,1) = 'i' or
@@ -841,7 +841,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- continuing resources -->
+      <!-\- continuing resources -\->
       <xsl:when test="substring(.,1,1) = 's'">
         <xsl:call-template name="instance008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -850,7 +850,7 @@
           <xsl:with-param name="pTag" select="'006'"/>
         </xsl:call-template>
       </xsl:when>
-      <!-- visual materials -->
+      <!-\- visual materials -\->
       <xsl:when test="substring(.,1,1) = 'g' or
                       substring(.,1,1) = 'k' or
                       substring(.,1,1) = 'o' or
@@ -863,7 +863,7 @@
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template>-->
 
   <xsl:template match="marc:controlfield[@tag='008']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
