@@ -165,9 +165,7 @@
             <bf:hasInstance rdf:resource="http://example.org/13600108#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/13600108#Instance">
-            <bf:issuance>
-              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.loc.gov/vocabulary/issuance/mono"/>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
@@ -355,9 +353,7 @@
             <bf:hasInstance rdf:resource="http://example.org/5637241#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/5637241#Instance">
-            <bf:issuance>
-              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.loc.gov/vocabulary/issuance/mono"/>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/s">
                 <rdfs:label>audio</rdfs:label>
@@ -613,9 +609,7 @@
             <bf:hasInstance rdf:resource="http://example.org/12149120#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/12149120#Instance">
-            <bf:issuance>
-              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.loc.gov/vocabulary/issuance/mono"/>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c">
                 <rdfs:label>computer</rdfs:label>
@@ -911,9 +905,7 @@
       <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/4417401#Instance">
-            <bf:issuance>
-              <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>
-            </bf:issuance>
+            <bf:issuance rdf:resource="http://id.loc.gov/vocabulary/issuance/mono"/>
             <bf:provisionActivity>
               <bf:ProvisionActivity>
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
