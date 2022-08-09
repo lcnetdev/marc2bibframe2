@@ -46,7 +46,7 @@
     <x:expect label="$0 can create an identifier property of the Frequency" test="//bf:Instance[1]/bf:frequency[2]/bf:Frequency/bf:identifiedBy/bf:Identifier/rdf:value='sma'"/>
   </x:scenario>
 
-  <x:scenario label="334 - MODE OF ISSUANCE">
+  <x:scenario label="f - MODE OF ISSUANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="334 creates a content property of the Instance" test="count(//bf:Instance[1]/bf:issuance) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the Issuance" test="//bf:Instance[1]/bf:issuance[1]/bf:Issuance/rdfs:label = 'single unit'"/>
@@ -110,7 +110,7 @@
     <x:expect label="$c creates an appliedMaterial property of the Instance" test="//bf:Instance[1]/bf:appliedMaterial[1]/bf:AppliedMaterial/rdfs:label = 'colored inks'"/>
     <x:expect label="$d creates a productionMethod property of the Instance" test="//bf:Instance[1]/bf:productionMethod[1]/bf:ProductionMethod/rdfs:label = 'microfilm'"/>
     <x:expect label="$e creates a mount property of the Instance" test="//bf:Instance[1]/bf:mount[1]/bf:Mount/rdfs:label = 'none'"/>
-    <x:expect label="$f creates a reductionRatio property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:label = '48x'"/>
+    <x:expect label="$f creates a reductionRatio value property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdf:value = '48x'"/>
     <x:expect label="$g creates a colorContent property of the Work" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/rdfs:label = 'color'"/>
     <x:expect label="$i creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Ibord Model 74 tape reader'"/>
     <x:expect label="$j creates a generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'original'"/>
@@ -119,6 +119,7 @@
     <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
     <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
     <x:expect label="$p creates an illustrativeContent property of the Work" test="//bf:Work[1]/bf:illustrativeContent/bf:Illustration/rdfs:label = 'illustrations'"/>
+    <x:expect label="$q creates a reductionRatio label property of the Instance" test="//bf:Instance[1]/bf:reductionRatio[1]/bf:ReductionRatio/rdfs:value = 'high reduction'"/>
     <x:expect label="$0 creates an identifiedBy property of the generated object" test="//bf:Work[1]/bf:colorContent[1]/bf:ColorContent/bf:identifiedBy/bf:Identifier/rdf:value = '123456'"/>
     <x:expect label="...or sets the URI of the generated object" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/@rdf:about = 'http://rdaregistry.info/termList/fontSize/1001'"/>
     <x:expect label="$2 creates a source property on generated Resources" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/bf:source/bf:Source/bf:code = 'rda'"/>
@@ -204,7 +205,8 @@
     <x:expect label="348 creates a musicFormat/MusicFormat property of the Instance" test="count(//bf:Instance[1]/bf:musicFormat) = 1"/>
     <x:expect label="$a creates an rdfs:label property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/rdfs:label = 'vocal score'"/>
     <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mmusicformat/vocalscore'"/>
-    <x:expect label="$b creates a notation/Notation property of the Work" test="//bf:Work[1]/bf:notation/bf:Notation/rdfs:label = 'staff notation'"/>
+    <x:expect label="$c creates a notation/Notation property of the Work" test="//bf:Work[1]/bf:notation/bf:MusicNotation/rdfs:label = 'staff notation'"/>
+    
     <x:expect label="$0 creates an identifiedBy property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:identifiedBy/bf:Identifier/rdf:value = '12345'"/>
     <x:expect label="$2 creates a source property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:source/bf:Source/bf:code = 'foo'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'enclosed score'"/>

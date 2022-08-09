@@ -6,7 +6,7 @@
       <subfield code="a">Ole Lukøie /</subfield>
       <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
     </datafield    >
-    <!--https://preprod-8230.id.loc.gov/resources/bibs/11231211-->
+   <!--
     <datafield ind1="1" ind2=" " tag="490">
       <subfield code="6">880-01</subfield>
       <subfield code="3">1969-1971:</subfield>
@@ -106,7 +106,7 @@
       <subfield code="a">test of 800title </subfield>
       <subfield code="n">part number</subfield>
       <subfield code="p">part name</subfield>
-    </datafield>
+    </datafield>-->
     <datafield tag="510" ind1="4" ind2=" ">
       <subfield code="a">Index Medicus,</subfield>
       <subfield code="x">0019-3879,</subfield>
