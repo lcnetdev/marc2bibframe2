@@ -242,6 +242,7 @@
               <xsl:apply-templates mode="hubUnifTitle" select=".">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pSource" select="$pSource"/>
+                <xsl:with-param name="pLabel" select="marc:subfield[@code='t']"/>
               </xsl:apply-templates>
             </bf:Hub>
           </bf:expressionOf>
@@ -250,6 +251,7 @@
           <xsl:apply-templates mode="hubUnifTitle" select=".">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pSource" select="$pSource"/>
+            <xsl:with-param name="pLabel" select="marc:subfield[@code='t']"/>
           </xsl:apply-templates>
         </xsl:otherwise>
       </xsl:choose>

@@ -94,5 +94,11 @@
       <subfield code="t">Tale of two cities</subfield>
       <subfield code="x">History and criticism.</subfield>
     </datafield>
+    <datafield tag="800" ind1=" " ind2="0">
+      <subfield code="a">Smith, Dan</subfield>
+      
+      <subfield code="t">title of 8xx</subfield>
+      <subfield code="p">title part</subfield>
+    </datafield>
   </record>
 </collection>
