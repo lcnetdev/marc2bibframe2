@@ -78,6 +78,7 @@
     <datafield tag="340" ind1=" " ind2=" ">
       <subfield code="j">original</subfield>
       <subfield code="k">double-sided</subfield>
+      <subfield code="l">saddle stitch binding</subfield>
       <subfield code="m">folio</subfield>
       <subfield code="n">giant print (36 point)</subfield>
       <subfield code="0">http://rdaregistry.info/termList/fontSize/1001</subfield>

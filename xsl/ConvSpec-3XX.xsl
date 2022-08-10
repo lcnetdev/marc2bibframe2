@@ -909,7 +909,7 @@
   <xsl:template match="marc:datafield[@tag='340' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='340')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:for-each select="marc:subfield[@code='a' or @code='c' or @code='d' or @code='e' or @code='f' or @code='j' or @code='k' or @code='m' or @code='n' or @code='o' or @code='q' ]">
+    <xsl:for-each select="marc:subfield[@code='a' or @code='c' or @code='d' or @code='e' or @code='f' or @code='j' or @code='k'  or @code='l' or @code='m' or @code='n' or @code='o' or @code='q' ]">
       <xsl:variable name="vProp">
         <xsl:choose>
           <xsl:when test="@code='a'">bf:baseMaterial</xsl:when>
@@ -919,6 +919,7 @@
           <xsl:when test="@code='f'">bf:reductionRatio</xsl:when>
           <xsl:when test="@code='j'">bf:generation</xsl:when>
           <xsl:when test="@code='k'">bf:layout</xsl:when>
+          <xsl:when test="@code='l'">bf:binding</xsl:when>
           <xsl:when test="@code='m'">bf:bookFormat</xsl:when>
           <xsl:when test="@code='n'">bf:fontSize</xsl:when>
           <xsl:when test="@code='o'">bf:polarity</xsl:when>
@@ -934,6 +935,7 @@
           <xsl:when test="@code='f'">bf:ReductionRatio</xsl:when>
           <xsl:when test="@code='j'">bf:Generation</xsl:when>
           <xsl:when test="@code='k'">bf:Layout</xsl:when>
+          <xsl:when test="@code='l'">bf:Binding</xsl:when>
           <xsl:when test="@code='m'">bf:BookFormat</xsl:when>
           <xsl:when test="@code='n'">bf:FontSize</xsl:when>
           <xsl:when test="@code='o'">bf:Polarity</xsl:when>

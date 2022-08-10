@@ -115,6 +115,7 @@
     <x:expect label="$i creates a systemRequirement property of the Instance" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label = 'Ibord Model 74 tape reader'"/>
     <x:expect label="$j creates a generation property of the Instance" test="//bf:Instance[1]/bf:generation[1]/bf:Generation/rdfs:label = 'original'"/>
     <x:expect label="$k creates a layout property of the Instance" test="//bf:Instance[1]/bf:layout[1]/bf:Layout/rdfs:label = 'double-sided'"/>
+    <x:expect label="$l creates a binding property of the Instance" test="//bf:Instance[1]/binding[1]/Binding/rdfs:label = 'saddle stitch binding'"/>
     <x:expect label="$m creates a bookFormat property of the Instance" test="//bf:Instance[1]/bf:bookFormat[1]/bf:BookFormat/rdfs:label = 'folio'"/>
     <x:expect label="$n creates a fontSize property of the Instance" test="//bf:Instance[1]/bf:fontSize[1]/bf:FontSize/rdfs:label = 'giant print (36 point)'"/>
     <x:expect label="$o creates a polarity property of the Instance" test="//bf:Instance[1]/bf:polarity[1]/bf:Polarity/rdfs:label = 'positive'"/>
