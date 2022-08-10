@@ -242,6 +242,7 @@
               <xsl:apply-templates mode="hubUnifTitle" select=".">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pSource" select="$pSource"/>
+                <xsl:with-param name="pLabel" select="marc:subfield[@code='t']"/>
               </xsl:apply-templates>
             </bf:Hub>
           </bf:expressionOf>
@@ -250,6 +251,7 @@
           <xsl:apply-templates mode="hubUnifTitle" select=".">
             <xsl:with-param name="serialization" select="$serialization"/>
             <xsl:with-param name="pSource" select="$pSource"/>
+            <xsl:with-param name="pLabel" select="marc:subfield[@code='t']"/>
           </xsl:apply-templates>
         </xsl:otherwise>
       </xsl:choose>
@@ -560,6 +562,7 @@
               <xsl:when test="$tag='720'">
                 <xsl:if test="@ind1='1'">
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Person</xsl:attribute>
+                  <rdf:type> <xsl:attribute name="rdf:resource"><xsl:value-of select="$bflc"/>Uncontrolled</xsl:attribute></rdf:type>
                 </xsl:if>
               </xsl:when>
               <xsl:when test="substring($tag,2,2)='00'">

@@ -909,7 +909,7 @@
   <xsl:template match="marc:datafield[@tag='340' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='340')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:for-each select="marc:subfield[@code='a' or @code='c' or @code='d' or @code='e' or @code='f' or @code='j' or @code='k' or @code='m' or @code='n' or @code='o']">
+    <xsl:for-each select="marc:subfield[@code='a' or @code='c' or @code='d' or @code='e' or @code='f' or @code='j' or @code='k'  or @code='l' or @code='m' or @code='n' or @code='o' or @code='q' ]">
       <xsl:variable name="vProp">
         <xsl:choose>
           <xsl:when test="@code='a'">bf:baseMaterial</xsl:when>
@@ -919,9 +919,11 @@
           <xsl:when test="@code='f'">bf:reductionRatio</xsl:when>
           <xsl:when test="@code='j'">bf:generation</xsl:when>
           <xsl:when test="@code='k'">bf:layout</xsl:when>
+          <xsl:when test="@code='l'">bf:binding</xsl:when>
           <xsl:when test="@code='m'">bf:bookFormat</xsl:when>
           <xsl:when test="@code='n'">bf:fontSize</xsl:when>
           <xsl:when test="@code='o'">bf:polarity</xsl:when>
+          <xsl:when test="@code='q'">bf:reductionRatio</xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vObject">
@@ -933,9 +935,11 @@
           <xsl:when test="@code='f'">bf:ReductionRatio</xsl:when>
           <xsl:when test="@code='j'">bf:Generation</xsl:when>
           <xsl:when test="@code='k'">bf:Layout</xsl:when>
+          <xsl:when test="@code='l'">bf:Binding</xsl:when>
           <xsl:when test="@code='m'">bf:BookFormat</xsl:when>
           <xsl:when test="@code='n'">bf:FontSize</xsl:when>
           <xsl:when test="@code='o'">bf:Polarity</xsl:when>
+          <xsl:when test="@code='q'">bf:ReductionRatio</xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
@@ -958,14 +962,29 @@
               <xsl:if test="$vCurrentNodeUri != ''">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </rdfs:label>
+              <xsl:choose>
+                <xsl:when test="@code='f'">
+                  
+                  <rdf:value>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
+                  </rdf:value>
+                </xsl:when>
+                <xsl:otherwise>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </xsl:otherwise>
+              </xsl:choose>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">
@@ -1043,7 +1062,12 @@
           </xsl:when>
           <xsl:when test="$vTag='346'">bf:videoCharacteristic</xsl:when>
           <xsl:when test="$vTag='347'">bf:digitalCharacteristic</xsl:when>
-          <xsl:when test="$vTag='348'">bf:musicFormat</xsl:when>
+          <xsl:when test="$vTag='348'">
+            <xsl:choose>
+              <xsl:when test="@code='c'">bf:notation</xsl:when>
+              <xsl:otherwise>bf:musicFormat</xsl:otherwise>
+            </xsl:choose>
+            </xsl:when>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vResource">
@@ -1083,8 +1107,9 @@
               <xsl:when test="@code='f'">bf:EncodedBitrate</xsl:when>
             </xsl:choose>
           </xsl:when>
-          <xsl:when test="$vTag='348'">
+          <xsl:when test="$vTag='348'">           
             <xsl:if test="@code='a'">bf:MusicFormat</xsl:if>
+            <xsl:if test="@code='c'">bf:MusicNotation</xsl:if>
           </xsl:when>
         </xsl:choose>
       </xsl:variable>

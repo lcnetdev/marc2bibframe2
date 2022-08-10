@@ -23,6 +23,8 @@
     <x:expect label="...unless ind2=2, in which case it's a bf:hasPart" test="//bf:Work[1]/bf:hasPart/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Correspondence. Selections. 1777.'"/>
     <x:expect label="...or ind2=4, in which case it's a hasVariantEntry" test="//bf:Work[1]/bflc:hasVariantEntry/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Patchwork planet'"/>
     <x:expect label="Name field with $t creates a bf:Title" test="count(//bf:Work[1]//bf:title) = 6"/>
+    <x:expect label="720 field without $t creates a bf:Contribution" test="//bf:Work[2]//bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Vestris, Le citoyen'/>
+      <x:expect label="720 field without $t creates a bflc:Uncontrolled agent type" test="//bf:Work[2]//bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891$2naf'"/>
