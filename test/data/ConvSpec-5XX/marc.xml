@@ -246,6 +246,12 @@
     </datafield>
     <datafield tag="588" ind1="0" ind2=" ">
       <subfield code="a">Volume 2.</subfield>
+    </datafield>  
+    <datafield tag="583" ind1=" " ind2=" ">
+      <subfield code="a">item uri downgraded</subfield>
+      
+      <subfield code="5">DLC</subfield>
     </datafield>
   </record>
+  
 </collection>

@@ -32,7 +32,7 @@
     </datafield> 
     <datafield tag="334" ind1=" " ind2=" ">
       <subfield code="a">single unit</subfield>
-      <subfield code="b">mono</subfield>
+      <subfield code="b">mono</subfield>      
     </datafield>
     <datafield tag="336" ind1=" " ind2=" ">
       <subfield code="a">performed music</subfield>
@@ -60,7 +60,7 @@
       <subfield code="a">rice paper</subfield>
       <subfield code="b">7" x 9"</subfield>
       <subfield code="c">colored inks</subfield>
-      <subfield code="e">none</subfield>
+      <subfield code="e">none</subfield>      
       <subfield code="g">color</subfield>
       <subfield code="0">(lnl)123456</subfield>
       <subfield code="p">illustrations</subfield>
@@ -72,11 +72,13 @@
       <subfield code="b">9 x 19 cm.</subfield>
       <subfield code="d">microfilm</subfield>
       <subfield code="f">48x</subfield>
-      <subfield code="i">Ibord Model 74 tape reader.</subfield>
+      <subfield code="i">Ibord Model 74 tape reader.</subfield>      
+      <subfield code="q">high reduction</subfield>
     </datafield>
     <datafield tag="340" ind1=" " ind2=" ">
       <subfield code="j">original</subfield>
       <subfield code="k">double-sided</subfield>
+      <subfield code="l">saddle stitch binding</subfield>
       <subfield code="m">folio</subfield>
       <subfield code="n">giant print (36 point)</subfield>
       <subfield code="0">http://rdaregistry.info/termList/fontSize/1001</subfield>
