@@ -559,11 +559,8 @@
           <xsl:attribute name="rdf:about"><xsl:value-of select="$agentiri"/></xsl:attribute>
           <rdf:type>
             <xsl:choose>
-              <xsl:when test="$tag='720'">
-                <xsl:if test="@ind1='1'">
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Person</xsl:attribute>
-                  <rdf:type> <xsl:attribute name="rdf:resource"><xsl:value-of select="$bflc"/>Uncontrolled</xsl:attribute></rdf:type>
-                </xsl:if>
+              <xsl:when test="$tag='720' and @ind1='1'">
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$bf"/>Person</xsl:attribute>
               </xsl:when>
               <xsl:when test="substring($tag,2,2)='00'">
                 <xsl:choose>
@@ -590,6 +587,9 @@
               </xsl:when>
             </xsl:choose>
           </rdf:type>
+          <xsl:if test="$tag='720'">
+            <rdf:type><xsl:attribute name="rdf:resource"><xsl:value-of select="$bflc"/>Uncontrolled</xsl:attribute></rdf:type>
+          </xsl:if>
           <xsl:if test="substring($tag,1,1)='6'">
             <xsl:if test="$pMADSClass != ''">
               <rdf:type>
