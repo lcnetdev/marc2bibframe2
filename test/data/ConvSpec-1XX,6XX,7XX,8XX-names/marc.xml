@@ -94,6 +94,10 @@
       <subfield code="t">Tale of two cities</subfield>
       <subfield code="x">History and criticism.</subfield>
     </datafield>
+    <datafield tag="720" ind1="1" ind2=" ">
+      <subfield code="a">Vestris, Le citoyen.</subfield>
+      <subfield code="4">dnc</subfield>
+    </datafield>
     <datafield tag="800" ind1=" " ind2="0">
       <subfield code="a">Smith, Dan</subfield>
       
