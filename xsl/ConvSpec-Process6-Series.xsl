@@ -141,7 +141,7 @@
               </xsl:variable>            
               <xsl:variable name="vEnumeration">
                 <xsl:value-of
-                  select="normalize-space(following-sibling::marc:subfield[@code = 'v' and generate-id(preceding-sibling::marc:subfield[@code = 'a'][1]) = $vCurrentNode])"
+                  select="normalize-space(following-sibling::marc:subfield[@code = 'v' and ($vParallelTitle != '' or generate-id(preceding-sibling::marc:subfield[@code = 'a'][1])) = $vCurrentNode])"
                 />
               </xsl:variable>
               <xsl:variable name="vYIssn">
