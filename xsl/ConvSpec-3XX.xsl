@@ -234,13 +234,101 @@
     </xsl:for-each>
   </xsl:template>
     
-  <xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]" mode="work">
+<!--  <xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="marc:subfield[@code='c']" mode="generateProperty">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:notation</xsl:with-param>
-      <xsl:with-param name="pResource">bf:Notation</xsl:with-param>
+      <xsl:with-param name="pResource">bf:MusicNotation</xsl:with-param>
     </xsl:apply-templates>
+  </xsl:template>-->
+
+<xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]"
+                mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:for-each select="marc:subfield">
+      <xsl:variable name="vProp">
+        <xsl:choose>
+          <xsl:when test="$vTag='348'">
+            <xsl:choose>
+              <xsl:when test="@code='c'">bf:notation</xsl:when>
+              <xsl:otherwise>bf:musicFormat</xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vResource">
+        <xsl:choose>
+          <xsl:when test="$vTag='348'">           
+            <xsl:if test="@code='a'">bf:MusicFormat</xsl:if>
+            <xsl:if test="@code='c'">bf:MusicNotation</xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vTarget">
+        <xsl:choose>
+          <xsl:when test="$vTag='348'">
+            <xsl:if test="@code='a'">
+              <xsl:choose>
+                <xsl:when test="text()='choir book'">
+                  <xsl:value-of select="concat($mmusicformat,'choirbk')"/>
+                </xsl:when>
+                <xsl:when test="text()='chorus score'">
+                  <xsl:value-of select="concat($mmusicformat,'chscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='condensed score'">
+                  <xsl:value-of select="concat($mmusicformat,'conscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='part'">
+                  <xsl:value-of select="concat($mmusicformat,'part')"/>
+                </xsl:when>
+                <xsl:when test="text()='piano conductor part'">
+                  <xsl:value-of select="concat($mmusicformat,'pianoconpt')"/>
+                </xsl:when>
+                <xsl:when test="text()='piano score'">
+                  <xsl:value-of select="concat($mmusicformat,'pianoscore')"/>
+                </xsl:when>
+                <xsl:when test="text()='score'">
+                  <xsl:value-of select="concat($mmusicformat,'score')"/>
+                </xsl:when>
+                <xsl:when test="text()='study score'">
+                  <xsl:value-of select="concat($mmusicformat,'study score')"/>
+                </xsl:when>
+                <xsl:when test="text()='table book'">
+                  <xsl:value-of select="concat($mmusicformat,'tablebk')"/>
+                </xsl:when>
+                <xsl:when test="text()='violin conductor part'">
+                  <xsl:value-of select="concat($mmusicformat,'violconpart')"/>
+                </xsl:when>
+                <xsl:when test="text()='vocal score'">
+                  <xsl:value-of select="concat($mmusicformat,'vocalscore')"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:if>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="vLabel"><xsl:value-of select="."/>
+      </xsl:variable>
+      <xsl:variable name="vObjStringProp">rdfs:label</xsl:variable>
+      <!-- We need to eliminate duplicates. The second condition looks for a preceding tag with the same value. -->
+      <xsl:if test="$vResource != '' and count(../preceding-sibling::marc:datafield[@tag = $vTag and marc:subfield[. = $vLabel]]) = 0">
+        <xsl:apply-templates select="." mode="generateProperty">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pProp" select="$vProp"/>
+          <xsl:with-param name="pResource" select="$vResource"/>
+          <xsl:with-param name="pTarget" select="$vTarget"/>
+          <xsl:with-param name="pLabel" select="$vLabel"/>
+          <xsl:with-param name="pObjStringProp" select="$vObjStringProp"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='351' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='351')]" mode="work">
