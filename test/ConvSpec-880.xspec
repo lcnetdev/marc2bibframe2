@@ -22,8 +22,8 @@
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simplePlace = 'Лондон'"/>
     <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'Сиэтл'"/>
-    <x:expect label="$6 490 creates a seriesStatement property of the Instance" test="//bf:Instance[1]/bf:seriesStatement[1] = 'Книги пеликан 1234-5678'"/>
-    <x:expect label="...$x creates a hasSeries property of the Work if ind1 = 1" test="//bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:identifiedBy/bf:Issn = '1234-5678'"/>
+    <x:expect label="$6 490 creates a has Series relationship on Work" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Has Series'"/>
+    <x:expect label="...$x creates a related Hub with Issn identifier" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
@@ -88,7 +88,6 @@
     <x:expect label="250/880 pair create multiple editionStatement properties of the Instance" test="count(//bf:Instance[1]/bf:editionStatement) = 2"/>
     <x:expect label="260 or 264 paired with 880 create single provisionActivity property of the Instance" test="count(//bf:Instance[1]/bf:provisionActivity) = 1"/> <!-- 008 and 260 merged -->
     <x:expect label="...with multiple labels on ProvisionActivity property objects" test="count(//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bflc:simplePlace) = 2"/>
-    <x:expect label="490/880 par create multiple seriesStatement properties on the Instance" test="count(//bf:Instance/bf:seriesStatement) = 2"/>
     <x:expect label="880 pair configured to convert regular field" test="count(//bf:Work[1]/bf:subject) = 1 and //bf:Work[1]/bf:subject/bf:Topic/madsrdf:authoritativeLabel = 'Cao, Sugong, 1615-1689--Criticism and interpretation.'"/>
     <x:expect label="880 pair configured to convert 880" test="count(//bf:Instance[1]/bf:note) = 1 and //bf:Instance[1]/bf:note/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
   </x:scenario>
