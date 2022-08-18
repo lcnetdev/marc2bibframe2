@@ -793,6 +793,30 @@
                 <bf:mainTitle>Handbook of practical program evaluation</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+                    <rdfs:label>Has Series</rdfs:label>
+                  </bflc:Relation>
+                </bflc:relation>
+                <bf:relatedTo>
+                  <bf:Hub rdf:about="http://example.org/4417401#Hub490-19">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                    <bf:status>
+                      <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
+                        <rdfs:label>transcribed</rdfs:label>
+                      </bf:Status>
+                    </bf:status>
+                    <bf:title>
+                      <bf:Title>
+                        <bf:mainTitle>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:mainTitle>
+                      </bf:Title>
+                    </bf:title>
+                  </bf:Hub>
+                </bf:relatedTo>
+              </bflc:Relationship>
+            </bflc:relationship>
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/4417401#Topic650-20">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
@@ -864,39 +888,69 @@
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
-            <bf:hasSeries>
-              <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
-                <bf:title>
-                  <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass public administration series</bflc:title30MatchKey>
-                    <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
-                    <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-              </bf:Hub>
-            </bf:hasSeries>
-            <bf:hasSeries>
-              <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
-                <bf:title>
-                  <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass nonprofit sector series</bflc:title30MatchKey>
-                    <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
-                    <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-              </bf:Hub>
-            </bf:hasSeries>
-            <bf:hasSeries>
-              <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
-                <bf:title>
-                  <bf:Title>
-                    <bflc:title30MatchKey>Jossey-Bass social and behavioral science series</bflc:title30MatchKey>
-                    <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
-                    <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-              </bf:Hub>
-            </bf:hasSeries>
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+                    <rdfs:label>Has Series</rdfs:label>
+                  </bflc:Relation>
+                </bflc:relation>
+                <bf:relatedTo>
+                  <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                    <bf:title>
+                      <bf:Title>
+                        <bflc:title30MatchKey>Jossey-Bass public administration series</bflc:title30MatchKey>
+                        <bflc:title30MarcKey>830 0$aJossey-Bass public administration series.</bflc:title30MarcKey>
+                        <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
+                      </bf:Title>
+                    </bf:title>
+                  </bf:Hub>
+                </bf:relatedTo>
+              </bflc:Relationship>
+            </bflc:relationship>
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+                    <rdfs:label>Has Series</rdfs:label>
+                  </bflc:Relation>
+                </bflc:relation>
+                <bf:relatedTo>
+                  <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                    <bf:title>
+                      <bf:Title>
+                        <bflc:title30MatchKey>Jossey-Bass nonprofit sector series</bflc:title30MatchKey>
+                        <bflc:title30MarcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:title30MarcKey>
+                        <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
+                      </bf:Title>
+                    </bf:title>
+                  </bf:Hub>
+                </bf:relatedTo>
+              </bflc:Relationship>
+            </bflc:relationship>
+            <bflc:relationship>
+              <bflc:Relationship>
+                <bflc:relation>
+                  <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+                    <rdfs:label>Has Series</rdfs:label>
+                  </bflc:Relation>
+                </bflc:relation>
+                <bf:relatedTo>
+                  <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                    <bf:title>
+                      <bf:Title>
+                        <bflc:title30MatchKey>Jossey-Bass social and behavioral science series</bflc:title30MatchKey>
+                        <bflc:title30MarcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:title30MarcKey>
+                        <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
+                      </bf:Title>
+                    </bf:title>
+                  </bf:Hub>
+                </bf:relatedTo>
+              </bflc:Relationship>
+            </bflc:relationship>
             <bf:tableOfContents>
               <bf:TableOfContents>
                 <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/toc/onix07/93048623.html</rdf:value>
@@ -955,14 +1009,11 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm.</bf:dimensions>
-            <bf:seriesStatement>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:seriesStatement>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <rdfs:label>Includes bibliographical references and index.</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
-            <bf:seriesStatement>Jossey-Bass nonprofit sector series</bf:seriesStatement>
-            <bf:seriesStatement>Jossey-Bass social and behavioral science series</bf:seriesStatement>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/bios/wiley043/93048623.html</rdf:value>
