@@ -7,7 +7,7 @@
 
   <!-- Conversion specs for 8XX (and obsolete 4XX) ,490 - Series -->
   <!--convert 490 unless there's an 8xx with the same issn-->
-  <xsl:template match="marc:datafield[@tag = '490']" mode="work">
+  <xsl:template match="marc:datafield[@tag = '490' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490')]" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>    
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -35,7 +35,7 @@
           <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
         </xsl:variable>
         <xsl:variable name="v880Title">
-          <xsl:if test="marc:subfield[@code = '6']">
+          <xsl:if test="@tag = '490' and marc:subfield[@code = '6']">
             <xsl:for-each
               select="../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '490' and substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2) = $vOccurrence]">
               <xsl:variable name="v880Lang">
