@@ -1,3 +1,21 @@
+--- 2.0.0 2022/08/23
+Changes towards updated v2.0.0 specifications:
+  ConvSpec-LDR:
+    New types: Monograph, Serial, Series, Integrating, MusicAudio (subclass of Audio) and NonMusicAudio (subclass of Audio)
+  ConvSpec-006-008:
+    No longer convert 006.
+    New process8 - move 008 date and place extraction to process8.
+  ConvSpec-1XX,7XX,8XX-Names:
+    Support for Uncontrolled (720)
+  ConvSpec-250-270:
+    Overhaul ProvisionActivity to use bflc:* properties.  New process8.
+  ConvSpec-3XX:
+    Support for converting 334.
+  ConvSpec-490-510-Links:
+    Move 4XX processing to process6.
+  ConvSpec-Process8-ProvAct:
+    New process8.
+
 --- 1.7.1 2022/06/23
 
 Changes towards updated v1.7.1 specifications:
