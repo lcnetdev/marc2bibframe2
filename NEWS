@@ -1,3 +1,6 @@
+--- 2.0.2 2022/09/09
+Patch release to address issue #224.
+
 --- 2.0.1 2022/09/06
 Add metadata for building Redhat/CentOS packages.
 
