@@ -14,9 +14,6 @@
     <xsl:variable name="vXmlLang">
       <xsl:apply-templates select="." mode="xmllang"/>
     </xsl:variable>
-    <xsl:variable name="vUncontrolled">       
-      <xsl:if test="@ind1 = '0'">uncontrolled</xsl:if>          
-    </xsl:variable>
   
     <!--490 and 880 are now decoupled -->
            
@@ -167,14 +164,11 @@
                         </bflc:Relation>
                       </bflc:relation>
                       <bf:relatedTo>
-                        <bf:Hub>
+                        <bf:Series>
                           <xsl:attribute name="rdf:about">
                             <xsl:value-of select="$vHubIri"/>
                           </xsl:attribute>
-                          <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>                          
-                          <xsl:if test="$vUncontrolled != ''">
-                            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
-                          </xsl:if>
+                          <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                           <bf:status>
                             <bf:Status  rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
                               <rdfs:label>transcribed</rdfs:label>
@@ -235,7 +229,7 @@
                           </xsl:if>
                           
                           
-                        </bf:Hub>
+                        </bf:Series>
                         <xsl:if test="$vLcc != ''">
                           <bf:classification>
                             <bf:ClassificationLcc>
