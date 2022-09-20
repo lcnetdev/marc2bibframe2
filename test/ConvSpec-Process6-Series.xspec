@@ -11,8 +11,8 @@
                xslt-version="1.0">
   <x:scenario label="490 - SERIES STATEMENT">
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
-    <x:expect label="Parallel title created." test="//bf:Work[2]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:ParallelTitle/bf:mainTitle = 'Atti di conferenze'"/>
-    <x:expect label="second hub if 490a[2]." test="//bf:Work[3]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Department and Foreign Service series ;'"/>
+    <x:expect label="Parallel title created." test="//bf:Work[2]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Series/bf:title/bf:ParallelTitle/bf:mainTitle = 'Atti di conferenze'"/>
+    <x:expect label="second hub if 490a[2]." test="//bf:Work[3]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/bf:Series/bf:title/bf:Title/bf:mainTitle = 'Department and Foreign Service series ;'"/>
     <!--<x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Hub) = 1"/>    
     <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
     <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>-->
