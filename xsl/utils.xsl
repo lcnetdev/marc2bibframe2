@@ -50,6 +50,9 @@
       <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '(bcp47)')">
         <xsl:value-of select="substring-after(marc:subfield[@code='7'], ')')"/>
       </xsl:when>
+      <xsl:when test="@tag = '242' and marc:subfield[@code='y'] != 'eng'">
+        <xsl:value-of select="marc:subfield[@code='y']"/>
+      </xsl:when>
     </xsl:choose>
 
   </xsl:template>
