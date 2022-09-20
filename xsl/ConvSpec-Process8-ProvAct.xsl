@@ -3,7 +3,8 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:marc="http://www.loc.gov/MARC21/slim"
     xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
     xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="xsl marc">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common"
+    exclude-result-prefixes="xsl marc">
 
     <!-- Conversion specs for Process8 -->
 
@@ -28,9 +29,10 @@
             </paGroup>
             ...
         -->
-        <xsl:variable name="cf008data">
+        <xsl:variable name="cf008data-prenodeset">
             <xsl:apply-templates select="../marc:controlfield[@tag = '008']" mode="process8"/>
         </xsl:variable>
+        <xsl:variable name="cf008data" select="exsl:node-set($cf008data-prenodeset)"/>
         <!--<xsl:copy-of select="$cf008data" />-->
 
         <!--
@@ -50,7 +52,7 @@
             </marc:sfGroup>
             ...
         -->
-        <xsl:variable name="sfblocks">
+        <xsl:variable name="sfblocks-prenodeset">
             <xsl:for-each select="$v26xFields">
                 <xsl:variable name="vTag">
                     <xsl:choose>
@@ -69,11 +71,13 @@
                 <xsl:variable name="v880Ref">
                     <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
                 </xsl:variable>
-            <xsl:call-template name="blockize26x">
-                <xsl:with-param name="df" select="self::node()"/>
-                <xsl:with-param name="v880Ref" select="$v880Ref"/>
-            </xsl:call-template>
+            
+                <xsl:call-template name="blockize26x">
+                    <xsl:with-param name="df" select="self::node()"/>
+                    <xsl:with-param name="v880Ref" select="$v880Ref"/>
+                </xsl:call-template>
             </xsl:for-each>
+            
             <xsl:for-each select="$v880Fields">
                 <xsl:variable name="vTag">
                     <xsl:value-of select="substring(marc:subfield[@code = '6'], 1, 3)"/>
@@ -85,13 +89,11 @@
                 <xsl:variable name="v880Ref">
                     <xsl:value-of select="concat('880-', $v880Occurrence)"/>
                 </xsl:variable>
-                <xsl:variable name="relatedField">
-                    <xsl:copy-of
-                        select="../marc:datafield[@tag = $vTag and contains(marc:subfield[@code = '6'], $v880Ref)]"
+                <xsl:variable name="relatedField" select="../marc:datafield[@tag = $vTag and contains(marc:subfield[@code = '6'], $v880Ref)]"
                     />
-                </xsl:variable>
+                <xsl:copy-of select="$relatedField"/>
                 <xsl:if test="count($relatedField/marc:*) = 0">
-                    <xsl:variable name="dfFrom880">
+                    <xsl:variable name="dfFrom880-prenodeset">
                         <marc:datafield>
                             <xsl:attribute name="tag"><xsl:value-of select="$vTag"/></xsl:attribute>
                             <xsl:copy-of select="@ind1" />
@@ -105,15 +107,18 @@
                             <!-- <xsl:copy-of select="marc:subfield[@code != '6']"/> -->
                         </marc:datafield>
                     </xsl:variable>
-                <xsl:call-template name="blockize26x">
-                    <xsl:with-param name="df" select="$dfFrom880/marc:datafield"/>
-                    <xsl:with-param name="v880Ref" select="'bananas'"/>
-                </xsl:call-template>
+                    <xsl:variable name="dfFrom880" select="exsl:node-set($dfFrom880-prenodeset)" />
+
+                    <xsl:call-template name="blockize26x">
+                        <xsl:with-param name="df" select="$dfFrom880/marc:datafield"/>
+                        <xsl:with-param name="v880Ref" select="'bananas'"/>
+                    </xsl:call-template>
                 </xsl:if>
             </xsl:for-each>
         </xsl:variable>
+        <xsl:variable name="sfblocks" select="exsl:node-set($sfblocks-prenodeset)"/>
         <!--<xsl:copy-of select="$sfblocks"/>-->
-
+        
         <xsl:for-each select="$sfblocks/marc:sfGroup">
             <xsl:variable name="sfgTag" select="@tag"/>
             <xsl:variable name="df" select="marc:df[@tag = $sfgTag]"/>
@@ -126,7 +131,7 @@
                     <xsl:when test="$ind2val = '3'">Manufacture</xsl:when>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="vcf008">
+            <xsl:variable name="vcf008-prenodeset">
                 <xsl:if test="  $vProvisionActivity != '' 
                                 and
                                 count(preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 = $ind2val]) = 0
@@ -134,6 +139,7 @@
                     <xsl:copy-of select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*" />
                 </xsl:if>
             </xsl:variable>
+            <xsl:variable name="vcf008" select="exsl:node-set($vcf008-prenodeset)"/>
             <xsl:variable name="vStatement">
                 <xsl:apply-templates select="$df/marc:sf[@code = 'a' or @code = 'b' or @code = 'c']"
                     mode="concat-nodes-delimited"/>
@@ -148,7 +154,8 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="v880"><xsl:copy-of select="marc:df[@tag = '880']" /></xsl:variable>
+            <xsl:variable name="v880" select="marc:df[@tag = '880']"/>
+
             <xsl:variable name="vXmlLang"><xsl:value-of select="$df/@xmllang" /></xsl:variable>
             <xsl:variable name="vLinkedXmlLang"><xsl:value-of select="marc:df[@tag = '880']/@xmllang" /></xsl:variable>
             <xsl:variable name="vLinkedStatement">
@@ -407,16 +414,17 @@
         <xsl:param name="v880Ref"/>
 
         <!-- Parse the subfields in this datafield. -->
-        <xsl:variable name="parsedSfs">
+        <xsl:variable name="parsedSfs-prenodeset">
             <xsl:call-template name="parse26x">
                 <xsl:with-param name="df" select="$df"/>
                 <xsl:with-param name="gpos" select="1"/>
                 <xsl:with-param name="pos" select="1"/>
             </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="parsedSfs" select="exsl:node-set($parsedSfs-prenodeset)"/>
 
         <!-- Find the group numbers. -->
-        <xsl:variable name="groups">
+        <xsl:variable name="groups-prenodeset">
             <xsl:for-each select="$parsedSfs/marc:sf">
                 <xsl:variable name="g" select="@gpos"/>
                 <xsl:choose>
@@ -433,15 +441,16 @@
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
+        <xsl:variable name="groups" select="exsl:node-set($groups-prenodeset)" />
 
         <!-- If this datafield has a corresponding 880, extract it. -->
         <xsl:variable name="df880">
             <xsl:if test="$df/marc:subfield[@code = '6']">
-                <xsl:variable name="related880">
-                    <xsl:copy-of
-                        select="$df/../marc:datafield[@tag = '880' and contains(marc:subfield[@code = '6'], $v880Ref)]"
-                    />
+                <xsl:variable name="related880-prenodeset">
+                    <xsl:copy-of select="$df/../marc:datafield[@tag = '880' and contains(marc:subfield[@code = '6'], $v880Ref)]"/>
                 </xsl:variable>
+                <xsl:variable name="related880" select="exsl:node-set($related880-prenodeset)" />
+                
                 <marc:df>
                     <xsl:copy-of select="$related880/marc:datafield/@*"/>
                     <xsl:attribute name="xmllang">
@@ -514,77 +523,6 @@
         <xsl:param name="gpos"/>
 
         <xsl:variable name="sf" select="$df/marc:subfield[$pos]"/>
-
-        <!--<xsl:if test="$df/@tag != '261' and ($sf/@code = 'a' or $sf/@code = 'b' or $sf/@code = 'c')">
-            <marc:sf>
-                <xsl:copy-of select="$sf/@*"/>
-                <xsl:attribute name="gpos">
-                    <xsl:value-of select="$gpos"/>
-                </xsl:attribute>
-                <xsl:attribute name="pos">
-                    <xsl:value-of select="$pos"/>
-                </xsl:attribute>
-                <xsl:copy-of select="$sf/text()"/>
-            </marc:sf>
-        </xsl:if>
-        <xsl:if test="$df/@tag != '261' and ($sf/@code = 'e' or $sf/@code = 'f' or $sf/@code = 'g')">
-            <xsl:variable name="map260sfs">
-                <m sfCode="e">a</m>
-                <m sfCode="f">b</m>
-                <m sfCode="g">c</m>
-            </xsl:variable>
-            <marc:sf type="Manufacture">
-                <xsl:attribute name="code">
-                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
-                </xsl:attribute>
-                <xsl:attribute name="gpos">
-                    <xsl:value-of select="$gpos"/>
-                </xsl:attribute>
-                <xsl:attribute name="pos">
-                    <xsl:value-of select="$pos"/>
-                </xsl:attribute>
-                <xsl:copy-of select="$sf/text()"/>
-            </marc:sf>
-        </xsl:if>
-        <xsl:if test="$df/@tag = '261' and ($sf/@code = 'a' or $sf/@code = 'b') or $sf/@code = 'd' or $sf/@code = 'f'">
-            <xsl:variable name="map260sfs">
-                <m sfCode="a">b</m>
-                <m sfCode="b">b</m>
-                <m sfCode="f">a</m>
-                <m sfCode="d">c</m>
-            </xsl:variable>
-            <marc:sf type="Production">
-                <xsl:attribute name="code">
-                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
-                </xsl:attribute>
-                <xsl:attribute name="gpos">
-                    <xsl:value-of select="$gpos"/>
-                </xsl:attribute>
-                <xsl:attribute name="pos">
-                    <xsl:value-of select="$pos"/>
-                </xsl:attribute>
-                <xsl:copy-of select="$sf/text()"/>
-            </marc:sf>
-        </xsl:if>
-        <xsl:if test="$df/@tag = '261' and $sf/@code = 'e' or $sf/@code = 'd' or $sf/@code = 'f'">
-            <xsl:variable name="map260sfs">
-                <m sfCode="e">b</m>
-                <m sfCode="f">a</m>
-                <m sfCode="d">c</m>
-            </xsl:variable>
-            <marc:sf type="Manufacture">
-                <xsl:attribute name="code">
-                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
-                </xsl:attribute>
-                <xsl:attribute name="gpos">
-                    <xsl:value-of select="$gpos"/>
-                </xsl:attribute>
-                <xsl:attribute name="pos">
-                    <xsl:value-of select="$pos"/>
-                </xsl:attribute>
-                <xsl:copy-of select="$sf/text()"/>
-            </marc:sf>
-        </xsl:if>-->
         
         <xsl:choose>
             <xsl:when test="$df/@tag = '261' and ($sf/@code = 'a' or $sf/@code = 'b')">
@@ -594,7 +532,7 @@
                 </xsl:variable>
                 <marc:sf type="Production">
                     <xsl:attribute name="code">
-                        <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                        <xsl:value-of select="exsl:node-set($map260sfs)/m[@sfCode = $sf/@code]"/>
                     </xsl:attribute>
                     <xsl:attribute name="gpos">
                         <xsl:value-of select="$gpos"/>
@@ -611,7 +549,7 @@
                 </xsl:variable>
                 <marc:sf type="Manufacture">
                     <xsl:attribute name="code">
-                        <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                        <xsl:value-of select="exsl:node-set($map260sfs)/m[@sfCode = $sf/@code]"/>
                     </xsl:attribute>
                     <xsl:attribute name="gpos">
                         <xsl:value-of select="$gpos"/>
@@ -674,7 +612,7 @@
             </xsl:variable>
             <marc:sf type="Manufacture">
                 <xsl:attribute name="code">
-                    <xsl:value-of select="$map260sfs/m[@sfCode = $sf/@code]"/>
+                    <xsl:value-of select="exsl:node-set($map260sfs)/m[@sfCode = $sf/@code]"/>
                 </xsl:attribute>
                 <xsl:attribute name="gpos">
                     <xsl:value-of select="$gpos"/>
