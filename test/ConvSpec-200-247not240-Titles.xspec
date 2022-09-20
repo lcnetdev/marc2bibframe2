@@ -39,6 +39,8 @@
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
       <x:expect label="becomes the mainTitle" test="//bf:Instance[1]/bf:title/bf:VariantTitle/bf:mainTitle = 'Le Bureau'"/>
+      <x:expect label="has an xmllang attribute" test="//bf:Instance[1]/bf:title[1]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'fre'"/>
+      <x:expect label="but English one does not" test="count(//bf:Instance[1]/bf:title[2]/bf:VariantTitle/bf:mainTitle/@xml:lang) = 0"/>
     </x:scenario>
     <x:scenario label="$b">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
