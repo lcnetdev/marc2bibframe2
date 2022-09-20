@@ -496,7 +496,7 @@
   <!-- record description conventions -->
   <!-- used in LDR/18 -->
   <descriptionConventions>
-    <_ href="http://id.loc.gov/vocabulary/descriptionConventions/local">local</_>
+    <!-- <_ href="http://id.loc.gov/vocabulary/descriptionConventions/local">local</_> -->
     <a href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</a>
     <c href="http://id.loc.gov/vocabulary/descriptionConventions/isbd">isbd</c>
     <i href="http://id.loc.gov/vocabulary/descriptionConventions/isbd">isbd</i>
