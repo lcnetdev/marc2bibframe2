@@ -1,5 +1,14 @@
 # marc2bibframe2 release notes
 
+## v2.1.0
+
+Conversion updates based on specifications v2.1. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Model language notes as notes, not languages.
+* Add lang tag to literal properties for 242.
+* Amend 490 handling, making all Uncontrolled, remove Hub type.
+* Remove ending period from subjects from 65X fields.
+
 ## v2.0.2
 
 Patch release to address https://github.com/lcnetdev/marc2bibframe2/issues/224 
