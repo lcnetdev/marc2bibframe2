@@ -783,8 +783,8 @@
                   </bflc:Relation>
                 </bflc:relation>
                 <bf:relatedTo>
-                  <bf:Hub rdf:about="http://example.org/4417401#Hub490-19">
-                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
+                  <bf:Series rdf:about="http://example.org/4417401#Hub490-19">
+                    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                     <bf:status>
                       <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
                         <rdfs:label>transcribed</rdfs:label>
@@ -795,7 +795,7 @@
                         <bf:mainTitle>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:mainTitle>
                       </bf:Title>
                     </bf:title>
-                  </bf:Hub>
+                  </bf:Series>
                 </bf:relatedTo>
               </bflc:Relationship>
             </bflc:relationship>
