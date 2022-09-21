@@ -637,7 +637,12 @@
     </xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="tChopPunct">
-        <xsl:with-param name="pEndPunct" select="'-'"/>
+        <xsl:with-param name="pEndPunct">
+          <xsl:choose>
+            <xsl:when test="$vTag='648'"><xsl:value-of select="'-'"/></xsl:when>
+            <xsl:otherwise><xsl:value-of select="'-.'"/></xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
         <xsl:with-param name="pString">
           <xsl:choose>
             <xsl:when test="$vTag='650'">

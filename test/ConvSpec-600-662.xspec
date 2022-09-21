@@ -57,6 +57,7 @@
     <x:expect label="$g creates a note property of the Topic" test="//bf:Work[1]/bf:subject[4]/bf:Topic/bf:note/bf:Note/rdfs:label = 'Miscellania'"/>
     <x:expect label="$abcdvxyz create a madsrdf:componentList property of the Topic" test="count(//bf:Work[1]/bf:subject[4]/bf:Topic/madsrdf:componentList) = 1"/>
     <x:expect label="...with components from the subfields" test="//bf:Work[1]/bf:subject[4]/bf:Topic/madsrdf:componentList/madsrdf:Topic[2]/madsrdf:authoritativeLabel = 'Bolivar Statue'"/>
+    <x:expect label="Period stripped from last subfield" test="//bf:Work[1]/bf:subject[5]/bf:Topic/rdfs:label = 'Baseball cards'"/>
   </x:scenario>
   
   <x:scenario label="651 - SUBJECT ADDED ENTRY--GEOGRAPHIC NAME">
