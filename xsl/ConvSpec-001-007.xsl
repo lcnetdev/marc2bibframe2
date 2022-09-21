@@ -167,7 +167,7 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0">
+            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
               <bf:genreForm>
                 <bf:GenreForm>
                   <xsl:if test="$genreUri != ''">
@@ -279,7 +279,7 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-              <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0">
+            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
               <bf:genreForm>
                 <bf:GenreForm>
                   <xsl:if test="$genreFormURI != ''">
@@ -448,7 +448,7 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0">
+            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
               <bf:genreForm>
                 <bf:GenreForm>
                   <xsl:if test="$genreFormUri != ''">
@@ -600,7 +600,7 @@
                 </bf:SoundContent>
               </bf:soundContent>
             </xsl:if>
-              <xsl:if test="$genreForm2 != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm2]) = 0">    
+            <xsl:if test="$genreForm2 != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm2]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm2, '.')]) = 0">    
               <bf:genreForm>
                 <bf:GenreForm>
                   <xsl:if test="$genreForm2Uri != ''">

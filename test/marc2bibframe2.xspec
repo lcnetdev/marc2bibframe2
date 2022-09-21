@@ -294,8 +294,8 @@
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/5637241#Topic650-17">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>
-                <rdfs:label>Jazz--1951-1960.</rdfs:label>
-                <madsrdf:authoritativeLabel>Jazz--1951-1960.</madsrdf:authoritativeLabel>
+                <rdfs:label>Jazz--1951-1960</rdfs:label>
+                <madsrdf:authoritativeLabel>Jazz--1951-1960</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <madsrdf:componentList rdf:parseType="Collection">
                   <madsrdf:Topic>
@@ -311,8 +311,8 @@
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/5637241#Topic650-18">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
-                <rdfs:label>Piano with jazz ensemble.</rdfs:label>
-                <madsrdf:authoritativeLabel>Piano with jazz ensemble.</madsrdf:authoritativeLabel>
+                <rdfs:label>Piano with jazz ensemble</rdfs:label>
+                <madsrdf:authoritativeLabel>Piano with jazz ensemble</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
@@ -802,8 +802,8 @@
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/4417401#Topic650-20">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>
-                <rdfs:label>Policy sciences.</rdfs:label>
-                        <madsrdf:authoritativeLabel>Policy sciences.</madsrdf:authoritativeLabel>
+                <rdfs:label>Policy sciences</rdfs:label>
+                        <madsrdf:authoritativeLabel>Policy sciences</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Topic>
@@ -811,8 +811,8 @@
             <bf:subject>
               <bf:Topic rdf:about="http://example.org/4417401#Topic650-21">
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>
-                <rdfs:label>Political planning--Evaluation.</rdfs:label>
-                <madsrdf:authoritativeLabel>Political planning--Evaluation.</madsrdf:authoritativeLabel>
+                <rdfs:label>Political planning--Evaluation</rdfs:label>
+                <madsrdf:authoritativeLabel>Political planning--Evaluation</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects"/>
                 <madsrdf:componentList rdf:parseType="Collection">
                   <madsrdf:Topic>
