@@ -1,3 +1,14 @@
+--- 2.1.0 2022/09/XX
+Changes towards updated v2.1.0 specifications:
+  ConvSpec-LDR:
+    Do not output any description convention if Leader/18 blank.
+  ConvSpec-200-247-Titles:
+    Add lang tag to literal properties for 242.
+  ConvSpec-5XX:
+    Handle 546 as a note, not a language.
+  ConvSpec-Process8-Series:
+    Add Uncontrolled to all resources from 490; do not make them Hubs.
+
 --- 2.0.2 2022/09/09
 Patch release to address issue #224.
 
