@@ -167,6 +167,7 @@
                 <bflc:simpleDate>c2001</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[København?]: Lindhardt og Ringhof; c2001</bflc:publicationStatement>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
                 <rdfs:label>volume</rdfs:label>
@@ -376,6 +377,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[1957?]</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">New York, N.Y.: Atlantic; [1957?]</bflc:publicationStatement>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
                 <rdfs:label>volume</rdfs:label>
@@ -612,6 +614,7 @@
                 <bflc:simpleDate>1994-</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">Washington, D.C.: White House Web Team; 1994-</bflc:publicationStatement>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   00530046 </rdf:value>
@@ -952,6 +955,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">c1994</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
+            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">San Francisco: Jossey-Bass; c1994</bflc:publicationStatement>
             <bf:carrier>
               <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
                 <rdfs:label>volume</rdfs:label>
