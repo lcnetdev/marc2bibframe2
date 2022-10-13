@@ -203,6 +203,7 @@
                             </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
+                            <xsl:variable name="thePA">
                             <bf:provisionActivity>
                                 <bf:ProvisionActivity>
                                     <xsl:if test="$vProvisionActivity != ''">
@@ -371,6 +372,41 @@
                                     </xsl:for-each>
                                 </bf:ProvisionActivity>
                             </bf:provisionActivity>
+                            </xsl:variable>
+                            <xsl:copy-of select="$thePA" />
+                            <xsl:variable name="thePAasNodeSet" select="exsl:node-set($thePA)" />
+                            <xsl:if test="$thePAasNodeSet//bflc:*[not(@xml:lang)]">
+                                <xsl:element name="{concat('bflc:', translate($vProvisionActivity, $upper, $lower), 'Statement')}">
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simplePlace[not(@xml:lang)]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="';'"/>
+                                    </xsl:apply-templates>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simplePlace and (exsl:node-set($thePA)//bflc:simpleAgent or exsl:node-set($thePA)//bflc:simpleDate)">: </xsl:if>
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleAgent[not(@xml:lang)]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="','"/>
+                                    </xsl:apply-templates>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">; </xsl:if>
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleDate[not(@xml:lang)]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="','"/>
+                                    </xsl:apply-templates>
+                                </xsl:element>
+                            </xsl:if>
+                            <xsl:if test="$thePAasNodeSet//bflc:*[@xml:lang]">
+                                <xsl:element name="{concat('bflc:', translate($vProvisionActivity, $upper, $lower), 'Statement')}">
+                                    <xsl:attribute name="xml:lang"><xsl:value-of select="$thePAasNodeSet//bflc:*[@xml:lang]/@xml:lang"/></xsl:attribute>
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simplePlace[@xml:lang]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="';'"/>
+                                    </xsl:apply-templates>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simplePlace and (exsl:node-set($thePA)//bflc:simpleAgent or exsl:node-set($thePA)//bflc:simpleDate)">: </xsl:if>
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleAgent[@xml:lang]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="','"/>
+                                    </xsl:apply-templates>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">; </xsl:if>
+                                    <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleDate[@xml:lang]" mode="concat-nodes-delimited">
+                                        <xsl:with-param name="pDelimiter" select="','"/>
+                                    </xsl:apply-templates>
+                                </xsl:element>
+                            </xsl:if>
+                            
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
