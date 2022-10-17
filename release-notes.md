@@ -8,6 +8,7 @@ Conversion updates based on specifications v2.1. See the Library of Congress’s
 * Add lang tag to literal properties for 242.
 * Amend 490 handling, making all Uncontrolled, remove Hub type.
 * Remove ending period from subjects from 65X fields.
+* Generate bflc:publicationStatement, bflc:productionStatement, etc.
 
 ## v2.0.2
 

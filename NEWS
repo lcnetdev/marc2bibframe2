@@ -1,4 +1,4 @@
---- 2.1.0 2022/09/XX
+--- 2.1.0 2022/10/XX
 Changes towards updated v2.1.0 specifications:
   ConvSpec-LDR:
     Do not output any description convention if Leader/18 blank.
@@ -8,6 +8,7 @@ Changes towards updated v2.1.0 specifications:
     Handle 546 as a note, not a language.
   ConvSpec-Process8-Series:
     Add Uncontrolled to all resources from 490; do not make them Hubs.
+    Generate bflc:publicationStatement, bflc:productionStatement, etc.
 
 --- 2.0.2 2022/09/09
 Patch release to address issue #224.
