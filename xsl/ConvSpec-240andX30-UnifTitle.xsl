@@ -339,82 +339,42 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="nfi">
       <xsl:choose>
-        <xsl:when test="$tag='130' or $tag='630' or $tag='730'">
+        <xsl:when test="($tag='130' or $tag='630' or $tag='730') and @ind1 != ' '">
           <xsl:value-of select="@ind1"/>
         </xsl:when>
-        <xsl:when test="$tag='240' or $tag='830' or $tag='440'">
+        <xsl:when test="($tag='240' or $tag='830' or $tag='440') and @ind2 != ' '">
           <xsl:value-of select="@ind2"/>
         </xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="marckey">
-      <xsl:apply-templates mode="marcKey"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
-              <xsl:if test="$label != ''">
-                <bflc:title00MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title00MatchKey>
-              </xsl:if>
-              <bflc:title00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title00MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
-              <xsl:if test="$label != ''">
-                <bflc:title10MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title10MatchKey>                  
-              </xsl:if>
-              <bflc:title10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title10MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
-              <xsl:if test="$label != ''">
-                <bflc:title11MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title11MatchKey>                  
-              </xsl:if>
-              <bflc:title11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title11MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
-              <xsl:if test="$label != ''">
-                <bflc:title30MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title30MatchKey>                  
-              </xsl:if>
-              <bflc:title30MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title30MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
-              <xsl:if test="$label != ''">
-                <bflc:title40MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title40MatchKey>                  
-              </xsl:if>
-              <bflc:title40MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title40MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$nfi != 0">
-            <bflc:titleSortKey>
+            <bflc:nonSortNum>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="normalize-space(substring($label,$nfi+1))"/>
-              </xsl:call-template>
-            </bflc:titleSortKey>
+              <xsl:value-of select="$nfi" />
+            </bflc:nonSortNum>
           </xsl:if>
           <bf:mainTitle>
             <xsl:if test="$vXmlLang != ''">

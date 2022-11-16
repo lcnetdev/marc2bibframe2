@@ -89,16 +89,13 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <bf:KeyTitle>
-            <xsl:if test="@ind2 != '0'">
-              <xsl:variable name="label">
-                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
-              </xsl:variable>
-              <bflc:titleSortKey>
+            <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+              <bflc:nonSortNum>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="normalize-space(substring($label,@ind2+1))"/>
-              </bflc:titleSortKey>
+                <xsl:value-of select="@ind2"/>
+              </bflc:nonSortNum>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>
@@ -131,23 +128,13 @@
         <bf:title>
           <bf:VariantTitle>
             <bf:variantType>translated</bf:variantType>
-            <xsl:if test="@ind2 != '0'">
-              <xsl:variable name="label">
-                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or
-                                                                       @code='b' or
-                                                                       @code='c' or
-                                                                       @code='h' or
-                                                                       @code='n' or
-                                                                       @code='p']"/>
-              </xsl:variable>
-              <bflc:titleSortKey>
+            <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+              <bflc:nonSortNum>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space(substring($label,@ind2+1))"/>
-                </xsl:call-template>
-              </bflc:titleSortKey>
+                <xsl:value-of select="@ind2"/>
+              </bflc:nonSortNum>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>
@@ -203,30 +190,13 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <bf:CollectiveTitle>
-            <xsl:if test="@ind2 != '0'">
-              <xsl:variable name="label">
-                <xsl:apply-templates mode="concat-nodes-space"
-                                     select="marc:subfield[@code='a' or
-                                             @code='d' or
-                                             @code='f' or
-                                             @code='g' or
-                                             @code='k' or
-                                             @code='l' or
-                                             @code='m' or
-                                             @code='n' or
-                                             @code='o' or
-                                             @code='p' or
-                                             @code='r' or
-                                             @code='s']"/>
-              </xsl:variable>
-              <bflc:titleSortKey>
+            <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+              <bflc:nonSortNum>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space(substring($label,@ind2+1))"/>
-                </xsl:call-template>
-              </bflc:titleSortKey>
+                <xsl:value-of select="@ind2"/>
+              </bflc:nonSortNum>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:mainTitle>
@@ -439,15 +409,13 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="@ind2 != '0'">
-          <bflc:titleSortKey>
+        <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+          <bflc:nonSortNum>
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="normalize-space(substring($label,@ind2+1))"/>
-            </xsl:call-template>
-          </bflc:titleSortKey>
+            <xsl:value-of select="@ind2" />
+          </bflc:nonSortNum>
         </xsl:if>
         <xsl:for-each select="marc:subfield[@code='a']">
           <bf:mainTitle>
