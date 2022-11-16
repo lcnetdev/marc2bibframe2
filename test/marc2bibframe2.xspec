@@ -280,7 +280,7 @@
             </bf:classification>
             <bf:title>
               <bf:Title>
-                <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
+                <bflc:nonSortNum>4</bflc:nonSortNum>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -396,7 +396,7 @@
             </bf:identifiedBy>
             <bf:title>
               <bf:Title>
-                <bflc:titleSortKey>Great Ray Charles</bflc:titleSortKey>
+                <bflc:nonSortNum>4</bflc:nonSortNum>
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -514,7 +514,7 @@
             </bf:classification>
             <bf:title>
               <bf:Title>
-                <bflc:titleSortKey>White House</bflc:titleSortKey>
+                <bflc:nonSortNum>4</bflc:nonSortNum>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
             </bf:title>
@@ -621,7 +621,7 @@
             </bf:identifiedBy>
             <bf:title>
               <bf:Title>
-                <bflc:titleSortKey>White House</bflc:titleSortKey>
+                <bflc:nonSortNum>4</bflc:nonSortNum>
                 <bf:mainTitle>The White House</bf:mainTitle>
               </bf:Title>
             </bf:title>

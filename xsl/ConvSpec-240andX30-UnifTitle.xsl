@@ -339,10 +339,10 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="nfi">
       <xsl:choose>
-        <xsl:when test="$tag='130' or $tag='630' or $tag='730'">
+        <xsl:when test="($tag='130' or $tag='630' or $tag='730') and @ind1 != ' '">
           <xsl:value-of select="@ind1"/>
         </xsl:when>
-        <xsl:when test="$tag='240' or $tag='830' or $tag='440'">
+        <xsl:when test="($tag='240' or $tag='830' or $tag='440') and @ind2 != ' '">
           <xsl:value-of select="@ind2"/>
         </xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
@@ -369,14 +369,12 @@
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$nfi != 0">
-            <bflc:titleSortKey>
+            <bflc:nonSortNum>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="normalize-space(substring($label,$nfi+1))"/>
-              </xsl:call-template>
-            </bflc:titleSortKey>
+              <xsl:value-of select="$nfi" />
+            </bflc:nonSortNum>
           </xsl:if>
           <bf:mainTitle>
             <xsl:if test="$vXmlLang != ''">
