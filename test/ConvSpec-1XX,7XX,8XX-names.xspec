@@ -27,7 +27,7 @@
     <x:expect label="720 field without $t creates a bflc:Uncontrolled agent type" test="//bf:Work[2]//bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
     <x:expect label="bf:Agent/bflc:nameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="bf:Agent/bflc:primaryContributorNameMatchKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:primaryContributorName00MatchKey = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
-    <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:name00MarcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891$2naf'"/>
+    <x:expect label="bf:Agent/bflc:nameMarcKey generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey = '1001 $aBeethoven, Ludwig van,$d1770-1827$c(Spirit)$0(DE-101c)310008891$2naf'"/>
     <x:expect label="bf:Agent/rdfs:label generation" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label = 'Beethoven, Ludwig van, 1770-1827 (Spirit)'"/>
     <x:expect label="$0 becomes a bf:identifiedBy property for the bf:Agent" test="//bf:Agent[@rdf:about='http://example.org/1#Agent100-2']/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
     <x:expect label="$2 becomes a bf:source property for the bf:Agent" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bf:source/bf:Source/bf:code = 'naf'"/>

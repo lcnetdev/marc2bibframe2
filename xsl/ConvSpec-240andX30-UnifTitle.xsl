@@ -360,7 +360,7 @@
                   </xsl:call-template>
                 </bflc:title00MatchKey>
               </xsl:if>
-              <bflc:title00MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title00MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
@@ -370,7 +370,7 @@
                   </xsl:call-template>
                 </bflc:title10MatchKey>                  
               </xsl:if>
-              <bflc:title10MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title10MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
@@ -380,7 +380,7 @@
                   </xsl:call-template>
                 </bflc:title11MatchKey>                  
               </xsl:if>
-              <bflc:title11MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title11MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
               <xsl:if test="$label != ''">
@@ -390,7 +390,7 @@
                   </xsl:call-template>
                 </bflc:title30MatchKey>                  
               </xsl:if>
-              <bflc:title30MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title30MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
               <xsl:if test="$label != ''">
@@ -400,7 +400,7 @@
                   </xsl:call-template>
                 </bflc:title40MatchKey>                  
               </xsl:if>
-              <bflc:title40MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title40MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$nfi != 0">

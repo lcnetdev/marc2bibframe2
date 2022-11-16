@@ -671,13 +671,13 @@
                   <bflc:primaryContributorName00MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName00MatchKey>
                 </xsl:if>
               </xsl:if>
-              <bflc:name00MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:name00MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
                 <bflc:name10MatchKey><xsl:value-of select="$label"/></bflc:name10MatchKey>
               </xsl:if>
-              <bflc:name10MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:name10MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
                 <xsl:if test="substring($tag,1,1) = '1'">
                   <bflc:primaryContributorName10MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName10MatchKey>
                 </xsl:if>
@@ -686,7 +686,7 @@
               <xsl:if test="$label != ''">
                 <bflc:name11MatchKey><xsl:value-of select="$label"/></bflc:name11MatchKey>
               </xsl:if>
-              <bflc:name11MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:name11MarcKey>
+              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
                 <xsl:if test="substring($tag,1,1) = '1'">
                   <bflc:primaryContributorName11MatchKey><xsl:value-of select="$label"/></bflc:primaryContributorName11MatchKey>
                 </xsl:if>
