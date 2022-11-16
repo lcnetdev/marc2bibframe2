@@ -483,6 +483,12 @@
       generate a marcKey for the subfields of a marc:datafield
       of the form $[code][text]$[code][text] etc.
   -->
+  <xsl:template match="marc:datafield" mode="marcKey">
+    <xsl:variable name="marckey">
+      <xsl:apply-templates select="marc:subfield" mode="marcKey"/>
+    </xsl:variable>
+    <xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))" />
+  </xsl:template>
   <xsl:template match="marc:subfield" mode="marcKey">
     <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
   </xsl:template>

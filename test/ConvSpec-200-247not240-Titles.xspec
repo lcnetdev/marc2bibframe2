@@ -22,7 +22,7 @@
   <x:scenario label="222 - KEY TITLE">
     <x:context href="data/ConvSpec-200-247not240-Titles/marc222.xml"/>
     <x:expect label="MARC 222 should create title/KeyTitle properties in Work" test="count(//bf:Work[1]/bf:title/bf:KeyTitle) = 2"/>
-    <x:expect label="@ind2 should create the appropriate titleSortKey" test="//bf:Work/bf:title[2]/bf:KeyTitle/bflc:titleSortKey = 'Vagrant (London)'"/>
+    <x:expect label="@ind2 should create the appropriate nonSortNum" test="//bf:Work/bf:title[2]/bf:KeyTitle/bflc:nonSortNum = '4'"/>
     <x:expect label= "$a generates mainTitle" test="//bf:Work/bf:title[1]/bf:KeyTitle/bf:mainTitle = 'Idler'"/>
     <x:expect label= "$b generates qualifier" test="//bf:Work/bf:title[1]/bf:KeyTitle/bf:qualifier = '(London)'"/>
   </x:scenario>
@@ -34,7 +34,7 @@
     </x:scenario>
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:VariantTitle/bflc:titleSortKey = 'Bureau'"/>
+      <x:expect label="should create the appropriate nonSortNum" test="//bf:Instance[1]/bf:title/bf:VariantTitle/bflc:nonSortNum = '3'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc242.xml"/>
@@ -59,7 +59,7 @@
   <x:scenario label="243 - COLLECTIVE UNIFORM TITLE">
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Work[1]/bf:title/bf:CollectiveTitle/bflc:titleSortKey = 'Compleat works of William Shakespeare, Abridged. Selections'"/>
+      <x:expect label="should create the appropriate nonSortNum" test="//bf:Work[1]/bf:title/bf:CollectiveTitle/bflc:nonSortNum = '4'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc243.xml"/>
@@ -70,7 +70,7 @@
   <x:scenario label="245 - TITLE STATEMENT">
     <x:scenario label="@ind2">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
-      <x:expect label="should create the appropriate titleSortKey" test="//bf:Instance[1]/bf:title/bf:Title/bflc:titleSortKey = 'Bureau La Oficina = Das Büro'"/>
+      <x:expect label="should create the appropriate nonSortNum" test="//bf:Instance[1]/bf:title/bf:Title/bflc:nonSortNum = '3'"/>
     </x:scenario>
     <x:scenario label="$a">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc245.xml"/>
