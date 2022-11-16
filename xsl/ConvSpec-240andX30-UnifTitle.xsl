@@ -353,53 +353,18 @@
         <bf:Title>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='00'">
-              <xsl:if test="$label != ''">
-                <bflc:title00MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title00MatchKey>
-              </xsl:if>
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
-              <xsl:if test="$label != ''">
-                <bflc:title10MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title10MatchKey>                  
-              </xsl:if>
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
-              <xsl:if test="$label != ''">
-                <bflc:title11MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title11MatchKey>                  
-              </xsl:if>
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
-              <xsl:if test="$label != ''">
-                <bflc:title30MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title30MatchKey>                  
-              </xsl:if>
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
-              <xsl:if test="$label != ''">
-                <bflc:title40MatchKey>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($label)"/>
-                  </xsl:call-template>
-                </bflc:title40MatchKey>                  
-              </xsl:if>
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
             </xsl:when>
           </xsl:choose>

@@ -120,8 +120,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:name00MatchKey>
-                    <bflc:primaryContributorName00MatchKey>Andersen, H. C. (Hans Christian), 1805-1875</bflc:primaryContributorName00MatchKey>
                     <bflc:marcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:marcKey>
                     <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875</rdfs:label>
                   </bf:Agent>
@@ -141,7 +139,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Dickmeiss, Otto</bflc:name00MatchKey>
                     <bflc:marcKey>7001 $aDickmeiss, Otto,$eill.</bflc:marcKey>
                     <rdfs:label>Dickmeiss, Otto</rdfs:label>
                   </bf:Agent>
@@ -323,7 +320,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/5637241#Agent700-19">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Charles, Ray, 1930-</bflc:name00MatchKey>
                     <bflc:marcKey>7001 $aCharles, Ray,$d1930-$4prf</bflc:marcKey>
                     <rdfs:label>Charles, Ray, 1930-</rdfs:label>
                   </bf:Agent>
@@ -533,7 +529,6 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:name10MatchKey>White House (Washington, D.C.)</bflc:name10MatchKey>
                 <bflc:marcKey>61020$aWhite House (Washington, D.C.)</bflc:marcKey>
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -545,7 +540,6 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:name10MatchKey>United States. Executive Office of the President.</bflc:name10MatchKey>
                 <bflc:marcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:marcKey>
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -557,7 +551,6 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:name10MatchKey>United States. Office of the Vice President.</bflc:name10MatchKey>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:marcKey>
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -569,7 +562,6 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:name10MatchKey>United States. Office of the First Lady.</bflc:name10MatchKey>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:marcKey>
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -580,7 +572,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
-                    <bflc:name10MatchKey>White House Web Team</bflc:name10MatchKey>
                     <bflc:marcKey>7102 $aWhite House Web Team.</bflc:marcKey>
                     <rdfs:label>White House Web Team</rdfs:label>
                   </bf:Agent>
@@ -833,7 +824,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-22">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Wholey, Joseph S.</bflc:name00MatchKey>
                     <bflc:marcKey>7001 $aWholey, Joseph S.</bflc:marcKey>
                     <rdfs:label>Wholey, Joseph S.</rdfs:label>
                   </bf:Agent>
@@ -848,7 +838,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-23">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Hatry, Harry P.</bflc:name00MatchKey>
                     <bflc:marcKey>7001 $aHatry, Harry P.</bflc:marcKey>
                     <rdfs:label>Hatry, Harry P.</rdfs:label>
                   </bf:Agent>
@@ -863,7 +852,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-24">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:name00MatchKey>Newcomer, Kathryn E., 1949-</bflc:name00MatchKey>
                     <bflc:marcKey>7001 $aNewcomer, Kathryn E.,$d1949-</bflc:marcKey>
                     <rdfs:label>Newcomer, Kathryn E., 1949-</rdfs:label>
                   </bf:Agent>
@@ -885,7 +873,6 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:title30MatchKey>Jossey-Bass public administration series</bflc:title30MatchKey>
                         <bflc:marcKey>830 0$aJossey-Bass public administration series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
                       </bf:Title>
@@ -906,7 +893,6 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:title30MatchKey>Jossey-Bass nonprofit sector series</bflc:title30MatchKey>
                         <bflc:marcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
                       </bf:Title>
@@ -927,7 +913,6 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:title30MatchKey>Jossey-Bass social and behavioral science series</bflc:title30MatchKey>
                         <bflc:marcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
                       </bf:Title>
@@ -1087,8 +1072,6 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/no2020106889#Agent100-9">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person" />
-                    <bflc:name00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:name00MatchKey>
-                    <bflc:primaryContributorName00MatchKey>Borges, Jorge Luis, 1899-1986</bflc:primaryContributorName00MatchKey>
                     <bflc:marcKey>1001 $aBorges, Jorge Luis,$d1899-1986.</bflc:marcKey>
                     <rdfs:label>Borges, Jorge Luis, 1899-1986</rdfs:label>
                   </bf:Agent>
@@ -1100,7 +1083,6 @@
             </bf:contribution>
             <bf:title>
               <bf:Title>
-                <bflc:title40MatchKey>Short stories. Selections (Aleph)</bflc:title40MatchKey>
                 <bflc:marcKey>240 0$aShort stories.$kSelections (Aleph)</bflc:marcKey>
                 <bf:mainTitle>Short stories. Selections (Aleph)</bf:mainTitle>
               </bf:Title>
