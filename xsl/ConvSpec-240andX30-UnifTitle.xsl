@@ -348,9 +348,6 @@
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="marckey">
-      <xsl:apply-templates mode="marcKey"/>
-    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
@@ -363,7 +360,7 @@
                   </xsl:call-template>
                 </bflc:title00MatchKey>
               </xsl:if>
-              <bflc:title00MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title00MarcKey>
+              <bflc:title00MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title00MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='10'">
               <xsl:if test="$label != ''">
@@ -373,7 +370,7 @@
                   </xsl:call-template>
                 </bflc:title10MatchKey>                  
               </xsl:if>
-              <bflc:title10MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title10MarcKey>
+              <bflc:title10MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title10MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='11'">
               <xsl:if test="$label != ''">
@@ -383,7 +380,7 @@
                   </xsl:call-template>
                 </bflc:title11MatchKey>                  
               </xsl:if>
-              <bflc:title11MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title11MarcKey>
+              <bflc:title11MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title11MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='30'">
               <xsl:if test="$label != ''">
@@ -393,7 +390,7 @@
                   </xsl:call-template>
                 </bflc:title30MatchKey>                  
               </xsl:if>
-              <bflc:title30MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title30MarcKey>
+              <bflc:title30MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title30MarcKey>
             </xsl:when>
             <xsl:when test="substring($tag,2,2)='40'">
               <xsl:if test="$label != ''">
@@ -403,7 +400,7 @@
                   </xsl:call-template>
                 </bflc:title40MatchKey>                  
               </xsl:if>
-              <bflc:title40MarcKey><xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))"/></bflc:title40MarcKey>
+              <bflc:title40MarcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:title40MarcKey>
             </xsl:when>
           </xsl:choose>
           <xsl:if test="$nfi != 0">

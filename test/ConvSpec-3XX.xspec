@@ -291,7 +291,7 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="382 creates a musicMedium/MusicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium) = 1"/>
     <x:expect label="If ind1=1, generate status property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/part'"/>
-    <x:expect label="Generate bflc:readMarc382 property of the MusicMedium from all subfields" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bflc:readMarc382 = '$3Nach Bach$apiano$n1$vplayed on altered piano$pbaritone horn$n2$dsynthesizer$n1$s2$vpiano is prominent, but not all other instruments are not identified$2lcmpt'"/>
+    <x:expect label="Generate bflc:readMarc382 property of the MusicMedium from all subfields" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bflc:readMarc382 = '3821 $3Nach Bach$apiano$n1$vplayed on altered piano$pbaritone horn$n2$dsynthesizer$n1$s2$vpiano is prominent, but not all other instruments are not identified$2lcmpt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
   </x:scenario>
 
