@@ -770,7 +770,7 @@
               </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
-              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http' and substring(text(),1,10) != '(OCoLC)fst'">
                 <xsl:apply-templates mode="subfield0orw" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
@@ -888,7 +888,7 @@
               </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
-              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http' and substring(text(),1,10) != '(OCoLC)fst'">
                 <xsl:apply-templates mode="subfield0orw" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
