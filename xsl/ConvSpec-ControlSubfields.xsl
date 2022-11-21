@@ -40,6 +40,11 @@
             </xsl:when>
           </xsl:choose>
         </xsl:when>
+        <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]">
+            <!-- http://id.worldcat.org/fast/1919741 -->
+            <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
+            <xsl:value-of select="concat('http://id.worldcat.org/fast/', substring-after($vIdentifier,'(OCoLC)fst'))" />
+        </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="vIdentifier">
             <xsl:value-of select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
@@ -123,24 +128,38 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pVocabStem"/>
     <xsl:param name="pStripPunct" select="false()"/>
+    <xsl:variable name="vURI">
+        <xsl:if test="$pVocabStem != ''">
+            <xsl:variable name="vNormCode">
+                <xsl:call-template name="tNormalizeCode">
+                    <xsl:with-param name="pCode" select="."/>
+                    <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
+                </xsl:call-template>
+            </xsl:variable>
+            <xsl:value-of select="concat($pVocabStem,$vNormCode)" />
+        </xsl:if>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:source>
-          <bf:Source>
-            <xsl:if test="$pVocabStem != ''">
-              <xsl:variable name="vNormCode">
-                <xsl:call-template name="tNormalizeCode">
-                  <xsl:with-param name="pCode" select="."/>
-                  <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
-                </xsl:call-template>
-              </xsl:variable>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($pVocabStem,$vNormCode)"/></xsl:attribute>
-            </xsl:if>
-            <bf:code>
-              <xsl:value-of select="."/>
-            </bf:code>
-          </bf:Source>
-        </bf:source>
+          <xsl:choose>
+            <xsl:when test="contains($vURI, '/fast')">
+              <bf:source>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vURI"/></xsl:attribute>
+              </bf:source>
+            </xsl:when>
+            <xsl:otherwise>
+                <bf:source>
+                    <bf:Source>
+                        <xsl:if test="$vURI != ''">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="$vURI"/></xsl:attribute>
+                        </xsl:if>
+                        <bf:code>
+                            <xsl:value-of select="."/>
+                        </bf:code>
+                    </bf:Source>
+                </bf:source>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
