@@ -1,3 +1,16 @@
+--- 2.2.0 2022/11/28
+Changes towards updated v2.2.0 specifications:
+  ConvSpec-200-247-Titles:
+    Add support for nonSortNum, remove support for titleNonSort.
+  ConvSpec-240,X30-UnifTitle:
+    Add support for nonSortNum, remove support for titleNonSort.
+  ConvSpec-600-662:
+    Add support for nonSortNum, remove support for titleNonSort.
+  ConvSpec-720,740-758
+    Add support for nonSortNum, remove support for titleNonSort.
+  ConvSpec-Process8-Series:
+    Remove *MatchKey, *MarcKey properties.
+
 --- 2.1.0 2022/10/18
 Changes towards updated v2.1.0 specifications:
   ConvSpec-LDR:
