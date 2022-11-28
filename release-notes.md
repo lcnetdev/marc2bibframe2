@@ -1,5 +1,17 @@
 # marc2bibframe2 release notes
 
+## v2.2.0
+
+Conversion updates based on specifications v2.2. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Removed *MatchKey properties.
+* Removed specific *MarcKey properties.
+* Introduced generic bflc:marcKey property.
+* Removed titleSortKey and replaed with nonSortNum property.
+* Refactored handling of FAST headings to convert identifiers to URIs.
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.1.0 in the specifications are marked in red.
+
 ## v2.1.0
 
 Conversion updates based on specifications v2.1. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:

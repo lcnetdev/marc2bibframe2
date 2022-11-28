@@ -44,7 +44,7 @@
   <x:scenario label="648 - SUBJECT ADDED ENTRY--CHRONOLOGICAL TERM">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="648 creates a subject/Temporal property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Temporal) = 1"/>
-    <x:expect label="ind2 creates a source property of the Temporal" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/bf:source/bf:Source/bf:code='fast'"/>
+    <x:expect label="ind2 creates a source property of the Temporal" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/bf:source/@rdf:resource = 'http://id.loc.gov/vocabulary/subjectSchemes/fast'"/>
     <x:expect label="Temporal also has Class from MADSRDF" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#Temporal'"/>
     <x:expect label="$avxyz create the rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/rdfs:label = '1900-1999'"/>
     <x:expect label="...and the madsrdf:authoritativeLabel property" test="//bf:Work[1]/bf:subject[3]/bf:Temporal/madsrdf:authoritativeLabel = '1900-1999'"/>
