@@ -58,7 +58,19 @@
               <xsl:if test="marc:subfield[@code='a']">
                 <bf:title>
                   <bf:Title>
-                    <bf:mainTitle><xsl:value-of select="$vmainTitle"/></bf:mainTitle>
+                    <bflc:nonSortNum>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="$vNFI" />
+                    </bflc:nonSortNum>
+                    <bf:mainTitle>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString">
+                          <xsl:value-of select="marc:subfield[@code='a']" />
+                        </xsl:with-param>
+                      </xsl:call-template>
+                    </bf:mainTitle>
                   </bf:Title>
                 </bf:title>
               </xsl:if>
