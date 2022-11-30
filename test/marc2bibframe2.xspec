@@ -873,10 +873,10 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:marcKey>830 0$aJossey-Bass public administration series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass public administration series</bf:mainTitle>
                       </bf:Title>
                     </bf:title>
+                    <bflc:marcKey>830 0$aJossey-Bass public administration series.</bflc:marcKey>
                   </bf:Hub>
                 </bf:relatedTo>
               </bflc:Relationship>
@@ -893,10 +893,10 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:marcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass nonprofit sector series</bf:mainTitle>
                       </bf:Title>
                     </bf:title>
+                    <bflc:marcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:marcKey>
                   </bf:Hub>
                 </bf:relatedTo>
               </bflc:Relationship>
@@ -913,10 +913,10 @@
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
                       <bf:Title>
-                        <bflc:marcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:marcKey>
                         <bf:mainTitle>Jossey-Bass social and behavioral science series</bf:mainTitle>
                       </bf:Title>
                     </bf:title>
+                    <bflc:marcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:marcKey>
                   </bf:Hub>
                 </bf:relatedTo>
               </bflc:Relationship>
@@ -1083,10 +1083,10 @@
             </bf:contribution>
             <bf:title>
               <bf:Title>
-                <bflc:marcKey>240 0$aShort stories.$kSelections (Aleph)</bflc:marcKey>
                 <bf:mainTitle>Short stories. Selections (Aleph)</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">1001 $aBorges, Jorge Luis,$d1899-1986.$tShort stories.$kSelections (Aleph)</bflc:marcKey>
             <bf:note>
               <bf:Note>
                 <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/datasource"/>
