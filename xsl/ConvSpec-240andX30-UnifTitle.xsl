@@ -318,6 +318,20 @@
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:if>
+        
+        <!-- marcKey -->
+        <xsl:choose>
+          <xsl:when test="$tag='240'">
+            <xsl:variable name="vDF1xx" select="../marc:datafield[starts-with(@tag, '1')]" />
+            <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="$vDF1xx" mode="marcKey"/></xsl:variable>
+            <xsl:variable name="vMarcKey240"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+            <bflc:marcKey><xsl:value-of select="concat($vMarcKey1XX, '$t', substring($vMarcKey240, 8))" /></bflc:marcKey>
+          </xsl:when>
+          <xsl:otherwise>
+            <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
+          </xsl:otherwise>
+        </xsl:choose>
+        
       </xsl:when>
     </xsl:choose>
   </xsl:template>
@@ -351,23 +365,6 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:Title>
-          <xsl:choose>
-            <xsl:when test="substring($tag,2,2)='00'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='10'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='11'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='30'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='40'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-          </xsl:choose>
           <xsl:if test="$nfi != 0">
             <bflc:nonSortNum>
               <xsl:if test="$vXmlLang != ''">
