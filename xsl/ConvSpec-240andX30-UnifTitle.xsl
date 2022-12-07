@@ -325,7 +325,7 @@
             <xsl:variable name="vDF1xx" select="../marc:datafield[starts-with(@tag, '1')]" />
             <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="$vDF1xx" mode="marcKey"/></xsl:variable>
             <xsl:variable name="vMarcKey240"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
-            <bflc:marcKey><xsl:value-of select="concat($vMarcKey1XX, '$t', substring($vMarcKey240, 8))" /></bflc:marcKey>
+            <bflc:marcKey><xsl:value-of select="concat($vMarcKey1XX, '$t', substring-after($vMarcKey240, '$a'))" /></bflc:marcKey>
           </xsl:when>
           <xsl:otherwise>
             <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
