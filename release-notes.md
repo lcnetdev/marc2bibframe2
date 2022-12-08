@@ -1,5 +1,11 @@
 # marc2bibframe2 release notes
 
+## v2.2.1
+
+Patch release.
+
+* Finesse how 1XX $t is excised when converting to 240.
+
 ## v2.2.0
 
 Conversion updates based on specifications v2.2. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:

@@ -1,3 +1,6 @@
+--- 2.2.1 2022/12/08
+Patch release to finesse how 1XX $t is excised when converting to 240..
+
 --- 2.2.0 2022/12/02
 Changes towards updated v2.2.0 specifications:
   ConvSpec-200-247-Titles:
