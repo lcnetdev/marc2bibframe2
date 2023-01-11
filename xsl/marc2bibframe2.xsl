@@ -263,7 +263,7 @@
             <!-- special LoC processing for $5 -->
             <!-- link all properties from fields with $5=DLC to a single Item -->
             <xsl:if test="$localfields and
-                          not(marc:datafield[@tag='051' or (@tag='050' and @ind1='0')]) and
+                          not(marc:datafield[@tag='051']) and
                           marc:datafield[marc:subfield[@code='5']='DLC']">
               <bf:hasItem>
                 <bf:Item>

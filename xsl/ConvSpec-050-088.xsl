@@ -36,13 +36,6 @@
               <xsl:if test="$vCurrentNodeUri != ''">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
-              <xsl:if test="../@ind2 = '0'">
-                <bf:assigner>
-                  <bf:Agent>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                  </bf:Agent>
-                </bf:assigner>
-              </xsl:if>
               <bf:classificationPortion>
                 <xsl:value-of select="."/>
               </bf:classificationPortion>
@@ -53,6 +46,23 @@
                   </bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
+              <xsl:if test="../@ind2 = '0'">
+                <bf:assigner>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                </bf:assigner>
+              </xsl:if>
+              <xsl:choose>
+                <xsl:when test="../@ind1 = '0'">
+                  <bf:status>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
+                  </bf:status>
+                </xsl:when>
+                <xsl:when test="../@ind1 = '1'">
+                  <bf:status>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
+                  </bf:status>
+                </xsl:when>
+              </xsl:choose>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
                   <xsl:apply-templates select="." mode="subfield0orw">
@@ -163,9 +173,7 @@
             </xsl:for-each>
             <xsl:if test="@ind2 = '0' or @ind2 = '1' or @ind2 = '2'">
               <bf:assigner>
-                <bf:Agent>
-                  <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/names/no2004037399</xsl:attribute>
-                </bf:Agent>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/authorities/names/no2004037399</xsl:attribute>
               </bf:assigner>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
@@ -217,9 +225,7 @@
               </xsl:if>
               <xsl:if test="../@ind2 = '0'">
                 <bf:assigner>
-                  <bf:Agent>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
-                  </bf:Agent>
+                  <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
                 </bf:assigner>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
@@ -520,12 +526,12 @@
   
   <!-- instance match for fields 074, 088 in ConvSpec-010-048.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='050' or @tag='051']" mode="hasItem">
+  <xsl:template match="marc:datafield[@tag='051']" mode="hasItem">
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pPosition" select="position()"/>
     <!-- create an Item entity for LoC processing only -->
-    <xsl:if test="$localfields and ((@tag='050' and @ind1='0') or @tag='051')">
+    <xsl:if test="$localfields and @tag='051'">
       <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:variable>
       <xsl:variable name="vShelfMark">
         <xsl:choose>
@@ -566,7 +572,7 @@
                   </bf:Note>
                 </bf:note>
               </xsl:for-each>
-              <xsl:if test="generate-id(.)=generate-id(../marc:datafield[(@tag='050' and @ind1='0') or @tag='051'][1])">
+              <xsl:if test="generate-id(.)=generate-id(../marc:datafield[@tag='051'][1])">
                 <xsl:apply-templates select="../marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
                   <xsl:with-param name="recordid" select="$recordid"/>
                   <xsl:with-param name="serialization" select="$serialization"/>

@@ -107,11 +107,10 @@
             </bf:genreForm>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>PZ54</bf:classificationPortion>
                 <bf:itemPortion>.A498 2001</bf:itemPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:contribution>
@@ -272,10 +271,9 @@
             </bf:language>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
-                </bf:assigner>
                 <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:title>
@@ -492,10 +490,9 @@
             <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>F204.W5</bf:classificationPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:classification>
@@ -743,11 +740,10 @@
             </bf:supplementaryContent>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>H97</bf:classificationPortion>
                 <bf:itemPortion>.H358 1994</bf:itemPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:classification>
