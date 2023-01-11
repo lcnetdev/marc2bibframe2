@@ -549,29 +549,34 @@
           <bf:hasItem>
             <bf:Item>
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
+              <bf:classification>
+                <bf:ClassificationLcc>
+                  <bf:classificationPortion>
+                    <xsl:value-of select="marc:subfield[@code='a']"/>
+                  </bf:classificationPortion>
+                  <xsl:if test="marc:subfield[@code='b']">
+                    <bf:itemPortion>
+                      <xsl:value-of select="marc:subfield[@code='b']"/>
+                    </bf:itemPortion>
+                  </xsl:if>                  
+                  <xsl:if test="marc:subfield[@code='c']">
+                    <bf:note>
+                      <bf:Note>
+                        <rdfs:label><xsl:value-of select="marc:subfield[@code='c']"/></rdfs:label>
+                      </bf:Note>
+                    </bf:note>
+                  </xsl:if>
+                  <bf:assigner>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:assigner>
+                </bf:ClassificationLcc>
+              </bf:classification>
               <bf:heldBy>
                 <bf:Agent>
                   <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                   <bf:code>DLC</bf:code>
                 </bf:Agent>
               </bf:heldBy>
-              <bf:shelfMark>
-                <bf:ShelfMarkLcc>
-                  <rdfs:label><xsl:value-of select="$vShelfMark"/></rdfs:label>
-                  <bf:assigner>
-                    <bf:Agent>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                    </bf:Agent>
-                  </bf:assigner>
-                </bf:ShelfMarkLcc>
-              </bf:shelfMark>
-              <xsl:for-each select="marc:subfield[@code='c']">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  </bf:Note>
-                </bf:note>
-              </xsl:for-each>
               <xsl:if test="generate-id(.)=generate-id(../marc:datafield[@tag='051'][1])">
                 <xsl:apply-templates select="../marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
                   <xsl:with-param name="recordid" select="$recordid"/>
