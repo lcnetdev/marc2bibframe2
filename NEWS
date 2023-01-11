@@ -1,3 +1,7 @@
+--- 2.3.0 2023/01/XX
+Changes towards updated v2.3.0 specifications:
+  ConvSpec-050-088:  Stop generating Item/shelfMark from 050.
+
 --- 2.2.1 2022/12/08
 Patch release to finesse how 1XX $t is excised when converting to 240..
 
