@@ -205,8 +205,16 @@
     <datafield tag="561" ind1=" " ind2=" ">
       <subfield code="a">On permanent loan from the collection of Paul Mellon.</subfield>
     </datafield>
+    <datafield tag="561" ind1=" " ind2=" ">
+      <subfield code="5">DLC</subfield>
+      <subfield code="a">LC copy has something special about it.</subfield>
+    </datafield>
     <datafield tag="563" ind1=" " ind2=" ">
       <subfield code="a">Late 16th century blind-tooled centrepiece binding, dark brown calf.</subfield>
+    </datafield>
+    <datafield tag="563" ind1=" " ind2=" ">
+      <subfield code="5">DLC</subfield>
+      <subfield code="a">LC copy binding is something special indeed!</subfield>
     </datafield>
     <datafield tag="580" ind1=" " ind2=" ">
       <subfield code="a">Forms part of the Frances Benjamin Johnston Collection.</subfield>
@@ -223,6 +231,17 @@
       <subfield code="k">Thomas Swing</subfield>
       <subfield code="l">mutilated</subfield>
       <subfield code="u">http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl</subfield>
+      <subfield code="z">Institute for Museum and Library Services grant</subfield>
+      <subfield code="2">pda</subfield>
+    </datafield>
+    <datafield tag="583" ind1=" " ind2=" ">
+      <subfield code="5">DLC</subfield>
+      <subfield code="a">upgraded</subfield>
+      <subfield code="c">19920110</subfield>
+      <subfield code="h">Guy 1</subfield>
+      <subfield code="k">Gal 2</subfield>
+      <subfield code="l">mutilated</subfield>
+      <subfield code="u">http://karamelik.eastlib.ufl.edu/domain/no/existy.pl</subfield>
       <subfield code="z">Institute for Museum and Library Services grant</subfield>
       <subfield code="2">pda</subfield>
     </datafield>
