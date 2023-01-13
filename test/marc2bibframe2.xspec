@@ -42,7 +42,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.2.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.3.0</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -116,11 +116,10 @@
             </bf:genreForm>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>PZ54</bf:classificationPortion>
                 <bf:itemPortion>.A498 2001</bf:itemPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:contribution>
@@ -231,7 +230,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.2.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.3.0</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -290,10 +289,9 @@
             </bf:language>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc" />
-                </bf:assigner>
                 <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:title>
@@ -443,7 +441,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.2.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.3.0</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -510,10 +508,9 @@
             <bf:geographicCoverage rdf:resource="http://id.loc.gov/vocabulary/geographicAreas/n-us"/>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>F204.W5</bf:classificationPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:classification>
@@ -691,7 +688,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.2.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.3.0</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>
@@ -761,11 +758,10 @@
             </bf:supplementaryContent>
             <bf:classification>
               <bf:ClassificationLcc>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                </bf:assigner>
                 <bf:classificationPortion>H97</bf:classificationPortion>
                 <bf:itemPortion>.H358 1994</bf:itemPortion>
+                <bf:assigner rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:status rdf:resource="http://id.loc.gov/vocabulary/mstatus/uba"/>
               </bf:ClassificationLcc>
             </bf:classification>
             <bf:classification>
@@ -1042,7 +1038,7 @@
               <bf:AdminMetadata>
                 <bf:generationProcess>
                   <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.2.1</rdfs:label>
+                    <rdfs:label>DLC marc2bibframe2 v2.3.0</rdfs:label>
                     <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                   </bf:GenerationProcess>
                 </bf:generationProcess>

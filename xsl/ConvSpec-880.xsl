@@ -68,7 +68,7 @@
       <xsl:call-template name="tProcess"/>
     </xsl:variable>
     <xsl:if test="$vProcess='true'">
-      <xsl:apply-templates select="." mode="hasItem">
+      <xsl:apply-templates select="." mode="item">
         <xsl:with-param name="recordid" select="$recordid"/>
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="pPosition" select="position()"/>
