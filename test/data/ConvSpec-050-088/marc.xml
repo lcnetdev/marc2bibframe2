@@ -20,6 +20,16 @@
     <datafield tag="050" ind1="0" ind2="0">
       <subfield code="a">Atlantic 1259</subfield>
     </datafield>
+    <datafield ind1="0" ind2="0" tag="050">
+      <subfield code="a">Comic Book 03742</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="050">
+      <subfield code="a">PN6728.H3783</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="4" tag="050">
+      <subfield code="a">PN6728.6.D3</subfield>
+      <subfield code="b">H385</subfield>
+    </datafield>
     <datafield tag="052" ind1=" " ind2=" ">
       <subfield code="a">4034</subfield>
       <subfield code="b">R4</subfield>
