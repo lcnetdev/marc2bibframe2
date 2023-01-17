@@ -175,6 +175,18 @@
               <bf:assigner>
                 <xsl:attribute name="rdf:resource">http://id.loc.gov/authorities/names/no2004037399</xsl:attribute>
               </bf:assigner>
+              <xsl:choose>
+                <xsl:when test="@ind1 = '0'">
+                  <bf:status>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
+                  </bf:status>
+                </xsl:when>
+                <xsl:when test="@ind1 = '1'">
+                  <bf:status>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
+                  </bf:status>
+                </xsl:when>
+              </xsl:choose>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
               <xsl:if test="position() != 1">
@@ -227,6 +239,18 @@
                 <bf:assigner>
                   <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
                 </bf:assigner>
+                <xsl:choose>
+                  <xsl:when test="../@ind1 = '0'">
+                    <bf:status>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
+                    </bf:status>
+                  </xsl:when>
+                  <xsl:when test="../@ind1 = '1'">
+                    <bf:status>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
+                    </bf:status>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="position() != 1">
@@ -270,10 +294,11 @@
               </xsl:if>
               <xsl:if test="../@ind1='0'">
                 <bf:assigner>
-                  <bf:Agent>
-                    <xsl:attribute name="rdf:about">http://id.loc.gov/vocabulary/organizations/dnal</xsl:attribute>
-                  </bf:Agent>
+                    <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/organizations/dnal</xsl:attribute>
                 </bf:assigner>
+                <bf:status>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
+                </bf:status>
               </xsl:if>
               <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
               <xsl:if test="position() = 1">
