@@ -65,7 +65,7 @@
     <x:expect label="$6 581 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Инвентаризация американской скульптуры: ксерокопия. 1982.'"/>
     <x:expect label="$6 583 creates a note/Note property of an Item" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label='пониженный'"/>
     <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[19]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
-    <x:expect label="$6 586 creates an awards property of the Work" test="//bf:Work[1]/bf:awards = 'Национальная книжная премия, 1981'"/>
+    <x:expect label="$6 586 creates an awards note on the Work" test="//bf:Work[1]/bf:note[3]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
     <x:expect label="$6 740 creates a related Work linked to the main Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle ='Руководство гадалки'"/>
     <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
