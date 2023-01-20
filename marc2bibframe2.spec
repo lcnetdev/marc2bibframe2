@@ -40,6 +40,12 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_docdir}/marc2bibframe2
 
 %changelog
+* Fri Jan 20 2023  Kevin Ford <kevinford@loc.gov> - 2.3.0-1.indexdata
+- Release 2.3.0
+
+* Thu Dec 08 2022  Kevin Ford <kevinford@loc.gov> - 2.2.1-1.indexdata
+- Release 2.2.1
+
 * Mon Nov 28 2022  Kevin Ford <kevinford@loc.gov> - 2.2.0-1.indexdata
 - Release 2.2.0
 
