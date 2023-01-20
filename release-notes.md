@@ -5,6 +5,12 @@
 Conversion updates based on specifications v2.3. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
 
 * Stop generating Item/shelfMark from 050.
+* 051s use same Classification pattern as 050s.
+* Refactor Item generation to be more targetted and group better.
+* 561, 563, and 581 to Instance unless $5, in which case continues to go to Item.
+* Incorporate new 'use by agency' statuses for Classification resources from 050, 055, 060, 070. 
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.1.0 in the specifications are marked in red.
 
 ## v2.2.1
 
