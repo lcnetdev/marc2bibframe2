@@ -1,7 +1,12 @@
---- 2.3.0 2023/01/XX
+--- 2.3.0 2023/01/20
 Changes towards updated v2.3.0 specifications:
-  ConvSpec-050-088:  Stop generating Item/shelfMark from 050.
-
+  ConvSpec-050-088:  
+    Stop generating Item/shelfMark from 050.
+    Employ 'use by agency' statuses
+  ConvSpec-5XX:
+    Handle 586 like other notes.
+    561, 563, and 581 to Instance by default (unless $5 present)
+    
 --- 2.2.1 2022/12/08
 Patch release to finesse how 1XX $t is excised when converting to 240..
 
