@@ -48,6 +48,27 @@
         <xsl:copy-of select="."/>
       </xsl:when>
       <xsl:otherwise>
+        <marc:record>
+          <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
+          <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag]">
+            <xsl:sort select="@tag"/>
+            <marc:controlfield>
+              <xsl:attribute name="xml:space">preserve</xsl:attribute>
+              <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
+              <xsl:value-of select="." />
+            </marc:controlfield>            
+          </xsl:for-each>
+          <xsl:for-each select="marc:datafield[@tag &lt; 300]">
+            <xsl:sort select="@tag"/>
+            <xsl:apply-templates select="." />
+          </xsl:for-each>
+          <xsl:apply-templates select="marc:datafield[@tag = '300'][1]" />
+          <xsl:for-each select="marc:datafield[@tag &gt; 300 and @tag != '856']">
+            <xsl:sort select="@tag"/>
+            <xsl:apply-templates select="." />            
+          </xsl:for-each>
+        </marc:record>
+        
         <xsl:for-each select="marc:controlfield[@tag='007']">
           <xsl:if test="position() &gt; 1">
             <xsl:apply-templates select=".">
@@ -66,20 +87,13 @@
     <xsl:variable name="cf007-01" select="substring(.,1,1)"/>
     <marc:record>
       <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
-      <marc:datafield tag="758" ind1=" " ind2=" ">
-        <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
-        <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
-      </marc:datafield>
       <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos)" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="." /></marc:controlfield>
+      <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
       <xsl:if test="../marc:datafield[@tag = '300'][$pos]">
         <marc:datafield tag="300" ind1="../marc:datafield[@tag = '300'][$pos]/@ind1" ind2="../marc:datafield[@tag = '300'][$pos]/@ind2">
-          <xsl:for-each select="../marc:datafield[@tag = '300'][$pos]/marc:subfield">
-            <marc:subfield>
-              <xsl:attribute name="code"><xsl:value-of select="@code"/></xsl:attribute>
-              <xsl:value-of select="."/>
-            </marc:subfield>
-          </xsl:for-each>
+          <xsl:apply-templates select="../marc:datafield[@tag = '300'][$pos]/marc:subfield" />
         </marc:datafield>
       </xsl:if>
       <xsl:if test="$cf007-01 = 'c' and ../marc:datafield[@tag = '856'][$pos - 1]">
@@ -88,14 +102,30 @@
         <marc:datafield tag="856" ind1="../marc:datafield[@tag = '856'][$pos]/@ind1" ind2="../marc:datafield[@tag = '856'][$pos]/@ind2">
           <xsl:attribute name="ind1"><xsl:value-of select="$df856/@ind1"/></xsl:attribute>
           <xsl:attribute name="ind2"><xsl:value-of select="$df856/@ind2"/></xsl:attribute>
-          <xsl:for-each select="$df856/marc:subfield">
-            <marc:subfield>
-              <xsl:attribute name="code"><xsl:value-of select="@code"/></xsl:attribute>
-              <xsl:value-of select="."/>
-            </marc:subfield>
-          </xsl:for-each>
+          <xsl:apply-templates select="$df856/marc:subfield" />
         </marc:datafield>
       </xsl:if>
+      
+      <marc:datafield tag="758" ind1=" " ind2=" ">
+        <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
+        <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
+      </marc:datafield>
     </marc:record>
+  </xsl:template>
+
+  <xsl:template match="marc:datafield">
+    <marc:datafield>
+      <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
+      <xsl:attribute name="ind1"><xsl:value-of select="@ind1"/></xsl:attribute>
+      <xsl:attribute name="ind2"><xsl:value-of select="@ind2"/></xsl:attribute>
+      <xsl:apply-templates select="marc:subfield" />
+    </marc:datafield>  
+  </xsl:template>
+  
+  <xsl:template match="marc:subfield">
+    <marc:subfield>
+      <xsl:attribute name="code"><xsl:value-of select="@code"/></xsl:attribute>
+      <xsl:value-of select="."/>
+    </marc:subfield>
   </xsl:template>
 </xsl:stylesheet>
