@@ -60,7 +60,6 @@
       <xsl:when test="function-available('current-dateTime')">
         <xsl:value-of select="current-dateTime()"/>
       </xsl:when>
-      
     </xsl:choose>
   </xsl:param>
   
@@ -145,42 +144,43 @@
 
     <xsl:variable name="vCount880"><xsl:value-of select="count(marc:datafield[@tag='880'])"/></xsl:variable>
     
+    <xsl:variable name="rAdminMetadata">
+      <bf:adminMetadata>
+        <bf:AdminMetadata>
+          <bf:generationProcess>
+            <bf:GenerationProcess>
+              <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/></rdfs:label>
+              <xsl:if test="$pGenerationDatestamp != ''">
+                <bf:generationDate>
+                  <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
+                  <xsl:value-of select="$pGenerationDatestamp"/>
+                </bf:generationDate>
+              </xsl:if>
+            </bf:GenerationProcess>
+          </bf:generationProcess>
+          <!-- pass fields through conversion specs for AdminMetadata properties -->
+          <xsl:choose>
+            <xsl:when test="$vCount880 = 0">
+              <xsl:apply-templates mode="adminmetadata">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates mode="mProcessAdminMetadata880">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
+        </bf:AdminMetadata>
+      </bf:adminMetadata>
+    </xsl:variable>
+    
     <!-- generate main Work entity -->
     <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
+      <xsl:when test="$serialization = 'rdfxml' and $vInstanceType != 'SecondaryInstance'">
         <bf:Work>
           <xsl:attribute name="rdf:about"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-          <bf:adminMetadata>
-            <bf:AdminMetadata>
-              <bf:generationProcess>
-                <bf:GenerationProcess>
-                  <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/></rdfs:label>
-                  <xsl:if test="$pGenerationDatestamp != ''">
-                    <bf:generationDate>
-                      <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
-                      <xsl:value-of select="$pGenerationDatestamp"/>
-                    </bf:generationDate>
-                  </xsl:if>
-                </bf:GenerationProcess>
-              </bf:generationProcess>
-              <!-- pass fields through conversion specs for AdminMetadata properties -->
-              <xsl:choose>
-                <xsl:when test="$vCount880 = 0">
-                  <xsl:apply-templates mode="adminmetadata">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:apply-templates mode="mProcessAdminMetadata880">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                </xsl:otherwise>
-              </xsl:choose>
-              <xsl:if test="$suppressed!=''">
-                <xsl:call-template name="marc993" />                
-              </xsl:if>
-            </bf:AdminMetadata>
-          </bf:adminMetadata>
+          <xsl:copy-of select="$rAdminMetadata" />
           <!-- pass fields through conversion specs for Work properties -->
           <xsl:choose>
             <xsl:when test="$vCount880 = 0">
@@ -251,9 +251,19 @@
                 </xsl:apply-templates>
               </xsl:otherwise>
             </xsl:choose>
-            <bf:instanceOf>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-            </bf:instanceOf>
+            <xsl:choose>
+              <xsl:when test="marc:datafield[@tag='758' and marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf']">
+                <bf:instanceOf>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:datafield[@tag='758']/marc:subfield[@code='1']"/></xsl:attribute>
+                </bf:instanceOf>
+                <xsl:apply-templates select="marc:datafield[@tag='856']" mode="work"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <bf:instanceOf>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+                </bf:instanceOf>
+              </xsl:otherwise>
+            </xsl:choose>
             <!-- generate hasItem properties -->
             <xsl:if test="marc:datafield[@tag='051'] or
                           marc:datafield[@tag='541'] or
