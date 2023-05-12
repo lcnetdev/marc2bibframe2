@@ -50,6 +50,7 @@
       <xsl:otherwise>
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
+          <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="marc:controlfield[@tag = '001']" /></marc:controlfield>
           <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag]">
             <xsl:sort select="@tag"/>
             <marc:controlfield>
@@ -69,19 +70,26 @@
           </xsl:for-each>
         </marc:record>
         
-        <xsl:for-each select="marc:controlfield[@tag='007']">
+        <xsl:for-each select="marc:controlfield[@tag='007' and substring(.,1,1) != 'c']">
           <xsl:if test="position() &gt; 1">
-            <xsl:apply-templates select=".">
+            <xsl:apply-templates select="." mode="split">
               <xsl:with-param name="base_recordid" select="$recordid" />
               <xsl:with-param name="pos" select="position()" />
             </xsl:apply-templates>
           </xsl:if>
         </xsl:for-each>
+        
+        <xsl:for-each select="marc:datafield[@tag='856']">
+          <xsl:apply-templates select="." mode="split">
+            <xsl:with-param name="base_recordid" select="$recordid" />
+            <xsl:with-param name="pos" select="position()" />
+          </xsl:apply-templates>
+        </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:controlfield[@tag = '007']">
+  <xsl:template match="marc:controlfield[@tag = '007']" mode="split">
     <xsl:param name="base_recordid" />
     <xsl:param name="pos" />
     <xsl:variable name="cf007-01" select="substring(.,1,1)"/>
@@ -92,20 +100,36 @@
       <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="." /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
       <xsl:if test="../marc:datafield[@tag = '300'][$pos]">
-        <marc:datafield tag="300" ind1="../marc:datafield[@tag = '300'][$pos]/@ind1" ind2="../marc:datafield[@tag = '300'][$pos]/@ind2">
-          <xsl:apply-templates select="../marc:datafield[@tag = '300'][$pos]/marc:subfield" />
-        </marc:datafield>
-      </xsl:if>
-      <xsl:if test="$cf007-01 = 'c' and ../marc:datafield[@tag = '856'][$pos - 1]">
-        <xsl:variable name="df856" select="../marc:datafield[@tag = '856'][$pos - 1]" />
-        <!-- Electronic -->
-        <marc:datafield tag="856" ind1="../marc:datafield[@tag = '856'][$pos]/@ind1" ind2="../marc:datafield[@tag = '856'][$pos]/@ind2">
-          <xsl:attribute name="ind1"><xsl:value-of select="$df856/@ind1"/></xsl:attribute>
-          <xsl:attribute name="ind2"><xsl:value-of select="$df856/@ind2"/></xsl:attribute>
-          <xsl:apply-templates select="$df856/marc:subfield" />
-        </marc:datafield>
-      </xsl:if>
-      
+        <xsl:apply-templates select="../marc:datafield[@tag = '300'][$pos]" />
+      </xsl:if>    
+      <marc:datafield tag="758" ind1=" " ind2=" ">
+        <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
+        <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
+      </marc:datafield>
+    </marc:record>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag = '856']" mode="split">
+    <xsl:param name="base_recordid" />
+    <xsl:param name="pos" />
+    <xsl:variable name="pos_offset" select="count(../marc:controlfield[@tag='007' and substring(.,1,1) != 'c']) + $pos"/>
+    <xsl:variable name="cf007">
+      <xsl:choose>
+        <xsl:when test="../marc:controlfield[@tag='007' and substring(.,1,1) = 'c']">
+          <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="../marc:controlfield[@tag='007' and substring(.,1,1) = 'c'][1]" /></marc:controlfield>
+        </xsl:when>
+        <xsl:otherwise>
+          <marc:controlfield xml:space="preserve" tag="007">cr |||||||||||</marc:controlfield>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <marc:record>
+      <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
+      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
+      <xsl:copy-of select="$cf007" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '856'][$pos]" />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
