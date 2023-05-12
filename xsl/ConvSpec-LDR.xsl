@@ -32,6 +32,7 @@
       -->
       <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
       <!-- <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when> -->
+      <xsl:when test="../marc:datafield[@tag='758' and marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf']">SecondaryInstance</xsl:when>
     </xsl:choose>
   </xsl:template>
   
