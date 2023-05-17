@@ -39,7 +39,17 @@
     <xsl:variable name="count006" select="count(marc:controlfield[@tag='006'])"/>
     <xsl:variable name="count007" select="count(marc:controlfield[@tag='007'])"/>
     <xsl:variable name="count300" select="count(marc:controlfield[@tag='300'])"/>
-    <xsl:variable name="countViable856s" select="count(marc:datafield[@tag='856' and (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and marc:subfield/@code='u'])" />
+    <xsl:variable name="countViable856s" select="count(marc:datafield[
+                                                          @tag='856' and 
+                                                          (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
+                                                          ( 
+                                                            contains(marc:subfield[@code='u'], '.loc.gov') or 
+                                                            contains(marc:subfield[@code='u'], '.fdlp.gov') or 
+                                                            contains(marc:subfield[@code='u'], '.gpo.gov') or 
+                                                            contains(marc:subfield[@code='u'], '.congress.gov') or 
+                                                            contains(marc:subfield[@code='u'], '.hathitrust.org')
+                                                          )
+                                                 ])" />
 
     <!-- Going to want to check if this record is already a 'split' record and, if so, just return it. -->
     <!-- But until then.... -->
@@ -55,12 +65,22 @@
       <xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
-          <xsl:apply-templates select="marc:controlfield" />
+          <xsl:apply-templates select="marc:controlfield[@tag != '007' and substring(., 1, 1) != 'c']" />
           <xsl:apply-templates select="marc:datafield[@tag != '856']" />
           <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
         </marc:record>
         
-        <xsl:for-each select="marc:datafield[@tag = '856' and (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and marc:subfield[@code='u']]">
+        <xsl:for-each select="marc:datafield[
+                                              @tag='856' and 
+                                              (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
+                                              ( 
+                                                contains(marc:subfield[@code='u'], '.loc.gov') or 
+                                                contains(marc:subfield[@code='u'], '.fdlp.gov') or 
+                                                contains(marc:subfield[@code='u'], '.gpo.gov') or 
+                                                contains(marc:subfield[@code='u'], '.congress.gov') or 
+                                                contains(marc:subfield[@code='u'], '.hathitrust.org')
+                                               )
+                                             ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
             <xsl:with-param name="pos" select="position()" />
