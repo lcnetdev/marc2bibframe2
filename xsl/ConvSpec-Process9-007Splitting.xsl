@@ -38,16 +38,19 @@
     <xsl:variable name="leader06" select="substring(marc:leader,7,1)"/>
     <xsl:variable name="count006" select="count(marc:controlfield[@tag='006'])"/>
     <xsl:variable name="count007" select="count(marc:controlfield[@tag='007'])"/>
-    <xsl:variable name="count300" select="count(marc:controlfield[@tag='300'])"/>
+    <xsl:variable name="count007minusC" select="count(marc:controlfield[@tag='007' and substring(.,1,1) != 'c'])"/>
+    <xsl:variable name="count300" select="count(marc:datafield[@tag='300'])"/>
+    
     <xsl:variable name="countViable856s" select="count(marc:datafield[
                                                           @tag='856' and 
                                                           (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
                                                           ( 
-                                                            contains(marc:subfield[@code='u'], '.loc.gov') or 
-                                                            contains(marc:subfield[@code='u'], '.fdlp.gov') or 
-                                                            contains(marc:subfield[@code='u'], '.gpo.gov') or 
-                                                            contains(marc:subfield[@code='u'], '.congress.gov') or 
-                                                            contains(marc:subfield[@code='u'], '.hathitrust.org')
+                                                            contains(marc:subfield[@code='u'], 'loc.gov') or 
+                                                            contains(marc:subfield[@code='u'], 'fdlp.gov') or 
+                                                            contains(marc:subfield[@code='u'], 'gpo.gov') or 
+                                                            contains(marc:subfield[@code='u'], 'congress.gov') or 
+                                                            contains(marc:subfield[@code='u'], 'hathitrust.org') or 
+                                                            contains(marc:subfield[@code='u'], 'hdl.handle.net')
                                                           )
                                                  ])" />
 
@@ -56,6 +59,7 @@
     
     <xsl:choose>
       <xsl:when test="$count007 &lt; 2 and $countViable856s = 0">
+        <!-- There is either no 007 or one 007, and no 856s.  Basically let's pass this through. -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield" />
@@ -63,6 +67,11 @@
         </marc:record>
       </xsl:when>
       <xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
+        <!-- 
+          There is either no 007 or one 007, and at least one 856. Create one Principal Instance.
+          If there is an 007 that is not a 'c', make it part of the Principal Instance.  Otherwise, ignore any 007.
+          Create mini MARC records from the 856s.
+        -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield[@tag != '007' and substring(., 1, 1) != 'c']" />
@@ -74,11 +83,12 @@
                                               @tag='856' and 
                                               (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
                                               ( 
-                                                contains(marc:subfield[@code='u'], '.loc.gov') or 
-                                                contains(marc:subfield[@code='u'], '.fdlp.gov') or 
-                                                contains(marc:subfield[@code='u'], '.gpo.gov') or 
-                                                contains(marc:subfield[@code='u'], '.congress.gov') or 
-                                                contains(marc:subfield[@code='u'], '.hathitrust.org')
+                                                contains(marc:subfield[@code='u'], 'loc.gov') or 
+                                                contains(marc:subfield[@code='u'], 'fdlp.gov') or 
+                                                contains(marc:subfield[@code='u'], 'gpo.gov') or 
+                                                contains(marc:subfield[@code='u'], 'congress.gov') or 
+                                                contains(marc:subfield[@code='u'], 'hathitrust.org') or 
+                                                contains(marc:subfield[@code='u'], 'hdl.handle.net')
                                                )
                                              ]">
           <xsl:apply-templates select="." mode="split">
@@ -89,6 +99,11 @@
 
       </xsl:when>
       <xsl:otherwise>
+        <!-- 
+          There are two or more 007s and an unknown number of 856s.
+          Create a Principal Instance and use the first 007 (if any).
+          Associate the first 300 with the Principal Instance.
+        -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="marc:controlfield[@tag = '001']" /></marc:controlfield>
@@ -111,6 +126,11 @@
           </xsl:for-each>
         </marc:record>
         
+        <!-- 
+          Create Secondary Instances from any 007s, other than the initial one, that do not begin with 'c'.
+          The split code will associate any positional 300 with each 007.  Second 300 goes with second 007,
+          third 300 goes with third 007, etc.
+        -->
         <xsl:for-each select="marc:controlfield[@tag='007' and substring(.,1,1) != 'c']">
           <xsl:if test="position() &gt; 1">
             <xsl:apply-templates select="." mode="split">
@@ -120,12 +140,46 @@
           </xsl:if>
         </xsl:for-each>
         
-        <xsl:for-each select="marc:datafield[@tag='856' and (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and marc:subfield/@code='u']">
+        <!-- 
+          If there are any 856s that fit the criteria (electronic resource, electronic version, LC URL, etc.)
+          generate Secondary Instances from them.
+          This will take any existing 007 in the source MARC that begins with a 'c' and use it for the Secondary Instance
+          or it will create a canned one.
+        -->
+        <xsl:for-each select="marc:datafield[
+                                              @tag='856' and 
+                                              (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
+                                              ( 
+                                                contains(marc:subfield[@code='u'], 'loc.gov') or 
+                                                contains(marc:subfield[@code='u'], 'fdlp.gov') or 
+                                                contains(marc:subfield[@code='u'], 'gpo.gov') or 
+                                                contains(marc:subfield[@code='u'], 'congress.gov') or 
+                                                contains(marc:subfield[@code='u'], 'hathitrust.org') or 
+                                                contains(marc:subfield[@code='u'], 'hdl.handle.net')
+          )
+          ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
             <xsl:with-param name="pos" select="position()" />
           </xsl:apply-templates>
         </xsl:for-each>
+
+        <xsl:if test="$count300 &gt; $count007minusC">
+          <!--  
+            If we got here, the record has more than 1 007.  
+            And this 'if' statement establishes that we have more 300s than we do 007s.
+            The 'extra' 300s will not be outputted via the logic above and we need to make sure we output them.
+          -->
+          <xsl:for-each select="marc:datafield[@tag='300']">
+            <xsl:if test="position() &gt; $count007minusC">
+              <xsl:apply-templates select="." mode="split">
+                <xsl:with-param name="base_recordid" select="$recordid" />
+                <xsl:with-param name="pos" select="position()" />
+              </xsl:apply-templates>
+            </xsl:if>
+          </xsl:for-each>
+          
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -139,10 +193,33 @@
       <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos)" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="." /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:if test="../marc:datafield[@tag = '300'][$pos]">
         <xsl:apply-templates select="../marc:datafield[@tag = '300'][$pos]" />
       </xsl:if>    
+      <marc:datafield tag="758" ind1=" " ind2=" ">
+        <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
+        <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
+      </marc:datafield>
+    </marc:record>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag = '300']" mode="split">
+    <xsl:param name="base_recordid" />
+    <xsl:param name="pos" />
+    <xsl:variable name="pos_offset" select="count(../marc:controlfield[@tag='007' and substring(.,1,1) != 'c']) + count(../marc:datafield[@tag='856']) + $pos"/>
+    <marc:record>
+      <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
+      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
+      <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
+      <xsl:apply-templates select="." />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
@@ -169,7 +246,10 @@
       <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
       <xsl:copy-of select="$cf007" />
+      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
+      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:apply-templates select="." />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
