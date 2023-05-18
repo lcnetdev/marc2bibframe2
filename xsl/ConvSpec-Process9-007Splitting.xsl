@@ -50,7 +50,7 @@
 
         <xsl:variable name="df3XXs" select="marc:datafield[
                                               @tag='336' or @tag='337' or @tag='338' or 
-                                              @tag='344' or @tag='346' or @tag='347'
+                                              @tag='344' or @tag='346' or @tag='347' or @tag='348'
                                             ]"/>
         <xsl:for-each select="$the300sNS/marc:datafield">
           <marc:group>
@@ -85,8 +85,8 @@
     <!-- But until then.... -->
     
     <xsl:choose>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0">
-        <!-- There is either no 007 or one 007, and no 856s.  Basically let's pass this through. -->
+      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $count300 = 1">
+        <!-- There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield" />
@@ -147,7 +147,7 @@
             <xsl:apply-templates select="." />
           </xsl:for-each>
           <xsl:copy-of select="$groupsNS/marc:groups/marc:group[1]/marc:datafield" />
-          <xsl:for-each select="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='344' or @tag='346' or @tag='347']">
+          <xsl:for-each select="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='344' or @tag='346' or @tag='347' or @tag='348']">
             <xsl:variable name="dfId" select="generate-id(.)" />
             <xsl:if test="not($groupsNS/marc:groups/marc:group/marc:datafield[@id = $dfId])">
               <xsl:apply-templates select="." />
@@ -157,7 +157,7 @@
                                     @tag &gt; 300 and 
                                     @tag != '856' and 
                                     @tag != '336' and @tag != '337' and @tag != '338' and
-                                    @tag != '344' and @tag != '346' and @tag != '347']">
+                                    @tag != '344' and @tag != '346' and @tag != '347' and @tag != '348']">
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
@@ -322,7 +322,7 @@
       </xsl:choose>
       <xsl:apply-templates select="marc:subfield[@code != '3' and @code != 'e']" />
     </marc:datafield>  
-    <xsl:if test="marc:subfield[@code ='e']">
+    <xsl:if test="marc:subfield[@code = 'e']">
       <xsl:call-template name="parseE">
         <xsl:with-param name="theE" select="marc:subfield[@code ='e']" />
       </xsl:call-template>
@@ -336,6 +336,13 @@
         <marc:subfield code='3'>audio disc</marc:subfield>
         <marc:subfield code='3'>CD</marc:subfield>
       </xsl:when>
+      <xsl:when test="contains($theA, 'sound disc')">
+        <marc:subfield code='3'>audio disc</marc:subfield>
+        <marc:subfield code='3'>CD</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'audiocassette')">
+        <marc:subfield code='3'>audiocassette</marc:subfield>
+      </xsl:when>
       <xsl:when test="contains($theA, 'videodisc')">
         <marc:subfield code='3'>videodisc</marc:subfield>
         <marc:subfield code='3'>DVD</marc:subfield>
@@ -343,6 +350,9 @@
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'score')">
+        <marc:subfield code='3'>score</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'folio')">
         <marc:subfield code='3'>folio</marc:subfield>
@@ -398,7 +408,16 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="bTxt" select="substring-before(substring-after($eSlice, ':'), ';')"/>
+    <xsl:variable name="bTxt">
+      <xsl:choose>
+        <xsl:when test="contains($eSlice, ':')">
+          <xsl:value-of select="substring-before(substring-after($eSlice, ':'), ';')"/>
+        </xsl:when>
+        <xsl:when test="contains($eSlice, '(')">
+          <xsl:value-of select="substring-before(substring-after($eSlice, '('), ';')"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="cTxt" select="substring-after($eSlice, ';')"/>
     <xsl:variable name="sf3">
       <xsl:call-template name="addSF3">
