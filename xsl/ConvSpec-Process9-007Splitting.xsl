@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet version="1.0"
   xmlns:marc="http://www.loc.gov/MARC21/slim"
+  xmlns:exsl="http://exslt.org/common"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   exclude-result-prefixes="xsl">
   
@@ -39,7 +40,33 @@
     <xsl:variable name="count006" select="count(marc:controlfield[@tag='006'])"/>
     <xsl:variable name="count007" select="count(marc:controlfield[@tag='007'])"/>
     <xsl:variable name="count007minusC" select="count(marc:controlfield[@tag='007' and substring(.,1,1) != 'c'])"/>
-    <xsl:variable name="count300" select="count(marc:datafield[@tag='300'])"/>
+    
+    <xsl:variable name="groups">
+      <marc:groups>
+        <xsl:variable name="the300s">
+          <xsl:apply-templates select="marc:datafield[@tag='300']" mode="groupify" />    
+        </xsl:variable>
+        <xsl:variable name="the300sNS" select="exsl:node-set($the300s)"/>
+
+        <xsl:variable name="df3XXs" select="marc:datafield[
+                                              @tag='336' or @tag='337' or @tag='338' or 
+                                              @tag='344' or @tag='346' or @tag='347'
+                                            ]"/>
+        <xsl:for-each select="$the300sNS/marc:datafield">
+          <marc:group>
+            <xsl:copy-of select="." />
+            <xsl:for-each select="marc:subfield[@code='3']">
+              <xsl:variable name="c3" select="."/>
+              <xsl:apply-templates select="$df3XXs[marc:subfield[@code='3' and contains(., $c3)]]">
+                <xsl:with-param name="genId">1</xsl:with-param>
+              </xsl:apply-templates>
+            </xsl:for-each>    
+          </marc:group>
+        </xsl:for-each>
+      </marc:groups>
+    </xsl:variable>
+    <xsl:variable name="groupsNS" select="exsl:node-set($groups)" />
+    <xsl:variable name="count300" select="count($groupsNS/marc:groups/marc:group/marc:datafield[@tag='300'])"/>
     
     <xsl:variable name="countViable856s" select="count(marc:datafield[
                                                           @tag='856' and 
@@ -70,7 +97,7 @@
         <!-- 
           There is either no 007 or one 007, and at least one 856. Create one Principal Instance.
           If there is an 007 that is not a 'c', make it part of the Principal Instance.  Otherwise, ignore any 007.
-          Create mini MARC records from the 856s.
+          Create mini MARC records - Secondary Instances - from the 856s.
         -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
@@ -119,8 +146,18 @@
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />
           </xsl:for-each>
-          <xsl:apply-templates select="marc:datafield[@tag = '300'][1]" />
-          <xsl:for-each select="marc:datafield[@tag &gt; 300 and @tag != '856']">
+          <xsl:copy-of select="$groupsNS/marc:groups/marc:group[1]/marc:datafield" />
+          <xsl:for-each select="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='344' or @tag='346' or @tag='347']">
+            <xsl:variable name="dfId" select="generate-id(.)" />
+            <xsl:if test="not($groupsNS/marc:groups/marc:group/marc:datafield[@id = $dfId])">
+              <xsl:apply-templates select="." />
+            </xsl:if>
+          </xsl:for-each>
+          <xsl:for-each select="marc:datafield[
+                                    @tag &gt; 300 and 
+                                    @tag != '856' and 
+                                    @tag != '336' and @tag != '337' and @tag != '338' and
+                                    @tag != '344' and @tag != '346' and @tag != '347']">
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
@@ -136,6 +173,7 @@
             <xsl:apply-templates select="." mode="split">
               <xsl:with-param name="base_recordid" select="$recordid" />
               <xsl:with-param name="pos" select="position()" />
+              <xsl:with-param name="groupsNS" select="$groupsNS" />
             </xsl:apply-templates>
           </xsl:if>
         </xsl:for-each>
@@ -170,11 +208,13 @@
             And this 'if' statement establishes that we have more 300s than we do 007s.
             The 'extra' 300s will not be outputted via the logic above and we need to make sure we output them.
           -->
-          <xsl:for-each select="marc:datafield[@tag='300']">
+          <xsl:variable name="record" select="." />
+          <xsl:for-each select="$groupsNS/marc:groups/marc:group/marc:datafield[@tag='300']">
             <xsl:if test="position() &gt; $count007minusC">
               <xsl:apply-templates select="." mode="split">
                 <xsl:with-param name="base_recordid" select="$recordid" />
                 <xsl:with-param name="pos" select="position()" />
+                <xsl:with-param name="record" select="$record" />
               </xsl:apply-templates>
             </xsl:if>
           </xsl:for-each>
@@ -187,6 +227,7 @@
   <xsl:template match="marc:controlfield[@tag = '007']" mode="split">
     <xsl:param name="base_recordid" />
     <xsl:param name="pos" />
+    <xsl:param name="groupsNS" />
     <xsl:variable name="cf007-01" select="substring(.,1,1)"/>
     <marc:record>
       <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
@@ -197,8 +238,8 @@
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
-      <xsl:if test="../marc:datafield[@tag = '300'][$pos]">
-        <xsl:apply-templates select="../marc:datafield[@tag = '300'][$pos]" />
+      <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
+        <xsl:copy-of select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield" />
       </xsl:if>    
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
@@ -210,16 +251,17 @@
   <xsl:template match="marc:datafield[@tag = '300']" mode="split">
     <xsl:param name="base_recordid" />
     <xsl:param name="pos" />
-    <xsl:variable name="pos_offset" select="count(../marc:controlfield[@tag='007' and substring(.,1,1) != 'c']) + count(../marc:datafield[@tag='856']) + $pos"/>
+    <xsl:param name="record" />
+    <xsl:variable name="pos_offset" select="count($record/marc:controlfield[@tag='007' and substring(.,1,1) != 'c']) + count($record/marc:datafield[@tag='856']) + $pos"/>
     <marc:record>
-      <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
-      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
-      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
-      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
-      <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
-      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
-      <xsl:apply-templates select="." />
+      <marc:leader xml:space="preserve"><xsl:value-of select="$record/marc:leader" /></marc:leader>
+      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat($record/marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="$record/marc:controlfield[@tag = '005']" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="$record/marc:controlfield[@tag = '008']" /></marc:controlfield>
+      <xsl:apply-templates select="$record/marc:datafield[@tag = '040']" />
+      <xsl:apply-templates select="$record/marc:datafield[@tag = '260']" />
+      <xsl:apply-templates select="$record/marc:datafield[@tag = '264']" />
+      <xsl:copy-of select="../marc:datafield" />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
@@ -257,6 +299,125 @@
       </marc:datafield>
     </marc:record>
   </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='300']" mode="groupify">
+    <marc:datafield>
+      <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
+      <xsl:attribute name="ind1"><xsl:value-of select="@ind1"/></xsl:attribute>
+      <xsl:attribute name="ind2"><xsl:value-of select="@ind2"/></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="marc:subfield[@code='3']">
+          <xsl:for-each select="marc:subfield[@code='3']">
+            <marc:subfield>
+              <xsl:attribute name="code">3</xsl:attribute>
+              <xsl:value-of select="."/>
+            </marc:subfield>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="addSF3">
+            <xsl:with-param name="theA" select="marc:subfield[@code='a'][1]" />
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="marc:subfield[@code != '3' and @code != 'e']" />
+    </marc:datafield>  
+    <xsl:if test="marc:subfield[@code ='e']">
+      <xsl:call-template name="parseE">
+        <xsl:with-param name="theE" select="marc:subfield[@code ='e']" />
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template name="addSF3">
+    <xsl:param name="theA" />
+    <xsl:choose>
+      <xsl:when test="contains($theA, 'audio disc')">
+        <marc:subfield code='3'>audio disc</marc:subfield>
+        <marc:subfield code='3'>CD</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'videodisc')">
+        <marc:subfield code='3'>videodisc</marc:subfield>
+        <marc:subfield code='3'>DVD</marc:subfield>
+        <marc:subfield code='3'>BluRay</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'book')">
+        <marc:subfield code='3'>book</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'folio')">
+        <marc:subfield code='3'>folio</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'lesson guide')">
+        <marc:subfield code='3'>lesson guide</marc:subfield>
+      </xsl:when>
+      <xsl:otherwise>
+        <marc:subfield code='3'>all</marc:subfield>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="parseE">
+    <xsl:param name="theE"/>
+    <xsl:choose>
+      <xsl:when test="contains($theE, '+')">
+        <xsl:call-template name="create300">
+          <xsl:with-param name="theE" select="$theE" />
+        </xsl:call-template>
+        <!-- recursive call -->
+        <xsl:call-template name="parseE">
+          <xsl:with-param name="theE" select="substring-after($theE, '+')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="create300">
+          <xsl:with-param name="theE" select="$theE" />
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="create300">
+    <xsl:param name="theE" />
+    <xsl:variable name="eSlice">
+      <xsl:choose>
+        <xsl:when test="contains($theE, '+')">
+          <xsl:value-of select="substring-before($theE, '+')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$theE"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="aTxt">
+      <xsl:choose>
+        <xsl:when test="contains($eSlice, ':')">
+          <xsl:value-of select="concat(substring-before($eSlice, ':'), ')')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$eSlice"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="bTxt" select="substring-before(substring-after($eSlice, ':'), ';')"/>
+    <xsl:variable name="cTxt" select="substring-after($eSlice, ';')"/>
+    <xsl:variable name="sf3">
+      <xsl:call-template name="addSF3">
+        <xsl:with-param name="theA" select="$aTxt" />
+      </xsl:call-template>
+    </xsl:variable>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <xsl:copy-of select="$sf3" />
+      <xsl:if test="$aTxt != ''">
+        <marc:subfield code='a'><xsl:value-of select="$aTxt"/></marc:subfield>
+      </xsl:if>
+      <xsl:if test="$bTxt != ''">
+        <marc:subfield code='b'><xsl:value-of select="$bTxt"/></marc:subfield>
+      </xsl:if>
+      <xsl:if test="$cTxt != ''">
+        <marc:subfield code='c'><xsl:value-of select="$cTxt"/></marc:subfield>
+      </xsl:if>
+    </marc:datafield>
+  </xsl:template>
 
   <xsl:template match="marc:controlfield">
     <marc:controlfield>
@@ -267,10 +428,14 @@
   </xsl:template>
 
   <xsl:template match="marc:datafield">
+    <xsl:param name="genId">0</xsl:param>
     <marc:datafield>
       <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
       <xsl:attribute name="ind1"><xsl:value-of select="@ind1"/></xsl:attribute>
       <xsl:attribute name="ind2"><xsl:value-of select="@ind2"/></xsl:attribute>
+      <xsl:if test="$genId='1'">
+        <xsl:attribute name="id"><xsl:value-of select="generate-id(.)"/></xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates select="marc:subfield" />
     </marc:datafield>  
   </xsl:template>
