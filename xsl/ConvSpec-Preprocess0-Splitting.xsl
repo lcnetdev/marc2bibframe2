@@ -310,7 +310,7 @@
         <marc:subfield code="a">
           <xsl:call-template name="getTitleStr">
             <xsl:with-param name="df300"><marc:datafield /></xsl:with-param>
-            <xsl:with-param name="cf007" select="$cf007/text()" />
+            <xsl:with-param name="cf007" select="'c'" />
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
