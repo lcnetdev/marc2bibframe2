@@ -1,0 +1,238 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02680cjm a2200697 i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">21860952</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20220713130312.0</marcxml:controlfield>
+  <marcxml:controlfield tag="006">g647            vl</marcxml:controlfield>
+  <marcxml:controlfield tag="007">sd|fsngnnmmned</marcxml:controlfield>
+  <marcxml:controlfield tag="007">vd cvaizs</marcxml:controlfield>
+  <marcxml:controlfield tag="008">210107t20032003caustn|  rs       | zxx  </marcxml:controlfield>
+  <marcxml:datafield ind1=" " ind2=" " tag="906">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">4</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-soundrec</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2=" " tag="925">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">2 shelf copies</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="955">
+    <marcxml:subfield code="a">qr39 2021-01-07</marcxml:subfield>
+    <marcxml:subfield code="i">qr39 2021-01-07</marcxml:subfield>
+    <marcxml:subfield code="u">ma02 2022-2-03 TW Situational</marcxml:subfield>
+    <marcxml:subfield code="u">ma02 2022-07-13</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="010">
+    <marcxml:subfield code="a">  2021618514</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="024">
+    <marcxml:subfield code="a">880952000002</marcxml:subfield>
+    <marcxml:subfield code="q">(v.1)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="024">
+    <marcxml:subfield code="a">880952000019</marcxml:subfield>
+    <marcxml:subfield code="q">(v.2)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="024">
+    <marcxml:subfield code="a">880952000026</marcxml:subfield>
+    <marcxml:subfield code="q">(v.3)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="024">
+    <marcxml:subfield code="a">880952000033</marcxml:subfield>
+    <marcxml:subfield code="q">(v.4)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="024">
+    <marcxml:subfield code="a">880952000040</marcxml:subfield>
+    <marcxml:subfield code="q">(v.5)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="040">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2=" " tag="041">
+    <marcxml:subfield code="g">eng</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="050">
+    <marcxml:subfield code="a">RZC 7354</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="100">
+    <marcxml:subfield code="a">Doyle, John Maurice,</marcxml:subfield>
+    <marcxml:subfield code="d">1969-</marcxml:subfield>
+    <marcxml:subfield code="e">instructor,</marcxml:subfield>
+    <marcxml:subfield code="e">creator.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2="0" tag="245">
+    <marcxml:subfield code="a">Monster guitar method /</marcxml:subfield>
+    <marcxml:subfield code="c">with John Maurice Doyle.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="1" tag="264">
+    <marcxml:subfield code="a">[Studio City, Calif.] :</marcxml:subfield>
+    <marcxml:subfield code="b">Green Monster Music,</marcxml:subfield>
+    <marcxml:subfield code="c">[2003]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="264">
+    <marcxml:subfield code="c">©2003</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">5 audio discs :</marcxml:subfield>
+    <marcxml:subfield code="b">digital ;</marcxml:subfield>
+    <marcxml:subfield code="c">4 3/4 in.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">5 videodiscs (647 min.) :</marcxml:subfield>
+    <marcxml:subfield code="b">sound, color ;</marcxml:subfield>
+    <marcxml:subfield code="c">4 3/4 in.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">5 scores (unpaged) :</marcxml:subfield>
+    <marcxml:subfield code="b">illustrations ;</marcxml:subfield>
+    <marcxml:subfield code="c">18 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="3">audio discs, videodiscs</marcxml:subfield>
+    <marcxml:subfield code="a">performed music</marcxml:subfield>
+    <marcxml:subfield code="b">prm</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="3">videodiscs</marcxml:subfield>
+    <marcxml:subfield code="a">two-dimensional moving image</marcxml:subfield>
+    <marcxml:subfield code="b">tdi</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="3">scores</marcxml:subfield>
+    <marcxml:subfield code="a">notated music</marcxml:subfield>
+    <marcxml:subfield code="b">ntm</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="3">audio discs</marcxml:subfield>
+    <marcxml:subfield code="a">audio</marcxml:subfield>
+    <marcxml:subfield code="b">s</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="3">videodiscs</marcxml:subfield>
+    <marcxml:subfield code="a">video</marcxml:subfield>
+    <marcxml:subfield code="b">v</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="3">scores</marcxml:subfield>
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="3">audio discs</marcxml:subfield>
+    <marcxml:subfield code="a">audio disc</marcxml:subfield>
+    <marcxml:subfield code="b">sd</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="3">videodiscs</marcxml:subfield>
+    <marcxml:subfield code="a">videodisc</marcxml:subfield>
+    <marcxml:subfield code="b">vd</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="3">scores</marcxml:subfield>
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="b">nc</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="344">
+    <marcxml:subfield code="3">audio discs, videodiscs</marcxml:subfield>
+    <marcxml:subfield code="a">digital</marcxml:subfield>
+    <marcxml:subfield code="2">rdatr</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="344">
+    <marcxml:subfield code="3">audio discs, videodiscs</marcxml:subfield>
+    <marcxml:subfield code="b">optical</marcxml:subfield>
+    <marcxml:subfield code="2">rdarm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="347">
+    <marcxml:subfield code="3">audio discs</marcxml:subfield>
+    <marcxml:subfield code="a">audio file</marcxml:subfield>
+    <marcxml:subfield code="2">rdaft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="347">
+    <marcxml:subfield code="3">videodisc</marcxml:subfield>
+    <marcxml:subfield code="a">video file</marcxml:subfield>
+    <marcxml:subfield code="2">rdaft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="347">
+    <marcxml:subfield code="b">CD audio</marcxml:subfield>
+    <marcxml:subfield code="a">DVD video</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="348">
+    <marcxml:subfield code="a">score</marcxml:subfield>
+    <marcxml:subfield code="2">rdafnm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2="1" tag="382">
+    <marcxml:subfield code="a">guitar</marcxml:subfield>
+    <marcxml:subfield code="2">lcmpt</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">Title from container.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="511">
+    <marcxml:subfield code="a">John Maurice Doyle, instructor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="546">
+    <marcxml:subfield code="b">Staff notation;</marcxml:subfield>
+    <marcxml:subfield code="b">Chord symbols;</marcxml:subfield>
+    <marcxml:subfield code="b">Guitar chord diagrams.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">In 5 containers (19 cm each).</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">Each volume (1 "jam along" CD + 1 instructional DVD + 1 notation booklet) covers 4 weeks of instruction.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Guitar</marcxml:subfield>
+    <marcxml:subfield code="v">Methods.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Guitar</marcxml:subfield>
+    <marcxml:subfield code="v">Methods</marcxml:subfield>
+    <marcxml:subfield code="v">Self-instruction.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Recorded accompaniments.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Instructional films.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Popular instrumental music.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Instructional and educational works.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Recorded accompaniments.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Instructional films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Notated music.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Popular music.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>
