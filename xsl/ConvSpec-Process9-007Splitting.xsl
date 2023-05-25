@@ -236,6 +236,14 @@
       <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="." /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300" select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']" />
+            <xsl:with-param name="cf007" select="." />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
@@ -259,6 +267,14 @@
       <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="$record/marc:controlfield[@tag = '005']" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="$record/marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="$record/marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300" select="." />
+            <xsl:with-param name="cf007" select="''" />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="$record/marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="$record/marc:datafield[@tag = '264']" />
       <xsl:copy-of select="../marc:datafield" />
@@ -290,6 +306,14 @@
       <xsl:copy-of select="$cf007" />
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300"><marc:datafield /></xsl:with-param>
+            <xsl:with-param name="cf007" select="$cf007/text()" />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:apply-templates select="." />
@@ -329,6 +353,39 @@
     </xsl:if>
   </xsl:template>
   
+  <xsl:template name="getTitleStr">
+    <xsl:param name="df300" />
+    <xsl:param name="cf007" />
+    <xsl:choose>
+      <xsl:when test="$df300/marc:subfield[@code='3'] and $df300/marc:subfield[@code='3'] != 'all'">
+        <xsl:value-of select="concat('[', $df300/marc:subfield[@code='3'][1], ']')"/>
+      </xsl:when>
+      <xsl:when test="$df300/marc:subfield[@code='3'] = 'all'">
+        <xsl:value-of select="concat('[', $df300/marc:subfield[@code='a'][1], ']')"/>
+      </xsl:when>
+      <xsl:when test="$cf007 != ''">
+        <xsl:variable name="cf007pos1" select="substring($cf007, 1, 1)"/>
+        <xsl:choose>
+          <xsl:when test="$cf007pos1 = 'a'">[Map]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'c'">[Electronic resource]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'd'">[Globe]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'f'">[Tactile resource]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'g'">[Project graphic]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'h'">[Microform]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'k'">[Non-projected graphic]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'm'">[Motion picture]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'o'">[Kit]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'q'">[Notated music]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'r'">[Remote sensing image]</xsl:when>
+          <xsl:when test="$cf007pos1 = 's'">[Sound recording]</xsl:when>
+          <xsl:when test="$cf007pos1 = 't'">[Text]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'v'">[Videorecording]</xsl:when>
+          <xsl:otherwise>[Unknown]</xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>[Unknown]</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <xsl:template name="addSF3">
     <xsl:param name="theA" />
     <xsl:choose>
