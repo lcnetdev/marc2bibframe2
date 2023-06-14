@@ -40,6 +40,7 @@
     <xsl:variable name="count006" select="count(marc:controlfield[@tag='006'])"/>
     <xsl:variable name="count007" select="count(marc:controlfield[@tag='007'])"/>
     <xsl:variable name="count007minusC" select="count(marc:controlfield[@tag='007' and substring(.,1,1) != 'c'])"/>
+    <xsl:variable name="countOrig300" select="count(marc:datafield[@tag='300'])"/>
     
     <xsl:variable name="groups">
       <marc:groups>
@@ -85,7 +86,7 @@
     <!-- But until then.... -->
     
     <xsl:choose>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $count300 = 1">
+      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countOrig300 = 1">
         <!-- There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
