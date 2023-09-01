@@ -79,7 +79,7 @@
                                                             contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                             contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                             contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                                          )
+                                                          ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
                                                  ])" />
 
     <!-- Going to want to check if this record is already a 'split' record and, if so, just return it. -->
@@ -87,7 +87,11 @@
     
     <xsl:choose>
       <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countOrig300 = 1">
-        <!-- There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. -->
+        <!-- 
+          There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. 
+          In this scenario, even if the 300 indicates additional materials, the assumption is that they 
+          are all bundled together.
+        -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield" />
@@ -117,7 +121,7 @@
                                                 contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                 contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                 contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                               )
+                                              ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
                                              ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
@@ -195,7 +199,7 @@
                                                 contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                 contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                 contains(marc:subfield[@code='u'], 'hdl.handle.net')
-          )
+                                              ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
           ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
