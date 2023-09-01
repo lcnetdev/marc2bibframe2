@@ -67,4 +67,10 @@
     <x:expect label="Title of third is [score]" test="//marc:record[3]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[score]'"/>
     <x:expect label="Third record 337 has scores" test="//marc:record[3]/marc:datafield[@tag='337']/marc:subfield[@code='3']='scores'"/>
   </x:scenario>
+
+  <x:scenario label="Source record with 3 856s, none of which meet the criteria, no 007s, and a single 300 - results in 1 MARC record">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/three856s-none_matching_criteria-no007s-one300.marc"/>
+    <x:expect label="One record outputted" test="count(//marc:record)=1"/>
+    <x:expect label="3 856s" test="count(//marc:record/marc:datafield[@tag='856'])=3"/>
+  </x:scenario>
 </x:description>
