@@ -98,12 +98,12 @@
           <xsl:apply-templates select="marc:datafield" />
         </marc:record>
       </xsl:when>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
-        <!-- 
+      <!--<xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
+        <!-\- 
           There is either no 007 or one 007, and at least one 856. Create one Principal Instance.
           If there is an 007 that is not a 'c', make it part of the Principal Instance.  Otherwise, ignore any 007.
           Create mini MARC records - Secondary Instances - from the 856s.
-        -->
+        -\->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield[@tag != '007' and substring(., 1, 1) != 'c']" />
@@ -129,7 +129,7 @@
           </xsl:apply-templates>
         </xsl:for-each>
 
-      </xsl:when>
+      </xsl:when>-->
       <xsl:otherwise>
         <!-- 
           There are two or more 007s and an unknown number of 856s.
@@ -166,6 +166,7 @@
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
+          <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
         </marc:record>
         
         <!-- 
@@ -409,6 +410,7 @@
         <marc:subfield code='3'>videodisc</marc:subfield>
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>BluRay</marc:subfield>
+        <marc:subfield code='3'>Blu-ray disc</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>
