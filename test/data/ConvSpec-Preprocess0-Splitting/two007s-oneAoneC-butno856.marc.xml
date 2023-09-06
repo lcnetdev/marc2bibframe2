@@ -1,0 +1,109 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>01302cem a2200361 i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">22273332</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20211015095831.0</marcxml:controlfield>
+  <marcxml:controlfield tag="007">aj canzn</marcxml:controlfield>
+  <marcxml:controlfield tag="007">cr |||||||||||</marcxml:controlfield>
+  <marcxml:controlfield tag="008">211015s1855    nyud      a     0   eng  </marcxml:controlfield>
+  <marcxml:datafield ind1=" " ind2=" " tag="906">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">u</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-geogmaps</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2=" " tag="925">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="955">
+    <marcxml:subfield code="i">ga37 2021-10-15 sent to CMT</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="010">
+    <marcxml:subfield code="a">  2021590272</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="034">
+    <marcxml:subfield code="a">a</marcxml:subfield>
+    <marcxml:subfield code="b">1550000</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="040">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="050">
+    <marcxml:subfield code="a">G4061.P3 1855</marcxml:subfield>
+    <marcxml:subfield code="b">.C6</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="052">
+    <marcxml:subfield code="a">4061</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="100">
+    <marcxml:subfield code="a">Colton, J. H.</marcxml:subfield>
+    <marcxml:subfield code="q">(Joseph Hutchins),</marcxml:subfield>
+    <marcxml:subfield code="d">1800-1893,</marcxml:subfield>
+    <marcxml:subfield code="e">cartographer.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2="0" tag="245">
+    <marcxml:subfield code="a">Colton's railroad &amp; township map :</marcxml:subfield>
+    <marcxml:subfield code="b">western states compiled from the United States surveys.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="255">
+    <marcxml:subfield code="a">Scale approximately 1:1,550,000.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="1" tag="264">
+    <marcxml:subfield code="a">New York :</marcxml:subfield>
+    <marcxml:subfield code="b">published by J. H. Colton &amp; Co.,</marcxml:subfield>
+    <marcxml:subfield code="c">1855.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">1 map :</marcxml:subfield>
+    <marcxml:subfield code="b">mounted on cloth, hand colored ;</marcxml:subfield>
+    <marcxml:subfield code="c">87 x 110 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="a">cartographic image</marcxml:subfield>
+    <marcxml:subfield code="b">cri</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="a">sheet</marcxml:subfield>
+    <marcxml:subfield code="b">nb</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">Prime meridian: Washington.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">Relief shown by hachures.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">LC also has 1852, 1853, and 1857 editions.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="500">
+    <marcxml:subfield code="a">Includes illustrations.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Railroads</marcxml:subfield>
+    <marcxml:subfield code="z">Middle West</marcxml:subfield>
+    <marcxml:subfield code="v">Maps.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="7" tag="655">
+    <marcxml:subfield code="a">Maps.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="985">
+    <marcxml:subfield code="e">BibframePilot2</marcxml:subfield>
+    <marcxml:subfield code="d">2021-10-15</marcxml:subfield>
+    <marcxml:subfield code="f">ga37 2021-10-15</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

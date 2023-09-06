@@ -1,0 +1,88 @@
+<marcxml:record xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:mets="http://www.loc.gov/METS/" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:semtriples="http://marklogic.com/semantic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:streams="info:lc/streams#">
+  <marcxml:leader>01215ccm a2200301 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">5584859</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20130501134539.0</marcxml:controlfield>
+  <marcxml:controlfield tag="007">hd|afa---bacp</marcxml:controlfield>
+  <marcxml:controlfield tag="007">hd|bfa---baap</marcxml:controlfield>
+  <marcxml:controlfield tag="008">950516q18301839fr zzz  a      n         </marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">4</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">19</marcxml:subfield>
+    <marcxml:subfield code="g">y-genmusic</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">   84121369 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="9">(DLC)   84121369</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="1" ind2="0">
+    <marcxml:subfield code="a">M562</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">Microfilm 83/20134</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="100" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Kuhlau, Friedrich,</marcxml:subfield>
+    <marcxml:subfield code="d">1786-1832.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="240" ind1="1" ind2="0">
+    <marcxml:subfield code="a">Quintets,</marcxml:subfield>
+    <marcxml:subfield code="m">flute, violin, violas, cello,</marcxml:subfield>
+    <marcxml:subfield code="n">op. 51</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="0" ind2="0">
+    <marcxml:subfield code="a">3 quintetti, pour flûte, violon, deux altos et violoncelle, oeuv. 51</marcxml:subfield>
+    <marcxml:subfield code="h">[microform] /</marcxml:subfield>
+    <marcxml:subfield code="c">par F. Kuhlau.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Paris :</marcxml:subfield>
+    <marcxml:subfield code="b">Richault,</marcxml:subfield>
+    <marcxml:subfield code="c">[183-?]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">5 parts (3 v.) ;</marcxml:subfield>
+    <marcxml:subfield code="c">34 cm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Call no. of original: M562.K96 op. 51.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Master microform held by: DLC.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="533" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Microfilm.</marcxml:subfield>
+    <marcxml:subfield code="b">Washington, D.C. :</marcxml:subfield>
+    <marcxml:subfield code="c">Library of Congress Preservation Microfilming Program :</marcxml:subfield>
+    <marcxml:subfield code="c">Available from Library of Congress Photoduplication Service,</marcxml:subfield>
+    <marcxml:subfield code="d">1970.</marcxml:subfield>
+    <marcxml:subfield code="e">1 microfilm reel ; 35 mm.</marcxml:subfield>
+    <marcxml:subfield code="n">Only v. 2-3 on microfilm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Quintets (Flute, violin, violas (2), cello)</marcxml:subfield>
+    <marcxml:subfield code="x">Parts.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="776" ind1="1" ind2=" ">
+    <marcxml:subfield code="c">Original</marcxml:subfield>
+    <marcxml:subfield code="w">(DLC)   78212515</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="953" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">TA28</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="991" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">c-Music</marcxml:subfield>
+    <marcxml:subfield code="h">Microfilm 83/20134</marcxml:subfield>
+    <marcxml:subfield code="t">Copy 1</marcxml:subfield>
+    <marcxml:subfield code="w">MUSIC</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

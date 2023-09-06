@@ -1,0 +1,211 @@
+<marcxml:record xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:mets="http://www.loc.gov/METS/" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:semtriples="http://marklogic.com/semantic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:streams="info:lc/streams#">
+  <marcxml:leader>02797cfm a22006371i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">21775889</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20201105101400.0</marcxml:controlfield>
+  <marcxml:controlfield tag="007">ad cfnzn</marcxml:controlfield>
+  <marcxml:controlfield tag="007">cr |||||||||||</marcxml:controlfield>
+  <marcxml:controlfield tag="008">201028s1590    it        e     0 e ita  </marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">u</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-geogmaps</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">Policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="i">ga10 2020-10-28</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2020587729</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="034" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">a</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">G1782.M4P5</marcxml:subfield>
+    <marcxml:subfield code="b">S3 1590</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="052" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">5672</marcxml:subfield>
+    <marcxml:subfield code="b">M4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="052" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">5692</marcxml:subfield>
+    <marcxml:subfield code="b">B5</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="052" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">5721</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="052" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">8221</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="100" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Scotto, Giacomo,</marcxml:subfield>
+    <marcxml:subfield code="d">active 1589-1592,</marcxml:subfield>
+    <marcxml:subfield code="e">cartographer.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="a">[Portolan atlas of the Mediterranean Sea, northwest Europe, and northwest Africa] /</marcxml:subfield>
+    <marcxml:subfield code="c">Jacobus Scottus Genouesi faciebat.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="255" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Scales differ.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="264" ind1=" " ind2="0">
+    <marcxml:subfield code="a">[Civita Vecchia?] :</marcxml:subfield>
+    <marcxml:subfield code="b">Jacobus Scottus,</marcxml:subfield>
+    <marcxml:subfield code="c">[approximately 1590]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">1 manuscript atlas (8 leaves) :</marcxml:subfield>
+    <marcxml:subfield code="b">color maps, vellum ;</marcxml:subfield>
+    <marcxml:subfield code="c">27 cm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="336" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">cartographic image</marcxml:subfield>
+    <marcxml:subfield code="b">cri</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="337" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="338" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="b">nc</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="490" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">[Vellum chart collection ;</marcxml:subfield>
+    <marcxml:subfield code="v">11]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Title supplied by cataloger.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Pen-and-ink on vellum.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Statement of responsibility from leaf 8, the map of the Black Sea.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Bound in red velvet.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="510" ind1="4" ind2=" ">
+    <marcxml:subfield code="a">LC Nautical charts on vellum,</marcxml:subfield>
+    <marcxml:subfield code="c">11</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="505" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">[1. Northwest Europe, from Denmark to Brittany, and the British Isles] -- [2. Northwest Africa] -- [3. The Iberian Peninsula, with western France and the coast of Morocco] -- [4. Western Mediterranean] -- [5. Central Mediterranean, with Italy] -- [6 &amp; 7. Eastern Mediterranean, from the Atlantic Ocean to Palestine] -- [8. Black Sea].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="530" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Available also through the Library of Congress Web site as a raster image.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="541" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">Purchase;</marcxml:subfield>
+    <marcxml:subfield code="a">Ludwig Rosenthal, Munich;</marcxml:subfield>
+    <marcxml:subfield code="d">1914.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Coasts</marcxml:subfield>
+    <marcxml:subfield code="z">Mediterranean Sea</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Coasts</marcxml:subfield>
+    <marcxml:subfield code="z">Black Sea</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Coasts</marcxml:subfield>
+    <marcxml:subfield code="z">Europe, Western</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Coasts</marcxml:subfield>
+    <marcxml:subfield code="z">Africa, North</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Mediterranean Sea</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Black Sea</marcxml:subfield>
+    <marcxml:subfield code="v">Maps</marcxml:subfield>
+    <marcxml:subfield code="v">Early works to 1800.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Manuscript maps.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Portolan charts.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Early maps.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Atlases.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="662" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Mediterranean Sea.</marcxml:subfield>
+    <marcxml:subfield code="2">lcsh</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="662" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Black Sea.</marcxml:subfield>
+    <marcxml:subfield code="2">lcsh</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="662" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Europe, Western.</marcxml:subfield>
+    <marcxml:subfield code="2">lcsh</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="662" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Africa, North.</marcxml:subfield>
+    <marcxml:subfield code="2">lcsh</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="852" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Library of Congress</marcxml:subfield>
+    <marcxml:subfield code="b">Geography and Map Division</marcxml:subfield>
+    <marcxml:subfield code="e">Washington, D.C. 20540-4650 USA</marcxml:subfield>
+    <marcxml:subfield code="n">dcu</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="856" ind1="4" ind2="1">
+    <marcxml:subfield code="d">g5672mm</marcxml:subfield>
+    <marcxml:subfield code="f">gct00317</marcxml:subfield>
+    <marcxml:subfield code="u">https://hdl.loc.gov/loc.gmd/g5672mm.gct00317</marcxml:subfield>
+    <marcxml:subfield code="q">c</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="985" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">GMD/CT</marcxml:subfield>
+    <marcxml:subfield code="e">ammem</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="985" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">GMD/GNRLMAP</marcxml:subfield>
+    <marcxml:subfield code="e">ammem</marcxml:subfield>
+    <marcxml:subfield code="h">20201114</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

@@ -1,0 +1,134 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>01728cam a2200397 i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">19306763</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20230208092232.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">160928s2017    enka     b    001 0 eng c</marcxml:controlfield>
+  <marcxml:datafield ind1=" " ind2=" " tag="906">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">1</marcxml:subfield>
+    <marcxml:subfield code="e">ecip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-gencatlg</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2=" " tag="925">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="955">
+    <marcxml:subfield code="a">OU</marcxml:subfield>
+    <marcxml:subfield code="e">rk09 2016-10-03 to Dewey</marcxml:subfield>
+    <marcxml:subfield code="w">xm06 2016-10-03</marcxml:subfield>
+    <marcxml:subfield code="a">xn11 2023-01-09 1 copy rec'd., to CIP ver.</marcxml:subfield>
+    <marcxml:subfield code="a">rk20 2023-01-17 book received in</marcxml:subfield>
+    <marcxml:subfield code="f">rk24 2023-02-08 to CMD</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="010">
+    <marcxml:subfield code="a">  2016043383</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="020">
+    <marcxml:subfield code="a">9781107163713</marcxml:subfield>
+    <marcxml:subfield code="q">(hardback ;</marcxml:subfield>
+    <marcxml:subfield code="q">alk. paper)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="020">
+    <marcxml:subfield code="a">1107163714</marcxml:subfield>
+    <marcxml:subfield code="q">(hardback ;</marcxml:subfield>
+    <marcxml:subfield code="q">alk. paper)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="040">
+    <marcxml:subfield code="a">OU/DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="c">OU</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="042">
+    <marcxml:subfield code="a">pcc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="050">
+    <marcxml:subfield code="a">TA455.G65</marcxml:subfield>
+    <marcxml:subfield code="b">A15 2017</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="082">
+    <marcxml:subfield code="a">620.1/15</marcxml:subfield>
+    <marcxml:subfield code="2">23</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="245">
+    <marcxml:subfield code="a">2D materials :</marcxml:subfield>
+    <marcxml:subfield code="b">properties and devices /</marcxml:subfield>
+    <marcxml:subfield code="c">Phaedon Avouris, Tony F. Heinz, Tony Low.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="3" ind2=" " tag="246">
+    <marcxml:subfield code="a">Two dimensional materials</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="1" tag="264">
+    <marcxml:subfield code="a">Cambridge, United Kingdom ;</marcxml:subfield>
+    <marcxml:subfield code="a">New York, NY :</marcxml:subfield>
+    <marcxml:subfield code="b">Cambridge University Press,</marcxml:subfield>
+    <marcxml:subfield code="c">2017.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">xv, 504 pages :</marcxml:subfield>
+    <marcxml:subfield code="b">illustrations ;</marcxml:subfield>
+    <marcxml:subfield code="c">26 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="a">text</marcxml:subfield>
+    <marcxml:subfield code="b">txt</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="b">nc</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="504">
+    <marcxml:subfield code="a">Includes bibliographical references and index.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Graphene.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Nanostructured materials.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="a">Thin films.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="700">
+    <marcxml:subfield code="a">Avouris, Phaedon,</marcxml:subfield>
+    <marcxml:subfield code="d">1945-</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="700">
+    <marcxml:subfield code="a">Heinz, Tony F.,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="700">
+    <marcxml:subfield code="a">Low, Tony,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="4" ind2="2" tag="856">
+    <marcxml:subfield code="3">Contributor biographical information</marcxml:subfield>
+    <marcxml:subfield code="u">https://www.loc.gov/catdir/enhancements/fy1702/2016043383-b.html</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="4" ind2="2" tag="856">
+    <marcxml:subfield code="3">Publisher description</marcxml:subfield>
+    <marcxml:subfield code="u">https://www.loc.gov/catdir/enhancements/fy1702/2016043383-d.html</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="4" ind2="1" tag="856">
+    <marcxml:subfield code="3">Table of contents only</marcxml:subfield>
+    <marcxml:subfield code="u">https://www.loc.gov/catdir/enhancements/fy1702/2016043383-t.html</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="985">
+    <marcxml:subfield code="a">OUCIP</marcxml:subfield>
+    <marcxml:subfield code="d">2016-09-30</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>
