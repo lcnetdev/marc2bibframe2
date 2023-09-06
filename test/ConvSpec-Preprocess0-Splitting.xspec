@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/ConvSpec-Preprocess0-Splitting.xsl"
+               xslt-version="1.0">
+  
+  <x:scenario label="Source record with 2 non-c 007s becomes 2 MARC records">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/two007s-notCs.marc.xml"/>
+    <x:expect label="Two records outputted" test="count(//marc:record)=2"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='hd|afa---bacp'"/>
+    <x:expect label="Second record has expected 007" test="//marc:record[2]/marc:controlfield[@tag='007']='hd|bfa---baap'"/>    
+    <x:expect label="Title of second is [Microform]" test="//marc:record[2]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[Microform]'"/>
+  </x:scenario>
+
+  <x:scenario label="Source record with 2 007s, one A and one C, but no 856. 007=c ignored; one output MARC record.">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/two007s-oneAoneC-butno856.marc.xml"/>
+    <x:expect label="Two records outputted" test="count(//marc:record)=1"/>
+    <x:expect label="One 007" test="count(//marc:record/marc:controlfield[@tag='007'])=1"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='aj canzn'"/>
+  </x:scenario>
+
+  <x:scenario label="Source record with 2 007s, one A and one C, and one 856. Two MARC records output, one electronic.">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/two007s-oneAoneC-one856.marc.xml"/>
+    <x:expect label="Two records outputted" test="count(//marc:record)=2"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='ad cfnzn'"/>
+    <x:expect label="Second record has expected 007" test="//marc:record[2]/marc:controlfield[@tag='007']='cr |||||||||||'"/> 
+    <x:expect label="Second record has expected 856" test="count(//marc:record[2]/marc:datafield[@tag='856'])=1"/> 
+    <x:expect label="Title of second is [Microform]" test="//marc:record[2]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[Electronic resource]'"/>
+  </x:scenario>
+  
+  <x:scenario label="Source record with 3 non-c 007s with matching 300s - results in 3 MARC records">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/three007s-notCs-matching300s.marc.xml"/>
+    <x:expect label="Three records outputted" test="count(//marc:record)=3"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='mr bf  fnnaranna|------'"/>
+    <x:expect label="Second record has expected 007" test="//marc:record[2]/marc:controlfield[@tag='007']='mr bf  fnnbdanna|------'"/>    
+    <x:expect label="Title of second is [dupe neg pic]" test="//marc:record[2]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[dupe neg pic]'"/>
+    <x:expect label="Title of third is [master pos pic]" test="//marc:record[3]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[master pos pic]'"/>
+    <x:expect label="300 $3 of second is 'dupe neg pic'" test="//marc:record[2]/marc:datafield[@tag='300']/marc:subfield[@code='3']='dupe neg pic'"/>
+    <x:expect label="300 $3 of third is 'master pos pic'" test="//marc:record[3]/marc:datafield[@tag='300']/marc:subfield[@code='3']='master pos pic'"/>
+  </x:scenario>
+  
+  <x:scenario label="Source record with 6 non-c 007, 1 c 007, one 856, and 6 300s - results in 8 MARC records">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/seven007s-oneC-one856-six300s.marc.xml"/>
+    <x:expect label="Three records outputted" test="count(//marc:record)=8"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='mr bf  dnnartnna|------'"/>
+    <x:expect label="Seventh record has expected 007" test="//marc:record[7]/marc:controlfield[@tag='007']='cr b| ||||||||'"/>    
+    <x:expect label="Title of fourth is [dupe neg pic]" test="//marc:record[4]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[dupe neg pic]'"/>
+    <x:expect label="Title of fifth is [master pos pic]" test="//marc:record[5]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[master pos pic]'"/>
+    <x:expect label="Title of eigth is [paper pos (copy 2)]]" test="//marc:record[8]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[paper pos (copy 2)]'"/>
+    <x:expect label="300 $3 of fourth is 'dupe neg pic'" test="//marc:record[4]/marc:datafield[@tag='300']/marc:subfield[@code='3']='dupe neg pic'"/>
+    <x:expect label="300 $3 of fifth is 'master pos pic'" test="//marc:record[5]/marc:datafield[@tag='300']/marc:subfield[@code='3']='master pos pic'"/>
+  </x:scenario>
+  
+  <x:scenario label="Source record with 2 non-c 007s with matching 300s and one extra 300, and lots of $3s - results in 3 MARC records">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/two007s-notCs-three300s-manyDollar3s.marc.xml"/>
+    <x:expect label="Three records outputted" test="count(//marc:record)=3"/>
+    <x:expect label="First record has expected 007" test="//marc:record[1]/marc:controlfield[@tag='007']='sd|fsngnnmmned'"/>
+    <x:expect label="First record 337 has audio discs" test="//marc:record[1]/marc:datafield[@tag='337']/marc:subfield[@code='3']='audio discs'"/>
+    <x:expect label="Second record has expected 007" test="//marc:record[2]/marc:controlfield[@tag='007']='vd cvaizs'"/>    
+    <x:expect label="Second record 337 has videodiscs" test="//marc:record[2]/marc:datafield[@tag='337']/marc:subfield[@code='3']='videodiscs'"/>
+    <x:expect label="Title of third is [score]" test="//marc:record[3]/marc:datafield[@tag='245']/marc:subfield[@code='a']='[score]'"/>
+    <x:expect label="Third record 337 has scores" test="//marc:record[3]/marc:datafield[@tag='337']/marc:subfield[@code='3']='scores'"/>
+  </x:scenario>
+
+  <x:scenario label="Source record with 3 856s, none of which meet the criteria, no 007s, and a single 300 - results in 1 MARC record">
+    <x:context href="data/ConvSpec-Preprocess0-Splitting/three856s-none_matching_criteria-no007s-one300.marc"/>
+    <x:expect label="One record outputted" test="count(//marc:record)=1"/>
+    <x:expect label="3 856s" test="count(//marc:record/marc:datafield[@tag='856'])=3"/>
+  </x:scenario>
+</x:description>

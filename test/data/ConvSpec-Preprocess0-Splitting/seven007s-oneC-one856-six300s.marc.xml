@@ -1,0 +1,240 @@
+<marcxml:record xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:mets="http://www.loc.gov/METS/" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:semtriples="http://marklogic.com/semantic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:streams="info:lc/streams#">
+  <marcxml:leader>04129cgm a2200793 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">11888045</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20191030143551.0</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  dnnartnna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  fnnartnna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  dnnbdtnna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">cr b| ||||||||</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  fnnbdanna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  dnnaeanna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">kh bo </marcxml:controlfield>
+  <marcxml:controlfield tag="008">000112s1904    xxu005            mleng  </marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">u</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-movingim</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="i">qm22 2019-05-03</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">   00563584 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="017" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">H46128</marcxml:subfield>
+    <marcxml:subfield code="b">U.S Copyright Office</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="033" ind1="0" ind2="0">
+    <marcxml:subfield code="a">19040514</marcxml:subfield>
+    <marcxml:subfield code="b">3804</marcxml:subfield>
+    <marcxml:subfield code="c">N4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="e">amim</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">n-us-ny</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FLA 4959 (viewing print)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FEC 1607 (viewing print)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FRA 0075 (dupe neg pic)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FPE 7011 (dupe neg pic)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FRB 0409 (master pos pic)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">Box 0988A (paper pos)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">Box 5698 (paper pos, copy 2)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="0" ind2="0">
+    <marcxml:subfield code="a">Annual parade, New York Fire Department /</marcxml:subfield>
+    <marcxml:subfield code="c">Thomas A. Edison, Inc.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="257" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">United States.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">United States :</marcxml:subfield>
+    <marcxml:subfield code="b">Thomas A. Edison, Inc.,</marcxml:subfield>
+    <marcxml:subfield code="c">1904.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">viewing print</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (115 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">16 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">viewing print</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (270 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">dupe neg pic</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (115 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">16 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">dupe neg pic</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (ca. 290 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">master pos pic</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (ca. 110 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">16 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">paper pos</marcxml:subfield>
+    <marcxml:subfield code="a">1 roll of 1 (ca. 290 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">paper pos (copy 2)</marcxml:subfield>
+    <marcxml:subfield code="a">1 roll of 1 (ca. 290 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Copyright: Thomas A. Edison, Inc.; 17May04; H46128.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="508" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Cameraman, Edwin S. Porter.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Duration: 4:43 at 16 fps.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="518" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Filmed May 14, 1904 in New York City.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="520" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">"Taken in front of the reviewing stand at Madison Square, New York City. Shows the arrival of Mayor McClellan, and other New York officials. The parade is headed by Chief Croker and battalion chiefs. The firemen march in double columns reaching across the street from curb to curb and are followed by engines, hook and ladder trucks, water-towers, etc. The life-saving crews carry scaling ladders, nets and other paraphernalia. An excellent picture of it"--Edison films catalog, no. 288.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Paper print shelf number (LC 1945) was changed when the paper prints were re-housed.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Additional holdings for this title may be available. Contact reference librarian.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="530" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Available also through the Library of Congress Web site as digital files.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Sources used: Niver, K. Early motion pictures, p. 9; AFI catalog, film beginnings, 1893-1910, p. 23; Edison films catalog, no. 288, July, 1906, p. 91.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="541" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">paper pos (copy 2)</marcxml:subfield>
+    <marcxml:subfield code="d">Received: 1904-05-17;</marcxml:subfield>
+    <marcxml:subfield code="c">copyright deposit;</marcxml:subfield>
+    <marcxml:subfield code="a">Paper Print Collection.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="581" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Early motion pictures : the Paper Print Collection in the Library of Congress / by Kemp R. Niver. Library of  Congress. 1985.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="610" ind1="1" ind2="0">
+    <marcxml:subfield code="a">New York (N.Y.).</marcxml:subfield>
+    <marcxml:subfield code="b">Fire Department.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Fire fighters</marcxml:subfield>
+    <marcxml:subfield code="z">New York (State)</marcxml:subfield>
+    <marcxml:subfield code="z">New York.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Fire engines</marcxml:subfield>
+    <marcxml:subfield code="z">New York (State)</marcxml:subfield>
+    <marcxml:subfield code="z">New York.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="a">McClellan, George B.</marcxml:subfield>
+    <marcxml:subfield code="q">(George Brinton),</marcxml:subfield>
+    <marcxml:subfield code="d">1865-1940.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="a">Croker, Edward Franklin.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Filmed parades.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Actualities (Motion pictures)</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Silent films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Short films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Nonfiction films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Porter, Edwin S.,</marcxml:subfield>
+    <marcxml:subfield code="e">camera.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Thomas A. Edison, Inc.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Paper Print Collection (Library of Congress)</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="773" ind1="0" ind2=" ">
+    <marcxml:subfield code="t">Niver (Kemp) Collection (Library of Congress)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="786" ind1="1" ind2="8">
+    <marcxml:subfield code="t">Annual parade, New York Fire Department</marcxml:subfield>
+    <marcxml:subfield code="w">(DLC) 45650</marcxml:subfield>
+    <marcxml:subfield code="n">MAVIS</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="852" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Library of Congress</marcxml:subfield>
+    <marcxml:subfield code="b">Motion Picture, Broadcasting and Recorded Sound Division</marcxml:subfield>
+    <marcxml:subfield code="e">Washington, D.C. 20540 USA</marcxml:subfield>
+    <marcxml:subfield code="n">dcu</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="856" ind1="4" ind2="1">
+    <marcxml:subfield code="3">Digital viewing copy</marcxml:subfield>
+    <marcxml:subfield code="d">awal</marcxml:subfield>
+    <marcxml:subfield code="f">1945</marcxml:subfield>
+    <marcxml:subfield code="u">http://hdl.loc.gov/loc.mbrsmi/awal.1945</marcxml:subfield>
+    <marcxml:subfield code="q">m</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="952" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Paper print roll lacking suffix.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="985" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">mi/workleis</marcxml:subfield>
+    <marcxml:subfield code="e">ammem</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

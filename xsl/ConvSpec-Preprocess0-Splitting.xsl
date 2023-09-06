@@ -40,6 +40,7 @@
     <xsl:variable name="count006" select="count(marc:controlfield[@tag='006'])"/>
     <xsl:variable name="count007" select="count(marc:controlfield[@tag='007'])"/>
     <xsl:variable name="count007minusC" select="count(marc:controlfield[@tag='007' and substring(.,1,1) != 'c'])"/>
+    <xsl:variable name="countOrig300" select="count(marc:datafield[@tag='300'])"/>
     
     <xsl:variable name="groups">
       <marc:groups>
@@ -78,27 +79,31 @@
                                                             contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                             contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                             contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                                          )
+                                                          ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
                                                  ])" />
 
     <!-- Going to want to check if this record is already a 'split' record and, if so, just return it. -->
     <!-- But until then.... -->
     
     <xsl:choose>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $count300 = 1">
-        <!-- There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. -->
+      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countOrig300 = 1">
+        <!-- 
+          There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. 
+          In this scenario, even if the 300 indicates additional materials, the assumption is that they 
+          are all bundled together.
+        -->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield" />
           <xsl:apply-templates select="marc:datafield" />
         </marc:record>
       </xsl:when>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
-        <!-- 
+      <!--<xsl:when test="$count007 &lt; 2 and $countViable856s &gt; 0">
+        <!-\- 
           There is either no 007 or one 007, and at least one 856. Create one Principal Instance.
           If there is an 007 that is not a 'c', make it part of the Principal Instance.  Otherwise, ignore any 007.
           Create mini MARC records - Secondary Instances - from the 856s.
-        -->
+        -\->
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <xsl:apply-templates select="marc:controlfield[@tag != '007' and substring(., 1, 1) != 'c']" />
@@ -116,7 +121,7 @@
                                                 contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                 contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                 contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                               )
+                                              ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
                                              ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
@@ -124,7 +129,7 @@
           </xsl:apply-templates>
         </xsl:for-each>
 
-      </xsl:when>
+      </xsl:when>-->
       <xsl:otherwise>
         <!-- 
           There are two or more 007s and an unknown number of 856s.
@@ -161,6 +166,7 @@
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
+          <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
         </marc:record>
         
         <!-- 
@@ -194,7 +200,7 @@
                                                 contains(marc:subfield[@code='u'], 'congress.gov') or 
                                                 contains(marc:subfield[@code='u'], 'hathitrust.org') or 
                                                 contains(marc:subfield[@code='u'], 'hdl.handle.net')
-          )
+                                              ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
           ]">
           <xsl:apply-templates select="." mode="split">
             <xsl:with-param name="base_recordid" select="$recordid" />
@@ -236,6 +242,14 @@
       <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="." /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300" select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']" />
+            <xsl:with-param name="cf007" select="." />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
@@ -259,6 +273,14 @@
       <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="$record/marc:controlfield[@tag = '005']" /></marc:controlfield>
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="$record/marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="$record/marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300" select="." />
+            <xsl:with-param name="cf007" select="''" />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="$record/marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="$record/marc:datafield[@tag = '264']" />
       <xsl:copy-of select="../marc:datafield" />
@@ -290,6 +312,14 @@
       <xsl:copy-of select="$cf007" />
       <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
       <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <marc:datafield tag="245" ind1="0" ind2="0">
+        <marc:subfield code="a">
+          <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df300"><marc:datafield /></xsl:with-param>
+            <xsl:with-param name="cf007" select="'c'" />
+          </xsl:call-template>
+        </marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
       <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:apply-templates select="." />
@@ -329,6 +359,39 @@
     </xsl:if>
   </xsl:template>
   
+  <xsl:template name="getTitleStr">
+    <xsl:param name="df300" />
+    <xsl:param name="cf007" />
+    <xsl:choose>
+      <xsl:when test="$df300/marc:subfield[@code='3'] and $df300/marc:subfield[@code='3'] != 'all'">
+        <xsl:value-of select="concat('[', $df300/marc:subfield[@code='3'][1], ']')"/>
+      </xsl:when>
+      <xsl:when test="$df300/marc:subfield[@code='3'] = 'all'">
+        <xsl:value-of select="concat('[', $df300/marc:subfield[@code='a'][1], ']')"/>
+      </xsl:when>
+      <xsl:when test="$cf007 != ''">
+        <xsl:variable name="cf007pos1" select="substring($cf007, 1, 1)"/>
+        <xsl:choose>
+          <xsl:when test="$cf007pos1 = 'a'">[Map]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'c'">[Electronic resource]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'd'">[Globe]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'f'">[Tactile resource]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'g'">[Project graphic]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'h'">[Microform]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'k'">[Non-projected graphic]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'm'">[Motion picture]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'o'">[Kit]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'q'">[Notated music]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'r'">[Remote sensing image]</xsl:when>
+          <xsl:when test="$cf007pos1 = 's'">[Sound recording]</xsl:when>
+          <xsl:when test="$cf007pos1 = 't'">[Text]</xsl:when>
+          <xsl:when test="$cf007pos1 = 'v'">[Videorecording]</xsl:when>
+          <xsl:otherwise>[Unknown]</xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>[Unknown]</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <xsl:template name="addSF3">
     <xsl:param name="theA" />
     <xsl:choose>
@@ -347,6 +410,7 @@
         <marc:subfield code='3'>videodisc</marc:subfield>
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>BluRay</marc:subfield>
+        <marc:subfield code='3'>Blu-ray disc</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>

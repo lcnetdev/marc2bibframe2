@@ -1,0 +1,170 @@
+<marcxml:record xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:mets="http://www.loc.gov/METS/" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:semtriples="http://marklogic.com/semantic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:streams="info:lc/streams#">
+  <marcxml:leader>03261cgm a2200577 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">11510593</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20170424130524.0</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  fnnaranna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  fnnbdanna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="007">mr bf  fnnaeanna|------</marcxml:controlfield>
+  <marcxml:controlfield tag="008">770926s1925    xxu|||            ml     </marcxml:controlfield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="9">(DLC)mp 76000313</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">u</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">19</marcxml:subfield>
+    <marcxml:subfield code="g">y-movingim</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="i">qm22 2016-01-25</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">mp 76000313 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="e">amim</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">n-us-ny</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FYA 1443 (viewing print)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FPB 7749 (dupe neg pic)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">FPB 8228 (master pos pic)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="0" ind2="0">
+    <marcxml:subfield code="a">Mr. Hagedorn and Mr. Akeley at Roosevelt House, 1925.</marcxml:subfield>
+    <marcxml:subfield code="n">[No. 2] /</marcxml:subfield>
+    <marcxml:subfield code="c">[Production company unknown].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="257" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">United States.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">[1925?]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">viewing print</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (137 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">dupe neg pic</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (137 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="3">master pos pic</marcxml:subfield>
+    <marcxml:subfield code="a">1 film reel of 1 (137 ft.) :</marcxml:subfield>
+    <marcxml:subfield code="b">si., b&amp;w ;</marcxml:subfield>
+    <marcxml:subfield code="c">35 mm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Date is estimated: Roosevelt House opened October 27, 1923; Carl Akeley died November 17, 1926.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="508" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Camera, E. Maase.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Cameraman from Roosevelt Memorial Association (RMA) inventory list.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Film includes blank frames; film sequence is repeated.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="520" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Various views from many different camera angles of Hermann Hagedorn, RMA Director and Secretary, and Carl E. Akeley, RMA Trustee, in Roosevelt House: Akeley standing and speaking on stage in the auditorium; view of Akeley speaking, Hagedorn sitting behind Akeley, and a bust of TR; close-up of Akeley speaking fades out to a motion picture screen; side view of Akeley speaking; final view is close shot of Hagedorn at desk, browsing through notebook.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Roosevelt Memorial Association inventory number RMA 312-03-1A.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Sources used: The Theodore Roosevelt Association...catalog, p. 45; LC Prints &amp; Photographs Division portrait file; Roosevelt Memorial Association (RMA) inventory list in M/B/RS Theodore Roosevelt Association acquisition file.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="561" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Collection transferred to LC from National Park Service in 1967. Previous owner: Roosevelt Memorial Association.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="581" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">The Theodore Roosevelt Association film collection : a catalog / prepared by Wendy White-Henson and Veronica M. Gillespie. Library of Congress, 1986.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Theodore Roosevelt Birthplace National Historic Site (New York, N.Y.)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="a">Roosevelt, Theodore,</marcxml:subfield>
+    <marcxml:subfield code="d">1858-1919</marcxml:subfield>
+    <marcxml:subfield code="x">Birthplace.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Presidents</marcxml:subfield>
+    <marcxml:subfield code="z">United States.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="a">Hagedorn, Hermann,</marcxml:subfield>
+    <marcxml:subfield code="d">1882-1964.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="a">Akeley, Carl Ethan,</marcxml:subfield>
+    <marcxml:subfield code="d">1864-1926.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Silent films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Short films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Nonfiction films.</marcxml:subfield>
+    <marcxml:subfield code="2">lcgft</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Maase, E.,</marcxml:subfield>
+    <marcxml:subfield code="e">camera.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Roosevelt Memorial Association,</marcxml:subfield>
+    <marcxml:subfield code="e">former owner.</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Theodore Roosevelt Association Collection (Library of Congress)</marcxml:subfield>
+    <marcxml:subfield code="5">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="786" ind1="1" ind2="8">
+    <marcxml:subfield code="t">Mr. Hagedorn and Mr. Akeley at Roosevelt House, 1925 [2]</marcxml:subfield>
+    <marcxml:subfield code="w">(DLC) 13001</marcxml:subfield>
+    <marcxml:subfield code="n">MAVIS</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="952" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">35 mm viewing print renumbered: FEA 7317 to FYA 1443.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="953" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">TE01</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="991" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">c-GenColl</marcxml:subfield>
+    <marcxml:subfield code="h">FPB7749 (neg);</marcxml:subfield>
+    <marcxml:subfield code="w">MUMS VM File</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="991" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">c-GenColl</marcxml:subfield>
+    <marcxml:subfield code="h">FPB8228 (fgmp)</marcxml:subfield>
+    <marcxml:subfield code="w">MUMS VM File</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>
