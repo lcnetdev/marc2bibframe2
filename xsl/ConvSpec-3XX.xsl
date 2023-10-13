@@ -156,38 +156,6 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
-
-  <!--
-  <xsl:template match="marc:datafield[@tag='344' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='344')]" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:for-each select="marc:subfield[@code='i']">
-      <xsl:variable name="vLabel">
-        <xsl:call-template name="tChopPunct">
-          <xsl:with-param name="pString" select="."/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:variable name="vUri">
-        <xsl:choose>
-          <xsl:when test="translate($vLabel,$upper,$lower)='silent'">http://id.loc.gov/vocabulary/msoundcontent/silent</xsl:when>
-          <xsl:when test="translate($vLabel,$upper,$lower)='sound'">http://id.loc.gov/vocabulary/msoundcontent/sound</xsl:when>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <bf:soundContent>
-            <bf:SoundContent>
-              <xsl:if test="$vUri != ''">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$vUri"/></xsl:attribute>
-              </xsl:if>
-              <rdfs:label><xsl:value-of select="$vLabel"/></rdfs:label>
-            </bf:SoundContent>
-          </bf:soundContent>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:template>
-  -->
     
 <!--  <xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
