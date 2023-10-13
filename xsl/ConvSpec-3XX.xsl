@@ -157,6 +157,7 @@
     </xsl:for-each>
   </xsl:template>
 
+  <!--
   <xsl:template match="marc:datafield[@tag='344' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='344')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
@@ -186,6 +187,7 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
+  -->
     
 <!--  <xsl:template match="marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -1096,7 +1098,12 @@
     <xsl:for-each select="marc:subfield">
       <xsl:variable name="vProp">
         <xsl:choose>
-          <xsl:when test="$vTag='344'">bf:soundCharacteristic</xsl:when>
+          <xsl:when test="$vTag='344'">
+            <xsl:choose>
+              <xsl:when test="@code='i'">bf:soundContent</xsl:when>
+              <xsl:otherwise>bf:soundCharacteristic</xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
           <xsl:when test="$vTag='345'">
             <xsl:choose>
               <xsl:when test="@code='c' or @code='d'">bf:aspectRatio</xsl:when>
@@ -1125,6 +1132,7 @@
               <xsl:when test="@code='f'">bf:TapeConfig</xsl:when>
               <xsl:when test="@code='g'">bf:PlaybackChannels</xsl:when>
               <xsl:when test="@code='h'">bf:PlaybackCharacteristic</xsl:when>
+              <xsl:when test="@code='i'">bf:SoundContent</xsl:when>
             </xsl:choose>
           </xsl:when>
           <xsl:when test="$vTag='345'">
@@ -1235,6 +1243,12 @@
                   <xsl:when test="text()='NAB standard'">
                     <xsl:value-of select="concat($mspecplayback,'nab')"/>
                   </xsl:when>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="@code='i'">
+                <xsl:choose>
+                  <xsl:when test="translate(text(),$upper,$lower)='silent'">http://id.loc.gov/vocabulary/msoundcontent/silent</xsl:when>
+                  <xsl:when test="translate(text(),$upper,$lower)='sound'">http://id.loc.gov/vocabulary/msoundcontent/sound</xsl:when>
                 </xsl:choose>
               </xsl:when>
             </xsl:choose>
