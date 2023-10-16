@@ -84,7 +84,15 @@
                     <rdf:type>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:attribute>
                     </rdf:type>
-                    <xsl:if test="../marc:datafield[@tag='245']">
+                    <xsl:choose>
+                      <xsl:when test="marc:subfield[@code='3']">
+                        <bf:title>
+                          <bf:Title>
+                            <bf:mainTitle><xsl:value-of select="marc:subfield[@code='3']"/></bf:mainTitle>
+                          </bf:Title>
+                        </bf:title>
+                      </xsl:when>
+                      <xsl:when test="../marc:datafield[@tag='245']">
                       <bf:title>
                         <bf:Title>
                           <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
@@ -103,19 +111,13 @@
                           </xsl:apply-templates>
                         </bf:Title>
                       </bf:title>
-                    </xsl:if>
-                    <bf:hasItem>
-                      <bf:Item>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
-                        <xsl:apply-templates select="." mode="locator856">
-                          <xsl:with-param name="serialization" select="$serialization"/>
-                          <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
-                        </xsl:apply-templates>
-                        <bf:itemOf>
-                          <xsl:attribute name="rdf:resource"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
-                        </bf:itemOf>
-                      </bf:Item>
-                    </bf:hasItem>
+                    </xsl:when>
+                    </xsl:choose>
+
+                    <xsl:apply-templates select="." mode="locator856">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
+                    </xsl:apply-templates>
                     <bf:instanceOf>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
                     </bf:instanceOf>
