@@ -363,21 +363,23 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:title>
-          <bf:Title>
-            <xsl:apply-templates mode="title245" select=".">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="label" select="$label"/>
-            </xsl:apply-templates>
-            <!-- generate Title properties from linked 880 -->
-            <xsl:if test="@tag='245' and marc:subfield[@code='6']">
-              <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="label" select="$vLinkedLabel"/>
-              </xsl:apply-templates>
-            </xsl:if>
-          </bf:Title>
-        </bf:title>
+              <xsl:if test="not(../marc:datafield[@tag='758']) and not(../marc:datafield[@tag='856']/marc:subfield['3'])">
+                <bf:title>
+                  <bf:Title>
+                <xsl:apply-templates mode="title245" select=".">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                  <xsl:with-param name="label" select="$label"/>
+                </xsl:apply-templates>
+                <!-- generate Title properties from linked 880 -->
+                <xsl:if test="@tag='245' and marc:subfield[@code='6']">
+                  <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="label" select="$vLinkedLabel"/>
+                  </xsl:apply-templates>
+                </xsl:if>
+                  </bf:Title>
+                </bf:title>
+              </xsl:if>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
