@@ -43,7 +43,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pTagOrd" select="position()"/>
     <!-- only process if there is $u -->
-    <xsl:if test="marc:subfield[@code='u']">
+    <xsl:if test="marc:subfield[@code='u'] and not(../marc:datafield[@tag='758'])">
       <!-- lower case for comparison -->
       <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
       <xsl:choose>
@@ -84,7 +84,15 @@
                     <rdf:type>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'Electronic')"/></xsl:attribute>
                     </rdf:type>
-                    <xsl:if test="../marc:datafield[@tag='245']">
+                    <xsl:choose>
+                      <xsl:when test="marc:subfield[@code='3']">
+                        <bf:title>
+                          <bf:Title>
+                            <bf:mainTitle><xsl:value-of select="marc:subfield[@code='3']"/></bf:mainTitle>
+                          </bf:Title>
+                        </bf:title>
+                      </xsl:when>
+                      <xsl:when test="../marc:datafield[@tag='245']">
                       <bf:title>
                         <bf:Title>
                           <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
@@ -103,19 +111,13 @@
                           </xsl:apply-templates>
                         </bf:Title>
                       </bf:title>
-                    </xsl:if>
-                    <bf:hasItem>
-                      <bf:Item>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="$vItemUri"/></xsl:attribute>
-                        <xsl:apply-templates select="." mode="locator856">
-                          <xsl:with-param name="serialization" select="$serialization"/>
-                          <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
-                        </xsl:apply-templates>
-                        <bf:itemOf>
-                          <xsl:attribute name="rdf:resource"><xsl:value-of select="$vInstanceUri"/></xsl:attribute>
-                        </bf:itemOf>
-                      </bf:Item>
-                    </bf:hasItem>
+                    </xsl:when>
+                    </xsl:choose>
+
+                    <xsl:apply-templates select="." mode="locator856">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pProp">bf:electronicLocator</xsl:with-param>
+                    </xsl:apply-templates>
                     <bf:instanceOf>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
                     </bf:instanceOf>
@@ -149,9 +151,53 @@
   <xsl:template match="marc:datafield" mode="instance856">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
-    <xsl:if test="marc:subfield[@code='u'] and @ind2='2' and $vSubfield3 != 'table of contents'">
+    <xsl:if test="$serialization = 'rdfxml' and marc:subfield[@code='u']">
         <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
+          <!-- If ind2 is #, 0, 1, or 8 and the Instance does not have the class of Electronic, create a new Instance -->
+          <xsl:when test="../marc:datafield[@tag='758'] and 
+            (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8')">
+            <!-- local customization for LoC: if "localfields" parameter is set, only process certain URLs -->
+            <xsl:if test="not($localfields) or (
+              contains(marc:subfield[@code='u'],'loc.gov') or
+              contains(marc:subfield[@code='u'],'fdlp.gov') or
+              contains(marc:subfield[@code='u'],'gpo.gov') or
+              contains(marc:subfield[@code='u'],'hathitrust.org'))">
+              <xsl:choose>
+                <xsl:when test="marc:subfield[@code='3']">
+                  <bf:title>
+                    <bf:Title>
+                      <bf:mainTitle><xsl:value-of select="marc:subfield[@code='3']"/></bf:mainTitle>
+                    </bf:Title>
+                  </bf:title>
+                </xsl:when>
+                <xsl:when test="../marc:datafield[@tag='245']">
+                  <bf:title>
+                    <bf:Title>
+                      <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='245']">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                        <xsl:with-param name="label">
+                          <xsl:apply-templates mode="concat-nodes-space"
+                            select="../marc:datafield[@tag='245']/marc:subfield[@code='a' or
+                            @code='b' or
+                            @code='f' or 
+                            @code='g' or
+                            @code='k' or
+                            @code='n' or
+                            @code='p' or
+                            @code='s']"/>
+                        </xsl:with-param>
+                      </xsl:apply-templates>
+                    </bf:Title>
+                  </bf:title>
+                </xsl:when>
+              </xsl:choose>
+<!--              <bf:instanceOf>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
+              </bf:instanceOf>-->
+              <xsl:apply-templates select="." mode="locator856" />
+            </xsl:if>
+          </xsl:when>
+          <xsl:when test="@ind2='2' and $vSubfield3 != 'table of contents'">
             <xsl:apply-templates select="." mode="locator856">
               <xsl:with-param name="serialization" select="$serialization"/>
               <xsl:with-param name="pProp">bf:supplementaryContent</xsl:with-param>
@@ -235,27 +281,22 @@
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='u']">
           <xsl:element name="{$pProp}">
-            <xsl:element name="{$pObject}">
-              <rdf:value>
-                <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-                <xsl:value-of select="."/>
-              </rdf:value>
-              <xsl:for-each select="../marc:subfield[@code='z' or @code='y' or @code='3']">
-                <bf:note>
-                  <bf:Note>
-                    <rdfs:label>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:call-template name="tChopPunct">
-                        <xsl:with-param name="pString" select="."/>
-                      </xsl:call-template>
-                    </rdfs:label>
-                  </bf:Note>
-                </bf:note>
-              </xsl:for-each>
-            </xsl:element>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
           </xsl:element>
+        </xsl:for-each>
+        <xsl:for-each select="../marc:subfield[@code='z' or @code='y']">
+          <bf:note>
+            <bf:Note>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:Note>
+          </bf:note>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
