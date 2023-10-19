@@ -68,14 +68,7 @@
                         (substring(../marc:leader,7,1) != 'm' and
                         substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
                         substring(../marc:controlfield[@tag='008'],24,1) != 's')">
-          <!-- local customization for LoC: if "localfields" parameter is set, only process certain URLs -->
-          <xsl:if test="not($localfields) or (
-                        contains(marc:subfield[@code='u'],'loc.gov') or
-                        contains(marc:subfield[@code='u'],'fdlp.gov') or
-                        contains(marc:subfield[@code='u'],'gpo.gov') or
-                        contains(marc:subfield[@code='u'],'hathitrust.org'))">
             <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
-            <xsl:variable name="vItemUri"><xsl:value-of select="$recordid"/>#Item<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
             <xsl:choose>
               <xsl:when test="$serialization = 'rdfxml'">
                 <bf:hasInstance>
@@ -125,7 +118,6 @@
                 </bf:hasInstance>
               </xsl:when>
             </xsl:choose>
-          </xsl:if>
         </xsl:when>
       </xsl:choose>
     </xsl:if>
@@ -156,12 +148,6 @@
           <!-- If ind2 is #, 0, 1, or 8 and the Instance does not have the class of Electronic, create a new Instance -->
           <xsl:when test="../marc:datafield[@tag='758'] and 
             (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8')">
-            <!-- local customization for LoC: if "localfields" parameter is set, only process certain URLs -->
-            <xsl:if test="not($localfields) or (
-              contains(marc:subfield[@code='u'],'loc.gov') or
-              contains(marc:subfield[@code='u'],'fdlp.gov') or
-              contains(marc:subfield[@code='u'],'gpo.gov') or
-              contains(marc:subfield[@code='u'],'hathitrust.org'))">
               <xsl:choose>
                 <xsl:when test="marc:subfield[@code='3']">
                   <bf:title>
@@ -191,11 +177,7 @@
                   </bf:title>
                 </xsl:when>
               </xsl:choose>
-<!--              <bf:instanceOf>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-              </bf:instanceOf>-->
               <xsl:apply-templates select="." mode="locator856" />
-            </xsl:if>
           </xsl:when>
           <xsl:when test="@ind2='2' and $vSubfield3 != 'table of contents'">
             <xsl:apply-templates select="." mode="locator856">
@@ -238,14 +220,9 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pTagOrd" select="position()"/>
     <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
-    <!-- local customization for LoC: if "localfields" parameter is set, only process certain URLs -->
-    <xsl:if test="not($localfields) or (
-                  contains(marc:subfield[@code='u'],'loc.gov') or
-                  contains(marc:subfield[@code='u'],'fdlp.gov') or
-                  contains(marc:subfield[@code='u'],'gpo.gov') or
-                  contains(marc:subfield[@code='u'],'hathitrust.org'))">
       <!-- If ind2 is #, 0, 1, or 8, the Instance has the class of Electronic, and $3 != 'Table of Contents', add an Item to the Instance -->
-      <xsl:if test="marc:subfield[@code='u'] and
+      <xsl:if test="not(../marc:datafield[@tag='758']) and 
+                    marc:subfield[@code='u'] and
                     (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
                     (substring(../marc:leader,7,1) = 'm' or
                     substring(../marc:controlfield[@tag='008'],24,1) = 'o' or
@@ -269,7 +246,6 @@
           </xsl:when>
         </xsl:choose>
       </xsl:if>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="locator856">
