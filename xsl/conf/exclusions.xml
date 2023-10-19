@@ -1,0 +1,19 @@
+<exclusions>
+    <exclusion text="eblib.com"/>
+    <exclusion text="ebrary.com"/>
+    <exclusion text="ebscohost.com"/>
+    <exclusion text="exlibrisgroup.com"/>
+    <exclusion text="galegroup.com"/>
+    <exclusion text="google.com"/>
+    <exclusion text="mylibrary.com"/>
+    <exclusion text="oclc.org"/>
+    <exclusion text="overdrive.com"/>
+    <exclusion text="proquest.com"/>
+    <exclusion text="sagepub.com"/>
+    <exclusion text="serialssolutions.com"/>
+    <exclusion text="springerlink.com" />
+    <exclusion text="springerprotocols.com"/>
+    <exclusion text="login"/>
+    <exclusion text="proxy"/>
+    <exclusion text="username"/>
+</exclusions>
