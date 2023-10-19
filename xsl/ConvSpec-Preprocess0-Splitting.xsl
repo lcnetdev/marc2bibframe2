@@ -273,8 +273,6 @@
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
-      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
         <xsl:copy-of select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield" />
       </xsl:if>    
@@ -304,8 +302,6 @@
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
-      <xsl:apply-templates select="$record/marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="$record/marc:datafield[@tag = '264']" />
       <xsl:copy-of select="../marc:datafield" />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
