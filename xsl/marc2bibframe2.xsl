@@ -256,7 +256,6 @@
                 <bf:instanceOf>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:datafield[@tag='758']/marc:subfield[@code='1']"/></xsl:attribute>
                 </bf:instanceOf>
-                <xsl:apply-templates select="marc:datafield[@tag='856']" mode="work"/>
               </xsl:when>
               <xsl:otherwise>
                 <bf:instanceOf>
