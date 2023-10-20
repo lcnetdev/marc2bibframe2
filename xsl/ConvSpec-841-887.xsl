@@ -256,23 +256,50 @@
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='u']">
-          <xsl:element name="{$pProp}">
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
-          </xsl:element>
-        </xsl:for-each>
-        <xsl:for-each select="../marc:subfield[@code='z' or @code='y']">
-          <bf:note>
-            <bf:Note>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:Note>
-          </bf:note>
+          <xsl:choose>
+            <xsl:when test="$pProp = 'bf:electronicLocator'">
+              <xsl:element name="{$pProp}">
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+              </xsl:element>
+              <xsl:for-each select="../marc:subfield[@code='z' or @code='y']">
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:element name="{$pProp}">
+                <xsl:element name="{$pObject}">
+                  <bf:electronicLocator>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  </bf:electronicLocator>
+                  <xsl:for-each select="../marc:subfield[@code='3' or @code='z' or @code='y']">
+                    <bf:note>
+                      <bf:Note>
+                        <rdfs:label>
+                          <xsl:if test="$vXmlLang != ''">
+                            <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                          </xsl:if>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="."/>
+                          </xsl:call-template>
+                        </rdfs:label>
+                      </bf:Note>
+                    </bf:note>
+                  </xsl:for-each>
+                </xsl:element>
+              </xsl:element>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>

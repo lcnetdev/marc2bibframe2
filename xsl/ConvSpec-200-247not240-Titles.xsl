@@ -365,7 +365,6 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-              <xsl:if test="not(../marc:datafield[@tag='758']) and not(../marc:datafield[@tag='856']/marc:subfield['3'])">
                 <bf:title>
                   <bf:Title>
                 <xsl:apply-templates mode="title245" select=".">
@@ -381,7 +380,6 @@
                 </xsl:if>
                   </bf:Title>
                 </bf:title>
-              </xsl:if>
       </xsl:when>
     </xsl:choose>
     </xsl:if>
