@@ -323,7 +323,9 @@
   <!-- bf:Instance properties from MARC 245 -->
   <xsl:template match="marc:datafield[@tag='245' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='245')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vOccurrence">
+    <xsl:param name="pInstanceType" />
+    <xsl:if test="$pInstanceType != 'SecondaryInstance'">
+      <xsl:variable name="vOccurrence">
       <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
     </xsl:variable>
     <xsl:variable name="label">
@@ -363,7 +365,6 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-              <xsl:if test="not(../marc:datafield[@tag='758']) and not(../marc:datafield[@tag='856']/marc:subfield['3'])">
                 <bf:title>
                   <bf:Title>
                 <xsl:apply-templates mode="title245" select=".">
@@ -379,9 +380,9 @@
                 </xsl:if>
                   </bf:Title>
                 </bf:title>
-              </xsl:if>
       </xsl:when>
     </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="instance245">

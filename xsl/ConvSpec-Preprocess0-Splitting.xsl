@@ -16,6 +16,14 @@
       add to the end of the tag (e.g. "035a")
   -->
   <xsl:param name="idfield" select="'001'"/>
+  
+  <!--
+      Use field conversion for locally defined fields.
+      Some fields in the conversion (e.g. 859) are locally defined by
+      LoC for conversion. By default these fields will not be
+      converted unless this parameter evaluates to true()
+  -->
+  <xsl:param name="localfields" select="true()" />
 
   <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
@@ -69,24 +77,46 @@
     <xsl:variable name="groupsNS" select="exsl:node-set($groups)" />
     <xsl:variable name="count300" select="count($groupsNS/marc:groups/marc:group/marc:datafield[@tag='300'])"/>
     
-    <xsl:variable name="countViable856s" select="count(marc:datafield[
-                                                          @tag='856' and 
-                                                          (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
-                                                          ( 
-                                                            contains(marc:subfield[@code='u'], 'loc.gov') or 
-                                                            contains(marc:subfield[@code='u'], 'fdlp.gov') or 
-                                                            contains(marc:subfield[@code='u'], 'gpo.gov') or 
-                                                            contains(marc:subfield[@code='u'], 'congress.gov') or 
-                                                            contains(marc:subfield[@code='u'], 'hathitrust.org') or 
-                                                            contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                                          ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
-                                                 ])" />
+    <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
+    <xsl:variable name="viable856s">
+      <xsl:for-each select="marc:datafield[
+            @tag='856' and 
+            (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+            marc:subfield[@code='u'] and 
+            not( contains(marc:subfield[@code='3'], 'able of contents') )
+        ]">
+        <xsl:variable name="theU" select="marc:subfield[@code='u']" />
+        <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
+          <xsl:copy-of select="."/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="viable856sNS" select="exsl:node-set($viable856s)" />
+    <xsl:variable name="countViable856s" select="count($viable856sNS/marc:datafield)" />
+    
+    <xsl:variable name="viable859s">
+      <xsl:if test="$localfields">
+      <xsl:for-each select="marc:datafield[
+          @tag='859' and 
+          (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+          marc:subfield[@code='u'] and 
+          not( contains(marc:subfield[@code='3'], 'able of contents') )
+          ]">
+          <xsl:variable name="theU" select="marc:subfield[@code='u']" />
+          <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
+            <xsl:copy-of select="."/>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="viable859sNS" select="exsl:node-set($viable859s)" />
+    <xsl:variable name="countViable859s" select="count($viable859sNS/marc:datafield)" />
 
     <!-- Going to want to check if this record is already a 'split' record and, if so, just return it. -->
     <!-- But until then.... -->
     
     <xsl:choose>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countOrig300 = 1">
+      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countViable859s = 0 and $countOrig300 = 1">
         <!-- 
           There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. 
           In this scenario, even if the 300 indicates additional materials, the assumption is that they 
@@ -160,7 +190,7 @@
           </xsl:for-each>
           <xsl:for-each select="marc:datafield[
                                     @tag &gt; 300 and 
-                                    @tag != '856' and 
+                                    @tag != '856' and @tag != '859' and 
                                     @tag != '336' and @tag != '337' and @tag != '338' and
                                     @tag != '344' and @tag != '346' and @tag != '347' and @tag != '348']">
             <xsl:sort select="@tag"/>
@@ -190,23 +220,16 @@
           This will take any existing 007 in the source MARC that begins with a 'c' and use it for the Secondary Instance
           or it will create a canned one.
         -->
-        <xsl:for-each select="marc:datafield[
-                                              @tag='856' and 
-                                              (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and 
-                                              ( 
-                                                contains(marc:subfield[@code='u'], 'loc.gov') or 
-                                                contains(marc:subfield[@code='u'], 'fdlp.gov') or 
-                                                contains(marc:subfield[@code='u'], 'gpo.gov') or 
-                                                contains(marc:subfield[@code='u'], 'congress.gov') or 
-                                                contains(marc:subfield[@code='u'], 'hathitrust.org') or 
-                                                contains(marc:subfield[@code='u'], 'hdl.handle.net')
-                                              ) and not( contains(marc:subfield[@code='3'], 'able of contents') )
-          ]">
-          <xsl:apply-templates select="." mode="split">
-            <xsl:with-param name="base_recordid" select="$recordid" />
-            <xsl:with-param name="pos" select="position()" />
-          </xsl:apply-templates>
-        </xsl:for-each>
+        <xsl:if test="count($viable856sNS/marc:datafield|$viable859sNS/marc:datafield) &gt; 0">
+          <xsl:variable name="record" select="." />
+          <xsl:for-each select="$viable856sNS/marc:datafield|$viable859sNS/marc:datafield">
+            <xsl:apply-templates select="." mode="split">
+              <xsl:with-param name="base_recordid" select="$recordid" />
+              <xsl:with-param name="pos" select="position()" />
+              <xsl:with-param name="record" select="$record" />
+            </xsl:apply-templates>
+          </xsl:for-each>
+        </xsl:if>
 
         <xsl:if test="$count300 &gt; $count007minusC">
           <!--  
@@ -224,7 +247,7 @@
               </xsl:apply-templates>
             </xsl:if>
           </xsl:for-each>
-          
+
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -250,8 +273,6 @@
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
-      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
         <xsl:copy-of select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield" />
       </xsl:if>    
@@ -281,8 +302,6 @@
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
-      <xsl:apply-templates select="$record/marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="$record/marc:datafield[@tag = '264']" />
       <xsl:copy-of select="../marc:datafield" />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
@@ -291,14 +310,15 @@
     </marc:record>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag = '856']" mode="split">
+  <xsl:template match="marc:datafield[@tag = '856' or @tag = '859']" mode="split">
     <xsl:param name="base_recordid" />
     <xsl:param name="pos" />
-    <xsl:variable name="pos_offset" select="count(../marc:controlfield[@tag='007' and substring(.,1,1) != 'c']) + $pos"/>
+    <xsl:param name="record" />
+    <xsl:variable name="pos_offset" select="concat('85X-', $pos)"/>
     <xsl:variable name="cf007">
       <xsl:choose>
-        <xsl:when test="../marc:controlfield[@tag='007' and substring(.,1,1) = 'c']">
-          <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="../marc:controlfield[@tag='007' and substring(.,1,1) = 'c'][1]" /></marc:controlfield>
+        <xsl:when test="$record/marc:controlfield[@tag='007' and substring(.,1,1) = 'c']">
+          <marc:controlfield xml:space="preserve" tag="007"><xsl:value-of select="$record/marc:controlfield[@tag='007' and substring(.,1,1) = 'c'][1]" /></marc:controlfield>
         </xsl:when>
         <xsl:otherwise>
           <marc:controlfield xml:space="preserve" tag="007">cr |||||||||||</marc:controlfield>
@@ -306,22 +326,21 @@
       </xsl:choose>
     </xsl:variable>
     <marc:record>
-      <marc:leader xml:space="preserve"><xsl:value-of select="../marc:leader" /></marc:leader>
-      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat(../marc:controlfield[@tag = '001'], '-0', $pos_offset)" /></marc:controlfield>
-      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="../marc:controlfield[@tag = '005']" /></marc:controlfield>
+      <marc:leader xml:space="preserve"><xsl:value-of select="$record/marc:leader" /></marc:leader>
+      <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="concat($record/marc:controlfield[@tag = '001'], '-', $pos_offset)" /></marc:controlfield>
+      <marc:controlfield xml:space="preserve" tag="005"><xsl:value-of select="$record/marc:controlfield[@tag = '005']" /></marc:controlfield>
       <xsl:copy-of select="$cf007" />
-      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="../marc:controlfield[@tag = '008']" /></marc:controlfield>
-      <xsl:apply-templates select="../marc:datafield[@tag = '040']" />
+      <marc:controlfield xml:space="preserve" tag="008"><xsl:value-of select="$record/marc:controlfield[@tag = '008']" /></marc:controlfield>
+      <xsl:apply-templates select="$record/marc:datafield[@tag = '040']" />
       <marc:datafield tag="245" ind1="0" ind2="0">
         <marc:subfield code="a">
           <xsl:call-template name="getTitleStr">
+            <xsl:with-param name="df856sf3"><xsl:value-of select="marc:subfield[@code = '3']" /></xsl:with-param>
             <xsl:with-param name="df300"><marc:datafield /></xsl:with-param>
             <xsl:with-param name="cf007" select="'c'" />
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
-      <xsl:apply-templates select="../marc:datafield[@tag = '260']" />
-      <xsl:apply-templates select="../marc:datafield[@tag = '264']" />
       <xsl:apply-templates select="." />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
@@ -360,9 +379,13 @@
   </xsl:template>
   
   <xsl:template name="getTitleStr">
+    <xsl:param name="df856sf3" />
     <xsl:param name="df300" />
     <xsl:param name="cf007" />
     <xsl:choose>
+      <xsl:when test="$df856sf3 != ''">
+        <xsl:value-of select="$df856sf3"/>
+      </xsl:when>
       <xsl:when test="$df300/marc:subfield[@code='3'] and $df300/marc:subfield[@code='3'] != 'all'">
         <xsl:value-of select="concat('[', $df300/marc:subfield[@code='3'][1], ']')"/>
       </xsl:when>
