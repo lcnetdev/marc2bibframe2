@@ -231,7 +231,7 @@
           </xsl:for-each>
         </xsl:if>
 
-        <xsl:if test="$count300 &gt; $count007minusC">
+        <xsl:if test="$count300 &gt; 1 and $count300 &gt; $count007minusC">
           <!--  
             If we got here, the record has more than 1 007.  
             And this 'if' statement establishes that we have more 300s than we do 007s.

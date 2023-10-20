@@ -872,7 +872,9 @@
       008 date and place processing are part of process8.  See ConvSpec-Process8-ProvAct.xsl.
       But we will call the requisite template at this time.
     -->
-    <xsl:call-template name="process8" />
+    <xsl:if test="$pInstanceType != 'SecondaryInstance'">
+      <xsl:call-template name="process8" />
+    </xsl:if>
     <xsl:variable name="vMaterialType">
       <xsl:apply-templates select="../marc:leader" mode="mMaterialType008"/>
     </xsl:variable>
