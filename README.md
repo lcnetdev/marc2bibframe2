@@ -44,6 +44,17 @@ an XML file containing MARCXML as the second:
 
     xsltproc xsl/marc2bibframe2.xsl test/data/marc.xml
 
+### Preprocessing (new as of Oct 2023)
+An option preprocessing step will attempt to split individual MARC 
+records into multiple MARC records with the additional MARC records
+representing different Instances of the same Work in the original or 
+source MARC record.  It takes a MARC/XML record as input and will 
+output a marc:collection of one or more MARC records.  See the 
+Preprocess 0 document in the [spec/](spec/) directory.  Like the main
+stylesheet, it can be invoked:
+
+    xsltproc xsl/ConvSpec-Preprocess0-Splitting.xsl test/data/marc.xml
+
 ### Converter parameters
 The converter supports several optional parameters:
 - `baseuri` - the URI stem for generated entities. Default is
@@ -66,7 +77,6 @@ The converter supports several optional parameters:
 - `localfields` - if true, apply special local processing for Library
 of Congress records. This includes:
   - Process 859 fields the same as 856 fields
-  - Only convert 856/859 fields with particular URL values
 
 - `pGenerationDatestamp` - a value to be used as the datestamp for the
   bf:generationProcess property for the Work AdminMetadata. Defaults
