@@ -19,22 +19,19 @@
     <x:scenario label="If ind1 = 2">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
       <x:expect label="856 creates a supplementaryContent/SupplementaryContent property of the Instance" test="count(//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent/bf:SupplementaryContent) = 2"/>
-      <x:expect label="...with rdf:value from $u" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent[1]/bf:SupplementaryContent/rdf:value='http://www.loc.gov/appendix.html'"/>
-      <x:expect label="...rdf:value has xs:anyURI datatype" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent[1]/bf:SupplementaryContent/rdf:value/@rdf:datatype='http://www.w3.org/2001/XMLSchema#anyURI'"/>
+      <x:expect label="...with bf:electronicLocator from $u" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent[1]/bf:SupplementaryContent/bf:electronicLocator/@rdf:resource='http://www.loc.gov/appendix.html'"/>
       <x:expect label="...with notes generated from $z/y/3" test="//bf:Instance[@rdf:about='http://example.org/1#Instance']/bf:supplementaryContent[2]/bf:SupplementaryContent/bf:note[1]/bf:Note/rdfs:label = 'Finding aid'"/>
     </x:scenario>
     <x:scenario label="If ind1 = #, 0, 1, or 8">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
       <x:expect label="If Instance is Electronic, 856 creates an Item of the Instance" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/@rdf:about = 'http://example.org/2#Item856-5'"/>
-      <x:expect label="...$u creates an electronicLocator/rdfs:Resource property of the Item" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/rdf:value = 'http://loc.gov/fakebook.html'"/>
-      <x:expect label="...rdf:value has xs:anyURI datatype" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/rdf:value/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#anyURI'"/>
-      <x:expect label="...$z, $y, and $3 create notes of the rdfs:Resource" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:electronicLocator/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Click here for access'"/>
+      <x:expect label="...$u creates an electronicLocator property of the Item" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[1]/bf:Item/bf:electronicLocator/@rdf:resource = 'http://loc.gov/fakebook.html'"/>
+      <x:expect label="...$z, $y, and $3 create notes of the bf:Item" test="//bf:Instance[@rdf:about='http://example.org/2#Instance']/bf:hasItem[2]/bf:Item/bf:note[1]/bf:Note/rdfs:label = 'Click here for access'"/>
       <x:expect label="If Instance is not Electronic, 856 creates a new Instance of the Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/rdf:type[1]/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Electronic'"/>
       <x:expect label="...with title from 245 if available" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'American quarterly'"/>
-      <x:expect label="...with an Item" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem[1]/bf:Item/@rdf:about = 'http://example.org/1#Item856-5'"/>
-      <x:expect label="...$u creates an electronicLocator/rdfs:Resource property of the Item" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/rdf:value = 'http://www.ref.loc.gov:2000'"/>
-      <x:expect label="...rdf:value has xs:anyURI datatype" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/rdf:value/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#anyURI'"/>
-      <x:expect label="...$z, $y, and $3 create notes of the rdfs:Resource" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[2]/bf:Instance/bf:hasItem[1]/bf:Item/bf:electronicLocator/rdfs:Resource/bf:note[1]/bf:Note/rdfs:label = 'Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text'"/>
+      <x:expect label="...with an Item" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/@rdf:about = 'http://example.org/1#Instance856-5'"/>
+      <x:expect label="...$u creates an electronicLocator property of the Instance" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[1]/bf:Instance/bf:electronicLocator/@rdf:resource = 'http://www.ref.loc.gov:2000'"/>
+      <x:expect label="...$z, $y, and $3 create notes of the Instance" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:hasInstance[2]/bf:Instance/bf:note[1]/bf:Note/rdfs:label = 'Address for accessing the journal using authorization number and password through OCLC FirstSearch Electronic Collections Online. Subscription to online journal required for access to abstracts and full text'"/>
     </x:scenario>
   </x:scenario>
 
