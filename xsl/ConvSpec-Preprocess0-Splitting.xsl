@@ -53,7 +53,9 @@
     <xsl:variable name="groups">
       <marc:groups>
         <xsl:variable name="the300s">
-          <xsl:apply-templates select="marc:datafield[@tag='300']" mode="groupify" />    
+          <xsl:apply-templates select="marc:datafield[@tag='300']" mode="groupify">
+            <xsl:with-param name="pcountOrig300" select="$countOrig300" />
+          </xsl:apply-templates>    
         </xsl:variable>
         <xsl:variable name="the300sNS" select="exsl:node-set($the300s)"/>
 
@@ -350,6 +352,7 @@
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='300']" mode="groupify">
+    <xsl:param name="pcountOrig300" />
     <marc:datafield>
       <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
       <xsl:attribute name="ind1"><xsl:value-of select="@ind1"/></xsl:attribute>
@@ -369,9 +372,16 @@
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="marc:subfield[@code != '3' and @code != 'e']" />
+      <xsl:choose>
+        <xsl:when test="$pcountOrig300=1">
+          <xsl:apply-templates select="marc:subfield[@code != '3' and @code != 'e']" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="marc:subfield[@code != '3']" />
+        </xsl:otherwise>
+      </xsl:choose>
     </marc:datafield>  
-    <xsl:if test="marc:subfield[@code = 'e']">
+    <xsl:if test="$pcountOrig300=1 and marc:subfield[@code = 'e']">
       <xsl:call-template name="parseE">
         <xsl:with-param name="theE" select="marc:subfield[@code ='e']" />
       </xsl:call-template>
