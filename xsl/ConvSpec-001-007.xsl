@@ -1714,7 +1714,7 @@
             <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($carriers,'si')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($carriers,'sq')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($carriers,'cr')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($carriers,'sg')"/></xsl:when>
+            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($carriers,'ss')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 't'"><xsl:value-of select="concat($carriers,'st')"/></xsl:when>
             <xsl:when test="substring(.,2,1) = 'w'"><xsl:value-of select="concat($carriers,'sw')"/></xsl:when>
           </xsl:choose>
