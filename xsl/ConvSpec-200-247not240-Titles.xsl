@@ -324,7 +324,20 @@
   <xsl:template match="marc:datafield[@tag='245' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='245')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pInstanceType" />
-    <xsl:if test="$pInstanceType != 'SecondaryInstance'">
+    <xsl:variable name="output245">
+      <xsl:choose>
+        <xsl:when test="$pInstanceType = 'SecondaryInstance' and ../marc:datafield[@tag='856' or @tag='859']">
+          <xsl:value-of select="false()"/>
+        </xsl:when>
+        <xsl:when test="$pInstanceType != 'SecondaryInstance'">
+          <xsl:value-of select="true()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="true()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$output245">
       <xsl:variable name="vOccurrence">
       <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
     </xsl:variable>
