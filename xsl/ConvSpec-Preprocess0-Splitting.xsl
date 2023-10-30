@@ -61,7 +61,8 @@
 
         <xsl:variable name="df3XXs" select="marc:datafield[
                                               @tag='336' or @tag='337' or @tag='338' or 
-                                              @tag='344' or @tag='346' or @tag='347' or @tag='348'
+                                              @tag='344' or 
+                                              @tag='346' or @tag='347' or @tag='348'
                                             ]"/>
         <xsl:for-each select="$the300sNS/marc:datafield">
           <marc:group>
@@ -78,6 +79,8 @@
     </xsl:variable>
     <xsl:variable name="groupsNS" select="exsl:node-set($groups)" />
     <xsl:variable name="count300" select="count($groupsNS/marc:groups/marc:group/marc:datafield[@tag='300'])"/>
+    
+    <!-- <xsl:message><xsl:copy-of select="$groups" /></xsl:message> -->
     
     <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
     <xsl:variable name="viable856s">
@@ -171,7 +174,7 @@
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="marc:controlfield[@tag = '001']" /></marc:controlfield>
-          <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag]">
+          <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag and substring(.,1,1) != 'c']">
             <xsl:sort select="@tag"/>
             <marc:controlfield>
               <xsl:attribute name="xml:space">preserve</xsl:attribute>
@@ -235,19 +238,32 @@
 
         <xsl:if test="$count300 &gt; 1 and $count300 &gt; $count007minusC">
           <!--  
-            If we got here, the record has more than 1 007.  
-            And this 'if' statement establishes that we have more 300s than we do 007s.
+            This 'if' statement establishes that we have more 300s than we do 007s.
             The 'extra' 300s will not be outputted via the logic above and we need to make sure we output them.
           -->
           <xsl:variable name="record" select="." />
           <xsl:for-each select="$groupsNS/marc:groups/marc:group/marc:datafield[@tag='300']">
-            <xsl:if test="position() &gt; $count007minusC">
-              <xsl:apply-templates select="." mode="split">
-                <xsl:with-param name="base_recordid" select="$recordid" />
-                <xsl:with-param name="pos" select="position()" />
-                <xsl:with-param name="record" select="$record" />
-              </xsl:apply-templates>
-            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="$count007minusC &gt; 0 and position() &gt; $count007minusC">
+                <!-- There are Cs and extra 300s. -->
+                <xsl:apply-templates select="." mode="split">
+                  <xsl:with-param name="base_recordid" select="$recordid" />
+                  <xsl:with-param name="pos" select="position()" />
+                  <xsl:with-param name="record" select="$record" />
+                </xsl:apply-templates>  
+              </xsl:when>
+              <xsl:when test="$count007minusC = 0 and position() &gt; 1">
+                <!-- 
+                  We have multiple 300s but no Cs, basically.  
+                  But the first 300 has been output already, by default.
+                -->
+                <xsl:apply-templates select="." mode="split">
+                  <xsl:with-param name="base_recordid" select="$recordid" />
+                  <xsl:with-param name="pos" select="position()" />
+                  <xsl:with-param name="record" select="$record" />
+                </xsl:apply-templates>  
+              </xsl:when>
+            </xsl:choose>
           </xsl:for-each>
 
         </xsl:if>
@@ -444,6 +460,12 @@
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>BluRay</marc:subfield>
         <marc:subfield code='3'>Blu-ray disc</marc:subfield>
+        <marc:subfield code='3'>moving image</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'DVD video')">
+        <marc:subfield code='3'>videodisc</marc:subfield>
+        <marc:subfield code='3'>DVD</marc:subfield>
+        <marc:subfield code='3'>moving image</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>

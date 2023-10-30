@@ -659,26 +659,18 @@
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item856-27">
-                <bf:electronicLocator>
-                  <rdfs:Resource>
-                    <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.whitehouse.gov</rdf:value>
-                  </rdfs:Resource>
-                </bf:electronicLocator>
+                <bf:electronicLocator rdf:resource="http://www.whitehouse.gov" />
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
               </bf:Item>
             </bf:hasItem>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item856-28">
-                <bf:electronicLocator>
-                  <rdfs:Resource>
-                    <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://lcweb.loc.gov/staff/wpp/whitehouse.html</rdf:value>
-                    <bf:note>
-                      <bf:Note>
-                        <rdfs:label>Web site archive</rdfs:label>
-                      </bf:Note>
-                    </bf:note>
-                  </rdfs:Resource>
-                </bf:electronicLocator>
+                <bf:electronicLocator rdf:resource="http://lcweb.loc.gov/staff/wpp/whitehouse.html" />
+                <bf:note>
+                  <bf:Note>
+                    <rdfs:label>Web site archive</rdfs:label>
+                  </bf:Note>
+                </bf:note>
                 <bf:itemOf rdf:resource="http://example.org/12149120#Instance"/>
               </bf:Item>
             </bf:hasItem>
@@ -1001,7 +993,7 @@
             </bf:supplementaryContent>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
-                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/bios/wiley043/93048623.html</rdf:value>
+                <bf:electronicLocator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html" />
                 <bf:note>
                   <bf:Note>
                     <rdfs:label>Contributor biographical information</rdfs:label>
@@ -1011,7 +1003,7 @@
             </bf:supplementaryContent>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
-                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/description/wiley036/93048623.html</rdf:value>
+                <bf:electronicLocator rdf:resource="http://www.loc.gov/catdir/description/wiley036/93048623.html" />
                 <bf:note>
                   <bf:Note>
                     <rdfs:label>Publisher description</rdfs:label>
