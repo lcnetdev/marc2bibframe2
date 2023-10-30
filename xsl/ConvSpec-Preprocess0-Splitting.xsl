@@ -80,6 +80,8 @@
     <xsl:variable name="groupsNS" select="exsl:node-set($groups)" />
     <xsl:variable name="count300" select="count($groupsNS/marc:groups/marc:group/marc:datafield[@tag='300'])"/>
     
+    <!-- <xsl:message><xsl:copy-of select="$groups" /></xsl:message> -->
+    
     <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
     <xsl:variable name="viable856s">
       <xsl:for-each select="marc:datafield[
@@ -458,6 +460,11 @@
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>BluRay</marc:subfield>
         <marc:subfield code='3'>Blu-ray disc</marc:subfield>
+        <marc:subfield code='3'>moving image</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'DVD video')">
+        <marc:subfield code='3'>videodisc</marc:subfield>
+        <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>moving image</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
