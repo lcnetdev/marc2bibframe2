@@ -431,6 +431,19 @@
           <xsl:when test="$cf007pos1and2 = 'as'">[Geological cross-section]</xsl:when>
           <xsl:when test="$cf007pos1and2 = 'ay'">[View]</xsl:when>
           <xsl:when test="$cf007pos1and2 = 'da'">[Celestial globe]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kc'">[Collage]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kd'">[Drawing]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ke'">[Painting]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kf'">[Photomechanical print]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kg'">[Negative (Photograph)]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kh'">[Photographic print]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ki'">[Picture]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kj'">[Print]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kk'">[Poster]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kl'">[Scientific illustration]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kn'">[Wall chart]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kp'">[Postcard]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'kv'">[Photograph]</xsl:when>
           <xsl:when test="$cf007pos1 = 'a'">[Map]</xsl:when>
           <xsl:when test="$cf007pos1 = 'c'">[Electronic resource]</xsl:when>
           <xsl:when test="$cf007pos1 = 'd'">[Globe]</xsl:when>

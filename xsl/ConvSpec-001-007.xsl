@@ -133,56 +133,6 @@
       <!-- projected graphic -->
       <!-- microform -->
       <!-- nonprojected graphic -->
-      <xsl:when test="substring(.,1,1) = 'k'">
-        <xsl:variable name="genreForm">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'c'">Collages</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'd'">Drawing</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">Paintings</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'f'">Photomechanical print</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">Negatives (Photographs)</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'h'">Photographic prints</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'">Picture</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">Prints</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">Posters</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'">Scientific illustrations</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'n'">Wall charts</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'p'">Postcards</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'v'">Photographs</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreFormUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2017027227')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($graphicMaterials,'tgm003277')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2017027246')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($graphicMaterials,'tgm007730')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2019026026')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($graphicMaterials,'tgm007718')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2014026152')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($graphicMaterials,'tgm009250')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'n'"><xsl:value-of select="concat($genreForms,'gf2016026011')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'p'"><xsl:value-of select="concat($genreForms,'gf2014026151')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'v'"><xsl:value-of select="concat($genreForms,'gf2017027249')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreFormUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
       <!-- motion picture -->
       <xsl:when test="substring(.,1,1) = 'm'">
         <xsl:variable name="vAspectRatioURI">
@@ -1247,6 +1197,40 @@
       </xsl:when>
       <!-- nonprojected graphic -->
       <xsl:when test="substring(.,1,1) = 'k'">
+          <xsl:variable name="genreForm">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'c'">Collages</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'd'">Drawings</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'e'">Paintings</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'f'">Photomechanical print</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'g'">Negatives (Photographs)</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'h'">Photographic prints</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'i'">Picture</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'j'">Prints</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'k'">Posters</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'l'">Scientific illustrations</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'n'">Wall charts</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'p'">Postcards</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'v'">Photographs</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="genreFormUri">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2017027227')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2017027231')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2017027246')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'f'"><xsl:value-of select="concat($graphicMaterials,'tgm007730')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2019026026')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'h'"><xsl:value-of select="concat($graphicMaterials,'tgm007718')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'i'"><xsl:value-of select="concat($genreForms,'gf2017027251')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2017027255')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2014026152')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'l'"><xsl:value-of select="concat($graphicMaterials,'tgm009250')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'n'"><xsl:value-of select="concat($genreForms,'gf2016026011')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'p'"><xsl:value-of select="concat($genreForms,'gf2014026151')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'v'"><xsl:value-of select="concat($genreForms,'gf2017027249')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
         <xsl:variable name="vCarrier">
           <xsl:choose>
             <xsl:when test="contains('acdfghijklcopv',substring(.,1,1))">sheet</xsl:when>
@@ -1375,6 +1359,16 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreFormUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
             <xsl:if test="$vCarrierUri != '' and not(contains($vCarrierURIs,$vCarrierUri))">
               <bf:carrier>
                 <bf:Carrier>
