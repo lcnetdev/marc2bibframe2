@@ -760,9 +760,11 @@
                   <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
                 </xsl:call-template>
               </rdfs:label>
-              <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:if test="../marc:subfield[@code='3'] and ../marc:subfield[@code='3'] != 'all'">
+                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
             </bf:Extent>
           </bf:extent>
         </xsl:if>
@@ -790,9 +792,11 @@
                   <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
                 </xsl:call-template>
               </rdfs:label>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:if test="../marc:subfield[@code='3'] and ../marc:subfield[@code='3'] != 'all'">
+                <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
             </bf:Note>
           </bf:note>
         </xsl:for-each>
