@@ -430,6 +430,7 @@
           <xsl:when test="$cf007pos1and2 = 'ar'">[Remote-sensing image]</xsl:when>
           <xsl:when test="$cf007pos1and2 = 'as'">[Geological cross-section]</xsl:when>
           <xsl:when test="$cf007pos1and2 = 'ay'">[View]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'da'">[Celestial globe]</xsl:when>
           <xsl:when test="$cf007pos1 = 'a'">[Map]</xsl:when>
           <xsl:when test="$cf007pos1 = 'c'">[Electronic resource]</xsl:when>
           <xsl:when test="$cf007pos1 = 'd'">[Globe]</xsl:when>

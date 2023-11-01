@@ -130,38 +130,6 @@
       <!-- map -->
       <!-- electronic resource -->
       <!-- globe -->
-      <xsl:when test="substring(.,1,1) = 'd'">
-        <xsl:variable name="genreForm">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'">Celestial globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'b'">Globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'">Globes</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'">Globes</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreFormURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2011026117')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreFormURI != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormURI"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
       <!-- projected graphic -->
       <!-- microform -->
       <!-- nonprojected graphic -->
@@ -688,6 +656,22 @@
       </xsl:when>
       <!-- globe -->
       <xsl:when test="substring(.,1,1) = 'd'">
+          <xsl:variable name="genreForm">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'a'">Celestial globes</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'b'">Globes</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'c'">Globes</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'e'">Globes</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="genreFormURI">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'a'"><xsl:value-of select="concat($genreForms,'gf2011026117')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'b'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'e'"><xsl:value-of select="concat($genreForms,'gf2011026300')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
         <xsl:variable name="colorContent">
           <xsl:choose>
             <xsl:when test="substring(.,4,1) = 'a'">one color</xsl:when>
@@ -748,6 +732,16 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreFormURI != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreFormURI"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
             <xsl:if test="not(../marc:datafield[@tag='337'])">
               <bf:media>
                 <bf:Media>
