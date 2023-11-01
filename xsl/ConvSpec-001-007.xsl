@@ -126,7 +126,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:if>
-    <xsl:choose>
+    <!-- <xsl:choose> -->
       <!-- map -->
       <!-- electronic resource -->
       <!-- globe -->
@@ -134,100 +134,9 @@
       <!-- microform -->
       <!-- nonprojected graphic -->
       <!-- motion picture -->
-      <xsl:when test="substring(.,1,1) = 'm'">
-        <xsl:variable name="vAspectRatioURI">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'nonana')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'ana')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioLabel">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">anamorphic</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'e'">wide-screen</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioURI2">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioLabel2">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">wide-screen</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">wide-screen</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="vAspectRatioNote">
-          <xsl:choose>
-            <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic (wide-screen)</xsl:when>
-            <xsl:when test="substring(.,5,1) = 'd'">anamorphic (wide-screen)</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreForm2">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'c'">Outtakes</xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'">Rushes</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreForm2Uri">
-          <xsl:choose>
-            <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026435')"/></xsl:when>
-            <xsl:when test="substring(.,10,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026551')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$vAspectRatioURI != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
-                    <xsl:if test="$vAspectRatioLabel != ''">
-                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
-                    </xsl:if>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$vAspectRatioURI2 != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
-                    <xsl:if test="$vAspectRatioLabel2 != ''">
-                        <rdfs:label><xsl:value-of select="$vAspectRatioLabel2"/></rdfs:label>
-                    </xsl:if>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$vAspectRatioNote != ''">
-              <bf:aspectRatio>
-                <bf:AspectRatio>
-                  <bf:note>
-                    <bf:Note>
-                      <rdfs:label><xsl:value-of select="$vAspectRatioNote"/></rdfs:label>
-                    </bf:Note>
-                  </bf:note>
-                </bf:AspectRatio>
-              </bf:aspectRatio>
-            </xsl:if>
-            <xsl:if test="$genreForm2 != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm2]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm2, '.')]) = 0">    
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreForm2Uri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreForm2Uri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm2"/></rdfs:label>
-                </bf:GenreForm>
-              </bf:genreForm>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
       <!-- no Work properties for sound recording other than rdf:type -->
       <!-- videorecording -->
-    </xsl:choose>
+    <!-- </xsl:choose> -->
   </xsl:template>
 
   <xsl:template match="marc:controlfield[@tag='007']" mode="instance">
@@ -1412,6 +1321,50 @@
       </xsl:when>
       <!-- motion picture -->
       <xsl:when test="substring(.,1,1) = 'm'">
+          <xsl:variable name="vAspectRatioURI">
+            <xsl:choose>
+              <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'nonana')"/></xsl:when>
+              <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'ana')"/></xsl:when>
+              <xsl:when test="substring(.,5,1) = 'e'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="vAspectRatioLabel">
+            <xsl:choose>
+              <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic</xsl:when>
+              <xsl:when test="substring(.,5,1) = 'd'">anamorphic</xsl:when>
+              <xsl:when test="substring(.,5,1) = 'e'">wide-screen</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="vAspectRatioURI2">
+            <xsl:choose>
+              <xsl:when test="substring(.,5,1) = 'b'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+              <xsl:when test="substring(.,5,1) = 'd'"><xsl:value-of select="concat($mmaspect,'wide')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="vAspectRatioLabel2">
+            <xsl:choose>
+              <xsl:when test="substring(.,5,1) = 'b'">wide-screen</xsl:when>
+              <xsl:when test="substring(.,5,1) = 'd'">wide-screen</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="vAspectRatioNote">
+            <xsl:choose>
+              <xsl:when test="substring(.,5,1) = 'b'">non-anamorphic (wide-screen)</xsl:when>
+              <xsl:when test="substring(.,5,1) = 'd'">anamorphic (wide-screen)</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="genreForm2">
+            <xsl:choose>
+              <xsl:when test="substring(.,10,1) = 'c'">Outtakes</xsl:when>
+              <xsl:when test="substring(.,10,1) = 'd'">Rushes</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="genreForm2Uri">
+            <xsl:choose>
+              <xsl:when test="substring(.,10,1) = 'c'"><xsl:value-of select="concat($genreForms,'gf2011026435')"/></xsl:when>
+              <xsl:when test="substring(.,10,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026551')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
         <xsl:variable name="carrier">
           <xsl:choose>
             <xsl:when test="substring(.,2,1) = 'c'">film cartridge</xsl:when>
@@ -1579,6 +1532,47 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$vAspectRatioURI != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI"/></xsl:attribute>
+                  <xsl:if test="$vAspectRatioLabel != ''">
+                    <rdfs:label><xsl:value-of select="$vAspectRatioLabel"/></rdfs:label>
+                  </xsl:if>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$vAspectRatioURI2 != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vAspectRatioURI2"/></xsl:attribute>
+                  <xsl:if test="$vAspectRatioLabel2 != ''">
+                    <rdfs:label><xsl:value-of select="$vAspectRatioLabel2"/></rdfs:label>
+                  </xsl:if>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$vAspectRatioNote != ''">
+              <bf:aspectRatio>
+                <bf:AspectRatio>
+                  <bf:note>
+                    <bf:Note>
+                      <rdfs:label><xsl:value-of select="$vAspectRatioNote"/></rdfs:label>
+                    </bf:Note>
+                  </bf:note>
+                </bf:AspectRatio>
+              </bf:aspectRatio>
+            </xsl:if>
+            <xsl:if test="$genreForm2 != ''">    
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreForm2Uri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreForm2Uri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm2"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
             <xsl:if test="$carrierUri != '' and not(contains($vCarrierURIs,$carrierUri))">
               <bf:carrier>
                 <bf:Carrier>
