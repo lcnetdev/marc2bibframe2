@@ -420,7 +420,16 @@
       </xsl:when>
       <xsl:when test="$cf007 != ''">
         <xsl:variable name="cf007pos1" select="substring($cf007, 1, 1)"/>
+        <xsl:variable name="cf007pos1and2" select="substring($cf007, 1, 2)"/>
         <xsl:choose>
+          <xsl:when test="$cf007pos1and2 = 'ad'">[Atlas]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ag'">[Graph]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'aj'">[Map]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ak'">[Cartographic material]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'aq'">[Model (Representation)]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ar'">[Remote-sensing image]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'as'">[Geological cross-section]</xsl:when>
+          <xsl:when test="$cf007pos1and2 = 'ay'">[View]</xsl:when>
           <xsl:when test="$cf007pos1 = 'a'">[Map]</xsl:when>
           <xsl:when test="$cf007pos1 = 'c'">[Electronic resource]</xsl:when>
           <xsl:when test="$cf007pos1 = 'd'">[Globe]</xsl:when>

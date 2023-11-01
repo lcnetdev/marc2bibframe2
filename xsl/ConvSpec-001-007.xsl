@@ -128,46 +128,6 @@
     </xsl:if>
     <xsl:choose>
       <!-- map -->
-      <xsl:when test="substring(.,1,1) = 'a'">
-        <xsl:variable name="genreForm">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'd'">Atlases</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'">Graphs</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'">Maps</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'">Cartographic materials</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'">Models (Representations)</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'">Remote-sensing images</xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'">Geological cross-sections</xsl:when>
-            <xsl:when test="substring(.,2,1) = 'y'">Views</xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="genreUri">
-          <xsl:choose>
-            <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026058')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2014026061')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2011026387')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2011026113')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($genreForms,'gf2017027245')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($genreForms,'gf2011026530')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($genreForms,'gf2011026295')"/></xsl:when>
-            <xsl:when test="substring(.,2,1) = 'y'"><xsl:value-of select="concat($genreForms,'gf2018026045')"/></xsl:when>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:if test="$genreForm != '' and count(../marc:datafield[@tag='655']/marc:subfield[. = $genreForm]) = 0 and count(../marc:datafield[@tag='655']/marc:subfield[. = concat($genreForm, '.')]) = 0">
-              <bf:genreForm>
-                <bf:GenreForm>
-                  <xsl:if test="$genreUri != ''">
-                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreUri"/></xsl:attribute>
-                  </xsl:if>
-                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
-                </bf:GenreForm>
-                </bf:genreForm>
-            </xsl:if>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
       <!-- electronic resource -->
       <!-- globe -->
       <xsl:when test="substring(.,1,1) = 'd'">
@@ -406,6 +366,30 @@
     <xsl:choose>
       <!-- map -->
       <xsl:when test="substring(.,1,1) = 'a'">
+          <xsl:variable name="genreForm">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'd'">Atlases</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'g'">Graphs</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'j'">Maps</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'k'">Cartographic materials</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'q'">Models (Representations)</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'r'">Remote-sensing images</xsl:when>
+              <xsl:when test="substring(.,2,1) = 's'">Geological cross-sections</xsl:when>
+              <xsl:when test="substring(.,2,1) = 'y'">Views</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="genreUri">
+            <xsl:choose>
+              <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($genreForms,'gf2011026058')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'g'"><xsl:value-of select="concat($genreForms,'gf2014026061')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'j'"><xsl:value-of select="concat($genreForms,'gf2011026387')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'k'"><xsl:value-of select="concat($genreForms,'gf2011026113')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'q'"><xsl:value-of select="concat($genreForms,'gf2017027245')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'r'"><xsl:value-of select="concat($genreForms,'gf2011026530')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 's'"><xsl:value-of select="concat($genreForms,'gf2011026295')"/></xsl:when>
+              <xsl:when test="substring(.,2,1) = 'y'"><xsl:value-of select="concat($genreForms,'gf2018026045')"/></xsl:when>
+            </xsl:choose>
+          </xsl:variable>
         <xsl:variable name="vCarrierUri">
           <xsl:choose>
             <xsl:when test="substring(.,2,1) = 'd'"><xsl:value-of select="concat($carriers,'nc')"/></xsl:when>
@@ -518,6 +502,16 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
+            <xsl:if test="$genreForm != ''">
+              <bf:genreForm>
+                <bf:GenreForm>
+                  <xsl:if test="$genreUri != ''">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$genreUri"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label><xsl:value-of select="$genreForm"/></rdfs:label>
+                </bf:GenreForm>
+              </bf:genreForm>
+            </xsl:if>
             <xsl:if test="$vCarrierUri != '' and not(contains($vCarrierURIs,$vCarrierUri))">
               <bf:carrier>
                 <bf:Carrier>
