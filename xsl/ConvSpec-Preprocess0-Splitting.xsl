@@ -174,7 +174,13 @@
         <marc:record>
           <marc:leader xml:space="preserve"><xsl:value-of select="marc:leader" /></marc:leader>
           <marc:controlfield xml:space="preserve" tag="001"><xsl:value-of select="marc:controlfield[@tag = '001']" /></marc:controlfield>
-          <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag and substring(.,1,1) != 'c']">
+          <!-- <xsl:for-each select="marc:controlfield[@tag != preceding-sibling::marc:controlfield[1]/@tag and substring(.,1,1) != 'c']"> -->
+          <xsl:for-each select="marc:controlfield[@tag='003'][1]|
+                                marc:controlfield[@tag='005'][1]|
+                                marc:controlfield[@tag='006'][1]|
+                                marc:controlfield[@tag='007' and substring(.,1,1) != 'c'][1]|
+                                marc:controlfield[@tag='008'][1]
+          ">
             <xsl:sort select="@tag"/>
             <marc:controlfield>
               <xsl:attribute name="xml:space">preserve</xsl:attribute>
