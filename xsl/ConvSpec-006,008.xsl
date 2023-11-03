@@ -880,7 +880,7 @@
     </xsl:variable>
     <xsl:choose>
       <!-- books -->
-      <xsl:when test="$vMaterialType='BK'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='BK'">
         <xsl:call-template name="instance008books">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -889,7 +889,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- computer files -->
-      <xsl:when test="$vMaterialType='CF'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='CF'">
         <xsl:call-template name="instance008computerfiles">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -897,7 +897,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- maps -->
-      <xsl:when test="$vMaterialType='MP'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='MP'">
         <xsl:call-template name="instance008maps">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -905,7 +905,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- music -->
-      <xsl:when test="$vMaterialType='MU'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='MU'">
         <xsl:call-template name="instance008music">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -913,7 +913,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- continuing resources -->
-      <xsl:when test="$vMaterialType='CR'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='CR'">
         <xsl:call-template name="instance008cr">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -921,7 +921,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- visual materials -->
-      <xsl:when test="$vMaterialType='VM'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='VM'">
         <xsl:call-template name="instance008visual">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
@@ -929,7 +929,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- mixed materials -->
-      <xsl:when test="$vMaterialType='MX'">
+      <xsl:when test="$pInstanceType != 'SecondaryInstance' and $vMaterialType='MX'">
         <xsl:call-template name="instance008mixed">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
