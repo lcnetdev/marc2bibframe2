@@ -72,6 +72,9 @@
               <xsl:apply-templates select="$df3XXs[marc:subfield[@code='3' and contains(., $c3)]]">
                 <xsl:with-param name="genId">1</xsl:with-param>
               </xsl:apply-templates>
+              <xsl:apply-templates select="$df3XXs[not(marc:subfield[@code='3']) and marc:subfield[@code='a' and contains(., $c3)]]">
+                <xsl:with-param name="genId">1</xsl:with-param>
+              </xsl:apply-templates>
             </xsl:for-each>    
           </marc:group>
         </xsl:for-each>
