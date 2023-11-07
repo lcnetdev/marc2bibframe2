@@ -493,11 +493,13 @@
         <marc:subfield code='3'>BluRay</marc:subfield>
         <marc:subfield code='3'>Blu-ray disc</marc:subfield>
         <marc:subfield code='3'>moving image</marc:subfield>
+        <marc:subfield code='3'>video</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'DVD video')">
         <marc:subfield code='3'>videodisc</marc:subfield>
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>moving image</marc:subfield>
+        <marc:subfield code='3'>video</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>
