@@ -503,4 +503,78 @@
     <p href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</p>
     <r href="http://id.loc.gov/vocabulary/descriptionConventions/aacr">aacr</r>
   </descriptionConventions>
+  
+  <!-- media type -->
+  <!-- used in 337 -->
+  <mediaTypes>
+    <p href="http://id.loc.gov/vocabulary/mediaTypes/p">microscopic</p>
+    <s href="http://id.loc.gov/vocabulary/mediaTypes/s">audio</s>
+    <g href="http://id.loc.gov/vocabulary/mediaTypes/g">projected</g>
+    <v href="http://id.loc.gov/vocabulary/mediaTypes/v">video</v>
+    <z href="http://id.loc.gov/vocabulary/mediaTypes/z">unspecified</z>
+    <e href="http://id.loc.gov/vocabulary/mediaTypes/e">stereographic</e>
+    <x href="http://id.loc.gov/vocabulary/mediaTypes/x">other</x>
+    <h href="http://id.loc.gov/vocabulary/mediaTypes/h">microform</h>
+    <n href="http://id.loc.gov/vocabulary/mediaTypes/n">unmediated</n>
+    <c href="http://id.loc.gov/vocabulary/mediaTypes/c">computer</c>
+  </mediaTypes>
+  
+  <carriers>
+    <se href="http://id.loc.gov/vocabulary/carriers/se">audio cylinder</se>
+    <st href="http://id.loc.gov/vocabulary/carriers/st">audiotape reel</st>
+    <no href="http://id.loc.gov/vocabulary/carriers/no">card</no>
+    <gc href="http://id.loc.gov/vocabulary/carriers/gc">filmstrip cartridge</gc>
+    <pz href="http://id.loc.gov/vocabulary/carriers/pz">other microscopic carrier</pz>
+    <es href="http://id.loc.gov/vocabulary/carriers/es">stereograph disc</es>
+    <nn href="http://id.loc.gov/vocabulary/carriers/nn">flipchart</nn>
+    <nb href="http://id.loc.gov/vocabulary/carriers/nb">sheet</nb>
+    <ch href="http://id.loc.gov/vocabulary/carriers/ch">computer tape reel</ch>
+    <cr href="http://id.loc.gov/vocabulary/carriers/cr">online resource</cr>
+    <ha href="http://id.loc.gov/vocabulary/carriers/ha">aperture card</ha>
+    <sw href="http://id.loc.gov/vocabulary/carriers/sw">audio wire reel</sw>
+    <vd href="http://id.loc.gov/vocabulary/carriers/vd">videodisc</vd>
+    <gs href="http://id.loc.gov/vocabulary/carriers/gs">slide</gs>
+    <cz href="http://id.loc.gov/vocabulary/carriers/cz">other computer carrier</cz>
+    <sq href="http://id.loc.gov/vocabulary/carriers/sq">audio roll</sq>
+    <cb href="http://id.loc.gov/vocabulary/carriers/cb">computer chip cartridge</cb>
+    <vz href="http://id.loc.gov/vocabulary/carriers/vz">other video carrier</vz>
+    <hj href="http://id.loc.gov/vocabulary/carriers/hj">microfilm roll</hj>
+    <mo href="http://id.loc.gov/vocabulary/carriers/mo">film roll</mo>
+    <pp href="http://id.loc.gov/vocabulary/carriers/pp">microscope slide</pp>
+    <eh href="http://id.loc.gov/vocabulary/carriers/eh">stereograph card</eh>
+    <gf href="http://id.loc.gov/vocabulary/carriers/gf">filmstrip</gf>
+    <sb href="http://id.loc.gov/vocabulary/carriers/sb">audio belt</sb>
+    <gd href="http://id.loc.gov/vocabulary/carriers/gd">filmslip</gd>
+    <cf href="http://id.loc.gov/vocabulary/carriers/cf">computer tape cassette</cf>
+    <mf href="http://id.loc.gov/vocabulary/carriers/mf">film cassette</mf>
+    <gt href="http://id.loc.gov/vocabulary/carriers/gt">overhead transparency</gt>
+    <hg href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</hg>
+    <sd href="http://id.loc.gov/vocabulary/carriers/sd">audio disc</sd>
+    <ce href="http://id.loc.gov/vocabulary/carriers/ce">computer disc cartridge</ce>
+    <hf href="http://id.loc.gov/vocabulary/carriers/hf">microfiche cassette</hf>
+    <hc href="http://id.loc.gov/vocabulary/carriers/hc">microfilm cassette</hc>
+    <na href="http://id.loc.gov/vocabulary/carriers/na">roll</na>
+    <hd href="http://id.loc.gov/vocabulary/carriers/hd">microfilm reel</hd>
+    <ck href="http://id.loc.gov/vocabulary/carriers/ck">computer card</ck>
+    <vc href="http://id.loc.gov/vocabulary/carriers/vc">video cartridge</vc>
+    <he href="http://id.loc.gov/vocabulary/carriers/he">microfiche</he>
+    <hb href="http://id.loc.gov/vocabulary/carriers/hb">microfilm cartridge</hb>
+    <nr href="http://id.loc.gov/vocabulary/carriers/nr">object</nr>
+    <hh href="http://id.loc.gov/vocabulary/carriers/hh">microfilm slip</hh>
+    <vf href="http://id.loc.gov/vocabulary/carriers/vf">videocassette</vf>
+    <ca href="http://id.loc.gov/vocabulary/carriers/ca">computer tape cartridge</ca>
+    <hz href="http://id.loc.gov/vocabulary/carriers/hz">other microform carrier</hz>
+    <vr href="http://id.loc.gov/vocabulary/carriers/vr">videotape reel</vr>
+    <nc href="http://id.loc.gov/vocabulary/carriers/nc">volume</nc>
+    <si href="http://id.loc.gov/vocabulary/carriers/si">sound track reel</si>
+    <mr href="http://id.loc.gov/vocabulary/carriers/mr">film reel</mr>
+    <mz href="http://id.loc.gov/vocabulary/carriers/mz">other projected carrier</mz>
+    <sz href="http://id.loc.gov/vocabulary/carriers/sz">other audio carrier</sz>
+    <mc href="http://id.loc.gov/vocabulary/carriers/mc">film cartridge</mc>
+    <nz href="http://id.loc.gov/vocabulary/carriers/nz">other unmediated carrier</nz>
+    <ez href="http://id.loc.gov/vocabulary/carriers/ez">other stereographic carrier</ez>
+    <ss href="http://id.loc.gov/vocabulary/carriers/ss">audiocassette</ss>
+    <cd href="http://id.loc.gov/vocabulary/carriers/cd">computer disc</cd>
+    <sg href="http://id.loc.gov/vocabulary/carriers/sg">audio cartridge</sg>
+  </carriers>
 </maps>
