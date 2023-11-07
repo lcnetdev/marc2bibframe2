@@ -702,8 +702,13 @@
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:if test="following-sibling::marc:subfield[position()=1]/@code != 'b'">
+            <xsl:variable name="tA" select="." />
+            <xsl:variable name="mtURI" select="($codeMaps/maps/mediaTypes/*[. = $tA]/@href|$codeMaps/maps/carriers/*[. = $tA]/@href)[1]" />
             <xsl:element name="{$pProp}">
               <xsl:element name="{$pResource}">
+                <xsl:if test="$mtURI!=''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$mtURI"/></xsl:attribute>
+                </xsl:if>
                 <rdfs:label>
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -712,23 +717,25 @@
                     <xsl:with-param name="pString" select="."/>
                   </xsl:call-template>
                 </rdfs:label>
-                <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = '0'">
-                  <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="$mtURI=''">
+                  <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = '0'">
+                   <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
+                     <xsl:with-param name="serialization" select="$serialization"/>
+                   </xsl:apply-templates>
+                  </xsl:if>
+                  <xsl:for-each select="../marc:subfield[@code='2']">
+                    <xsl:variable name="vCode">
+                      <xsl:call-template name="tNormalizeCode">
+                        <xsl:with-param name="pCode" select="."/>
+                      </xsl:call-template>
+                    </xsl:variable>
+                    <bf:source>
+                      <bf:Source>
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreFormSchemes,$vCode)"/></xsl:attribute>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:for-each>
                 </xsl:if>
-                <xsl:for-each select="../marc:subfield[@code='2']">
-                  <xsl:variable name="vCode">
-                    <xsl:call-template name="tNormalizeCode">
-                      <xsl:with-param name="pCode" select="."/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($genreFormSchemes,$vCode)"/></xsl:attribute>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:for-each>
                 <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>

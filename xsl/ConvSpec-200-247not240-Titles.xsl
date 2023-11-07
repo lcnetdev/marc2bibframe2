@@ -326,18 +326,12 @@
     <xsl:param name="pInstanceType" />
     <xsl:variable name="output245">
       <xsl:choose>
-        <xsl:when test="$pInstanceType = 'SecondaryInstance' and ../marc:datafield[@tag='856' or @tag='859']">
-          <xsl:value-of select="false()"/>
-        </xsl:when>
-        <xsl:when test="$pInstanceType != 'SecondaryInstance'">
-          <xsl:value-of select="true()"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="true()"/>
-        </xsl:otherwise>
+        <xsl:when test="$pInstanceType = 'SecondaryInstance' and ../marc:datafield[@tag='856' or @tag='859']">SKIP</xsl:when>
+        <xsl:when test="$pInstanceType != 'SecondaryInstance'">TRUE</xsl:when>
+        <xsl:otherwise>TRUE</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:if test="$output245">
+    <xsl:if test="$output245!='SKIP'">
       <xsl:variable name="vOccurrence">
       <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
     </xsl:variable>
