@@ -72,7 +72,7 @@
               <xsl:apply-templates select="$df3XXs[marc:subfield[@code='3' and contains(., $c3)]]">
                 <xsl:with-param name="genId">1</xsl:with-param>
               </xsl:apply-templates>
-              <xsl:apply-templates select="$df3XXs[not(marc:subfield[@code='3']) and marc:subfield[@code='a' and contains(., $c3)]]">
+              <xsl:apply-templates select="$df3XXs[not(marc:subfield[@code='3']) and marc:subfield[@code='a' and .=$c3]]">
                 <xsl:with-param name="genId">1</xsl:with-param>
               </xsl:apply-templates>
             </xsl:for-each>    
@@ -494,11 +494,13 @@
         <marc:subfield code='3'>Blu-ray disc</marc:subfield>
         <marc:subfield code='3'>moving image</marc:subfield>
         <marc:subfield code='3'>video</marc:subfield>
+        <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'DVD video')">
         <marc:subfield code='3'>videodisc</marc:subfield>
         <marc:subfield code='3'>DVD</marc:subfield>
         <marc:subfield code='3'>moving image</marc:subfield>
+        <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
         <marc:subfield code='3'>video</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
