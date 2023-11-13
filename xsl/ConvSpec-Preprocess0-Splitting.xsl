@@ -202,6 +202,9 @@
               <xsl:apply-templates select="." />
             </xsl:if>
           </xsl:for-each>
+          <xsl:if test="not(marc:datafield[@tag='337'])">
+            <xsl:apply-templates select="$groupsNS/marc:groups/marc:group[1]/marc:datafield[@tag='300']" mode="add337" />
+          </xsl:if>
           <xsl:for-each select="marc:datafield[
                                     @tag &gt; 300 and 
                                     @tag != '856' and @tag != '859' and 
@@ -330,6 +333,9 @@
         </marc:subfield>
       </marc:datafield>
       <xsl:copy-of select="../marc:datafield" />
+      <xsl:if test="not(../marc:datafield[@tag='337'])">
+        <xsl:apply-templates select="." mode="add337" />
+      </xsl:if>
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
@@ -374,6 +380,41 @@
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
       </marc:datafield>
     </marc:record>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='300']" mode="add337">
+    <marc:datafield tag="337">
+      <xsl:choose>
+        <xsl:when test="contains(marc:subfield[@code='3'], 'audio') or 
+                        contains(marc:subfield[@code='3'], 'sound') or 
+                        (marc:subfield[@code='3']='all' and contains(marc:subfield[@code='a'], 'audio')) or
+                        (marc:subfield[@code='3']='all' and contains(marc:subfield[@code='a'], 'sound'))
+          ">
+          <marc:subfield code='a'>audio</marc:subfield>
+          <marc:subfield code='b'>s</marc:subfield>
+        </xsl:when>
+        <xsl:when test="contains(marc:subfield[@code='3'], 'moving') or 
+                        (marc:subfield[@code='3']='all' and (
+                          contains(marc:subfield[@code='a'], 'moving') or 
+                          contains(marc:subfield[@code='a'], 'film') or 
+                          contains(marc:subfield[@code='a'], 'DVD') or 
+                          contains(marc:subfield[@code='a'], 'Blu')
+                        ))
+         ">
+          <marc:subfield code='a'>projected</marc:subfield>
+          <marc:subfield code='b'>g</marc:subfield>
+        </xsl:when>
+        <xsl:when test="contains(marc:subfield[@code='3'], 'video') or 
+                        (marc:subfield[@code='3']='all' and contains(marc:subfield[@code='a'], 'video'))">
+          <marc:subfield code='a'>video</marc:subfield>
+          <marc:subfield code='b'>v</marc:subfield>
+        </xsl:when>
+        <xsl:otherwise>
+          <marc:subfield code='a'>unmediated</marc:subfield>
+          <marc:subfield code='b'>n</marc:subfield>
+        </xsl:otherwise>
+      </xsl:choose>
+    </marc:datafield>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='300']" mode="groupify">
@@ -473,6 +514,8 @@
       <xsl:otherwise>[Unknown]</xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  
+  
   <xsl:template name="addSF3">
     <xsl:param name="theA" />
     <xsl:choose>
@@ -486,6 +529,12 @@
       </xsl:when>
       <xsl:when test="contains($theA, 'audiocassette')">
         <marc:subfield code='3'>audiocassette</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'audio file')">
+        <marc:subfield code='3'>audio file</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'video file')">
+        <marc:subfield code='3'>video file</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'videodisc')">
         <marc:subfield code='3'>videodisc</marc:subfield>
