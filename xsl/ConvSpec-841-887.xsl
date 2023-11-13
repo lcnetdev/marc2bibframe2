@@ -45,19 +45,15 @@
     <!-- only process if there is $u -->
     <xsl:if test="marc:subfield[@code='u'] and not(../marc:datafield[@tag='758'])">
       <!-- lower case for comparison -->
+      <xsl:variable name="vSubfieldA" select="translate(normalize-space(marc:subfield[@code='a'][1]),$upper,$lower)"/>
       <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
       <xsl:choose>
-        <xsl:when test="$vSubfield3 = 'table of contents'">
+        <xsl:when test="contains($vSubfieldA, 'table of contents') or contains($vSubfield3, 'table of contents')">
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <xsl:for-each select="marc:subfield[@code='u']">
                 <bf:tableOfContents>
-                  <bf:TableOfContents>
-                    <rdf:value>
-                      <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-                      <xsl:value-of select="."/>
-                    </rdf:value>
-                  </bf:TableOfContents>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
                 </bf:tableOfContents>
               </xsl:for-each>
             </xsl:when>
@@ -179,7 +175,7 @@
               </xsl:choose>
               <xsl:apply-templates select="." mode="locator856" />
           </xsl:when>
-          <xsl:when test="@ind2='2' and $vSubfield3 != 'table of contents'">
+          <xsl:when test="@ind2='2' and not(contains($vSubfield3, 'table of contents'))">
             <xsl:apply-templates select="." mode="locator856">
               <xsl:with-param name="serialization" select="$serialization"/>
               <xsl:with-param name="pProp">bf:supplementaryContent</xsl:with-param>

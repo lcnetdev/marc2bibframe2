@@ -99,17 +99,21 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:tableOfContents>
-          <bf:TableOfContents>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:value-of select="normalize-space($vLabel)"/>
-            </rdfs:label>
-            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </bf:TableOfContents>
+          <xsl:choose>
+            <xsl:when test="marc:subfield[@code='u']">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:TableOfContents>
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="normalize-space($vLabel)"/>
+                </rdfs:label>
+              </bf:TableOfContents>
+            </xsl:otherwise>
+          </xsl:choose>
         </bf:tableOfContents>
       </xsl:when>
     </xsl:choose>
