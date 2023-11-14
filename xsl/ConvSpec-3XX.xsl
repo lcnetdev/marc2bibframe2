@@ -325,25 +325,29 @@
                 </xsl:call-template>
               </rdfs:label>
             </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b'][position() &gt; 1]">
-              <!-- process like $0 -->
-              <bf:identifiedBy>
-                <bf:Identifier>
-                  <rdf:value>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($msupplcont,.)"/></xsl:attribute>
-                  </rdf:value>
-                </bf:Identifier>
-              </bf:identifiedBy>
-            </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='0']" mode="subfield0orw">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-            <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
+            <xsl:if test="$vUri = ''">
+              <xsl:for-each select="marc:subfield[@code='b'][position() &gt; 1]">
+                <!-- process like $0 -->
+                <bf:identifiedBy>
+                  <bf:Identifier>
+                    <rdf:value>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($msupplcont,.)"/></xsl:attribute>
+                    </rdf:value>
+                  </bf:Identifier>
+                </bf:identifiedBy>
+              </xsl:for-each>
+              <xsl:apply-templates select="marc:subfield[@code='0']" mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+              <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:if>
+            <!--
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </bf:SupplementaryContent>
         </bf:supplementaryContent>
       </xsl:when>
