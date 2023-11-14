@@ -99,11 +99,6 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:tableOfContents>
-          <xsl:choose>
-            <xsl:when test="marc:subfield[@code='u']">
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
               <bf:TableOfContents>
                 <rdfs:label>
                   <xsl:if test="$vXmlLang != ''">
@@ -111,9 +106,12 @@
                   </xsl:if>
                   <xsl:value-of select="normalize-space($vLabel)"/>
                 </rdfs:label>
+                <xsl:if test="marc:subfield[@code='u']">
+                  <bf:electronicLocator>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
+                  </bf:electronicLocator>
+                </xsl:if>
               </bf:TableOfContents>
-            </xsl:otherwise>
-          </xsl:choose>
         </bf:tableOfContents>
       </xsl:when>
     </xsl:choose>
