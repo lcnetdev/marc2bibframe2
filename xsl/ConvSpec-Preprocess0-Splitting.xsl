@@ -202,7 +202,7 @@
               <xsl:apply-templates select="." />
             </xsl:if>
           </xsl:for-each>
-          <xsl:if test="not(marc:datafield[@tag='337'])">
+          <xsl:if test="not(marc:controlfield[@tag='007' and substring(.,1,1) != 'c'][1]) and not(marc:datafield[@tag='337'])">
             <xsl:apply-templates select="$groupsNS/marc:groups/marc:group[1]/marc:datafield[@tag='300']" mode="add337" />
           </xsl:if>
           <xsl:for-each select="marc:datafield[
