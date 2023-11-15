@@ -909,11 +909,7 @@
                 </bf:relatedTo>
               </bflc:Relationship>
             </bflc:relationship>
-            <bf:tableOfContents>
-              <bf:TableOfContents>
-                <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.loc.gov/catdir/toc/onix07/93048623.html</rdf:value>
-              </bf:TableOfContents>
-            </bf:tableOfContents>
+            <bf:tableOfContents rdf:resource="http://www.loc.gov/catdir/toc/onix07/93048623.html" />
       <bf:hasInstance rdf:resource="http://example.org/4417401#Instance"/>
           </bf:Work>
           <bf:Instance rdf:about="http://example.org/4417401#Instance">

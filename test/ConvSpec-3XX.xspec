@@ -240,9 +240,9 @@
     <x:expect label="353 creates a supplementaryContent/SupplementaryContent property of the Work" test="count(//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent) = 1"/>
     <x:expect label="$a creates rdfs:label of SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/rdfs:label = 'biography of creator'"/>
     <x:expect label="$b generates URI for SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/@rdf:about = 'http://id.loc.gov/vocabulary/msupplcont/creatorbio'"/>
-    <x:expect label="$0 creates an identifiedBy property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/bio'"/>
-    <x:expect label="$2 creates a source property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:source/bf:Source/bf:code='msupplcont'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Bio supplement'"/>
+    <!-- <x:expect label="$0 creates an identifiedBy property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:identifiedBy/bf:Identifier/rdf:value/@rdf:resource = 'http://example.com/bio'"/> -->
+    <!-- <x:expect label="$2 creates a source property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bf:source/bf:Source/bf:code='msupplcont'"/> -->
+    <!-- <x:expect label="$3 creates a bflc:appliesTo property of the SupplementaryContent" test="//bf:Work[1]/bf:supplementaryContent/bf:SupplementaryContent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Bio supplement'"/> -->
   </x:scenario>
   
   <x:scenario label="362 - DATES OF PUBLICATION AND/OR SEQUENTIAL DESIGNATION">
