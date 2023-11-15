@@ -13,8 +13,7 @@
   <x:scenario label="856 - ELECTRONIC LOCATION AND ACCESS">
     <x:scenario label="$3 = 'Table of Contents'">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>
-      <x:expect label="856 with $3 = 'Table of Contents' generates a tableOfContents property of the Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:tableOfContents/bf:TableOfContents/rdf:value='http://www.loc.gov/catdir/toc/onix07/93048623.html'"/>
-      <x:expect label="...with xs:anyURI datatype" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:tableOfContents/bf:TableOfContents/rdf:value/@rdf:datatype='http://www.w3.org/2001/XMLSchema#anyURI'"/>
+      <x:expect label="856 with $3 = 'Table of Contents' generates a tableOfContents property of the Work" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:tableOfContents/@rdf:resource='http://www.loc.gov/catdir/toc/onix07/93048623.html'"/>
     </x:scenario>
     <x:scenario label="If ind1 = 2">
       <x:context href="data/ConvSpec-841-887/marc.xml"/>

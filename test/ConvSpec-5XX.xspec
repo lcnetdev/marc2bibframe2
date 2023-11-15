@@ -45,8 +45,7 @@
   <x:scenario label="505 - FORMATTED CONTENTS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="505 creates a tableOfContents/TableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
-    <x:expect label="$u creates an rdf:value property of the TableOfContents" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdf:value = 'https://stephenpaulus.com'"/>
-    <x:expect label="...with xs:anyURI datatype" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdf:value/@rdf:datatype='http://www.w3.org/2001/XMLSchema#anyURI'"/>
+    <x:expect label="$u creates an electronicLocator property of the TableOfContents" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/bf:electronicLocator/@rdf:resource = 'https://stephenpaulus.com'"/>
   </x:scenario>
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">

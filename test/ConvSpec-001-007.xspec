@@ -66,8 +66,8 @@
       <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
       <x:expect label="...and creates a bf:content property" test="//bf:Work[1]/bf:content/bf:Content/rdfs:label = 'cartographic image'"/>
       <x:expect label="...if no 337, creates media property of the Instance" test="//bf:Instance[1]/bf:media/bf:Media/rdfs:label = 'unmediated'"/>
-      <x:expect label="pos 1 sets a genreForm/GenreForm property of the Work" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2018026045'"/>
-      <x:expect label="...with a label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'Views'"/>
+      <x:expect label="pos 1 sets a genreForm/GenreForm property of the Instance" test="//bf:Instance[1]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2018026045'"/>
+      <x:expect label="...with a label" test="//bf:Instance[1]/bf:genreForm/bf:GenreForm/rdfs:label = 'Views'"/>
       <x:expect label="...if no 336, creates a content property of the Work" test="//bf:Work[1]/bf:content/bf:Content/@rdf:about='http://id.loc.gov/vocabulary/contentTypes/cri'"/>
       <x:expect label="...with a label" test="//bf:Work[1]/bf:content/bf:Content/rdfs:label = 'cartographic image'"/>
       <x:expect label="...if no duplicate property from 338/008, creates a carrier property of the Instance" test="//bf:Instance[1]/bf:carrier[1]/bf:Carrier/@rdf:about='http://id.loc.gov/vocabulary/carriers/nb'"/>
@@ -100,8 +100,8 @@
       <x:expect label="...with a label" test="//bf:Work[3]/bf:content/bf:Content/rdfs:label = 'cartographic three-dimensional form'"/>
       <x:expect label="...and creates a bf:media property of the Instance if no 337" test="//bf:Instance[3]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/n'"/>
       <x:expect label="...with a label" test="//bf:Instance[3]/bf:media/bf:Media/rdfs:label = 'unmediated'"/>
-      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Work" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026300'"/>
-      <x:expect label="...with an rdfs:label" test="//bf:Work[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Globes'"/>
+      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Instance" test="//bf:Instance[3]/bf:genreForm[1]/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026300'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[3]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Globes'"/>
       <x:expect label="pos 1 creates a bf:carrier property of the Instance if no duplicate property from 338/008" test="//bf:Instance[3]/bf:carrier/bf:Carrier/@rdf:about='http://id.loc.gov/vocabulary/carriers/nr'"/>
       <x:expect label="pos 3 creates a colorContent property of the Instance" test="//bf:Instance[3]/bf:colorContent/bf:ColorContent/rdfs:label = 'color'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[3]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'synthetic'"/>
@@ -150,8 +150,8 @@
       <x:expect label="...and creates a bf:content property if no 336" test="//bf:Work[6]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/sti'"/>
       <x:expect label="...with a label" test="//bf:Work[6]/bf:content/bf:Content/rdfs:label = 'still image'"/>
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[6]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/n'"/>
-      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Work" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/vocabulary/graphicMaterials/tgm007718'"/>
-      <x:expect label="...with an rdfs:label" test="//bf:Work[6]/bf:genreForm/bf:GenreForm/rdfs:label = 'Photographic prints'"/>
+      <x:expect label="pos 1 creates a genreForm/GenreForm property of the Instance" test="//bf:Instance[6]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/vocabulary/graphicMaterials/tgm007718'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[6]/bf:genreForm/bf:GenreForm/rdfs:label = 'Photographic prints'"/>
       <x:expect label="pos 1 creates a bf:carrier property of the Instance if no duplicate property from 338/008" test="//bf:Instance[6]/bf:carrier/bf:Carrier/@rdf:about='http://id.loc.gov/vocabulary/carriers/nb'"/>
       <x:expect label="pos 3 creates a colorContent property of the Instance" test="//bf:Instance[6]/bf:colorContent/bf:ColorContent/rdfs:label = 'color'"/>
       <x:expect label="pos 4 creates a baseMaterial property of the Instance" test="//bf:Instance[6]/bf:baseMaterial/bf:BaseMaterial/rdfs:label = 'paper'"/>
@@ -169,9 +169,9 @@
       <x:expect label="pos 3 creates a colorContent property of the Instance" test="//bf:Instance[7]/bf:colorContent/bf:ColorContent/rdfs:label = 'color'"/>
       <x:expect label="pos 4 may create a projectionCharacteristic/PresentationFormat property of the Instance" test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/@rdf:about='http://id.loc.gov/vocabulary/mpresformat/sound'"/>
       <x:expect label="...with an rdfs:label " test="//bf:Instance[7]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label = 'standard sound aperture'"/>
-      <x:expect label="...or an aspectRatio/AspectRatio property of the Work" test="//bf:Work[8]/bf:aspectRatio/bf:AspectRatio[1]/@rdf:about = 'http://id.loc.gov/vocabulary/maspect/nonana'"/>
-      <x:expect label="...and a second" test="//bf:Work[8]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide-screen'"/>
-      <x:expect label="...and a third with a note" test="//bf:Work[8]/bf:aspectRatio[3]/bf:AspectRatio/bf:note/bf:Note/rdfs:label = 'non-anamorphic (wide-screen)'"/>
+      <x:expect label="...or an aspectRatio/AspectRatio property of the Instance" test="//bf:Instance[8]/bf:aspectRatio/bf:AspectRatio[1]/@rdf:about = 'http://id.loc.gov/vocabulary/maspect/nonana'"/>
+      <x:expect label="...and a second" test="//bf:Instance[8]/bf:aspectRatio[2]/bf:AspectRatio/rdfs:label = 'wide-screen'"/>
+      <x:expect label="...and a third with a note" test="//bf:Instance[8]/bf:aspectRatio[3]/bf:AspectRatio/bf:note/bf:Note/rdfs:label = 'non-anamorphic (wide-screen)'"/>
       <x:expect label="pos 5 creates a soundContent/SoundContent property of the Instance" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/@rdf:about = 'http://id.loc.gov/vocabulary/msoundcontent/sound'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundContent/bf:SoundContent/rdfs:label = 'sound'"/>
       <x:expect label="pos 6 creates a soundCharacteristic/RecordingMedium property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[1]/bf:RecordingMedium/@rdf:about = 'http://id.loc.gov/vocabulary/mrecmedium/opt'"/>
@@ -179,8 +179,8 @@
       <x:expect label="pos 7 creates a dimensions property of the Instance - 007" test="//bf:Instance[7]/bf:dimensions = '16 mm.'"/>
       <x:expect label="pos 8 creates a soundCharacteristic/PlaybackChannels property of the Instance" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/@rdf:about = 'http://id.loc.gov/vocabulary/mplayback/mon'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:soundCharacteristic[2]/bf:PlaybackChannels/rdfs:label = 'mono'"/>
-      <x:expect label="pos 9 creates a genreForm property of the Work" test="//bf:Work[7]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026435'"/>
-      <x:expect label="...and an rdfs:label" test="//bf:Work[7]/bf:genreForm/bf:GenreForm/rdfs:label = 'Outtakes'"/>
+      <x:expect label="pos 9 creates a genreForm property of the Instance" test="//bf:Instance[7]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2011026435'"/>
+      <x:expect label="...and an rdfs:label" test="//bf:Instance[7]/bf:genreForm/bf:GenreForm/rdfs:label = 'Outtakes'"/>
       <x:expect label="pos 10 creates a polarity property of the Instance" test="//bf:Instance[7]/bf:polarity/bf:Polarity/rdfs:label = 'positive'"/>
       <x:expect label="pos 11 creates a generation/Generation property of the Instance" test="//bf:Instance[7]/bf:generation/bf:Generation/@rdf:about = 'http://id.loc.gov/vocabulary/mgeneration/viewcopy'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Instance[7]/bf:generation/bf:Generation/rdfs:label = 'viewing copy'"/>
