@@ -753,6 +753,7 @@
   
   <xsl:template match="marc:datafield[@tag='300' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='300')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType" />
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vExtent">
       <xsl:apply-templates select="marc:subfield[@code='a' or @code='f' or @code='g']" mode="concat-nodes-space"/>
@@ -771,7 +772,10 @@
                   <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
                 </xsl:call-template>
               </rdfs:label>
-              <xsl:if test="../marc:subfield[@code='3'] and ../marc:subfield[@code='3'] != 'all'">
+              <xsl:if test="marc:subfield[@code='3'] and 
+                            marc:subfield[@code='3'] != 'all' and
+                            $pInstanceType != 'SecondaryInstance'
+                ">
                 <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
