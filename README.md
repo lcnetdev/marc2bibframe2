@@ -1,5 +1,5 @@
 
-# [![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/master.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2)
+[![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/master.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2)
 
 # marc2bibframe2
 
@@ -57,7 +57,7 @@ stylesheet, it can be invoked:
 
 More information about this process was presented in July 2023.  That 
 presentation can be [viewed in full](https://www.youtube.com/watch?v=9i3y23XiNQE)
-or the [slides downloaded](https://www.loc.gov/bibframe/pdf/LD4-Breaking News-Splitting MARC records-20230712.pdf).
+or the [slides downloaded](<https://www.loc.gov/bibframe/pdf/LD4-Breaking%20News-Splitting MARC records-20230712.pdf>).
 
 ### Converter parameters
 The converter supports several optional parameters:
