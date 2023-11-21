@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v2.4.0
+
+Conversion updates based on specifications v2.4. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Placement of title non-filing indicator values in new bflc property "nonSortNum."
+* All bytes from the MARC 007 field are now mapped to the BIBFRAME Instance.
+* MARC 856 fields will create BIBFRAME Instances instead of BIBFRAME Items.
+* Splitting of a single MARC record with multiple 007, 300 and 856 fields into multiple records - one for each iteration of the resource – which creates multiple Instances linked to a Work. The split occurs as a preprocessing step documented in the new "Preprocess 0" spec. 
+* The Instances created via the splitting process are given the rdf:type "bflc:SecondaryInstance."
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.3.0 in the specifications are marked in red.
+
+
 ## v2.3.0
 
 Conversion updates based on specifications v2.3. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
@@ -10,7 +23,7 @@ Conversion updates based on specifications v2.3. See the Library of Congress’s
 * 561, 563, and 581 to Instance unless $5, in which case continues to go to Item.
 * Incorporate new 'use by agency' statuses for Classification resources from 050, 055, 060, 070. 
 
-See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.1.0 in the specifications are marked in red.
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.2.0 in the specifications are marked in red.
 
 ## v2.2.1
 
