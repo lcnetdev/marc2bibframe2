@@ -1,3 +1,21 @@
+--- 2.4.0 2023/11/22
+Changes towards updated v2.4.0 specifications:
+	ConvSpec 001-007:
+	  All bytes converted to Instance properties/classes
+	ConvSpec 3XX:
+	  Move creation of bf:colorContent (MARC 340) from Work to Instance
+	  Move creation of bf:soundContent (MARC 344) from Work to Instance
+	ConvSpec 240, X30:
+	  Creation of bflc:nonSortNum from non-filing indicators
+	ConvSpec 720,  740-758:
+	  Addition of bflc:SecondaryInstance to MARC records with 758 $1 fields
+	ConvSpec Process 0-8:
+	  Process 2 deprecated and instructions for creating Hubs moved to ConvSpec 240, X30
+	  Process 3 modified to create Instances instead of Items from 856 fields and 	  
+	  bf:electronicLocator structure changed from rdf:value to rdf:resource
+    New Preprocess 0
+
+
 --- 2.3.0 2023/01/20
 Changes towards updated v2.3.0 specifications:
   ConvSpec-050-088:  
