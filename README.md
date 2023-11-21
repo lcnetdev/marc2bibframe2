@@ -55,6 +55,10 @@ stylesheet, it can be invoked:
 
     xsltproc xsl/ConvSpec-Preprocess0-Splitting.xsl test/data/marc.xml
 
+More information about this process was presented in July 2023.  That 
+presentation can be [viewed in full](https://www.youtube.com/watch?v=9i3y23XiNQE)
+or the [slides downloaded](<https://www.loc.gov/bibframe/pdf/LD4-Breaking%20News-Splitting MARC records-20230712.pdf>).
+
 ### Converter parameters
 The converter supports several optional parameters:
 - `baseuri` - the URI stem for generated entities. Default is
