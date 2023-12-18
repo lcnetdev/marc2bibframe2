@@ -315,10 +315,12 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
+    <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
     <xsl:for-each select="$codeMaps/maps/litform/*[name() = substring($dataElements,16,1)] |
                           $codeMaps/maps/litform/*[name() = concat('x',substring($dataElements,16,1))]">
+      <xsl:variable name="vLitformTxt" select="." />
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:when test="not($v655[.!=$vLitformTxt]) and not($v655[.!=concat($vLitformTxt, '.')]) and $serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
