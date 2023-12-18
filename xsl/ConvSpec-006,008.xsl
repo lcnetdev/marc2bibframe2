@@ -1230,12 +1230,12 @@
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:cartographicAttributes>
               <bf:Cartographic>
-                <bflc:relief>
-                  <bflc:Relief>
+                <bf:relief>
+                  <bf:Relief>
                     <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
                     <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  </bflc:Relief>
-                </bflc:relief>
+                  </bf:Relief>
+                </bf:relief>
               </bf:Cartographic>
             </bf:cartographicAttributes>
           </xsl:when>

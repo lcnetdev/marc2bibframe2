@@ -78,8 +78,8 @@
     
     <x:scenario label="MAPS">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18-21 create cartographicAttributes properties of the Work" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bflc:relief/bflc:Relief/rdfs:label = 'shading'"/>
-      <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bflc:relief/bflc:Relief/@rdf:about = 'http://id.loc.gov/vocabulary/mrelief/shad'"/>
+      <x:expect label="pos 18-21 create cartographicAttributes properties of the Work" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:relief/bf:Relief/rdfs:label = 'shading'"/>
+      <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:relief/bf:Relief/@rdf:about = 'http://id.loc.gov/vocabulary/mrelief/shad'"/>
       <x:expect label="pos 22-23 creates a cartographicAttributes property of the Work" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/rdfs:label = 'Krovak'"/>
       <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/@rdf:about = 'http://id.loc.gov/vocabulary/mprojection/bk'"/>
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'Playing cards'"/>
