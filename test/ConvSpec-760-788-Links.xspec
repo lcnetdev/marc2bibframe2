@@ -31,7 +31,7 @@
     
   <x:scenario label="760-788 SUBFIELDS">
     <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
-    <x:expect label="$a creates a contribution property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:contribution/bflc:PrimaryContribution/bf:agent/bf:Agent/rdfs:label = 'United States. Geological Survey.'"/>
+    <x:expect label="$a creates a contribution property of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:hasSeries[1]/bf:Work/bf:contribution/bf:PrimaryContribution/bf:agent/bf:Agent/rdfs:label = 'United States. Geological Survey.'"/>
     <x:expect label="$b creates an editionStatement property of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:otherEdition[1]/bf:Work/bf:hasInstance/bf:Instance/bf:editionStatement = 'Havana ed.'"/>
     <x:expect label="$c creates a title/Title/qualifier property of the title of the linked Work" test="/rdf:RDF/bf:Work[1]/bf:translationOf[1]/bf:Work/bf:title[1]/bf:Title/bf:qualifier = 'Original'"/>
     <x:expect label="$d creates a provisionActivityStatement of the linked Instance" test="/rdf:RDF/bf:Work[1]/bf:partOf[1]/bf:Work/bf:hasInstance/bf:Instance/bf:provisionActivityStatement = 'Wallingford : Gem Publishing Company'"/>
