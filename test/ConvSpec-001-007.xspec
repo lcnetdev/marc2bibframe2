@@ -213,8 +213,8 @@
       <x:expect label="...and an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic[6]/bf:PlaybackCharacteristic/rdfs:label = 'Dolby-B encoded'"/>
       <x:expect label="...or it may create a soundCharacteristic/RecordingMethod property" test="//bf:Instance[11]/bf:soundCharacteristic/bf:RecordingMethod/@rdf:about = 'http://id.loc.gov/vocabulary/mrectype/digital'"/>
       <x:expect label="...and an rdfs:label" test="//bf:Instance[11]/bf:soundCharacteristic/bf:RecordingMethod/rdfs:label = 'digital'"/>
-      <x:expect label="pos 13 creates a soundCharacteristic/bflc:CaptureStorage property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/@rdf:about = 'http://id.loc.gov/vocabulary/mcapturestorage/aes'"/>
-      <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic/bflc:CaptureStorage/rdfs:label = 'Electrical capture, Analog electrical storage'"/>
+      <x:expect label="pos 13 creates a soundCharacteristic/bf:CaptureStorage property of the Instance" test="//bf:Instance[9]/bf:soundCharacteristic/bf:CaptureStorage/@rdf:about = 'http://id.loc.gov/vocabulary/mcapturestorage/aes'"/>
+      <x:expect label="...with an rdfs:label" test="//bf:Instance[9]/bf:soundCharacteristic/bf:CaptureStorage/rdfs:label = 'Electrical capture, Analog electrical storage'"/>
     </x:scenario>
 
     <x:scenario label="VIDEORECORDING">

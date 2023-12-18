@@ -91,7 +91,7 @@
             </xsl:apply-templates>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:contribution>
-                <bflc:PrimaryContribution>
+                <bf:PrimaryContribution>
                   <bf:agent>
                     <bf:Agent>
                       <rdfs:label>
@@ -104,7 +104,7 @@
                       </rdfs:label>
                     </bf:Agent>
                   </bf:agent>
-                </bflc:PrimaryContribution>
+                </bf:PrimaryContribution>
               </bf:contribution>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='e']">

@@ -78,8 +78,8 @@
     
     <x:scenario label="MAPS">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 18-21 create cartographicAttributes properties of the Work" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bflc:relief/bflc:Relief/rdfs:label = 'shading'"/>
-      <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bflc:relief/bflc:Relief/@rdf:about = 'http://id.loc.gov/vocabulary/mrelief/shad'"/>
+      <x:expect label="pos 18-21 create cartographicAttributes properties of the Work" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:relief/bf:Relief/rdfs:label = 'shading'"/>
+      <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[2]/bf:Cartographic/bf:relief/bf:Relief/@rdf:about = 'http://id.loc.gov/vocabulary/mrelief/shad'"/>
       <x:expect label="pos 22-23 creates a cartographicAttributes property of the Work" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/rdfs:label = 'Krovak'"/>
       <x:expect label="...with a URI" test="//bf:Work[5]/bf:cartographicAttributes[3]/bf:Cartographic/bf:projection/bf:Projection/@rdf:about = 'http://id.loc.gov/vocabulary/mprojection/bk'"/>
       <x:expect label="pos 33-34 create genreForm properties of the Work" test="//bf:Work[5]/bf:genreForm[2]/bf:GenreForm/rdfs:label = 'Playing cards'"/>
@@ -122,6 +122,8 @@
       <x:expect label="with an rdfs:label" test="//bf:Work[8]/bf:genreForm[1]/bf:GenreForm/rdfs:label = 'Motion pictures'"/>
       <x:expect label="pos 34 creates a bflc:movingImageTechnique property of the Work" test="//bf:Work[8]/bflc:movingImageTechnique/bflc:MovingImageTechnique/@rdf:about = 'http://id.loc.gov/vocabulary/mtechnique/live'"/>
       <x:expect label="...with an rdfs:label" test="//bf:Work[8]/bflc:movingImageTechnique/bflc:MovingImageTechnique/rdfs:label = 'live action'"/>
+      <x:expect label="pos 18-21 are pipes so no duration should be present on the Work" test="not(//bf:Work[14]/bf:duration)"/>
+      <x:expect label="pos 18-21 are blanks so no duration should be present on the Work" test="not(//bf:Work[15]/bf:duration)"/>
     </x:scenario>
 
   </x:scenario>

@@ -189,7 +189,7 @@
           <bf:Contribution>
             <xsl:if test="substring($tag,1,1) = '1'">
               <rdf:type>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bflc,'PrimaryContribution')"/></xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,'PrimaryContribution')"/></xsl:attribute>
               </rdf:type>
             </xsl:if>
             <bf:agent>

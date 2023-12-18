@@ -124,7 +124,7 @@
             </bf:classification>
             <bf:contribution>
               <bf:Contribution>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/PrimaryContribution"/>
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
@@ -1070,7 +1070,7 @@
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub" />
             <bf:contribution>
               <bf:Contribution>
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution" />
+                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/PrimaryContribution" />
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/no2020106889#Agent100-9">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person" />

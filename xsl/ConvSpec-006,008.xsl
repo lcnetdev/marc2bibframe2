@@ -315,10 +315,12 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,14,1)"/>
     </xsl:call-template>
+    <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
     <xsl:for-each select="$codeMaps/maps/litform/*[name() = substring($dataElements,16,1)] |
                           $codeMaps/maps/litform/*[name() = concat('x',substring($dataElements,16,1))]">
+      <xsl:variable name="vLitformTxt" select="." />
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:when test="not($v655[.=$vLitformTxt]) and not($v655[.=concat($vLitformTxt, '.')]) and $serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -329,8 +331,9 @@
       </xsl:choose>
     </xsl:for-each>
     <xsl:for-each select="$codeMaps/maps/bioform/*[name() = substring($dataElements,17,1)]">
+      <xsl:variable name="vBioformText" select="." />
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:when test="not($v655[.=$vBioformText]) and not($v655[.=concat($vBioformText, '.')]) and $serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -495,6 +498,7 @@
         <xsl:when test="substring($dataElements,1,3) = '---'"/>
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
+        <xsl:when test="substring($dataElements,1,3) = '   '"/>
         <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
           <xsl:call-template name="tChopPunct">
             <xsl:with-param name="pString" select="substring($dataElements,1,3)"/>
@@ -513,9 +517,15 @@
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="code" select="substring($dataElements,11,1)"/>
     </xsl:call-template>
+    <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
+    <xsl:variable name="v380" select="../marc:datafield[@tag='380' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
     <xsl:for-each select="$codeMaps/maps/visualtype/*[name() = substring($dataElements,16,1)]">
+      <xsl:variable name="vCodemapTxt" select="." />
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:when test="
+            not($v380[.=$vCodemapTxt]) and not($v380[.=concat($vCodemapTxt, '.')]) and 
+            not($v655[.=$vCodemapTxt]) and not($v655[.=concat($vCodemapTxt, '.')]) and 
+            $serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -595,10 +605,21 @@
           <xsl:otherwise>bf:GenreForm</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
+      <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
       <xsl:for-each select="$codeMaps/maps/marcgt/*[name() = substring($contents,$i,1)] |
                             $codeMaps/maps/marcgt/*[name() = concat('x',substring($contents,$i,1))]">
+        <xsl:variable name="vMarcgtText" select="." />
         <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:when test="
+              (
+                $vProperty='bf:supplementaryContent' or 
+                (
+                  $vProperty='bf:genreForm' and 
+                  not($v655[.!=$vMarcgtText]) and 
+                  not($v655[.!=concat($vMarcgtText, '.')])
+                 )
+               ) and 
+              $serialization = 'rdfxml'">
             <xsl:element name="{$vProperty}">
               <xsl:element name="{$vResource}">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -672,9 +693,11 @@
     <xsl:param name="form"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
+      <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
       <xsl:for-each select="$codeMaps/maps/mapform/*[name() = substring($form,$i,1)]">
+        <xsl:variable name="vCodemapTxt" select="." />
         <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:when test="not($v655[.=$vCodemapTxt]) and not($v655[.=concat($vCodemapTxt, '.')]) and $serialization = 'rdfxml'">
             <bf:genreForm>
               <bf:GenreForm>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -696,9 +719,11 @@
   <xsl:template name="compForm008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
+    <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
     <xsl:for-each select="$codeMaps/maps/musicCompForm/*[name() = $code]">
+      <xsl:variable name="vCodemapTxt" select="." />
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:when test="not($v655[.=$vCodemapTxt]) and not($v655[.=concat($vCodemapTxt, '.')]) and $serialization = 'rdfxml'">
           <bf:genreForm>
             <bf:GenreForm>
               <xsl:if test="@href != ''">
@@ -766,9 +791,11 @@
     <xsl:param name="litform"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 3">
+      <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
       <xsl:for-each select="$codeMaps/maps/musicTextForm/*[name() = substring($litform,$i,1)]">
+        <xsl:variable name="vCodemapTxt" select="." />
         <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:when test="not($v655[.=$vCodemapTxt]) and not($v655[.=concat($vCodemapTxt, '.')]) and $serialization = 'rdfxml'">
             <bf:genreForm>
               <bf:GenreForm>
                 <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
@@ -1229,12 +1256,12 @@
           <xsl:when test="$serialization = 'rdfxml'">
             <bf:cartographicAttributes>
               <bf:Cartographic>
-                <bflc:relief>
-                  <bflc:Relief>
+                <bf:relief>
+                  <bf:Relief>
                     <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
                     <rdfs:label><xsl:value-of select="."/></rdfs:label>
-                  </bflc:Relief>
-                </bflc:relief>
+                  </bf:Relief>
+                </bf:relief>
               </bf:Cartographic>
             </bf:cartographicAttributes>
           </xsl:when>
