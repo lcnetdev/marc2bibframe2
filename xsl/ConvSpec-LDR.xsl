@@ -82,23 +82,28 @@
   <xsl:template match="marc:leader" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vContentType" select="substring(.,7,1)"/>
-    <xsl:for-each select="$codeMaps/maps/contentTypes/*[name() = $vContentType]">
+    <xsl:variable name="vcMap" select="$codeMaps/maps/contentTypes/*[name() = $vContentType]" />
+    <xsl:for-each select="$vcMap">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <rdf:type>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf,@class)"/></xsl:attribute>
           </rdf:type>
-          <xsl:if test="not(../marc:datafield[@tag='336']) and not($vContentType='q') and @href">
-            <bf:content>
-              <bf:Content>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Content>
-            </bf:content>
-          </xsl:if>
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:if test="not(../marc:datafield[@tag='336']) and not($vContentType='q')">
+      <xsl:for-each select="$vcMap">
+        <xsl:if test="@href">
+          <bf:content>
+            <bf:Content>
+              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+              <rdfs:label><xsl:value-of select="."/></rdfs:label>
+            </bf:Content>
+          </bf:content>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:if>
     <xsl:variable name="vleader07Type">
       <xsl:choose>
         <xsl:when test="substring(.,8,1) = 'a'">Monograph</xsl:when>

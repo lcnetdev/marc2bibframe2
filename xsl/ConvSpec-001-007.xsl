@@ -2024,12 +2024,12 @@
             </xsl:if>
             <xsl:if test="$captureStorage != ''">
               <bf:soundCharacteristic>
-                <bflc:CaptureStorage>
+                <bf:CaptureStorage>
                   <xsl:if test="$captureStorageUri != ''">
                     <xsl:attribute name="rdf:about"><xsl:value-of select="$captureStorageUri"/></xsl:attribute>
                   </xsl:if>
                   <rdfs:label><xsl:value-of select="$captureStorage"/></rdfs:label>
-                </bflc:CaptureStorage>
+                </bf:CaptureStorage>
               </bf:soundCharacteristic>
             </xsl:if>
           </xsl:when>
