@@ -369,7 +369,7 @@
         <marc:subfield code="a">
           <xsl:call-template name="getTitleStr">
             <xsl:with-param name="df856sf3"><xsl:value-of select="marc:subfield[@code = '3']" /></xsl:with-param>
-            <xsl:with-param name="df300"><marc:datafield /></xsl:with-param>
+            <xsl:with-param name="df300" select="$record/marc:datafield[@tag = 'ei mitään']" />
             <xsl:with-param name="cf007" select="'c'" />
           </xsl:call-template>
         </marc:subfield>
