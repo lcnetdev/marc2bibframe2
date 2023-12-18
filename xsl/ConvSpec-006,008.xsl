@@ -495,6 +495,7 @@
         <xsl:when test="substring($dataElements,1,3) = '---'"/>
         <xsl:when test="substring($dataElements,1,3) = 'nnn'"/>
         <xsl:when test="substring($dataElements,1,3) = '|||'"/>
+        <xsl:when test="substring($dataElements,1,3) = '   '"/>
         <xsl:when test="starts-with(substring($dataElements,1,3),'0')">
           <xsl:call-template name="tChopPunct">
             <xsl:with-param name="pString" select="substring($dataElements,1,3)"/>
