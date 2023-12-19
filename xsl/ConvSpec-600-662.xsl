@@ -603,12 +603,13 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProp">
       <xsl:choose>
-        <xsl:when test="$vTag='655'">bf:genreForm</xsl:when>
+        <xsl:when test="$vTag='655' and not(marc:subfield[@code='v' or @code='x' or @code='y' or @code='z'])">bf:genreForm</xsl:when>
         <xsl:otherwise>bf:subject</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vResource">
       <xsl:choose>
+        <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">bf:Topic</xsl:when>
         <xsl:when test="$vTag='648'">bf:Temporal</xsl:when>
         <xsl:when test="$vTag='651'">bf:Place</xsl:when>
         <xsl:when test="$vTag='655'">bf:GenreForm</xsl:when>
