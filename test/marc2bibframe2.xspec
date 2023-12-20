@@ -164,11 +164,6 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[København?]: Lindhardt og Ringhof; c2001</bflc:publicationStatement>
-            <bf:carrier>
-              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
-                <rdfs:label>volume</rdfs:label>
-              </bf:Carrier>
-            </bf:carrier>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>
@@ -372,11 +367,6 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">New York, N.Y.: Atlantic; [1957?]</bflc:publicationStatement>
-            <bf:carrier>
-              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
-                <rdfs:label>volume</rdfs:label>
-              </bf:Carrier>
-            </bf:carrier>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   91758335 </rdf:value>
@@ -925,11 +915,6 @@
               </bf:ProvisionActivity>
             </bf:provisionActivity>
             <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">San Francisco: Jossey-Bass; c1994</bflc:publicationStatement>
-            <bf:carrier>
-              <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nc">
-                <rdfs:label>volume</rdfs:label>
-              </bf:Carrier>
-            </bf:carrier>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>
