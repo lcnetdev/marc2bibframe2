@@ -814,6 +814,7 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:element name="{$vProp}">
             <xsl:element name="{$vResource}">
+              <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled" />
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>

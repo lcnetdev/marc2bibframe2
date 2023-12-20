@@ -35,7 +35,7 @@
   <!-- form of item -->
   <!-- used in 008/23 for books, computer files, music, continuing resources, and mixed materials -->
   <carrier>
-    <a href="http://id.loc.gov/vocabulary/mediaTypes/hd">microfilm reel</a>
+    <a href="http://id.loc.gov/vocabulary/carriers/hd">microfilm reel</a>
     <b href="http://id.loc.gov/vocabulary/carriers/he">microfiche</b>
     <c href="http://id.loc.gov/vocabulary/carriers/hg">microopaque</c>
     <d href="http://id.loc.gov/vocabulary/carriers/nc">volume</d>
