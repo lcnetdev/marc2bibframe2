@@ -58,6 +58,8 @@
           </xsl:apply-templates>    
         </xsl:variable>
         <xsl:variable name="the300sNS" select="exsl:node-set($the300s)"/>
+        
+        <!-- <xsl:message><xsl:copy-of select="$the300sNS" /></xsl:message> -->
 
         <xsl:variable name="df3XXs" select="marc:datafield[
                                               @tag='336' or @tag='337' or @tag='338' or 
@@ -304,7 +306,15 @@
         </marc:subfield>
       </marc:datafield>
       <xsl:if test="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@tag = '300']">
-        <xsl:copy-of select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield" />
+        <xsl:for-each select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield">
+          <xsl:variable name="thisID" select="@id"/>
+          <xsl:variable name="thisPos" select="position()"/>
+          <xsl:variable name="processed" select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@id = $thisID and position() &lt; $thisPos]"/>
+          <xsl:if test="not($processed)">
+            <xsl:copy-of select="." />
+          </xsl:if>
+        </xsl:for-each>
+        <!-- <xsl:copy-of select="$groupsNS/marc:groups/marc:group[$pos]/marc:datafield[@id != preceding::marc:datafield/@id]" /> -->
       </xsl:if>    
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>

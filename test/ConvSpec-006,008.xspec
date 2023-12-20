@@ -13,7 +13,7 @@
   <x:scenario label="006 - FIXED-LENGTH DATA ELEMENTS-- ADDITIONAL MATERIAL CHARACTERISTICS">
     <x:context href="data/ConvSpec-006,008/marc.xml"/>
     <x:expect label="pos 1-17 NOT processed as 008/18-34" test="count(//bf:Work[9]/bf:illustrativeContent/bf:Illustration/rdfs:label) = 0"/>
-    <x:expect label="do not generate carrier from 006" test="count(//bf:Instance[9]/bf:carrier) = 1"/>
+    <x:expect label="do not generate carrier from 006 or 008" test="count(//bf:Instance[9]/bf:carrier) = 0"/>
   </x:scenario>
 
   <x:scenario label="008 - FIXED-LENGTH DATA ELEMENTS--GENERAL INFORMATION">

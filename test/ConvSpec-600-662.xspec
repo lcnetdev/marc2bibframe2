@@ -71,6 +71,7 @@
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="ind2 determine the class of the created object" test="local-name(//bf:Work[1]/bf:subject[7]/*) = 'Topic'"/>
     <x:expect label="$a creates a subject/Topic (or other) property of the Work" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdfs:label = 'Man'"/> 
+    <x:expect label="is identified as an Uncontrolled resource" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
   </x:scenario>
   
   <x:scenario label="655 - INDEX TERM--GENRE/FORM">
