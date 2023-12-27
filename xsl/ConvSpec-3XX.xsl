@@ -659,6 +659,7 @@
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>
     <xsl:param name="pUriStem"/>
+    <xsl:param name="pInstanceType" />
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -698,9 +699,11 @@
                   </bf:Source>
                 </bf:source>
               </xsl:for-each>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
+              <xsl:if test="$pInstanceType != 'SecondaryInstance'">
+                <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:if>
             </xsl:element>
           </xsl:element>
         </xsl:for-each>
@@ -807,7 +810,7 @@
                   <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
                 </xsl:call-template>
               </rdfs:label>
-              <xsl:if test="../marc:subfield[@code='3'] and ../marc:subfield[@code='3'] != 'all'">
+              <xsl:if test="../marc:subfield[@code='3'] and $pInstanceType != 'SecondaryInstance'">
                 <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
@@ -918,21 +921,25 @@
 
   <xsl:template match="marc:datafield[@tag='337' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='337')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType" />
     <xsl:apply-templates select="." mode="rdaResource">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:media</xsl:with-param>
       <xsl:with-param name="pResource">bf:Media</xsl:with-param>
       <xsl:with-param name="pUriStem"><xsl:value-of select="$mediaType"/></xsl:with-param>
+      <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='338' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='338')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType" />
     <xsl:apply-templates select="." mode="rdaResource">
       <xsl:with-param name="serialization" select="$serialization"/>
       <xsl:with-param name="pProp">bf:carrier</xsl:with-param>
       <xsl:with-param name="pResource">bf:Carrier</xsl:with-param>
       <xsl:with-param name="pUriStem"><xsl:value-of select="$carriers"/></xsl:with-param>
+      <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -1076,6 +1083,7 @@
                        marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]"
                 mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType" />
     <xsl:variable name="vTag">
       <xsl:choose>
         <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
@@ -1509,6 +1517,7 @@
       <xsl:if test="$vResource != '' and count(../preceding-sibling::marc:datafield[@tag = $vTag and marc:subfield[. = $vLabel]]) = 0">
         <xsl:apply-templates select="." mode="generateProperty">
           <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
           <xsl:with-param name="pProp" select="$vProp"/>
           <xsl:with-param name="pResource" select="$vResource"/>
           <xsl:with-param name="pTarget" select="$vTarget"/>
