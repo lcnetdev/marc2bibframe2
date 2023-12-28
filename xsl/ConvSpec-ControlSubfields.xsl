@@ -292,10 +292,9 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <rdf:value>
-          <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'anyURI')"/></xsl:attribute>
-          <xsl:value-of select="."/>
-        </rdf:value>
+        <bf:electronicLocator>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+        </bf:electronicLocator>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
