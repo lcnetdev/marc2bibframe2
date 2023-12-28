@@ -76,6 +76,9 @@
                 </bf:Issn>
               </bf:identifiedBy>
             </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
           </bf:Work>
         </xsl:element>
       </xsl:when>
