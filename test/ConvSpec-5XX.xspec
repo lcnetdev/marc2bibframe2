@@ -142,6 +142,8 @@
   <x:scenario label="532 - ACCESSIBILITY NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Closed captioning in English'"/>
+    <x:expect label="532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[2]/bf:ContentAccessibility/rdfs:label = 'Closed captioning in English of the special DVD'"/>
+    <x:expect label="...and an appliesTo" test="//bf:Instance[1]/bf:contentAccessibility[2]/bf:ContentAccessibility/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Special DVD, naturally'"/>
   </x:scenario>
   
   <x:scenario label="533 - REPRODUCTION NOTE">
