@@ -107,6 +107,10 @@
     <datafield tag="532" ind1="1" ind2=" ">
       <subfield code="a">Closed captioning in English</subfield>
     </datafield>
+    <datafield tag="532" ind1="1" ind2=" ">
+      <subfield code="3">Special DVD, naturally</subfield>
+      <subfield code="a">Closed captioning in English of the special DVD</subfield>
+    </datafield>
     <datafield tag="533" ind1=" " ind2=" ">
       <subfield code="3">Correspondence files</subfield>
       <subfield code="a">Microfilm.</subfield>

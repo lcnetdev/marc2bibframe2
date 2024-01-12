@@ -71,7 +71,18 @@
     <x:expect label="$0 becomes the URI of the Issn/L" test="//bf:Work/bf:identifiedBy[1]/bf:Issn/@rdf:about='http://issn.org/resource/ISSN/1234-1231#ISSN'"/>
     <x:expect label="$2 creates an assigner property of the Issn" test="//bf:Work[1]/bf:identifiedBy[1]/bf:Issn/bf:assigner/bf:Agent/bf:code = 'DEU-6'"/>
   </x:scenario>
-  
+
+  <x:scenario label="023 - INTERNATIONAL STANDARD SERIAL NUMBER, The Return">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="$l creates an identifiedBy/IssnL property of the Work" test="//bf:Work[1]/bf:identifiedBy[7]/bf:IssnL/rdf:value = '1234-1231'"/>
+    <x:expect label="$y creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[8]/bf:IssnL/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/incorrect'"/>
+    <x:expect label="...with rdfs:label 'incorrect'" test="//bf:Work[1]/bf:identifiedBy[8]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'incorrect'"/>
+    <x:expect label="$z creates a status/Status property of the Issn" test="//bf:Work[1]/bf:identifiedBy[9]/bf:IssnL/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
+    <x:expect label="...with rdfs:label 'canceled'" test="//bf:Work[1]/bf:identifiedBy[9]/bf:IssnL/bf:status/bf:Status/rdfs:label = 'canceled'"/>
+    <x:expect label="$0 becomes the URI of the Issn/L" test="//bf:Work/bf:identifiedBy[8]/bf:IssnL/@rdf:about='http://issn.org/resource/ISSNL/1234-1231#ISSNL'"/>
+    <x:expect label="$2 creates an assigner property of the Issn" test="//bf:Work[1]/bf:identifiedBy[8]/bf:IssnL/bf:assigner/bf:Agent/bf:code = 'DEU-6'"/>
+  </x:scenario>
+
   <x:scenario label="024 - OTHER STANDARD IDENTIFIER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="ind 1 determines the class of Identifier for the identifiedBy property" test="count(//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc) = 1"/>

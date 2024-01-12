@@ -20,8 +20,12 @@
         <xsl:variable name="v26xFields" select="../marc:datafield[@tag = '260']|../marc:datafield[@tag = '261']|../marc:datafield[@tag = '262']|../marc:datafield[@tag = '264']" />
         <xsl:variable name="v880Fields" select="../marc:datafield[@tag = '880' and substring(marc:subfield[@code = '6'], 1, 2) = '26' and substring(marc:subfield[@code = '6'], 1, 3) != '263']" />
 
+        <!-- This is need to assist with handling ind1 properly. i is integrating; s is serial -->
+        <xsl:variable name="vleader07TypeValue" select="substring(../marc:leader,8,1)" />
+        <xsl:variable name="v26xFieldsCount" select="count($v26xFields)" />
+
         <!-- 
-            This variable looks like:
+            This variable looks like (it may also have a status property or note):
             <paGroup>
                 <type>Publication</type>
                 <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1987</bf:date>
@@ -134,7 +138,7 @@
             <xsl:variable name="vcf008-prenodeset">
                 <xsl:if test="  $vProvisionActivity != '' 
                                 and
-                                count(preceding-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 = $ind2val]) = 0
+                                count(following-sibling::marc:sfGroup/marc:df[@tag = $sfgTag and @ind2 = $ind2val]) = 0
                         ">
                     <xsl:copy-of select="$cf008data/paGroup[type = $vProvisionActivity]/bf:*" />
                 </xsl:if>
@@ -215,13 +219,36 @@
                                         </rdf:type>
                                         <xsl:copy-of select="$vcf008"/>
                                     </xsl:if>
-                                    <xsl:if test="not($vcf008/bf:status) and $df/@ind1 = '3'">
+                                    <!-- 
+                                            8.6.3) If rdf:type=Serial or rdf:type=Integrating and more than one 26X field exists: 
+                                                    For 26X Ind1=# ; add bf:status http://id.loc.gof/vocabulary/mstatus/earliest ; and rdfs:label “earliest”
+                                                    For 26X Ind1=3 ; add bf:status http://id.loc.gof/vocabulary/mstatus/current ; and rdfs:label “current”
+                                    -->
+                                    <xsl:if test="($vleader07TypeValue='s' or $vleader07TypeValue='i') and $v26xFieldsCount > 1 and $vProvisionActivity='Publication'">
+                                         <xsl:if test="not($vcf008/bf:status) and $df/@ind1 = ' '">
+                                            <bf:status>
+                                                <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/earliest">
+                                                    <rdfs:label>earliest</rdfs:label>
+                                                </bf:Status>
+                                            </bf:status>
+                                        </xsl:if>
+                                        <xsl:if test="not($vcf008/bf:status) and $df/@ind1 = '3'">
+                                            <bf:status>
+                                                <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/current">
+                                                    <rdfs:label>current</rdfs:label>
+                                                </bf:Status>
+                                            </bf:status>
+                                        </xsl:if>
+                                    </xsl:if>
+                                    <!-- 8.6.2) If rdf:type=Integrating and just one 26X field exists, add bf:status -->
+                                    <xsl:if test="not($vcf008/bf:status) and $vleader07TypeValue='i' and $v26xFieldsCount = 1 and $vProvisionActivity='Publication'">
                                         <bf:status>
                                             <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/current">
                                                 <rdfs:label>current</rdfs:label>
                                             </bf:Status>
                                         </bf:status>
                                     </xsl:if>
+                                    
                                     <xsl:apply-templates
                                         select="$df/marc:sf[@code = '3'] | marc:df[@tag = '880']/marc:sf[@code = '3']"
                                         mode="subfield3">

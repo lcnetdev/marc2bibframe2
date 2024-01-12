@@ -49,7 +49,6 @@
     <x:context href="data/ConvSpec-250-270/marc.xml"/>
     <x:expect label="260 creates a provisionActivity/Publication property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...if $e, $f, $g, it also creates a provisionActivity/Manufacture property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Manufacture'"/>
-    <x:expect label="ind1 = 3 creates a status property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
     <x:expect label="$a creates a place property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace[2] = 'Upton Snodsbury'"/>
     <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simpleAgent = 'Arts Council of Great Britain'"/>
     <x:expect label="Agent label from $b should have brackets if $a or $c have unmatched brackets" test="//bf:Instance[3]/bf:provisionActivity/bf:ProvisionActivity/bflc:simpleAgent = '[s.n.]'"/>
@@ -90,7 +89,6 @@
     <x:expect label="...with resource class determined by ind2" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...do not create additional class for ProvisionActivity if it can't be determined"
       test="count(//bf:Instance[1]/bf:provisionActivity[12]/bf:ProvisionActivity/rdf:type) = 0"/>
-    <x:expect label="ind1 = 3 creates a status property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'current'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1981-'"/>
     <x:expect label="$a creates a place property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:simplePlace = 'Washington'"/>
     <x:expect label="$b creates an agent property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bflc:simpleAgent = 'U.S. G.P.O.'"/>
@@ -104,7 +102,7 @@
     <x:expect label="260 creates two provisionActivity resources" test="count(//bf:Instance[1]/bf:provisionActivity) = 2"/>
     <x:expect label="...one is Publication: number 1" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...and the other is Publication: number 2" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
-    <x:expect label="...008 date is coded in first PA resource" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1927'"/>
+    <x:expect label="...008 date is coded in second PA resource" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1927'"/>
     <x:expect label="...simplePlace of 2nd PA resource is London" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'London'"/>
     
     <x:expect label="260 creates one provisionActivity resources" test="count(//bf:Instance[2]/bf:provisionActivity) = 1"/>
@@ -124,7 +122,7 @@
     <x:expect label="Three 264s create three provisionActivity resources" test="count(//bf:Instance[5]/bf:provisionActivity) = 3"/>
     <x:expect label="...one is Publication: number 1" test="//bf:Instance[5]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...and the third is Publication: number 3" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
-    <x:expect label="...status is 'current' in first PA resource" test="//bf:Instance[5]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/current'"/>
+    <x:expect label="...status is 'current' in third, and last, PA resource" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/current'"/>
     <x:expect label="...and the third PA resource" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/current'"/>
     <x:expect label="...and 3rd has the stupid appliesTo" test="//bf:Instance[5]/bf:provisionActivity[3]/bf:ProvisionActivity/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '&lt;November 2019-&gt;'"/>
     
@@ -135,6 +133,21 @@
     <x:expect label="...008 date is coded in second PA resource" test="//bf:Instance[6]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1998'"/>
     <x:expect label="...008 date is coded in the third PA resource too" test="//bf:Instance[6]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1996'"/>
     <x:expect label="...and has two simpleAgent resources in 1st PA" test="count(//bf:Instance[6]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simpleAgent) = 2"/>
+        
+    <x:expect label="264 for a Serials creates one provisionActivity resource with a status of current from the 008" test="count(//bf:Instance[7]/bf:provisionActivity) = 1"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[7]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...008 status is coded in PA resource" test="//bf:Instance[7]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/current'"/>
+
+    <x:expect label="264s for a Serials creates three provisionActivity resources each with a different status" test="count(//bf:Instance[8]/bf:provisionActivity) = 3"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[8]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...one status is earliest" test="//bf:Instance[8]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/earliest'"/>
+    <x:expect label="...one doesn't have a defined status" test="count(//bf:Instance[8]/bf:provisionActivity[2]/bf:ProvisionActivity/bf:status) = 0"/>
+    <x:expect label="...and one has current status" test="//bf:Instance[8]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/current'"/>
+    <x:expect label="...008 date is coded in third PA resource" test="//bf:Instance[8]/bf:provisionActivity[3]/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf'] = '1982/..'"/>
+
+    <x:expect label="264 for a Serials creates one provisionActivity resource but with a status of ceased from the 008" test="count(//bf:Instance[9]/bf:provisionActivity) = 1"/>
+    <x:expect label="...one is Publication: number 1" test="//bf:Instance[9]/bf:provisionActivity[1]/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
+    <x:expect label="...one status is earliest" test="//bf:Instance[9]/bf:provisionActivity[1]/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about='http://id.loc.gov/vocabulary/mstatus/ceased'"/>
   </x:scenario>
 
   <x:scenario label="265 - SOURCE FOR ACQUISITION/SUBSCRIPTION ADDRESS [OBSOLETE]">

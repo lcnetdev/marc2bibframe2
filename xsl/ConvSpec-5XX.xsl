@@ -593,6 +593,9 @@
                 </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
             </bf:ContentAccessibility>
           </bf:contentAccessibility>
         </xsl:when>

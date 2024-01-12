@@ -52,6 +52,7 @@
       <subfield code="2">DEU-6</subfield>
       <subfield code="0">(uri)http://issn.org/resource/ISSN/1234-1231#ISSN</subfield>
     </datafield>
+    <!-- 023 is at the end because it would have required renumbering ALL THE TESTS! -->
     <datafield tag="024" ind1="0" ind2=" ">
       <subfield code="a">NLC018413261</subfield>
     </datafield>
@@ -236,6 +237,13 @@
       <subfield code="a">ca04</subfield>
       <subfield code="a">oc</subfield>
       <subfield code="a">zz</subfield>
+    </datafield>
+    <datafield tag="023" ind1="0" ind2=" ">
+      <subfield code="a">1234-1231</subfield>
+      <subfield code="y">0046-2254</subfield>
+      <subfield code="z">0361-7106</subfield>
+      <subfield code="2">DEU-6</subfield>
+      <subfield code="0">(uri)http://issn.org/resource/ISSNL/1234-1231#ISSNL</subfield>
     </datafield>
   </record>
   <!-- MTA hub example -->
