@@ -219,7 +219,6 @@
                                         </rdf:type>
                                         <xsl:copy-of select="$vcf008"/>
                                     </xsl:if>
-                                    <!-- here -->
                                     <!-- 
                                             8.6.3) If rdf:type=Serial or rdf:type=Integrating and more than one 26X field exists: 
                                                     For 26X Ind1=# ; add bf:status http://id.loc.gof/vocabulary/mstatus/earliest ; and rdfs:label “earliest”
