@@ -29,6 +29,7 @@
     </record>
     <record>
         <controlfield tag="001">20621601</controlfield>
+        <leader>03732cam a2200421 i 4500</leader>
         <controlfield tag="008">180709t20192019enka     b    001 0 eng c</controlfield>
         <datafield tag="264" ind1=" " ind2="1">
             <subfield code="a">London ;</subfield>
@@ -53,6 +54,7 @@
     </record>
     <record>
         <controlfield tag="001">11457859</controlfield>
+        <leader>05014cas a2201093 i 4500</leader>
         <controlfield tag="008">920430c19929999caubr p       0   a0eng c</controlfield>
         <datafield ind1=" " ind2="1" tag="264">
             <subfield code="a">New York, NY :</subfield>
@@ -78,6 +80,47 @@
             <subfield code="b">Dominion :</subfield>
             <subfield code="b">Manufactured and distributed in the U.S. by K-tel International,</subfield>
             <subfield code="c">[1998?], ℗1997.</subfield>
+        </datafield>
+    </record>
+    <record>
+        <leader>01541cas a22003615a 4500</leader>
+        <controlfield tag="001">15387794</controlfield>
+        <controlfield tag="008">080729c20089999ncumx p       0   a0eng c</controlfield>
+        <datafield ind1=" " ind2=" " tag="260">
+            <subfield code="a">Charlotte, NC :</subfield>
+            <subfield code="b">Hearst Communications, Inc.</subfield>
+        </datafield>
+    </record>
+    <record>
+        <leader>01914cas a2200457 i 4500</leader>
+        <controlfield tag="001">12027497</controlfield>
+        <controlfield tag="008">000601c19829999iduqn p       0   a0eng  </controlfield>
+        <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Seattle, Wash. :</subfield>
+            <subfield code="b">Avalanche Review</subfield>
+        </datafield>
+        <datafield ind1="2" ind2="1" tag="264">
+            <subfield code="3">&lt;2002-&gt;:</subfield>
+            <subfield code="a">Whitefish, Montana :</subfield>
+            <subfield code="b">American Avalanche Association</subfield>
+        </datafield>
+        <datafield ind1="3" ind2="1" tag="264">
+            <subfield code="3">&lt;2005-&gt;:</subfield>
+            <subfield code="a">Driggs, Idaho :</subfield>
+            <subfield code="b">American Avalanche Association</subfield>
+        </datafield>
+    </record>
+    <record>
+        <leader>14358cas a2202257 i 4500</leader>
+        <controlfield tag="001">18825600</controlfield>
+        <controlfield tag="005">20231011082528.0</controlfield>
+        <controlfield tag="006">m     o  d        </controlfield>
+        <controlfield tag="007">cr bn||||||abp</controlfield>
+        <controlfield tag="007">cr bn||||||ada</controlfield>
+        <controlfield tag="008">100318d18771920gw uu p o b   0   b0ger  </controlfield>
+        <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Berlin, Germany :</subfield>
+            <subfield code="b">De Gruyter</subfield>
         </datafield>
     </record>
 </collection>
