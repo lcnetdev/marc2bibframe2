@@ -349,6 +349,33 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='023' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='023')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vIdentifier">
+      <xsl:choose>
+        <xsl:when test="@ind1='0'">bf:IssnL</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vUri">
+      <xsl:if test="contains(marc:subfield[@code='0'],'://')">
+        <xsl:variable name="vSource" select="substring(substring-after(marc:subfield[@code='0'],'('),1,string-length(substring-before(marc:subfield[@code='0'],')'))-1)"/>
+        <xsl:choose>
+          <xsl:when test="$vSource != ''"><xsl:value-of select="substring-after(marc:subfield[@code='0'],')')"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="marc:subfield[@code='0']"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:if test="$vIdentifier!=''">
+      <xsl:apply-templates select="." mode="instanceId">
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pIdentifier" select="$vIdentifier" />
+        <xsl:with-param name="pIncorrectLabel">incorrect</xsl:with-param>
+        <xsl:with-param name="pInvalidLabel">canceled</xsl:with-param>
+        <xsl:with-param name="pUri" select="$vUri"/>
+      </xsl:apply-templates>
+    </xsl:if>
+  </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='024' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='024')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -1274,7 +1301,7 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$vTag='022'">
+                <xsl:when test="$vTag='022' or $vTag='023'">
                   <xsl:for-each select="../marc:subfield[@code='2']">
                     <bf:assigner>
                       <bf:Agent>
