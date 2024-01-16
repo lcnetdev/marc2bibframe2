@@ -242,6 +242,12 @@
     <x:expect label="046 $k generates an originDate property of the Work" test="//bf:Work/bf:originDate = '1998-10-22/1999-12-31T23:59:59.0'"/>
     <x:expect label="...with EDTF data type" test="//bf:Work/bf:originDate/@rdf:datatype = 'http://id.loc.gov/datatypes/edtf'"/>
   </x:scenario>
+
+  <x:scenario label="046 - SPECIAL CODED DATES - Vaid Date">
+    <x:context href="data/ConvSpec-010-048/marc.xml"/>
+    <x:expect label="046 $m generates an validDate property of the Work" test="//bf:Work/bf:validDate = '1928-10-22/1949-12-31T23:59:59.0'"/>
+    <x:expect label="...with EDTF data type" test="//bf:Work/bf:validDate/@rdf:datatype = 'http://id.loc.gov/datatypes/edtf'"/>
+  </x:scenario>
   
   <x:scenario label="047 - FORM OF MUSICAL COMPOSITION CODE">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
