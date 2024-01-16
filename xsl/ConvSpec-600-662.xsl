@@ -814,6 +814,13 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:element name="{$vProp}">
             <xsl:element name="{$vResource}">
+              <xsl:if test="../marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                <xsl:attribute name="rdf:about">
+                  <xsl:apply-templates mode="generateUri" select="../marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:attribute>
+              </xsl:if>
               <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled" />
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
@@ -823,6 +830,9 @@
                   <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
+              <xsl:apply-templates mode="subfield5" select="../marc:subfield[@code='5']">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
             </xsl:element>
           </xsl:element>
         </xsl:for-each>

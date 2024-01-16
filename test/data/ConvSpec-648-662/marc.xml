@@ -78,5 +78,13 @@
       <subfield code="t">Tale of two cities</subfield>
       <subfield code="x">History and criticism.</subfield>
     </datafield>
+    <datafield tag="653" ind1=" " ind2=" ">
+      <subfield code="a">fossil</subfield>
+      <subfield code="0">https://www.wikidata.org/wiki/Q40614</subfield>
+    </datafield>
+    <datafield tag="653" ind1=" " ind2=" ">
+      <subfield code="a">fossil</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
   </record>
 </collection>
