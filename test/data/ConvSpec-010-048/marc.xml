@@ -220,6 +220,10 @@
       <subfield code="k">19981022</subfield>
       <subfield code="l">19991231235959.0</subfield>
     </datafield>
+    <datafield tag="046" ind1=" " ind2=" ">
+      <subfield code="m">19281022</subfield>
+      <subfield code="n">19491231235959.0</subfield>
+    </datafield>
     <datafield tag="047" ind1=" " ind2=" ">
       <subfield code="a">or</subfield>
       <subfield code="a">ct</subfield>
