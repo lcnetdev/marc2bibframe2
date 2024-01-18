@@ -11,6 +11,20 @@
       <subfield code="a">Bible</subfield>
       <subfield code="4">cmp</subfield>
     </datafield>
+    <datafield ind1=" " ind2="7" tag="647">
+      <subfield code="a">Allied Occupation of Germany</subfield>
+      <subfield code="c">(Germany :</subfield>
+      <subfield code="d">1918-1930)</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01351651</subfield>
+      <subfield code="1">https://id.oclc.org/worldcat/entity/E39Qhp4vB9x3k8H8xR7TqHFkBX</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="647">
+      <subfield code="a">Allied Occupation 1918-1930</subfield>
+      <subfield code="z">Europe</subfield>
+      <subfield code="x">Tanks</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
     <datafield tag="648" ind1=" " ind2="7">
       <subfield code="a">1900-1999</subfield>
       <subfield code="2">fast</subfield>
