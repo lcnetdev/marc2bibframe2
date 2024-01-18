@@ -549,7 +549,8 @@
     </xsl:choose>
   </xsl:template>    
   
-  <xsl:template match="marc:datafield[@tag='648' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='648')] |
+  <xsl:template match="marc:datafield[@tag='647' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='647')] |
+                       marc:datafield[@tag='648' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='648')] |
                        marc:datafield[@tag='650' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='650')] |
                        marc:datafield[@tag='651' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='651')] |
                        marc:datafield[@tag='655' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='655')][@ind1=' ']"
@@ -563,6 +564,9 @@
     <xsl:if test="@tag != '655' or $pHasItem or not($localfields and marc:subfield[@code='5'])">
       <xsl:variable name="vDefaultUri">
         <xsl:choose>
+          <xsl:when test="@tag='647'">
+            <xsl:value-of select="$recordid"/>#Event<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
+          </xsl:when>
           <xsl:when test="@tag='648'">
             <xsl:value-of select="$recordid"/>#Temporal<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/>
           </xsl:when>
@@ -610,6 +614,7 @@
     <xsl:variable name="vResource">
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">bf:Topic</xsl:when>
+        <xsl:when test="$vTag='647'">bf:Event</xsl:when>
         <xsl:when test="$vTag='648'">bf:Temporal</xsl:when>
         <xsl:when test="$vTag='651'">bf:Place</xsl:when>
         <xsl:when test="$vTag='655'">bf:GenreForm</xsl:when>
@@ -646,6 +651,17 @@
         </xsl:with-param>
         <xsl:with-param name="pString">
           <xsl:choose>
+            <xsl:when test="$vTag='647'">
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString">
+                  <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('acd', @code)]"/>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:text>--</xsl:text>
+              <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                <xsl:value-of select="concat(.,'--')"/>
+              </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$vTag='650'">
               <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']">
                 <xsl:value-of select="concat(.,'--')"/>
@@ -670,9 +686,11 @@
         <xsl:element name="{$vProp}">
           <xsl:element name="{$vResource}">
             <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
-            <rdf:type>
-              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
-            </rdf:type>
+            <xsl:if test="$vMADSClass != ''">
+              <rdf:type>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
+              </rdf:type>
+            </xsl:if>
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -694,6 +712,25 @@
             <xsl:if test="$vMADSClass='ComplexSubject'">
               <madsrdf:componentList rdf:parseType="Collection">
                 <xsl:choose>
+                  <xsl:when test="$vTag='647'">
+                    <bf:Event>
+                      <xsl:variable name="vL">
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString">
+                            <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('acd', @code)]"/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <madsrdf:authoritativeLabel><xsl:value-of select="$vL"/></madsrdf:authoritativeLabel>
+                      <rdfs:label><xsl:value-of select="$vL"/></rdfs:label>
+                      <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+                    </bf:Event>
+                      <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                        <xsl:with-param name="pTag" select="$vTag"/>
+                        <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
+                      </xsl:apply-templates>
+                  </xsl:when>
                   <xsl:when test="$vTag='650'">
                     <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
                       <xsl:with-param name="serialization" select="$serialization"/>
@@ -783,6 +820,9 @@
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <xsl:if test="$vResource='bf:Event'">
+              <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+            </xsl:if>
           </xsl:element>
         </xsl:element>
       </xsl:when>
@@ -1034,6 +1074,7 @@
         <xsl:when test="@code='x'">madsrdf:Topic</xsl:when>
         <xsl:when test="@code='y'">madsrdf:Temporal</xsl:when>
         <xsl:when test="@code='z'">madsrdf:Geographic</xsl:when>
+        <xsl:when test="$pTag='647'">bf:Event</xsl:when>
         <xsl:when test="$pTag='648'">madsrdf:Temporal</xsl:when>
         <xsl:when test="$pTag='650'">
           <xsl:choose>
