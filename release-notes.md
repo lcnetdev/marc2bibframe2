@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v2.5.0
+
+Conversion updates based on specifications v2.5. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Move PrimaryContribution, Relief, and CaptureStorage from BFLC to BF namespace.
+* Added conversion support for 023, 046 $m and $n, and 647.
+* Regularize bf:electronicLocator shape throughout.
+* Better handling of 26X ind1 for serials and integrating resources.
+* Numerous bug fixes.
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.4.0 in the specifications are marked in red.
+
+
 ## v2.4.0
 
 Conversion updates based on specifications v2.4. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
