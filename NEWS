@@ -1,3 +1,39 @@
+--- 2.5.0 2024/01/19
+Changes towards updated v2.5.0 specifications:
+	ConvSpec 001-007
+	  Change from bflc:CaptureStorage to bf:CaptureStorage
+	ConvSpec 006-008
+	  Change from bflc:relief/Relief to bf:relief/Relief
+	  Stop creating extraneous bf:carrier=volume
+	ConvSpec 010-048
+	  Add conversion of MARC 023 field
+	  Add conversion of MARC 046 $m, $n to bf:validDate
+	ConvSpec 240-X30
+	  Change from bflc:PrimaryContribution to bf:PrimaryContribution
+	ConvSpec 250-270
+	  Add reference to Process 8.6 (addition of bf:status to provision activity resources)
+	ConvSpec 3XX
+	  Change from bflc:CaptureStorage to bf:CaptureStorage
+	ConvSpec 490,510
+	  bf:electronicLocator structure changed from rdf:value to rdf:resource for URLs in $u
+	ConvSpec 5XX
+	  bf:electronicLocator structure changed from rdf:value to rdf:resource for URLs in $u
+	ConvSpec 600-662
+	  Add bflc:Uncontrolled to 653 fields
+	  Add conversion of 647 field as bf:Event
+	  Change 648, 651, 655 fields to bf:subject/Topic when subdivisions ($v, $x, $y, $z) appear in string
+	ConvSpec 760-788
+	  Change from bflc:PrimaryContribution to bf:PrimaryContribution
+	ConvSpec 841-887
+	  Add 857 field
+	ConvSpec Preprocess0
+	  Correct numbering error in document
+	  Add LC-specific conversion information
+	ConvSpec Process0-8
+	  Change from bflc:PrimaryContribution to bf:PrimaryContribution
+	  New Process 8.6 for provision activity status
+
+
 --- 2.4.0 2023/11/22
 Changes towards updated v2.4.0 specifications:
 	ConvSpec 001-007:
