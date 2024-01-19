@@ -141,6 +141,7 @@
 
   <xsl:template match="marc:controlfield[@tag='007']" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType"/>
     <xsl:variable name="vMediaTypeLabel">
       <xsl:choose>
         <xsl:when test="substring(.,1,1) = 'a'">unmediated</xsl:when>
@@ -186,7 +187,9 @@
         </xsl:apply-templates>
       </xsl:variable>
       <xsl:variable name="vCarrier008">
-        <xsl:apply-templates select="ancestor::marc:record" mode="mCarrier008URI"/>
+        <xsl:if test="$pInstanceType != 'SecondaryInstance'">
+          <xsl:apply-templates select="ancestor::marc:record" mode="mCarrier008URI"/>
+        </xsl:if>
       </xsl:variable>
       <xsl:value-of select="normalize-space(concat($vCarriers338,' ',$vCarrier008))"/>
     </xsl:variable>
