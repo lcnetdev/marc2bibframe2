@@ -685,7 +685,14 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$vProp}">
           <xsl:element name="{$vResource}">
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
+            <xsl:choose>
+              <xsl:when test="marc:subfield[@code='1']">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
+              </xsl:when>
+              <xsl:when test="not(marc:subfield[@code='0'])">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
+              </xsl:when>
+            </xsl:choose>
             <xsl:if test="$vMADSClass != ''">
               <rdf:type>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
@@ -801,14 +808,14 @@
               </bf:role>
             </xsl:for-each> -->
             <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
-              <xsl:if test="position() != 1">
+              <xsl:if test="position() = 1">
                 <xsl:apply-templates mode="subfield0orw" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
-              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http' and substring(text(),1,10) != '(OCoLC)fst'">
+              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
                 <xsl:apply-templates mode="subfield0orw" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>

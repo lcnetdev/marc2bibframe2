@@ -663,17 +663,9 @@
               </xsl:for-each>
             </xsl:if>
           </xsl:if>
-          <xsl:choose>
-            <xsl:when test="substring($tag,2,2)='00'">
+          <xsl:if test="substring($tag,2,2)='00' or substring($tag,2,2)='10' or substring($tag,2,2)='11'">
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='10'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='11'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-          </xsl:choose>
+          </xsl:if>
           <xsl:if test="$label != ''">
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
@@ -701,7 +693,7 @@
             </xsl:when>
             <xsl:otherwise>
               <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
-                <xsl:if test="position() != 1">
+                <xsl:if test="position() = 1">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>

@@ -40,6 +40,9 @@
             </xsl:when>
           </xsl:choose>
         </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][starts-with(text(),'http')]">
+          <xsl:value-of select="marc:subfield[@code='1'][starts-with(text(),'http')][1]" />
+        </xsl:when>
         <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]">
             <!-- http://id.worldcat.org/fast/1919741 -->
             <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
@@ -81,44 +84,70 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:identifiedBy>
-          <xsl:element name="{$pIdClass}">
-            <rdf:value>
-              <xsl:choose>
-                <xsl:when test="contains($value,'://')">
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$value"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$value"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </rdf:value>
-            <xsl:if test="$source != '' and $source != 'uri'">
-              <xsl:choose>
-                <xsl:when test="@code='w'">
-                  <bf:assigner>
-                    <bf:Agent>
-                      <xsl:if test="$source='DLC'">
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                      </xsl:if>
-                      <bf:code><xsl:value-of select="$source"/></bf:code>
-                    </bf:Agent>
-                  </bf:assigner>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:if test="$source='DLC'">
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                      </xsl:if>
-                      <bf:code><xsl:value-of select="$source"/></bf:code>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:if>
-          </xsl:element>
-        </bf:identifiedBy>
+        <xsl:choose>
+          <xsl:when test="starts-with(text(),'http')">
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="text()" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:when test="starts-with(text(),'(uri)')">
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="substring-after(text(),'(uri)')" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:when test="starts-with(text(),'(OCoLC)fst')">
+            <!-- http://id.worldcat.org/fast/1919741 -->
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="concat('http://id.worldcat.org/fast/', substring-after(text(),'(OCoLC)fst'))" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:identifiedBy>
+              <xsl:element name="{$pIdClass}">
+                <rdf:value>
+                  <xsl:choose>
+                    <xsl:when test="contains($value,'://')">
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$value"/></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="$value"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </rdf:value>
+                <xsl:if test="$source != '' and $source != 'uri'">
+                  <xsl:choose>
+                    <xsl:when test="@code='w'">
+                      <bf:assigner>
+                        <bf:Agent>
+                          <xsl:if test="$source='DLC'">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                          </xsl:if>
+                          <bf:code><xsl:value-of select="$source"/></bf:code>
+                        </bf:Agent>
+                      </bf:assigner>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <bf:source>
+                        <bf:Source>
+                          <xsl:if test="$source='DLC'">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                          </xsl:if>
+                          <bf:code><xsl:value-of select="$source"/></bf:code>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:if>
+              </xsl:element>
+            </bf:identifiedBy>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
