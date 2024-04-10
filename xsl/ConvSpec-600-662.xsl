@@ -581,13 +581,15 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
+      <!--
       <xsl:variable name="vTopicUri">
         <xsl:apply-templates mode="generateUri" select=".">
           <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
         </xsl:apply-templates>
       </xsl:variable>
+      -->
       <xsl:apply-templates select="." mode="work6XXAuth">
-        <xsl:with-param name="pTopicUri" select="$vTopicUri"/>
+        <xsl:with-param name="pDefaultUri" select="$vDefaultUri"/>
         <xsl:with-param name="recordid" select="$recordid"/>
         <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
@@ -597,7 +599,7 @@
   <xsl:template match="marc:datafield" mode="work6XXAuth">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="recordid"/>
-    <xsl:param name="pTopicUri"/>
+    <xsl:param name="pDefaultUri"/>
     <xsl:variable name="vTag">
       <xsl:choose>
         <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
@@ -620,6 +622,40 @@
         <xsl:when test="$vTag='655'">bf:GenreForm</xsl:when>
         <xsl:otherwise>bf:Topic</xsl:otherwise>
       </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="resourceUri">
+      <xsl:choose>
+        <!-- If one of these types, preference the 0. -->
+        <xsl:when test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal'">
+          <xsl:apply-templates mode="generateUriFrom0" select=".">
+            <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
+          </xsl:apply-templates>    
+        </xsl:when>
+        <!-- If Event, sure, preference the 1. Why not? It's all arbitrary anyways. -->
+        <xsl:when test="$vResource='bf:Event'">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
+          </xsl:apply-templates>    
+        </xsl:when>
+        <!-- If Place, you bet it is an RWO. Can't be anything else. Nope. -->
+        <xsl:when test="$vResource='bf:Place'">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
+          </xsl:apply-templates>   
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <!-- Let's see if there is a dollar 0.  This only applies when the resource type uses the dollar 1 as the identifier. -->
+    <xsl:variable name="dollar0">
+        <xsl:if test="$vResource='bf:Event' or $vResource='bf:Place'">
+          <xsl:apply-templates mode="generateUriFrom0" select="." />
+        </xsl:if>
+    </xsl:variable>
+    <!-- Let's see if there is a dollar 1.  This only applies when the resource type uses the dollar 0 as the identifier. -->
+    <xsl:variable name="dollar1">
+      <xsl:if test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal'">
+        <xsl:apply-templates mode="generateUriFrom1" select="." />
+      </xsl:if>
     </xsl:variable>
     <xsl:variable name="vSourceURI"><xsl:value-of select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/bfsource"/></xsl:variable>
     <xsl:variable name="vMADSClass">
@@ -685,14 +721,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:element name="{$vProp}">
           <xsl:element name="{$vResource}">
-            <xsl:choose>
-              <xsl:when test="marc:subfield[@code='1']">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
-              </xsl:when>
-              <xsl:when test="not(marc:subfield[@code='0'])">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$pTopicUri"/></xsl:attribute>
-              </xsl:when>
-            </xsl:choose>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$resourceUri" /></xsl:attribute>
             <xsl:if test="$vMADSClass != ''">
               <rdf:type>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$vMADSClass)"/></xsl:attribute>
@@ -807,15 +836,18 @@
                 </bf:Role>
               </bf:role>
             </xsl:for-each> -->
-            <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
-              <xsl:if test="position() = 1">
-                <xsl:apply-templates mode="subfield0orw" select=".">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </xsl:if>
-            </xsl:for-each>
+            <xsl:if test="$dollar0 != '' and $dollar0 != $resourceUri">
+              <madsrdf:isIdentifiedByAuthorityF>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$dollar0"/></xsl:attribute>
+              </madsrdf:isIdentifiedByAuthorityF>
+            </xsl:if>
+            <xsl:if test="$dollar1 != '' and $dollar1 != $resourceUri">
+              <madsrdf:identifiesRWO>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$dollar1"/></xsl:attribute>
+              </madsrdf:identifiesRWO>
+            </xsl:if>
             <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
-              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http'">
+              <xsl:if test="substring(text(),1,5) != '(uri)' and substring(text(),1,4) != 'http' and not(contains(text(), '(OCoLC)fst'))">
                 <xsl:apply-templates mode="subfield0orw" select=".">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>

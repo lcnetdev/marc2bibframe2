@@ -31,23 +31,7 @@
           </bflc:Relationship>
         </bflc:relationship>
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='i']">
-        <bflc:relationship>
-          <bflc:Relationship>
-            <xsl:for-each select="marc:subfield[@code='i']">
-              <bflc:relation>
-                <bflc:Relation>
-                  <rdfs:label><xsl:value-of select="text()" /></rdfs:label>
-                </bflc:Relation>
-              </bflc:relation>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='0' or @code='1'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
-              <xsl:apply-templates select="." mode="df758subfield0or1" />
-            </xsl:for-each>
-          </bflc:Relationship>
-        </bflc:relationship>
-      </xsl:when>
-      <xsl:when test="marc:subfield[@code='4']">
+      <xsl:when test="marc:subfield[@code='4'] and not(contains(marc:subfield[@code='4'], 'rdaregistry'))">
         <bflc:relationship>
           <bflc:Relationship>
             <xsl:for-each select="marc:subfield[@code='4']">
@@ -65,6 +49,17 @@
                   </bflc:relation>
                 </xsl:otherwise>
               </xsl:choose>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='0' or @code='1'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
+              <xsl:apply-templates select="." mode="df758subfield0or1" />
+            </xsl:for-each>
+          </bflc:Relationship>
+        </bflc:relationship>
+      </xsl:when>
+      <xsl:when test="marc:subfield[@code='i']">
+        <bflc:relationship>
+          <bflc:Relationship>
+            <xsl:for-each select="marc:subfield[@code='i']">
               <bflc:relation>
                 <bflc:Relation>
                   <rdfs:label><xsl:value-of select="text()" /></rdfs:label>
