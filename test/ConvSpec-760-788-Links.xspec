@@ -67,4 +67,17 @@
     <x:expect label="...and the Instance" test="//bf:Work[1]/bf:absorbedBy/bf:Work/bf:hasInstance/bf:Instance/bf:role/bf:Role/@rdf:about='http://rdaregistry.info/Elements/w/P10145'"/>
   </x:scenario>
 
+  <x:scenario label="758-LINKS">
+    <x:context href="data/ConvSpec-760-788-Links/marc_758_uris.xml"/>
+    
+    <x:expect label="758 with $1 and no relationship creates hasEquivalent relationship" test="/rdf:RDF/bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bflc:relation/@rdf:resource='http://id.loc.gov/ontologies/bibframe/hasEquivalent'" />
+    <x:expect label="...with link to $1 resource" test="/rdf:RDF/bf:Work[1]/bflc:relationship[1]/bflc:Relationship/bf:relatedTo/@rdf:resource='http://worldcat.org/entity/work/id/5464332661'" />
+
+    <x:expect label="758 with non-ID $1 and instanceOf relationship creates indirect instanceOf relationship" test="/rdf:RDF/bf:Work[1]/bflc:relationship[2]/bflc:Relationship/bflc:relation/@rdf:resource='http://id.loc.gov/ontologies/bibframe/instanceOf'" />
+    <x:expect label="...with link to $1 resource" test="/rdf:RDF/bf:Work[1]/bflc:relationship[2]/bflc:Relationship/bf:relatedTo/@rdf:resource='http://www.wikidata.org/entity/Q15754099'" />
+ 
+    <x:expect label="758 with $1 and $i relationship" test="/rdf:RDF/bf:Work[1]/bflc:relationship[3]/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label='Has work manifested:'" />
+    <x:expect label="...with link to $1 resource" test="/rdf:RDF/bf:Work[1]/bflc:relationship[3]/bflc:Relationship/bf:relatedTo/@rdf:resource='http://www.wikidata.org/entity/Q27712857'" />
+    
+  </x:scenario>
 </x:description>
