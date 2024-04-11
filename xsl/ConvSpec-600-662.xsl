@@ -626,17 +626,19 @@
     <xsl:variable name="resourceUri">
       <xsl:choose>
         <!-- If one of these types, preference the 0. -->
-        <xsl:when test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal'">
+        <xsl:when test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal' or $vResource='bf:Event'">
           <xsl:apply-templates mode="generateUriFrom0" select=".">
             <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
           </xsl:apply-templates>    
         </xsl:when>
         <!-- If Event, sure, preference the 1. Why not? It's all arbitrary anyways. -->
+        <!--
         <xsl:when test="$vResource='bf:Event'">
           <xsl:apply-templates mode="generateUriFrom1" select=".">
             <xsl:with-param name="pDefaultUri" select="$pDefaultUri"/>
           </xsl:apply-templates>    
         </xsl:when>
+        -->
         <!-- If Place, you bet it is an RWO. Can't be anything else. Nope. -->
         <xsl:when test="$vResource='bf:Place'">
           <xsl:apply-templates mode="generateUriFrom1" select=".">
@@ -647,13 +649,13 @@
     </xsl:variable>
     <!-- Let's see if there is a dollar 0.  This only applies when the resource type uses the dollar 1 as the identifier. -->
     <xsl:variable name="dollar0">
-        <xsl:if test="$vResource='bf:Event' or $vResource='bf:Place'">
+        <xsl:if test="$vResource='bf:Place'">
           <xsl:apply-templates mode="generateUriFrom0" select="." />
         </xsl:if>
     </xsl:variable>
     <!-- Let's see if there is a dollar 1.  This only applies when the resource type uses the dollar 0 as the identifier. -->
     <xsl:variable name="dollar1">
-      <xsl:if test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal'">
+      <xsl:if test="$vResource='bf:Topic' or $vResource='bf:GenreForm' or $vResource='bf:Temporal' or $vResource='bf:Event'">
         <xsl:apply-templates mode="generateUriFrom1" select="." />
       </xsl:if>
     </xsl:variable>
@@ -837,9 +839,9 @@
               </bf:role>
             </xsl:for-each> -->
             <xsl:if test="$dollar0 != '' and $dollar0 != $resourceUri">
-              <madsrdf:isIdentifiedByAuthorityF>
+              <madsrdf:isIdentifiedByAuthority>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$dollar0"/></xsl:attribute>
-              </madsrdf:isIdentifiedByAuthorityF>
+              </madsrdf:isIdentifiedByAuthority>
             </xsl:if>
             <xsl:if test="$dollar1 != '' and $dollar1 != $resourceUri">
               <madsrdf:identifiesRWO>
