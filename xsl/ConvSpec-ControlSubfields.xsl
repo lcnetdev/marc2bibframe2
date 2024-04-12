@@ -98,6 +98,9 @@
           <xsl:variable name="sf1" select="marc:subfield[@code='1']"/>
           <xsl:value-of select="concat(substring-before($sf1,'rwo/agents'), 'authorities/names/', substring-after($sf1,'rwo/agents/'))"/>
         </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]">
+          <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>

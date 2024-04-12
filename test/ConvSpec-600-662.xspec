@@ -145,7 +145,7 @@
     <x:expect label="FAST identifier in $0 converted to URI and used for rdf:about" test="//bf:Work[1]/bf:subject[4]/bf:Topic/@rdf:about = 'http://id.worldcat.org/fast/01114228'"/>
     <x:expect label="FAST identifier in $0 converted to URI and used for rdf:about" test="//bf:Work[1]/bf:subject[5]/bf:Topic/@rdf:about = 'http://id.worldcat.org/fast/01155423'"/>
     <x:expect label="...and $1 used as identifiesRWO" test="//bf:Work[1]/bf:subject[5]/bf:Topic/madsrdf:identifiesRWO/@rdf:resource = 'https://id.oclc.org/entity/1'"/>
-    <x:expect label="Homosaurus URI in $1 identifiesRWO" test="//bf:Work[1]/bf:subject[6]/bf:Topic/madsrdf:identifiesRWO/@rdf:resource = 'https://homosaurus.org/v3/homoit0001048'"/>
+    <x:expect label="Homosaurus URI in $1 used as resource URI" test="//bf:Work[1]/bf:subject[6]/bf:Topic/@rdf:about = 'https://homosaurus.org/v3/homoit0001048'"/>
   </x:scenario>
 
   <x:scenario label="651 - SUBJECT ADDED ENTRY--PLACE--URIS">
