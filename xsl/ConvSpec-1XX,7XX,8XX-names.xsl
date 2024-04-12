@@ -720,6 +720,17 @@
               </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
+              <xsl:if test="marc:subfield[@code='1'] and 
+                            contains(marc:subfield[@code='1'], 'id.loc.gov/rwo/') and 
+                            not(marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')])">
+                <madsrdf:isIdentifiedByAuthority>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:apply-templates mode="generateUriFrom0" select=".">
+                      <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+                    </xsl:apply-templates>
+                  </xsl:attribute>
+                </madsrdf:isIdentifiedByAuthority>
+              </xsl:if>
               <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
                 <xsl:if test="position() = 1">
                   <xsl:apply-templates mode="subfield0orw" select=".">

@@ -81,7 +81,7 @@
           <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
           <xsl:value-of select="concat('http://id.worldcat.org/fast/', substring-after($vIdentifier,'(OCoLC)fst'))" />
         </xsl:when>
-        <xsl:otherwise>
+        <xsl:when test="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]">
           <xsl:variable name="vIdentifier">
             <xsl:value-of select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
           </xsl:variable>
@@ -93,7 +93,11 @@
               <xsl:value-of select="$vIdentifier"/>
             </xsl:when>
           </xsl:choose>
-        </xsl:otherwise>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
+          <xsl:variable name="sf1" select="marc:subfield[@code='1']"/>
+          <xsl:value-of select="concat(substring-before($sf1,'rwo/agents'), 'authorities/names/', substring-after($sf1,'rwo/agents/'))"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
