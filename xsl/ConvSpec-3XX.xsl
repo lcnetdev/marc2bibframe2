@@ -683,9 +683,32 @@
                 </rdfs:label>
               </xsl:if>
               <xsl:if test="following-sibling::marc:subfield[position()=1]/@code = '0'">
-                <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                  <xsl:when test="contains(following-sibling::marc:subfield[position()=1], '://')">
+                    <xsl:variable name="the0">
+                      <xsl:choose>
+                        <xsl:when test="starts-with(following-sibling::marc:subfield[position()=1],'(uri)')">
+                          <xsl:value-of select="substring-after(following-sibling::marc:subfield[position()=1],'(uri)')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="following-sibling::marc:subfield[position()=1]"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:variable>
+                    <xsl:if test="$the0 != concat($pUriStem,$encoded)">
+                      <madsrdf:hasRelatedAuthority>
+                        <xsl:attribute name="rdf:resource">
+                          <xsl:value-of select="$the0"/>
+                        </xsl:attribute>
+                      </madsrdf:hasRelatedAuthority>
+                    </xsl:if>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:apply-templates select="following-sibling::marc:subfield[position()=1]" mode="subfield0orw">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:if>
               <xsl:for-each select="../marc:subfield[@code='2']">
                 <xsl:variable name="vCode">
