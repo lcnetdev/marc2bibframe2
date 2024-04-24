@@ -33,7 +33,8 @@
           </xsl:variable>
           <bf:classification>
             <bf:ClassificationLcc>
-              <xsl:if test="$vCurrentNodeUri != ''">
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <bf:classificationPortion>
@@ -64,10 +65,16 @@
                 </xsl:when>
               </xsl:choose>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                <xsl:if test="position() != 1">
-                  <xsl:apply-templates select="." mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                              or 
+                              position() != 1">
+                <madsrdf:hasRelatedAuthority>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:apply-templates select="." mode="generateUriFrom0">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:attribute>
+                </madsrdf:hasRelatedAuthority>
                 </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
@@ -158,7 +165,8 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:classification>
           <bf:ClassificationLcc>
-            <xsl:if test="$vNodeUri != ''">
+            <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+            <xsl:if test="$vNodeUri != '' and not(marc:subfield[@code='b'])">
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vNodeUri"/></xsl:attribute>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
@@ -189,12 +197,18 @@
               </xsl:choose>
             </xsl:if>
             <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
-              <xsl:if test="position() != 1">
-                <xsl:apply-templates select="." mode="subfield0orw">
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </xsl:if>
-            </xsl:for-each>
+                <xsl:if test="(position() = 1 and $vNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                  or 
+                  position() != 1">
+                  <madsrdf:hasRelatedAuthority>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:apply-templates select="." mode="generateUriFrom0">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:attribute>
+                  </madsrdf:hasRelatedAuthority>
+                </xsl:if>
+              </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='0' and not(contains(text(),'://'))]">
               <xsl:apply-templates select="." mode="subfield0orw">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -226,7 +240,8 @@
           </xsl:variable>
           <bf:classification>
             <bf:ClassificationNlm>
-              <xsl:if test="$vCurrentNodeUri != ''">
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <bf:classificationPortion><xsl:value-of select="."/></bf:classificationPortion>
@@ -253,10 +268,16 @@
                 </xsl:choose>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                <xsl:if test="position() != 1">
-                  <xsl:apply-templates select="." mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                  or 
+                  position() != 1">
+                  <madsrdf:hasRelatedAuthority>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:apply-templates select="." mode="generateUriFrom0">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:attribute>
+                  </madsrdf:hasRelatedAuthority>
                 </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
@@ -289,7 +310,8 @@
           </xsl:variable>
           <bf:classification>
             <bf:Classification>
-              <xsl:if test="$vCurrentNodeUri != ''">
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <xsl:if test="../@ind1='0'">
@@ -307,10 +329,16 @@
                 </xsl:for-each>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                <xsl:if test="position() != 1">
-                  <xsl:apply-templates select="." mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                  or 
+                  position() != 1">
+                  <madsrdf:hasRelatedAuthority>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:apply-templates select="." mode="generateUriFrom0">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:attribute>
+                  </madsrdf:hasRelatedAuthority>
                 </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
@@ -372,6 +400,13 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:classification>
           <bf:ClassificationDdc>
+            <xsl:if test="marc:subfield[@code='1']">
+              <xsl:attribute name="rdf:about">
+                <xsl:apply-templates select="." mode="generateUriFrom1">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </xsl:attribute>
+            </xsl:if>
             <xsl:for-each select="marc:subfield[@code='a']">
               <bf:classificationPortion>
                 <xsl:value-of select="."/>
@@ -431,7 +466,8 @@
           </xsl:variable>
           <bf:classification>
             <bf:Classification>
-              <xsl:if test="$vCurrentNodeUri != ''">
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <bf:classificationPortion>
@@ -452,10 +488,16 @@
                 </bf:assigner>
               </xsl:for-each>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                <xsl:if test="position() != 1">
-                  <xsl:apply-templates select="." mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                  or 
+                  position() != 1">
+                  <madsrdf:hasRelatedAuthority>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:apply-templates select="." mode="generateUriFrom0">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:attribute>
+                  </madsrdf:hasRelatedAuthority>
                 </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
@@ -473,7 +515,7 @@
   
   <!-- instance match for field 074 in ConvSpec-010-048.xsl -->
 
-  <xsl:template match="marc:datafield[@tag='086' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='086')]" mode="instance">
+  <xsl:template match="marc:datafield[@tag='086' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='086')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -493,7 +535,8 @@
           </xsl:variable>
           <bf:classification>
             <bf:Classification>
-              <xsl:if test="$vCurrentNodeUri != ''">
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
               </xsl:if>
               <rdfs:label><xsl:value-of select="."/></rdfs:label>
@@ -506,10 +549,16 @@
                 </bf:status>
               </xsl:if>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
-                <xsl:if test="position() != 1">
-                  <xsl:apply-templates select="." mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
+                  or 
+                  position() != 1">
+                  <madsrdf:hasRelatedAuthority>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:apply-templates select="." mode="generateUriFrom0">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:attribute>
+                  </madsrdf:hasRelatedAuthority>
                 </xsl:if>
               </xsl:for-each>
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
