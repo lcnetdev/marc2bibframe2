@@ -76,6 +76,23 @@
     <xsl:param name="pDefaultUri"/>
     <xsl:variable name="vGeneratedUri">
       <xsl:choose>
+        <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="starts-with($vIdentifier,'(uri)')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'http')">
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
+          <xsl:variable name="sf1" select="marc:subfield[@code='1']"/>
+          <xsl:value-of select="concat(substring-before($sf1,'rwo/agents'), 'authorities/names/', substring-after($sf1,'rwo/agents/'))"/>
+        </xsl:when>
         <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]">
           <!-- http://id.worldcat.org/fast/1919741 -->
           <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
@@ -94,9 +111,11 @@
             </xsl:when>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
-          <xsl:variable name="sf1" select="marc:subfield[@code='1']"/>
-          <xsl:value-of select="concat(substring-before($sf1,'rwo/agents'), 'authorities/names/', substring-after($sf1,'rwo/agents/'))"/>
+        <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(DE-588)')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0'][starts-with(text(),'(DE-588)')][1]"/>
+          </xsl:variable>
+          <xsl:value-of select="concat('https://d-nb.info/gnd/', substring-after($vIdentifier,'(DE-588)'))"/>
         </xsl:when>
         <xsl:when test="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]">
           <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]"/>
@@ -116,12 +135,29 @@
     <xsl:param name="pDefaultUri"/>
     <xsl:variable name="vGeneratedUri">
       <xsl:choose>
-        <xsl:when test="marc:subfield[@code='1'][starts-with(text(),'http')]">
-          <xsl:value-of select="marc:subfield[@code='1'][starts-with(text(),'http')][1]" />
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
+          <xsl:variable name="sf" select="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]"/>
+          <xsl:value-of select="$sf"/>
         </xsl:when>
         <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
-          <xsl:variable name="sf0" select="marc:subfield[@code='0']"/>
+          <xsl:variable name="sf0" select="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]"/>
           <xsl:value-of select="concat(substring-before($sf0,'authorities/names'), 'rwo/agents/', substring-after($sf0,'authorities/names/'))"/>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'isni.org/isni/')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'isni.org/isni/')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="substring($vIdentifier, string-length($vIdentifier)) = '.'">
+              <xsl:value-of select="substring($vIdentifier, 1, string-length($vIdentifier) - 1)"/>              
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][starts-with(text(),'http')]">
+          <xsl:value-of select="marc:subfield[@code='1'][starts-with(text(),'http')][1]" />
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
