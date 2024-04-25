@@ -25,8 +25,20 @@
     <xsl:variable name="agentiri">
       <xsl:choose>
         <xsl:when test="$pAgentIri != ''"><xsl:value-of select="$pAgentIri"/></xsl:when>
+        <xsl:when test="marc:subfield[@code='1']">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>            
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>            
+        </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates mode="generateUri" select=".">
+          <xsl:apply-templates mode="generateUriFrom0" select=".">
             <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
             <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
           </xsl:apply-templates>
@@ -51,10 +63,26 @@
     <!-- note special $5 processing for LoC below -->
     <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
       <xsl:variable name="agentiri">
-        <xsl:apply-templates mode="generateUri" select=".">
-          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-          <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
-        </xsl:apply-templates>
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='1']">
+            <xsl:apply-templates mode="generateUriFrom1" select=".">
+              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+              <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+            </xsl:apply-templates>            
+          </xsl:when>
+          <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
+            <xsl:apply-templates mode="generateUriFrom1" select=".">
+              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+              <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+            </xsl:apply-templates>            
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="generateUriFrom0" select=".">
+              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+              <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vHubIri">
         <xsl:apply-templates mode="generateUri" select=".">
@@ -663,17 +691,9 @@
               </xsl:for-each>
             </xsl:if>
           </xsl:if>
-          <xsl:choose>
-            <xsl:when test="substring($tag,2,2)='00'">
+          <xsl:if test="substring($tag,2,2)='00' or substring($tag,2,2)='10' or substring($tag,2,2)='11'">
               <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='10'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-            <xsl:when test="substring($tag,2,2)='11'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-            </xsl:when>
-          </xsl:choose>
+          </xsl:if>
           <xsl:if test="$label != ''">
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
@@ -700,8 +720,19 @@
               </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
+              <xsl:if test="marc:subfield[@code='1'] and 
+                            contains(marc:subfield[@code='1'], 'id.loc.gov/rwo/') and 
+                            not(marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')])">
+                <madsrdf:isIdentifiedByAuthority>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:apply-templates mode="generateUriFrom0" select=".">
+                      <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+                    </xsl:apply-templates>
+                  </xsl:attribute>
+                </madsrdf:isIdentifiedByAuthority>
+              </xsl:if>
               <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
-                <xsl:if test="position() != 1">
+                <xsl:if test="position() = 1">
                   <xsl:apply-templates mode="subfield0orw" select=".">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>

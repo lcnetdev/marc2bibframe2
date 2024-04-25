@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+    <controlfield tag="001">20858356</controlfield>
+    <datafield tag="758" ind1=" " ind2=" ">
+        <subfield code="1">http://worldcat.org/entity/work/id/5464332661</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="758">
+        <subfield code="a">Studies on Voltaire and the eighteenth century</subfield>
+        <subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</subfield>
+        <subfield code="1">http://www.wikidata.org/entity/Q15754099</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="758">
+        <subfield code="4">http://rdaregistry.info/Elements/m/P30135</subfield>
+        <subfield code="i">Has work manifested:</subfield>
+        <subfield code="a">Psychological issues</subfield>
+        <subfield code="1">http://www.wikidata.org/entity/Q27712857</subfield>
+    </datafield>
+</record>
+</collection>

@@ -86,6 +86,7 @@
   <xsl:include href="ConvSpec-5XX.xsl"/>
   <xsl:include href="ConvSpec-600-662.xsl"/>
   <xsl:include href="ConvSpec-720+740to755.xsl"/>
+  <xsl:include href="ConvSpec-758.xsl"/>
   <xsl:include href="ConvSpec-760-788-Links.xsl"/>
   <xsl:include href="ConvSpec-841-887.xsl"/>
   <xsl:include href="ConvSpec-880.xsl"/>
@@ -138,7 +139,9 @@
     </xsl:variable>
 
     <xsl:variable name="vInstanceType">
-      <xsl:apply-templates mode="instanceType" select="marc:leader"/>
+      <xsl:apply-templates mode="instanceType" select="marc:leader">
+        <xsl:with-param name="pBaseUri" select="$baseuri"/>
+      </xsl:apply-templates>
     </xsl:variable>
 
     <xsl:variable name="vCount880"><xsl:value-of select="count(marc:datafield[@tag='880'])"/></xsl:variable>
@@ -251,7 +254,11 @@
               </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-              <xsl:when test="marc:datafield[@tag='758' and marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf']">
+              <xsl:when test="marc:datafield[
+                                @tag='758' and 
+                                marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf' and
+                                contains(marc:subfield[@code='1'], $baseuri)
+                              ]">
                 <bf:instanceOf>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:datafield[@tag='758']/marc:subfield[@code='1']"/></xsl:attribute>
                 </bf:instanceOf>

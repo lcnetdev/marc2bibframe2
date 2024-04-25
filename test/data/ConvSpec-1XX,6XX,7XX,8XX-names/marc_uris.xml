@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+    <controlfield tag="001">20858356</controlfield>
+    <datafield tag="100" ind1="1" ind2=" ">
+        <subfield code="a">Amīn, Ḥusayn Aḥmad,</subfield>
+        <subfield code="e">author.</subfield>
+        <subfield code="0">http://example.org/names/n83170323</subfield>
+        <subfield code="1">http://viaf.org/viaf/27297150/</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+        <subfield code="a">Haider, Asad,</subfield>
+        <subfield code="e">author.</subfield>
+        <subfield code="1">https://isni.org/isni/000000049947861X</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+        <subfield code="a">Perri, Melissa,</subfield>
+        <subfield code="e">author.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/nb2019016901</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+        <subfield code="a">Roosevelt, Theodore,</subfield>
+        <subfield code="d">1858-1919.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/n79027239</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+        <subfield code="a">Taft, William H.</subfield>
+        <subfield code="q">(William Howard),</subfield>
+        <subfield code="d">1857-1930.</subfield>
+        <subfield code="1">http://id.loc.gov/rwo/agents/n79022244</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0" xmlns:streams="info:lc/streams#">
+        <subfield code="a">Lincoln, Abraham,</subfield>
+        <subfield code="d">1809-1865.</subfield>
+        <subfield code="1">https://viaf.org/viaf/76349832/</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+        <subfield code="a">Johnson, Lyndon B.</subfield>
+        <subfield code="q">(Lyndon Baines),</subfield>
+        <subfield code="d">1908-1973.</subfield>
+        <subfield code="1">http://viaf.org/viaf/92989169</subfield>
+        <subfield code="0">http://example.org/names/n80005801</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+        <subfield code="a">Amin, Yasmin,</subfield>
+        <subfield code="e">translator.</subfield>
+        <subfield code="1">http://viaf.org/viaf/3320154501860139210007/</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+        <subfield code="a">Besterman, Theodore,</subfield>
+        <subfield code="d">1904-1976,</subfield>
+        <subfield code="e">editor.</subfield>
+        <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJqFMYqM9phrM7kFK8hJXd</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+        <subfield code="a">Wolitzky, David L.</subfield>
+        <subfield code="q">(David Leo),</subfield>
+        <subfield code="d">1936-</subfield>
+        <subfield code="e">editorial director.</subfield>
+        <subfield code="0">http://example.org/names/n92801300</subfield>
+        <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJxt44CR7PvwWxx3RP7PwC</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+        <subfield code="a">Eagle, Morris N.,</subfield>
+        <subfield code="e">editorial director.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/n83158481</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+        <subfield code="a">Amīn, Ḥusayn Aḥmad,</subfield>
+        <subfield code="e">author.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/n83170323</subfield>
+        <subfield code="1">http://viaf.org/viaf/27297150/</subfield>
+    </datafield>
+</record>
+</collection>
+
