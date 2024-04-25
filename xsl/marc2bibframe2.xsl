@@ -150,17 +150,16 @@
     <xsl:variable name="rAdminMetadata">
       <bf:adminMetadata>
         <bf:AdminMetadata>
+          <bf:descriptionLevel>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$vOntoVersionURI"/></xsl:attribute>
+          </bf:descriptionLevel>
           <bf:generationProcess>
-            <bf:GenerationProcess>
-              <rdfs:label>DLC marc2bibframe2 <xsl:value-of select="$vCurrentVersion"/></rdfs:label>
-              <xsl:if test="$pGenerationDatestamp != ''">
-                <bf:generationDate>
-                  <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
-                  <xsl:value-of select="$pGenerationDatestamp"/>
-                </bf:generationDate>
-              </xsl:if>
-            </bf:GenerationProcess>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$vConvVersionURI"/></xsl:attribute>
           </bf:generationProcess>
+          <bf:generationDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
+            <xsl:value-of select="$pGenerationDatestamp"/>
+          </bf:generationDate>
           <!-- pass fields through conversion specs for AdminMetadata properties -->
           <xsl:choose>
             <xsl:when test="$vCount880 = 0">
