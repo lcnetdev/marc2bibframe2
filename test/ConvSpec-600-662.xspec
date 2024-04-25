@@ -79,7 +79,8 @@
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="651 creates a subject/Place property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Place) = 2"/>
     <x:expect label="...with a Class from MADSRDF" test="//bf:Work[1]/bf:subject[8]/bf:Place/rdf:type/@rdf:resource = 'http://www.loc.gov/mads/rdf/v1#Geographic'"/>
-    <x:expect label="$0 with a URI sets the rdf:about property of the Place" test="//bf:Work[1]/bf:subject[8]/bf:Place/@rdf:about = 'http://id.loc.gov/authorities/names/n97057532'"/>
+    <x:expect label="Names $0 used as isIdentifiedByAuthority URI" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:isIdentifiedByAuthority/@rdf:resource = 'http://id.loc.gov/authorities/names/n97057532'"/>
+    <x:expect label="...and Names $0 converted to Agent $1 used as rdf:about" test="//bf:Work[1]/bf:subject[8]/bf:Place/@rdf:about = 'http://id.loc.gov/rwo/agents/n97057532'"/>
   </x:scenario>
   
   <x:scenario label="653 - INDEX TERM--UNCONTROLLED">
@@ -128,6 +129,30 @@
     <x:expect label="...and become components in the madsrdf:componentList of the Topic" test="//bf:Work[1]/bf:subject[15]/bf:Place/madsrdf:componentList/*[3]/rdfs:label = 'Asahi-dake'"/>
     <x:expect label="...with the appropriate madsrdf Class" test="//bf:Work[1]/bf:subject[15]/bf:Place/madsrdf:componentList/madsrdf:County/rdfs:label = 'Hokkaido'"/>
     <x:expect label="$2 creates source property of the Place" test="//bf:Work[1]/bf:subject[15]/bf:Place/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/pemracs'"/>
+  </x:scenario>
+
+  <x:scenario label="647 - SUBJECT ADDED ENTRY--EVENT--URIS">
+    <x:context href="data/ConvSpec-648-662/marc_uris.xml"/>
+    <x:expect label="647 creates a subject/Event property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Event)=1"/>
+    <x:expect label="FAST identifier in $0 converted to URI and used for rdf:about" test="//bf:Work[1]/bf:subject[1]/bf:Event/@rdf:about = 'http://id.worldcat.org/fast/01351651'"/>
+    <x:expect label="...and $1 used as identifiesRWO" test="//bf:Work[1]/bf:subject[1]/bf:Event/madsrdf:identifiesRWO/@rdf:resource = 'https://id.oclc.org/worldcat/entity/E39Qhp4vB9x3k8H8xR7TqHFkBX'"/>
+  </x:scenario>
+
+  <x:scenario label="650 - SUBJECT ADDED ENTRY--TOPICAL TERM--URIS">
+    <x:context href="data/ConvSpec-648-662/marc_uris.xml"/>
+    <x:expect label="650 creates a subject/Topic property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic)=6"/>
+    <x:expect label="LCSH $0 used for rdf:about" test="//bf:Work[1]/bf:subject[2]/bf:Topic/@rdf:about = 'http://id.loc.gov/authorities/subjects/sh91003756'"/>
+    <x:expect label="FAST identifier in $0 converted to URI and used for rdf:about" test="//bf:Work[1]/bf:subject[4]/bf:Topic/@rdf:about = 'http://id.worldcat.org/fast/01114228'"/>
+    <x:expect label="FAST identifier in $0 converted to URI and used for rdf:about" test="//bf:Work[1]/bf:subject[5]/bf:Topic/@rdf:about = 'http://id.worldcat.org/fast/01155423'"/>
+    <x:expect label="...and $1 used as identifiesRWO" test="//bf:Work[1]/bf:subject[5]/bf:Topic/madsrdf:identifiesRWO/@rdf:resource = 'https://id.oclc.org/entity/1'"/>
+    <x:expect label="Homosaurus URI in $1 used as resource URI" test="//bf:Work[1]/bf:subject[6]/bf:Topic/@rdf:about = 'https://homosaurus.org/v3/homoit0001048'"/>
+  </x:scenario>
+
+  <x:scenario label="651 - SUBJECT ADDED ENTRY--PLACE--URIS">
+    <x:context href="data/ConvSpec-648-662/marc_uris.xml"/>
+    <x:expect label="651 creates a subject/Place property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Place)=1"/>
+    <x:expect label="Names $0 used as isIdentifiedByAuthority URI" test="//bf:Work[1]/bf:subject[8]/bf:Place/madsrdf:isIdentifiedByAuthority/@rdf:resource = 'http://id.loc.gov/authorities/names/n97057532'"/>
+    <x:expect label="...and Names $0 converted to Agent $1 used as rdf:about" test="//bf:Work[1]/bf:subject[8]/bf:Place/@rdf:about = 'http://id.loc.gov/rwo/agents/n97057532'"/>
   </x:scenario>
   
 </x:description>

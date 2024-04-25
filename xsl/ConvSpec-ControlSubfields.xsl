@@ -40,6 +40,9 @@
             </xsl:when>
           </xsl:choose>
         </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][starts-with(text(),'http')]">
+          <xsl:value-of select="marc:subfield[@code='1'][starts-with(text(),'http')][1]" />
+        </xsl:when>
         <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]">
             <!-- http://id.worldcat.org/fast/1919741 -->
             <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
@@ -67,6 +70,104 @@
   </xsl:template>
 
   <!--
+      generate URI from Dollar 0
+  -->
+  <xsl:template match="marc:datafield" mode="generateUriFrom0">
+    <xsl:param name="pDefaultUri"/>
+    <xsl:variable name="vGeneratedUri">
+      <xsl:choose>
+        <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="starts-with($vIdentifier,'(uri)')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'http')">
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
+          <xsl:variable name="sf1" select="marc:subfield[@code='1']"/>
+          <xsl:value-of select="concat(substring-before($sf1,'rwo/agents'), 'authorities/names/', substring-after($sf1,'rwo/agents/'))"/>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]">
+          <!-- http://id.worldcat.org/fast/1919741 -->
+          <xsl:variable name="vIdentifier" select="marc:subfield[@code='0'][starts-with(text(),'(OCoLC)fst')]" />
+          <xsl:value-of select="concat('http://id.worldcat.org/fast/', substring-after($vIdentifier,'(OCoLC)fst'))" />
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="starts-with($vIdentifier,'(uri)')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'http')">
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='0'][starts-with(text(),'(DE-588)')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='0'][starts-with(text(),'(DE-588)')][1]"/>
+          </xsl:variable>
+          <xsl:value-of select="concat('https://d-nb.info/gnd/', substring-after($vIdentifier,'(DE-588)'))"/>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]">
+          <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$vGeneratedUri != ''"><xsl:value-of select="$vGeneratedUri"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$pDefaultUri"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
+      generate URI from Dollar 1
+  -->
+  <xsl:template match="marc:datafield" mode="generateUriFrom1">
+    <xsl:param name="pDefaultUri"/>
+    <xsl:variable name="vGeneratedUri">
+      <xsl:choose>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]">
+          <xsl:variable name="sf" select="marc:subfield[@code='1'][contains(text(),'id.loc.gov/rwo/agents/')]"/>
+          <xsl:value-of select="$sf"/>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
+          <xsl:variable name="sf0" select="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]"/>
+          <xsl:value-of select="concat(substring-before($sf0,'authorities/names'), 'rwo/agents/', substring-after($sf0,'authorities/names/'))"/>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][contains(text(),'isni.org/isni/')]">
+          <xsl:variable name="vIdentifier">
+            <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'isni.org/isni/')][1]"/>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="substring($vIdentifier, string-length($vIdentifier)) = '.'">
+              <xsl:value-of select="substring($vIdentifier, 1, string-length($vIdentifier) - 1)"/>              
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$vIdentifier"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="marc:subfield[@code='1'][starts-with(text(),'http')]">
+          <xsl:value-of select="marc:subfield[@code='1'][starts-with(text(),'http')][1]" />
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$vGeneratedUri != ''"><xsl:value-of select="$vGeneratedUri"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$pDefaultUri"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
       create a bf:identifiedBy property from a subfield $0 or $w
   -->
   <xsl:template match="marc:subfield" mode="subfield0orw">
@@ -81,44 +182,70 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:identifiedBy>
-          <xsl:element name="{$pIdClass}">
-            <rdf:value>
-              <xsl:choose>
-                <xsl:when test="contains($value,'://')">
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$value"/></xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$value"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </rdf:value>
-            <xsl:if test="$source != '' and $source != 'uri'">
-              <xsl:choose>
-                <xsl:when test="@code='w'">
-                  <bf:assigner>
-                    <bf:Agent>
-                      <xsl:if test="$source='DLC'">
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                      </xsl:if>
-                      <bf:code><xsl:value-of select="$source"/></bf:code>
-                    </bf:Agent>
-                  </bf:assigner>
-                </xsl:when>
-                <xsl:otherwise>
-                  <bf:source>
-                    <bf:Source>
-                      <xsl:if test="$source='DLC'">
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                      </xsl:if>
-                      <bf:code><xsl:value-of select="$source"/></bf:code>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:if>
-          </xsl:element>
-        </bf:identifiedBy>
+        <xsl:choose>
+          <xsl:when test="starts-with(text(),'http')">
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="text()" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:when test="starts-with(text(),'(uri)')">
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="substring-after(text(),'(uri)')" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:when test="starts-with(text(),'(OCoLC)fst')">
+            <!-- http://id.worldcat.org/fast/1919741 -->
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="concat('http://id.worldcat.org/fast/', substring-after(text(),'(OCoLC)fst'))" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:otherwise>
+            <bf:identifiedBy>
+              <xsl:element name="{$pIdClass}">
+                <rdf:value>
+                  <xsl:choose>
+                    <xsl:when test="contains($value,'://')">
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="$value"/></xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="$value"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </rdf:value>
+                <xsl:if test="$source != '' and $source != 'uri'">
+                  <xsl:choose>
+                    <xsl:when test="@code='w'">
+                      <bf:assigner>
+                        <bf:Agent>
+                          <xsl:if test="$source='DLC'">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                          </xsl:if>
+                          <bf:code><xsl:value-of select="$source"/></bf:code>
+                        </bf:Agent>
+                      </bf:assigner>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <bf:source>
+                        <bf:Source>
+                          <xsl:if test="$source='DLC'">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                          </xsl:if>
+                          <bf:code><xsl:value-of select="$source"/></bf:code>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:if>
+              </xsl:element>
+            </bf:identifiedBy>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

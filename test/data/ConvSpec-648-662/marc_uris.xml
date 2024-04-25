@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+    <controlfield tag="001">19799455</controlfield>
+    <datafield ind1=" " ind2="7" tag="647">
+        <subfield code="a">Allied Occupation of Germany</subfield>
+        <subfield code="c">(Germany :</subfield>
+        <subfield code="d">1918-1930)</subfield>
+        <subfield code="2">fast</subfield>
+        <subfield code="0">(OCoLC)fst01351651</subfield>
+        <subfield code="1">https://id.oclc.org/worldcat/entity/E39Qhp4vB9x3k8H8xR7TqHFkBX</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+        <subfield code="a">Gender identity.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/subjects/sh91003756</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+        <subfield code="a">Sexual minorities.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+        <subfield code="a">Sex (Psychology)</subfield>
+        <subfield code="2">fast</subfield>
+        <subfield code="0">(OCoLC)fst01114228</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+        <subfield code="a">Transsexualism</subfield>
+        <subfield code="2">fast</subfield>
+        <subfield code="0">(OCoLC)fst01155423</subfield>
+        <subfield code="1">https://id.oclc.org/entity/1</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+        <subfield code="a">Non-binary people.</subfield>
+        <subfield code="2">homoit</subfield>
+        <subfield code="1">https://homosaurus.org/v3/homoit0001048</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+        <subfield code="a">Society.</subfield>
+        <subfield code="2">ukslc</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+        <subfield code="a">Kenwood (Chicago, Ill.)</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/n97057532</subfield>
+    </datafield>  
+</record>
+</collection>
