@@ -5,7 +5,7 @@
     <datafield tag="100" ind1="1" ind2=" ">
         <subfield code="a">Amīn, Ḥusayn Aḥmad,</subfield>
         <subfield code="e">author.</subfield>
-        <subfield code="0">http://id.loc.gov/authorities/names/n83170323</subfield>
+        <subfield code="0">http://example.org/names/n83170323</subfield>
         <subfield code="1">http://viaf.org/viaf/27297150/</subfield>
     </datafield>
     <datafield ind1="1" ind2=" " tag="100">
@@ -39,7 +39,7 @@
         <subfield code="q">(Lyndon Baines),</subfield>
         <subfield code="d">1908-1973.</subfield>
         <subfield code="1">http://viaf.org/viaf/92989169</subfield>
-        <subfield code="0">http://id.loc.gov/authorities/names/n80005801</subfield>
+        <subfield code="0">http://example.org/names/n80005801</subfield>
     </datafield>
     <datafield tag="700" ind1="1" ind2=" ">
         <subfield code="a">Amin, Yasmin,</subfield>
@@ -57,13 +57,19 @@
         <subfield code="q">(David Leo),</subfield>
         <subfield code="d">1936-</subfield>
         <subfield code="e">editorial director.</subfield>
-        <subfield code="0">http://id.loc.gov/authorities/names/n92801300</subfield>
+        <subfield code="0">http://example.org/names/n92801300</subfield>
         <subfield code="1">https://id.oclc.org/worldcat/entity/E39PBJxt44CR7PvwWxx3RP7PwC</subfield>
     </datafield>
     <datafield ind1="1" ind2=" " tag="700">
         <subfield code="a">Eagle, Morris N.,</subfield>
         <subfield code="e">editorial director.</subfield>
         <subfield code="0">http://id.loc.gov/authorities/names/n83158481</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+        <subfield code="a">Amīn, Ḥusayn Aḥmad,</subfield>
+        <subfield code="e">author.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/names/n83170323</subfield>
+        <subfield code="1">http://viaf.org/viaf/27297150/</subfield>
     </datafield>
 </record>
 </collection>

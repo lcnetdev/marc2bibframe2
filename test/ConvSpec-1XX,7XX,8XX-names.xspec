@@ -41,7 +41,7 @@
     <x:expect label="1XX creates a bf:PrimaryContribution" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/PrimaryContribution'"/>
     
     <x:expect label="$1 becomes Agent URI" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://viaf.org/viaf/27297150/'"/>
-    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n83170323'"/>
+    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://example.org/names/n83170323'"/>
     
     <x:expect label="$1 becomes Agent URI" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='https://isni.org/isni/000000049947861X'"/>
     <x:expect label="No $0 so no isIdentifiedByAuthority" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority)=0"/>
@@ -56,10 +56,13 @@
     <x:expect label="No $0 so no isIdentifiedByAuthority" test="count(//bf:Work[1]/bf:contribution[5]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority)=0"/>
     
     <x:expect label="$1 becomes Agent URI" test="//bf:Work[1]/bf:contribution[6]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='https://id.oclc.org/worldcat/entity/E39PBJxt44CR7PvwWxx3RP7PwC'"/>
-    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[6]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n92801300'"/>
+    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[6]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://example.org/names/n92801300'"/>
     
     <x:expect label="$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[7]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n83158481'"/>
     <x:expect label="...And creates $1 from ID Authorities URI" test="//bf:Work[1]/bf:contribution[7]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n83158481'"/>
+    
+    <x:expect label="$1 becomes Agent URI" test="//bf:Work[1]/bf:contribution[8]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n83170323'"/>
+    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[8]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n83170323'"/>
     
     <x:expect label="Subject $0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n79027239'"/>
     <x:expect label="...And creates $1 from ID Authorities URI" test="//bf:Work[1]/bf:subject[1]/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n79027239'"/>
@@ -71,7 +74,7 @@
     <x:expect label="No $0 so no isIdentifiedByAuthority" test="count(//bf:Work[1]/bf:subject[3]/bf:Agent/madsrdf:isIdentifiedByAuthority)=0"/>
     
     <x:expect label="Subject $1 becomes Agent URI" test="//bf:Work[1]/bf:subject[4]/bf:Agent/@rdf:about='http://viaf.org/viaf/92989169'"/>
-    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[4]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n80005801'"/>
+    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[4]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://example.org/names/n80005801'"/>
     
   </x:scenario>
 
