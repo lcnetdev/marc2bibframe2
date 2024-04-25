@@ -40,12 +40,9 @@
           <bf:Work rdf:about="http://example.org/13600108#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:generationProcess>
-                  <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.6.0</rdfs:label>
-                    <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
-                  </bf:GenerationProcess>
-                </bf:generationProcess>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
                     <rdfs:label>changed</rdfs:label>
@@ -223,12 +220,9 @@
           <bf:Work rdf:about="http://example.org/5637241#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:generationProcess>
-                  <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.6.0</rdfs:label>
-                    <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
-                  </bf:GenerationProcess>
-                </bf:generationProcess>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
                     <rdfs:label>new</rdfs:label>
@@ -429,12 +423,9 @@
           <bf:Work rdf:about="http://example.org/12149120#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:generationProcess>
-                  <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.6.0</rdfs:label>
-                    <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
-                  </bf:GenerationProcess>
-                </bf:generationProcess>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
                     <rdfs:label>changed</rdfs:label>
@@ -668,12 +659,9 @@
           <bf:Work rdf:about="http://example.org/4417401#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:generationProcess>
-                  <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.6.0</rdfs:label>
-                    <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
-                  </bf:GenerationProcess>
-                </bf:generationProcess>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
                     <rdfs:label>prepublication</rdfs:label>
@@ -1009,12 +997,9 @@
           <bf:Work rdf:about="http://example.org/no2020106889#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:generationProcess>
-                  <bf:GenerationProcess>
-                    <rdfs:label>DLC marc2bibframe2 v2.6.0</rdfs:label>
-                    <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
-                  </bf:GenerationProcess>
-                </bf:generationProcess>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
                     <rdfs:label>new</rdfs:label>
@@ -1107,11 +1092,11 @@
 
   <x:scenario label="Generation Process">
     <x:context href="data/marc.xml"/>
-    <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/rdfs:label,'DLC marc2bibframe2')"/>
+    <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/@rdf:resource,'https://github.com/lcnetdev/marc2bibframe2/releases/tag/')"/>
     <x:expect label="GenerationProcess should have a generationDate property if available"
-              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/bf:generationDate = '1970-01-01T00:00:00Z'"/>
+              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationDate = '1970-01-01T00:00:00Z'"/>
     <x:expect label="...and a datatype"
-              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/bf:GenerationProcess/bf:generationDate/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#dateTime'"/>
+              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationDate/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#dateTime'"/>
   </x:scenario>
 
 </x:description>
