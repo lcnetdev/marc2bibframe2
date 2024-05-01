@@ -147,11 +147,97 @@
     <xsl:variable name="vCount880"><xsl:value-of select="count(marc:datafield[@tag='880'])"/></xsl:variable>
     
     <xsl:variable name="rAdminMetadata">
+      <!-- Small admin metadata for when it was new. -->
       <bf:adminMetadata>
         <bf:AdminMetadata>
-          <bf:descriptionLevel>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$vOntoVersionURI"/></xsl:attribute>
-          </bf:descriptionLevel>
+          <bf:status>
+            <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
+              <rdfs:label>new</rdfs:label>
+            </bf:Status>
+          </bf:status>
+          
+          <xsl:variable name="cf008date" select="marc:controlfield[@tag='008']"/>
+          <xsl:variable name="marcYear" select="substring($cf008date,1,2)"/>
+          <xsl:variable name="creationYear">
+            <xsl:choose>
+              <xsl:when test="$marcYear &lt; 50"><xsl:value-of select="concat('20',$marcYear)"/></xsl:when>
+              <xsl:otherwise><xsl:value-of select="concat('19',$marcYear)"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:variable name="cDate" select="concat($creationYear,'-',substring($cf008date,3,2),'-',substring($cf008date,5,2))" />
+          <bf:creationDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
+            <xsl:value-of select="$cDate" />
+          </bf:creationDate>
+          <bf:changeDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
+            <xsl:value-of select="$cDate" />
+          </bf:changeDate>
+          
+          <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='a']">
+            <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='a']/text()" />
+            <bf:agent>
+              <bf:Agent>
+                <xsl:if test="$sfA = 'DLC'">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                </xsl:if>
+                <bf:code><xsl:value-of select="$sfA"/></bf:code>
+              </bf:Agent>
+            </bf:agent>
+          </xsl:if>
+        </bf:AdminMetadata>
+      </bf:adminMetadata>
+      
+      <!-- Small admin metadata capturing last modification of MARC. -->
+      <bf:adminMetadata>
+        <bf:AdminMetadata>
+          <bf:status>
+            <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+              <rdfs:label>changed</rdfs:label>
+            </bf:Status>
+          </bf:status>
+          
+          <xsl:variable name="cf005date" select="marc:controlfield[@tag='005']" />
+          <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))"/>
+          <xsl:if test="not (starts-with($changeDate, '0000'))">
+            <bf:changeDate>
+              <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>
+              <xsl:value-of select="$changeDate"/>
+            </bf:changeDate>
+          </xsl:if>
+          
+          <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='d']">
+            <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='d'][last()]/text()" />
+            <bf:descriptionModifier>
+              <bf:Agent>
+                <xsl:if test="$sfA = 'DLC'">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                </xsl:if>
+                <bf:code><xsl:value-of select="$sfA"/></bf:code>
+              </bf:Agent>
+            </bf:descriptionModifier>
+          </xsl:if>
+        </bf:AdminMetadata>
+      </bf:adminMetadata>
+      
+      <!-- Small admin metadata when converted. -->
+      <bf:adminMetadata>
+        <bf:AdminMetadata>
+          <bf:status>
+            <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+              <rdfs:label>changed</rdfs:label>
+            </bf:Status>
+          </bf:status>
+          <xsl:choose>
+            <xsl:when test="$idsource != ''">
+              <bf:agent>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$idsource"/></xsl:attribute>
+              </bf:agent>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message>No 'idsource' runtime value provided. No agent identified as the actor converting the record.</xsl:message>
+            </xsl:otherwise>
+          </xsl:choose>
           <bf:generationProcess>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$vConvVersionURI"/></xsl:attribute>
           </bf:generationProcess>
@@ -159,6 +245,18 @@
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
             <xsl:value-of select="$pGenerationDatestamp"/>
           </bf:generationDate>
+          <bf:changeDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
+            <xsl:value-of select="$pGenerationDatestamp" />
+          </bf:changeDate>
+        </bf:AdminMetadata>
+      </bf:adminMetadata>
+      
+      <bf:adminMetadata>
+        <bf:AdminMetadata>
+          <bf:descriptionLevel>
+            <xsl:attribute name="rdf:resource"><xsl:value-of select="$vOntoVersionURI"/></xsl:attribute>
+          </bf:descriptionLevel>
           <!-- pass fields through conversion specs for AdminMetadata properties -->
           <xsl:choose>
             <xsl:when test="$vCount880 = 0">
