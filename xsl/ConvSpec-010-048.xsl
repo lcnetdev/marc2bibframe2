@@ -211,6 +211,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <!--
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="vUri">
             <xsl:if test="text() = 'DLC'">
@@ -226,6 +227,7 @@
             </bf:Agent>
           </bf:assigner>
         </xsl:for-each>
+        -->
         <xsl:for-each select="marc:subfield[@code='b']">
           <!-- this should be a code -->
           <!-- assume MARC code if 3 characters -->
@@ -247,6 +249,7 @@
             </bf:Language>
           </bf:descriptionLanguage>
         </xsl:for-each>
+        <!--
         <xsl:for-each select="marc:subfield[@code='d']">
           <xsl:if test="position() = count(../marc:subfield[@code='d'])">
             <bf:descriptionModifier>
@@ -264,6 +267,7 @@
             </bf:descriptionModifier>
           </xsl:if>
         </xsl:for-each>
+        -->
         <xsl:for-each select="marc:subfield[@code='e']">
           <bf:descriptionConventions>
             <bf:DescriptionConventions>
