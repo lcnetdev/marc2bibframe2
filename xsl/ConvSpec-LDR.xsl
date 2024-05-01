@@ -43,6 +43,7 @@
   
   <xsl:template match="marc:leader" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <!--
     <xsl:variable name="vStatus" select="substring(.,6,1)"/>
     <xsl:for-each select="$codeMaps/maps/mstatus/*[name() = $vStatus]">
       <xsl:choose>
@@ -56,6 +57,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
+    -->
     <xsl:variable name="vEncLvl" select="concat('_',translate(substring(.,18,1),' ','0'))"/>
     <xsl:for-each select="$codeMaps/maps/menclvl/*[name() = $vEncLvl]">
       <xsl:choose>
