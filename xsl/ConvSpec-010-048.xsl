@@ -173,6 +173,7 @@
     <vy property="bf:voice" entity="bf:MusicVoice"><bf:voiceType>voice, ethnic</bf:voiceType></vy>
   </local:instrumentCode>
 
+  <!--
   <xsl:template match="marc:datafield[@tag='016' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='016')]" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -185,7 +186,8 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
+  -->
+
   <xsl:template match="marc:datafield[@tag='038' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='038')]" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
@@ -958,7 +960,15 @@
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='010' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='010')] |
-                       marc:datafield[@tag='015' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='015')] |
+                       marc:datafield[
+                                      (@tag='015' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='015')) and
+                                      marc:subfield[@code = '2'] and not(contains(marc:subfield[@code = 'a'], '***'))
+                                    ] |
+                       marc:datafield[
+                                    (@tag='016' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='016')) and
+                                    (marc:datafield[@ind1 = ' '] or marc:subfield[@code = '2']) and 
+                                    not(contains(marc:subfield[@code = 'a'], '***'))
+                                    ] |
                        marc:datafield[@tag='017' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='017')] |
                        marc:datafield[@tag='020' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='020')] |
                        marc:datafield[@tag='024' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='024')] |
@@ -994,6 +1004,13 @@
           <xsl:with-param name="pIdentifier">bf:Nbn</xsl:with-param>
           <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
           <xsl:with-param name="pChopPunct" select="true()"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:when test="$vTag='016'">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:Local</xsl:with-param>
+          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$vTag='017'">
