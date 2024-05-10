@@ -165,14 +165,10 @@
             </xsl:choose>
           </xsl:variable>
           <xsl:variable name="cDate" select="concat($creationYear,'-',substring($cf008date,3,2),'-',substring($cf008date,5,2))" />
-          <bf:creationDate>
+          <bf:date>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
             <xsl:value-of select="$cDate" />
-          </bf:creationDate>
-          <bf:changeDate>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
-            <xsl:value-of select="$cDate" />
-          </bf:changeDate>
+          </bf:date>
           
           <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='a']">
             <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='a']/text()" />
@@ -200,10 +196,10 @@
           <xsl:variable name="cf005date" select="marc:controlfield[@tag='005']" />
           <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))"/>
           <xsl:if test="not (starts-with($changeDate, '0000'))">
-            <bf:changeDate>
+            <bf:date>
               <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>
               <xsl:value-of select="$changeDate"/>
-            </bf:changeDate>
+            </bf:date>
           </xsl:if>
           
           <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='d']">
@@ -241,14 +237,10 @@
           <bf:generationProcess>
             <xsl:attribute name="rdf:resource"><xsl:value-of select="$vConvVersionURI"/></xsl:attribute>
           </bf:generationProcess>
-          <bf:generationDate>
+          <bf:date>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'dateTime')"/></xsl:attribute>
             <xsl:value-of select="$pGenerationDatestamp"/>
-          </bf:generationDate>
-          <bf:changeDate>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
-            <xsl:value-of select="$pGenerationDatestamp" />
-          </bf:changeDate>
+          </bf:date>
         </bf:AdminMetadata>
       </bf:adminMetadata>
       
