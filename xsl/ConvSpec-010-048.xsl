@@ -1021,17 +1021,6 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:when test="$vTag='020'">
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <xsl:for-each select="marc:subfield[@code='c']">
-              <bf:acquisitionTerms>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </bf:acquisitionTerms>
-            </xsl:for-each>
-          </xsl:when>
-        </xsl:choose>
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="pIdentifier">bf:Isbn</xsl:with-param>
@@ -1081,20 +1070,6 @@
             </xsl:choose>
           </xsl:if>
         </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$serialization='rdfxml'">
-            <xsl:for-each select="marc:subfield[@code='c']">
-              <bf:acquisitionTerms>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </bf:acquisitionTerms>
-            </xsl:for-each>
-          </xsl:when>
-        </xsl:choose>
         <xsl:if test="$vIdentifier != ''">
           <xsl:apply-templates select="." mode="instanceId">
             <xsl:with-param name="serialization" select="$serialization"/>
@@ -1274,8 +1249,8 @@
                   </bf:assigner>
                 </xsl:for-each>
               </xsl:if>
-              <!-- special handling for 036 -->
-              <xsl:if test="$vTag='036'">
+              <!-- special handling for 020, 024, 036 -->
+              <xsl:if test="$vTag='020' or $vTag='024' or $vTag='036'">
                 <xsl:for-each select="../marc:subfield[@code='c']">
                   <bf:acquisitionTerms>
                     <xsl:if test="$vXmlLang != ''">

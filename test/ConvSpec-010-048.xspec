@@ -52,7 +52,7 @@
     <x:expect label="020 creates identifiedBy/Isbn properties of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:Isbn) = 3"/>
     <x:expect label="$a is the rdf:value of the Isbn (without parenthetical qualifier)" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/rdf:value = '0877790086'"/>
     <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:Isbn/bf:qualifier = 'pbk'"/>
-    <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:acquisitionTerms[1] = '$10.00'"/>
+    <x:expect label="$c creates an acqusitionTerms property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:acquisitionTerms[1] = '$10.00'"/>
     <x:expect label="$q creates a qualifier property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[10]/bf:Isbn/bf:qualifier = 'black leather'"/>
     <x:expect label="$z creates a status/Status property of the Isbn" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:Isbn/bf:status/bf:Status/rdfs:label = 'invalid'"/>
@@ -90,7 +90,7 @@
     <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[12]/bf:Isrc/rdf:value = 'NLC018413261'"/>
     <x:expect label="...except if $2 = 'eidr', then it creates an identifiedBy property on the Work" test="//bf:Work[1]/bf:identifiedBy[6]/bf:Eidr/rdf:value = '10.5240/EA73-79D7-1B2B-B378-3A73-M'"/>
     <x:expect label="$a can include qualifier in parentheses" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:Identifier/bf:qualifier = 'v. 1'"/>
-    <x:expect label="$c creates an acquisitionTerms property of the instance" test="//bf:Instance[1]/bf:acquisitionTerms[3] = 'EUR28.50'"/>
+    <x:expect label="$c creates an acquisitionTerms property of the instance" test="//bf:Instance[1]/bf:identifiedBy[18]/bf:acquisitionTerms[1] = 'EUR28.50'"/>
     <x:expect label="$d creates a note property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[15]/bf:Ean/bf:note/bf:Note/rdfs:label = '51000'"/>
     <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[14]/bf:Ismn/bf:qualifier[2] = 'sewn'"/>
     <x:expect label="$z creates a status/Status property of the Identifier with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[13]/bf:Upc/bf:status/bf:Status/rdfs:label = 'invalid'"/>
