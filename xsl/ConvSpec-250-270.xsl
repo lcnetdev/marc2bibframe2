@@ -11,23 +11,19 @@
 
   <!-- Conversion specs for 250-270 -->
 
-  <xsl:template match="marc:datafield[@tag='254' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='254')]" mode="work">
+  <xsl:template match="marc:datafield[@tag='254' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='254')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:musicFormat>
-          <bf:MusicFormat>
-            <rdfs:label>
-              <xsl:if test="$vXmlLang != ''">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-              </xsl:if>
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="marc:subfield[@code='a']"/>
-              </xsl:call-template>
-            </rdfs:label>
-          </bf:MusicFormat>
-        </bf:musicFormat>
+        <bf:editionStatement>
+          <xsl:if test="$vXmlLang != ''">
+            <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+          </xsl:if>
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="marc:subfield[@code='a']"/>
+           </xsl:call-template>
+         </bf:editionStatement>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
