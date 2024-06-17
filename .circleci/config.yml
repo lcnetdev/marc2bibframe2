@@ -19,11 +19,16 @@ jobs:
           name: Install testing prerequisites
           command: |
             sudo apt-get update
+            sudo apt-get -y maven
             mkdir /tmp/saxon/
+            cd /tmp/saxon/
+            curl -o Saxon-HE-12.4.pom https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/12.4/Saxon-HE-12.4.pom
+            mvn install
+            ls -l
             # curl -o /tmp/saxon/xml-resolver-1.2.jar https://repo1.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar
-            curl -o /tmp/saxon/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
-            curl -o /tmp/saxon/xmlresolver-5.2.2-data.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2-data.jar  
-            curl -o /tmp/saxon/Saxon-HE.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
+            # curl -o /tmp/saxon/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
+            # curl -o /tmp/saxon/xmlresolver-5.2.2-data.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2-data.jar  
+            # curl -o /tmp/saxon/Saxon-HE.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
           name: Run standard XSpec test suite
