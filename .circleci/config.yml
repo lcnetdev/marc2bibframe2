@@ -20,7 +20,8 @@ jobs:
           command: |
             sudo apt-get update
             mkdir /tmp/saxon/
-            curl -o /tmp/saxon/xml-resolver-1.2.jar https://repo1.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar
+            # curl -o /tmp/saxon/xml-resolver-1.2.jar https://repo1.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar
+            curl -o /tmp/saxon/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
             curl -o /tmp/saxon/Saxon-HE.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
