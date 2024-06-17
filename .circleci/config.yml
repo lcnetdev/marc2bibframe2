@@ -19,7 +19,8 @@ jobs:
           name: Install testing prerequisites
           command: |
             sudo apt-get update && sudo apt-get install
-            curl https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar -o /tmp/Saxon-HE.jar
+            curl -o /tmp/xml-resolver-1.2.jar https://repo1.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar
+            curl -o /tmp/Saxon-HE.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
           name: Run standard XSpec test suite
