@@ -29,6 +29,9 @@ jobs:
             curl -o /tmp/saxon/lib/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
             curl -o /tmp/saxon/lib/xmlresolver-5.2.2-data.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2-data.jar  
             curl -o /tmp/saxon/Saxon-HE.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
+            cd /tmp/saxon/
+            ls -l
+            ls -l lib/*
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
           name: Run standard XSpec test suite
