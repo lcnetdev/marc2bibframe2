@@ -19,11 +19,10 @@ jobs:
           name: Install testing prerequisites
           command: |
             sudo apt-get update
-            sudo apt-get install -y maven
             mkdir /tmp/saxon/
             cd /tmp/saxon/
-            curl -o Saxon-HE-12.4.pom https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/12.4/Saxon-HE-12.4.pom
-            mvn install
+            curl -o Saxon-HE.zip -L https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE12-4/SaxonHE12-4J.zip
+            unzip Saxon-HE.zip
             ls -l
             # curl -o /tmp/saxon/xml-resolver-1.2.jar https://repo1.maven.org/maven2/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar
             # curl -o /tmp/saxon/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
