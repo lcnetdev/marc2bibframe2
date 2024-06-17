@@ -9,7 +9,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:11.0
+      - image: cimg/openjdk:17.0
         auth:
           username: $DH_USERNAME
           password: $DH_PASSWORD
@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Install testing prerequisites
           command: |
-            sudo apt-get update && sudo apt-get install -y openjdk-11-jre-headless libsaxonhe-java
+            sudo apt-get update && sudo apt-get install -y libsaxonhe-java
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
           name: Run standard XSpec test suite
