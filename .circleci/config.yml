@@ -19,7 +19,7 @@ jobs:
           name: Install testing prerequisites
           command: |
             sudo apt-get update && sudo apt-get install -y libsaxonhe-java
-            printenv
+            curl https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar -o /tmp/Saxon-HE.jar
             git clone https://github.com/xspec/xspec.git /tmp/xspec
       - run:
           name: Run standard XSpec test suite
