@@ -29,9 +29,9 @@ jobs:
             curl -o /tmp/saxon/lib/xmlresolver-5.2.2.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.jar
             curl -o /tmp/saxon/lib/xmlresolver-5.2.2-data.jar https://repo1.maven.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2-data.jar  
             curl -o /tmp/saxon/lib/jline-2.14.6.jar https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar
-            curl -o /tmp/saxon/Saxon-HE-${SAXON_VERSION}.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
-            curl -o /tmp/saxon/Saxon-HE-${SAXON_VERSION}-xqj.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}-xqj.jar 
-            curl -o /tmp/saxon/Saxon-HE-${SAXON_VERSION}-test.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}-test.jar 
+            curl -o /tmp/saxon/saxon-He-${SAXON_VERSION}.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}.jar 
+            curl -o /tmp/saxon/saxon-He-${SAXON_VERSION}-xqj.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}-xqj.jar 
+            curl -o /tmp/saxon/saxon-He-${SAXON_VERSION}-test.jar https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/${SAXON_VERSION}/Saxon-HE-${SAXON_VERSION}-test.jar 
             
             cd /tmp/saxon/
             ls -l
