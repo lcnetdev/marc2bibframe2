@@ -19,7 +19,7 @@ jobs:
           name: Install testing prerequisites
           command: |
             sudo apt-get update
-            sudo apt-get -y maven
+            sudo apt-get install -y maven
             mkdir /tmp/saxon/
             cd /tmp/saxon/
             curl -o Saxon-HE-12.4.pom https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/12.4/Saxon-HE-12.4.pom
