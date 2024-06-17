@@ -40,17 +40,46 @@
           <bf:Work rdf:about="http://example.org/13600108#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
-                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label>changed</rdfs:label>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">new</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bflc:encodingLevel>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:date>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
-                    <rdfs:label>full</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
@@ -68,13 +97,6 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:changeDate>
-                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2004-05-20</bf:creationDate>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:assigner>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -211,17 +233,46 @@
           <bf:Work rdf:about="http://example.org/5637241#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
-                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
-                    <rdfs:label>new</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">new</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bflc:encodingLevel>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:date>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
-                    <rdfs:label>minimal</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">minimal</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
@@ -239,13 +290,6 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:changeDate>
-                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1991-09-26</bf:creationDate>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:assigner>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/MusicAudio"/>
@@ -405,17 +449,51 @@
           <bf:Work rdf:about="http://example.org/12149120#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
-                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label>changed</rdfs:label>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">new</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bflc:encodingLevel>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:date>
+                <bf:agent>
+                  <bf:Agent>
+                    <bf:code>IEU</bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:date>
+                <bf:descriptionModifier>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:descriptionModifier>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
-                    <rdfs:label>full</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
@@ -433,18 +511,6 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2000-10-05T17:54:43</bf:changeDate>
-                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2000-04-07</bf:creationDate>
-                <bf:assigner>
-                  <bf:Agent>
-                    <bf:code>IEU</bf:code>
-                  </bf:Agent>
-                </bf:assigner>
-                <bf:descriptionModifier>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:descriptionModifier>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
                     <bf:code>lccopycat</bf:code>
@@ -641,17 +707,51 @@
           <bf:Work rdf:about="http://example.org/4417401#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
-                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
-                    <rdfs:label>prepublication</rdfs:label>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">new</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bflc:encodingLevel>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1993-12-03</bf:date>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:date>
+                <bf:descriptionModifier>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:descriptionModifier>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
-                    <rdfs:label>full</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:descriptionConventions>
@@ -669,18 +769,6 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:changeDate>
-                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1993-12-03</bf:creationDate>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:assigner>
-                <bf:descriptionModifier>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:descriptionModifier>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -979,17 +1067,46 @@
           <bf:Work rdf:about="http://example.org/no2020106889#Work">
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
-                <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:generationDate>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
-                    <rdfs:label>new</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">new</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bflc:encodingLevel>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-09-11</bf:date>
+                <bf:agent>
+                  <bf:Agent>
+                    <bf:code>ICrlF</bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-09-12T07:00:12</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:status>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  </bf:Status>
+                </bf:status>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
+              </bf:AdminMetadata>
+            </bf:adminMetadata>
+            <bf:adminMetadata>
+              <bf:AdminMetadata>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
-                    <rdfs:label>full</rdfs:label>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
                   </bflc:EncodingLevel>
                 </bflc:encodingLevel>
                 <bf:identifiedBy>
@@ -1002,15 +1119,8 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-09-12T07:00:12</bf:changeDate>
-                <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-09-11</bf:creationDate>
-                <bf:assigner>
-                  <bf:Agent>
-                    <bf:code>ICrlF</bf:code>
-                  </bf:Agent>
-                </bf:assigner>
                 <bf:descriptionLanguage>
-                  <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng" />
+                  <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
                 </bf:descriptionLanguage>
                 <bf:descriptionConventions>
                   <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/rda">
@@ -1076,9 +1186,9 @@
     <x:context href="data/marc.xml"/>
     <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/@rdf:resource,'https://github.com/lcnetdev/marc2bibframe2/releases/tag/')"/>
     <x:expect label="GenerationProcess should have a generationDate property if available"
-              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationDate = '1970-01-01T00:00:00Z'"/>
+              test="//bf:Work/bf:adminMetadata[3]/bf:AdminMetadata/bf:date = '1970-01-01T00:00:00Z'"/>
     <x:expect label="...and a datatype"
-              test="//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationDate/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#dateTime'"/>
+              test="//bf:Work/bf:adminMetadata[3]/bf:AdminMetadata/bf:date/@rdf:datatype = 'http://www.w3.org/2001/XMLSchema#dateTime'"/>
   </x:scenario>
 
 </x:description>
