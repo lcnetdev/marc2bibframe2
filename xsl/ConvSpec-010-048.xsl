@@ -966,7 +966,7 @@
                                     ] |
                        marc:datafield[
                                     (@tag='016' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='016')) and
-                                    (marc:datafield[@ind1 = ' '] or marc:subfield[@code = '2']) and 
+                                    (@ind1 = ' ' or marc:subfield[@code = '2']) and 
                                     not(contains(marc:subfield[@code = 'a'], '***'))
                                     ] |
                        marc:datafield[@tag='017' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='017')] |
