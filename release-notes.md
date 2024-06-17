@@ -1,5 +1,15 @@
 # marc2bibframe2 release notes
 
+
+## v2.6.0
+
+Conversion updates based on specifications v2.6. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* ??
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.4.0 in the specifications are marked in red.
+
+
 ## v2.5.0
 
 Conversion updates based on specifications v2.5. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
