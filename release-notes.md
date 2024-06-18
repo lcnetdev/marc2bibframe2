@@ -5,7 +5,11 @@
 
 Conversion updates based on specifications v2.6. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
 
-* ??
+* New conversion of $1 in authorized access points
+* Revised creation of Admin Metadata to create four distinct resources
+* More selective conversion of MARC 015 field to exclude placeholder numbers (e.g. "GB***") and numbers without source fields
+* Better handling of bf:acquisitionTerms literals from MARC 020/024 $c
+
 
 See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.4.0 in the specifications are marked in red.
 
