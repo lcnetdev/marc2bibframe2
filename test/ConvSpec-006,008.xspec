@@ -27,7 +27,8 @@
 
     <x:scenario label="ALL MATERIALS">
       <x:context href="data/ConvSpec-006,008/marc.xml"/>
-      <x:expect label="pos 0-5 should set the AdminMetadata creationDate property of the Work" test="//bf:Work[1]/bf:adminMetadata/bf:AdminMetadata/bf:creationDate = '2004-05-20'"/>
+      <x:expect label="pos 0-5 should set the AdminMetadata to type 'create'" test="//bf:Work[1]/bf:adminMetadata[1]/bf:AdminMetadata/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/n'"/>
+      <x:expect label="pos 0-5 should set the AdminMetadata date property of the 'create' AM" test="//bf:Work[1]/bf:adminMetadata[1]/bf:AdminMetadata/bf:date = '2004-05-20'"/>
       <x:expect label="pos 6-14 date handling" test="//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bf:date = '200X'"/>
       <x:expect label="c or d in pos 6 adds a status" test="//bf:Instance[7]/bf:provisionActivity/bf:ProvisionActivity/bf:status/bf:Status/rdfs:label = 'ceased'"/>
       <x:expect label="...with URI" test="//bf:Instance[7]/bf:provisionActivity/bf:ProvisionActivity/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/ceased'"/>

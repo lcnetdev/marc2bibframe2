@@ -82,6 +82,7 @@
   
   <xsl:template match="marc:controlfield[@tag='008']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <!--
     <xsl:variable name="marcYear" select="substring(.,1,2)"/>
     <xsl:variable name="creationYear">
       <xsl:choose>
@@ -97,6 +98,7 @@
         </bf:creationDate>
       </xsl:when>
     </xsl:choose>
+    -->
     <!-- continuing resources -->
     <xsl:if test="substring(../marc:leader,7,1) = 'a' and
                   (substring(../marc:leader,8,1) = 'b' or

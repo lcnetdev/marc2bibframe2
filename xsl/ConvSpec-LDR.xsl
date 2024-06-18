@@ -23,6 +23,7 @@
      check and then not passing vinstanceType all over since it is not really used.
   -->
   <xsl:template match="marc:leader" mode="instanceType">
+    <xsl:param name="pBaseUri" />
     <xsl:choose>
       <!--
       <xsl:when test="substring(.,7,1) = 'd'">Manuscript</xsl:when>
@@ -32,12 +33,17 @@
       -->
       <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
       <!-- <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when> -->
-      <xsl:when test="../marc:datafield[@tag='758' and marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf']">SecondaryInstance</xsl:when>
+      <xsl:when test="../marc:datafield[
+                        @tag='758' and 
+                        marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf' and
+                        contains(marc:subfield[@code='1'], $pBaseUri)
+                      ]">SecondaryInstance</xsl:when>
     </xsl:choose>
   </xsl:template>
   
   <xsl:template match="marc:leader" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <!--
     <xsl:variable name="vStatus" select="substring(.,6,1)"/>
     <xsl:for-each select="$codeMaps/maps/mstatus/*[name() = $vStatus]">
       <xsl:choose>
@@ -51,6 +57,7 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
+    -->
     <xsl:variable name="vEncLvl" select="concat('_',translate(substring(.,18,1),' ','0'))"/>
     <xsl:for-each select="$codeMaps/maps/menclvl/*[name() = $vEncLvl]">
       <xsl:choose>
