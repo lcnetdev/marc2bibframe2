@@ -1,9 +1,18 @@
 --- 2.6.0 2024/06/18
 Changes towards updated v2.6.0 specifications:
-	ConvSpec ?
-	  ?
-	ConvSpec ?
-	  ?
+    ConvSpec 3XX
+        MARC field 350 (Price) no longer converted
+    ConvSpec 010-048
+        "Placeholder" national bibliography numbers in MARC 015 (e.g. "GB***") no longer converted
+        National bibliographic agency control numbers (MARC 016 field) placed in Instance instead of Admin Metadata
+        MARC 015 fields without $2 no longer converted
+        The bf:acquisitionTerms literal created from MARC 020 and 024 $c (Terms of availability) is now placed within the bf:identifiedBy resource
+    ConvSpec 050-088
+        Government document numbers in MARC 086 placed in Work instead of Instance
+    ConvSpec 250-270
+        Musical presentation statement in MARC 254 now assigned to bf:editionStatement
+        New conversion of $1 in authorized access points and updated Numeric Subfields conversion document
+        Revised creation of Admin Metadata and the new Process 9 conversion specification outlines the changes
 
 
 --- 2.5.0 2024/01/19
