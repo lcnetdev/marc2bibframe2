@@ -263,6 +263,10 @@
       <subfield code="b">aaa</subfield>
       <subfield code="0">(DLC)dg2015060010</subfield>
     </datafield>
+    <datafield tag="347" ind1=" " ind2=" ">
+      <subfield code="b">cD audoi</subfield>
+      <subfield code="b">MP3</subfield>
+    </datafield>
   </record>
   <record>
     <controlfield tag="001">2</controlfield>

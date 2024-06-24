@@ -1426,11 +1426,23 @@
                   <xsl:value-of select="normalize-space(translate(translate(normalize-space(.),$upper,$lower),'-',''))"/>
                 </xsl:variable>
                 <xsl:choose>
+                  <xsl:when test="contains($vNormalizedFormat,'cd aud')">
+                    <xsl:value-of select="concat($mencformat,'cdaudio')"/>
+                  </xsl:when>
                   <xsl:when test="contains($vNormalizedFormat,'bluray')">
                     <xsl:value-of select="concat($mencformat,'bluray')"/>
                   </xsl:when>
                   <xsl:when test="contains($vNormalizedFormat,'dvd')">
                     <xsl:value-of select="concat($mencformat,'dvdv')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'sacd')">
+                    <xsl:value-of select="concat($mencformat,'sacd')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'mp3')">
+                    <xsl:value-of select="concat($mencformat,'mp3')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'pdf')">
+                    <xsl:value-of select="concat($mencformat,'pdf')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>
