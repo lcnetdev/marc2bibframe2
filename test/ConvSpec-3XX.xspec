@@ -205,14 +205,14 @@
 
   <x:scenario label="348 - FORMAT OF NOTATED MUSIC">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="348 creates a musicFormat/MusicFormat property of the Instance" test="count(//bf:Instance[1]/bf:musicFormat) = 1"/>
-    <x:expect label="$a creates an rdfs:label property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/rdfs:label = 'vocal score'"/>
-    <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mmusicformat/vocalscore'"/>
+    <x:expect label="348 creates a musicFormat/MusicFormat property of the Instance" test="count(//bf:Work[1]/bf:musicFormat) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the MusicFormat" test="//bf:Work[1]/bf:musicFormat[1]/bf:MusicFormat/rdfs:label = 'vocal score'"/>
+    <x:expect label="...with an rdf:about attribute if matches string in spec" test="//bf:Work[1]/bf:musicFormat[1]/bf:MusicFormat/@rdf:about = 'http://id.loc.gov/vocabulary/mmusicformat/vocalscore'"/>
     <x:expect label="$c creates a notation/Notation property of the Work" test="//bf:Work[1]/bf:notation/bf:MusicNotation/rdfs:label = 'staff notation'"/>
     
-    <x:expect label="$0 creates an identifiedBy property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:identifiedBy/bf:Identifier/rdf:value = '12345'"/>
-    <x:expect label="$2 creates a source property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bf:source/bf:Source/bf:code = 'foo'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the MusicFormat" test="//bf:Instance[1]/bf:musicFormat[1]/bf:MusicFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'enclosed score'"/>
+    <x:expect label="$0 creates an identifiedBy property of the MusicFormat" test="//bf:Work[1]/bf:musicFormat[1]/bf:MusicFormat/bf:identifiedBy/bf:Identifier/rdf:value = '12345'"/>
+    <x:expect label="$2 creates a source property of the MusicFormat" test="//bf:Work[1]/bf:musicFormat[1]/bf:MusicFormat/bf:source/bf:Source/bf:code = 'foo'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the MusicFormat" test="//bf:Work[1]/bf:musicFormat[1]/bf:MusicFormat/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'enclosed score'"/>
   </x:scenario>
 
   <!--
