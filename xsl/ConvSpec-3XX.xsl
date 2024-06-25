@@ -1114,8 +1114,7 @@
   <xsl:template match="marc:datafield[@tag='344' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='344')] |
                        marc:datafield[@tag='345' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='345')] |
                        marc:datafield[@tag='346' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='346')] |
-                       marc:datafield[@tag='347' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='347')] |
-                       marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]"
+                       marc:datafield[@tag='347' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='347')]"
                 mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pInstanceType" />
