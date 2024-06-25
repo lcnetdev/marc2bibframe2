@@ -1114,8 +1114,7 @@
   <xsl:template match="marc:datafield[@tag='344' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='344')] |
                        marc:datafield[@tag='345' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='345')] |
                        marc:datafield[@tag='346' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='346')] |
-                       marc:datafield[@tag='347' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='347')] |
-                       marc:datafield[@tag='348' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='348')]"
+                       marc:datafield[@tag='347' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='347')]"
                 mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pInstanceType" />
@@ -1426,11 +1425,23 @@
                   <xsl:value-of select="normalize-space(translate(translate(normalize-space(.),$upper,$lower),'-',''))"/>
                 </xsl:variable>
                 <xsl:choose>
+                  <xsl:when test="contains($vNormalizedFormat,'cd aud')">
+                    <xsl:value-of select="concat($mencformat,'cdaudio')"/>
+                  </xsl:when>
                   <xsl:when test="contains($vNormalizedFormat,'bluray')">
                     <xsl:value-of select="concat($mencformat,'bluray')"/>
                   </xsl:when>
                   <xsl:when test="contains($vNormalizedFormat,'dvd')">
                     <xsl:value-of select="concat($mencformat,'dvdv')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'sacd')">
+                    <xsl:value-of select="concat($mencformat,'sacd')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'mp3')">
+                    <xsl:value-of select="concat($mencformat,'mp3')"/>
+                  </xsl:when>
+                  <xsl:when test="contains($vNormalizedFormat,'pdf')">
+                    <xsl:value-of select="concat($mencformat,'pdf')"/>
                   </xsl:when>
                 </xsl:choose>
               </xsl:when>
