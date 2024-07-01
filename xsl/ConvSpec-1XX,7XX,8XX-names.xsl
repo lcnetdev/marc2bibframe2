@@ -49,6 +49,27 @@
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
+    <xsl:if test="exists(marc:subfield[@code='k']) and not(../marc:datafield[@tag='240'])">
+        <xsl:variable name="vHubIri">
+          <xsl:apply-templates mode="generateUri" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+          </xsl:apply-templates>
+        </xsl:variable>
+        <bf:expressionOf>
+          <bf:Hub>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
+            <xsl:apply-templates mode="workName" select=".">
+              <xsl:with-param name="agentiri" select="$agentiri"/>
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates mode="hubUnifTitle" select=".">
+                <xsl:with-param name="serialization" select="$serialization"/>
+                <xsl:with-param name="pHubIri" select="$vHubIri"/>
+            </xsl:apply-templates>
+          </bf:Hub>
+        </bf:expressionOf>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='700' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='700')] |
@@ -691,9 +712,6 @@
               </xsl:for-each>
             </xsl:if>
           </xsl:if>
-          <xsl:if test="substring($tag,2,2)='00' or substring($tag,2,2)='10' or substring($tag,2,2)='11'">
-              <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
-          </xsl:if>
           <xsl:if test="$label != ''">
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
@@ -701,6 +719,23 @@
               </xsl:if>
               <xsl:value-of select="$label"/>
             </rdfs:label>
+          </xsl:if>
+          <!-- marcKey -->
+          <xsl:if test="substring($tag,2,2)='00' or substring($tag,2,2)='10' or substring($tag,2,2)='11'">
+              <xsl:choose>
+                  <xsl:when test="marc:subfield[@code='k'] and not(../marc:datafield[@tag='240'])">
+                    <xsl:variable name="vDF1xx" select="../marc:datafield[starts-with(@tag, '1')]" />
+                    <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+                    <bflc:marcKey>
+                        <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString" select="substring-before($vDF1xx, '$k')"/>
+                        </xsl:call-template>
+                    </bflc:marcKey>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
+                  </xsl:otherwise>
+              </xsl:choose>
           </xsl:if>
           <xsl:choose>
             <xsl:when test="marc:subfield[@code='t']">
@@ -780,19 +815,57 @@
     <xsl:choose>
       <xsl:when test="$tag='720'"><xsl:value-of select="marc:subfield[@code='a']"/></xsl:when>
       <xsl:when test="substring($tag,2,2)='00'">
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='a' or
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='t']">
+            <!-- This will occur in 7XX fields, e.g. -->
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='a' or
+                                     @code='b' or 
+                                     @code='c' or
+                                     @code='d' or
+                                     @code='j' or
+                                     @code='q' or
+                                     @code='k']"/>
+          </xsl:when>
+          <xsl:when test="@tag='100' and marc:subfield[@code='k'] and not(../marc:datafield[@tag = '240'])">
+              <!-- $k is title-like. Process name as name, but will process $k later as a title. -->
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='k']/preceding-sibling::marc:subfield[@code='a' or
                                      @code='b' or 
                                      @code='c' or
                                      @code='d' or
                                      @code='j' or
                                      @code='q']"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="concat-nodes-space"
+                             select="marc:subfield[@code='a' or
+                                     @code='b' or 
+                                     @code='c' or
+                                     @code='d' or
+                                     @code='j' or
+                                     @code='q' or
+                                     @code='k']"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:when test="substring($tag,2,2)='10'">
         <xsl:choose>
           <xsl:when test="marc:subfield[@code='t']">
+            <!-- This will occur in 7XX fields, e.g. -->
             <xsl:apply-templates mode="concat-nodes-space"
                                  select="marc:subfield[@code='t']/preceding-sibling::marc:subfield[@code='a' or
+                                         @code='b' or 
+                                         @code='c' or
+                                         @code='d' or
+                                         @code='n' or
+                                         @code='g' or
+                                         @code='k']"/>
+          </xsl:when>
+          <xsl:when test="@tag='110' and marc:subfield[@code='k'] and not(../marc:datafield[@tag = '240'])">
+              <!-- $k is title-like. Process name as name, but will process $k later as a title. -->
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='k']/preceding-sibling::marc:subfield[@code='a' or
                                          @code='b' or 
                                          @code='c' or
                                          @code='d' or
@@ -806,7 +879,8 @@
                                          @code='c' or
                                          @code='d' or
                                          @code='n' or
-                                         @code='g']"/>
+                                         @code='g' or
+                                         @code='k']"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -821,6 +895,16 @@
                                          @code='n' or
                                          @code='g' or
                                          @code='q']"/>
+          </xsl:when>
+          <xsl:when test="@tag='111' and marc:subfield[@code='k'] and not(../marc:datafield[@tag = '240'])">
+              <!-- $k is title-like. Process name as name, but will process $k later as a title. -->
+            <xsl:apply-templates mode="concat-nodes-space"
+                                 select="marc:subfield[@code='k']/preceding-sibling::marc:subfield[@code='a' or
+                                         @code='b' or 
+                                         @code='c' or
+                                         @code='d' or
+                                         @code='n' or
+                                         @code='g']"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates mode="concat-nodes-space"
