@@ -49,7 +49,7 @@
       <xsl:with-param name="agentiri" select="$agentiri"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
-    <xsl:if test="exists(marc:subfield[@code='k']) and not(../marc:datafield[@tag='240'])">
+    <xsl:if test="marc:subfield[@code='k'] and not(../marc:datafield[@tag='240'])">
         <xsl:variable name="vHubIri">
           <xsl:apply-templates mode="generateUri" select=".">
             <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
@@ -128,29 +128,23 @@
       <xsl:when test="marc:subfield[@code='t']">
         <xsl:variable name="vProp">
           <xsl:choose>
-            <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">bf:hasPart</xsl:when>
-            <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">bflc:hasVariantEntry</xsl:when>
-            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">bf:arrangementOf</xsl:when>
-            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">bf:translationOf</xsl:when>
-            <xsl:otherwise>bf:relatedTo</xsl:otherwise>
+            <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bibframe/hasPart</xsl:when>
+            <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/ontologies/bibframe/arrangementOf</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/ontologies/bibframe/translationOf</xsl:when>
+            <xsl:otherwise>http://id.loc.gov/ontologies/bibframe/relatedTo</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$serialization = 'rdfxml'">
-            <xsl:element name="{$vProp}">
-              <bf:Hub>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
-                <xsl:apply-templates mode="workName" select=".">
-                  <xsl:with-param name="agentiri" select="$agentiri"/>
-                  <xsl:with-param name="serialization" select="$serialization"/>
-                </xsl:apply-templates>
-              </bf:Hub>
-            </xsl:element>
-            <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
-              <bflc:relationship>
-                <bflc:Relationship>
-                  <bflc:relation>
-                    <bflc:Relation>
+            <bf:relation>
+                <bf:Relation>
+                  <bf:relationship>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProp"/></xsl:attribute>
+                  </bf:relationship>
+                  <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
+                  <bf:relationship>
+                    <bf:Relationship>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -159,14 +153,20 @@
                           <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdfs:label>
-                    </bflc:Relation>
-                  </bflc:relation>
-                  <bf:relatedTo>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$pHubIri"/></xsl:attribute>
-                  </bf:relatedTo>
-                </bflc:Relationship>
-              </bflc:relationship>
-            </xsl:for-each>
+                    </bf:Relationship>
+                  </bf:relationship>
+                  </xsl:for-each>
+                  <bf:relatedResource>
+                    <bf:Hub>
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
+                      <xsl:apply-templates mode="workName" select=".">
+                        <xsl:with-param name="agentiri" select="$agentiri"/>
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </bf:Hub>
+                  </bf:relatedResource>
+                </bf:Relation>
+              </bf:relation>
           </xsl:when>
         </xsl:choose>
       </xsl:when>
@@ -175,11 +175,12 @@
           <xsl:with-param name="agentiri" select="$agentiri"/>
           <xsl:with-param name="serialization" select="$serialization"/>
         </xsl:apply-templates>
+        <!--
         <xsl:for-each select="marc:subfield[@code='i']">
-          <bflc:relationship>
-            <bflc:Relationship>
-              <bflc:relation>
-                <bflc:Relation>
+          <bf:relation>
+            <bf:Relation>
+              <bf:relationship>
+                <bf:Relationship>
                   <rdfs:label>
                     <xsl:if test="$vXmlLang != ''">
                       <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -188,12 +189,13 @@
                       <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
-                </bflc:Relation>
-              </bflc:relation>
+                </bf:Relationship>
+              </bf:relationship>
               <bf:relatedTo><xsl:value-of select="$agentiri"/></bf:relatedTo>
-            </bflc:Relationship>
-          </bflc:relationship>
+            </bf:Relation>
+          </bf:relation>
         </xsl:for-each>
+        -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -387,10 +389,10 @@
                   </bf:role>
                 </xsl:when>
                 <xsl:when test="$pMode='relationship'">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation>
+                  <bf:relation>
+                    <bf:Relation>
+                      <bf:relationship>
+                        <bf:Relationship>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -399,15 +401,15 @@
                               <xsl:with-param name="pString" select="$vRole"/>
                             </xsl:call-template>
                           </rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
+                        </bf:Relationship>
+                      </bf:relationship>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
                           <xsl:attribute name="rdf:resource"><xsl:value-of select="$pRelatedTo"/></xsl:attribute>
                         </bf:relatedTo>
                       </xsl:if>
-                    </bflc:Relationship>
-                  </bflc:relationship>
+                    </bf:Relation>
+                  </bf:relation>
                 </xsl:when>
               </xsl:choose>
             </xsl:when>
@@ -441,10 +443,10 @@
                   </bf:role>
                 </xsl:when>
                 <xsl:when test="$pMode='relationship'">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation>
+                  <bf:relation>
+                    <bf:Relation>
+                      <bf:relationship>
+                        <bf:Relationship>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -453,15 +455,15 @@
                               <xsl:with-param name="pString" select="$vRole"/>
                             </xsl:call-template>
                           </rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
+                        </bf:Relationship>
+                      </bf:relationship>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
                           <xsl:attribute name="rdf:resource"><xsl:value-of select="$pRelatedTo"/></xsl:attribute>
                         </bf:relatedTo>
                       </xsl:if>
-                    </bflc:Relationship>
-                  </bflc:relationship>
+                    </bf:Relation>
+                  </bf:relation>
                 </xsl:when>
               </xsl:choose>
             </xsl:when>
@@ -493,10 +495,10 @@
                   </bf:role>
                 </xsl:when>
                 <xsl:when test="$pMode='relationship'">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation>
+                  <bf:relation>
+                    <bf:Relation>
+                      <bf:relationship>
+                        <bf:Relationship>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -505,15 +507,15 @@
                               <xsl:with-param name="pString" select="$vRole"/>
                             </xsl:call-template>
                           </rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
+                        </bf:Relationship>
+                      </bf:relationship>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
                           <xsl:attribute name="rdf:resource"><xsl:value-of select="$pRelatedTo"/></xsl:attribute>
                         </bf:relatedTo>
                       </xsl:if>
-                    </bflc:Relationship>
-                  </bflc:relationship>
+                    </bf:Relation>
+                  </bf:relation>
                 </xsl:when>
               </xsl:choose>
             </xsl:when>
@@ -543,10 +545,10 @@
                 </bf:role>
               </xsl:when>
                 <xsl:when test="$pMode='relationship'">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation>
+                  <bf:relation>
+                    <bf:Relation>
+                      <bf:relationship>
+                        <bf:Relationship>
                           <rdfs:label>
                             <xsl:if test="$pXmlLang != ''">
                               <xsl:attribute name="xml:lang"><xsl:value-of select="$pXmlLang"/></xsl:attribute>
@@ -555,15 +557,15 @@
                               <xsl:with-param name="pString" select="$roleString"/>
                             </xsl:call-template>
                           </rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
+                        </bf:Relationship>
+                      </bf:relationship>
                       <xsl:if test="$pRelatedTo != ''">
                         <bf:relatedTo>
                           <xsl:attribute name="rdf:resource"><xsl:value-of select="$pRelatedTo"/></xsl:attribute>
                         </bf:relatedTo>
                       </xsl:if>
-                    </bflc:Relationship>
-                  </bflc:relationship>
+                    </bf:Relation>
+                  </bf:relation>
                 </xsl:when>
               </xsl:choose>
           </xsl:when>
@@ -690,10 +692,10 @@
                     </xsl:when>
                   </xsl:choose>
                 </xsl:variable>
-                <bflc:relationship>
-                  <bflc:Relationship>
-                    <bflc:relation>
-                      <bflc:Relation>
+                <bf:relation>
+                  <bf:Relation>
+                    <bf:relationship>
+                      <bf:Relationship>
                         <xsl:choose>
                           <xsl:when test="$vRelationUri != ''">
                             <xsl:attribute name="rdf:about"><xsl:value-of select="$vRelationUri"/></xsl:attribute>
@@ -702,13 +704,13 @@
                             <bf:code><xsl:value-of select="."/></bf:code>
                           </xsl:otherwise>
                         </xsl:choose>
-                      </bflc:Relation>
-                    </bflc:relation>
+                      </bf:Relationship>
+                    </bf:relationship>
                     <bf:relatedTo>
                       <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
                     </bf:relatedTo>
-                  </bflc:Relationship>
-                </bflc:relationship>
+                  </bf:Relation>
+                </bf:relation>
               </xsl:for-each>
             </xsl:if>
           </xsl:if>
@@ -723,8 +725,7 @@
           <!-- marcKey -->
           <xsl:if test="substring($tag,2,2)='00' or substring($tag,2,2)='10' or substring($tag,2,2)='11'">
               <xsl:choose>
-                  <xsl:when test="marc:subfield[@code='k'] and not(../marc:datafield[@tag='240'])">
-                    <xsl:variable name="vDF1xx" select="../marc:datafield[starts-with(@tag, '1')]" />
+                  <xsl:when test="substring($tag,1,1)='1' and marc:subfield[@code='k'] and not(../marc:datafield[@tag='240'])">
                     <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
                     <bflc:marcKey>
                         <xsl:call-template name="tChopPunct">

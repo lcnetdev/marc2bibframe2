@@ -72,29 +72,23 @@
       <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
       <xsl:variable name="vProp">
         <xsl:choose>
-          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">bf:hasPart</xsl:when>
-          <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">bflc:hasVariantEntry</xsl:when>
-          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">bf:arrangementOf</xsl:when>
-          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">bf:translationOf</xsl:when>
-          <xsl:otherwise>bf:relatedTo</xsl:otherwise>
+          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bibframe/hasPart</xsl:when>
+          <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/ontologies/bibframe/arrangementOf</xsl:when>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/ontologies/bibframe/translationOf</xsl:when>
+          <xsl:otherwise>http://id.loc.gov/ontologies/bibframe/relatedTo</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <xsl:element name="{$vProp}">
-            <bf:Hub>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
-              <xsl:apply-templates select="." mode="hubUnifTitle">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pHubIri" select="$vHubIri"/>
-              </xsl:apply-templates>
-            </bf:Hub>
-          </xsl:element>
-          <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
-            <bflc:relationship>
-              <bflc:Relationship>
-                <bflc:relation>
-                  <bflc:Relation>
+            <bf:relation>
+              <bf:Relation>
+                <bf:relationship>
+                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProp"/></xsl:attribute>
+                </bf:relationship>
+                <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
+                <bf:relationship>
+                  <bf:Relationship>
                     <rdfs:label>
                       <xsl:if test="$vXmlLang != ''">
                         <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -103,14 +97,21 @@
                         <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
                     </rdfs:label>
-                  </bflc:Relation>
-                </bflc:relation>
-                <bf:relatedTo>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="$vHubIri"/></xsl:attribute>
-                </bf:relatedTo>
-              </bflc:Relationship>
-            </bflc:relationship>
-          </xsl:for-each>
+                  </bf:Relationship>
+                </bf:relationship>
+                </xsl:for-each>
+                <bf:relatedResource>
+                  <bf:Hub>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
+                    <xsl:apply-templates select="." mode="hubUnifTitle">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                      <xsl:with-param name="pHubIri" select="$vHubIri"/>
+                    </xsl:apply-templates>
+                  </bf:Hub>
+                </bf:relatedResource>
+              </bf:Relation>
+            </bf:relation>
+          
         </xsl:when>
       </xsl:choose>
     </xsl:if>
