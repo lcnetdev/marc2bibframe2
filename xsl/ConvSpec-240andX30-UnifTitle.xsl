@@ -327,6 +327,10 @@
             <xsl:variable name="vMarcKey240"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
             <bflc:marcKey><xsl:value-of select="concat($vMarcKey1XX, '$t', substring-after($vMarcKey240, '$a'))" /></bflc:marcKey>
           </xsl:when>
+          <xsl:when test="$tag='110' or $tag='100' or $tag='111'">
+            <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+            <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$k'))" /></bflc:marcKey>
+          </xsl:when>
           <xsl:otherwise>
             <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
           </xsl:otherwise>
@@ -435,12 +439,23 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="substring($tag,2,2)='00' or
-                      substring($tag,2,2)='10' or
-                      substring($tag,2,2)='11'">
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='t'] |
-                                     marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>
+      <xsl:when test="(
+                        substring($tag,2,2)='00' or
+                        substring($tag,2,2)='10' or
+                        substring($tag,2,2)='11' 
+                      )">
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='t']">
+            <xsl:apply-templates mode="concat-nodes-space"
+              select="marc:subfield[@code='t'] |
+              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+          </xsl:when>
+          <xsl:when test="marc:subfield[@code='k']">
+            <xsl:apply-templates mode="concat-nodes-space"
+              select="marc:subfield[@code='k'] |
+              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="concat-nodes-space"

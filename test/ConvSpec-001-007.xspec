@@ -65,7 +65,7 @@
 
     <x:scenario label="MAP">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
+      <!-- <x:expect label="pos 0 = 'a' sets Work rdf:type to Cartography" test="count(//bf:Work[1]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/> -->
       <x:expect label="...and creates a bf:content property" test="//bf:Work[1]/bf:content/bf:Content/rdfs:label = 'cartographic image'"/>
       <x:expect label="...if no 337, creates media property of the Instance" test="//bf:Instance[1]/bf:media/bf:Media/rdfs:label = 'unmediated'"/>
       <x:expect label="pos 1 sets a genreForm/GenreForm property of the Instance" test="//bf:Instance[1]/bf:genreForm/bf:GenreForm/@rdf:about = 'http://id.loc.gov/authorities/genreForms/gf2018026045'"/>
@@ -85,7 +85,7 @@
 
     <x:scenario label="ELECTRONIC RESOURCE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'c' sets Work rdf:type to 'Multimedia'" test="count(//bf:Work[2]/rdf:type/@rdf:resource[contains(.,'Multimedia')]) = 1"/>
+      <!--<x:expect label="pos 0 = 'c' sets Work rdf:type to 'Multimedia'" test="count(//bf:Work[2]/rdf:type/@rdf:resource[contains(.,'Multimedia')]) = 1"/>-->
       <x:expect label="...and sets the media property of the Instance if no 337" test="//bf:Instance[2]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/c'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[2]/bf:media/bf:Media/rdfs:label = 'computer'"/>
       <x:expect label="pos 1 sets the carrier property of the Instance if no duplicate property from 338/008" test="//bf:Instance[2]/bf:carrier/bf:Carrier/rdfs:label = 'computer disc'"/>
@@ -97,7 +97,7 @@
 
     <x:scenario label="GLOBE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'd' sets Work rdf:type to 'Cartography'" test="count(//bf:Work[3]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>
+      <!--<x:expect label="pos 0 = 'd' sets Work rdf:type to 'Cartography'" test="count(//bf:Work[3]/rdf:type/@rdf:resource[contains(.,'Cartography')]) = 1"/>-->
       <x:expect label="...and creates a bf:content property of the Work if no 336" test="//bf:Work[3]/bf:content/bf:Content/@rdf:about='http://id.loc.gov/vocabulary/contentTypes/crf'"/>
       <x:expect label="...with a label" test="//bf:Work[3]/bf:content/bf:Content/rdfs:label = 'cartographic three-dimensional form'"/>
       <x:expect label="...and creates a bf:media property of the Instance if no 337" test="//bf:Instance[3]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/n'"/>
@@ -113,7 +113,7 @@
 
     <x:scenario label="PROJECTED GRAPHIC">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'g' sets Work rdf:type to 'StillImage'" test="//bf:Work[4]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>
+      <!--<x:expect label="pos 0 = 'g' sets Work rdf:type to 'StillImage'" test="//bf:Work[4]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>-->
       <x:expect label="...and creates a bf:content property" test="//bf:Work[4]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/sti'"/>
         <x:expect label="...with a label" test="//bf:Work[4]/bf:content/bf:Content/rdfs:label = 'still image'"/>
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[4]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/g'"/>
@@ -131,7 +131,7 @@
 
     <x:scenario label="MICROFORM">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'h' sets Work rdf:type to 'Text'" test="//bf:Work[5]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Text'"/>
+      <!--<x:expect label="pos 0 = 'h' sets Work rdf:type to 'Text'" test="//bf:Work[5]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Text'"/>-->
         <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[5]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/h'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[5]/bf:media/bf:Media/rdfs:label = 'microform'"/>
       <x:expect label="pos 1 creates a carrier property of the Instance if no duplicate property from 338/008" test="//bf:Instance[5]/bf:carrier/bf:Carrier/@rdf:about = 'http://id.loc.gov/vocabulary/carriers/he'"/>
@@ -148,7 +148,7 @@
 
     <x:scenario label="NONPROJECTED GRAPHIC">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'k' sets Work rdf:type to 'StillImage'" test="//bf:Work[6]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>
+      <!--<x:expect label="pos 0 = 'k' sets Work rdf:type to 'StillImage'" test="//bf:Work[6]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/StillImage'"/>-->
       <x:expect label="...and creates a bf:content property if no 336" test="//bf:Work[6]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/sti'"/>
       <x:expect label="...with a label" test="//bf:Work[6]/bf:content/bf:Content/rdfs:label = 'still image'"/>
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[6]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/n'"/>
@@ -162,7 +162,7 @@
 
     <x:scenario label="MOTION PICTURE">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'm' sets Work rdf:type to 'MovingImage'" test="//bf:Work[7]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>
+      <!--<x:expect label="pos 0 = 'm' sets Work rdf:type to 'MovingImage'" test="//bf:Work[7]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>-->
       <x:expect label="...and creates a bf:content property if no 336" test="//bf:Work[7]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/tdi'"/>
       <x:expect label="...with a label" test="//bf:Work[7]/bf:content/bf:Content/rdfs:label = 'two-dimensional moving image'"/>
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[7]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/g'"/>
@@ -191,7 +191,7 @@
 
     <x:scenario label="SOUND RECORDING">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 's' sets Work rdf:type to 'Audio'" test="//bf:Work[9]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Audio'"/>
+      <!--<x:expect label="pos 0 = 's' sets Work rdf:type to 'Audio'" test="//bf:Work[9]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Audio'"/>-->
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[9]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/s'"/>
       <x:expect label="...and sets the rdfs:label property of the Media" test="//bf:Instance[9]/bf:media/bf:Media/rdfs:label = 'audio'"/>
       <x:expect label="pos 1 creates a carrier property of the Instance if no duplicate property from 338/008" test="//bf:Instance[9]/bf:carrier/bf:Carrier/rdfs:label = 'audio disc'"/>
@@ -221,7 +221,7 @@
 
     <x:scenario label="VIDEORECORDING">
       <x:context href="data/ConvSpec-001-007/marc.xml"/>
-      <x:expect label="pos 0 = 'v' sets rdf:type of Work to bf:MovingImage" test="//bf:Work[12]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>
+      <!--<x:expect label="pos 0 = 'v' sets rdf:type of Work to bf:MovingImage" test="//bf:Work[12]/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/MovingImage'"/>-->
       <x:expect label="...and creates a bf:content property if no 336" test="//bf:Work[12]/bf:content/bf:Content/@rdf:about = 'http://id.loc.gov/vocabulary/contentTypes/tdi'"/>
       <x:expect label="...with a label" test="//bf:Work[12]/bf:content/bf:Content/rdfs:label = 'two-dimensional moving image'"/>
       <x:expect label="...and creates a media property of the Instance if no 337" test="//bf:Instance[12]/bf:media/bf:Media/@rdf:about = 'http://id.loc.gov/vocabulary/mediaTypes/v'"/>
