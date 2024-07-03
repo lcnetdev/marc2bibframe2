@@ -443,21 +443,19 @@
                         substring($tag,2,2)='00' or
                         substring($tag,2,2)='10' or
                         substring($tag,2,2)='11' 
-                      ) and
-                      marc:subfield[@code='t']">
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='t'] |
-                                     marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>
-      </xsl:when>
-      <xsl:when test="(
-                        substring($tag,2,2)='00' or
-                        substring($tag,2,2)='10' or
-                        substring($tag,2,2)='11' 
-                      ) and
-                      marc:subfield[@code='k']">
-        <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[@code='k'] |
-                                     marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>
+                      )">
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='t']">
+            <xsl:apply-templates mode="concat-nodes-space"
+              select="marc:subfield[@code='t'] |
+              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+          </xsl:when>
+          <xsl:when test="marc:subfield[@code='k']">
+            <xsl:apply-templates mode="concat-nodes-space"
+              select="marc:subfield[@code='k'] |
+              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="concat-nodes-space"
