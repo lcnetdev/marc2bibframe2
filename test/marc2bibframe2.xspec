@@ -182,7 +182,7 @@
                 <bflc:simpleDate>c2001</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[København?]: Lindhardt og Ringhof; c2001</bflc:publicationStatement>
+            <bf:publicationStatement>[København?]: Lindhardt og Ringhof, c2001</bf:publicationStatement>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>
@@ -404,7 +404,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[1957?]</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">New York, N.Y.: Atlantic; [1957?]</bflc:publicationStatement>
+            <bf:publicationStatement>New York, N.Y.: Atlantic, [1957?]</bf:publicationStatement>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   91758335 </rdf:value>
@@ -649,7 +649,7 @@
                 <bflc:simpleDate>1994-</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">Washington, D.C.: White House Web Team; 1994-</bflc:publicationStatement>
+            <bf:publicationStatement>Washington, D.C.: White House Web Team, 1994-</bf:publicationStatement>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   00530046 </rdf:value>
@@ -990,7 +990,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">c1994</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">San Francisco: Jossey-Bass; c1994</bflc:publicationStatement>
+            <bf:publicationStatement>San Francisco: Jossey-Bass, c1994</bf:publicationStatement>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>

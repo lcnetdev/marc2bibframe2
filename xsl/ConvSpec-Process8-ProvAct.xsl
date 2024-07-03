@@ -403,7 +403,7 @@
                             <xsl:copy-of select="$thePA" />
                             <xsl:variable name="thePAasNodeSet" select="exsl:node-set($thePA)" />
                             <xsl:if test="$thePAasNodeSet//bflc:*[not(@xml:lang)]">
-                                <xsl:element name="{concat('bflc:', translate($vProvisionActivity, $upper, $lower), 'Statement')}">
+                                <xsl:element name="{concat('bf:', translate($vProvisionActivity, $upper, $lower), 'Statement')}">
                                     <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simplePlace[not(@xml:lang)]" mode="concat-nodes-delimited">
                                         <xsl:with-param name="pDelimiter" select="';'"/>
                                     </xsl:apply-templates>
@@ -411,7 +411,7 @@
                                     <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleAgent[not(@xml:lang)]" mode="concat-nodes-delimited">
                                         <xsl:with-param name="pDelimiter" select="','"/>
                                     </xsl:apply-templates>
-                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">; </xsl:if>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">, </xsl:if>
                                     <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleDate[not(@xml:lang)]" mode="concat-nodes-delimited">
                                         <xsl:with-param name="pDelimiter" select="','"/>
                                     </xsl:apply-templates>
@@ -427,7 +427,7 @@
                                     <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleAgent[@xml:lang]" mode="concat-nodes-delimited">
                                         <xsl:with-param name="pDelimiter" select="','"/>
                                     </xsl:apply-templates>
-                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">; </xsl:if>
+                                    <xsl:if test="exsl:node-set($thePA)//bflc:simpleAgent and exsl:node-set($thePA)//bflc:simpleDate">, </xsl:if>
                                     <xsl:apply-templates select="exsl:node-set($thePA)//bflc:simpleDate[@xml:lang]" mode="concat-nodes-delimited">
                                         <xsl:with-param name="pDelimiter" select="','"/>
                                     </xsl:apply-templates>
