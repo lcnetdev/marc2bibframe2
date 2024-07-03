@@ -34,8 +34,8 @@
       </xsl:variable>
       <xsl:variable name="vProperty">
         <xsl:choose>
-          <xsl:when test="@ind2='2'">bf:hasPart</xsl:when>
-          <xsl:otherwise>bf:relatedTo</xsl:otherwise>
+          <xsl:when test="@ind2='2'">http://id.loc.gov/ontologies/bibframe/hasPart</xsl:when>
+          <xsl:otherwise>http://id.loc.gov/ontologies/bibframe/relatedTo</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vmainTitle">
@@ -47,52 +47,59 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization='rdfxml'">
-          <xsl:element name="{$vProperty}">
-            <bf:Work>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
-              <rdf:type>
-                <xsl:attribute name="rdf:resource">
-                  <xsl:value-of select="concat($bflc,'Uncontrolled')"/>
-                </xsl:attribute>
-              </rdf:type>
-              <xsl:if test="marc:subfield[@code='a']">
-                <bf:title>
-                  <bf:Title>
-                    <bflc:nonSortNum>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:value-of select="$vNFI" />
-                    </bflc:nonSortNum>
-                    <bf:mainTitle>
+          <bf:relation>
+            <bf:Relation>
+              <bf:relationship>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProperty"/></xsl:attribute>
+              </bf:relationship>
+              <bf:relatedResource>
+                <bf:Work>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
+                  <rdf:type>
+                    <xsl:attribute name="rdf:resource">
+                      <xsl:value-of select="concat($bflc,'Uncontrolled')"/>
+                    </xsl:attribute>
+                  </rdf:type>
+                  <xsl:if test="marc:subfield[@code='a']">
+                    <bf:title>
+                      <bf:Title>
+                        <bflc:nonSortNum>
+                          <xsl:if test="$vXmlLang != ''">
+                            <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                          </xsl:if>
+                          <xsl:value-of select="$vNFI" />
+                        </bflc:nonSortNum>
+                        <bf:mainTitle>
+                          <xsl:call-template name="tChopPunct">
+                            <xsl:with-param name="pString">
+                              <xsl:value-of select="marc:subfield[@code='a']" />
+                            </xsl:with-param>
+                          </xsl:call-template>
+                        </bf:mainTitle>
+                      </bf:Title>
+                    </bf:title>
+                  </xsl:if>
+                  <xsl:for-each select="marc:subfield[@code='n']">
+                    <bf:partNumber>
                       <xsl:call-template name="tChopPunct">
-                        <xsl:with-param name="pString">
-                          <xsl:value-of select="marc:subfield[@code='a']" />
-                        </xsl:with-param>
+                        <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>
-                    </bf:mainTitle>
-                  </bf:Title>
-                </bf:title>
-              </xsl:if>
-              <xsl:for-each select="marc:subfield[@code='n']">
-                <bf:partNumber>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="."/>
-                  </xsl:call-template>
-                </bf:partNumber>
-              </xsl:for-each>
-              <xsl:for-each select="marc:subfield[@code='p']">
-                <bf:partName>
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="."/>
-                  </xsl:call-template>
-                </bf:partName>
-              </xsl:for-each>
-              <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </bf:Work>
-          </xsl:element>
+                    </bf:partNumber>
+                  </xsl:for-each>
+                  <xsl:for-each select="marc:subfield[@code='p']">
+                    <bf:partName>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </bf:partName>
+                  </xsl:for-each>
+                  <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </bf:Work>
+              </bf:relatedResource>
+            </bf:Relation>
+          </bf:relation>          
         </xsl:when>
       </xsl:choose>
     </xsl:if>
@@ -179,18 +186,18 @@
                   <xsl:with-param name="str" select="normalize-space(substring(.,1,3))"/>
                 </xsl:call-template>
               </xsl:variable>
-              <bflc:relationship>
-                <bflc:Relationship>
-                  <bflc:relation>
-                    <bflc:Relation>
+              <bf:relation>
+                <bf:Relation>
+                  <bf:relationship>
+                    <bf:Relationship>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
-                    </bflc:Relation>
-                  </bflc:relation>
-                  <bf:relatedTo>
+                    </bf:Relationship>
+                  </bf:relationship>
+                  <bf:relatedResource>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                  </bf:relatedTo>
-                </bflc:Relationship>
-              </bflc:relationship>
+                  </bf:relatedResource>
+                </bf:Relation>
+              </bf:relation>
             </xsl:for-each>
           </bf:Place>
         </bf:place>
