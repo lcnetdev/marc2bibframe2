@@ -746,7 +746,7 @@
     <xsl:variable name="df348-as" select="../marc:datafield[@tag = '348']/marc:subfield[@code = 'a']" />
     <xsl:for-each select="$codeMaps/maps/musicFormat/*[name() = $code]">
       <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml' and $df348-as[text() != .]">
+        <xsl:when test="$serialization = 'rdfxml' and (count($df348-as)=0 or $df348-as[text() != .])">
           <bf:musicFormat>
             <bf:MusicFormat>
               <xsl:if test="@href != ''">
@@ -770,7 +770,10 @@
     <xsl:if test="$i &lt; 7">
       <xsl:for-each select="$codeMaps/maps/musicSuppContent/*[name() = substring($accomp,$i,1)]">
         <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml' and ($df353-0s[text() != @href] and not(contains(@href, $df353-bs/text())))">
+          <xsl:when test="$serialization = 'rdfxml' and (
+                                                (count($df353-0s)=0 and count($df353-bs)=0) or 
+                                                ($df353-0s[text() != @href] and not(contains(@href, $df353-bs/text())))
+                                           )">
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <xsl:if test="@href">
