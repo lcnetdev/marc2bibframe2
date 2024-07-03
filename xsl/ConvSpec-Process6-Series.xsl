@@ -156,14 +156,14 @@
               </xsl:variable>
               <xsl:choose>
                 <xsl:when test="$serialization = 'rdfxml'">
-                  <bflc:relationship>
-                    <bflc:Relationship>
-                      <bflc:relation>
-                        <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+                  <bf:relation>
+                    <bf:Relation>
+                      <bf:relationship>
+                        <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
                           <rdfs:label>Has Series</rdfs:label>
-                        </bflc:Relation>
-                      </bflc:relation>
-                      <bf:relatedTo>
+                        </bf:Relationship>
+                      </bf:relationship>
+                      <bf:relatedResource>
                         <bf:Series>
                           <xsl:attribute name="rdf:about">
                             <xsl:value-of select="$vHubIri"/>
@@ -252,7 +252,7 @@
                             </bflc:AppliesTo>
                           </bflc:appliesTo>
                         </xsl:if>
-                      </bf:relatedTo>
+                      </bf:relatedResource>
                       <xsl:if test="$vEnumeration != ''">
                         <bf:seriesEnumeration>
                           <xsl:value-of select="$vEnumeration"/>
@@ -264,8 +264,8 @@
                           <xsl:copy-of select="$v880Enumeration"/>
                         
                       </xsl:if>
-                    </bflc:Relationship>
-                  </bflc:relationship>
+                    </bf:Relation>
+                  </bf:relation>
                 </xsl:when>
               </xsl:choose>
               <!--end building a series  -->
@@ -345,14 +345,14 @@
     </xsl:variable>-->
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bflc:relationship>
-          <bflc:Relationship>
-            <bflc:relation>
-              <bflc:Relation rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
+        <bf:relation>
+          <bf:Relation>
+            <bf:relationship>
+              <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
                 <rdfs:label>Has Series</rdfs:label>
-              </bflc:Relation>
-            </bflc:relation>
-            <bf:relatedTo>
+              </bf:Relationship>
+            </bf:relationship>
+            <bf:relatedResource>
               <bf:Hub>
                 <xsl:attribute name="rdf:about">
                   <xsl:value-of select="$vHubIri"/>
@@ -441,15 +441,15 @@
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Hub>
-            </bf:relatedTo>
+            </bf:relatedResource>
             <xsl:for-each select="marc:subfield[@code = 'v']">
               <bf:seriesEnumeration>
                 <xsl:value-of  select="."/>                
               </bf:seriesEnumeration>                
             </xsl:for-each>
             
-          </bflc:Relationship>
-        </bflc:relationship>
+          </bf:Relation>
+        </bf:relation>
 
       </xsl:when>
     </xsl:choose>

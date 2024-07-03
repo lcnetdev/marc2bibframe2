@@ -22,8 +22,8 @@
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simplePlace = 'Лондон'"/>
     <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'Сиэтл'"/>
-    <x:expect label="$6 490 creates a has Series relationship on Work" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bflc:relation/bflc:Relation/rdfs:label = 'Has Series'"/>
-    <x:expect label="...$x creates a related Hub with Issn identifier" test="//bf:Work[1]/bflc:relationship/bflc:Relationship/bf:relatedTo/bf:Series/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
+    <x:expect label="$6 490 creates a has Series relationship on Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:relationship/bf:Relationship/rdfs:label = 'Has Series'"/>
+    <x:expect label="...$x creates a related Hub with Issn identifier" test="//bf:Work[1]/bf:relation/bf:Relation/bf:relatedResource/bf:Series/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
     <x:expect label="$6 502 creates a dissertation property of the Work" test="//bf:Work[1]/bf:dissertation[1]/bf:Dissertation/rdfs:label = 'тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.'"/>
@@ -67,8 +67,8 @@
     <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[19]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
     <x:expect label="$6 586 creates an awards note on the Work" test="//bf:Work[1]/bf:note[3]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
-    <x:expect label="$6 740 creates a related Work linked to the main Work" test="//bf:Work[1]/bf:relatedTo/bf:Work/bf:title/bf:Title/bf:mainTitle ='Руководство гадалки'"/>
-    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:absorbed/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
+    <x:expect label="$6 740 creates a related Work linked to the main Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:relatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle ='Руководство гадалки'"/>
+    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:relation/bf:Relation[bf:relationship/@rdf:resource='http://id.loc.gov/ontologies/bibframe/absorbed']/bf:relatedResource/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
   </x:scenario>
 
   <x:scenario label="xml:lang attributes from 880">
