@@ -70,7 +70,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -138,8 +138,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent100-12">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:marcKey>
                     <rdfs:label>Andersen, H. C. (Hans Christian), 1805-1875</rdfs:label>
+                    <bflc:marcKey>1001 $aAndersen, H. C.$q(Hans Christian),$d1805-1875.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -157,8 +157,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/13600108#Agent700-17">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>7001 $aDickmeiss, Otto,$eill.</bflc:marcKey>
                     <rdfs:label>Dickmeiss, Otto</rdfs:label>
+                    <bflc:marcKey>7001 $aDickmeiss, Otto,$eill.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -182,7 +182,7 @@
                 <bflc:simpleDate>c2001</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[København?]: Lindhardt og Ringhof; c2001</bflc:publicationStatement>
+            <bf:publicationStatement>[København?]: Lindhardt og Ringhof, c2001</bf:publicationStatement>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>
@@ -263,7 +263,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -351,8 +351,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/5637241#Agent700-19">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>7001 $aCharles, Ray,$d1930-$4prf</bflc:marcKey>
                     <rdfs:label>Charles, Ray, 1930-</rdfs:label>
+                    <bflc:marcKey>7001 $aCharles, Ray,$d1930-$4prf</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -404,7 +404,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">[1957?]</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">New York, N.Y.: Atlantic; [1957?]</bflc:publicationStatement>
+            <bf:publicationStatement>New York, N.Y.: Atlantic, [1957?]</bf:publicationStatement>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   91758335 </rdf:value>
@@ -484,7 +484,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -573,8 +573,8 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:marcKey>61020$aWhite House (Washington, D.C.)</bflc:marcKey>
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
+                <bflc:marcKey>61020$aWhite House (Washington, D.C.)</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
@@ -584,8 +584,8 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:marcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:marcKey>
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
+                <bflc:marcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
@@ -595,8 +595,8 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:marcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:marcKey>
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
+                <bflc:marcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
@@ -606,8 +606,8 @@
                 <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
                 <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
                 <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
-                <bflc:marcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:marcKey>
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
+                <bflc:marcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
               </bf:Agent>
             </bf:subject>
@@ -616,8 +616,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/12149120#Agent710-26">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>
-                    <bflc:marcKey>7102 $aWhite House Web Team.</bflc:marcKey>
                     <rdfs:label>White House Web Team</rdfs:label>
+                    <bflc:marcKey>7102 $aWhite House Web Team.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -649,7 +649,7 @@
                 <bflc:simpleDate>1994-</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">Washington, D.C.: White House Web Team; 1994-</bflc:publicationStatement>
+            <bf:publicationStatement>Washington, D.C.: White House Web Team, 1994-</bf:publicationStatement>
             <bf:identifiedBy>
               <bf:Lccn>
                 <rdf:value>   00530046 </rdf:value>
@@ -742,7 +742,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -878,8 +878,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-22">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>7001 $aWholey, Joseph S.</bflc:marcKey>
                     <rdfs:label>Wholey, Joseph S.</rdfs:label>
+                    <bflc:marcKey>7001 $aWholey, Joseph S.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -892,8 +892,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-23">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>7001 $aHatry, Harry P.</bflc:marcKey>
                     <rdfs:label>Hatry, Harry P.</rdfs:label>
+                    <bflc:marcKey>7001 $aHatry, Harry P.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -906,8 +906,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/4417401#Agent700-24">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
-                    <bflc:marcKey>7001 $aNewcomer, Kathryn E.,$d1949-</bflc:marcKey>
                     <rdfs:label>Newcomer, Kathryn E., 1949-</rdfs:label>
+                    <bflc:marcKey>7001 $aNewcomer, Kathryn E.,$d1949-</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
@@ -990,7 +990,7 @@
                 <bflc:simpleDate xmlns:bflc="http://id.loc.gov/ontologies/bflc/">c1994</bflc:simpleDate>
               </bf:ProvisionActivity>
             </bf:provisionActivity>
-            <bflc:publicationStatement xmlns:bflc="http://id.loc.gov/ontologies/bflc/">San Francisco: Jossey-Bass; c1994</bflc:publicationStatement>
+            <bf:publicationStatement>San Francisco: Jossey-Bass, c1994</bf:publicationStatement>
             <bf:media>
               <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n">
                 <rdfs:label>unmediated</rdfs:label>
@@ -1097,7 +1097,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.6.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -1136,8 +1136,8 @@
                 <bf:agent>
                   <bf:Agent rdf:about="http://example.org/no2020106889#Agent100-9">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person" />
-                    <bflc:marcKey>1001 $aBorges, Jorge Luis,$d1899-1986.</bflc:marcKey>
                     <rdfs:label>Borges, Jorge Luis, 1899-1986</rdfs:label>
+                    <bflc:marcKey>1001 $aBorges, Jorge Luis,$d1899-1986.</bflc:marcKey>
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
