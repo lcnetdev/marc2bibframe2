@@ -1272,6 +1272,99 @@
                   <xsl:when test="text()='NAB standard'">
                     <xsl:value-of select="concat($mspecplayback,'nab')"/>
                   </xsl:when>
+                  <xsl:when test="text()='Dolby Digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby Digital 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby Digital 2.0'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD Master Audio 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 Dolby Digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD Master Audio'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby digital 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS'">
+                    <xsl:value-of select="concat($mspecplayback,'dts')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='2.0 Dolby Digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 DTS-HD Master Audio'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby digital 2.0'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 DTS-HD MA'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD Master Audio 7.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd71')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dts51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby Digital 1.0'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig1')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='PCM'">
+                    <xsl:value-of select="concat($mspecplayback,'pcm')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD master audio'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD MA 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD MA'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 Dolby digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='DTS-HD master audio 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='7.1 DTS-HD Master Audio'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd71')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='PCM uncompressed'">
+                    <xsl:value-of select="concat($mspecplayback,'pcmunc')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='PCM 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'pcm51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='7.1 DTS-HD MA'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd71')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='2.0 Dolby digital'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig2')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 DTS-HD Master audio'">
+                    <xsl:value-of select="concat($mspecplayback,'dtshd51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='5.1 DTS'">
+                    <xsl:value-of select="concat($mspecplayback,'dts51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby 5.1'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig51')"/>
+                  </xsl:when>
+                  <xsl:when test="text()='Dolby 2.0'">
+                    <xsl:value-of select="concat($mspecplayback,'dolbydig2')"/>
+                  </xsl:when>
                 </xsl:choose>
               </xsl:when>
               <xsl:when test="@code='i'">
