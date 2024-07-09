@@ -86,8 +86,8 @@
         <xsl:otherwise><xsl:value-of select="text()" /></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <bf:relatedResource>
+    <bf:associatedResource>
       <xsl:attribute name="rdf:resource"><xsl:value-of select="$relatedUri"/></xsl:attribute>
-    </bf:relatedResource>
+    </bf:associatedResource>
   </xsl:template>
 </xsl:stylesheet>

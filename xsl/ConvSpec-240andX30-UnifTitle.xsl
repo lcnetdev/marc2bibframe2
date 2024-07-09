@@ -100,7 +100,7 @@
                   </bf:Relationship>
                 </bf:relationship>
                 </xsl:for-each>
-                <bf:relatedResource>
+                <bf:associatedResource>
                   <bf:Hub>
                     <xsl:attribute name="rdf:about"><xsl:value-of select="$vHubIri"/></xsl:attribute>
                     <xsl:apply-templates select="." mode="hubUnifTitle">
@@ -108,7 +108,7 @@
                       <xsl:with-param name="pHubIri" select="$vHubIri"/>
                     </xsl:apply-templates>
                   </bf:Hub>
-                </bf:relatedResource>
+                </bf:associatedResource>
               </bf:Relation>
             </bf:relation>
           

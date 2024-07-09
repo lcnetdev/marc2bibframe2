@@ -52,7 +52,7 @@
               <bf:relationship>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProperty"/></xsl:attribute>
               </bf:relationship>
-              <bf:relatedResource>
+              <bf:associatedResource>
                 <bf:Work>
                   <xsl:attribute name="rdf:about"><xsl:value-of select="$vWorkUri"/></xsl:attribute>
                   <rdf:type>
@@ -97,7 +97,7 @@
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
                 </bf:Work>
-              </bf:relatedResource>
+              </bf:associatedResource>
             </bf:Relation>
           </bf:relation>          
         </xsl:when>
@@ -193,9 +193,9 @@
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,$encoded)"/></xsl:attribute>
                     </bf:Relationship>
                   </bf:relationship>
-                  <bf:relatedResource>
+                  <bf:associatedResource>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$recordid"/>#Work</xsl:attribute>
-                  </bf:relatedResource>
+                  </bf:associatedResource>
                 </bf:Relation>
               </bf:relation>
             </xsl:for-each>

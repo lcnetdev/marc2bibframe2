@@ -156,7 +156,7 @@
                     </bf:Relationship>
                   </bf:relationship>
                   </xsl:for-each>
-                  <bf:relatedResource>
+                  <bf:associatedResource>
                     <bf:Hub>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="$pHubIri"/></xsl:attribute>
                       <xsl:apply-templates mode="workName" select=".">
@@ -164,7 +164,7 @@
                         <xsl:with-param name="serialization" select="$serialization"/>
                       </xsl:apply-templates>
                     </bf:Hub>
-                  </bf:relatedResource>
+                  </bf:associatedResource>
                 </bf:Relation>
               </bf:relation>
           </xsl:when>
