@@ -163,7 +163,7 @@
                           <rdfs:label>Has Series</rdfs:label>
                         </bf:Relationship>
                       </bf:relationship>
-                      <bf:relatedResource>
+                      <bf:associatedResource>
                         <bf:Series>
                           <xsl:attribute name="rdf:about">
                             <xsl:value-of select="$vHubIri"/>
@@ -252,7 +252,7 @@
                             </bflc:AppliesTo>
                           </bflc:appliesTo>
                         </xsl:if>
-                      </bf:relatedResource>
+                      </bf:associatedResource>
                       <xsl:if test="$vEnumeration != ''">
                         <bf:seriesEnumeration>
                           <xsl:value-of select="$vEnumeration"/>
@@ -352,7 +352,7 @@
                 <rdfs:label>Has Series</rdfs:label>
               </bf:Relationship>
             </bf:relationship>
-            <bf:relatedResource>
+            <bf:associatedResource>
               <bf:Hub>
                 <xsl:attribute name="rdf:about">
                   <xsl:value-of select="$vHubIri"/>
@@ -441,7 +441,7 @@
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:Hub>
-            </bf:relatedResource>
+            </bf:associatedResource>
             <xsl:for-each select="marc:subfield[@code = 'v']">
               <bf:seriesEnumeration>
                 <xsl:value-of  select="."/>                
