@@ -1125,6 +1125,13 @@
           <xsl:with-param name="pIdentifier">bf:PostalRegistration</xsl:with-param>
         </xsl:apply-templates>
       </xsl:when>
+      <xsl:when test="$vTag='035' and contains(marc:subfield[@code='a'], 'OCoLC')">
+        <xsl:apply-templates select="." mode="instanceId">
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pIdentifier">bf:OclcNumber</xsl:with-param>
+          <xsl:with-param name="pInvalidLabel">invalid</xsl:with-param>
+        </xsl:apply-templates>
+      </xsl:when>
       <xsl:when test="$vTag='035'">
         <xsl:apply-templates select="." mode="instanceId">
           <xsl:with-param name="serialization" select="$serialization"/>
@@ -1345,7 +1352,7 @@
                     </xsl:when>
                   </xsl:choose>
                 </xsl:when>
-                <xsl:when test="$vTag='035'">
+                <xsl:when test="$vTag='035' and not(contains(., 'OCoLC'))">
                   <xsl:variable name="vSource" select="substring-before(substring-after(.,'('),')')"/>
                   <xsl:if test="$vSource != ''">
                     <xsl:variable name="vEncoded">

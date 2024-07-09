@@ -146,6 +146,8 @@
     <datafield tag="035" ind1=" " ind2=" ">
       <subfield code="a">(OCoLC)814782</subfield>
       <subfield code="z">(OCoLC)7374506</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
       <subfield code="z">(RS-BeBCD)12345</subfield>
     </datafield>
     <datafield tag="036" ind1=" " ind2=" ">
