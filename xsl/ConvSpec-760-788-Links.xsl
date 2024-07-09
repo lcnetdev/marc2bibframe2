@@ -101,7 +101,7 @@
                   </bf:Relationship>
                 </bf:relationship>
           </xsl:for-each>
-          <bf:relatedResource>
+          <bf:associatedResource>
             <xsl:element name="{$vElement}">
               <xsl:attribute name="rdf:about"><xsl:value-of select="$vElementUri"/></xsl:attribute>
               <xsl:apply-templates select="." mode="tLink7XXTitle">
@@ -192,7 +192,7 @@
                 </bf:Instance>
               </bf:hasInstance>
             </xsl:element>
-          </bf:relatedResource>
+          </bf:associatedResource>
           </bf:Relation>
         </bf:relation>
       </xsl:when>

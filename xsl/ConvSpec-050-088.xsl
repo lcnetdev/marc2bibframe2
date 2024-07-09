@@ -309,7 +309,7 @@
             </xsl:for-each>
           </xsl:variable>
           <bf:classification>
-            <bf:Classification>
+            <bf:ClassificationNal>
               <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
               <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
                 <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
@@ -344,7 +344,7 @@
               <xsl:apply-templates select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and not(contains(text(),'://'))]" mode="subfield0orw">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
-            </bf:Classification>
+            </bf:ClassificationNal>
           </bf:classification>
         </xsl:for-each>
       </xsl:when>
@@ -354,7 +354,7 @@
   <xsl:template match="marc:datafield[@tag='072' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='072')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSubjectValue">
-      <xsl:apply-templates select="marc:subfield[@code='a' or @code='x']" mode="concat-nodes-space"/>
+      <xsl:value-of select="concat(marc:subfield[@code='a'], marc:subfield[@code='x'])" />
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">

@@ -608,13 +608,17 @@
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="v655" select="../marc:datafield[@tag='655' and marc:subfield[@code='2']='lcgft']/marc:subfield[@code='a']" />
+      <xsl:variable name="v353" select="../marc:datafield[@tag='353']/marc:subfield[@code='a']" />
       <xsl:for-each select="$codeMaps/maps/marcgt/*[name() = substring($contents,$i,1)] |
                             $codeMaps/maps/marcgt/*[name() = concat('x',substring($contents,$i,1))]">
         <xsl:variable name="vMarcgtText" select="." />
         <xsl:choose>
           <xsl:when test="
               (
-                $vProperty='bf:supplementaryContent' or 
+                (
+                    $vProperty='bf:supplementaryContent' and
+                    not($v353[.!=$vMarcgtText])
+                ) or 
                 (
                   $vProperty='bf:genreForm' and 
                   not($v655[.!=$vMarcgtText]) and 
@@ -1256,7 +1260,8 @@
   <xsl:template name="index008">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
-    <xsl:if test="$code = '1'">
+    <xsl:variable name="v353" select="../marc:datafield[@tag='353']/marc:subfield[@code='a']" />
+    <xsl:if test="$code = '1' and not($v353[.!='index'])">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:supplementaryContent>

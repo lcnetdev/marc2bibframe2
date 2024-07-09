@@ -830,7 +830,7 @@
                     <rdfs:label>Has Series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
-                <bf:relatedResource>
+                <bf:associatedResource>
                   <bf:Series rdf:about="http://example.org/4417401#Hub490-19">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                     <bf:status>
@@ -844,7 +844,7 @@
                       </bf:Title>
                     </bf:title>
                   </bf:Series>
-                </bf:relatedResource>
+                </bf:associatedResource>
               </bf:Relation>
             </bf:relation>
             <bf:subject>
@@ -922,7 +922,7 @@
                     <rdfs:label>Has Series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
-                <bf:relatedResource>
+                <bf:associatedResource>
                   <bf:Hub rdf:about="http://example.org/4417401#Hub830-25">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
@@ -932,7 +932,7 @@
                     </bf:title>
                     <bflc:marcKey>830 0$aJossey-Bass public administration series.</bflc:marcKey>
                   </bf:Hub>
-                </bf:relatedResource>
+                </bf:associatedResource>
               </bf:Relation>
             </bf:relation>
             <bf:relation>
@@ -942,7 +942,7 @@
                     <rdfs:label>Has Series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
-                <bf:relatedResource>
+                <bf:associatedResource>
                   <bf:Hub rdf:about="http://example.org/4417401#Hub830-26">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
@@ -952,7 +952,7 @@
                     </bf:title>
                     <bflc:marcKey>830 0$aJossey-Bass nonprofit sector series.</bflc:marcKey>
                   </bf:Hub>
-                </bf:relatedResource>
+                </bf:associatedResource>
               </bf:Relation>
             </bf:relation>
             <bf:relation>
@@ -962,7 +962,7 @@
                     <rdfs:label>Has Series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
-                <bf:relatedResource>
+                <bf:associatedResource>
                   <bf:Hub rdf:about="http://example.org/4417401#Hub830-27">
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Series"/>
                     <bf:title>
@@ -972,7 +972,7 @@
                     </bf:title>
                     <bflc:marcKey>830 0$aJossey-Bass social and behavioral science series.</bflc:marcKey>
                   </bf:Hub>
-                </bf:relatedResource>
+                </bf:associatedResource>
               </bf:Relation>
             </bf:relation>
             <bf:tableOfContents rdf:resource="http://www.loc.gov/catdir/toc/onix07/93048623.html" />
