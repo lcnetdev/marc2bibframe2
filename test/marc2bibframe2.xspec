@@ -656,12 +656,9 @@
               </bf:Lccn>
             </bf:identifiedBy>
             <bf:identifiedBy>
-              <bf:Local>
+              <bf:OclcNumber>
                 <rdf:value>ocm44279786</rdf:value>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/ocolc" />
-                </bf:assigner>
-              </bf:Local>
+              </bf:OclcNumber>
             </bf:identifiedBy>
             <bf:title>
               <bf:Title>
@@ -1164,12 +1161,9 @@
               </bf:Lccn>
             </bf:identifiedBy>
             <bf:identifiedBy>
-              <bf:Local>
+              <bf:OclcNumber>
                 <rdf:value>oca13172524</rdf:value>
-                <bf:assigner>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/ocolc" />
-                </bf:assigner>
-              </bf:Local>
+              </bf:OclcNumber>
             </bf:identifiedBy>
           </bf:Work>
         </rdf:RDF>
