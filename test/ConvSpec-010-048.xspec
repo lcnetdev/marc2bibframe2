@@ -163,10 +163,10 @@
   
   <x:scenario label="035 - SYSTEM CONTROL NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
-    <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/rdf:value = '814782'"/>
-    <x:expect label="value in parens creates an assigner property of the Local" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/ocolc'"/>
+    <x:expect label="$a creates an identifiedBy/Local property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[31]/bf:OclcNumber/rdf:value = '814782'"/>
+    <x:expect label="value in parens creates an assigner property of the Local" test="count(//bf:Instance[1]/bf:identifiedBy[31]/bf:OclcNumber/bf:assigner) = 0"/>
     <x:expect label="...final element in URL should be lowercase with hyphens removed" test="//bf:Instance[1]/bf:identifiedBy[33]/bf:Local/bf:assigner/bf:Agent/@rdf:about = 'http://id.loc.gov/vocabulary/organizations/rsbebcd'"/>
-    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:Local/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
+    <x:expect label="$z creates a status/Status property of the Local with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[32]/bf:OclcNumber/bf:status/bf:Status[@rdf:about='http://id.loc.gov/vocabulary/mstatus/cancinv']/rdfs:label = 'invalid'"/>
   </x:scenario>
   
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
