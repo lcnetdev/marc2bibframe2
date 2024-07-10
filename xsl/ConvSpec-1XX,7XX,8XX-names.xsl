@@ -219,20 +219,26 @@
     </xsl:variable>
     <xsl:variable name="rolesFromSubfields">
       <xsl:choose>
-        <xsl:when test="substring($tag,2,2)='11'">
-          <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
+        <xsl:when test="marc:subfield[@code='4'] and not(contains(marc:subfield[@code='4'], 'rdaregistry.info'))">
+          <xsl:apply-templates select="marc:subfield[@code='4']" mode="contributionRoleCode">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
-            <xsl:with-param name="serialization" select="$serialization"/>
-          </xsl:apply-templates>
+          <xsl:choose>
+            <xsl:when test="substring($tag,2,2)='11'">
+              <xsl:apply-templates select="marc:subfield[@code='j']" mode="contributionRole">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="marc:subfield[@code='e']" mode="contributionRole">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="marc:subfield[@code='4']" mode="contributionRoleCode">
-        <xsl:with-param name="serialization" select="$serialization"/>
-      </xsl:apply-templates>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
