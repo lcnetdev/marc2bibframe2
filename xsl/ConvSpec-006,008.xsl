@@ -220,9 +220,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$language != ''">
           <bf:language>
-            <bf:Language>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($languages,$language)"/></xsl:attribute>
-            </bf:Language>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$language)"/></xsl:attribute>
           </bf:language>
         </xsl:if>
       </xsl:when>
