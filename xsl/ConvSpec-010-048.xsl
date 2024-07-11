@@ -573,7 +573,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='041' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='041')]" mode="work">
+  <!--<xsl:template match="marc:datafield[@tag='041' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='041')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSource">
       <xsl:choose>
@@ -626,7 +626,7 @@
             </xsl:choose>
           </xsl:variable>
           <xsl:choose>
-            <!-- marc language codes can be stacked in the subfield -->
+            <!-\- marc language codes can be stacked in the subfield -\->
             <xsl:when test="$vSource = 'marc'">
               <xsl:call-template name="parse041">
                 <xsl:with-param name="pLang" select="."/>
@@ -653,11 +653,77 @@
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>-->
+  
+  <xsl:template match="marc:datafield[@tag='041' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='041')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vSource">
+      <xsl:choose>
+        <xsl:when test="@ind2 = ' '">marc</xsl:when>
+        <xsl:when test="@ind2 = '7'"><xsl:value-of select="marc:subfield[@code='2']"/></xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:if test="@ind1 = '1'">
+          <bf:note>
+            <bf:Note>
+              <rdfs:label>Includes translation</rdfs:label>
+            </bf:Note>
+          </bf:note>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code = 'a'] |
+                              marc:subfield[@code = 'b'] |
+                              marc:subfield[@code = 'd'] |
+                              marc:subfield[@code = 'e'] |
+                              marc:subfield[@code = 'f'] |
+                              marc:subfield[@code = 'g'] |
+                              marc:subfield[@code = 'h'] |
+                              marc:subfield[@code = 'i'] |
+                              marc:subfield[@code = 'j'] |
+                              marc:subfield[@code = 'k'] |
+                              marc:subfield[@code = 'm'] |
+                              marc:subfield[@code = 'n'] |
+                              marc:subfield[@code = 'p'] |
+                              marc:subfield[@code = 'q'] |
+                              marc:subfield[@code = 'r'] |
+                              marc:subfield[@code = 't']">
+          <xsl:variable name="sfCode" select="@code" />
+          <xsl:variable name="vPart" select="$codeMaps/maps/resourceComponents/*[name() = $sfCode][1]" />
+          <xsl:choose>
+            <!-- marc language codes can be stacked in the subfield -->
+            <xsl:when test="$vSource = 'marc'">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="."/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <bf:language>
+                <bf:Language>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                  <xsl:if test="$vPart != ''">
+                    <bf:part><xsl:value-of select="$vPart/text()"/></bf:part>
+                  </xsl:if>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pVocabStem" select="$languageschemes"/>
+                    <xsl:with-param name="pStripPunct" select="true()"/>
+                  </xsl:apply-templates>
+                </bf:Language>
+              </bf:language>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!-- unstack language codes in 041 subfields -->
   <!-- convert to lowercase -->
-  <xsl:template name="parse041">
+<!--  <xsl:template name="parse041">
     <xsl:param name="pLang"/>
     <xsl:param name="pPart"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -685,6 +751,74 @@
       <xsl:call-template name="parse041">
         <xsl:with-param name="pLang" select="$pLang"/>
         <xsl:with-param name="pPart" select="$pPart"/>
+        <xsl:with-param name="serialization" select="$serialization"/>
+        <xsl:with-param name="pStart" select="$pStart + 3"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>-->
+
+  <xsl:template name="parse041">
+    <xsl:param name="pLang"/>
+    <xsl:param name="pPart"/>
+    <xsl:param name="p3"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pStart" select="1"/>
+    <xsl:if test="string-length(substring($pLang,$pStart,3)) = 3">
+      <xsl:variable name="lCode">
+        <xsl:call-template name="url-encode">
+          <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="match008" select="boolean(substring(../../marc:controlfield[@tag='008'],36,3)=$lCode)" />
+      <xsl:variable name="langResource">
+        <bf:language>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$lCode)"/></xsl:attribute>
+        </bf:language>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$serialization = 'rdfxml'">
+          <xsl:choose>
+            <xsl:when test="$p3 != ''">
+              <!-- "Materials specified.  By virtue of this fact alone we need to abstract this. -->
+            </xsl:when>
+            <xsl:when test="contains('hijkmnpqr', local-name($pPart))">
+              <bf:note>
+                <bf:Note>
+                  <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/lang" />
+                  <rdf:type>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$pPart/@href"/></xsl:attribute>
+                  </rdf:type>
+                  <xsl:copy-of select="$langResource" />
+                </bf:Note>
+              </bf:note>
+            </xsl:when>
+            <xsl:when test="contains('bdefgt', local-name($pPart))">
+              <bf:accompaniedBy>
+                <bf:Work>
+                  <xsl:choose>
+                    <xsl:when test="$pPart/@type">
+                      <rdf:type>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf, $pPart/@type)"/></xsl:attribute>
+                      </rdf:type>
+                    </xsl:when>
+                  </xsl:choose>
+                  <rdf:type>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$pPart/@href"/></xsl:attribute>
+                  </rdf:type>
+                  <xsl:copy-of select="$langResource" />
+                </bf:Work>
+              </bf:accompaniedBy>
+            </xsl:when>
+            <xsl:when test="local-name($pPart)='a' and not($match008)">
+              <xsl:copy-of select="$langResource" />
+            </xsl:when>
+          </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+      <xsl:call-template name="parse041">
+        <xsl:with-param name="pLang" select="$pLang"/>
+        <xsl:with-param name="pPart" select="$pPart"/>
+        <xsl:with-param name="p3" select="$p3"/>
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="pStart" select="$pStart + 3"/>
       </xsl:call-template>

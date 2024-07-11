@@ -577,4 +577,24 @@
     <cd href="http://id.loc.gov/vocabulary/carriers/cd">computer disc</cd>
     <sg href="http://id.loc.gov/vocabulary/carriers/sg">audio cartridge</sg>
   </carriers>
+  
+  <resourceComponents> 
+    <a href="http://id.loc.gov/vocabulary/resourceComponents/res">Resource</a>      
+    <a href="http://id.loc.gov/vocabulary/resourceComponents/str">Sound Track</a>
+    <b href="http://id.loc.gov/vocabulary/resourceComponents/sum" type="Summary">Summary or abstract</b>
+    <d href="http://id.loc.gov/vocabulary/resourceComponents/stx" type="Audio">Sung or spoken text</d>
+    <e href="http://id.loc.gov/vocabulary/resourceComponents/lib" type="Text">Librettos</e>
+    <f href="http://id.loc.gov/vocabulary/resourceComponents/toc" type="TableOfContents">Table of contents</f>
+    <g href="http://id.loc.gov/vocabulary/resourceComponents/amt" type="Text">Accompanying material</g>
+    <h href="http://id.loc.gov/vocabulary/resourceComponents/otx">Original text</h>
+    <i href="http://id.loc.gov/vocabulary/resourceComponents/int">Intertitles</i>
+    <j href="http://id.loc.gov/vocabulary/resourceComponents/sub">Subtitles</j>
+    <k href="http://id.loc.gov/vocabulary/resourceComponents/itr">Intermediate translations</k>
+    <n href="http://id.loc.gov/vocabulary/resourceComponents/olb">Original libretto</n>
+    <m href="http://id.loc.gov/vocabulary/resourceComponents/amt" type="Text">Accompanying material</m>
+    <p href="http://id.loc.gov/vocabulary/resourceComponents/olb">Original libretto</p>
+    <q href="http://id.loc.gov/vocabulary/resourceComponents/aud">Accessible audio</q>
+    <r href="http://id.loc.gov/vocabulary/resourceComponents/vis">Accessible visual language</r>
+    <t href="http://id.loc.gov/vocabulary/resourceComponents/tav" type="Text">Transcripts for audiovisual materials</t>
+  </resourceComponents>
 </maps>
