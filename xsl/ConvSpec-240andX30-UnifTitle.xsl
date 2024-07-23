@@ -72,11 +72,11 @@
       <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
       <xsl:variable name="vProp">
         <xsl:choose>
-          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bibframe/hasPart</xsl:when>
+          <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
           <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
-          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/ontologies/bibframe/arrangementOf</xsl:when>
-          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/ontologies/bibframe/translationOf</xsl:when>
-          <xsl:otherwise>http://id.loc.gov/ontologies/bibframe/relatedTo</xsl:otherwise>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
+          <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:choose>
