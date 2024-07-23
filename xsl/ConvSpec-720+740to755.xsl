@@ -34,8 +34,8 @@
       </xsl:variable>
       <xsl:variable name="vProperty">
         <xsl:choose>
-          <xsl:when test="@ind2='2'">http://id.loc.gov/ontologies/bibframe/hasPart</xsl:when>
-          <xsl:otherwise>http://id.loc.gov/ontologies/bibframe/relatedTo</xsl:otherwise>
+          <xsl:when test="@ind2='2'">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
+          <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vmainTitle">
