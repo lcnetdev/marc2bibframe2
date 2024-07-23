@@ -68,7 +68,7 @@
     <x:expect label="$6 586 creates an awards note on the Work" test="//bf:Work[1]/bf:note[3]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
     <x:expect label="$6 740 creates a related Work linked to the main Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle ='Руководство гадалки'"/>
-    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:relation/bf:Relation[bf:relationship/@rdf:resource='http://id.loc.gov/ontologies/bibframe/absorbed']/bf:associatedResource/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
+    <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:relation/bf:Relation[bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/absorptionof']/bf:associatedResource/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>
   </x:scenario>
 
   <x:scenario label="xml:lang attributes from 880">
