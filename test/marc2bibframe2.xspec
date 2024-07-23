@@ -106,9 +106,7 @@
               </bf:Content>
             </bf:content>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
-            <bf:language>
-              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/dan"/>
-            </bf:language>
+            <bf:language rdf:resource="http://id.loc.gov/vocabulary/languages/dan" />
             <bf:illustrativeContent>
               <bf:Illustration rdf:about="http://id.loc.gov/vocabulary/millus/ill">
                 <rdfs:label>illustrations</rdfs:label>
@@ -299,9 +297,7 @@
               </bf:Content>
             </bf:content>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
-            <bf:language>
-              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
-            </bf:language>
+            <bf:language rdf:resource="http://id.loc.gov/vocabulary/languages/eng"/>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:classificationPortion>Atlantic 1259</bf:classificationPortion>
@@ -525,9 +521,7 @@
               </bf:Content>
             </bf:content>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
-            <bf:language>
-              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
-            </bf:language>
+            <bf:language rdf:resource="http://id.loc.gov/vocabulary/languages/eng"/>
             <bf:intendedAudience>
               <bf:IntendedAudience rdf:about="http://id.loc.gov/vocabulary/maudience/gen">
                 <rdfs:label>general</rdfs:label>
@@ -775,9 +769,7 @@
               </bf:Content>
             </bf:content>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
-            <bf:language>
-              <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
-            </bf:language>
+            <bf:language rdf:resource="http://id.loc.gov/vocabulary/languages/eng"/>
             <bf:illustrativeContent>
               <bf:Illustration rdf:about="http://id.loc.gov/vocabulary/millus/ill">
                 <rdfs:label>illustrations</rdfs:label>

@@ -35,7 +35,7 @@
       <x:expect label="| in pos 6 handled like s or m" test="//bf:Instance[10]/bf:provisionActivity/bf:ProvisionActivity/bf:date = '1981'"/>
       <x:expect label="pos 15-17 publication place" test="//bf:Instance[1]/bf:provisionActivity/bf:ProvisionActivity/bf:place/@rdf:resource='http://id.loc.gov/vocabulary/countries/dk'"/>
       <x:expect label="||| in pos 15-17 should not create ProvisionActivity/place" test="not(//bf:Instance[10]/bf:provisionActivity/bf:ProvisionActivity/bf:place)"/>
-      <x:expect label="pos 35-37 should set the language property of the Work" test="//bf:Work[1]/bf:language/bf:Language/@rdf:about = 'http://id.loc.gov/vocabulary/languages/dan'"/>
+      <x:expect label="pos 35-37 should set the language property of the Work" test="//bf:Work[1]/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/dan'"/>
     </x:scenario>
 
     <x:scenario label="BOOKS">
