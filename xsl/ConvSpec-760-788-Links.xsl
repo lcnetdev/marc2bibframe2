@@ -42,7 +42,7 @@
     </xsl:variable>
     <xsl:variable name="vProperty">
       <xsl:choose>
-        <xsl:when test="$vTag='760'">http://id.loc.gov/ontologies/bibframe/hasSeries</xsl:when>
+        <xsl:when test="$vTag='760'">http://id.loc.gov/vocabulary/relationship/series</xsl:when>
         <xsl:when test="$vTag='762'">http://id.loc.gov/vocabulary/relationship/subseries</xsl:when>
         <xsl:when test="$vTag='765'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
         <xsl:when test="$vTag='767'">http://id.loc.gov/vocabulary/relationship/translatedas</xsl:when>
@@ -50,13 +50,13 @@
         <xsl:when test="$vTag='772'">http://id.loc.gov/vocabulary/relationship/supplementto</xsl:when>
         <xsl:when test="$vTag='773'">http://id.loc.gov/vocabulary/relationship/partof</xsl:when>
         <xsl:when test="$vTag='774'">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
-        <xsl:when test="$vTag='775'">http://id.loc.gov/ontologies/bibframe/otherEdition</xsl:when>
-        <xsl:when test="$vTag='776'">http://id.loc.gov/ontologies/bibframe/otherPhysicalFormat</xsl:when>
-        <xsl:when test="$vTag='777'">http://id.loc.gov/ontologies/bibframe/issuedWith</xsl:when>
+        <xsl:when test="$vTag='775'">http://id.loc.gov/vocabulary/relationship/otheredition</xsl:when>
+        <xsl:when test="$vTag='776'">http://id.loc.gov/vocabulary/relationship/otherphysicalformat</xsl:when>
+        <xsl:when test="$vTag='777'">http://id.loc.gov/vocabulary/relationship/issuedwith</xsl:when>
         <xsl:when test="$vTag='780'">
           <xsl:choose>
             <xsl:when test="@ind2='0'">http://id.loc.gov/vocabulary/relationship/continuationof</xsl:when>
-            <xsl:when test="@ind2='1'">http://id.loc.gov/ontologies/bibframe/continuesInPart</xsl:when>
+            <xsl:when test="@ind2='1'">http://id.loc.gov/vocabulary/relationship/continuedinpart</xsl:when>
             <xsl:when test="@ind2='4'">http://id.loc.gov/vocabulary/relationship/mergerof</xsl:when>
             <xsl:when test="@ind2='5' or @ind2='6'">http://id.loc.gov/vocabulary/relationship/absorptionof</xsl:when>
             <xsl:when test="@ind2='7'">http://id.loc.gov/vocabulary/relationship/separatedfrom</xsl:when>
@@ -66,14 +66,14 @@
         <xsl:when test="$vTag='785'">
           <xsl:choose>
             <xsl:when test="@ind2='0' or @ind2='8'">http://id.loc.gov/vocabulary/relationship/continuedby</xsl:when>
-            <xsl:when test="@ind2='1'">http://id.loc.gov/ontologies/bibframe/continuedInPartBy</xsl:when>
+            <xsl:when test="@ind2='1'">http://id.loc.gov/vocabulary/relationship/continuedinpartby</xsl:when>
             <xsl:when test="@ind2='4' or @ind2='5'">http://id.loc.gov/vocabulary/relationship/absorbedby</xsl:when>
             <xsl:when test="@ind2='6'">http://id.loc.gov/vocabulary/relationship/splitinto</xsl:when>
             <xsl:when test="@ind2='7'">http://id.loc.gov/vocabulary/relationship/mergedtoform</xsl:when>
             <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/succeededby</xsl:otherwise>
           </xsl:choose>
         </xsl:when>
-        <xsl:when test="$vTag='786'">http://id.loc.gov/ontologies/bibframe/dataSource</xsl:when>
+        <xsl:when test="$vTag='786'">http://id.loc.gov/vocabulary/relationship/datasource</xsl:when>
         <xsl:when test="$vTag='787'">http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:when>
         <!--
         <xsl:when test="$vTag='760'">http://id.loc.gov/ontologies/bibframe/hasSeries</xsl:when>

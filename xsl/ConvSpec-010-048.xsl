@@ -668,7 +668,7 @@
         <xsl:if test="@ind1 = '1'">
           <bf:note>
             <bf:Note>
-              <rdfs:label>Includes translation</rdfs:label>
+              <rdfs:label>Includes translation or is translation</rdfs:label>
             </bf:Note>
           </bf:note>
         </xsl:if>
