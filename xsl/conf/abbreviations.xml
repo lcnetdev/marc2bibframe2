@@ -3,10 +3,10 @@
   <abbrev text="arr."/>
   <abbrev text="ed."/>
   <abbrev text="etc."/>
-  <abbrev text="cm."/>
+  <!-- <abbrev text="cm."/> -->
   <abbrev text="ft."/>
   <abbrev text="ill."/>
-  <abbrev text="in."/>
+  <!-- <abbrev text="in."/> -->
   <abbrev text="p."/>
   <abbrev text="s.n."/>
   <abbrev text="s.l."/>

@@ -111,11 +111,11 @@
     </x:call>
     <x:expect select="'Lond.'"/>
   </x:scenario>
-  <x:scenario label="Preserve end period for configured abbreviations">
+  <x:scenario label="Chop end period for configured abbreviations">
     <x:call template="tChopPunct">
       <x:param name="pString" select="'23 cm.'"/>
     </x:call>
-    <x:expect select="'23 cm.'"/>
+    <x:expect select="'23 cm'"/>
   </x:scenario>
   <x:scenario label="Preserve end period for configured abbreviation when complete string is the abbrev">
     <x:call template="tChopPunct">

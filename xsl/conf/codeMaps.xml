@@ -592,7 +592,7 @@
     <k href="http://id.loc.gov/vocabulary/resourceComponents/itr">Intermediate translations</k>
     <n href="http://id.loc.gov/vocabulary/resourceComponents/olb">Original libretto</n>
     <m href="http://id.loc.gov/vocabulary/resourceComponents/amt" type="Text">Accompanying material</m>
-    <p href="http://id.loc.gov/vocabulary/resourceComponents/olb">Original libretto</p>
+    <p href="http://id.loc.gov/vocabulary/resourceComponents/cap">Captions</p>
     <q href="http://id.loc.gov/vocabulary/resourceComponents/aud">Accessible audio</q>
     <r href="http://id.loc.gov/vocabulary/resourceComponents/vis">Accessible visual language</r>
     <t href="http://id.loc.gov/vocabulary/resourceComponents/tav" type="Text">Transcripts for audiovisual materials</t>
