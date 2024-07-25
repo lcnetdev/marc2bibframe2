@@ -784,7 +784,6 @@
             <xsl:when test="contains('hijkmnpqr', local-name($pPart))">
               <bf:note>
                 <bf:Note>
-                  <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/lang" />
                   <rdf:type>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$pPart/@href"/></xsl:attribute>
                   </rdf:type>

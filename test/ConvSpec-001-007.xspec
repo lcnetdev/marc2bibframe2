@@ -42,17 +42,17 @@
       <x:expect label="One genreForm property when multiple, equal 655s present" test="count(//bf:Work[2]/bf:genreForm/bf:GenreForm/rdfs:label[. = 'Graphs']) = 1"/>
       <x:expect label="Electronic resource pos 4 sets the dimensions property of the Instance - 300 override of 007" test="//bf:Instance[3]/bf:dimensions = '9.8 x 6.3 cm'"/>
       <x:expect label="One genreForm property when multiple, equal 655s present (Globes)" test="count(//bf:Work[4]/bf:genreForm/bf:GenreForm/rdfs:label[. = 'Globes']) = 1"/>
-      <x:expect label="(Projected Graphic) pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[5]/bf:dimensions = '1 2/5 in.'"/>
+      <x:expect label="(Projected Graphic) pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[5]/bf:dimensions = '1 2/5 in'"/>
       <x:expect label="One soundCharacteristic present when duplicate value found in 344" test="count(//bf:Instance[6]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magneto-optical']) = 1"/>
-      <x:expect label="(Microform) pos 4 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[7]/bf:dimensions = '1 2/5 in.'"/>
+      <x:expect label="(Microform) pos 4 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[7]/bf:dimensions = '1 2/5 in'"/>
       <x:expect label="(Nonprojected Graphic) One genreForm property when multiple, equal 655s present" test="count(//bf:Work[8]/bf:genreForm/bf:GenreForm/rdfs:label[. = 'Photographic prints']) = 1"/>
       <x:expect label="(Motion Picture) Only 1 projectionCharacteritic present when duplicate value found in 345" test="count(//bf:Instance[9]/bf:projectionCharacteristic/bf:PresentationFormat/rdfs:label[. = '3D']) = 1"/>
       <x:expect label="(Motion Picture) Only 1 soundCharacteristic/RecordingMedium present when duplicate value found in 344" test="count(//bf:Instance[9]/bf:soundCharacteristic/bf:RecordingMedium/rdfs:label[. = 'magnetic']) = 1"/>
       <x:expect label="(Motion Picture) Only 1 soundCharacteristic/PlaybackChannels present when duplicate value found in 344" test="count(//bf:Instance[9]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'stereo']) = 1"/>
-      <x:expect label="(Motion Picture) pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[10]/bf:dimensions = '1 2/5 in.'"/>
+      <x:expect label="(Motion Picture) pos 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[10]/bf:dimensions = '1 2/5 in'"/>
       <x:expect label="(Motion Picture) Only 1 genreForm present when duplicate value found in 655" test="count(//bf:Work[11]/bf:genreForm/bf:GenreForm/rdfs:label[. = 'Outtakes']) = 1"/>
       <x:expect label="(Sound Recording) Only 1 soundCharacteristic/GrooveCharacteristic present when a duplicate value found in 344" test="count(//bf:Instance[12]/bf:soundCharacteristic/bf:GrooveCharacteristic/rdfs:label[. = 'microgroove']) = 1"/>
-      <x:expect label="(Sound Recording) pos 6, 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[13]/bf:dimensions[1] = '2 in.'"/>
+      <x:expect label="(Sound Recording) pos 6, 7 creates a dimensions property of the Instance - 300/c override" test="//bf:Instance[13]/bf:dimensions[1] = '2 in'"/>
       <x:expect label="(Sound Recording) Only 1 soundCharacteristic/PlaybackChannels present when duplicate value found in 344" test="count(//bf:Instance[12]/bf:soundCharacteristic/bf:PlaybackChannels/rdfs:label[. = 'stereo']) = 1"/>
       <x:expect label="(Sound Recording) Only 1 soundCharacteristic/PlaybackCharacteristic present when a duplicate value found in 344" test="count(//bf:Instance[12]/bf:soundCharacteristic/bf:PlaybackCharacteristic/rdfs:label[. = 'Dolby-A encoded']) = 1"/>
       <x:expect label="(Sound Recording) Only 1 soundCharacteristic/RecordingMethod present when a duplicate value found in 344" test="count(//bf:Instance[14]/bf:soundCharacteristic/bf:RecordingMethod/rdfs:label[. = 'digital']) = 1"/>
