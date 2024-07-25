@@ -903,7 +903,11 @@
                             </bf:date>
                         </paGroup>
                     </xsl:when>
-                    <xsl:when test="substring(., 7, 1) = 't'">
+                    <xsl:when test="
+                                substring(., 7, 1) = 't' and
+                                substring(., 12, 4) != '    ' and
+                                substring(., 12, 4) != '||||'
+                                ">
                         <paGroup>
                             <type>Copyright</type>
                             <bf:copyrightDate>
