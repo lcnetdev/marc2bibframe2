@@ -848,7 +848,7 @@
             </xsl:if>
             <xsl:call-template name="tChopPunct">
               <xsl:with-param name="pString" select="."/>
-              <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
+              <xsl:with-param name="pEndPunct" select="':;,/=+.'"/>
             </xsl:call-template>
           </bf:dimensions>
         </xsl:for-each>
