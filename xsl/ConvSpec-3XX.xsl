@@ -733,7 +733,7 @@
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:if test="following-sibling::marc:subfield[position()=1]/@code != 'b'">
             <xsl:variable name="tA" select="." />
-            <xsl:variable name="mtURI" select="($codeMaps/maps/mediaTypes/*[. = $tA]/@href|$codeMaps/maps/carriers/*[. = $tA]/@href)[1]" />
+            <xsl:variable name="mtURI" select="($codeMaps/maps/mediaTypes/*[. = $tA]/@href|$codeMaps/maps/carriers/*[. = $tA]/@href|$codeMaps/maps/contentTypes/*[. = $tA]/@href)[1]" />
             <xsl:element name="{$pProp}">
               <xsl:element name="{$pResource}">
                 <xsl:if test="$mtURI!=''">
