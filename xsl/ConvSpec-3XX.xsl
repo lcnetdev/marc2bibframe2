@@ -1519,7 +1519,7 @@
                 </xsl:variable>
                 <xsl:choose>
                   <xsl:when test="contains($vNormalizedFormat,'cd aud')">
-                    <xsl:value-of select="concat($mencformat,'cdaudio')"/>
+                    <xsl:value-of select="concat($mencformat,'cda')"/>
                   </xsl:when>
                   <xsl:when test="contains($vNormalizedFormat,'bluray')">
                     <xsl:value-of select="concat($mencformat,'bluray')"/>
