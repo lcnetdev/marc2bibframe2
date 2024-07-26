@@ -794,13 +794,6 @@
             <xsl:when test="contains('bdefgt', local-name($pPart))">
               <bf:accompaniedBy>
                 <bf:Work>
-                  <xsl:choose>
-                    <xsl:when test="$pPart/@type">
-                      <rdf:type>
-                        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($bf, $pPart/@type)"/></xsl:attribute>
-                      </rdf:type>
-                    </xsl:when>
-                  </xsl:choose>
                   <rdf:type>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$pPart/@href"/></xsl:attribute>
                   </rdf:type>
