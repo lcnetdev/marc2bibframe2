@@ -285,6 +285,7 @@
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:for-each>
+        <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
