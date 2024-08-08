@@ -202,19 +202,71 @@
             </bf:date>
           </xsl:if>
           
-          <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='d']">
-            <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='d'][last()]/text()" />
-            <bf:descriptionModifier>
-              <bf:Agent>
-                <xsl:if test="$sfA = 'DLC'">
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                </xsl:if>
-                <bf:code><xsl:value-of select="$sfA"/></bf:code>
-              </bf:Agent>
-            </bf:descriptionModifier>
-          </xsl:if>
+          <xsl:choose>
+            <xsl:when test="marc:datafield[@tag='040']/marc:subfield[@code='d']">
+              <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='d'][last()]/text()" />
+              <bf:descriptionModifier>
+                <bf:Agent>
+                  <xsl:if test="$sfA = 'DLC'">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </xsl:if>
+                  <bf:code><xsl:value-of select="$sfA"/></bf:code>
+                </bf:Agent>
+              </bf:descriptionModifier>
+            </xsl:when>
+            <xsl:when test="marc:datafield[@tag='040']/marc:subfield[@code='a']">
+              <xsl:variable name="sfA" select="marc:datafield[@tag='040']/marc:subfield[@code='a']/text()" />
+              <bf:agent>
+                <bf:Agent>
+                  <xsl:if test="$sfA = 'DLC'">
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </xsl:if>
+                  <bf:code><xsl:value-of select="$sfA"/></bf:code>
+                </bf:Agent>
+              </bf:agent>
+            </xsl:when>
+          </xsl:choose>
         </bf:AdminMetadata>
       </bf:adminMetadata>
+      
+      <xsl:for-each select="marc:datafield[@tag='884' and contains(marc:subfield[@code='a'], 'DLC bibframe2marc')]">
+        <bf:adminMetadata>
+          <bf:AdminMetadata>
+            <bf:status>
+              <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
+                <rdfs:label>changed</rdfs:label>
+              </bf:Status>
+            </bf:status>
+            
+            <xsl:variable name="cf005date" select="marc:subfield[@code='g']" />
+            <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))"/>
+            <xsl:if test="not (starts-with($changeDate, '0000'))">
+              <bf:date>
+                <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>
+                <xsl:value-of select="$changeDate"/>
+              </bf:date>
+            </xsl:if>
+            
+            <xsl:choose>
+              <xsl:when test="marc:subfield[@code='q']">
+                <xsl:variable name="sfA" select="marc:subfield[@code='q']" />
+                <bf:agent>
+                  <bf:Agent>
+                    <xsl:if test="$sfA = 'DLC'">
+                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                    </xsl:if>
+                    <bf:code><xsl:value-of select="$sfA"/></bf:code>
+                  </bf:Agent>
+                </bf:agent>
+              </xsl:when>
+            </xsl:choose>
+            
+            <bf:generationProcess>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
+            </bf:generationProcess>
+          </bf:AdminMetadata>
+        </bf:adminMetadata>
+      </xsl:for-each>
       
       <!-- Small admin metadata when converted. -->
       <bf:adminMetadata>
