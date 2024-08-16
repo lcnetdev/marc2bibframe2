@@ -104,10 +104,7 @@
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
-                  <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-                  </xsl:call-template>
+                  <xsl:value-of select="normalize-space($vLabel)"/>
                 </rdfs:label>
                 <xsl:if test="marc:subfield[@code='u']">
                   <bf:electronicLocator>
@@ -134,10 +131,7 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-              </xsl:call-template>
+              <xsl:value-of select="normalize-space($vLabel)"/>
             </rdfs:label>
           </bf:Scale>
         </bf:scale>
@@ -222,10 +216,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-                </xsl:call-template>
+                <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
             </xsl:if>
             <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
@@ -262,10 +253,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-                </xsl:call-template>
+                <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
             </xsl:if>
             <xsl:if test="$vNote != ''">
@@ -296,10 +284,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
             </bf:GeographicCoverage>
           </bf:geographicCoverage>
@@ -320,10 +305,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="."/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
             </bf:SupplementaryContent>
           </bf:supplementaryContent>
@@ -389,10 +371,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="."/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
             </xsl:for-each>
           </bf:Note>
@@ -414,10 +393,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="."/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -507,9 +483,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='b']">
@@ -542,10 +516,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-                </xsl:call-template>
+                <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
               <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -647,10 +618,7 @@
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
-                  <!-- <xsl:value-of select="."/> -->
-                  <xsl:call-template name="tChopPunct">
-                    <xsl:with-param name="pString" select="."/>
-                  </xsl:call-template>
+                  <xsl:value-of select="."/>
                 </rdfs:label>
               </xsl:for-each>
               <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
@@ -805,10 +773,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-                </xsl:call-template>
+                <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
             </xsl:if>
             <xsl:if test="$vNoteType != ''">
@@ -925,10 +890,7 @@
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
               </xsl:if>
-              <!-- <xsl:value-of select="normalize-space($vLabel)"/> -->
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="normalize-space($vLabel)"/>
-              </xsl:call-template>
+              <xsl:value-of select="normalize-space($vLabel)"/>
             </rdfs:label>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
@@ -956,10 +918,7 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <!-- <xsl:value-of select="."/> -->
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
+            <xsl:value-of select="."/>
           </bf:custodialHistory>
         </xsl:for-each>
         <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
@@ -989,10 +948,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="."/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
               <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -1024,10 +980,7 @@
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
-                <!-- <xsl:value-of select="."/> -->
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
+                <xsl:value-of select="."/>
               </rdfs:label>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='c']">
