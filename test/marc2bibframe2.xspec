@@ -61,6 +61,11 @@
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2004-09-15T14:13:53</bf:date>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:agent>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
@@ -76,7 +81,7 @@
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -97,6 +102,7 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -252,6 +258,11 @@
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:date>
+                <bf:agent>
+                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                    <bf:code>DLC</bf:code>
+                  </bf:Agent>
+                </bf:agent>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
@@ -267,7 +278,7 @@
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">minimal</rdfs:label>
@@ -288,6 +299,7 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/MusicAudio"/>
@@ -486,7 +498,7 @@
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -507,6 +519,7 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aIEU$cIEU$dN@F$dDLC</bflc:marcKey>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
                     <bf:code>lccopycat</bf:code>
@@ -739,7 +752,7 @@
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -760,6 +773,7 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC$dDLC</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -1077,6 +1091,11 @@
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-09-12T07:00:12</bf:date>
+                <bf:agent>
+                  <bf:Agent>
+                    <bf:code>ICrlF</bf:code>
+                  </bf:Agent>
+                </bf:agent>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
@@ -1092,7 +1111,7 @@
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-3-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -1116,6 +1135,7 @@
                     <bf:code>rda</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aICrlF$beng$erda$cICrlF</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub" />
