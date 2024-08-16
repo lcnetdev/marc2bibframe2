@@ -8,7 +8,7 @@
 
   <!-- Current marc2bibframe2 version -->
   <xsl:variable name="vCurrentVersion">v2.7.0</xsl:variable>
-  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-3-0/</xsl:variable>
+  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-4-0/</xsl:variable>
   <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0</xsl:variable>
 
   <!-- namespace URIs -->
