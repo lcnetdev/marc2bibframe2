@@ -216,7 +216,7 @@
             <bf:dimensions>23 cm</bf:dimensions>
             <bf:note>
               <bf:Note>
-                <rdfs:label>Text based on the original work published under the title "H.C. Andersens eventyr / kritisk udgivet efter de originale eventyrhæfter med varianter ved Erik Dal og kommentarer ved Erling Nielsen": Copenhagen : Danske Sprog- og Litteraturselskab : C.A. Reitzel, 1990</rdfs:label>
+                <rdfs:label>Text based on the original work published under the title "H.C. Andersens eventyr / kritisk udgivet efter de originale eventyrhæfter med varianter ved Erik Dal og kommentarer ved Erling Nielsen": Copenhagen : Danske Sprog- og Litteraturselskab : C.A. Reitzel, 1990.</rdfs:label>
               </bf:Note>
             </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/13600108#Work"/>
@@ -313,7 +313,7 @@
             </bf:title>
             <bf:tableOfContents>
               <bf:TableOfContents>
-                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided</rdfs:label>
+                <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
               </bf:TableOfContents>
             </bf:tableOfContents>
             <bf:subject>
@@ -437,7 +437,7 @@
             <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
             <bf:note>
               <bf:Note>
-                <rdfs:label>Brief record</rdfs:label>
+                <rdfs:label>Brief record.</rdfs:label>
               </bf:Note>
             </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/5637241#Work"/>
@@ -668,7 +668,7 @@
             </bf:note>
             <bf:systemRequirement>
               <bf:SystemRequirement>
-                <rdfs:label>Mode of access: Internet</rdfs:label>
+                <rdfs:label>Mode of access: Internet.</rdfs:label>
               </bf:SystemRequirement>
             </bf:systemRequirement>
             <bf:note>
@@ -1016,7 +1016,7 @@
             <bf:dimensions>26 cm</bf:dimensions>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
-                <rdfs:label>Includes bibliographical references and index</rdfs:label>
+                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
               </bf:SupplementaryContent>
             </bf:supplementaryContent>
             <bf:supplementaryContent>
