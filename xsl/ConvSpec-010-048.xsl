@@ -1483,13 +1483,27 @@
                   <xsl:variable name="vSource" select="substring-before(substring-after(.,'('),')')"/>
                   <xsl:if test="$vSource != ''">
                     <xsl:variable name="vEncoded">
-                      <xsl:call-template name="url-encode">
-                        <xsl:with-param name="str" select="translate(translate(normalize-space($vSource),'-',''),$upper,$lower)"/>
-                      </xsl:call-template>
+                      <xsl:choose>
+                        <xsl:when test="starts-with($vSource, 'DE-')">
+                          <xsl:value-of select="normalize-space($vSource)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:call-template name="url-encode">
+                            <xsl:with-param name="str" select="translate(translate(normalize-space($vSource),'-',''),$upper,$lower)"/>
+                          </xsl:call-template>
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </xsl:variable>
                     <bf:assigner>
                       <bf:Agent>
-                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vEncoded)"/></xsl:attribute>
+                        <xsl:choose>
+                          <xsl:when test="starts-with($vEncoded, 'DE-')">
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($deorgs,$vEncoded)"/></xsl:attribute>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,$vEncoded)"/></xsl:attribute>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </bf:Agent>
                     </bf:assigner>
                   </xsl:if>
