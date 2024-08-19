@@ -68,6 +68,9 @@
   <xsl:variable name="classG">http://id.loc.gov/authorities/classification/G</xsl:variable>
   <xsl:variable name="msupplcont">http://id.loc.gov/vocabulary/msupplcont/</xsl:variable>
   <xsl:variable name="mstatus">http://id.loc.gov/vocabulary/mstatus/</xsl:variable>
+  
+  <!-- other vocabulary stems -->
+  <xsl:variable name="deorgs">https://ld.zdb-services.de/resource/organisations/</xsl:variable>
 
   <!-- for upper- and lower-case translation (ASCII only) -->
   <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>

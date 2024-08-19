@@ -841,6 +841,11 @@
                         <rdfs:label>transcribed</rdfs:label>
                       </bf:Status>
                     </bf:status>
+                    <bf:status>
+                      <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/tr">
+                        <rdfs:label>traced</rdfs:label>
+                      </bf:Status>
+                    </bf:status>
                     <bf:title>
                       <bf:Title>
                         <bf:mainTitle>A Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bf:mainTitle>
