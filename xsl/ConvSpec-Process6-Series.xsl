@@ -174,6 +174,13 @@
                               <rdfs:label>transcribed</rdfs:label>
                             </bf:Status>
                           </bf:status>
+                          <xsl:if test="parent::marc:datafield/@ind1='1'">
+                            <bf:status>
+                              <bf:Status  rdf:about="http://id.loc.gov/vocabulary/mstatus/tr">
+                                <rdfs:label>traced</rdfs:label>
+                              </bf:Status>
+                            </bf:status>
+                          </xsl:if>
                           <bf:title>
                             <bf:Title>
                               <bf:mainTitle>
