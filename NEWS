@@ -1,3 +1,32 @@
+--- 2.7.0 2024/08/23
+Changes toward updated v2.7.0 specifications:
+	ConvSpec-010-048
+		Change OCLC numbers in MARC 035 from bf:Local to bf:OclcNumber
+		Language conversion changes in MARC 041
+	ConvSpec-050-088
+		Change MARC 070 to use new bf:ClassificationNal
+		Adjust conversion of MARC 072 $a and $x to remove a space
+		Add $0 and $1 to MARC 082 and 083
+	ConvSpec-1XX,7XX,8XX
+		Add instructions for treatment of title subfields in MARC 1XX
+	ConvSpec-240-X30
+		Adjust conversion of 7XX fields to use new relation construct
+	ConvSpec-250-270
+		Change bflc:publicationStatement to bf:publicationStatement; change bflc:productionStatement to bf:productionStatement; change bflc:distributionStatement to bf:distributionStatement; change bflc:manufactureStatement to bf:manufactureStatement
+	ConvSpec-3XX
+		Add additional terms to MARC 344 $h conversion
+		Add additional terms to MARC 347 $b conversion
+	ConvSpec-5XX
+		Add $5 to MARC 580 conversion
+	ConvSpec-600-662
+		Add $3 and $4 to MARC 647 and 648 conversion
+	ConvSpec-760-788
+		Adjust conversion of all fields to use new relation construct
+	ConvSpec-Process0-9
+		Changed Process 0.3.3 to use new relation construct
+		Updated Process 6 to create new bf:status "traced" and updated examples
+
+
 --- 2.6.0 2024/06/18
 Changes towards updated v2.6.0 specifications:
     ConvSpec 3XX
