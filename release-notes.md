@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v2.7.0
+
+Conversion updates based on specifications v2.7. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* New conversion of relationships and related works to mirror the existing contribution-role modeling of agents.
+* New conversion of language resources in MARC 041 field to create language-specific notes or language-specific accompanying resources according to the information in each subfield.
+* Identifiers from OCLC in MARC 035 field are assigned to the new Identifier class bf:OclcNumber to facilitate data exchange activities.
+* Classification numbers from the National Agriculture Library in MARC 070 field are assigned to the new classification class bf:ClassificationNal
+* Title information from MARC 1XX fields is now converted.
+* Further refinements to the creation of Series Hubs from 490 fields.
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.6.0 in the specifications are marked in red.
+
 
 ## v2.6.0
 
@@ -11,7 +24,7 @@ Conversion updates based on specifications v2.6. See the Library of Congress’s
 * Better handling of bf:acquisitionTerms literals from MARC 020/024 $c
 
 
-See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.4.0 in the specifications are marked in red.
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.5.0 in the specifications are marked in red.
 
 
 ## v2.5.0
