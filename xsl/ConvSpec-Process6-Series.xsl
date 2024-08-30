@@ -252,14 +252,16 @@
                           
                         </xsl:if>
                         
-                        <xsl:if test="$vAppliesTo != ''">
-                          <bflc:appliesTo>
-                            <bflc:AppliesTo>
-                              <xsl:value-of select="$vAppliesTo"/>
-                            </bflc:AppliesTo>
-                          </bflc:appliesTo>
-                        </xsl:if>
                       </bf:associatedResource>
+                      <xsl:if test="$vAppliesTo != ''">
+                        <bflc:appliesTo>
+                          <bflc:AppliesTo>
+                            <rdfs:label>
+                              <xsl:value-of select="$vAppliesTo"/>
+                            </rdfs:label>
+                          </bflc:AppliesTo>
+                        </bflc:appliesTo>
+                      </xsl:if>
                       <xsl:if test="$vEnumeration != ''">
                         <bf:seriesEnumeration>
                           <xsl:value-of select="$vEnumeration"/>

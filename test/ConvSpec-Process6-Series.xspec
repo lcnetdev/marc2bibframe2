@@ -13,6 +13,15 @@
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
     <x:expect label="Parallel title created." test="//bf:Work[2]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Series/bf:title/bf:ParallelTitle/bf:mainTitle = 'Atti di conferenze'"/>
     <x:expect label="second hub if 490a[2]." test="//bf:Work[3]/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Series/bf:title/bf:Title/bf:mainTitle = 'Department and Foreign Service series ;'"/>
+
+    <x:expect label="Series is uncontrolled." test="//bf:Work[4]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Series/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'" />
+    <x:expect label="Series has status of transcribed." test="//bf:Work[4]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Series/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/t'" />
+    <x:expect label="Series title matches expected" test="//bf:Work[4]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Series/bf:title/bf:Title/bf:mainTitle = 'Lund studies in geography,'"/>
+    <x:expect label="Applies to..." test="//bf:Work[4]/bf:relation[1]/bf:Relation/bflc:appliesTo/bflc:AppliesTo/rdfs:label = '1972/73-1975-76: '"/>
+    
+    <x:expect label="Series is uncontrolled." test="//bf:Work[4]/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Series/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'" />
+    <x:expect label="Series has status of transcribed." test="//bf:Work[4]/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Series/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/t'" />
+    <x:expect label="second hub if 490a[2]." test="//bf:Work[4]/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Series/bf:title/bf:Title/bf:mainTitle = 'Ser. B, Human geography,'"/>
     <!--<x:expect label="Each $a/$x/$v combination creates a seriesStatement property of the Work" test="count(//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Hub) = 1"/>    
     <x:expect label="Single $x appended to both $a in parallel title series statements" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:seriesStatement[3] = 'Papers and documents of the I.C.I. Series C, Bibliographies ; 1234-5678 ; no. 3'"/>
     <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>-->
