@@ -577,9 +577,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-22">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
                 <bflc:marcKey>61020$aWhite House (Washington, D.C.)</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -588,9 +585,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-23">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -599,9 +593,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-24">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -610,9 +601,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-25">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
