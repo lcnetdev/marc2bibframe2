@@ -54,6 +54,30 @@
     </datafield>
     
   </record>
+  
+  <record>
+    <controlfield tag="001">7</controlfield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Ole Lukøie /</subfield>
+      <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="3">1972/73-1975-76: </subfield>
+      <subfield code="a">Lund studies in geography,</subfield>
+      <subfield code="x">1400-1144 ;</subfield>
+      <subfield code="v">101</subfield>
+      <subfield code="a">Ser. B, Human geography,</subfield>
+      <subfield code="x">0076-1478 ;</subfield>
+      <subfield code="v">48</subfield>
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="a">Papers and documents of the I.C.I. Series C, Bibliographies ;</subfield>
+      <subfield code="v">no. 3 =</subfield>
+      <subfield code="a">Travaux et documents de l'I.C.I. Série C, Bibliographies ;</subfield>
+      <subfield code="x">1234-5678 ;</subfield>
+      <subfield code="v">no 3</subfield>
+    </datafield>   
+  </record>
 <!--  <record>
     <controlfield tag="001">2</controlfield>
     <datafield tag="490" ind1="1" ind2=" ">
@@ -135,27 +159,4 @@
       <subfield code="v">dai 34-hen, etc.</subfield>
     </datafield>
   </record>  
-    <record>
-      <controlfield tag="001">7</controlfield>
-      <datafield tag="245" ind1="1" ind2="0">
-        <subfield code="a">Ole Lukøie /</subfield>
-        <subfield code="c">H.C. Andersen ; illustrationer af Otto Dickmeiss.</subfield>
-      </datafield>
-      <datafield tag="490" ind1="1" ind2=" ">
-        <subfield code="3">1972/73-1975-76: </subfield>
-        <subfield code="a">Lund studies in geography,</subfield>
-        <subfield code="x">1400-1144 ;</subfield>
-        <subfield code="v">101</subfield>
-        <subfield code="a">Ser. B, Human geography,</subfield>
-        <subfield code="x">0076-1478 ;</subfield>
-        <subfield code="v">48</subfield>
-      </datafield>
-      <datafield tag="490" ind1="0" ind2=" ">
-        <subfield code="a">Papers and documents of the I.C.I. Series C, Bibliographies ;</subfield>
-        <subfield code="v">no. 3 =</subfield>
-        <subfield code="a">Travaux et documents de l'I.C.I. Série C, Bibliographies ;</subfield>
-        <subfield code="x">1234-5678 ;</subfield>
-        <subfield code="v">no 3</subfield>
-      </datafield>   
-   </record>
 -->  </collection>

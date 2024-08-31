@@ -645,6 +645,7 @@
             <rdf:type><xsl:attribute name="rdf:resource"><xsl:value-of select="$bflc"/>Uncontrolled</xsl:attribute></rdf:type>
           </xsl:if>
           <xsl:if test="substring($tag,1,1)='6'">
+            <!--
             <xsl:if test="$pMADSClass != ''">
               <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($madsrdf,$pMADSClass)"/></xsl:attribute>
@@ -665,6 +666,7 @@
                 </madsrdf:isMemberOfMADSScheme>
               </xsl:for-each>
             </xsl:if>
+            -->
             <xsl:if test="not(marc:subfield[@code='t'])">
               <xsl:choose>
                 <xsl:when test="substring($tag,2,2)='11'">
@@ -766,18 +768,91 @@
                             contains(marc:subfield[@code='1'], 'id.loc.gov/rwo/') and 
                             not(marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')])">
                 <madsrdf:isIdentifiedByAuthority>
-                  <xsl:attribute name="rdf:resource">
-                    <xsl:apply-templates mode="generateUriFrom0" select=".">
-                      <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
-                    </xsl:apply-templates>
-                  </xsl:attribute>
+                  <xsl:choose>
+                    <xsl:when test="substring($tag,1,1)='6' and $pMADSClass != ''">
+                      <xsl:element name="{concat('madsrdf:', $pMADSClass)}">
+                        <xsl:attribute name="rdf:about">
+                          <xsl:apply-templates mode="generateUriFrom0" select=".">
+                            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+                          </xsl:apply-templates>
+                        </xsl:attribute>
+                        <xsl:if test="$pMADSLabel != ''">
+                          <madsrdf:authoritativeLabel>
+                            <xsl:if test="$vXmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$pMADSLabel"/>
+                            </xsl:call-template>
+                          </madsrdf:authoritativeLabel>
+                        </xsl:if>
+                        <!--
+                          <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
+                          <madsrdf:isMemberOfMADSScheme>
+                            <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                          </madsrdf:isMemberOfMADSScheme>
+                          </xsl:for-each>
+                        -->
+                        <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/names" />
+                      </xsl:element>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <madsrdf:isIdentifiedByAuthority>
+                        <xsl:attribute name="rdf:resource">
+                          <xsl:apply-templates mode="generateUriFrom0" select=".">
+                            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+                          </xsl:apply-templates>
+                        </xsl:attribute>
+                      </madsrdf:isIdentifiedByAuthority>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </madsrdf:isIdentifiedByAuthority>
               </xsl:if>
               <xsl:for-each select="marc:subfield[@code='0' or @code='w'][starts-with(text(),'(uri)') or starts-with(text(),'http')]">
                 <xsl:if test="position() = 1">
-                  <xsl:apply-templates mode="subfield0orw" select=".">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
+                  <xsl:choose>
+                    <xsl:when test="substring($tag,1,1)='6' and $pMADSClass != ''">
+                      <madsrdf:isIdentifiedByAuthority>
+                        <xsl:element name="{concat('madsrdf:', $pMADSClass)}">
+                          <xsl:choose>
+                            <xsl:when test="starts-with(text(),'http')">
+                              <xsl:attribute name="rdf:about">
+                                <xsl:value-of select="text()" />
+                              </xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="starts-with(text(),'(uri)')">
+                              <xsl:attribute name="rdf:about">
+                                <xsl:value-of select="substring-after(text(),'(uri)')" />
+                              </xsl:attribute>
+                            </xsl:when>
+                          </xsl:choose>
+                          <xsl:if test="$pMADSLabel != ''">
+                            <madsrdf:authoritativeLabel>
+                              <xsl:if test="$vXmlLang != ''">
+                                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                              </xsl:if>
+                              <xsl:call-template name="tChopPunct">
+                                <xsl:with-param name="pString" select="$pMADSLabel"/>
+                              </xsl:call-template>
+                            </madsrdf:authoritativeLabel>
+                          </xsl:if>
+                          <!--
+                          <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
+                          <madsrdf:isMemberOfMADSScheme>
+                            <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                          </madsrdf:isMemberOfMADSScheme>
+                          </xsl:for-each>
+                        -->
+                          <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/names" />
+                        </xsl:element>
+                      </madsrdf:isIdentifiedByAuthority>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates mode="subfield0orw" select=".">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </xsl:if>
               </xsl:for-each>
               <xsl:for-each select="marc:subfield[@code='0' or @code='w']">
