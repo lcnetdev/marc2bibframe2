@@ -798,12 +798,18 @@
                         substring(., 7, 1) = 'i' or
                         substring(., 7, 1) = 'k' or
                         substring(., 7, 1) = 'm' or
-                        substring(., 7, 1) = 'q' or
                         substring(., 7, 1) = 'u' or
                         (substring(., 7, 1) = '|' and $vDate1 != '' and $vDate2 != '')">
                     <xsl:call-template name="u2x">
                         <xsl:with-param name="dateString"
                             select="concat(substring(., 8, 4), '/', substring(., 12, 4))"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when
+                    test="substring(., 7, 1) = 'q'">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString"
+                            select="concat(substring(., 8, 4), '~/', substring(., 12, 4), '~')"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when
