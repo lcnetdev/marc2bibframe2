@@ -102,7 +102,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -299,7 +304,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/MusicAudio"/>
@@ -519,7 +529,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aIEU$cIEU$dN@F$dDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aIEU$cIEU$dN@F$dDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
                     <bf:code>lccopycat</bf:code>
@@ -761,7 +776,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC$dDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC$dDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -1128,7 +1148,12 @@
                     <bf:code>rda</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aICrlF$beng$erda$cICrlF</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aICrlF$beng$erda$cICrlF</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub" />
