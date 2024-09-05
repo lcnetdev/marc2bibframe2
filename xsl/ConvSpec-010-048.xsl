@@ -285,7 +285,12 @@
             </bf:DescriptionConventions>
           </bf:descriptionConventions>
         </xsl:for-each>
-        <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
+        <bf:note>
+          <bf:Note>
+            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal" />
+            <rdfs:label><xsl:apply-templates select="." mode="marcKey"/></rdfs:label>
+          </bf:Note>
+        </bf:note>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
