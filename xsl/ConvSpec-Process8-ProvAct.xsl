@@ -89,9 +89,14 @@
                 <xsl:variable name="v880Ref">
                     <xsl:value-of select="concat('880-', $v880Occurrence)"/>
                 </xsl:variable>
-                <xsl:variable name="relatedField" select="../marc:datafield[@tag = $vTag and contains(marc:subfield[@code = '6'], $v880Ref)]"
-                    />
-                <xsl:copy-of select="$relatedField"/>
+                
+                <!-- Is this 880 related to a 26X field in this record? -->
+                <xsl:variable name="relatedField" select="../marc:datafield[@tag = $vTag and contains(marc:subfield[@code = '6'], $v880Ref)]" />
+                
+                <!-- commented out on 30 Aug 2024.  Did doing this break something? -->
+                <!-- <xsl:copy-of select="$relatedField"/> -->
+                
+                <!-- If no related field was found, then we have an unpaied 880. We need to output it. -->
                 <xsl:if test="count($relatedField/marc:*) = 0">
                     <xsl:variable name="dfFrom880-prenodeset">
                         <marc:datafield>
@@ -221,11 +226,22 @@
                                             </bf:Status>
                                         </bf:status>
                                     </xsl:if>
-                                    <xsl:apply-templates
-                                        select="$df/marc:sf[@code = '3'] | marc:df[@tag = '880']/marc:sf[@code = '3']"
-                                        mode="subfield3">
-                                        <xsl:with-param name="serialization" select="$serialization"/>
-                                    </xsl:apply-templates>
+                                    <xsl:choose>
+                                        <xsl:when test="$df/marc:sf[@code = '3']">
+                                            <xsl:apply-templates
+                                                select="$df/marc:sf[@code = '3'][1]"
+                                                mode="subfield3">
+                                                <xsl:with-param name="serialization" select="$serialization"/>
+                                            </xsl:apply-templates>
+                                        </xsl:when>
+                                        <xsl:when test="marc:df[@tag = '880']/marc:sf[@code = '3']">
+                                            <xsl:apply-templates
+                                                select="marc:df[@tag = '880']/marc:sf[@code = '3'][1]"
+                                                mode="subfield3">
+                                                <xsl:with-param name="serialization" select="$serialization"/>
+                                            </xsl:apply-templates>
+                                        </xsl:when>
+                                    </xsl:choose>
                                     <xsl:for-each select="$df/marc:sf[@code = 'a']">
                                         <xsl:variable name="sfPos" select="@pos"/>
                                         <xsl:variable name="vLabel">
@@ -525,6 +541,18 @@
         <xsl:variable name="sf" select="$df/marc:subfield[$pos]"/>
         
         <xsl:choose>
+            <xsl:when test="$sf/@code = '3' or $sf/@code = '6'">
+                <marc:sf>
+                    <xsl:copy-of select="$sf/@*"/>
+                    <xsl:attribute name="gpos">
+                        <xsl:value-of select="$gpos"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="pos">
+                        <xsl:value-of select="$pos"/>
+                    </xsl:attribute>
+                    <xsl:copy-of select="$sf/text()"/>
+                </marc:sf>
+            </xsl:when>
             <xsl:when test="$df/@tag = '261' and ($sf/@code = 'a' or $sf/@code = 'b')">
                 <xsl:variable name="map260sfs">
                     <m sfCode="a">b</m>
@@ -631,6 +659,17 @@
         <xsl:choose>
             <xsl:when
                 test="$df/marc:subfield[$next_pos][@code = 'b' or @code = 'c' or @code = 'd' or @code = 'f' or @code = 'g']">
+                <xsl:call-template name="parse26x">
+                    <xsl:with-param name="df" select="$df"/>
+                    <xsl:with-param name="gpos" select="$gpos"/>
+                    <xsl:with-param name="pos" select="$next_pos"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when
+                test="
+                ($sf/@code = '6' and $df/marc:subfield[$next_pos][@code = '3' or @code = 'a'])
+                or
+                ($sf/@code = '3' and $df/marc:subfield[$next_pos][@code = 'a'])">
                 <xsl:call-template name="parse26x">
                     <xsl:with-param name="df" select="$df"/>
                     <xsl:with-param name="gpos" select="$gpos"/>

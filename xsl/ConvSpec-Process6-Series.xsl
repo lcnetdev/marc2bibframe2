@@ -233,32 +233,28 @@
                               </bf:status>
                             </identifiedBy>
                           </xsl:if>
-                          
-                          
+                          <xsl:if test="$vLcc != ''">
+                            <bf:classification>
+                              <bf:ClassificationLcc>
+                                <bf:assigner>
+                                  <bf:Agent
+                                    rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                                </bf:assigner>
+                                <bf:classificationPortion>
+                                  <xsl:value-of select="$vLcc"/>
+                                </bf:classificationPortion>
+                              </bf:ClassificationLcc>
+                            </bf:classification>
+                          </xsl:if>
                         </bf:Hub>
-                        <xsl:if test="$vLcc != ''">
-                          <bf:classification>
-                            <bf:ClassificationLcc>
-                              <bf:assigner>
-                                <bf:Agent
-                                  rdf:about="http://id.loc.gov/vocabulary/organizations/dlc"/>
-                              </bf:assigner>
-                              <bf:classificationPortion>
-                                <xsl:value-of select="$vLcc"/>
-                              </bf:classificationPortion>
-                            </bf:ClassificationLcc>
-                          </bf:classification>
-                          
-                        </xsl:if>
-                        
-                        <xsl:if test="$vAppliesTo != ''">
-                          <bflc:appliesTo>
-                            <bflc:AppliesTo>
-                              <xsl:value-of select="$vAppliesTo"/>
-                            </bflc:AppliesTo>
-                          </bflc:appliesTo>
-                        </xsl:if>
                       </bf:relatedTo>
+                      <xsl:if test="$vAppliesTo != ''">
+                        <bflc:appliesTo>
+                          <bflc:AppliesTo>
+                            <xsl:value-of select="$vAppliesTo"/>
+                          </bflc:AppliesTo>
+                        </bflc:appliesTo>
+                      </xsl:if>
                       <xsl:if test="$vEnumeration != ''">
                         <bf:seriesEnumeration>
                           <xsl:value-of select="$vEnumeration"/>
@@ -266,9 +262,7 @@
                       </xsl:if>
                       <xsl:if
                         test="$v880Enumeration != '' and not($vEnumeration = $v880Enumeration)">
-                        
                           <xsl:copy-of select="$v880Enumeration"/>
-                        
                       </xsl:if>
                     </bflc:Relationship>
                   </bflc:relationship>
