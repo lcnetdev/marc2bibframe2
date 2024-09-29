@@ -219,11 +219,17 @@
     </xsl:variable>
     <xsl:variable name="rolesFromSubfields">
       <xsl:choose>
+        <!-- Look for a $4.  If found, this is the one we prefer.  These are codes or URIs. -->
         <xsl:when test="marc:subfield[@code='4'] and not(contains(marc:subfield[@code='4'], 'rdaregistry.info'))">
-          <xsl:apply-templates select="marc:subfield[@code='4']" mode="contributionRoleCode">
+          <xsl:apply-templates select="." mode="contributionRoleCode">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
         </xsl:when>
+        <!-- 
+          Otherwise, if it is a Meeting or Conference name, look for a $j.
+          But if not a Meeting or Conference name, assume $e.
+          These are labels.
+        -->
         <xsl:otherwise>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2)='11'">
@@ -316,39 +322,46 @@
   </xsl:template>
   
   <!-- build bf:role properties from $4 -->
-  <xsl:template match="marc:subfield[@code='4']" mode="contributionRoleCode">
+  <xsl:template match="marc:datafield" mode="contributionRoleCode">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vRoleUri">
+    <xsl:for-each select="marc:subfield[@code='4']">
+      <xsl:variable name="vThis4" select="." />
+      <xsl:variable name="vRoleUri">
+        <xsl:choose>
+          <xsl:when test="string-length(.) = 3">
+            <xsl:variable name="encoded">
+              <xsl:call-template name="url-encode">
+                <xsl:with-param name="str" select="."/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:value-of select="concat($relators,$encoded)"/>
+          </xsl:when>
+          <xsl:when test="contains(.,'://')">
+            <xsl:value-of select="."/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:choose>
-        <xsl:when test="string-length(.) = 3">
-          <xsl:variable name="encoded">
-            <xsl:call-template name="url-encode">
-              <xsl:with-param name="str" select="."/>
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:value-of select="concat($relators,$encoded)"/>
-        </xsl:when>
-        <xsl:when test="contains(.,'://')">
-          <xsl:value-of select="."/>
+        <xsl:when test="
+                        $serialization = 'rdfxml' and 
+                        not(following-sibling::marc:subfield[. = $vRoleUri]) and
+                        not(following-sibling::marc:subfield[. = $vThis4])
+                        ">
+          <bf:role>
+            <bf:Role>
+              <xsl:choose>
+                <xsl:when test="$vRoleUri != ''">
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="$vRoleUri"/></xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <bf:code><xsl:value-of select="."/></bf:code>
+                </xsl:otherwise>
+              </xsl:choose>
+            </bf:Role>
+          </bf:role>
         </xsl:when>
       </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <bf:role>
-          <bf:Role>
-            <xsl:choose>
-              <xsl:when test="$vRoleUri != ''">
-                <xsl:attribute name="rdf:about"><xsl:value-of select="$vRoleUri"/></xsl:attribute>
-              </xsl:when>
-              <xsl:otherwise>
-                <bf:code><xsl:value-of select="."/></bf:code>
-              </xsl:otherwise>
-            </xsl:choose>
-          </bf:Role>
-        </bf:role>
-      </xsl:when>
-    </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <!-- build bf:role properties from $e or $j -->
