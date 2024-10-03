@@ -128,7 +128,7 @@
       <xsl:when test="marc:subfield[@code='t']">
         <xsl:variable name="vProp">
           <xsl:choose>
-            <xsl:when test="@ind2='2' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
+            <xsl:when test="@ind2='2'">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
             <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
@@ -143,18 +143,24 @@
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProp"/></xsl:attribute>
                   </bf:relationship>
                   <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
-                  <bf:relationship>
-                    <bf:Relationship>
-                      <rdfs:label>
-                        <xsl:if test="$vXmlLang != ''">
-                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="tChopPunct">
-                          <xsl:with-param name="pString" select="."/>
-                        </xsl:call-template>
-                      </rdfs:label>
-                    </bf:Relationship>
-                  </bf:relationship>
+                      <xsl:if test="
+                          ( $vProp='http://id.loc.gov/vocabulary/relationship/part' and not(contains(., 'ontain')) ) 
+                          or 
+                          ( $vProp='http://id.loc.gov/vocabulary/relationship/relatedwork' )
+                        ">
+                        <bf:relationship>
+                          <bf:Relationship>
+                            <rdfs:label>
+                              <xsl:if test="$vXmlLang != ''">
+                                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                              </xsl:if>
+                              <xsl:call-template name="tChopPunct">
+                                <xsl:with-param name="pString" select="."/>
+                              </xsl:call-template>
+                            </rdfs:label>
+                          </bf:Relationship>
+                        </bf:relationship>
+                      </xsl:if>
                   </xsl:for-each>
                   <bf:associatedResource>
                     <bf:Hub>
