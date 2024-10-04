@@ -160,9 +160,21 @@
             </xsl:choose>
           </xsl:variable>
           <xsl:variable name="cDate" select="concat($creationYear,'-',substring($cf008date,3,2),'-',substring($cf008date,5,2))" />
+          <xsl:variable name="cDateInt" select="10000 * $creationYear + 100 * substring($cf008date,3,2) + substring($cf008date,5,2)"/>
+          
+          <xsl:variable name="cf005date" select="marc:controlfield[@tag='005']" />
+          <xsl:variable name="mDateInt" select="10000 * substring($cf005date,1,4) + 100 * substring($cf005date,5,2) + substring($cf005date,7,2)"/>
+          <xsl:variable name="mDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2))"/>
           <bf:date>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
-            <xsl:value-of select="$cDate" />
+            <xsl:choose>
+              <xsl:when test="$cDateInt &gt; $mDateInt">
+                <xsl:value-of select="$mDate" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$cDate" />
+              </xsl:otherwise>
+            </xsl:choose>
           </bf:date>
           
           <xsl:if test="marc:datafield[@tag='040']/marc:subfield[@code='a']">
