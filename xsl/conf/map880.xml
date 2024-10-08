@@ -32,13 +32,13 @@
   <datafield tag="084" convertLinked="false"/>
   <datafield tag="086" convertLinked="false"/>
   <datafield tag="088" convertLinked="false"/>
-  <datafield tag="100" convertLinked="false"/>
-  <datafield tag="110" convertLinked="false"/>
-  <datafield tag="111" convertLinked="false"/>
-  <datafield tag="130" convertLinked="false"/>
+  <datafield tag="100" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="110" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="111" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="130" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="210" convertLinked="true"/>
   <datafield tag="222" convertLinked="true"/>
-  <datafield tag="240" convertLinked="false"/>
+  <datafield tag="240" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="242" convertLinked="true"/>
   <datafield tag="243" convertLinked="true"/>
   <datafield tag="245" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
@@ -126,10 +126,10 @@
   <datafield tag="585" convertLinked="true"/>
   <datafield tag="586" convertLinked="true"/>
   <datafield tag="588" convertLinked="true"/>
-  <datafield tag="600" convertLinked="false"/>
-  <datafield tag="610" convertLinked="false"/>
-  <datafield tag="611" convertLinked="false"/>
-  <datafield tag="630" convertLinked="false"/>
+  <datafield tag="600" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="610" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="611" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="630" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="648" convertLinked="false"/>
   <datafield tag="650" convertLinked="false"/>
   <datafield tag="651" convertLinked="false"/>
@@ -137,11 +137,11 @@
   <datafield tag="655" convertLinked="false"/>
   <datafield tag="656" convertLinked="false"/>
   <datafield tag="662" convertLinked="false"/>
-  <datafield tag="700" convertLinked="false"/>
-  <datafield tag="710" convertLinked="false"/>
-  <datafield tag="711" convertLinked="false"/>
+  <datafield tag="700" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="710" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="711" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="720" convertLinked="false"/>
-  <datafield tag="730" convertLinked="false"/>
+  <datafield tag="730" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="740" convertLinked="true"/>
   <datafield tag="752" convertLinked="false"/>
   <datafield tag="753" convertLinked="false"/>
@@ -160,10 +160,10 @@
   <datafield tag="785" convertLinked="true"/>
   <datafield tag="786" convertLinked="true"/>
   <datafield tag="787" convertLinked="true"/>
-  <datafield tag="800" convertLinked="false"/>
-  <datafield tag="810" convertLinked="false"/>
-  <datafield tag="811" convertLinked="false"/>
-  <datafield tag="830" convertLinked="false"/>
+  <datafield tag="800" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="810" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="811" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="830" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="856" convertLinked="false"/>
 
 </datafields>
