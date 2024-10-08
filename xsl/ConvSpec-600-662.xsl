@@ -123,6 +123,46 @@
         </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
+    
+    <xsl:variable name="v880Label">
+      <xsl:if test="marc:subfield[@code='6']">
+        <xsl:variable name="v880Occurrence">
+          <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
+        </xsl:variable>
+        <xsl:variable name="v880Ref">
+          <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
+        </xsl:variable>
+        <xsl:for-each select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]">
+          <xsl:variable name="vXmlLang880"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+          <xsl:variable name="vNameLabel880">
+            <xsl:apply-templates select="." mode="tNameLabel"/>
+          </xsl:variable>
+          <xsl:variable name="vTitleLabel880">
+            <xsl:apply-templates select="." mode="tTitleLabel"/>
+          </xsl:variable>
+          <xsl:variable name="vMADSLabel880">
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pEndPunct" select="'-'"/>
+              <xsl:with-param name="pString">
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="concat($vNameLabel880,' ',$vTitleLabel880)"/>
+                </xsl:call-template>
+                <xsl:text>--</xsl:text>
+                <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                  <xsl:value-of select="concat(.,'--')"/>
+                </xsl:for-each>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:variable>
+          <madsrdf:authoritativeLabel>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="$vMADSLabel880"/>
+          </madsrdf:authoritativeLabel>
+      </xsl:for-each>
+    </xsl:if>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="vSource">
@@ -158,6 +198,7 @@
                       </xsl:if>
                       <xsl:value-of select="$vMADSLabel"/>
                     </madsrdf:authoritativeLabel>
+                    <xsl:copy-of select="$v880Label"/>
                     <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
                       <madsrdf:isMemberOfMADSScheme>
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
@@ -220,6 +261,7 @@
                       </xsl:if>
                       <xsl:value-of select="$vMADSLabel"/>
                     </madsrdf:authoritativeLabel>
+                    <xsl:copy-of select="$v880Label"/>
                     <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
                       <madsrdf:isMemberOfMADSScheme>
                         <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
@@ -277,6 +319,43 @@
     <xsl:param name="pMADSLabel"/>
     <xsl:param name="pSource"/>
     <xsl:param name="pTag"/>
+    
+    <xsl:variable name="v880Label">
+      <xsl:if test="marc:subfield[@code='6']">
+        <xsl:variable name="v880Occurrence">
+          <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
+        </xsl:variable>
+        <xsl:variable name="v880Ref">
+          <xsl:value-of select="concat($pTag, '-', $v880Occurrence)"/>
+        </xsl:variable>
+        <xsl:for-each select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]">
+          <xsl:variable name="vXmlLang880"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+          <xsl:variable name="vNameLabel880">
+            <xsl:apply-templates select="." mode="tNameLabel"/>
+          </xsl:variable>
+          <xsl:variable name="vTitleLabel880">
+            <xsl:apply-templates select="." mode="tTitleLabel"/>
+          </xsl:variable>
+          <xsl:variable name="vMADSLabel880">
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pEndPunct" select="'-'"/>
+              <xsl:with-param name="pString">
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="concat($vNameLabel880,' ',$vTitleLabel880)"/>
+                </xsl:call-template>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:variable>
+          <madsrdf:authoritativeLabel>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="$vMADSLabel880"/>
+          </madsrdf:authoritativeLabel>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:variable>
+    
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -297,6 +376,7 @@
               <xsl:value-of select="$pMADSLabel"/>
             </madsrdf:authoritativeLabel>
           </xsl:if>
+          <xsl:copy-of select="$v880Label" />
           <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
             <madsrdf:isMemberOfMADSScheme>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
