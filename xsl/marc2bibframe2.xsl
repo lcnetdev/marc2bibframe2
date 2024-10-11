@@ -160,7 +160,7 @@
           <xsl:variable name="marcYear" select="substring($cf008date,1,2)"/>
           <xsl:variable name="creationYear">
             <xsl:choose>
-              <xsl:when test="$marcYear &lt; 50"><xsl:value-of select="concat('20',$marcYear)"/></xsl:when>
+              <xsl:when test="$marcYear &lt; 65"><xsl:value-of select="concat('20',$marcYear)"/></xsl:when>
               <xsl:otherwise><xsl:value-of select="concat('19',$marcYear)"/></xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
