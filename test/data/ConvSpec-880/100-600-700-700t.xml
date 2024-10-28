@@ -1,0 +1,230 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02650cam a2200601 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">5287459</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20130430142455.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">960715s1994    cc a     b   f001 0cchi  </marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">19</marcxml:subfield>
+    <marcxml:subfield code="g">y-rlinjack</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">   96454015 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="020" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7305022144 :</marcxml:subfield>
+    <marcxml:subfield code="c">RMBY15.00</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(CStRLIN)DCLP96-B11102</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC-R</marcxml:subfield>
+    <marcxml:subfield code="c">DLC-R</marcxml:subfield>
+    <marcxml:subfield code="d">CStRLIN</marcxml:subfield>
+    <marcxml:subfield code="d">DLC-R</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="041" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">chi</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-cc---</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">QA28</marcxml:subfield>
+    <marcxml:subfield code="b">.Z56 1994</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="100" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Zhou, Hanguang,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">100-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">周瀚光,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Liu Hui ping zhuan :</marcxml:subfield>
+    <marcxml:subfield code="b">fu Qin Jiushao, Li Ye, Yang Hui, Zhu Shijie ping zhuan /</marcxml:subfield>
+    <marcxml:subfield code="c">Zhou Han'guang, Kong Guoping zhu.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">刘徽评传 :</marcxml:subfield>
+    <marcxml:subfield code="b">附秦九韶、李冶、杨辉、朱世杰评传 /</marcxml:subfield>
+    <marcxml:subfield code="c">周瀚光,  孔国平著.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="250" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Di 1 ban.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">250-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">第1版.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">[Nanjing Shi] :</marcxml:subfield>
+    <marcxml:subfield code="b">Nanjing da xue chu ban she :</marcxml:subfield>
+    <marcxml:subfield code="b">Jiangsu Sheng xin hua shu dian fa xing,</marcxml:subfield>
+    <marcxml:subfield code="c">1994.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">260-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">[南京市] :</marcxml:subfield>
+    <marcxml:subfield code="b">南京大学出版社 :</marcxml:subfield>
+    <marcxml:subfield code="b">江苏省新华书店发行,</marcxml:subfield>
+    <marcxml:subfield code="c">1994.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">8, 4, 362 p. :</marcxml:subfield>
+    <marcxml:subfield code="b">ill. ;</marcxml:subfield>
+    <marcxml:subfield code="c">21 cm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="440" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Zhongguo si xiang jia ping zhuan cong shu ;</marcxml:subfield>
+    <marcxml:subfield code="v">110</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="0">
+    <marcxml:subfield code="6">440-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中国思想家评传丛书 ;</marcxml:subfield>
+    <marcxml:subfield code="v">110</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Tables of contents and introductory notes also in English.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="504" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Includes bibliographical references and indexes.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Liu, Hui,</marcxml:subfield>
+    <marcxml:subfield code="d">active 3rd century-4th century.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Qin, Jiushao,</marcxml:subfield>
+    <marcxml:subfield code="d">active 13th century.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-08</marcxml:subfield>
+    <marcxml:subfield code="a">Li, Ye,</marcxml:subfield>
+    <marcxml:subfield code="d">1192-1279.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-09</marcxml:subfield>
+    <marcxml:subfield code="a">Yang, Hui,</marcxml:subfield>
+    <marcxml:subfield code="d">active 13th century.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="600" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-10</marcxml:subfield>
+    <marcxml:subfield code="a">Zhu, Shijie,</marcxml:subfield>
+    <marcxml:subfield code="d">active 13th century.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Mathematicians</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="x">Biography.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">600-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">刘徽,</marcxml:subfield>
+    <marcxml:subfield code="d">3rd/4th cent.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">600-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">秦九韶,</marcxml:subfield>
+    <marcxml:subfield code="d">13th cent.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">600-08/$1</marcxml:subfield>
+    <marcxml:subfield code="a">李冶,</marcxml:subfield>
+    <marcxml:subfield code="d">1192-1279.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">600-09/$1</marcxml:subfield>
+    <marcxml:subfield code="a">杨辉,</marcxml:subfield>
+    <marcxml:subfield code="d">13th cent.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">600-10/$1</marcxml:subfield>
+    <marcxml:subfield code="a">朱世杰,</marcxml:subfield>
+    <marcxml:subfield code="d">13th cent.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-11</marcxml:subfield>
+    <marcxml:subfield code="a">Kong, Guoping,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">700-11/$1</marcxml:subfield>
+    <marcxml:subfield code="a">孔国平,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2="2">
+    <marcxml:subfield code="6">880-12</marcxml:subfield>
+    <marcxml:subfield code="a">Zhou, Hanguang,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+    <marcxml:subfield code="t">Li Ye ping zhuan.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="2">
+    <marcxml:subfield code="6">700-12/$1</marcxml:subfield>
+    <marcxml:subfield code="a">周瀚光,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+    <marcxml:subfield code="t">李冶评传.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2="2">
+    <marcxml:subfield code="6">880-13</marcxml:subfield>
+    <marcxml:subfield code="a">Kong, Guoping,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+    <marcxml:subfield code="t">Qin Jiushao ping zhuan.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="2">
+    <marcxml:subfield code="6">700-13/$1</marcxml:subfield>
+    <marcxml:subfield code="a">孔国平,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+    <marcxml:subfield code="t">秦九韶评传.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2="2">
+    <marcxml:subfield code="6">880-14</marcxml:subfield>
+    <marcxml:subfield code="a">Zhou, Hanguang,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+    <marcxml:subfield code="t">Yang Hui ping zhuan.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="2">
+    <marcxml:subfield code="6">700-14/$1</marcxml:subfield>
+    <marcxml:subfield code="a">周瀚光,</marcxml:subfield>
+    <marcxml:subfield code="d">1950-</marcxml:subfield>
+    <marcxml:subfield code="t">杨辉评传.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="700" ind1="1" ind2="2">
+    <marcxml:subfield code="6">880-15</marcxml:subfield>
+    <marcxml:subfield code="a">Kong, Guoping,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+    <marcxml:subfield code="t">Zhu Shijie ping zhuan.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="2">
+    <marcxml:subfield code="6">700-15/$1</marcxml:subfield>
+    <marcxml:subfield code="a">孔国平,</marcxml:subfield>
+    <marcxml:subfield code="d">1947-</marcxml:subfield>
+    <marcxml:subfield code="t">朱世杰评传.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="922" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">ap</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="985" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">spacingreload</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

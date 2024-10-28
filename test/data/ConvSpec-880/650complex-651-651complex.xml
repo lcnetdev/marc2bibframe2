@@ -1,0 +1,253 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>03629cam a2200637 i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">20905109</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20190326132810.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">190326s2015    cc af         000 0 chi d</marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">copycat</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-nonroman</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="i">cc07 2019-03-26 z-processor JACKPHY to Asian</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2018468840</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="020" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">9787030437310</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="020" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7030437314</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(OCoLC)ocn907008090</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">BCBTC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="c">BCBTC</marcxml:subfield>
+    <marcxml:subfield code="d">YUS</marcxml:subfield>
+    <marcxml:subfield code="d">COO</marcxml:subfield>
+    <marcxml:subfield code="d">SLY</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="041" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">chi</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">lccopycat</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-cc-ho</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">DS793.H5</marcxml:subfield>
+    <marcxml:subfield code="b">W888 2015</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="0" ind2="0">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Wuyang Jiahu.</marcxml:subfield>
+    <marcxml:subfield code="n">(Er) /</marcxml:subfield>
+    <marcxml:subfield code="c">Henan Sheng wen wu kao gu yan jiu yuan, Zhongguo ke xue ji shu da xue ke ji shi yu ke ji kao gu xi bian zhu.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="0" ind2="0">
+    <marcxml:subfield code="6">245-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">舞阳贾湖.</marcxml:subfield>
+    <marcxml:subfield code="n">(二) /</marcxml:subfield>
+    <marcxml:subfield code="c">河南省文物考古研究院, 中国科学技术大学科技史与科技考古系编著.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="250" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Di yi ban.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">250-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">第一版.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="264" ind1=" " ind2="1">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Beijing :</marcxml:subfield>
+    <marcxml:subfield code="b">Ke xue chu ban she,</marcxml:subfield>
+    <marcxml:subfield code="c">2015.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="1">
+    <marcxml:subfield code="6">264-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">北京 :</marcxml:subfield>
+    <marcxml:subfield code="b">科学出版社,</marcxml:subfield>
+    <marcxml:subfield code="c">2015.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">xxx, 747 pages, 48, 92 pages of plates :</marcxml:subfield>
+    <marcxml:subfield code="b">illustrations (some color) ;</marcxml:subfield>
+    <marcxml:subfield code="c">27 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="336" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">text</marcxml:subfield>
+    <marcxml:subfield code="b">txt</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="336" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">still image</marcxml:subfield>
+    <marcxml:subfield code="b">sti</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="337" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="338" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="b">nc</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="546" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Chinese with English abstract.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="520" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Ben shu xi tong di ji shu le he nan wu yang jia hu xin shi qi shi dai yi zhi 2001 nian di qi ci fa jue de zi liao.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">520-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">本书全面, 系统的记述了河南舞阳贾湖新石器时代遗址2001年第七次发掘的资料.全书分十八章, 大体由资料篇, 环境篇, 经济篇, 技术篇, 聚落篇, 思想篇和结语七个部分组成, 详细报道了2001年贾湖遗址第七次发掘所获丰富的遗迹遗物的基础上, 继续进行动物考古, 植物考古, 农业考古, 环境考古等领域的研究, 同时还开展了食性, 锶同位素, 寄生虫等新的研究, 为距今9000-7500年间中原地区和淮河流域人类生存策略及环境背景, 聚落形态, 人口交流, 技术工艺和思想文化等领域的深入研究, 提供了新的珍贵资料和研究案例.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Wuyang Xian (China)</marcxml:subfield>
+    <marcxml:subfield code="x">Antiquities.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">舞阳县 (中国)</marcxml:subfield>
+    <marcxml:subfield code="x">Antiquities.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-35</marcxml:subfield>
+    <marcxml:subfield code="a">Wuyang Xian (China)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-35/$1</marcxml:subfield>
+    <marcxml:subfield code="a">舞阳县 (中国)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Excavations (Archaeology)</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Wuyang Xian.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">650-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Excavations (Archaeology)</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">舞阳县.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Neolithic period</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Wuyang Xian.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">650-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Neolithic period</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">舞阳县.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-08/$1</marcxml:subfield>
+    <marcxml:subfield code="a">舞阳县 (中国)</marcxml:subfield>
+    <marcxml:subfield code="x">Antiquities.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">650-09/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Excavations (Archaeology)</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">舞阳县.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">650-10/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Neolithic period</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">舞阳县.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="4">
+    <marcxml:subfield code="6">880-08</marcxml:subfield>
+    <marcxml:subfield code="a">Wuyang Xian (China)</marcxml:subfield>
+    <marcxml:subfield code="x">Antiquities.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="4">
+    <marcxml:subfield code="6">880-09</marcxml:subfield>
+    <marcxml:subfield code="a">Excavations (Archaeology)</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Wuyang Xian.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="4">
+    <marcxml:subfield code="6">880-10</marcxml:subfield>
+    <marcxml:subfield code="a">Neolithic period</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Wuyang Xian.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Antiquities.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst00810745</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Excavations (Archaeology)</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst00917564</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Neolithic period.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01035813</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="7">
+    <marcxml:subfield code="a">China</marcxml:subfield>
+    <marcxml:subfield code="z">Wuyang Xian.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01865958</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-11</marcxml:subfield>
+    <marcxml:subfield code="a">Henan Sheng wen wu kao gu yan jiu yuan,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">710-11/$1</marcxml:subfield>
+    <marcxml:subfield code="a">河南省文物考古研究院,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-12</marcxml:subfield>
+    <marcxml:subfield code="a">Zhongguo ke xue ji shu da xue.</marcxml:subfield>
+    <marcxml:subfield code="b">Ke ji shi yu ke ji kao gu xi,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">710-12/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中国科学技术大学.</marcxml:subfield>
+    <marcxml:subfield code="b">科技史与科技考古系,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="923" ind1=" " ind2=" ">
+    <marcxml:subfield code="s">BZT</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

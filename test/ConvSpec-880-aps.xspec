@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="648a and 655a">
+    <x:context href="data/ConvSpec-880/648a-655a.xml"/>
+    
+    <!-- 648a -->
+    <x:expect label="648 creates a subject/Temporal property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Temporal) = 1"/>
+    <x:expect label="... subject/Temporal has two labels" test="count(//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[@xml:lang='zh-hani'] = '二十世紀.'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[not(@xml:lang)] = '1900-1999.'"/>
+    
+    <!-- 655a -->
+    <x:expect label="655 creates a genreform/GenreForm property of the Work" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm) = 1"/>
+    <x:expect label="... subject/Temporal has two labels" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel[@xml:lang='zh-hani'] = '批評, 解釋等'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Criticism, interpretation, etc.'"/>
+  </x:scenario>
+  
+  
+  <x:scenario label="650a and 651a">
+    <x:context href="data/ConvSpec-880/650a-651a.xml"/>
+    
+    <!-- 650a -->
+    <x:expect label="There are a number of subject/Topic properties of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 8"/>
+    <x:expect label="... subject/Topic has two labels" test="count(//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市-歴史'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinosekishi-Rekishi'"/>
+
+    <!-- 651a -->
+    <x:expect label="There is one subject/Place property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Place) = 1"/>
+    <x:expect label="... subject/Topic has two labels" test="count(//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)'"/>
+    
+    <!-- 651complex -->
+    <x:expect label="subject/Topic from 651 complex has two labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Topic a japanese label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)--Social conditions'"/>
+    <x:expect label="... subject/Topic a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)--Social conditions'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with two auth labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel) = '2'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with a japanese label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with one auth label" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel) = '1'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel = 'Social conditions'"/>
+  </x:scenario>
+
+</x:description>
