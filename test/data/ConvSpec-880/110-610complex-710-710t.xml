@@ -1,0 +1,142 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>01558cam a22003854a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">13709594</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20070825162442.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">040824m19981999ja a         f000 0 jpn  </marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">orignew</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-rlinjack</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">yg20 2004-08-24</marcxml:subfield>
+    <marcxml:subfield code="i">yg20 2004-08-24</marcxml:subfield>
+    <marcxml:subfield code="e">yg20 2004-09-02</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2004551582</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(CStRLIN)DCLP04-B15617</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC-R</marcxml:subfield>
+    <marcxml:subfield code="c">DLC-R</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">pcc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-ja---</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">KNX2515</marcxml:subfield>
+    <marcxml:subfield code="b">.J344 1998</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="110" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">Kokkai.</marcxml:subfield>
+    <marcxml:subfield code="b">Sangiin.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Sangiin senrei shohyō.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="250" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Heisei 10-nenban.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">[Tokyo] :</marcxml:subfield>
+    <marcxml:subfield code="b">Sangiin Jimukyoku,</marcxml:subfield>
+    <marcxml:subfield code="c">Heisei 10 [1998]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">4, 3, 803 p. :</marcxml:subfield>
+    <marcxml:subfield code="b">ill. ;</marcxml:subfield>
+    <marcxml:subfield code="c">22 cm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Accompanied by Sangiin senrei shohyō tsuiroku (1, 3, 49 p. : ill. ; 21 cm.) issued in 1999.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="610" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">Kokkai.</marcxml:subfield>
+    <marcxml:subfield code="b">Sangiin</marcxml:subfield>
+    <marcxml:subfield code="v">Calendars.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">Kokkai.</marcxml:subfield>
+    <marcxml:subfield code="b">Sangiin.</marcxml:subfield>
+    <marcxml:subfield code="b">Jimukyoku.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="1" ind2="2">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">Kokkai.</marcxml:subfield>
+    <marcxml:subfield code="b">Sangiin.</marcxml:subfield>
+    <marcxml:subfield code="t">Sangiin senrei shohyō tsuiroku.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">110-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">国会.</marcxml:subfield>
+    <marcxml:subfield code="b">参議院.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">参議院先例諸表.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">250-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">平成 10年版.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">260-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">[Tokyo] :</marcxml:subfield>
+    <marcxml:subfield code="b">参議院事務局,</marcxml:subfield>
+    <marcxml:subfield code="c">平成 10 [1998]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="4">
+    <marcxml:subfield code="6">610-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">国会.</marcxml:subfield>
+    <marcxml:subfield code="b">参議院</marcxml:subfield>
+    <marcxml:subfield code="v">Calendars.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">710-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">国会.</marcxml:subfield>
+    <marcxml:subfield code="b">参議院.</marcxml:subfield>
+    <marcxml:subfield code="b">事務局.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="2">
+    <marcxml:subfield code="6">710-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Japan.</marcxml:subfield>
+    <marcxml:subfield code="b">国会.</marcxml:subfield>
+    <marcxml:subfield code="b">参議院.</marcxml:subfield>
+    <marcxml:subfield code="t">参議院先例諸表追錄.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="985" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">spacingreload</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

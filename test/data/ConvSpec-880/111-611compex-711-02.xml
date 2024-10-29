@@ -1,0 +1,173 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02297cas a2200481 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">15543730</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20231217210937.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">081204c200u9999ko ar         0   k0kor  </marcxml:controlfield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2009211931</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(OCoLC)ocn406353278</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCA</marcxml:subfield>
+    <marcxml:subfield code="d">HMY</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCL</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">pcc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-ko---</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">NK3638.A12</marcxml:subfield>
+    <marcxml:subfield code="b">T34</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="111" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Taehan Min'guk Sŏye Muninhwa Taejŏn.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Taehan Min'guk Sŏye Muninhwa Taejŏn :</marcxml:subfield>
+    <marcxml:subfield code="b">[catalog].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="246" ind1="3" ind2="1">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Calligraphy, oriental painting exhibition of Korea</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Sŏul-si :</marcxml:subfield>
+    <marcxml:subfield code="b">Taehan Min'guk Sŏye Muninhwa Taejŏn Unyŏng Wiwŏnhoe</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="310" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Annual</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="362" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Began with 2003.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="588" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Description based on: Che 6-hoe (2008); title from title page.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="611" ind1="2" ind2="0">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Taehan Min'guk Sŏye Muninhwa Taejŏn</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Calligraphy, Korean</marcxml:subfield>
+    <marcxml:subfield code="v">Exhibitions</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Calligraphy, Chinese</marcxml:subfield>
+    <marcxml:subfield code="z">Korea (South)</marcxml:subfield>
+    <marcxml:subfield code="v">Exhibitions</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Painting, Asian</marcxml:subfield>
+    <marcxml:subfield code="v">Exhibitions</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Calligraphy, Chinese.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst00844390</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Calligraphy, Korean.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst00844436</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Painting, Asian.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01050672</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Korea (South)</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01206791</marcxml:subfield>
+    <marcxml:subfield code="1">https://id.oclc.org/worldcat/entity/E39QbtfRg3kwbTgW8wMXD4yWrY</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Exhibition catalogs.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01424028</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Periodicals.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01411641</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="711" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Taehan Minʼguk Sŏye Muninhwa Taejŏn.</marcxml:subfield>
+    <marcxml:subfield code="e">Unyŏng Wiwŏnhoe.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="850" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">111-00/$1</marcxml:subfield>
+    <marcxml:subfield code="a">大韓 民國 書藝 文人畵 大展.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">大韓 民國 書藝 文人畵 大展 :</marcxml:subfield>
+    <marcxml:subfield code="b">[catalog].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">260-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">서울市 :</marcxml:subfield>
+    <marcxml:subfield code="b">大韓 民國 書藝 文人畵 大展 運營 委員會</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="3" ind2="1">
+    <marcxml:subfield code="6">246-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">대한민국서예문인화대전</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2="4">
+    <marcxml:subfield code="6">611-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">大韓 民國 書藝 文人畵 大展</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">711-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">大韓 民國 書藝 文人畵 大展.</marcxml:subfield>
+    <marcxml:subfield code="e">運營 委員會.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">serials</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">n-oclcserc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">th11 2008-12-04</marcxml:subfield>
+    <marcxml:subfield code="i">cf18 2009-06-23 to cf21</marcxml:subfield>
+    <marcxml:subfield code="a">cf21 2009-07-15 to Asian Div.</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>
