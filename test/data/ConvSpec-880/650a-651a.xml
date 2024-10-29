@@ -1,0 +1,211 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02257cam a22005297i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">21544305</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20210517083445.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">200528s2019    ja af    b    000 0 jpn d</marcxml:controlfield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">copycat</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-nonroman</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">cf27 2021-05-04 z-processor JACKPHY</marcxml:subfield>
+    <marcxml:subfield code="i">cf27 2021-05-04 to Asian</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2020389373</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="020" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">9784862151971</marcxml:subfield>
+    <marcxml:subfield code="q">(hardback)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="020" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">4862151973</marcxml:subfield>
+    <marcxml:subfield code="q">(hardback)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(OCoLC)on1124675109</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">TRCLS</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="c">TRCLS</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">PUL</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+    <marcxml:subfield code="d">UIU</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">lccopycat</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-ja---</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">DS897.I3</marcxml:subfield>
+    <marcxml:subfield code="b">I78 2019</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="084" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">212.2</marcxml:subfield>
+    <marcxml:subfield code="2">njb/9</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="100" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Irumada, Nobuo,</marcxml:subfield>
+    <marcxml:subfield code="d">1942-</marcxml:subfield>
+    <marcxml:subfield code="e">author.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">100-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">入間田宣夫,</marcxml:subfield>
+    <marcxml:subfield code="d">1942-,</marcxml:subfield>
+    <marcxml:subfield code="e">author.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Chūsonjiryō Honederamura ezu o yomu :</marcxml:subfield>
+    <marcxml:subfield code="b">Nihon nōson no genfūkei o motome te /</marcxml:subfield>
+    <marcxml:subfield code="c">Irumada Nobuo cho.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中尊寺領骨寺村絵図を読む :</marcxml:subfield>
+    <marcxml:subfield code="b">日本農村の原風景をもとめて /</marcxml:subfield>
+    <marcxml:subfield code="c">入間田宣夫著.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="264" ind1=" " ind2="1">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Tōkyō :</marcxml:subfield>
+    <marcxml:subfield code="b">Koshi Shoin,</marcxml:subfield>
+    <marcxml:subfield code="c">2019.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="1">
+    <marcxml:subfield code="6">264-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">東京 :</marcxml:subfield>
+    <marcxml:subfield code="b">高志書院,</marcxml:subfield>
+    <marcxml:subfield code="c">2019.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">324, vii pages, 3 unnumbered leaves of plates :</marcxml:subfield>
+    <marcxml:subfield code="b">illustrations (some color) ;</marcxml:subfield>
+    <marcxml:subfield code="c">22 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="336" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">text</marcxml:subfield>
+    <marcxml:subfield code="b">txt</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="337" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="338" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="b">nc</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="504" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Includes bibliographical references (pages i-vii).</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Ichinoseki-shi (Japan)</marcxml:subfield>
+    <marcxml:subfield code="x">History.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">一関市 (Japan)</marcxml:subfield>
+    <marcxml:subfield code="x">History.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-34</marcxml:subfield>
+    <marcxml:subfield code="a">Ichinoseki-shi (Japan)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-34/$1</marcxml:subfield>
+    <marcxml:subfield code="a">一関市 (Japan)</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="0">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Ichinoseki-shi (Japan)</marcxml:subfield>
+    <marcxml:subfield code="x">Social conditions.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2="4">
+    <marcxml:subfield code="6">651-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">一関市 (Japan)</marcxml:subfield>
+    <marcxml:subfield code="x">Social conditions.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="0">
+    <marcxml:subfield code="a">Farm life</marcxml:subfield>
+    <marcxml:subfield code="z">Japan</marcxml:subfield>
+    <marcxml:subfield code="z">Ichinoseki-han</marcxml:subfield>
+    <marcxml:subfield code="x">History.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Social conditions.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01919811</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="651" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Japan</marcxml:subfield>
+    <marcxml:subfield code="z">Ichinoseki-shi.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01218637</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">History.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01411628</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1="0" ind2="7">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Ichinosekishi-Rekishi.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="0" ind2="4">
+    <marcxml:subfield code="6">650-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">一関市-歴史.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1="0" ind2="7">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Shōen.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="0" ind2="4">
+    <marcxml:subfield code="6">650-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">荘園.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="650" ind1="0" ind2="7">
+    <marcxml:subfield code="6">880-08</marcxml:subfield>
+    <marcxml:subfield code="a">Ezu.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="0" ind2="4">
+    <marcxml:subfield code="6">650-08/$1</marcxml:subfield>
+    <marcxml:subfield code="a">絵図.</marcxml:subfield>
+    <marcxml:subfield code="2">jlabsh/4</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="923" ind1=" " ind2=" ">
+    <marcxml:subfield code="d">20200328</marcxml:subfield>
+    <marcxml:subfield code="n">122-31919231</marcxml:subfield>
+    <marcxml:subfield code="s">JPTC</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

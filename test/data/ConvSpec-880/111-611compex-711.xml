@@ -1,0 +1,155 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02118cas a2200481 a 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">17389452</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20200930071211.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">120717d19uu2015ko ||        f|   k0kor  </marcxml:controlfield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">  2012212070</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(OCoLC)ocn800373612</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">pcc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-ko---</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">GV723.C467</marcxml:subfield>
+    <marcxml:subfield code="b">C46a</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="111" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Chŏn'guk Changaein Ch'eyuk Taehoe.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Chŏn'guk Changaein Ch'eyuk Taehoe :</marcxml:subfield>
+    <marcxml:subfield code="b">[report].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="246" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">National Paragamse</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="246" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Korean Youth Paragames</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Taejŏn Kwangyŏksi :</marcxml:subfield>
+    <marcxml:subfield code="b">Taejŏn Kwangyŏksi</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="362" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">Ceased with 2015?</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Imprint varies.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="500" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">"Himang ch'ejŏn, haengbok ch'ejŏn, hwahap ch'ejŏn."</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="515" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Vols. for &lt;2011-&gt; include &lt;che 5-hoe-&gt; Chŏn'guk Changae Haksaeng Ch'eyuk Taehoe report.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="588" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Description based on: Che 30-hoe (2010); title from title page.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="588" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Latest issue consulted: Che 31-hoe (2011).</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="611" ind1="2" ind2="0">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Chŏn'guk Changaein Ch'eyuk Taehoe</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="611" ind1="2" ind2="0">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Chŏn'guk Changae Haksaeng Ch'eyuk Taehoe</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="611" ind1="2" ind2="7">
+    <marcxml:subfield code="a">Chŏn'guk Changaein Ch'eyuk Taehoe.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01932194</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Periodicals.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01411641</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Korea (South).</marcxml:subfield>
+    <marcxml:subfield code="b">Munhwa Ch'eyuk Kwan'gwangbu.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="711" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Chŏn'guk Changae Haksaeng Ch'eyuk Taehoe.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="850" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">111-00/$1</marcxml:subfield>
+    <marcxml:subfield code="a">전국 장애인 체육 대회.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">전국 장애인 체육 대회 :</marcxml:subfield>
+    <marcxml:subfield code="b">[report].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">260-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">대전 광역시 :</marcxml:subfield>
+    <marcxml:subfield code="b">대전 광역시</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2="4">
+    <marcxml:subfield code="6">611-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">전국 장애인 체육 대회</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2="4">
+    <marcxml:subfield code="6">611-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">전국 장애 학생 체육 대회</marcxml:subfield>
+    <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2=" ">
+    <marcxml:subfield code="6">710-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Korea (South).</marcxml:subfield>
+    <marcxml:subfield code="b">문화 체육 관광부.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">711-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">전국 장애 학생 체육 대회.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">serorig</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">n-oclcserc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="925" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">Acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="955" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">cf21 2012-07-17</marcxml:subfield>
+    <marcxml:subfield code="i">cf18 2012-07-18 to Acq shelf</marcxml:subfield>
+    <marcxml:subfield code="g">cf21 2012-07-26 to Asian</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

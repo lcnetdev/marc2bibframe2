@@ -786,6 +786,20 @@
                         </xsl:call-template>
                     </bflc:marcKey>
                   </xsl:when>
+                  <xsl:when test="substring($tag,1,1)='6' and (
+                                  marc:subfield[@code='v'] or 
+                                  marc:subfield[@code='x'] or 
+                                  marc:subfield[@code='y'] or 
+                                  marc:subfield[@code='z']
+                                )">
+                    <xsl:variable name="vFirstSubdiv" select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z'][1]/@code" />
+                    <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+                    <bflc:marcKey>
+                      <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="substring-before($vDF1xx, concat('$', $vFirstSubdiv))"/>
+                      </xsl:call-template>
+                    </bflc:marcKey>
+                  </xsl:when>
                   <xsl:otherwise>
                     <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
                   </xsl:otherwise>
@@ -809,6 +823,23 @@
                       </xsl:if>
                       <xsl:call-template name="tChopPunct">
                         <xsl:with-param name="pString" select="substring-before($vDF1xx, '$k')"/>
+                      </xsl:call-template>
+                    </bflc:marcKey>
+                  </xsl:when>
+                  <xsl:when test="substring($tag,1,1)='6' and (
+                                    marc:subfield[@code='v'] or 
+                                    marc:subfield[@code='x'] or 
+                                    marc:subfield[@code='y'] or 
+                                    marc:subfield[@code='z']
+                                  )">
+                    <xsl:variable name="vFirstSubdiv" select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z'][1]/@code" />
+                    <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+                    <bflc:marcKey>
+                      <xsl:if test="$vXmlLang880 != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="substring-before($vDF1xx, concat('$', $vFirstSubdiv))"/>
                       </xsl:call-template>
                     </bflc:marcKey>
                   </xsl:when>
