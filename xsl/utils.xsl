@@ -499,7 +499,7 @@
     <xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))" />
   </xsl:template>
   <xsl:template match="marc:subfield" mode="marcKey">
-    <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
+    <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="normalize-space(.)"/>
   </xsl:template>
 
   <!--
