@@ -125,7 +125,7 @@
     </xsl:variable>
     
     <xsl:variable name="v880Label">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:variable name="v880Occurrence">
           <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
         </xsl:variable>
@@ -165,7 +165,7 @@
     </xsl:variable>
     
     <xsl:variable name="v880MarcKey">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:variable name="v880Occurrence">
           <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
         </xsl:variable>
@@ -338,7 +338,7 @@
     <xsl:param name="pTag"/>
     
     <xsl:variable name="v880Label">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:variable name="v880Occurrence">
           <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
         </xsl:variable>
@@ -374,7 +374,7 @@
     </xsl:variable>
     
     <xsl:variable name="v880MarcKey">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:variable name="v880Occurrence">
           <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
         </xsl:variable>
