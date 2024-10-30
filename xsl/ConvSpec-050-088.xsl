@@ -393,6 +393,54 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='080' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='080')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:classification>
+          <bf:ClassificationUdc>
+            <xsl:if test="marc:subfield[@code='a']">
+              <bf:classificationPortion>
+                <xsl:value-of select="marc:subfield[@code='a'][1]"/>
+              </bf:classificationPortion>
+              <xsl:if test="marc:subfield[@code='b']">
+                  <bf:itemPortion>
+                    <xsl:value-of select="marc:subfield[@code='b'][1]"/>
+                  </bf:itemPortion>
+              </xsl:if>
+            </xsl:if>
+            <xsl:for-each select="marc:subfield[@code='x']">
+              <bf:code>
+                <xsl:value-of select="."/>
+              </bf:code>
+            </xsl:for-each>
+            <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:choose>
+              <xsl:when test="@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
+              <xsl:when test="@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
+            </xsl:choose>
+            <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')]">
+                <madsrdf:hasRelatedAuthority>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:apply-templates select="." mode="generateUriFrom0">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </xsl:attribute>
+                </madsrdf:hasRelatedAuthority>
+            </xsl:for-each>
+            <xsl:for-each select="marc:subfield[@code='0' and not(contains(text(),'://'))]">
+              <xsl:apply-templates select="." mode="subfield0orw">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:for-each>
+          </bf:ClassificationUdc>
+        </bf:classification>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='082' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='082')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>

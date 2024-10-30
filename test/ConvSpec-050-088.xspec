@@ -129,6 +129,14 @@
     <x:expect label="Additional $0 relate to Classification resource" test="//bf:Work[1]/bf:classification[18]/bf:Classification/madsrdf:hasRelatedAuthority[1]/@rdf:resource = 'http://example.org/HEU_G74.3C50'"/>
   </x:scenario>
   
+  <x:scenario label="080 - UNIVERSAL DECIMAL CLASSIFICATION NUMBER">
+    <x:context href="data/ConvSpec-050-088/marc.xml"/>
+    <x:expect label="080 creates a classification/ClassificationUdc property of the Instance" test="count(//bf:Work[1]/bf:classification/bf:ClassificationUdc) = 1"/>
+    <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:classificationPortion = '311.3:330.322'"/>
+    <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:itemPortion = '311 item'"/>
+    <x:expect label="$2 can create a source property of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:source/bf:Source/bf:code = '8th French Abbr. Ed.'" />
+  </x:scenario>
+  
   <x:scenario label="088 - REPORT NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>
     <x:expect label="088 creates an identifiedBy/ReportNumber property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy/bf:ReportNumber) = 2"/>
