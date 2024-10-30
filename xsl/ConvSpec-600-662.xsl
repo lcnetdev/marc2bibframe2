@@ -746,29 +746,14 @@
       <xsl:choose>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">ComplexSubject</xsl:when>
         <xsl:when test="$vTag='648'">Temporal</xsl:when>
-        <xsl:when test="$vTag='650'">
-          <xsl:choose>
-            <xsl:when test="marc:subfield[@code='b' or @code='c' or @code='d']">ComplexSubject</xsl:when>
-            <xsl:otherwise>Topic</xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
-        <xsl:when test="$vTag='651'">
-          <xsl:choose>
-            <xsl:when test="marc:subfield[@code='b']">ComplexSubject</xsl:when>
-            <xsl:otherwise>Geographic</xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
+        <xsl:when test="$vTag='650'">Topic</xsl:when>
+        <xsl:when test="$vTag='651'">Geographic</xsl:when>
         <xsl:when test="$vTag='655'">GenreForm</xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">
       <xsl:call-template name="tChopPunct">
-        <xsl:with-param name="pEndPunct">
-          <xsl:choose>
-            <xsl:when test="$vTag='648'"><xsl:value-of select="'-'"/></xsl:when>
-            <xsl:otherwise><xsl:value-of select="'-.'"/></xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
+        <xsl:with-param name="pEndPunct" select="'.'" />
         <xsl:with-param name="pString">
           <xsl:choose>
             <xsl:when test="$vTag='647'">
@@ -777,24 +762,35 @@
                   <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('acd', @code)]"/>
                 </xsl:with-param>
               </xsl:call-template>
-              <xsl:text>--</xsl:text>
               <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
-                <xsl:value-of select="concat(.,'--')"/>
+                <xsl:value-of select="concat('--', .)"/>
               </xsl:for-each>
             </xsl:when>
             <xsl:when test="$vTag='650'">
-              <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']">
-                <xsl:value-of select="concat(.,'--')"/>
+              <xsl:variable name="tLabel">
+                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcd', @code)]"/>
+              </xsl:variable>
+              <xsl:value-of select="normalize-space($tLabel)"/>
+              <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                <xsl:value-of select="concat('--', .)"/>
               </xsl:for-each>
             </xsl:when>
             <xsl:when test="$vTag='651'">
-              <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='v' or @code='x' or @code='y' or @code='z']">
-                <xsl:value-of select="concat(.,'--')"/>
+              <xsl:variable name="tLabel">
+                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('ab', @code)]"/>
+              </xsl:variable>
+              <xsl:value-of select="normalize-space($tLabel)"/>
+              <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                <xsl:value-of select="concat('--', .)"/>
               </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:for-each select="marc:subfield[@code='a' or @code='v' or @code='x' or @code='y' or @code='z']">
-                <xsl:value-of select="concat(.,'--')"/>
+              <xsl:variable name="tLabel">
+                <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('a', @code)]"/>
+              </xsl:variable>
+              <xsl:value-of select="normalize-space($tLabel)"/>
+              <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                <xsl:value-of select="concat('--', .)"/>
               </xsl:for-each>
             </xsl:otherwise>
           </xsl:choose>
@@ -803,12 +799,12 @@
     </xsl:variable>
 
     <xsl:variable name="v880Occurrence">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:value-of select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)"/>
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="v880Ref">
-      <xsl:if test="marc:subfield[@code='6']">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
         <xsl:value-of select="concat($vTag, '-', $v880Occurrence)"/>
       </xsl:if>
     </xsl:variable>
@@ -834,24 +830,35 @@
                         <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('acd', @code)]"/>
                       </xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text>--</xsl:text>
                     <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
-                      <xsl:value-of select="concat(.,'--')"/>
+                      <xsl:value-of select="concat('--', .)"/>
                     </xsl:for-each>
                   </xsl:when>
                   <xsl:when test="$vTag='650'">
-                    <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']">
-                      <xsl:value-of select="concat(.,'--')"/>
+                    <xsl:variable name="tLabel">
+                      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcd', @code)]"/>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space($tLabel)"/>
+                    <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                      <xsl:value-of select="concat('--', .)"/>
                     </xsl:for-each>
                   </xsl:when>
                   <xsl:when test="$vTag='651'">
-                    <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='v' or @code='x' or @code='y' or @code='z']">
-                      <xsl:value-of select="concat(.,'--')"/>
+                    <xsl:variable name="tLabel">
+                      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('ab', @code)]"/>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space($tLabel)"/>
+                    <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                      <xsl:value-of select="concat('--', .)"/>
                     </xsl:for-each>
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:for-each select="marc:subfield[@code='a' or @code='v' or @code='x' or @code='y' or @code='z']">
-                      <xsl:value-of select="concat(.,'--')"/>
+                    <xsl:variable name="tLabel">
+                      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('a', @code)]"/>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space($tLabel)"/>
+                    <xsl:for-each select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">
+                      <xsl:value-of select="concat('--', .)"/>
                     </xsl:for-each>
                   </xsl:otherwise>
                 </xsl:choose>
@@ -921,7 +928,9 @@
                       </xsl:variable>
                       <madsrdf:authoritativeLabel><xsl:value-of select="$vL"/></madsrdf:authoritativeLabel>
                       <rdfs:label><xsl:value-of select="$vL"/></rdfs:label>
-                      <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+                      <xsl:if test="marc:subfield[contains('cd', @code)]">
+                        <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+                      </xsl:if>
                     </bf:Event>
                       <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
                         <xsl:with-param name="serialization" select="$serialization"/>
@@ -930,7 +939,20 @@
                       </xsl:apply-templates>
                   </xsl:when>
                   <xsl:when test="$vTag='650'">
-                    <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
+                    <madsrdf:Topic>
+                      <xsl:variable name="vL">
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString">
+                            <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcd', @code)]"/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <madsrdf:authoritativeLabel><xsl:value-of select="$vL"/></madsrdf:authoritativeLabel>
+                      <xsl:if test="marc:subfield[contains('bcd', @code)]">
+                        <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+                      </xsl:if>
+                    </madsrdf:Topic>
+                    <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
                       <xsl:with-param name="serialization" select="$serialization"/>
                       <xsl:with-param name="pTag" select="$vTag"/>
                       <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
@@ -938,7 +960,20 @@
                     </xsl:apply-templates>
                   </xsl:when>
                   <xsl:when test="$vTag='651'">
-                    <xsl:apply-templates select="marc:subfield[@code='a' or @code='b' or @code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
+                    <madsrdf:Geographic>
+                      <xsl:variable name="vL">
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString">
+                            <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('ab', @code)]"/>
+                          </xsl:with-param>
+                        </xsl:call-template>
+                      </xsl:variable>
+                      <madsrdf:authoritativeLabel><xsl:value-of select="$vL"/></madsrdf:authoritativeLabel>
+                      <xsl:if test="marc:subfield[contains('b', @code)]">
+                        <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
+                      </xsl:if>
+                    </madsrdf:Geographic>
+                    <xsl:apply-templates select="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']" mode="complexSubject">
                       <xsl:with-param name="serialization" select="$serialization"/>
                       <xsl:with-param name="pTag" select="$vTag"/>
                       <xsl:with-param name="pXmlLang" select="$vXmlLang"/>
