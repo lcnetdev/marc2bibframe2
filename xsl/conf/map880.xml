@@ -142,7 +142,7 @@
   <datafield tag="711" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="720" convertLinked="false"/>
   <datafield tag="730" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
-  <datafield tag="740" convertLinked="true"/>
+  <datafield tag="740" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="752" convertLinked="false"/>
   <datafield tag="753" convertLinked="false"/>
   <datafield tag="760" convertLinked="true"/>
