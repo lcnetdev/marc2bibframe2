@@ -42,6 +42,7 @@
             <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
             <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
             <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+            <xsl:when test="$vScript6simple='(4' and $vLang008='per'">arab</xsl:when> <!-- An exception for bad data. -->
             <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
               <xsl:value-of select="$vScript6simple"/>
             </xsl:when>

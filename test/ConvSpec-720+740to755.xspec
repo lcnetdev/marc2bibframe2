@@ -23,7 +23,7 @@
     <x:expect label="Second 740 is a relatedTo of the main Work" test="//bf:Work[1]/bf:relation[2]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/relatedwork'"/>
     <x:expect label="Brief work description has rdf:type bflc:Uncontrolled" test="//bf:Work[1]/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Work/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
     <x:expect label="ind1 generates title/Title/nonSortNum of the brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bflc:nonSortNum = '4'"/>
-    <x:expect label="$a generates title/Title/mainTitle of the brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle = 'The Joint Legislative Committee on Matrimonial and Family Laws, proposed statute'"/>
+    <x:expect label="$a generates title/Title/mainTitle of the brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Joint Legislative Committee on Matrimonial and Family Laws, proposed statute'"/>
     <x:expect label="$n generates partNumber of brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bf:partNumber = 'Part 1'"/>
     <x:expect label="$p generates partName of brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bf:partName = 'Economic aspects, custody, taxes'"/>
     <x:expect label="$5 generates bflc:applicableInstitution property of brief work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Work/bflc:applicableInstitution/bf:Agent/bf:code = 'MnMHCL'"/>

@@ -20,10 +20,7 @@
       <subfield code="d">1965</subfield>
       <subfield code="o">U 58.4033.</subfield>
     </datafield>
-    <datafield tag="504" ind1=" " ind2=" ">
-      <subfield code="a">"Literature cited": p. 67-68.</subfield>
-      <subfield code="b">19</subfield>
-    </datafield>
+    <!-- 504 moved down because of change that impacted a billion tests. -->
     <datafield tag="505" ind1="0" ind2="0">
       <subfield code="a">Quatrain II (16:35) --</subfield>
       <subfield code="t">Water ways</subfield>
@@ -274,6 +271,11 @@
       <subfield code="a">item uri downgraded</subfield>
       
       <subfield code="5">DLC</subfield>
+    </datafield>
+    
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">"Literature cited": p. 67-68.</subfield>
+      <subfield code="b">19</subfield>
     </datafield>
   </record>
   

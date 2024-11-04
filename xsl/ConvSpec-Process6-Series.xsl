@@ -352,6 +352,15 @@
       <xsl:apply-templates mode="concat-nodes-space"
         select="marc:subfield[not(contains('hvwx012345678', @code))]"/>
     </xsl:variable>-->
+    
+    <xsl:variable name="vOccurrence">
+      <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+        <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="vRelated880" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)=$vTag and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]" />
+    <xsl:variable name="v880XmlLang"><xsl:apply-templates select="$vRelated880" mode="xmllang"/></xsl:variable>
+    
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:relation>
@@ -454,7 +463,15 @@
             <xsl:for-each select="marc:subfield[@code = 'v']">
               <bf:seriesEnumeration>
                 <xsl:value-of  select="."/>                
-              </bf:seriesEnumeration>                
+              </bf:seriesEnumeration>
+            </xsl:for-each>
+            <xsl:for-each select="$vRelated880/marc:subfield[@code='v']">
+              <bf:seriesEnumeration>
+                <xsl:if test="$v880XmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$v880XmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of  select="."/>  
+              </bf:seriesEnumeration>
             </xsl:for-each>
             
           </bf:Relation>
