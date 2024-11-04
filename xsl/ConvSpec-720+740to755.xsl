@@ -45,6 +45,16 @@
           </xsl:with-param>
         </xsl:call-template>
       </xsl:variable>
+      
+      <!-- generate Title properties from linked 880 -->
+      
+        <xsl:variable name="vOccurrence">
+          <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+            <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+          </xsl:if>
+        </xsl:variable>
+      <xsl:variable name="vRelated880" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='740' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]" />
+      <xsl:variable name="v880XmlLang"><xsl:apply-templates select="$vRelated880" mode="xmllang"/></xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization='rdfxml'">
           <bf:relation>
@@ -69,13 +79,34 @@
                           </xsl:if>
                           <xsl:value-of select="$vNFI" />
                         </bflc:nonSortNum>
-                        <bf:mainTitle>
-                          <xsl:call-template name="tChopPunct">
-                            <xsl:with-param name="pString">
-                              <xsl:value-of select="marc:subfield[@code='a']" />
-                            </xsl:with-param>
-                          </xsl:call-template>
-                        </bf:mainTitle>
+                        <bf:mainTitle><xsl:value-of select="$vmainTitle" /></bf:mainTitle>
+                        <xsl:if test="$vRelated880/marc:subfield[@code='a']">
+                          <xsl:variable name="vNFI880">
+                            <xsl:choose>
+                              <xsl:when test="translate($vRelated880/@ind1,'0123456789','')=''"><xsl:value-of select="$vRelated880/@ind1"/></xsl:when>
+                              <xsl:otherwise>0</xsl:otherwise>
+                            </xsl:choose>
+                          </xsl:variable>
+                          <xsl:variable name="vmainTitle880">
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString">
+                                <xsl:value-of select="substring($vRelated880/marc:subfield[@code='a'],$vNFI880+1)"/>
+                              </xsl:with-param>
+                            </xsl:call-template>
+                          </xsl:variable>
+                          <bflc:nonSortNum>
+                            <xsl:if test="$v880XmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$v880XmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="$vNFI880" />
+                          </bflc:nonSortNum>
+                          <bf:mainTitle>
+                            <xsl:if test="$v880XmlLang != ''">
+                              <xsl:attribute name="xml:lang"><xsl:value-of select="$v880XmlLang"/></xsl:attribute>
+                            </xsl:if>
+                            <xsl:value-of select="$vmainTitle880" />
+                          </bf:mainTitle>
+                        </xsl:if>
                       </bf:Title>
                     </bf:title>
                   </xsl:if>
@@ -86,8 +117,28 @@
                       </xsl:call-template>
                     </bf:partNumber>
                   </xsl:for-each>
+                  <xsl:for-each select="$vRelated880/marc:subfield[@code='n']">
+                    <bf:partNumber>
+                      <xsl:if test="$v880XmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$v880XmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </bf:partNumber>
+                  </xsl:for-each>
                   <xsl:for-each select="marc:subfield[@code='p']">
                     <bf:partName>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </bf:partName>
+                  </xsl:for-each>
+                  <xsl:for-each select="$vRelated880/marc:subfield[@code='p']">
+                    <bf:partName>
+                      <xsl:if test="$v880XmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$v880XmlLang"/></xsl:attribute>
+                      </xsl:if>
                       <xsl:call-template name="tChopPunct">
                         <xsl:with-param name="pString" select="."/>
                       </xsl:call-template>

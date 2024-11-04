@@ -64,10 +64,7 @@
       <subfield code="6">502-00</subfield>
       <subfield code="a">тезис Карла Шмидта (докторская) - Людвиг-Максимилиана Universität, Munich, 1965.</subfield>
     </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">504-00</subfield>
-      <subfield code="a">"Литература цитируется": стр. 67-68.</subfield>
-    </datafield>
+    <!-- Moved 880 for 504 to the bottom because of change to 504. -->
     <datafield tag="880" ind1="0" ind2=" ">
       <subfield code="6">505-00</subfield>
       <subfield code="a">Как были обнаружены эти записи - Краткий очерк Талмудов - письмо Константина.</subfield>
@@ -219,13 +216,17 @@
       <subfield code="6">586-00</subfield>
       <subfield code="a">Национальная книжная премия, 1981</subfield>
     </datafield>
-    <datafield tag="880" ind1="0" ind2=" ">
-      <subfield code="6">740-00</subfield>
-      <subfield code="a">Руководство гадалки.</subfield>
-    </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">588-00</subfield>
       <subfield code="a">Том 2.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">504-00</subfield>
+      <subfield code="a">"Литература цитируется": стр. 67-68.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">740-00</subfield>
+      <subfield code="a">Руководство гадалки.</subfield>
     </datafield>
     <datafield ind1="0" ind2="6" tag="880">
       <subfield code="6">780-00</subfield>
