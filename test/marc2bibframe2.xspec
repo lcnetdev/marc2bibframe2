@@ -1026,11 +1026,12 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm</bf:dimensions>
-            <bf:supplementaryContent>
-              <bf:SupplementaryContent>
-                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
-              </bf:SupplementaryContent>
-            </bf:supplementaryContent>
+            <bf:note>
+              <bf:Note>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/biblio"/>
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Includes bibliographical references and index.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <bf:electronicLocator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html" />
