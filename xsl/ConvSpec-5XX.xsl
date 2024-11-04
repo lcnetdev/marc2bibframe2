@@ -476,8 +476,9 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:supplementaryContent>
-          <bf:SupplementaryContent>
+        <bf:note>
+          <bf:Note>
+            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/biblio" />
             <xsl:for-each select="marc:subfield[@code='a']">
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
@@ -493,8 +494,8 @@
                 </xsl:call-template>
               </bf:count>
             </xsl:for-each>
-          </bf:SupplementaryContent>
-        </bf:supplementaryContent>
+          </bf:Note>
+        </bf:note>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

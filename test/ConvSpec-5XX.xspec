@@ -37,9 +37,9 @@
   
   <x:scenario label="504 - BIBLIOGRAPHY, ETC. NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="504 creates a supplementaryContent property of the Instance" test="count(//bf:Instance[1]/bf:supplementaryContent) = 1"/>
-    <x:expect label="$a creates an rdfs:label property of the SupplementaryContent" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = '&quot;Literature cited&quot;: p. 67-68.'"/>
-    <x:expect label="$b creates a count property of the SupplementaryContent" test="//bf:Instance[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/bf:count = '19'"/>
+    <x:expect label="504 creates a rdf type property of the Instance" test="count(//bf:Instance[1]/bf:note[25]/bf:Note/rdf:type[@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/biblio']) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[25]/bf:Note/rdfs:label = '&quot;Literature cited&quot;: p. 67-68.'"/>
+    <x:expect label="$b creates a count property of the Note" test="//bf:Instance[1]/bf:note[25]/bf:Note/bf:count = '19'"/>
   </x:scenario>
     
   <x:scenario label="505 - FORMATTED CONTENTS NOTE">
