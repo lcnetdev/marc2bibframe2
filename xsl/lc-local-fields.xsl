@@ -19,6 +19,46 @@
 
  <!-- enter here any special transforms for tags not dealt with in other conversion spec stylesheets -->
   
+  <xsl:template match="marc:datafield[@tag='097' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='097')]" mode="work">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vCurrentNode" select="generate-id(.)"/>
+          <xsl:variable name="vCurrentNodeUri">
+            <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
+              <xsl:if test="position() = 1">
+                <xsl:choose>
+                  <xsl:when test="starts-with(.,'(uri)')">
+                    <xsl:value-of select="substring-after(.,'(uri)')"/>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                </xsl:choose>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+          <bf:classification>
+            <bf:ClassificationLcc>
+              <!-- If there is a currentNodeUri *and* there is no item portion, we can use a URI, I guess. -->
+              <xsl:if test="$vCurrentNodeUri != '' and not(../marc:subfield[@code='b'][position()=1])">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vCurrentNodeUri"/></xsl:attribute>
+              </xsl:if>
+              <bf:classificationPortion>
+                <xsl:value-of select="."/>
+              </bf:classificationPortion>
+              <xsl:if test="position() = 1">
+                <xsl:for-each select="../marc:subfield[@code='b'][position()=1]">
+                  <bf:itemPortion>
+                    <xsl:value-of select="."/>
+                  </bf:itemPortion>
+                </xsl:for-each>
+              </xsl:if>
+            </bf:ClassificationLcc>
+          </bf:classification>
+        </xsl:for-each>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">
     <xsl:param name="recordid"/>
