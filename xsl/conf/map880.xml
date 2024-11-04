@@ -42,8 +42,8 @@
   <datafield tag="242" convertLinked="true"/>
   <datafield tag="243" convertLinked="true"/>
   <datafield tag="245" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
-  <datafield tag="246" convertLinked="true"/>
-  <datafield tag="247" convertLinked="true"/>
+  <datafield tag="246" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
+  <datafield tag="247" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <!-- omit field 250 to force both 250 and linked 880 to be converted -->
   <datafield tag="251" convertLinked="false"/>
   <datafield tag="254" convertLinked="false"/>
