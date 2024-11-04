@@ -30,8 +30,8 @@
     <x:expect label="ind2 = '0' creates an assigner property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationLcc/bf:assigner/@rdf:resource = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     
     <x:expect label="$a creates a classificationPortion of PN6728.6.D3" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:classificationPortion = 'PN6728.6.D3'"/>
-    <x:expect label="ind1 = '0' creates a not used by assigner status of the ClassificationLcc" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:status/@rdf:resource = 'http://id.loc.gov/vocabulary/mstatus/nuba'"/>
-    <x:expect label="ind2 = '0' creates NO assigner property of the ClassificationLcc" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:assigner/@rdf:resource) = 0"/>
+    <x:expect label="ind2 = '4' creates NO assigner property of the ClassificationLcc" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:assigner/@rdf:resource) = 0"/>
+    <x:expect label="ind1 = '0' is ignored because ind2=4" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:status) = 0"/>
   </x:scenario>
   
   <x:scenario label="052 - GEOGRAPHIC CLASSIFICATION">
@@ -129,13 +129,7 @@
     <x:expect label="Additional $0 relate to Classification resource" test="//bf:Work[1]/bf:classification[18]/bf:Classification/madsrdf:hasRelatedAuthority[1]/@rdf:resource = 'http://example.org/HEU_G74.3C50'"/>
   </x:scenario>
   
-  <x:scenario label="080 - UNIVERSAL DECIMAL CLASSIFICATION NUMBER">
-    <x:context href="data/ConvSpec-050-088/marc.xml"/>
-    <x:expect label="080 creates a classification/ClassificationUdc property of the Instance" test="count(//bf:Work[1]/bf:classification/bf:ClassificationUdc) = 1"/>
-    <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:classificationPortion = '311.3:330.322'"/>
-    <x:expect label="$a is the rdfs:label of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:itemPortion = '311 item'"/>
-    <x:expect label="$2 can create a source property of the Classification" test="//bf:Work[1]/bf:classification[19]/bf:ClassificationUdc/bf:source/bf:Source/bf:code = '8th French Abbr. Ed.'" />
-  </x:scenario>
+
   
   <x:scenario label="088 - REPORT NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>

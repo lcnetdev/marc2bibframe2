@@ -47,23 +47,25 @@
                   </bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
-              <xsl:if test="../@ind2 = '0'">
+              <xsl:if test="../@ind2 = '0' or
+                            (../@ind2 = ' ' and contains(ancestor::marc:record/marc:datafield[@tag='040']/marc:subfield[@code='a'][1], 'DLC'))
+              ">
                 <bf:assigner>
                   <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                 </bf:assigner>
+                <xsl:choose>
+                  <xsl:when test="../@ind1 = '0'">
+                    <bf:status>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
+                    </bf:status>
+                  </xsl:when>
+                  <xsl:when test="../@ind1 = '1'">
+                    <bf:status>
+                      <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
+                    </bf:status>
+                  </xsl:when>
+                </xsl:choose>
               </xsl:if>
-              <xsl:choose>
-                <xsl:when test="../@ind1 = '0'">
-                  <bf:status>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'uba')"/></xsl:attribute>
-                  </bf:status>
-                </xsl:when>
-                <xsl:when test="../@ind1 = '1'">
-                  <bf:status>
-                    <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
-                  </bf:status>
-                </xsl:when>
-              </xsl:choose>
               <xsl:for-each select="following-sibling::marc:subfield[@code='0' and generate-id(preceding-sibling::marc:subfield[@code != '0'][1])=$vCurrentNode and contains(text(),'://')]">
                 <xsl:if test="(position() = 1 and $vCurrentNodeUri != '' and ../marc:subfield[@code='b'][position()=1]) 
                               or 
@@ -250,7 +252,9 @@
                   <bf:itemPortion><xsl:value-of select="."/></bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
-              <xsl:if test="../@ind2 = '0'">
+              <xsl:if test="../@ind2 = '0' or
+                            (../@ind2 = ' ' and contains(ancestor::marc:record/marc:datafield[@tag='040']/marc:subfield[@code='a'][1], 'NLM'))
+                ">
                 <bf:assigner>
                   <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/organizations/dnlm</xsl:attribute>
                 </bf:assigner>
@@ -481,13 +485,29 @@
               <xsl:when test="@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
               <xsl:when test="@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
             </xsl:choose>
-            <xsl:if test="@ind2 = '0'">
-              <bf:assigner>
-                <bf:Agent>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
-                </bf:Agent>
-              </bf:assigner>
-            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="@ind2 = '0'">
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:when>
+              <xsl:when test="marc:subfield[@code='q']">
+                <bf:assigner>
+                  <bf:Agent>
+                    <rdfs:label><xsl:value-of select="marc:subfield[@code='q']"/></rdfs:label>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:when>
+              <xsl:when test="@ind2 = ' ' and contains(../marc:datafield[@tag='040']/marc:subfield[@code='a'][1], 'DLC')">
+                <bf:assigner>
+                  <bf:Agent>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                  </bf:Agent>
+                </bf:assigner>
+              </xsl:when>
+            </xsl:choose>
           </bf:ClassificationDdc>
         </bf:classification>
       </xsl:when>
