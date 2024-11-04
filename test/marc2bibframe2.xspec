@@ -262,21 +262,6 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:date>
-                <bf:agent>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:agent>
-              </bf:AdminMetadata>
-            </bf:adminMetadata>
-            <bf:adminMetadata>
-              <bf:AdminMetadata>
-                <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
-                  </bf:Status>
-                </bf:status>
                 <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
@@ -730,8 +715,8 @@
             <bf:adminMetadata>
               <bf:AdminMetadata>
                 <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">prepublication</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:date>
@@ -1089,21 +1074,6 @@
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-09-11</bf:date>
-                <bf:agent>
-                  <bf:Agent>
-                    <bf:code>ICrlF</bf:code>
-                  </bf:Agent>
-                </bf:agent>
-              </bf:AdminMetadata>
-            </bf:adminMetadata>
-            <bf:adminMetadata>
-              <bf:AdminMetadata>
-                <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
-                  </bf:Status>
-                </bf:status>
-                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-09-12T07:00:12</bf:date>
                 <bf:agent>
                   <bf:Agent>
                     <bf:code>ICrlF</bf:code>

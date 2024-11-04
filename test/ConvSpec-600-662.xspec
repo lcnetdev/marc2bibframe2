@@ -68,10 +68,10 @@
   <x:scenario label="650 - SUBJECT ADDED ENTRY--TOPICAL TERM">
     <x:context href="data/ConvSpec-648-662/marc.xml"/>
     <x:expect label="650 creates a subject/Topic property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic)=12"/>
-    <x:expect label="$abcdvxyz create the rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Topic/rdfs:label = 'Caracas--Bolivar Statue--Far away--Long ago--History'"/>
+    <x:expect label="$abcdvxyz create the rdfs:label property of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Topic/rdfs:label = 'Caracas Bolivar Statue Far away Long ago--History'"/>
     <x:expect label="$g creates a note property of the Topic" test="//bf:Work[1]/bf:subject[6]/bf:Topic/bf:note/bf:Note/rdfs:label = 'Miscellania'"/>
     <x:expect label="$abcdvxyz create a madsrdf:componentList property of the Topic" test="count(//bf:Work[1]/bf:subject[6]/bf:Topic/madsrdf:componentList) = 1"/>
-    <x:expect label="...with components from the subfields" test="//bf:Work[1]/bf:subject[6]/bf:Topic/madsrdf:componentList/madsrdf:Topic[2]/madsrdf:authoritativeLabel = 'Bolivar Statue'"/>
+    <x:expect label="...with components from the subfields" test="//bf:Work[1]/bf:subject[6]/bf:Topic/madsrdf:componentList/madsrdf:Topic[1]/madsrdf:authoritativeLabel = 'Caracas Bolivar Statue Far away Long ago'"/>
     <x:expect label="Period stripped from last subfield" test="//bf:Work[1]/bf:subject[7]/bf:Topic/rdfs:label = 'Baseball cards'"/>
   </x:scenario>
   
