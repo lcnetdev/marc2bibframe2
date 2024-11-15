@@ -145,6 +145,11 @@
   <datafield tag="740" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="752" convertLinked="false"/>
   <datafield tag="753" convertLinked="false"/>
+  
+  <!--
+    If any of the fields commented out in this block have
+    a paired 880, it will be converted together with the 
+    regular field.
   <datafield tag="760" convertLinked="true"/>
   <datafield tag="762" convertLinked="true"/>
   <datafield tag="765" convertLinked="true"/>
@@ -160,6 +165,7 @@
   <datafield tag="785" convertLinked="true"/>
   <datafield tag="786" convertLinked="true"/>
   <datafield tag="787" convertLinked="true"/>
+  -->
   <datafield tag="800" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="810" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="811" convertLinked="false"/> <!-- linked 880 converted together with regular field -->

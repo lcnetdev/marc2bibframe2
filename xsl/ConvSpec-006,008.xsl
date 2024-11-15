@@ -615,12 +615,12 @@
               (
                 (
                     $vProperty='bf:supplementaryContent' and
-                    not($v353[.!=$vMarcgtText])
+                    not($v353[.=$vMarcgtText])
                 ) or 
                 (
                   $vProperty='bf:genreForm' and 
-                  not($v655[.!=$vMarcgtText]) and 
-                  not($v655[.!=concat($vMarcgtText, '.')])
+                  not($v655[.=$vMarcgtText]) and 
+                  not($v655[.=concat($vMarcgtText, '.')])
                  )
                ) and 
               $serialization = 'rdfxml'">
