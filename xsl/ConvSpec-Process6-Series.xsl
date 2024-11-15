@@ -55,7 +55,7 @@
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="grouped490Info" select="exsl:node-set($grouped490InfoPreNS)"/>
-    <xsl:message><xsl:copy-of select="$grouped490Info"/></xsl:message>
+    <!-- <xsl:message><xsl:copy-of select="$grouped490Info"/></xsl:message> -->
     
     <!-- Find the group numbers. -->
     <xsl:variable name="tThisDF" select="."/>
@@ -100,7 +100,9 @@
             </bf:associatedResource>
             <xsl:for-each select="$grouped490Info/bf:seriesEnumeration[@groupNum=$tGNum]">
               <xsl:element name="{name()}">
-                <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang"/></xsl:attribute>
+                <xsl:if test="@xml:lang">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang"/></xsl:attribute>  
+                </xsl:if>
                 <xsl:copy-of select="child::node()" />
               </xsl:element>
             </xsl:for-each>
