@@ -61,8 +61,7 @@
     <xsl:variable name="tThisDF" select="."/>
       <xsl:variable name="tGroupNums" select="$grouped490Info//@groupNum[not(.=preceding::bf:*/@groupNum[1])]" />
       <xsl:for-each select="$tGroupNums">
-        <xsl:variable name="tGNum" select="."/>
-        <xsl:message><xsl:value-of select="$tGNum"/></xsl:message>    
+        <xsl:variable name="tGNum" select="."/>    
         <bf:relation>
           <bf:Relation>
             <bf:relationship>
@@ -261,6 +260,15 @@
     <xsl:variable name="next_pos" select="$pPos + 1"/>
     
     <xsl:choose>
+      <xsl:when test="$tSF/@code = '6'">
+        <xsl:apply-templates select="." mode="groupify490">
+          <xsl:with-param name="pGPos" select="$pGPos" />
+          <xsl:with-param name="pPos" select="$next_pos" />
+          <xsl:with-param name="pXmllang" select="$pXmllang" />
+          <xsl:with-param name="pRelated880" select="$pRelated880" />
+          <xsl:with-param name="p880Xmllang" select="$p880Xmllang" />
+        </xsl:apply-templates>
+      </xsl:when>
       <!-- This subfield is the end of a parallel title.  Start a new group. -->
       <xsl:when test="substring($tSF, string-length($tSF))='='">
         <xsl:apply-templates select="." mode="groupify490">
