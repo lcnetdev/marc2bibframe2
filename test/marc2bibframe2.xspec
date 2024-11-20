@@ -827,7 +827,7 @@
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
-                  <bf:Series rdf:about="http://example.org/4417401#Hub490-19">
+                  <bf:Series>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                     <bf:status>
                       <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
