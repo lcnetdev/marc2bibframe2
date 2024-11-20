@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://www.loc.gov/MARC21/slim" xmlns:mets="http://www.loc.gov/METS/" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:semtriples="http://marklogic.com/semantic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:streams="info:lc/streams#">
+    <controlfield tag="001">22321759</controlfield>
+    <datafield tag="700" ind1="1" ind2="2">
+        <subfield code="i">Container of (work):</subfield>
+        <subfield code="a">Stravinsky, Igor,</subfield>
+        <subfield code="d">1882-1971.</subfield>
+        <subfield code="t">Concertos,</subfield>
+        <subfield code="m">violin, orchestra,</subfield>
+        <subfield code="r">D.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2="2">
+        <subfield code="i">Libretto for (work):</subfield>
+        <subfield code="a">Dittersdorf, Karl Ditters von,</subfield>
+        <subfield code="d">1739-1799.</subfield>
+        <subfield code="t">Gefoppte Bräutigam.</subfield>
+    </datafield>
+    <datafield tag="730" ind1="0" ind2=" ">
+        <subfield code="i">Based on (expression):</subfield>
+        <subfield code="a">Olivia (Television program)</subfield>
+    </datafield>
+</record>

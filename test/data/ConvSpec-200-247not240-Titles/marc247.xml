@@ -20,4 +20,18 @@
       <subfield code="x">1234-5678</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">2</controlfield>
+    <controlfield tag="008">750711u1961uuuuch ar    s   s0   e1chi  </controlfield>
+    <datafield tag="247" ind1="1" ind2="1">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Taiwan Sheng ren kou tong ji.</subfield>
+      <subfield code="f">1961-</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="1">
+      <subfield code="6">247-03/$1</subfield>
+      <subfield code="a">臺灣省人口統計.</subfield>
+      <subfield code="f">1961-</subfield>
+    </datafield>
+  </record>
 </collection>

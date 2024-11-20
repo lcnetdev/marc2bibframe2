@@ -86,5 +86,14 @@
     <x:expect label="700 with $i='is arrangement of' converts to bf:arrangementOf relationship and links to Hub." test="//bf:Work/bf:relation[5]/bf:Relation/bf:associatedResource/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Cottage by the sea'"/>
     <x:expect label="700 with $i='is arrangement of' converts to bf:arrangementOf relationship." test="//bf:Work/bf:relation[5]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/arrangementof'"/>
   </x:scenario>
+  
+  <x:scenario label="Relationship handling">
+    <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc_contains.xml"/>
+    <x:expect label="$i with 'Contains' converted to 'part'" test="//bf:Work/bf:relation[1]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/part'"/>
+    <x:expect label="ind2=2 converted to 'part'" test="//bf:Work/bf:relation[2]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/part'"/>
+    <x:expect label="$i retained when not 'contain'" test="//bf:Work/bf:relation[2]/bf:Relation/bf:relationship/bf:Relationship/rdfs:label='Libretto for (work)'"/>
+    <x:expect label="ind2=' ' converted to relatedwork" test="//bf:Work/bf:relation[3]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/relatedwork'"/>
+    <x:expect label="$i retained when not 'contain'" test="//bf:Work/bf:relation[3]/bf:Relation/bf:relationship/bf:Relationship/rdfs:label='Based on (expression)'"/>
+  </x:scenario>
 
 </x:description>

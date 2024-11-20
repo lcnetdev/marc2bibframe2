@@ -84,4 +84,14 @@
     <controlfield tag="001">15</controlfield>
     <controlfield tag="008">030311s2002    xxu               mleng  </controlfield>
   </record>
+  <record>
+    <leader>08525cam a2201477 i 4500</leader>
+    <controlfield tag="001">16</controlfield>
+    <controlfield tag="008">130806m20132016gaua   j 6    000 0aeng c</controlfield>
+  </record>
+  <record>
+    <leader>01344cam a22003137a 4500</leader>
+    <controlfield tag="001">17</controlfield>
+    <controlfield tag="008">001128q19001956ja            000 0 jpn  </controlfield>
+  </record>
 </collection>

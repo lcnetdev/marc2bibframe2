@@ -38,6 +38,7 @@
             <xsl:when test="$vScript6simple='$1' and $vCountry008='ko '">kore</xsl:when>
             <xsl:when test="$vScript6simple='$1' and $vCountry008='cc '">hani</xsl:when>
             <xsl:when test="$vScript6simple='$1' and $vCountry008='ch '">hani</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vCountry008='ja '">jpan</xsl:when>
             <xsl:when test="$vScript6simple='$1' and $vLang008='ja '">jpan</xsl:when>
             <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
             <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
