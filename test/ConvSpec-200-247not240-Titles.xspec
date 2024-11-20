@@ -124,6 +124,10 @@
     <x:expect label="$n becomes a partNumber" test="//bf:Work[4]/bf:title/bf:VariantTitle/bf:partNumber = 'Serie A'"/>
     <x:expect label="$p becomes a partName" test="//bf:Work[4]/bf:title/bf:VariantTitle/bf:partName = 'Meteorology and geophysics'"/>
     <x:expect label="$5 becomes the applicableInstitution" test="//bf:Work[4]/bf:title/bf:VariantTitle/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+    
+    <x:expect label="Variant title without langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:variantType = 'portion'"/>
+    <x:expect label="Variant title without langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:mainTitle[not(@xml:lang)] = 'Hua wen chuang zuo san di yu'"/>
+    <x:expect label="Variant title with langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:mainTitle[@xml:lang='zh-hani'] = '华文创作三地域'"/>
   </x:scenario>
 
   <x:scenario label="247 - FORMER TITLE">
@@ -158,6 +162,15 @@
     <x:scenario label="$x">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
       <x:expect label="becomes the identifiedBy Issn" test="//bf:Work[1]/bf:title[4]/bf:VariantTitle/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
+    </x:scenario>
+    
+    <x:scenario label="247/Variant 880 pairing">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:variantType = 'former'"/>
+      <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:mainTitle[not(@xml:lang)] = 'Taiwan Sheng ren kou tong ji'"/>
+      <x:expect label="Variant title with langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:mainTitle[@xml:lang='zh-hani'] = '臺灣省人口統計'"/>
+      <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:date[not(@xml:lang)] = '1961-'"/>
+      <x:expect label="Variant title with langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:date[@xml:lang='zh-hani'] = '1961-'"/>
     </x:scenario>
   </x:scenario>
 
