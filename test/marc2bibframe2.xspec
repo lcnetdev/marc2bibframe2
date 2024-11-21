@@ -75,7 +75,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -102,7 +102,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -257,22 +262,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1992-08-26T08:40:36</bf:date>
-                <bf:agent>
-                  <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
-                    <bf:code>DLC</bf:code>
-                  </bf:Agent>
-                </bf:agent>
-              </bf:AdminMetadata>
-            </bf:adminMetadata>
-            <bf:adminMetadata>
-              <bf:AdminMetadata>
-                <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
-                  </bf:Status>
-                </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -299,7 +289,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/MusicAudio"/>
@@ -492,7 +487,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -519,7 +514,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aIEU$cIEU$dN@F$dDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aIEU$cIEU$dN@F$dDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
                 <bf:descriptionAuthentication>
                   <bf:DescriptionAuthentication rdf:about="http://id.loc.gov/vocabulary/marcauthen/lccopycat">
                     <bf:code>lccopycat</bf:code>
@@ -577,9 +577,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-22">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>White House (Washington, D.C.)</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>White House (Washington, D.C.)</rdfs:label>
                 <bflc:marcKey>61020$aWhite House (Washington, D.C.)</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -588,9 +585,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-23">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Executive Office of the President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Executive Office of the President.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bExecutive Office of the President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -599,9 +593,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-24">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Office of the Vice President.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Office of the Vice President.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the Vice President.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -610,9 +601,6 @@
             <bf:subject>
               <bf:Agent rdf:about="http://example.org/12149120#Agent610-25">
                 <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction" />
-                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#CorporateName" />
-                <madsrdf:authoritativeLabel>United States. Office of the First Lady.</madsrdf:authoritativeLabel>
-                <madsrdf:isMemberOfMADSScheme rdf:resource="http://id.loc.gov/authorities/subjects" />
                 <rdfs:label>United States. Office of the First Lady.</rdfs:label>
                 <bflc:marcKey>61010$aUnited States.$bOffice of the First Lady.</bflc:marcKey>
                 <bf:source rdf:resource="http://id.loc.gov/authorities/subjects" />
@@ -727,8 +715,8 @@
             <bf:adminMetadata>
               <bf:AdminMetadata>
                 <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
+                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/p">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">prepublication</rdfs:label>
                   </bf:Status>
                 </bf:status>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-10T09:55:39</bf:date>
@@ -746,7 +734,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -773,7 +761,12 @@
                     </bf:assigner>
                   </bf:Local>
                 </bf:identifiedBy>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aDLC$cDLC$dDLC</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC$dDLC</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -834,7 +827,7 @@
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
-                  <bf:Series rdf:about="http://example.org/4417401#Hub490-19">
+                  <bf:Series>
                     <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                     <bf:status>
                       <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
@@ -1033,11 +1026,12 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>26 cm</bf:dimensions>
-            <bf:supplementaryContent>
-              <bf:SupplementaryContent>
-                <rdfs:label>Includes bibliographical references and index.</rdfs:label>
-              </bf:SupplementaryContent>
-            </bf:supplementaryContent>
+            <bf:note>
+              <bf:Note>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/biblio"/>
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Includes bibliographical references and index.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:supplementaryContent>
               <bf:SupplementaryContent>
                 <bf:electronicLocator rdf:resource="http://www.loc.gov/catdir/bios/wiley043/93048623.html" />
@@ -1095,22 +1089,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-09-12T07:00:12</bf:date>
-                <bf:agent>
-                  <bf:Agent>
-                    <bf:code>ICrlF</bf:code>
-                  </bf:Agent>
-                </bf:agent>
-              </bf:AdminMetadata>
-            </bf:adminMetadata>
-            <bf:adminMetadata>
-              <bf:AdminMetadata>
-                <bf:status>
-                  <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/c">
-                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
-                  </bf:Status>
-                </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.7.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -1140,7 +1119,12 @@
                     <bf:code>rda</bf:code>
                   </bf:DescriptionConventions>
                 </bf:descriptionConventions>
-                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">040  $aICrlF$beng$erda$cICrlF</bflc:marcKey>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/internal"/>
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aICrlF$beng$erda$cICrlF</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Hub" />

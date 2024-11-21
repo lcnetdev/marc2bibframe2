@@ -1,0 +1,170 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>02370cas a2200493   4500</marcxml:leader>
+  <marcxml:controlfield tag="001">11195727</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20180327081421.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">760113d193719uucc ar         0   e0chir </marcxml:controlfield>
+  <marcxml:datafield tag="010" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">   75838694 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="035" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">(OCoLC)ocm02245505 </marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="040" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">DLC</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="c">DLC</marcxml:subfield>
+    <marcxml:subfield code="d">OCL</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">WAU</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="041" ind1="0" ind2=" ">
+    <marcxml:subfield code="a">chi</marcxml:subfield>
+    <marcxml:subfield code="a">eng</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="042" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">pcc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="043" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">a-cc-hk</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="050" ind1="0" ind2="0">
+    <marcxml:subfield code="a">T640.A1</marcxml:subfield>
+    <marcxml:subfield code="b">H77a</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="066" ind1=" " ind2=" ">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="110" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang Hua zi gong ye chu pin zhan lan hui.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="245" ind1="1" ind2="0">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang Hua zi gong ye chu pin zhan lan hui te kan.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="246" ind1="1" ind2="4">
+    <marcxml:subfield code="a">Record of the Exhibition of Hong Kong Products</marcxml:subfield>
+    <marcxml:subfield code="f">&lt;1953-57&gt;</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="246" ind1="1" ind2="4">
+    <marcxml:subfield code="a">Pictorial record of the Exhibition of Hong Kong Products</marcxml:subfield>
+    <marcxml:subfield code="f">&lt;1959-60&gt;</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="260" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">[Xianggang]</marcxml:subfield>
+    <marcxml:subfield code="b">Xianggang Zhonghua chang shang lian he hui.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="300" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">illustrations</marcxml:subfield>
+    <marcxml:subfield code="c">18-26 cm</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="336" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">text</marcxml:subfield>
+    <marcxml:subfield code="b">txt</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="337" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="b">n</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="362" ind1="1" ind2=" ">
+    <marcxml:subfield code="a">First exhibition held in 1937.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="515" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Exhibition suspended 1942-47.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="546" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">Some English.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="610" ind1="2" ind2="0">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang Hua zi gong ye chu pin zhan lan hui</marcxml:subfield>
+    <marcxml:subfield code="v">Guidebooks.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="655" ind1=" " ind2="7">
+    <marcxml:subfield code="a">Guidebooks.</marcxml:subfield>
+    <marcxml:subfield code="2">fast</marcxml:subfield>
+    <marcxml:subfield code="0">(OCoLC)fst01423871</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang Zhonghua chang shang lian he hui.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang Hua zi gong ye chu pin zhan lan hui.</marcxml:subfield>
+    <marcxml:subfield code="t">Record of the Exhibition of Hong Kong Products.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="710" ind1="2" ind2=" ">
+    <marcxml:subfield code="a">Xianggang Hua zi gong ye chu pin zhan lan hui.</marcxml:subfield>
+    <marcxml:subfield code="t">Pictorial record of the Exhibition of Hong Kong Products.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="785" ind1="0" ind2="0">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Xianggang gong ye chu pin zhan lan hui.</marcxml:subfield>
+    <marcxml:subfield code="t">Xianggang gong ye chu pin zhan lan hui te kan</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">110-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港華資工業出品展覽會.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="1" ind2="0">
+    <marcxml:subfield code="6">245-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港華資工業出品展覽會特刋.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1=" " ind2=" ">
+    <marcxml:subfield code="6">260-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">[香港]</marcxml:subfield>
+    <marcxml:subfield code="b">香港中華廠商聯合會.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2="4">
+    <marcxml:subfield code="6">610-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港華資工業出品展覽會</marcxml:subfield>
+    <marcxml:subfield code="v">Guidebooks.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">710-00/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港華資工業出品展覽會.</marcxml:subfield>
+    <marcxml:subfield code="t">Record of the Exhibition of Hong Kong Products.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">710-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港中華廠商聯合會.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="2" ind2=" ">
+    <marcxml:subfield code="6">710-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港華資工業出品展覽會.</marcxml:subfield>
+    <marcxml:subfield code="t">Pictorial record of the Exhibition of Hong Kong Products.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="880" ind1="0" ind2="0">
+    <marcxml:subfield code="6">785-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">香港工業出品展覽會.</marcxml:subfield>
+    <marcxml:subfield code="t">香港工業出品展覽會特刋</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="906" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">7</marcxml:subfield>
+    <marcxml:subfield code="b">cbc</marcxml:subfield>
+    <marcxml:subfield code="c">serials</marcxml:subfield>
+    <marcxml:subfield code="d">4</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">19</marcxml:subfield>
+    <marcxml:subfield code="g">n-oclcserc</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="984" ind1=" " ind2=" ">
+    <marcxml:subfield code="a">adsf</marcxml:subfield>
+    <marcxml:subfield code="d">2007-09-12</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield tag="991" ind1=" " ind2=" ">
+    <marcxml:subfield code="b">c-GenColl</marcxml:subfield>
+    <marcxml:subfield code="h">T640.A1</marcxml:subfield>
+    <marcxml:subfield code="i">H77a</marcxml:subfield>
+    <marcxml:subfield code="w">SERIALS</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

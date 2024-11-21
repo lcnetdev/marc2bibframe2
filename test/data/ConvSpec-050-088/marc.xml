@@ -114,5 +114,10 @@
       <subfield code="a">NASA-RP-1124-REV-3</subfield>
       <subfield code="z">NASA-RP-1124-REV-2</subfield>
     </datafield>
+    <datafield tag="080" ind1=" " ind2=" ">
+      <subfield code="a">311.3:330.322</subfield>
+      <subfield code="b">311 item</subfield>
+      <subfield code="2">8th French Abbr. Ed.</subfield>
+    </datafield>
   </record>
 </collection>

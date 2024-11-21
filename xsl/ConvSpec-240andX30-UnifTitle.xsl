@@ -321,19 +321,46 @@
         </xsl:if>
         
         <!-- marcKey -->
+        <xsl:variable name="v880Occurrence" select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)" />
+        <xsl:variable name="v880Ref" select="concat($tag, '-', $v880Occurrence)" />
+        <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
+        <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$related880" mode="xmllang"/></xsl:variable>
+        
         <xsl:choose>
           <xsl:when test="$tag='240'">
             <xsl:variable name="vDF1xx" select="../marc:datafield[starts-with(@tag, '1')]" />
             <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="$vDF1xx" mode="marcKey"/></xsl:variable>
             <xsl:variable name="vMarcKey240"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
             <bflc:marcKey><xsl:value-of select="concat($vMarcKey1XX, '$t', substring-after($vMarcKey240, '$a'))" /></bflc:marcKey>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:variable name="v880-1XX" select="../marc:datafield[@tag='880' and marc:subfield[@code='6' and starts-with(., '1')]]" />
+              <xsl:variable name="v880-1XX-marcKey"><xsl:apply-templates select="$v880-1XX" mode="marcKey"/></xsl:variable>
+              <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
+              <bflc:marcKey>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                <xsl:value-of select="concat($v880-1XX-marcKey, '$t', substring-after($vMarcKey880, '$a'))" />
+              </bflc:marcKey>
+            </xsl:if>
           </xsl:when>
           <xsl:when test="$tag='110' or $tag='100' or $tag='111'">
             <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
             <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$k'))" /></bflc:marcKey>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
+              <bflc:marcKey>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                <xsl:value-of select="concat(substring-before($vMarcKey880, '$k'), '$t', substring-after($vMarcKey880, '$k'))" />
+              </bflc:marcKey>
+            </xsl:if>
           </xsl:when>
           <xsl:otherwise>
             <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
+            <xsl:if test="$vXmlLang880 != ''">
+              <bflc:marcKey>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                <xsl:apply-templates select="$related880" mode="marcKey"/>
+              </bflc:marcKey>
+            </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
         
@@ -355,6 +382,12 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    
+    <xsl:variable name="v880Occurrence" select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)" />
+    <xsl:variable name="v880Ref" select="concat($tag, '-', $v880Occurrence)" />
+    <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
+    <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$related880" mode="xmllang"/></xsl:variable>
+    
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="nfi">
       <xsl:choose>
@@ -386,6 +419,18 @@
               <xsl:with-param name="pString" select="$label"/>
             </xsl:call-template>
           </bf:mainTitle>
+          <xsl:if test="$vXmlLang880 != ''">
+            <bf:mainTitle>
+              <xsl:if test="$vXmlLang880 != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+              </xsl:if>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString">
+                  <xsl:apply-templates select="$related880" mode="tTitleLabel"/>
+                </xsl:with-param>
+              </xsl:call-template>
+            </bf:mainTitle>
+          </xsl:if>
           <xsl:choose>
             <xsl:when test="substring($tag,2,2) = '11'">
               <xsl:for-each select="marc:subfield[@code='t']/following-sibling::marc:subfield[@code='n']">

@@ -30,8 +30,8 @@
     <x:expect label="ind2 = '0' creates an assigner property of the ClassificationLcc" test="//bf:Work[1]/bf:classification[7]/bf:ClassificationLcc/bf:assigner/@rdf:resource = 'http://id.loc.gov/vocabulary/organizations/dlc'"/>
     
     <x:expect label="$a creates a classificationPortion of PN6728.6.D3" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:classificationPortion = 'PN6728.6.D3'"/>
-    <x:expect label="ind1 = '0' creates a not used by assigner status of the ClassificationLcc" test="//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:status/@rdf:resource = 'http://id.loc.gov/vocabulary/mstatus/nuba'"/>
-    <x:expect label="ind2 = '0' creates NO assigner property of the ClassificationLcc" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:assigner/@rdf:resource) = 0"/>
+    <x:expect label="ind2 = '4' creates NO assigner property of the ClassificationLcc" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:assigner/@rdf:resource) = 0"/>
+    <x:expect label="ind1 = '0' is ignored because ind2=4" test="count(//bf:Work[1]/bf:classification[8]/bf:ClassificationLcc/bf:status) = 0"/>
   </x:scenario>
   
   <x:scenario label="052 - GEOGRAPHIC CLASSIFICATION">
@@ -128,6 +128,8 @@
     <x:expect label="$0 used as resource URI of the Classification because $b not present" test="//bf:Work[1]/bf:classification[18]/bf:Classification/@rdf:about = 'http://example.org/HEU_G74.3C49'"/>
     <x:expect label="Additional $0 relate to Classification resource" test="//bf:Work[1]/bf:classification[18]/bf:Classification/madsrdf:hasRelatedAuthority[1]/@rdf:resource = 'http://example.org/HEU_G74.3C50'"/>
   </x:scenario>
+  
+
   
   <x:scenario label="088 - REPORT NUMBER">
     <x:context href="data/ConvSpec-050-088/marc.xml"/>

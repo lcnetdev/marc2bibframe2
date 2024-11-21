@@ -138,5 +138,12 @@
     </x:context>
     <x:expect label="Return the carrier URI from the 008" select="'http://id.loc.gov/vocabulary/carriers/cz'"/>
   </x:scenario>
+  
+  <x:scenario label="008 - DATES">
+    <x:context href="data/ConvSpec-006,008/marc.xml"/>
+    <x:expect label="s date" test="//bf:Instance[15]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2002'"/>
+    <x:expect label="m date" test="//bf:Instance[16]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2013/2016'"/>
+    <x:expect label="q date" test="//bf:Instance[17]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='1900~/1956~'"/>
+  </x:scenario>
 
 </x:description>

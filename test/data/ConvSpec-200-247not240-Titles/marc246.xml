@@ -43,4 +43,19 @@
       <subfield code="5">DLC</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">5</controlfield>
+    <controlfield tag="008">190819s2015    cc a          000 0 chi d</controlfield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Hua wen chuang zuo san di yu</subfield>
+    </datafield>
+    <datafield tag="880" ind1="3" ind2="0">
+      <subfield code="6">246-03/$1</subfield>
+      <subfield code="a">华文创作三地域</subfield>
+    </datafield>
+    <datafield tag="246" ind1="1" ind2="4">
+      <subfield code="a">Huaqiao wenhua yanjiu shuxi</subfield>
+    </datafield>
+  </record>
 </collection>

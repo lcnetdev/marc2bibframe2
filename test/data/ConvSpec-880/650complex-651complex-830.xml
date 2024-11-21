@@ -1,0 +1,233 @@
+<marcxml:record xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:marcxml="http://www.loc.gov/MARC21/slim" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#" xmlns:ri="http://id.loc.gov/ontologies/RecordInfo#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mets="http://www.loc.gov/METS/" xmlns:idx="info:lc/xq-modules/lcindex" xmlns:bfidx="info:lc/xq-modules/bfidx" xmlns:semtriples="http://marklogic.com/semantic" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:bfsimple="http://id.loc.gov/ontologies/bfsimple/" xmlns:dcterms="http://purl.org/dc/terms/">
+  <marcxml:leader>03036dam a22005655i 4500</marcxml:leader>
+  <marcxml:controlfield tag="001">19607466</marcxml:controlfield>
+  <marcxml:controlfield tag="005">20220828195857.0</marcxml:controlfield>
+  <marcxml:controlfield tag="008">170424s2015    cc abf        000 0 chi d</marcxml:controlfield>
+  <marcxml:datafield ind1=" " ind2=" " tag="906">
+    <marcxml:subfield code="a">0</marcxml:subfield>
+    <marcxml:subfield code="b">ibc</marcxml:subfield>
+    <marcxml:subfield code="c">copycat</marcxml:subfield>
+    <marcxml:subfield code="d">3</marcxml:subfield>
+    <marcxml:subfield code="e">ncip</marcxml:subfield>
+    <marcxml:subfield code="f">20</marcxml:subfield>
+    <marcxml:subfield code="g">y-nonroman</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2=" " tag="925">
+    <marcxml:subfield code="a">acquire</marcxml:subfield>
+    <marcxml:subfield code="b">1 shelf copy</marcxml:subfield>
+    <marcxml:subfield code="x">policy default</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="955">
+    <marcxml:subfield code="b">cc25 2017-04-24 z-processor JACKPHY</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="010">
+    <marcxml:subfield code="a">  2017383107</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="020">
+    <marcxml:subfield code="a">9787506571548</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="020">
+    <marcxml:subfield code="a">7506571544</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="035">
+    <marcxml:subfield code="a">(OCoLC)ocn967359679</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="040">
+    <marcxml:subfield code="a">HUA</marcxml:subfield>
+    <marcxml:subfield code="b">eng</marcxml:subfield>
+    <marcxml:subfield code="e">rda</marcxml:subfield>
+    <marcxml:subfield code="c">HUA</marcxml:subfield>
+    <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+    <marcxml:subfield code="d">BCBTC</marcxml:subfield>
+    <marcxml:subfield code="d">DLC</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="042">
+    <marcxml:subfield code="a">lccopycat</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="043">
+    <marcxml:subfield code="a">a-cc---</marcxml:subfield>
+    <marcxml:subfield code="a">a-cc-kn</marcxml:subfield>
+    <marcxml:subfield code="a">a-cc-ha</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="066">
+    <marcxml:subfield code="c">$1</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="097">
+    <marcxml:subfield code="a">DS777.53</marcxml:subfield>
+    <marcxml:subfield code="b">.Z533 2015 ser. 4 v. 3</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="245">
+    <marcxml:subfield code="6">880-01</marcxml:subfield>
+    <marcxml:subfield code="a">Hua nan ren min kang Ri you ji dui tu pian, biao ce, can kao zi liao /</marcxml:subfield>
+    <marcxml:subfield code="c">Zhongguo kang Ri zhan zheng jun shi shi liao cong shu bian shen wei yuan hui.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="0" ind2="0" tag="880">
+    <marcxml:subfield code="6">245-01/$1</marcxml:subfield>
+    <marcxml:subfield code="a">华南人民抗日游击队图片, 表册, 参考资料 /</marcxml:subfield>
+    <marcxml:subfield code="c">中国抗日战争军事史料丛书编审委员会.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="3" ind2="0" tag="880">
+    <marcxml:subfield code="6">246-00/$1</marcxml:subfield>
+    <marcxml:subfield code="a">华南人民抗日游击队, 图片表册参考资料</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="250">
+    <marcxml:subfield code="6">880-02</marcxml:subfield>
+    <marcxml:subfield code="a">Di 1 ban.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="880">
+    <marcxml:subfield code="6">250-02/$1</marcxml:subfield>
+    <marcxml:subfield code="a">第 1 版.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="1" tag="264">
+    <marcxml:subfield code="6">880-03</marcxml:subfield>
+    <marcxml:subfield code="a">Beijing Shi :</marcxml:subfield>
+    <marcxml:subfield code="b">Jie fang jun chu ban she,</marcxml:subfield>
+    <marcxml:subfield code="c">2015.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="1" tag="880">
+    <marcxml:subfield code="6">264-03/$1</marcxml:subfield>
+    <marcxml:subfield code="a">北京市 :</marcxml:subfield>
+    <marcxml:subfield code="b">解放军出版社,</marcxml:subfield>
+    <marcxml:subfield code="c">2015.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="300">
+    <marcxml:subfield code="a">3, 7, 244 pages, 24 unnumbered pages of plates :</marcxml:subfield>
+    <marcxml:subfield code="b">illustrations, map ;</marcxml:subfield>
+    <marcxml:subfield code="c">25 cm.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="336">
+    <marcxml:subfield code="a">text</marcxml:subfield>
+    <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="337">
+    <marcxml:subfield code="a">unmediated</marcxml:subfield>
+    <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="338">
+    <marcxml:subfield code="a">volume</marcxml:subfield>
+    <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="490">
+    <marcxml:subfield code="6">880-04</marcxml:subfield>
+    <marcxml:subfield code="a">Zhongguo kang Ri zhan zheng jun shi shi liao cong shu. [Series 4] ;</marcxml:subfield>
+    <marcxml:subfield code="v">[v. 3]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="1" ind2=" " tag="880">
+    <marcxml:subfield code="6">490-04/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中国抗日战争军事史料丛书. [Series 4] ;</marcxml:subfield>
+    <marcxml:subfield code="v">[v. 3]</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="6">880-05</marcxml:subfield>
+    <marcxml:subfield code="a">Sino-Japanese War, 1937-1945</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Guangdong Sheng</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">650-05/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Sino-Japanese War, 1937-1945</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">广东省</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="6">880-06</marcxml:subfield>
+    <marcxml:subfield code="a">Sino-Japanese War, 1937-1945</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Hainan Sheng</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">650-06/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Sino-Japanese War, 1937-1945</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">海南省</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="651">
+    <marcxml:subfield code="6">880-07</marcxml:subfield>
+    <marcxml:subfield code="a">Guangdong Sheng (China)</marcxml:subfield>
+    <marcxml:subfield code="x">History, Military</marcxml:subfield>
+    <marcxml:subfield code="y">20th century</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">651-07/$1</marcxml:subfield>
+    <marcxml:subfield code="a">广东省 (中国)</marcxml:subfield>
+    <marcxml:subfield code="x">History, Military</marcxml:subfield>
+    <marcxml:subfield code="y">20th century</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="651">
+    <marcxml:subfield code="6">880-08</marcxml:subfield>
+    <marcxml:subfield code="a">Hainan Sheng (China)</marcxml:subfield>
+    <marcxml:subfield code="x">History, Military</marcxml:subfield>
+    <marcxml:subfield code="y">20th century</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">651-08/$1</marcxml:subfield>
+    <marcxml:subfield code="a">海南省 (中国)</marcxml:subfield>
+    <marcxml:subfield code="x">History, Military</marcxml:subfield>
+    <marcxml:subfield code="y">20th century</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="6">880-09</marcxml:subfield>
+    <marcxml:subfield code="a">Guerrilla warfare</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Guangdong Sheng</marcxml:subfield>
+    <marcxml:subfield code="x">History</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">650-09/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Guerrilla warfare</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">广东省</marcxml:subfield>
+    <marcxml:subfield code="x">History</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="650">
+    <marcxml:subfield code="6">880-10</marcxml:subfield>
+    <marcxml:subfield code="a">Guerrilla warfare</marcxml:subfield>
+    <marcxml:subfield code="z">China</marcxml:subfield>
+    <marcxml:subfield code="z">Hainan Sheng</marcxml:subfield>
+    <marcxml:subfield code="x">History</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="4" tag="880">
+    <marcxml:subfield code="6">650-10/$1</marcxml:subfield>
+    <marcxml:subfield code="a">Guerrilla warfare</marcxml:subfield>
+    <marcxml:subfield code="z">中国</marcxml:subfield>
+    <marcxml:subfield code="z">海南省</marcxml:subfield>
+    <marcxml:subfield code="x">History</marcxml:subfield>
+    <marcxml:subfield code="v">Sources.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="2" ind2=" " tag="710">
+    <marcxml:subfield code="6">880-11</marcxml:subfield>
+    <marcxml:subfield code="a">Zhongguo kang Ri zhan zheng jun shi shi liao cong shu bian shen wei yuan hui,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1="2" ind2=" " tag="880">
+    <marcxml:subfield code="6">710-11/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中国抗日战争军事史料丛书编审委员会,</marcxml:subfield>
+    <marcxml:subfield code="e">editor.</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="830">
+    <marcxml:subfield code="6">880-12</marcxml:subfield>
+    <marcxml:subfield code="a">Zhongguo kang Ri zhan zheng jun shi shi liao cong shu.</marcxml:subfield>
+    <marcxml:subfield code="n">[Series 4] ;</marcxml:subfield>
+    <marcxml:subfield code="v">[v. 3].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2="0" tag="880">
+    <marcxml:subfield code="6">830-12/$1</marcxml:subfield>
+    <marcxml:subfield code="a">中国抗日战争军事史料丛书.</marcxml:subfield>
+    <marcxml:subfield code="n">[Series 4] ;</marcxml:subfield>
+    <marcxml:subfield code="v">[v. 3].</marcxml:subfield>
+  </marcxml:datafield>
+  <marcxml:datafield ind1=" " ind2=" " tag="923">
+    <marcxml:subfield code="s">BZT</marcxml:subfield>
+  </marcxml:datafield>
+</marcxml:record>

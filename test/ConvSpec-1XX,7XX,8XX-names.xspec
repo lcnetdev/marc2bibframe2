@@ -65,17 +65,17 @@
     <x:expect label="$1 becomes Agent URI" test="//bf:Work[1]/bf:contribution[8]/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n83170323'"/>
     <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:contribution[8]/bf:Contribution/bf:agent/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n83170323'"/>
     
-    <x:expect label="Subject $0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n79027239'"/>
+    <x:expect label="Subject $0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[1]/bf:Agent/madsrdf:isIdentifiedByAuthority/madsrdf:PersonalName/@rdf:about='http://id.loc.gov/authorities/names/n79027239'"/>
     <x:expect label="...And creates $1 from ID Authorities URI" test="//bf:Work[1]/bf:subject[1]/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n79027239'"/>
     
     <x:expect label="Subject $1 becomes rdf:about" test="//bf:Work[1]/bf:subject[2]/bf:Agent/@rdf:about='http://id.loc.gov/rwo/agents/n79022244'"/>
-    <x:expect label="...And creates $0 from ID RWO URI" test="//bf:Work[1]/bf:subject[2]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://id.loc.gov/authorities/names/n79022244'"/>
+    <x:expect label="...And creates $0 from ID RWO URI" test="//bf:Work[1]/bf:subject[2]/bf:Agent/madsrdf:isIdentifiedByAuthority/madsrdf:PersonalName/@rdf:about='http://id.loc.gov/authorities/names/n79022244'"/>
 
     <x:expect label="Subject $1 becomes Agent URI" test="//bf:Work[1]/bf:subject[3]/bf:Agent/@rdf:about='https://viaf.org/viaf/76349832/'"/>
     <x:expect label="No $0 so no isIdentifiedByAuthority" test="count(//bf:Work[1]/bf:subject[3]/bf:Agent/madsrdf:isIdentifiedByAuthority)=0"/>
     
     <x:expect label="Subject $1 becomes Agent URI" test="//bf:Work[1]/bf:subject[4]/bf:Agent/@rdf:about='http://viaf.org/viaf/92989169'"/>
-    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[4]/bf:Agent/madsrdf:isIdentifiedByAuthority/@rdf:resource='http://example.org/names/n80005801'"/>
+    <x:expect label="...$0 becomes isIdentifiedByAuthority" test="//bf:Work[1]/bf:subject[4]/bf:Agent/madsrdf:isIdentifiedByAuthority/madsrdf:PersonalName/@rdf:about='http://example.org/names/n80005801'"/>
     
   </x:scenario>
 
@@ -85,6 +85,15 @@
     <x:expect label="700 with $i='is translation of' converts to bf:translationOf relationship." test="//bf:Work/bf:relation[4]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/translationof'"/>
     <x:expect label="700 with $i='is arrangement of' converts to bf:arrangementOf relationship and links to Hub." test="//bf:Work/bf:relation[5]/bf:Relation/bf:associatedResource/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Cottage by the sea'"/>
     <x:expect label="700 with $i='is arrangement of' converts to bf:arrangementOf relationship." test="//bf:Work/bf:relation[5]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/arrangementof'"/>
+  </x:scenario>
+  
+  <x:scenario label="Relationship handling">
+    <x:context href="data/ConvSpec-1XX,6XX,7XX,8XX-names/marc_contains.xml"/>
+    <x:expect label="$i with 'Contains' converted to 'part'" test="//bf:Work/bf:relation[1]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/part'"/>
+    <x:expect label="ind2=2 converted to 'part'" test="//bf:Work/bf:relation[2]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/part'"/>
+    <x:expect label="$i retained when not 'contain'" test="//bf:Work/bf:relation[2]/bf:Relation/bf:relationship/bf:Relationship/rdfs:label='Libretto for (work)'"/>
+    <x:expect label="ind2=' ' converted to relatedwork" test="//bf:Work/bf:relation[3]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/relatedwork'"/>
+    <x:expect label="$i retained when not 'contain'" test="//bf:Work/bf:relation[3]/bf:Relation/bf:relationship/bf:Relationship/rdfs:label='Based on (expression)'"/>
   </x:scenario>
 
 </x:description>

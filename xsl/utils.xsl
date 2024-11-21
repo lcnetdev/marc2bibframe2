@@ -19,6 +19,7 @@
     <xsl:choose>
       <xsl:when test="marc:subfield[@code='6'] and ../marc:controlfield[@tag='008']">
         <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
+        <xsl:variable name="vCountry008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
         <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
         <xsl:variable name="vScript6simple">
           <xsl:choose>
@@ -31,12 +32,18 @@
           <xsl:choose>
             <xsl:when test="$vScript6simple='(3'">arab</xsl:when>
             <xsl:when test="$vScript6simple='(B'">latn</xsl:when>
-            <xsl:when test="$vScript6simple='$1' and $vLang008='kor'">hang</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vLang008='kor'">kore</xsl:when>
             <xsl:when test="$vScript6simple='$1' and $vLang008='chi'">hani</xsl:when>
             <xsl:when test="$vScript6simple='$1' and $vLang008='jpn'">jpan</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vCountry008='ko '">kore</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vCountry008='cc '">hani</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vCountry008='ch '">hani</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vCountry008='ja '">jpan</xsl:when>
+            <xsl:when test="$vScript6simple='$1' and $vLang008='ja '">jpan</xsl:when>
             <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
             <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
             <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
+            <xsl:when test="$vScript6simple='(4' and $vLang008='per'">arab</xsl:when> <!-- An exception for bad data. -->
             <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
               <xsl:value-of select="$vScript6simple"/>
             </xsl:when>
@@ -45,7 +52,11 @@
             </xsl:when>
           </xsl:choose>
         </xsl:variable>
-        <xsl:if test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:if>        
+        <xsl:choose>
+          <xsl:when test="$vLang = 'en' and $vScript != '' and $vScript != 'latn'"><xsl:value-of select="concat('zxx-',$vScript)"/></xsl:when>
+          <xsl:when test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:when>
+          <xsl:when test="$vScript != ''"><xsl:value-of select="concat('zxx-',$vScript)"/></xsl:when>
+        </xsl:choose>        
       </xsl:when>
       <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '(bcp47)')">
         <xsl:value-of select="substring-after(marc:subfield[@code='7'], ')')"/>
@@ -490,7 +501,7 @@
     <xsl:value-of select="concat(@tag,@ind1,@ind2,normalize-space($marckey))" />
   </xsl:template>
   <xsl:template match="marc:subfield" mode="marcKey">
-    <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="."/>
+    <xsl:text>$</xsl:text><xsl:value-of select="@code"/><xsl:value-of select="normalize-space(.)"/>
   </xsl:template>
 
   <!--

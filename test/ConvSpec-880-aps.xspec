@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
+               xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
+               xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
+               stylesheet="../xsl/marc2bibframe2.xsl"
+               xslt-version="1.0">
+
+  <x:scenario label="100, 600complex, 700name">
+    <x:context href="data/ConvSpec-880/100-600-600complex-700.xml"/>
+    
+    <!-- 100 -->
+    <x:expect label="100a creates a primary contribution of the Work" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/rdf:type[@rdf:resource ='http://id.loc.gov/ontologies/bibframe/PrimaryContribution']) = 1"/>
+    <x:expect label="... Agent has two labels" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[@xml:lang='fa-arab'] = '‏پيروزان، هادى'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[not(@xml:lang)] = 'Pīrūzān, Hādī, 1983 or 1984-'"/>
+    <x:expect label="... Agent has two marcKeys" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[@xml:lang='fa-arab'] = '8801 $6100-01/(3/r‏$a‏پيروزان، هادى.'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[not(@xml:lang)] = '1001 $6880-01$aPīrūzān, Hādī,$d1983 or 1984-$eauthor.'"/>
+    
+    <!-- 700 -->
+    <x:expect label="700a creates a contribution of the Work" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/rdf:type[@rdf:resource ='http://id.loc.gov/ontologies/bibframe/PrimaryContribution']) = 0"/>
+    <x:expect label="... Agent has two labels" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[@xml:lang='fa-arab'] = '‏روستا، جمشيد'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[not(@xml:lang)] = 'Rūstā, Jamshīd, 1982 or 1983-'"/>
+    <x:expect label="... Agent has two marcKeys" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey) = 2"/>
+    <x:expect label="... Agent has an arabic marcKey" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[@xml:lang='fa-arab'] = '8801 $6700-09/(3/r‏$a‏روستا، جمشيد.'"/>
+    <x:expect label="... Agent has a latin marcKey" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[not(@xml:lang)] = '7001 $6880-09$aRūstā, Jamshīd,$d1982 or 1983-$eauthor'"/>
+  
+    <!-- 600complex -->
+    <x:expect label="subject/Topic from 600 complex has two labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Topic a arabic label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[@xml:lang='fa-arab'] = '‏سعدى‏'"/>
+    <x:expect label="... subject/Topic a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Saʻdī--Criticism and interpretation.'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with two labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/rdfs:label) = '2'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with an arabic label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/rdfs:label[@xml:lang='fa-arab'] = '‏سعدى‏'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/rdfs:label[not(@xml:lang)] = 'Saʻdī'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with two marcKeys" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/bflc:marcKey) = '2'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with an arabic marcKey" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/bflc:marcKey[@xml:lang='fa-arab'] = '88004$6600-07/(3/r‏$a‏سعدى‏.'"/>
+    <x:expect label="... subject/Topic a componentList/Agent with a latin marcKey" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/bf:Agent/bflc:marcKey[not(@xml:lang)] = '60000$6880-07$aSaʻdī'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with one auth label" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel) = '1'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel = 'Criticism and interpretation'"/>
+  </x:scenario>
+  
+
+  <x:scenario label="100name, 600name, 700name">
+    <x:context href="data/ConvSpec-880/100-600-700-700t.xml"/>
+    
+    <!-- 100 -->
+    <x:expect label="100a creates a primary contribution of the Work" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/rdf:type[@rdf:resource ='http://id.loc.gov/ontologies/bibframe/PrimaryContribution']) = 1"/>
+    <x:expect label="... Agent has two labels" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[@xml:lang='zh-hani'] = '周瀚光, 1950-'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[not(@xml:lang)] = 'Zhou, Hanguang, 1950-'"/>
+    <x:expect label="... Agent has two marcKeys" test="count(//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[@xml:lang='zh-hani'] = '8801 $6100-01/$1$a周瀚光,$d1950-'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[1]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[not(@xml:lang)] = '1001 $6880-01$aZhou, Hanguang,$d1950-'"/>
+
+    <!-- 600 -->
+    <x:expect label="600a creates a subject/Agent of the Work" test="count(//bf:Work[1]/bf:subject[1]/bf:Agent) = 1"/>
+    <x:expect label="... Agent has two labels" test="count(//bf:Work[1]/bf:subject[1]/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:subject[1]/bf:Agent/rdfs:label[@xml:lang='zh-hani'] = '刘徽, 3rd/4th cent'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:subject[1]/bf:Agent/rdfs:label[not(@xml:lang)] = 'Liu, Hui, active 3rd century-4th century'"/>
+    <x:expect label="... Agent has two marcKeys" test="count(//bf:Work[1]/bf:subject[1]/bf:Agent/bflc:marcKey) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:subject[1]/bf:Agent/bflc:marcKey[@xml:lang='zh-hani'] = '88014$6600-06/$1$a刘徽,$d3rd/4th cent.'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:subject[1]/bf:Agent/bflc:marcKey[not(@xml:lang)] = '60010$6880-06$aLiu, Hui,$dactive 3rd century-4th century.'"/>
+    
+    <!-- 700 -->
+    <x:expect label="700a creates a contribution of the Work" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/rdf:type[@rdf:resource ='http://id.loc.gov/ontologies/bibframe/PrimaryContribution']) = 0"/>
+    <x:expect label="... Agent has two labels" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="... Agent has an arabic label" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[@xml:lang='zh-hani'] = '孔国平, 1947-'"/>
+    <x:expect label="... Agent has a latin label" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/rdfs:label[not(@xml:lang)] = 'Kong, Guoping, 1947-'"/>
+    <x:expect label="... Agent has two marcKeys" test="count(//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey) = 2"/>
+    <x:expect label="... Agent has an arabic marcKey" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[@xml:lang='zh-hani'] = '8801 $6700-11/$1$a孔国平,$d1947-'"/>
+    <x:expect label="... Agent has a latin marcKey" test="//bf:Work[1]/bf:contribution[2]/bf:Contribution/bf:agent/bf:Agent/bflc:marcKey[not(@xml:lang)] = '7001 $6880-11$aKong, Guoping,$d1947-'"/>
+   
+  </x:scenario>
+
+  <x:scenario label="648a and 655a">
+    <x:context href="data/ConvSpec-880/648a-655a.xml"/>
+    
+    <!-- 648a -->
+    <x:expect label="648 creates a subject/Temporal property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Temporal) = 1"/>
+    <x:expect label="... subject/Temporal has two labels" test="count(//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[@xml:lang='zh-hani'] = '二十世紀.'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[not(@xml:lang)] = '1900-1999.'"/>
+    
+    <!-- 655a -->
+    <x:expect label="655 creates a genreform/GenreForm property of the Work" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm) = 1"/>
+    <x:expect label="... subject/Temporal has two labels" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel[@xml:lang='zh-hani'] = '批評, 解釋等'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:genreForm/bf:GenreForm/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Criticism, interpretation, etc.'"/>
+  </x:scenario>
+  
+  
+  <x:scenario label="650a and 651a">
+    <x:context href="data/ConvSpec-880/650a-651a.xml"/>
+    
+    <!-- 650a -->
+    <x:expect label="There are a number of subject/Topic properties of the Work" test="count(//bf:Work[1]/bf:subject/bf:Topic) = 8"/>
+    <x:expect label="... subject/Topic has two labels" test="count(//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市-歴史'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject[7]/bf:Topic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinosekishi-Rekishi'"/>
+
+    <!-- 651a -->
+    <x:expect label="There is one subject/Place property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Place) = 1"/>
+    <x:expect label="... subject/Topic has two labels" test="count(//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Place/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)'"/>
+    
+    <!-- 651complex -->
+    <x:expect label="subject/Topic from 651 complex has two labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel) = 2"/>
+    <x:expect label="... subject/Topic a japanese label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)--Social conditions'"/>
+    <x:expect label="... subject/Topic a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)--Social conditions'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with two auth labels" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel) = '2'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with a japanese label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel[@xml:lang='ja-jpan'] = '一関市 (Japan)'"/>
+    <x:expect label="... subject/Topic a componentList/Geographic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Geographic/madsrdf:authoritativeLabel[not(@xml:lang)] = 'Ichinoseki-shi (Japan)'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with one auth label" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel) = '1'"/>
+    <x:expect label="... subject/Topic a componentList/Topic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel = 'Social conditions'"/>
+  </x:scenario>
+
+</x:description>
