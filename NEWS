@@ -1,3 +1,35 @@
+--- 2.8.0 2024/11/21
+Changes toward updated v2.8.0 specifications:
+    ConvSpec-006-008
+		Changed conversion of 008/06=q
+		Stopped conversion of 008/34=d for books
+	ConvSpec-010-048
+		Added conversion of 040 as a note field with notetype "internal" in Admin Metadata
+	ConvSpec-050-088
+		Added conversion of 080 field
+		Changed conversion of 082 field with Ind2=#
+	ConvSpec-1XX,7XX,8XX
+		Added conversion of $6
+	ConvSpec-200-247
+		Changed conversion of MARC 246/247 $6
+	ConvSpec-240,X30…
+		Added conversion of $6
+		Changed bf:relationship URI from BF property to relationship entity
+	ConvSpec-5XX
+		Changed conversion of MARC 504 from I-supplmentaryContent to I-note with notetype "biblio"
+	ConvSpec-600-662
+		Added conversion $6
+	ConvSpec-720,740,etc.
+		Changed conversion of MARC 740 $6
+	ConvSpec-760-788
+		Changed bf:relationship URI from BF property to relationship entity
+	ConvSpec-NumericSubfields
+		Added MARC 100, 110, 111, 130, 240, 246, 247, 6XX, 700, 710, 711, 740, 800, 810, 811, 830 to step 6.3
+		Added more examples to step 6.3
+	ConvSpec-Process0-9
+		Updated Process 0.2 for new treatment of 7XX fields with $i and Ind2=2
+		Updated Process 6.3 to reflect new treatment of series fields with parallel titles
+
 --- 2.7.0 2024/08/23
 Changes toward updated v2.7.0 specifications:
 	ConvSpec-010-048
