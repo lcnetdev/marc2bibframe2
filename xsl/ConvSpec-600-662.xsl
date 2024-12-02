@@ -1392,7 +1392,7 @@
               <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </xsl:element>
-          <xsl:if test="count($pRelated880s) &gt; 0">
+          <xsl:if test="$pRelated880s != ''">
             <xsl:variable name="vThisCode" select="@code"/>
             <xsl:if test="@code='a' or ($pTag='650' and (@code='c' or @code='d'))">
               <xsl:for-each select="$pRelated880s">
