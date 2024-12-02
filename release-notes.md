@@ -1,5 +1,11 @@
 # marc2bibframe2 release notes
 
+## v2.8.1
+
+Patch release.
+
+* [Address XPath test issue in xsltproc.](https://github.com/lcnetdev/marc2bibframe2/issues/253)
+
 ## v2.8.0
 
 Conversion updates based on specifications v2.8. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
