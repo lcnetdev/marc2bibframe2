@@ -1,3 +1,6 @@
+--- 2.8.1 2024/12/02
+Patch release to address XPath test issue in xsltproc.
+
 --- 2.8.0 2024/11/21
 Changes toward updated v2.8.0 specifications:
     ConvSpec-006-008
