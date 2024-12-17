@@ -206,20 +206,22 @@
             </xsl:call-template>
           </bf:originDate>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='l']">
-          <bf:language>
-            <bf:Language>
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </rdfs:label>
-            </bf:Language>
-          </bf:language>
-        </xsl:for-each>
+        <xsl:if test="not(ancestor::marc:record/marc:datafield[@tag = '377']) or $pInstanceType != 'Hub'">
+          <xsl:for-each select="marc:subfield[@code='l']">
+            <bf:language>
+              <bf:Language>
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
+                  </xsl:call-template>
+                </rdfs:label>
+              </bf:Language>
+            </bf:language>
+          </xsl:for-each>
+        </xsl:if>
         <xsl:for-each select="marc:subfield[@code='m']">
           <bf:musicMedium>
             <bf:MusicMedium>
