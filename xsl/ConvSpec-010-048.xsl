@@ -578,88 +578,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
-  <!--<xsl:template match="marc:datafield[@tag='041' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='041')]" mode="work">
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vSource">
-      <xsl:choose>
-        <xsl:when test="@ind2 = ' '">marc</xsl:when>
-        <xsl:when test="@ind2 = '7'"><xsl:value-of select="marc:subfield[@code='2']"/></xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:if test="@ind1 = '1'">
-          <bf:note>
-            <bf:Note>
-              <rdfs:label>Includes translation</rdfs:label>
-            </bf:Note>
-          </bf:note>
-        </xsl:if>
-        <xsl:for-each select="marc:subfield[@code = 'a'] |
-                              marc:subfield[@code = 'b'] |
-                              marc:subfield[@code = 'd'] |
-                              marc:subfield[@code = 'e'] |
-                              marc:subfield[@code = 'f'] |
-                              marc:subfield[@code = 'g'] |
-                              marc:subfield[@code = 'h'] |
-                              marc:subfield[@code = 'i'] |
-                              marc:subfield[@code = 'j'] |
-                              marc:subfield[@code = 'k'] |
-                              marc:subfield[@code = 'm'] |
-                              marc:subfield[@code = 'n'] |
-                              marc:subfield[@code = 'p'] |
-                              marc:subfield[@code = 'q'] |
-                              marc:subfield[@code = 'r'] |
-                              marc:subfield[@code = 't']">
-          <xsl:variable name="vPart">
-            <xsl:choose>
-              <xsl:when test="@code = 'b'">summary</xsl:when>
-              <xsl:when test="@code = 'd'">sung or spoken text</xsl:when>
-              <xsl:when test="@code = 'e'">libretto</xsl:when>
-              <xsl:when test="@code = 'f'">table of contents</xsl:when>
-              <xsl:when test="@code = 'g'">accompanying material</xsl:when>
-              <xsl:when test="@code = 'h'">original</xsl:when>
-              <xsl:when test="@code = 'i'">intertitles</xsl:when>
-              <xsl:when test="@code = 'j'">subtitles or captions</xsl:when>
-              <xsl:when test="@code = 'k'">intermediate translations</xsl:when>
-              <xsl:when test="@code = 'm'">original accompanying materials</xsl:when>
-              <xsl:when test="@code = 'n'">original libretto</xsl:when>
-              <xsl:when test="@code = 'p'">captions</xsl:when>
-              <xsl:when test="@code = 'q'">accessible audio</xsl:when>
-              <xsl:when test="@code = 'r'">accessible visual material</xsl:when>
-              <xsl:when test="@code = 't'">accompanying transcripts</xsl:when>
-            </xsl:choose>
-          </xsl:variable>
-          <xsl:choose>
-            <!-\- marc language codes can be stacked in the subfield -\->
-            <xsl:when test="$vSource = 'marc'">
-              <xsl:call-template name="parse041">
-                <xsl:with-param name="pLang" select="."/>
-                <xsl:with-param name="pPart" select="$vPart"/>
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-              <bf:language>
-                <bf:Language>
-                  <rdf:value><xsl:value-of select="."/></rdf:value>
-                  <xsl:if test="$vPart != ''">
-                    <bf:part><xsl:value-of select="$vPart"/></bf:part>
-                  </xsl:if>
-                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                    <xsl:with-param name="pVocabStem" select="$languageschemes"/>
-                    <xsl:with-param name="pStripPunct" select="true()"/>
-                  </xsl:apply-templates>
-                </bf:Language>
-              </bf:language>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:for-each>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>-->
   
   <xsl:template match="marc:datafield[@tag='041' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='041')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -671,6 +589,7 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <!--
         <xsl:if test="@ind1 = '1'">
           <bf:note>
             <bf:Note>
@@ -678,6 +597,7 @@
             </bf:Note>
           </bf:note>
         </xsl:if>
+        -->
         <xsl:for-each select="marc:subfield[@code = 'a'] |
                               marc:subfield[@code = 'b'] |
                               marc:subfield[@code = 'd'] |
@@ -726,42 +646,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-
-  <!-- unstack language codes in 041 subfields -->
-  <!-- convert to lowercase -->
-<!--  <xsl:template name="parse041">
-    <xsl:param name="pLang"/>
-    <xsl:param name="pPart"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:param name="pStart" select="1"/>
-    <xsl:if test="string-length(substring($pLang,$pStart,3)) = 3">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:language>
-            <bf:Language>
-              <xsl:if test="$pPart != ''">
-                <bf:part><xsl:value-of select="$pPart"/></bf:part>
-              </xsl:if>
-              <xsl:variable name="encoded">
-                <xsl:call-template name="url-encode">
-                  <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
-                </xsl:call-template>
-              </xsl:variable>
-              <rdf:value>
-                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$encoded)"/></xsl:attribute>
-              </rdf:value>
-            </bf:Language>
-          </bf:language>
-        </xsl:when>
-      </xsl:choose>
-      <xsl:call-template name="parse041">
-        <xsl:with-param name="pLang" select="$pLang"/>
-        <xsl:with-param name="pPart" select="$pPart"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pStart" select="$pStart + 3"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:template>-->
 
   <xsl:template name="parse041">
     <xsl:param name="pLang"/>
