@@ -22,7 +22,7 @@
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simplePlace = 'Лондон'"/>
     <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'Сиэтл'"/>
-    <x:expect label="$6 490 creates a has Series relationship on Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:relationship/bf:Relationship/rdfs:label = 'Has Series'"/>
+    <x:expect label="$6 490 creates a has Series relationship on Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:relationship/bf:Relationship/rdfs:label = 'series'"/>
     <x:expect label="...$x creates a related Hub with Issn identifier" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Series/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
     <x:expect label="$6 500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'Из работ семьи Chase.'"/>
     <x:expect label="$6 501 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'С: реформированная школа / John Дьюри. Лондон: Печатный для Р. Wasnothe, [1850]'"/>
@@ -32,7 +32,7 @@
     <x:expect label="$6 506 creates a usageAndAccessPolicy property of the Instance" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/rdfs:label = 'Классифицированная информация.'"/>
     <x:expect label="$6 507 creates a scale property of the Work" test="//bf:Work[1]/bf:scale[1]/bf:Scale/rdfs:label = 'Перспектива карта не в масштабе.'"/>
     <x:expect label="$6 508 creates a credits property of the Instance" test="//bf:Instance[1]/bf:credits[1] = 'Музыка, Майкл Фишбейн; камера, Джордж Mo.'"/>
-    <x:expect label="$6 510 creates a bflc:indexedIn or bf:references property of the Work" test="//bf:Work[1]/bflc:indexedIn[1]/bf:Work/bf:title/bf:Title/bf:mainTitle = 'химический рефераты'"/>
+    <x:expect label="$6 510 creates a bflc:indexedIn or bf:references property of the Work" test="//bf:Work[1]/bf:relation/bf:Relation[bf:relationship[@rdf:resource='http://id.loc.gov/vocabulary/relationship/indexedin']]/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle = 'химический рефераты'"/>
     <x:expect label="$6 511 creates a bf:credits property of the Instance" test="//bf:Instance[1]/bf:credits[2] = 'Джеки Гланвилл.'"/>
     <x:expect label="$6 513 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[3]/bf:Note/rdfs:label = 'Ежеквартальный отчет технический прогресс; Январь-апрель 1, 1977.'"/>
     <x:expect label="$6 515 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[4]/bf:Note/rdfs:label = 'Выпущенные в частях.'"/>

@@ -17,70 +17,80 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProperty">
       <xsl:choose>
-        <xsl:when test="@ind1='0' or @ind1='1' or @ind1='2'">bflc:indexedIn</xsl:when>
-        <xsl:otherwise>bf:references</xsl:otherwise>
+        <xsl:when test="@ind1='0' or @ind1='1' or @ind1='2'">http://id.loc.gov/vocabulary/relationship/indexedin</xsl:when>
+        <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/references</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:element name="{$vProperty}">
-          <bf:Work>
-            <xsl:for-each select="marc:subfield[@code='a']">
-              <bf:title>
-                <bf:Title>
-                  <bf:mainTitle>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:call-template name="tChopPunct">
-                      <xsl:with-param name="pString" select="."/>
-                    </xsl:call-template>
-                  </bf:mainTitle>
-                </bf:Title>
-              </bf:title>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
-              <bf:note>
-                <bf:Note>
-                  <xsl:choose>
-                    <xsl:when test="@code='b'">
-                      <rdf:type>
-                        <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/coverage</xsl:attribute>
-                      </rdf:type>
-                    </xsl:when>
-                    <xsl:when test="@code='c'">
-                      <rdf:type>
-                        <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/loc</xsl:attribute>
-                      </rdf:type>
-                    </xsl:when>
-                  </xsl:choose>
-                  <rdfs:label>
-                    <xsl:if test="$vXmlLang != ''">
-                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                    </xsl:if>
-                    <xsl:call-template name="tChopPunct">
-                      <xsl:with-param name="pString" select="."/>
-                    </xsl:call-template>
-                  </rdfs:label>
-                </bf:Note>
-              </bf:note>
-            </xsl:for-each>
-            <xsl:for-each select="marc:subfield[@code='x']">
-              <bf:identifiedBy>
-                <bf:Issn>
-                  <rdf:value>
-                    <xsl:call-template name="tChopPunct">
-                      <xsl:with-param name="pString" select="."/>
-                    </xsl:call-template>
-                  </rdf:value>
-                </bf:Issn>
-              </bf:identifiedBy>
-            </xsl:for-each>
-            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+        <bf:relation>
+          <bf:Relation>
+            <bf:relationship>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProperty"/></xsl:attribute>
+            </bf:relationship>
+            <bf:associatedResource>
+              <bf:Work>
+                <xsl:for-each select="marc:subfield[@code='a']">
+                  <bf:title>
+                    <bf:Title>
+                      <bf:mainTitle>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </bf:mainTitle>
+                    </bf:Title>
+                  </bf:title>
+                </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
+                  <bf:note>
+                    <bf:Note>
+                      <xsl:choose>
+                        <xsl:when test="@code='b'">
+                          <rdf:type>
+                            <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/coverage</xsl:attribute>
+                          </rdf:type>
+                        </xsl:when>
+                        <xsl:when test="@code='c'">
+                          <rdf:type>
+                            <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/loc</xsl:attribute>
+                          </rdf:type>
+                        </xsl:when>
+                      </xsl:choose>
+                      <rdfs:label>
+                        <xsl:if test="$vXmlLang != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </rdfs:label>
+                    </bf:Note>
+                  </bf:note>
+                </xsl:for-each>
+                <xsl:for-each select="marc:subfield[@code='x']">
+                  <bf:identifiedBy>
+                    <bf:Issn>
+                      <rdf:value>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </rdf:value>
+                    </bf:Issn>
+                  </bf:identifiedBy>
+                </xsl:for-each>
+                <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:Work>
+            </bf:associatedResource>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
-          </bf:Work>
-        </xsl:element>
+          </bf:Relation>
+        </bf:relation>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
