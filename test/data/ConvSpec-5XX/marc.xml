@@ -38,7 +38,8 @@
       <subfield code="f">Preview only</subfield>
       <subfield code="g">20190207</subfield>
       <subfield code="q">DLC</subfield>
-      <subfield code="u">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
+      <subfield code="u">https://www.local.org/license.txt</subfield>
+      <subfield code="0">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
       <subfield code="5">MH</subfield>
     </datafield>
     <datafield tag="507" ind1=" " ind2=" ">
@@ -160,6 +161,7 @@
       <subfield code="g">20190523</subfield>
       <subfield code="q">DLC</subfield>
       <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
+      <subfield code="0">http://standard.uri/rr/print/195_copr.html</subfield>
       <subfield code="5">DLC</subfield>
       <subfield code="2">HCO</subfield>
     </datafield>
