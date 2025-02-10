@@ -18,7 +18,7 @@
     <x:expect label="$6 243-xx should make a CollectiveTitle" test="//bf:Work[1]/bf:title[2]/bf:CollectiveTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Work[1]/bf:title[4]/bf:ParallelTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
-    <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Work[1]/bf:title[5]/bf:VariantTitle/bf:variantType = 'former'"/>
+    <x:expect label="$6 247-xx should make a VariantTitle with varientType 'former'" test="//bf:Work[1]/bf:title[5]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/for'"/>
     <x:expect label="$6 250 creates an editionStatement property of the Instance" test="//bf:Instance[1]/bf:editionStatement = 'Третий проект / под редакцией Пола Уотсона'"/>
     <x:expect label="$6 260 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simplePlace = 'Лондон'"/>
     <x:expect label="$6 264 creates a provisionActivity property of the Instance" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simplePlace = 'Сиэтл'"/>
