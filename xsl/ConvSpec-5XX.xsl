@@ -596,7 +596,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="marc:datafield[@tag='508' or @tag='511' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='508' or substring(marc:subfield[@code='6'],1,3)='511'))]" mode="instance">
+  <xsl:template match="marc:datafield[@tag='508' or @tag='511' or (@tag='880' and (substring(marc:subfield[@code='6'],1,3)='508' or substring(marc:subfield[@code='6'],1,3)='511'))]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vTag">
       <xsl:choose>
@@ -613,12 +613,27 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:credits>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
-          </bf:credits>
+          <bf:note>
+            <bf:Note>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">
+                  <xsl:choose>
+                    <xsl:when test="$vTag='508'">http://id.loc.gov/vocabulary/mnotetype/credits</xsl:when>
+                    <xsl:otherwise>http://id.loc.gov/vocabulary/mnotetype/participants</xsl:otherwise>
+                  </xsl:choose>
+                </xsl:attribute>
+              </rdf:type>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
+              </rdfs:label>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:Note>
+          </bf:note>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
