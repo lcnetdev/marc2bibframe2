@@ -111,6 +111,24 @@
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
                   </bf:electronicLocator>
                 </xsl:if>
+                <xsl:if test="@ind1='1' or @ind1='2'">
+                  <bf:status>
+                    <bf:Status>
+                      <xsl:attribute name="rdf:about">
+                        <xsl:choose>
+                          <xsl:when test="@ind1='1'">http://id.loc.gov/vocabulary/mstatus/incmp</xsl:when>
+                          <xsl:when test="@ind1='2'">http://id.loc.gov/vocabulary/mstatus/part</xsl:when>
+                        </xsl:choose>
+                      </xsl:attribute>
+                      <rdfs:label>
+                        <xsl:choose>
+                          <xsl:when test="@ind1='1'">Incomplete</xsl:when>
+                          <xsl:when test="@ind1='2'">Partial</xsl:when>
+                        </xsl:choose>
+                      </rdfs:label>
+                    </bf:Status>
+                  </bf:status>
+                </xsl:if>
               </bf:TableOfContents>
         </bf:tableOfContents>
       </xsl:when>

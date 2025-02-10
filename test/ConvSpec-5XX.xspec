@@ -46,6 +46,7 @@
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="505 creates a tableOfContents/TableOfContents property of the Work" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/rdfs:label = 'Quatrain II (16:35) -- Water ways (1:57) / by Stephen Paulus.'"/>
     <x:expect label="$u creates an electronicLocator property of the TableOfContents" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/bf:electronicLocator/@rdf:resource = 'https://stephenpaulus.com'"/>
+    <x:expect label="ind1 creates a 'partial' status" test="//bf:Work[1]/bf:tableOfContents[1]/bf:TableOfContents/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/part'"/>
   </x:scenario>
   
   <x:scenario label="506 - RESTRICTIONS ON ACCESS NOTE">
