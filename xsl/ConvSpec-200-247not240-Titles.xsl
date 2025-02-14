@@ -520,25 +520,25 @@
           <xsl:element name="{$vTitleClass}">
             <xsl:choose>
               <xsl:when test="@ind2 = '0'">
-                <bf:variantType>portion</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/por" />
               </xsl:when>
               <xsl:when test="@ind2 = '2'">
-                <bf:variantType>distinctive</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/dis" />
               </xsl:when>
               <xsl:when test="@ind2 = '4'">
-                <bf:variantType>cover</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/cov" />
               </xsl:when>
               <xsl:when test="@ind2 = '5'">
-                <bf:variantType>added title page</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/atp" />
               </xsl:when>
               <xsl:when test="@ind2 = '6'">
-                <bf:variantType>caption</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/cap" />
               </xsl:when>
               <xsl:when test="@ind2 = '7'">
-                <bf:variantType>running</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/run" />
               </xsl:when>
               <xsl:when test="@ind2 = '8'">
-                <bf:variantType>spine</bf:variantType>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/spi" />
               </xsl:when>
             </xsl:choose>
             <xsl:apply-templates mode="t246Props" select=".">
@@ -641,7 +641,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <bf:VariantTitle>
-            <bf:variantType>former</bf:variantType>
+            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/vartitletype/for" />
             <xsl:apply-templates mode="t247Props" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>

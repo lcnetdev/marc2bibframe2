@@ -316,11 +316,16 @@
     <x:expect label="$a creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Children'"/>
     <x:expect label="$b creates a code property of the IntendedAudience..." test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:code = 'kid'"/>
     <x:expect label="If there is a $0 with a standard number value starting with 'dg', it becomes the URI of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[2]/bf:IntendedAudience/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/dg2015060010'"/>
-    <x:expect label="$m creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Age group'"/>
-    <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/age'"/>
+    <!-- <x:expect label="$m creates a bflc:demographicGroup property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Age group'"/> -->
+    <!-- <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/age'"/> -->
     <x:expect label="$2 creates a source property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/bf:code = 'ws'"/>
     <x:expect label="...with URI from subjectSchemes" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/@rdf:about='http://id.loc.gov/vocabulary/subjectSchemes/ws'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nonsense'"/>
+    
+    <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[3]/@rdf:resource = 'http://id.loc.gov/authorities/demographicTerms/occ'"/>
+    
+    <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[4]/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/occ'"/>
+    <x:expect label="$m sets the label of the DemographicGroup" test="//bf:Work[1]/bf:intendedAudience[4]/bflc:DemographicGroup/rdfs:label = 'occupations'"/>
   </x:scenario>
   
   <x:scenario label="386 - CREATOR/CONTRIBUTOR CHARACTERISTICS">
@@ -328,8 +333,8 @@
     <x:expect label="$a creates a bflc:creatorCharacteristic property of the Work" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/rdfs:label = 'Females'"/>
     <x:expect label="$b creates a code property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bf:code='f'"/>
     <x:expect label="If there is a $0 with a standard number value starting with 'dg', it becomes the URI of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[2]/bflc:CreatorCharacteristic/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/dg2015060010'"/>
-    <x:expect label="$m creates a bflc:demographicGroup property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Gender group'"/>
-    <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/gen'"/>
+    <!-- <x:expect label="$m creates a bflc:demographicGroup property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/rdfs:label = 'Gender group'"/> -->
+    <!-- <x:expect label="$n sets the URI of the DemographicGroup" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:demographicGroup/bflc:DemographicGroup/@rdf:about = 'http://id.loc.gov/authorities/demographicTerms/gen'"/> -->
     <x:expect label="$2 creates a source property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bf:source/bf:Source/bf:code = 'ericd'"/>
     <x:expect label="...with URI from subjectSchemes" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/subjectSchemes/ericd'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the CreatorCharacteristic" test="//bf:Work[1]/bflc:creatorCharacteristic[1]/bflc:CreatorCharacteristic/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Other stuff'"/>

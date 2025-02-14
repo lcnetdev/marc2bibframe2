@@ -120,10 +120,6 @@
       <subfield code="a">Канада.</subfield>
     </datafield>
     <datafield tag="880" ind1=" " ind2=" ">
-      <subfield code="6">524-00</subfield>
-      <subfield code="a">Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.</subfield>
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
       <subfield code="6">525-00</subfield>
       <subfield code="a">Имеет многочисленные добавки.</subfield>
     </datafield>
@@ -232,6 +228,10 @@
       <subfield code="6">780-00</subfield>
       <subfield code="t">Графические уведомления и дополнительные данные</subfield>
       <subfield code="w">(OCoLC)4276671</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">524-00</subfield>
+      <subfield code="a">Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.</subfield>
     </datafield>
   </record>
 </collection>
