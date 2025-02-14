@@ -114,9 +114,9 @@
     <x:expect label="Sometimes MARC 246 should create title properties in Instance" test="count(//bf:Instance[3]/bf:title) = 2"/>
     <x:expect label="...and sometimes in the Work" test="count(//bf:Work[1]/bf:title) = 3"/>
     <x:expect label="@ind2 = 1 should create a ParallelTitle" test="count(//bf:Work[1]/bf:title[2]/bf:ParallelTitle) = 1"/>
-    <x:expect label="@ind2 = ' ' creates no variantType property" test="count(//bf:Work[2]/bf:title/bf:VariantTitle/bf:variantType) = 0"/>
-    <x:expect label="other @ind2 value should become the variantType...sometimes for the Work" test="//bf:Work[4]/bf:title[1]/bf:VariantTitle/bf:variantType = 'distinctive'"/>
-    <x:expect label="...and sometimes for the Instance" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:variantType = 'cover'"/>
+    <x:expect label="@ind2 = ' ' creates no variantType property" test="count(//bf:Work[2]/bf:title/bf:VariantTitle/rdf:type) = 0"/>
+    <x:expect label="other @ind2 value should become the variantType...sometimes for the Work" test="//bf:Work[4]/bf:title[1]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/dis'"/>
+    <x:expect label="...and sometimes for the Instance" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/cov'"/>
     <x:expect label="$a becomes the mainTitle" test="//bf:Work[1]/bf:title[2]/bf:ParallelTitle/bf:mainTitle = 'Moderne Probleme der Pharmakopsychiatrie'"/>
     <x:expect label="$b becomes the subtitle" test="//bf:Work[2]/bf:title[2]/bf:VariantTitle/bf:subtitle = 'an engrossing read'"/>
     <x:expect label="$f becomes the date" test="//bf:Instance[3]/bf:title[2]/bf:VariantTitle/bf:date = 'Juli 1976-'"/>
@@ -125,7 +125,7 @@
     <x:expect label="$p becomes a partName" test="//bf:Work[4]/bf:title/bf:VariantTitle/bf:partName = 'Meteorology and geophysics'"/>
     <x:expect label="$5 becomes the applicableInstitution" test="//bf:Work[4]/bf:title/bf:VariantTitle/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
     
-    <x:expect label="Variant title without langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:variantType = 'portion'"/>
+    <x:expect label="Variant title without langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/por'"/>
     <x:expect label="Variant title without langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:mainTitle[not(@xml:lang)] = 'Hua wen chuang zuo san di yu'"/>
     <x:expect label="Variant title with langtag" test="//bf:Work[5]/bf:title[1]/bf:VariantTitle/bf:mainTitle[@xml:lang='zh-hani'] = '华文创作三地域'"/>
   </x:scenario>
@@ -166,7 +166,7 @@
     
     <x:scenario label="247/Variant 880 pairing">
       <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
-      <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:variantType = 'former'"/>
+      <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/for'"/>
       <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:mainTitle[not(@xml:lang)] = 'Taiwan Sheng ren kou tong ji'"/>
       <x:expect label="Variant title with langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:mainTitle[@xml:lang='zh-hani'] = '臺灣省人口統計'"/>
       <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:date[not(@xml:lang)] = '1961-'"/>

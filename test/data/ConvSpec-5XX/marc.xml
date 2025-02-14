@@ -21,7 +21,7 @@
       <subfield code="o">U 58.4033.</subfield>
     </datafield>
     <!-- 504 moved down because of change that impacted a billion tests. -->
-    <datafield tag="505" ind1="0" ind2="0">
+    <datafield tag="505" ind1="2" ind2="0">
       <subfield code="a">Quatrain II (16:35) --</subfield>
       <subfield code="t">Water ways</subfield>
       <subfield code="g">(1:57) /</subfield>
@@ -38,7 +38,8 @@
       <subfield code="f">Preview only</subfield>
       <subfield code="g">20190207</subfield>
       <subfield code="q">DLC</subfield>
-      <subfield code="u">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
+      <subfield code="u">https://www.local.org/license.txt</subfield>
+      <subfield code="0">https://www.gnu.org/licenses/gpl-3.0.txt</subfield>
       <subfield code="5">MH</subfield>
     </datafield>
     <datafield tag="507" ind1=" " ind2=" ">
@@ -47,6 +48,7 @@
     </datafield>
     <datafield tag="508" ind1=" " ind2=" ">
       <subfield code="a">Music, Michael Fishbein ; camera, George Mo.</subfield>
+      <subfield code="3">our favorite property</subfield>
     </datafield>
     <datafield tag="511" ind1="1" ind2=" ">
       <subfield code="a">Jackie Glanville.</subfield>
@@ -86,9 +88,6 @@
     </datafield>
     <datafield tag="522" ind1=" " ind2=" ">
       <subfield code="a">Canada.</subfield>
-    </datafield>
-    <datafield tag="524" ind1=" " ind2=" ">
-      <subfield code="a">James Hazen Hyde Papers, 1891-1941, New York Historical Society.</subfield>
     </datafield>
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
@@ -160,6 +159,7 @@
       <subfield code="g">20190523</subfield>
       <subfield code="q">DLC</subfield>
       <subfield code="u">http://lcweb.loc.gov/rr/print/195_copr.html</subfield>
+      <subfield code="0">http://standard.uri/rr/print/195_copr.html</subfield>
       <subfield code="5">DLC</subfield>
       <subfield code="2">HCO</subfield>
     </datafield>
@@ -276,6 +276,11 @@
     <datafield tag="504" ind1=" " ind2=" ">
       <subfield code="a">"Literature cited": p. 67-68.</subfield>
       <subfield code="b">19</subfield>
+    </datafield>
+    <datafield tag="524" ind1=" " ind2=" ">
+      <subfield code="a">James Hazen Hyde Papers, 1891-1941, New York Historical Society.</subfield>
+      <subfield code="2">ssrq</subfield>
+      <subfield code="3">Some part, but not the whole</subfield>
     </datafield>
   </record>
   

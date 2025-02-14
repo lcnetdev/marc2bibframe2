@@ -93,7 +93,7 @@
     <x:expect label="$a creates a place property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:simplePlace = 'Washington'"/>
     <x:expect label="$b creates an agent property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[10]/bf:ProvisionActivity/bflc:simpleAgent = 'U.S. G.P.O.'"/>
     <x:expect label="$c creates a date property of the ProvisionActivity" test="//bf:Instance[1]/bf:provisionActivity[11]/bf:ProvisionActivity/bflc:simpleDate = '1981-'"/>
-    <x:expect label="...unless ind2=4, then do not create ProvisionActivity, but create copyrightDate property of the Instance" test="//bf:Instance[1]/bf:copyrightDate='©2002'"/>
+    <x:expect label="...unless ind2=4, then do not create ProvisionActivity, but create copyrightDate property of the Instance" test="//bf:Instance[1]/bf:copyrightDate='2002'"/>
     <x:expect label="...unless 008/06=t, then ignore (copyrightDate from 008/11-14)" test="count(//bf:Instance[2]/bf:copyrightDate)=1 and //bf:Instance[2]/bf:copyrightDate='1969'"/>
   </x:scenario>
 

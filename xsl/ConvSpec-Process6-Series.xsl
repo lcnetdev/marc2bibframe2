@@ -65,8 +65,8 @@
         <bf:relation>
           <bf:Relation>
             <bf:relationship>
-              <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                <rdfs:label>Has Series</rdfs:label>
+              <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                <rdfs:label>series</rdfs:label>
               </bf:Relationship>
             </bf:relationship>
             <bf:associatedResource>
@@ -380,8 +380,8 @@
         <bf:relation>
           <bf:Relation>
             <bf:relationship>
-              <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                <rdfs:label>Has Series</rdfs:label>
+              <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                <rdfs:label>series</rdfs:label>
               </bf:Relationship>
             </bf:relationship>
             <bf:associatedResource>

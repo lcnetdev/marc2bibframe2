@@ -191,7 +191,7 @@
                                             </xsl:attribute>
                                         </xsl:if>
                                         <xsl:call-template name="tChopPunct">
-                                            <xsl:with-param name="pString" select="$vStatement"/>
+                                            <xsl:with-param name="pString" select="translate($vStatement, '©℗', '')"/>
                                         </xsl:call-template>
                                     </bf:copyrightDate>
                                     <xsl:if test="$vLinkedStatement != ''">
@@ -203,7 +203,7 @@
                                             </xsl:if>
                                             <xsl:call-template name="tChopPunct">
                                                 <xsl:with-param name="pString"
-                                                  select="$vLinkedStatement"/>
+                                                    select="translate($vLinkedStatement, '©℗', '')"/>
                                             </xsl:call-template>
                                         </bf:copyrightDate>
                                     </xsl:if>

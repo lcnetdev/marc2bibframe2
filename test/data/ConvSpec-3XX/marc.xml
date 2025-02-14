@@ -252,6 +252,13 @@
       <subfield code="b">aaa</subfield>
       <subfield code="0">(DLC)dg2015060010</subfield>
     </datafield>
+    <datafield tag="385" ind1=" " ind2=" ">
+      <subfield code="n">occ</subfield>
+    </datafield>
+    <datafield tag="385" ind1=" " ind2=" ">
+      <subfield code="m">occupations</subfield>
+      <subfield code="n">occ</subfield>
+    </datafield>
     <datafield tag="386" ind1=" " ind2=" ">
       <subfield code="3">Other stuff</subfield>
       <subfield code="m">Gender group</subfield>
