@@ -318,6 +318,12 @@
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bf:note>
+              <bf:Note>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/participants"/>
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Ray Charles, piano &amp; celeste.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:tableOfContents>
               <bf:TableOfContents>
                 <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
@@ -441,7 +447,6 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in</bf:dimensions>
-            <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Brief record.</rdfs:label>
