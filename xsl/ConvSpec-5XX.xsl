@@ -260,7 +260,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vLabel">
-      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+      <xsl:apply-templates mode="concat-nodes-delimited" select="marc:subfield[@code='a']"/>
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -280,6 +280,13 @@
                   <rdfs:label><xsl:value-of select="$vNote"/></rdfs:label>
                 </bf:Note>
               </bf:note>
+            </xsl:if>
+            <xsl:if test="marc:subfield[@code='b']">
+              <bf:source>
+                <bf:Source>
+                  <rdfs:label><xsl:value-of select="marc:subfield[@code='b'][1]"/></rdfs:label>
+                </bf:Source>
+              </bf:source>
             </xsl:if>
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>

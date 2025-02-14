@@ -118,7 +118,8 @@
   <x:scenario label="521 - TARGET AUDIENCE NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="521 creates an intendedAudience/IntendedAudience property of the Work" test="count(//bf:Work[1]/bf:intendedAudience/bf:IntendedAudience) = 1"/>
-    <x:expect label="$ab creates an rdfs:label property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'K-3. 4-6. Follett Library Book Co.'"/>
+    <x:expect label="$a creates an rdfs:label property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'K-3. 4-6.'"/>
+    <x:expect label="$b creates bf:source property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:source/bf:Source/rdfs:label = 'Follett Library Book Co.'"/>
     <x:expect label="ind1 can create a note property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bf:note/bf:Note/rdfs:label = 'interest grade level'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the IntendedAudience" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Puzzles'"/>
   </x:scenario>
