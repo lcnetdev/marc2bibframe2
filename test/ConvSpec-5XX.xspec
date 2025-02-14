@@ -131,7 +131,10 @@
   
   <x:scenario label="524 - PREFERRED CITATION OF DESCRIBED MATERIALS NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="524 creates a preferredCitation property of the Instance" test="//bf:Instance[1]/bf:preferredCitation[1] = 'James Hazen Hyde Papers, 1891-1941, New York Historical Society.'"/>
+    <x:expect label="524 creates a citeas note on the the Instance" test="//bf:Instance[1]/bf:note[26]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/citeas'"/>
+    <x:expect label="...524 creates a citeas rdfs:label" test="//bf:Instance[1]/bf:note[26]/bf:Note/rdfs:label = 'James Hazen Hyde Papers, 1891-1941, New York Historical Society.'"/>
+    <x:expect label="...524 creates a citeas source" test="//bf:Instance[1]/bf:note[26]/bf:Note/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/citationschemes/ssrq'"/>
+    <x:expect label="...524 creates a citeas applies to abomination" test="//bf:Instance[1]/bf:note[26]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some part, but not the whole'"/>
   </x:scenario>
 
   <x:scenario label="525 - SUPPLEMENT NOTE">

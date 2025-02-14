@@ -41,7 +41,7 @@
     <x:expect label="$6 520 creates a summary property of the Work" test="//bf:Work[1]/bf:summary[1]/bf:Summary/rdfs:label = 'Иллюстрированный сборник потешек на музыку.'"/>
     <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
-    <x:expect label="$6 524 creates a preferredCitation property of the Instance" test="//bf:Instance[1]/bf:preferredCitation = 'Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.'"/>
+    <x:expect label="$6 524 creates a citeas note of the Instance" test="//bf:Instance[1]/bf:note/bf:Note[rdf:type/@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/citeas']/rdfs:label = 'Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.'"/>
     <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a note/Note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Доступно на микрофиши.'"/>
     <x:expect label="$6 532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Субтитры на английском языке'"/>

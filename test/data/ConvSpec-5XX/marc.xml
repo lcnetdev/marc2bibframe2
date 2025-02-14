@@ -89,9 +89,6 @@
     <datafield tag="522" ind1=" " ind2=" ">
       <subfield code="a">Canada.</subfield>
     </datafield>
-    <datafield tag="524" ind1=" " ind2=" ">
-      <subfield code="a">James Hazen Hyde Papers, 1891-1941, New York Historical Society.</subfield>
-    </datafield>
     <datafield tag="525" ind1=" " ind2=" ">
       <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
@@ -279,6 +276,11 @@
     <datafield tag="504" ind1=" " ind2=" ">
       <subfield code="a">"Literature cited": p. 67-68.</subfield>
       <subfield code="b">19</subfield>
+    </datafield>
+    <datafield tag="524" ind1=" " ind2=" ">
+      <subfield code="a">James Hazen Hyde Papers, 1891-1941, New York Historical Society.</subfield>
+      <subfield code="2">ssrq</subfield>
+      <subfield code="3">Some part, but not the whole</subfield>
     </datafield>
   </record>
   
