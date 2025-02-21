@@ -620,7 +620,7 @@
             <!-- marc language codes can be stacked in the subfield -->
             <xsl:when test="$vSource = 'marc'">
               <xsl:call-template name="parse041">
-                <xsl:with-param name="pLang" select="."/>
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
                 <xsl:with-param name="pPart" select="$vPart"/>
                 <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
