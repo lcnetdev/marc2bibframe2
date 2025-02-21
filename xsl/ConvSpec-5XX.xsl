@@ -324,16 +324,17 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:supplementaryContent>
-            <bf:SupplementaryContent>
+          <bf:note>
+            <bf:Note>
+              <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/suppl" />
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
-            </bf:SupplementaryContent>
-          </bf:supplementaryContent>
+            </bf:Note>
+          </bf:note>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -901,6 +902,7 @@
             <xsl:when test="@ind1='0'">finding</xsl:when>
           </xsl:choose>
         </xsl:when>
+        <xsl:when test="$vTag='556'">doc</xsl:when>
         <xsl:when test="$vTag='585'">exhibit</xsl:when>
         <xsl:when test="$vTag='588'">descsource</xsl:when>
       </xsl:choose>

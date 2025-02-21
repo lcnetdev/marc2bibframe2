@@ -139,7 +139,8 @@
 
   <x:scenario label="525 - SUPPLEMENT NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Has numerous supplements.'"/>
+    <x:expect label="525 creates a note/Note/rdf:type=suppl on the Work" test="count(//bf:Work[1]/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/suppl']) = 1"/>
+    <x:expect label="... creates a note/Note/rdf:type=suppl on the Work with expected label" test="//bf:Work[1]/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/suppl']/rdfs:label = 'Has numerous supplements.'"/>
   </x:scenario>
 
   <x:scenario label="530 - ADDITIONAL PHYSICAL FORM AVAILABLE NOTE">
@@ -266,6 +267,7 @@
   <x:scenario label="556 - INFORMATION ABOUT DOCUMENTATION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'BASIC reference. 3rd ed. Boca Raton, Fl. : IBM, c1984. (Personal computer hardware reference library); 6361132.'"/>
+    <x:expect label="556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/doc'"/>
   </x:scenario>
   
   <x:scenario label="561 - OWNERSHIP AND CUSTODIAL HISTORY">

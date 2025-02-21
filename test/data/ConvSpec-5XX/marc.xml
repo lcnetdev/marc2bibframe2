@@ -89,9 +89,6 @@
     <datafield tag="522" ind1=" " ind2=" ">
       <subfield code="a">Canada.</subfield>
     </datafield>
-    <datafield tag="525" ind1=" " ind2=" ">
-      <subfield code="a">Has numerous supplements.</subfield>
-    </datafield>
     <datafield tag="530" ind1=" " ind2=" ">
       <subfield code="3">Dispatches from U.S. consuls in Batavia, Java, Netherlands East Indies, 1818-1906</subfield>
       <subfield code="a">Available in microfilm;</subfield>
@@ -281,6 +278,9 @@
       <subfield code="a">James Hazen Hyde Papers, 1891-1941, New York Historical Society.</subfield>
       <subfield code="2">ssrq</subfield>
       <subfield code="3">Some part, but not the whole</subfield>
+    </datafield>
+    <datafield tag="525" ind1=" " ind2=" ">
+      <subfield code="a">Has numerous supplements.</subfield>
     </datafield>
   </record>
   
