@@ -395,7 +395,7 @@
                   <xsl:when test="$vTag = '830' or $vTag = '440'">
                     <xsl:apply-templates mode="hubUnifTitle" select=".">
                       <xsl:with-param name="serialization" select="$serialization"/>
-                      <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/>                      
+                      <!-- <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/> -->                  
                     </xsl:apply-templates>
                   </xsl:when>
               <xsl:otherwise>
