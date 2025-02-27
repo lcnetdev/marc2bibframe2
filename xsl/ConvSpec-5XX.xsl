@@ -558,6 +558,14 @@
                   </xsl:choose>
                 </bf:validDate>
               </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='f']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="normalize-space(.)"/>
+                </bf:qualifier>
+              </xsl:for-each>
               <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
@@ -570,6 +578,7 @@
             </bf:AccessPolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
+        <!--
         <xsl:if test="marc:subfield[@code='f']">
           <bf:usageAndAccessPolicy>
             <bf:AccessPolicy>
@@ -587,18 +596,19 @@
                   </xsl:apply-templates>
                 </xsl:otherwise>
               </xsl:choose>
-              <rdfs:label>
+              <bf:qualifier>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                 </xsl:if>
                 <xsl:value-of select="normalize-space(marc:subfield[@code='f'])"/>
-              </rdfs:label>
+              </bf:qualifier>
               <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </bf:AccessPolicy>
           </bf:usageAndAccessPolicy>
         </xsl:if>
+        -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>
@@ -769,6 +779,14 @@
                   </xsl:choose>
                 </bf:validDate>
               </xsl:for-each>
+              <xsl:for-each select="marc:subfield[@code='f']">
+                <bf:qualifier>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                   </xsl:if>
+                   <xsl:value-of select="normalize-space(.)"/>
+                 </bf:qualifier>
+              </xsl:for-each>
               <!--
               <xsl:for-each select="marc:subfield[@code='d']">
                 <xsl:variable name="vNoteLabel">
@@ -800,6 +818,7 @@
             </bf:UsePolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
+          <!--
           <xsl:if test="marc:subfield[@code='f']">
             <bf:usageAndAccessPolicy>
               <bf:UsePolicy>
@@ -817,18 +836,19 @@
                     </xsl:apply-templates>
                   </xsl:otherwise>
                 </xsl:choose>
-                <rdfs:label>
+                <bf:qualifier>
                   <xsl:if test="$vXmlLang != ''">
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
                   <xsl:value-of select="normalize-space(marc:subfield[@code='f'])"/>
-                </rdfs:label>
+                </bf:qualifier>
                 <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </bf:UsePolicy>
             </bf:usageAndAccessPolicy>
           </xsl:if>
+          -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>
