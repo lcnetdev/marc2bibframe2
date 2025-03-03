@@ -283,6 +283,17 @@
                                   marc:subfield[@code='4']">
                     <xsl:copy-of select="$rolesFromSubfields"/>
                   </xsl:when>
+                  <xsl:when test="substring($tag,1,1) = '1' and 
+                                  ( 
+                                    substring(ancestor::marc:record/marc:leader, 7 ,2) = 'am' or 
+                                    substring(ancestor::marc:record/marc:leader, 7 ,2) = 'aa'
+                                  )">
+                    <bf:role>
+                      <bf:Role>
+                        <xsl:attribute name="rdf:about"><xsl:value-of select="concat($relators,'aut')"/></xsl:attribute>
+                      </bf:Role>
+                    </bf:role>
+                  </xsl:when>
                   <xsl:otherwise>
                     <bf:role>
                       <bf:Role>
