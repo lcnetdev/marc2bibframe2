@@ -152,7 +152,7 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/aut"/>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
