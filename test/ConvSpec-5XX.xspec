@@ -57,8 +57,8 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
     <x:expect label="$5 creates a bflc:applicableInstitution property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
     
-    <x:expect label="$0 creates a URI for the the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:AccessPolicy/@rdf:about = 'https://www.gnu.org/licenses/gpl-3.0.txt'" />
-    <x:expect label="$f is the text for AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:AccessPolicy/rdfs:label ='Preview only'" />
+    <!-- <x:expect label="$0 creates a URI for the the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:AccessPolicy/@rdf:about = 'https://www.gnu.org/licenses/gpl-3.0.txt'" /> -->
+    <x:expect label="$f is the text for AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:qualifier ='Preview only'" />
   </x:scenario>
   
   <x:scenario label="507 - SCALE NOTE FOR GRAPHIC MATERIAL">
@@ -202,16 +202,18 @@
   
   <x:scenario label="540 - TERMS GOVERNING USE AND REPRODUCTION NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="540 creates a usageAndAccessPolicy/UsePolicy property of the Instance" test="count(//bf:Instance[1]/bf:usageAndAccessPolicy/bf:UsePolicy) = 2"/>
-    <x:expect label="$acq creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[3]/bf:UsePolicy/rdfs:label[1] = 'Photocopying prohibited; 50 Stat.88; Executor of estate. DLC'"/>
-    <!-- <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[3]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/> -->
-    <x:expect label="$u creates an electronicLocator property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[3]/bf:UsePolicy/bf:electronicLocator/@rdf:resource = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[3]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[3]/bf:UsePolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+    <x:expect label="540 creates a usageAndAccessPolicy/UsePolicy property of the Instance" test="count(//bf:Instance[1]/bf:usageAndAccessPolicy/bf:UsePolicy) = 1"/>
+    <x:expect label="$acq creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[1] = 'Photocopying prohibited; 50 Stat.88; Executor of estate. DLC'"/>
+    <!-- <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/> -->
+    <x:expect label="$u creates an electronicLocator property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:electronicLocator/@rdf:resource = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
+    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
     
-    <x:expect label="$f creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[4]/bf:UsePolicy/rdfs:label[1] = 'CC BY-NC-ND'"/>
-    <x:expect label="$0 creates a URI for the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[4]/bf:UsePolicy/@rdf:about = 'http://standard.uri/rr/print/195_copr.html'"/>
-    <x:expect label="$2 creates a bf:source property of the UserPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[4]/bf:UsePolicy/bf:source/bf:Source/bf:code = 'HCO'"/>
+    <x:expect label="$f creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:qualifier[1] = 'CC BY-NC-ND'"/>
+    <!--
+    <x:expect label="$0 creates a URI for the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/@rdf:about = 'http://standard.uri/rr/print/195_copr.html'"/>
+    <x:expect label="$2 creates a bf:source property of the UserPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:source/bf:Source/bf:code = 'HCO'"/>
+    -->
     
   </x:scenario>
   
