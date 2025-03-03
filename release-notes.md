@@ -14,7 +14,7 @@ Conversion updates based on specifications v2.8. See the Library of Congress’s
 * Conversion of MARC 880 fields for variant titles (MARC 246, 247, 740), which were previously not converted.
 * Added conversion of UDC classification numbers in MARC 080 field.
 * Bibliographical notes in MARC 504 fields are now converted as notes instead of as supplementary content.
-* Adjustmented the creation of relationships to use the vocabulary at https://id.loc.gov/vocabulary/relationship.html instead of BIBFRAME properties.
+* Adjusted the creation of relationships to use the vocabulary at https://id.loc.gov/vocabulary/relationship.html instead of BIBFRAME properties.
 * Retention of MARC 040 field as a note in Admin Metadata.
 * Refined conversion of MARC 7XX fields that have data in $i and Ind2=2 to selectively create resources with a “part” relationship.
 
