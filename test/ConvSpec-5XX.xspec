@@ -288,7 +288,7 @@
 
   <x:scenario label="580 - LINKING ENTRY COMPLEXITY NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
-    <x:expect label="580 creates a note/Note property of the Work" test="//bf:Work[1]/bf:note[2]/bf:Note/rdfs:label = 'Forms part of the Frances Benjamin Johnston Collection.'"/>
+    <x:expect label="580 creates a note/Note property of the Work" test="//bf:Work[1]/bf:note[4]/bf:Note/rdfs:label = 'Forms part of the Frances Benjamin Johnston Collection.'"/>
   </x:scenario>
   
   <x:scenario label="581 - PUBLICATIONS ABOUT DESCRIBED MATERIALS NOTE">

@@ -42,7 +42,7 @@
     <x:expect label="$6 521 creates an intendedAudience property of the Work" test="//bf:Work[1]/bf:intendedAudience[1]/bf:IntendedAudience/rdfs:label = 'Умеренно мотивировано.'"/>
     <x:expect label="$6 522 creates a geographicCoverage/GeographicCoverage property of the Work" test="//bf:Work[1]/bf:geographicCoverage[1]/bf:GeographicCoverage/rdfs:label = 'Канада.'"/>
     <x:expect label="$6 524 creates a citeas note of the Instance" test="//bf:Instance[1]/bf:note/bf:Note[rdf:type/@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/citeas']/rdfs:label = 'Джеймс Хейзена Hyde Papers, 1891-1941, Нью-Йорк Историческое Общество.'"/>
-    <x:expect label="$6 525 creates a supplementaryContent/SupplementaryContent property of the Work" test="//bf:Work[1]/bf:supplementaryContent[1]/bf:SupplementaryContent/rdfs:label = 'Имеет многочисленные добавки.'"/>
+    <x:expect label="$6 525 creates a suppl note property of the Work" test="//bf:Work[1]/bf:note/bf:Note[rdf:type/@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/suppl']/rdfs:label = 'Имеет многочисленные добавки.'"/>
     <x:expect label="$6 530 creates a note/Note property of the Instance" test="//bf:Instance[1]/bf:note[6]/bf:Note/rdfs:label = 'Доступно на микрофиши.'"/>
     <x:expect label="$6 532 creates a contentAccessibility/ContentAccessibility property of the Instance" test="//bf:Instance[1]/bf:contentAccessibility[1]/bf:ContentAccessibility/rdfs:label = 'Субтитры на английском языке'"/>
     <x:expect label="$6 533 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdfs:label = 'Микрофильмов.'"/>
@@ -61,11 +61,11 @@
     <x:expect label="$6 556 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[15]/bf:Note/rdfs:label = 'BASIC ссылка. 3-е изд. Бока-Ратон, штат Флорида. : IBM, c1984. (Персональный компьютер аппаратные справочная библиотека); 6361132.'"/>
     <x:expect label="$6 561 creates a custodialHistory property on Instance" test="//bf:Instance[1]/bf:custodialHistory = 'На постоянной основе из коллекции Пола Меллона.'"/>
     <x:expect label="$6 563 creates a note/Note property on Instance" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label='Центральный переплет конца XVI века с потайной тиснением, темно-коричневый теленок.'"/>
-    <x:expect label="$6 580 creates a note property of the Work" test="//bf:Work[1]/bf:note[2]/bf:Note/rdfs:label = 'Формы часть Frances Benjamin Johnston Collection.'"/>
+    <x:expect label="$6 580 creates a note property of the Work" test="//bf:Work[1]/bf:note[5]/bf:Note/rdfs:label = 'Формы часть Frances Benjamin Johnston Collection.'"/>
     <x:expect label="$6 581 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[17]/bf:Note/rdfs:label = 'Инвентаризация американской скульптуры: ксерокопия. 1982.'"/>
     <x:expect label="$6 583 creates a note/Note property of an Item" test="//bf:Instance[1]/bf:note[18]/bf:Note/rdfs:label='пониженный'"/>
     <x:expect label="$6 585 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[19]/bf:Note/rdfs:label = 'Выставлены: &quot;Видения City &amp; Country: эстампов и фотографий девятнадцатом веке во Франции&quot;, организованной Ворчестер художественного музея и Американской федерации искусств, 1982.'"/>
-    <x:expect label="$6 586 creates an awards note on the Work" test="//bf:Work[1]/bf:note[5]/bf:Note/rdfs:label = 'Национальная книжная премия, 1981'"/>
+    <x:expect label="$6 586 creates an awards note on the Work" test="//bf:Work[1]/bf:note/bf:Note[rdf:type/@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/award']/rdfs:label = 'Национальная книжная премия, 1981'"/>
     <x:expect label="$6 588 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[20]/bf:Note/rdfs:label = 'Том 2.'"/>
     <x:expect label="$6 740 creates a related Work linked to the main Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle ='Руководство гадалки'"/>
     <x:expect label="$6 7XX linking field" test="//bf:Work[1]/bf:relation/bf:Relation[bf:relationship/@rdf:resource='http://id.loc.gov/vocabulary/relationship/absorptionof']/bf:associatedResource/bf:Work/bf:hasInstance/bf:Instance/bf:title/bf:Title/bf:mainTitle = 'Графические уведомления и дополнительные данные'"/>

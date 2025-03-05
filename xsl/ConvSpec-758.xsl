@@ -20,8 +20,17 @@
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vLabel"><xsl:value-of select="marc:subfield[@code='a']" /></xsl:variable>
     
+    <!-- Sorry.  Hacky thing for LC. -->
+    <xsl:variable name="baseuri-minus-REPLACE">
+      <xsl:choose>
+        <xsl:when test="contains($recordid, '/REPLACE/')">
+          <xsl:value-of select="substring-before($recordid, '/REPLACE/')"/>
+        </xsl:when>
+        <xsl:otherwise>http://may.this/never/exist/</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="not(marc:subfield[@code='i']) and not(marc:subfield[@code='4'])">
+      <xsl:when test="not(contains(marc:subfield[@code='1'][1], $baseuri-minus-REPLACE)) and not(marc:subfield[@code='i']) and not(marc:subfield[@code='4'])">
         <bf:relation>
           <bf:Relation>
             <bf:relationship rdf:resource="http://id.loc.gov/ontologies/bibframe/hasEquivalent" />
@@ -31,7 +40,7 @@
           </bf:Relation>
         </bf:relation>
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='4'] and not(contains(marc:subfield[@code='4'], 'rdaregistry'))">
+      <xsl:when test="not(contains(marc:subfield[@code='1'][1], $baseuri-minus-REPLACE)) and marc:subfield[@code='4'] and not(contains(marc:subfield[@code='4'], 'rdaregistry'))">
         <bf:relation>
           <bf:Relation>
             <xsl:for-each select="marc:subfield[@code='4']">
@@ -56,7 +65,7 @@
           </bf:Relation>
         </bf:relation>
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='i']">
+      <xsl:when test="not(contains(marc:subfield[@code='1'][1], $baseuri-minus-REPLACE)) and marc:subfield[@code='i']">
         <bf:relation>
           <bf:Relation>
             <xsl:for-each select="marc:subfield[@code='i']">
