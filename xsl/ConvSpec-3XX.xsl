@@ -618,28 +618,6 @@
               <xsl:for-each select="following-sibling::marc:subfield[@code='b'][position()=1]">
                 <bf:code><xsl:value-of select="."/></bf:code>
               </xsl:for-each>
-              <xsl:for-each select="../marc:subfield[@code='m']">
-                <bflc:demographicGroup>
-                  <bflc:DemographicGroup>
-                    <xsl:if test="../marc:subfield[@code='n']">
-                      <xsl:variable name="encoded">
-                        <xsl:call-template name="url-encode">
-                          <xsl:with-param name="str" select="normalize-space(../marc:subfield[@code='n'][1])"/>
-                        </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:attribute name="rdf:about"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
-                    </xsl:if>
-                    <rdfs:label>
-                      <xsl:if test="$vXmlLang != ''">
-                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                      </xsl:if>
-                      <xsl:call-template name="tChopPunct">
-                        <xsl:with-param name="pString" select="."/>
-                      </xsl:call-template>
-                    </rdfs:label>
-                  </bflc:DemographicGroup>
-                </bflc:demographicGroup>
-              </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
@@ -650,6 +628,48 @@
             </xsl:element>
           </xsl:element>
         </xsl:for-each>
+        <xsl:choose>
+          <xsl:when test="not(marc:subfield[@code='a']) and marc:subfield[@code='m']">
+            <xsl:for-each select="marc:subfield[@code='m']">
+              <xsl:element name="{$vProp}">
+                <bflc:DemographicGroup>
+                  <xsl:if test="following-sibling::marc:subfield[@code='n']">
+                    <xsl:variable name="encoded">
+                      <xsl:call-template name="url-encode">
+                        <xsl:with-param name="str" select="normalize-space(following-sibling::marc:subfield[@code='n'][1])"/>
+                      </xsl:call-template>
+                    </xsl:variable>
+                    <xsl:attribute name="rdf:about"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
+                  </xsl:if>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                  <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                    <xsl:with-param name="pVocabStem" select="$subjectSchemes"/>
+                  </xsl:apply-templates>
+                </bflc:DemographicGroup>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:when test="not(marc:subfield[@code='a']) and marc:subfield[@code='n']">
+            <xsl:for-each select="marc:subfield[@code='n']">
+              <xsl:element name="{$vProp}">
+                <xsl:variable name="encoded">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space(.)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

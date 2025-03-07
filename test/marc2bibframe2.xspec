@@ -75,13 +75,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.1"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -152,7 +152,7 @@
                   </bf:Agent>
                 </bf:agent>
                 <bf:role>
-                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+                  <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/aut"/>
                 </bf:role>
               </bf:Contribution>
             </bf:contribution>
@@ -262,13 +262,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.1"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">minimal</rdfs:label>
@@ -318,6 +318,12 @@
                 <bf:mainTitle>The Great Ray Charles</bf:mainTitle>
               </bf:Title>
             </bf:title>
+            <bf:note>
+              <bf:Note>
+                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/participants"/>
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Ray Charles, piano &amp; celeste.</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:tableOfContents>
               <bf:TableOfContents>
                 <rdfs:label>The Ray -- My melancholy baby -- Black coffee -- There's no you -- Doodlin' -- Sweet sixteen bars -- I surrender dear -- Undecided.</rdfs:label>
@@ -441,7 +447,6 @@
               </bf:Note>
             </bf:note>
             <bf:dimensions>12 in</bf:dimensions>
-            <bf:credits>Ray Charles, piano &amp; celeste.</bf:credits>
             <bf:note>
               <bf:Note>
                 <rdfs:label>Brief record.</rdfs:label>
@@ -487,13 +492,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.1"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -734,13 +739,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.1"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -822,8 +827,8 @@
             <bf:relation>
               <bf:Relation>
                 <bf:relationship>
-                  <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                    <rdfs:label>Has Series</rdfs:label>
+                  <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                    <rdfs:label>series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
@@ -919,8 +924,8 @@
             <bf:relation>
               <bf:Relation>
                 <bf:relationship>
-                  <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                    <rdfs:label>Has Series</rdfs:label>
+                  <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                    <rdfs:label>series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
@@ -939,8 +944,8 @@
             <bf:relation>
               <bf:Relation>
                 <bf:relationship>
-                  <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                    <rdfs:label>Has Series</rdfs:label>
+                  <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                    <rdfs:label>series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
@@ -959,8 +964,8 @@
             <bf:relation>
               <bf:Relation>
                 <bf:relationship>
-                  <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                    <rdfs:label>Has Series</rdfs:label>
+                  <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                    <rdfs:label>series</rdfs:label>
                   </bf:Relationship>
                 </bf:relationship>
                 <bf:associatedResource>
@@ -1089,13 +1094,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.8.1"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>

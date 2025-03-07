@@ -65,8 +65,8 @@
         <bf:relation>
           <bf:Relation>
             <bf:relationship>
-              <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                <rdfs:label>Has Series</rdfs:label>
+              <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                <rdfs:label>series</rdfs:label>
               </bf:Relationship>
             </bf:relationship>
             <bf:associatedResource>
@@ -380,8 +380,8 @@
         <bf:relation>
           <bf:Relation>
             <bf:relationship>
-              <bf:Relationship rdf:about="http://id.loc.gov/ontologies/bibframe/hasSeries">
-                <rdfs:label>Has Series</rdfs:label>
+              <bf:Relationship rdf:about="http://id.loc.gov/vocabulary/relationship/series">
+                <rdfs:label>series</rdfs:label>
               </bf:Relationship>
             </bf:relationship>
             <bf:associatedResource>
@@ -395,7 +395,7 @@
                   <xsl:when test="$vTag = '830' or $vTag = '440'">
                     <xsl:apply-templates mode="hubUnifTitle" select=".">
                       <xsl:with-param name="serialization" select="$serialization"/>
-                      <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/>                      
+                      <!-- <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/> -->                  
                     </xsl:apply-templates>
                   </xsl:when>
               <xsl:otherwise>
