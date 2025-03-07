@@ -75,13 +75,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0-dev"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -262,13 +262,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0-dev"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">minimal</rdfs:label>
@@ -492,13 +492,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0-dev"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -739,13 +739,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0-dev"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
@@ -1094,13 +1094,13 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0-dev"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <bf:adminMetadata>
               <bf:AdminMetadata>
-                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-4-0/"/>
+                <bf:descriptionLevel rdf:resource="http://id.loc.gov/ontologies/bibframe-2-5-0/"/>
                 <bflc:encodingLevel xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
                   <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/f">
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">full</rdfs:label>
