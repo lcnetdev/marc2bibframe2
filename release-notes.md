@@ -1,5 +1,20 @@
 # marc2bibframe2 release notes
 
+## v2.9.0
+
+Conversion updates based on specifications v2.8. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Addition of URIs for variant title types found in MARC 246 and 247 fields
+* Changed the conversion of MARC 508, 511, 524 fields to use notes and notetype URIs instead of distinct BIBFRAME properties
+* Added notetype URIs to the conversion of MARC 525 and 556 fields
+* Changed conversion of MARC 506 and 540 $f to bf:qualifier
+* Changed conversion of MARC 506 and 540 $g to bf:validDate
+* Changed conversion of MARC 521 $b to bf:source
+* Added conversion of MARC 505 Ind2
+* Changed conversion of MARC 510 field to use indirect relationship model
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.8.0 in the specifications are marked in red.
+
 ## v2.8.1
 
 Patch release.

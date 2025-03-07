@@ -1,3 +1,26 @@
+--- 2.9.0 2025/03/07
+Changes for updated v2.9.0 specifications:
+	ConvSpec-010-048
+		Removed creation of "Includes translation" note from 041 1_ field
+	ConvSpec-200-247
+		Added new variant title type URIs to 246 and 247 fields
+	ConvSpec-3XX
+		Adjusted conversion of $m/$n in 385 and 386 fields
+	ConvSpec-5XX
+		Changed conversion of 506 and 540 $f to bf:qualifier
+		Changed conversion of 506 and 540 $g to bf:validDate
+		Added $3 to 508 and 511 fields
+		Changed 508, 511, 524 fields to use notetype URIs instead of literal BF properties
+		Added notetype URIs to 525 and 556 fields
+		Moved conversion of 508 and 511 fields from Instance to Work
+		Changed conversion of 521 $b to bf:source
+		Added $2 to 524 conversion with URIs from new Citation Source Codes list at http://id.loc.gov
+		Added new bf:status codes to convert 505 Ind2
+	ConvSpec-490,510
+		Changed conversion of MARC 510 field to use indirect relationship model
+	ConvSpec-Process0-9
+		Changed series relationship from bf:hasSeries to http://id.loc.gov/vocabulary/relationship/series
+
 --- 2.8.1 2024/12/02
 Patch release to address XPath test issue in xsltproc.
 
