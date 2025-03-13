@@ -898,6 +898,7 @@
                                 substring(., 7, 1) = 'd' or
                                 substring(., 7, 1) = 'e' or
                                 substring(., 7, 1) = 'm' or
+                                substring(., 7, 1) = 'n' or
                                 substring(., 7, 1) = 'q' or
                                 substring(., 7, 1) = 'r' or
                                 substring(., 7, 1) = 's' or
