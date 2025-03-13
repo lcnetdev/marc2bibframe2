@@ -7,9 +7,10 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v2.9.0</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v2.10-dev</xsl:variable>
   <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-5-0/</xsl:variable>
-  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0</xsl:variable>
+  <!-- <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0</xsl:variable> -->
+  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev</xsl:variable>
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>

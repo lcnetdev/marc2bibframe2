@@ -784,6 +784,25 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <!-- 
+                06 - Type of date/Publication status
+                
+                b - No dates given; B.C. date involved
+                *c - Continuing resource currently published
+                *d - Continuing resource ceased publication
+                *e - Detailed date
+                *i - Inclusive dates of collection
+                *k - Range of years of bulk of collection
+                *m - Multiple dates
+                n - Dates unknown
+                *p - Date of distribution/release/issue and production/recording session when different 
+                *q - Questionable date
+                *r - Reprint/reissue date and original date
+                *s - Single known date/probable date
+                *t - Publication date and copyright date
+                *u - Continuing resource status unknown
+                *| - No attempt to code 
+        -->
         <xsl:variable name="provisionDate">
             <xsl:choose>
                 <xsl:when test="substring(., 7, 1) = 'c'">
@@ -843,6 +862,19 @@
                         <xsl:with-param name="dateString" select="substring(., 8, 4)"/>
                     </xsl:call-template>
                 </xsl:when>
+                <xsl:when test="substring(., 7, 1) = 'n' and $vDate1 != '' and $vDate2 != ''">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString"
+                            select="concat(substring(., 8, 4), '/', substring(., 12, 4))"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="substring(., 7, 1) = 'n' and $vDate1 != ''">
+                    <xsl:call-template name="u2x">
+                        <xsl:with-param name="dateString"
+                            select="substring(., 8, 4)"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="substring(., 7, 1) = 'n'">XXXX</xsl:when> 
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="pubPlace">

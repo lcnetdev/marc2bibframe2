@@ -216,12 +216,25 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="originDate">
+      <xsl:choose>
+        <xsl:when test="substring(., 7, 1) = 'r' and not(../marc:datafield[@tag='046']/marc:subfield[@code='k'])">
+          <xsl:value-of select="substring(., 12, 4)"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$language != ''">
           <bf:language>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$language)"/></xsl:attribute>
           </bf:language>
+        </xsl:if>
+        <xsl:if test="$originDate != ''">
+          <bf:originDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
+            <xsl:value-of select="$originDate"/>
+          </bf:originDate>
         </xsl:if>
       </xsl:when>
     </xsl:choose>

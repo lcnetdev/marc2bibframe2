@@ -75,7 +75,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -262,7 +262,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -492,7 +492,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -739,7 +739,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -1094,7 +1094,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -1184,7 +1184,7 @@
 
   <x:scenario label="Generation Process">
     <x:context href="data/marc.xml"/>
-    <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/@rdf:resource,'https://github.com/lcnetdev/marc2bibframe2/releases/tag/')"/>
+    <x:expect label="Work/adminMetadata/AdminMetadata should have generationProcess property" test="starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/@rdf:resource,'https://github.com/lcnetdev/marc2bibframe2/releases/tag/') or starts-with(//bf:Work/bf:adminMetadata/bf:AdminMetadata/bf:generationProcess/@rdf:resource,'https://github.com/lcnetdev/marc2bibframe2/tree/')"/>
     <x:expect label="GenerationProcess should have a generationDate property if available"
               test="//bf:Work/bf:adminMetadata[3]/bf:AdminMetadata/bf:date = '1970-01-01T00:00:00Z'"/>
     <x:expect label="...and a datatype"
