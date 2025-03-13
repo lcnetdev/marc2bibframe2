@@ -94,4 +94,19 @@
     <controlfield tag="001">17</controlfield>
     <controlfield tag="008">001128q19001956ja            000 0 jpn  </controlfield>
   </record>
+  <record>
+    <leader>00307cam a22000974a 4500</leader>
+    <controlfield tag="001">18</controlfield>
+    <controlfield tag="008">010213n        sw            000 0 swe  </controlfield>
+  </record>
+  <record>
+    <leader>00473nas a2200169za 4500</leader>
+    <controlfield tag="001">19</controlfield>
+    <controlfield tag="008">001120n19uu    ru            0    0rus  </controlfield>
+  </record>
+  <record>
+    <leader>02061cam a2200421 i 4500</leader>
+    <controlfield tag="001">20</controlfield>
+    <controlfield tag="008">240624r20232021enk           000 0 eng d</controlfield>
+  </record>
 </collection>
