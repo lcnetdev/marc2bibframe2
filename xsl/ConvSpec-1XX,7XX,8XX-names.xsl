@@ -85,13 +85,13 @@
     <xsl:if test="$pHasItem or not($localfields and marc:subfield[@code='5'])">
       <xsl:variable name="agentiri">
         <xsl:choose>
-          <xsl:when test="marc:subfield[@code='1']">
+          <xsl:when test="not(marc:subfield[@code='t']) and marc:subfield[@code='1']">
             <xsl:apply-templates mode="generateUriFrom1" select=".">
               <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
               <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
             </xsl:apply-templates>            
           </xsl:when>
-          <xsl:when test="marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
+          <xsl:when test="not(marc:subfield[@code='t']) and marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
             <xsl:apply-templates mode="generateUriFrom1" select=".">
               <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
               <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
@@ -106,10 +106,20 @@
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="vHubIri">
-        <xsl:apply-templates mode="generateUri" select=".">
-          <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-          <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
-        </xsl:apply-templates>
+        <xsl:choose>
+          <xsl:when test="marc:subfield[@code='1']">
+            <xsl:apply-templates mode="generateUriFrom1" select=".">
+              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+              <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+            </xsl:apply-templates>            
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="generateUri" select=".">
+              <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+              <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:variable>
       <xsl:apply-templates mode="work7XX" select=".">
         <xsl:with-param name="agentiri" select="$agentiri"/>
