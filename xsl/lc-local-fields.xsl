@@ -53,6 +53,12 @@
                   </bf:itemPortion>
                 </xsl:for-each>
               </xsl:if>
+              <bf:status>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'nuba')"/></xsl:attribute>
+              </bf:status>
+              <bf:status>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($mstatus,'p')"/></xsl:attribute>
+              </bf:status>
             </bf:ClassificationLcc>
           </bf:classification>
         </xsl:for-each>
