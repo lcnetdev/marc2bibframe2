@@ -231,6 +231,9 @@
     <x:expect label="$c creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/rdf:value = 'us'"/>
     <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/bf:source/bf:Source/bf:code = 'ISO 3166'"/>
     <x:expect label="$0 creates an identifier property of the GeographicCoverage" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
+    
+    <x:expect label="$0 creates an identifier property of the GeographicCoverage" test="//bf:Work/bf:geographicCoverage[4]/@rdf:resource = 'http://id.loc.gov/authorities/subjects/sh85074668'"/>
+    <x:expect label="... there is only one, even though there are three in the source." test="count(//bf:Work/bf:geographicCoverage/@rdf:resource[. = 'http://id.loc.gov/authorities/subjects/sh85074668']) = 1"/>
   </x:scenario>
   
   <x:scenario label="045 - TIME PERIOD OF CONTENT">

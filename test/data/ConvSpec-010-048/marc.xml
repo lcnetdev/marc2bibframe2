@@ -208,6 +208,18 @@
       <subfield code="2">BlRjBN</subfield>
       <subfield code="c">us</subfield>
     </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-fi---</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85074668</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-no---</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85074668</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-sw---</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85074668</subfield>
+    </datafield>
     <datafield tag="044" ind1=" " ind2=" ">
       <subfield code="a">at</subfield>
       <subfield code="b">xna</subfield>
