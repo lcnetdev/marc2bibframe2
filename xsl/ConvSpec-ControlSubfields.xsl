@@ -255,11 +255,18 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pVocabStem"/>
     <xsl:param name="pStripPunct" select="false()"/>
+    <xsl:variable name="vCode">
+      <xsl:choose>
+        <xsl:when test="contains(., '%2F')"><xsl:value-of select="substring-before(., '%2F')" /></xsl:when>
+        <xsl:when test="contains(., '/')"><xsl:value-of select="substring-before(., '/')" /></xsl:when>
+        <xsl:otherwise><xsl:value-of select="." /></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="vURI">
         <xsl:if test="$pVocabStem != ''">
             <xsl:variable name="vNormCode">
                 <xsl:call-template name="tNormalizeCode">
-                    <xsl:with-param name="pCode" select="."/>
+                    <xsl:with-param name="pCode" select="$vCode"/>
                     <xsl:with-param name="pStripPunct" select="$pStripPunct"/>
                 </xsl:call-template>
             </xsl:variable>
@@ -281,7 +288,7 @@
                             <xsl:attribute name="rdf:about"><xsl:value-of select="$vURI"/></xsl:attribute>
                         </xsl:if>
                         <bf:code>
-                            <xsl:value-of select="."/>
+                          <xsl:value-of select="$vCode"/>
                         </bf:code>
                     </bf:Source>
                 </bf:source>

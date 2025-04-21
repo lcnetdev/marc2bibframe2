@@ -496,18 +496,18 @@
           <xsl:when test="marc:subfield[@code='t']">
             <xsl:apply-templates mode="concat-nodes-space"
               select="marc:subfield[@code='t'] |
-              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwxyz012345678',@code))]"/>            
           </xsl:when>
           <xsl:when test="marc:subfield[@code='k']">
             <xsl:apply-templates mode="concat-nodes-space"
               select="marc:subfield[@code='k'] |
-              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('ivwxyz012345678',@code))]"/>            
           </xsl:when>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[not(contains('hivwxyz012345678',@code))]"/>
+                             select="marc:subfield[not(contains('ivwxyz012345678',@code))]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
