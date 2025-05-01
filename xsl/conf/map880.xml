@@ -84,48 +84,48 @@
   <datafield tag="386" convertLinked="false"/>
   <datafield tag="440" convertLinked="false"/>
   <!-- omit field 490 to force both 250 and linked 880 to be converted -->
-  <datafield tag="500" convertLinked="true"/>
-  <datafield tag="501" convertLinked="true"/>
+  <datafield tag="500" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="501" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="502" convertLinked="true"/>
   <datafield tag="504" convertLinked="true"/>
-  <datafield tag="505" convertLinked="true"/>
+  <datafield tag="505" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="506" convertLinked="true"/>
   <datafield tag="507" convertLinked="true"/>
   <datafield tag="508" convertLinked="true"/>
   <datafield tag="510" convertLinked="true"/>
   <datafield tag="511" convertLinked="true"/>
-  <datafield tag="513" convertLinked="true"/>
-  <datafield tag="515" convertLinked="true"/>
-  <datafield tag="516" convertLinked="true"/>
+  <datafield tag="513" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="515" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="516" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="518" convertLinked="true"/>
   <datafield tag="520" convertLinked="true"/>
   <datafield tag="521" convertLinked="true"/>
   <datafield tag="522" convertLinked="true"/>
   <datafield tag="524" convertLinked="true"/>
   <datafield tag="525" convertLinked="true"/>
-  <datafield tag="530" convertLinked="true"/>
+  <datafield tag="530" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="532" convertLinked="true"/>
-  <datafield tag="533" convertLinked="true"/>
-  <datafield tag="534" convertLinked="true"/>
-  <datafield tag="536" convertLinked="true"/>
+  <datafield tag="533" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="534" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="536" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="538" convertLinked="true"/>
   <datafield tag="540" convertLinked="true"/>
   <datafield tag="541" convertLinked="true"/>
-  <datafield tag="544" convertLinked="true"/>
-  <datafield tag="545" convertLinked="true"/>
+  <datafield tag="544" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="545" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="546" convertLinked="true"/>
-  <datafield tag="547" convertLinked="true"/>
-  <datafield tag="550" convertLinked="true"/>
-  <datafield tag="555" convertLinked="true"/>
-  <datafield tag="556" convertLinked="true"/>
+  <datafield tag="547" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="550" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="555" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="556" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="561" convertLinked="true"/>
   <datafield tag="563" convertLinked="true"/>
-  <datafield tag="580" convertLinked="true"/>
-  <datafield tag="581" convertLinked="true"/>
+  <datafield tag="580" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
+  <datafield tag="581" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="583" convertLinked="true"/>
-  <datafield tag="585" convertLinked="true"/>
+  <datafield tag="585" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="586" convertLinked="true"/>
-  <datafield tag="588" convertLinked="true"/>
+  <datafield tag="588" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="600" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="610" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
   <datafield tag="611" convertLinked="false"/> <!-- linked 880 converted together with regular field -->
