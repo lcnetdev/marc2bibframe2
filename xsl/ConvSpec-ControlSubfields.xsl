@@ -258,7 +258,7 @@
     <xsl:variable name="vCode">
       <xsl:choose>
         <xsl:when test="contains(., '%2F')"><xsl:value-of select="substring-before(., '%2F')" /></xsl:when>
-        <xsl:when test="contains(., '/')"><xsl:value-of select="substring-before(., '/')" /></xsl:when>
+        <xsl:when test="not(parent::marc:datafield[@tag='082']) and contains(., '/')"><xsl:value-of select="substring-before(., '/')" /></xsl:when>
         <xsl:otherwise><xsl:value-of select="." /></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
