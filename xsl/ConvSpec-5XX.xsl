@@ -106,6 +106,23 @@
                   </xsl:if>
                   <xsl:value-of select="normalize-space($vLabel)"/>
                 </rdfs:label>
+                <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+                  <xsl:variable name="vOccurrence">
+                    <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+                  </xsl:variable>
+                  <xsl:variable name="v880Ref" select="concat('505-', $vOccurrence)" />
+                  <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+                  <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+                  <xsl:variable name="v880Label">
+                    <xsl:apply-templates mode="concat-nodes-space" select="$v880df/marc:subfield[@code='a' or @code='g' or @code='r' or @code='t']"/>
+                  </xsl:variable>
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang880 != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="normalize-space($v880Label)"/>
+                  </rdfs:label>
+                </xsl:if>
                 <xsl:if test="marc:subfield[@code='u']">
                   <bf:electronicLocator>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
@@ -236,6 +253,22 @@
                 </xsl:if>
                 <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
+            </xsl:if>
+            <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+              <xsl:variable name="vOccurrence">
+                <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+              </xsl:variable>
+              <xsl:variable name="v880Ref" select="concat('520', '-', $vOccurrence)" />
+              <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+              <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
             </xsl:if>
             <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
               <xsl:with-param name="serialization" select="$serialization"/>
@@ -400,6 +433,22 @@
                 <xsl:value-of select="."/>
               </rdfs:label>
             </xsl:for-each>
+            <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+              <xsl:variable name="vOccurrence">
+                <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+              </xsl:variable>
+              <xsl:variable name="v880Ref" select="concat('580', '-', $vOccurrence)" />
+              <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+              <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+            </xsl:if>
           </bf:Note>
         </bf:note>
       </xsl:when>
@@ -864,40 +913,6 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
-    <xsl:variable name="vLabel">
-      <xsl:choose>
-        <xsl:when test="$vTag='513' or $vTag='545'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
-        </xsl:when>
-        <xsl:when test="$vTag='530'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abc',@code)]"/>
-        </xsl:when>
-        <xsl:when test="$vTag='533'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcdefn',@code)]"/>
-        </xsl:when>
-        <xsl:when test="$vTag='534'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcefkmnt',@code)]"/>
-        </xsl:when>
-        <xsl:when test="$vTag='544'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
-        </xsl:when>
-        <xsl:when test="$vTag='555'">
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']"/>
-        </xsl:when>
-        <xsl:when test="$vTag='588'">
-          <xsl:variable name="vDisplayConstant">
-            <xsl:choose>
-              <xsl:when test="@ind1='0'">Description based on:</xsl:when>
-              <xsl:when test="@ind1='1'">Latest issue consulted:</xsl:when>
-            </xsl:choose>
-          </xsl:variable>
-          <xsl:value-of select="concat($vDisplayConstant,' ',marc:subfield[@code='a'])"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a']"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
     <xsl:variable name="vNoteType">
       <xsl:choose>
         <xsl:when test="$vTag='501'">with</xsl:when>
@@ -931,13 +946,14 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
           <bf:Note>
-            <xsl:if test="$vLabel != ''">
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="normalize-space($vLabel)"/>
-              </rdfs:label>
+            <xsl:apply-templates select="." mode="instanceNote5XXLabel" />
+            <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+              <xsl:variable name="vOccurrence">
+                <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+              </xsl:variable>
+              <xsl:variable name="v880Ref" select="concat($vTag, '-', $vOccurrence)" />
+              <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+              <xsl:apply-templates select="$v880df" mode="instanceNote5XXLabel" />
             </xsl:if>
             <xsl:if test="$vNoteType != ''">
               <rdf:type>
@@ -1037,6 +1053,58 @@
         </bf:note>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield" mode="instanceNote5XXLabel">
+    <xsl:variable name="vTag">
+      <xsl:choose>
+        <xsl:when test="@tag='880'"><xsl:value-of select="substring(marc:subfield[@code='6'],1,3)"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="@tag"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vLabel">
+      <xsl:choose>
+        <xsl:when test="$vTag='513' or $vTag='545'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+        </xsl:when>
+        <xsl:when test="$vTag='530'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abc',@code)]"/>
+        </xsl:when>
+        <xsl:when test="$vTag='533'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcdefn',@code)]"/>
+        </xsl:when>
+        <xsl:when test="$vTag='534'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[contains('abcefkmnt',@code)]"/>
+        </xsl:when>
+        <xsl:when test="$vTag='544'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d' or @code='e' or @code='n']"/>
+        </xsl:when>
+        <xsl:when test="$vTag='555'">
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b' or @code='c' or @code='d']"/>
+        </xsl:when>
+        <xsl:when test="$vTag='588'">
+          <xsl:variable name="vDisplayConstant">
+            <xsl:choose>
+              <xsl:when test="@ind1='0'">Description based on:</xsl:when>
+              <xsl:when test="@ind1='1'">Latest issue consulted:</xsl:when>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:value-of select="concat($vDisplayConstant,' ',marc:subfield[@code='a'])"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a']"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="$vLabel != ''">
+      <rdfs:label>
+        <xsl:if test="$vXmlLang != ''">
+          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+        </xsl:if>
+        <xsl:value-of select="normalize-space($vLabel)"/>
+      </rdfs:label>
+    </xsl:if>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='541' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='541')]" mode="item">
