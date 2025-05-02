@@ -254,6 +254,22 @@
                 <xsl:value-of select="normalize-space($vLabel)"/>
               </rdfs:label>
             </xsl:if>
+            <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+              <xsl:variable name="vOccurrence">
+                <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+              </xsl:variable>
+              <xsl:variable name="v880Ref" select="concat('520', '-', $vOccurrence)" />
+              <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+              <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
+            </xsl:if>
             <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>

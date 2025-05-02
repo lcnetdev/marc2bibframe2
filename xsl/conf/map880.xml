@@ -98,7 +98,7 @@
   <datafield tag="515" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="516" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="518" convertLinked="true"/>
-  <datafield tag="520" convertLinked="true"/>
+  <datafield tag="520" convertLinked="false"/>  <!-- linked 880 converted together with regular field -->
   <datafield tag="521" convertLinked="true"/>
   <datafield tag="522" convertLinked="true"/>
   <datafield tag="524" convertLinked="true"/>
