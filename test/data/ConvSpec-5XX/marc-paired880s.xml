@@ -1,0 +1,176 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="001">1</controlfield>
+    <controlfield tag="008">030830s2003    bn            000 1 srp  </controlfield>
+    
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Reprint has ISBN for the set and for each volume.</subfield>
+    </datafield>
+    
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">"Tai ri hua bao" (ri wen yuan cheng wei "Tainichi gurafu " ) yu zhao he wu nian (1930) 10 yue kai shi fa xing, wei "Taiwan ri ri xin bao" fu lu, mei yue fa xing yi hao. Fu ke yuan jian xian cun Guo li Taiwan Li Shi Bo Wu Guan, Zao Dao Tian Da Xue Tu Shu Guan yu Guo Li Taiwan Tu Shu Guan. Qi qi shi jian wei: zhao he 5 nian (1930) 10 yue - zhao he 12 nian (1937) 6 yue, zi di 1 juan di 1 hao (tong juan di 1 hao) zhi di 8 juan di 6 hao (tong juan di 80 hao), tong juan di 80 hao ling you te kan 1 hao, yuan you 81 hao, xian cun 66 hao,ben ci fu ke 65 hao, yu ji fen 2 qi chu ban. - editor's introduction, page I of volume 1.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-01/$1</subfield>
+      <subfield code="a">《臺日畫報》(日文原稱為《臺日グラフ》) 於昭和五年(一九三0)十月開始發行, 為《臺灣日日新報》附錄,每月發行一號.復刻原件現存國立臺灣歷史博物館,早稻田大學圖書館與國立台灣圖書館.起迄時間為:昭和五年(一九三0)十月-昭和十二年(一九三七)六月,自第一卷第一號(通卷第一號)至第八卷第六號(通卷第八十號), 通卷第八十號另有特刊一號,原有八十一號,現存六十六號,本次復刻六十五號,預計分兩期出版.- editor's introduction, page I of volume 1.</subfield>
+    </datafield>
+    
+    <datafield tag="501" ind1=" " ind2=" ">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">LC copy with: Ėntelekhizm / David Burli︠u︡k. New York : Marii︠a︡ Nikiforovna Burli︠u︡k, 1930. Bound together subsequent to publication.</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">501-02/(N</subfield>
+      <subfield code="a">LC copy with: Энтелехизм / Давид Бурлюк. New York : Marii︠a︡ Nikiforovna Burli︠u︡k, 1930. Bound together subsequent to publication.</subfield>
+      <subfield code="5">DLC</subfield>
+    </datafield>
+    
+    <datafield ind1=" " ind2=" " tag="502">
+      <subfield code="6">880-03</subfield>
+      <subfield code="b">Ph. D.</subfield>
+      <subfield code="c">Fu ren da xue zong jiao xue yan jiu suo</subfield>
+      <subfield code="d">2020</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="880">
+      <subfield code="6">502-03/$1</subfield>
+      <subfield code="b">Ph. D.</subfield>
+      <subfield code="c">輔仁大學宗教學研究所</subfield>
+      <subfield code="d">2020</subfield>
+    </datafield>
+    
+    <datafield tag="502" ind1=" " ind2=" ">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Thesis (M.A.)--Guo li zheng zhi da xue.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">502-04/$1</subfield>
+      <subfield code="a">Thesis (M.A.)ー國立政治大學.</subfield>
+    </datafield>
+    
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">"Materialy dli︠a︡ bibliografii. Literatura o D.D. Burli︠u︡ke, na russkom i dr. i︠a︡zykakh," page 2.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">504-05/(N</subfield>
+      <subfield code="a">"Материалы для библиографии. Литература о Д.Д. Бурлюке, на русском и др. языках," page 2.</subfield>
+    </datafield>
+
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">1. di 1 ce. 1930 nian 10 yue-1931 nian 2 yue -- 2. di 2 ce. 1931 nian 3 yue-1931 nian 9 yue -- 3. di 3 ce. 1931 nian 10 yue-1932 nian 3 yue -- 4. di 4 ce. 1932 nian 4 yue-1932 nian 9 yue -- 5. di 5 ce. 1932 nian 10 yue-1933 nian 5 yue -- 6. di 6 ce.1933 nian 6 yue-1933 nian 12 yue -- 7. di 7 ce.1934 nian 1 yue-1934 nian 6 yue -- 8. di 8 ce.1934 nian 7 yue-1934 nian 12 yue -- 9. di 9 ce.1935 nian 1 yue-1935 nian 6 yue -- 10. di 10 ce.1935 nian 7 yue-1936 nian 11 yue -- 11. di 11 ce.1937 nian 1 yue-1937 nian 6 yue</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">505-06/$1</subfield>
+      <subfield code="a">1. 第一冊. 一九三0年十月-一九三一年二月 -- 2. 第二冊. 一九三一年三月-一九三一年九月 -- 3. 第三冊. 一九三一年十月-一九三二年三月 -- 4. 第四冊. 一九三二年四月-一九三二年九月 -- 5. 第五冊. 一九三二年十月-一九三三年五月 -- 6. 第六冊.一九三三年六月-一九三三年十二月 -- 7. 第七冊.一九三四年一月-一九三四年六月 -- 8. 第八冊.一九三四年七月-一九三四年十二月 -- 9. 第九冊.一九三五年一月-一九三五年六月 -- 10. 第十冊.一九三五年七月-一九三六年十一月 -- 11. 第十一冊.一九三七年一月-一九三七年六月 --</subfield>
+    </datafield>
+    
+    <datafield tag="508" ind1=" " ind2=" ">
+      <subfield code="6">880-07</subfield>
+      <subfield code="a">Muhandis al-ṣawt Naṣrī ʻAbd al-Nūr ; al-mūsīqá al-taṣwīrīyah Fuʼād al-Zāhirī ; mūntāj ʻAbd al-ʻAzīz Fakhrī ; mudīr al-taṣwīr Wadīd Sirrī.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">508-07/(3/r‏</subfield>
+      <subfield code="a">‏مهندس الصوت نصري عبد النور ؛ الموسيقى التصويرية فؤاد الزاهري ؛ مونتاج عبد العزيز فخري ؛ مدير التصوير وديد سري.</subfield>
+    </datafield>
+    
+    <datafield tag="511" ind1="1" ind2=" ">
+      <subfield code="6">880-08</subfield>
+      <subfield code="a">Nīllī, Nūr al-Sharīf, ʻIzzat al-ʻAlāyilī.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">511-08/(3/r‏</subfield>
+      <subfield code="a">‏نيلي، نور الشريف، عزة العلايلي.</subfield>
+    </datafield>
+
+    <datafield tag="515" ind1=" " ind2=" ">
+      <subfield code="6">880-09</subfield>
+      <subfield code="a">Whole numbering started with di 2 juan di 1 hao (1931 nian 1 yue 15 ri) also called tong juan di 4 hao.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">515-09/$1</subfield>
+      <subfield code="a">Whole numbering started with 第2卷第1號 (1931年1月15日) also called 通卷第四號.</subfield>
+    </datafield>
+    
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="6">880-10</subfield>
+      <subfield code="a">Detailed summary in vernacular field.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="880">
+      <subfield code="6">520-10/$1</subfield>
+      <subfield code="a">本书辑录了红学名家周汝昌先生与著名作家刘心武先生于1991年至2011年间的往来信件,其中的主要内容是两人关于曹雪芹"石头记"(即"红楼梦")20年间的讨论和交流,展现了他们在红学研究方面的心路轨迹及专注热忱的治学精神,同时彰显了二人深厚的忘年友情.书中还收集了两人信中提及的同时期文章,资料等.</subfield>
+    </datafield>
+    
+    <datafield tag="536" ind1=" " ind2=" ">
+      <subfield code="6">880-11</subfield>
+      <subfield code="a">Sponsored by: Xi bei da xue "211 gong cheng".</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">536-11/$1</subfield>
+      <subfield code="a">Sponsored by: 西北大学 "211 工程".</subfield>
+    </datafield>
+    
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="6">880-12</subfield>
+      <subfield code="a">Zhong ying dui zhao.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">546-12/$1</subfield>
+      <subfield code="a">中英對照</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="6">880-18</subfield>
+      <subfield code="b">Notation: Zhong ying dui zhao.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">546-18/$1</subfield>
+      <subfield code="b">Notation: 中英對照</subfield>
+    </datafield>
+    
+    <datafield tag="550" ind1=" " ind2=" ">
+      <subfield code="6">880-13</subfield>
+      <subfield code="a">Di 2 ji-di 5 ji compiled by: Wen hua yi chan yan jiu yu bao hu ji shu jiao yu bu zhong dian shi yan shi, Xi bei da xue wen hua yi chan yu kao gu xue yan jiu zhong xin.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">550-13/$1</subfield>
+      <subfield code="a">第2辑-第5辑 compiled by: 文化遗产研究与保护技术教育部重点实验室，西北大学文化遗产与考古学研究中心.</subfield>
+    </datafield>
+    <datafield tag="550" ind1=" " ind2=" ">
+      <subfield code="6">880-14</subfield>
+      <subfield code="a">Di 6 ji compiled by: Wen hua yi chan yan jiu yu bao hu ji shu jiao yu bu zhong dian shi yan shi, Xi bei da xue si chou zhi lu wen hua yi chan bao hu yu kao gu xue yan jiu zhong xin, Xi bei da xue tang zhong ying wen hua yi chan yan jiu yu bao hu ji shu shi yan shi.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">550-14/$1</subfield>
+      <subfield code="a">第六辑 compiled by: 文化遗产研究与保护技术教育部重点实验室，西北大学丝绸之路文化遗产保护与考古学研究中心，西北大学唐仲英文化遗产研究与保护技术实验室.</subfield>
+    </datafield>
+    
+    <datafield tag="580" ind1=" " ind2=" ">
+      <subfield code="6">880-15</subfield>
+      <subfield code="a">Originally published monthly as supplement to "Taiwan ri ri xin bao."</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">580-15/$1</subfield>
+      <subfield code="a">Originally published monthly as supplement to "臺灣日日新報."</subfield>
+    </datafield>
+    
+    <datafield tag="588" ind1=" " ind2=" ">
+      <subfield code="6">880-16</subfield>
+      <subfield code="a">Description based on: Reprint di 1 ce (1930 nian 10 yue / 1931 nian 2 yue); title from cover.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">588-16/$1</subfield>
+      <subfield code="a">Description based on: Reprint 第1冊 (1930年10月/1931年2月); title from cover.</subfield>
+    </datafield>
+    <datafield tag="588" ind1=" " ind2=" ">
+      <subfield code="6">880-17</subfield>
+      <subfield code="a">Latest issue consulted: Reprint di 6 ce (1933 nian 6 yue / 1933 nian 12 yue).</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">588-17/$1</subfield>
+      <subfield code="a">Latest issue consulted: Reprint 第6冊 (1933年6月/1933年12月).</subfield>
+    </datafield>
+    
+  </record>  
+</collection>
