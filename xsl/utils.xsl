@@ -48,6 +48,12 @@
             <xsl:when test="$vScript6simple='$1' and ../marc:datafield[@tag='041']/marc:subfield[@code='a']='kor'">kore</xsl:when>
             <xsl:when test="$vScript6simple='$1' and ../marc:datafield[@tag='041']/marc:subfield[@code='a']='jpn'">jpan</xsl:when>
             
+            <!-- 
+              We have a $1 but cannot determine the language, so go with unknown language, 
+              jpan for script since it is the most inclusive.  This is a poor conclusion based on poor data.
+            -->
+            <xsl:when test="$vScript6simple='$1'">jpan</xsl:when>
+            
             <xsl:when test="$vScript6simple='(N'">cyrl</xsl:when>
             <xsl:when test="$vScript6simple='(S'">grek</xsl:when>
             <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
