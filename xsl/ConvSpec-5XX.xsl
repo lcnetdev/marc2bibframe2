@@ -13,6 +13,14 @@
 
   <xsl:template match="marc:datafield[@tag='502' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='502')]" mode="work">
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    
+    <xsl:variable name="vOccurrence">
+      <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+    </xsl:variable>
+    <xsl:variable name="v880Ref" select="concat('502-', $vOccurrence)" />
+    <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref) and not(contains(marc:subfield[@code='6'], '-00'))]"/>
+    <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+    
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:dissertation>
@@ -24,11 +32,29 @@
                 </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a'][position()]">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='b']">
               <bf:degree>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </bf:degree>
+            </xsl:for-each>
+            <xsl:for-each select="$v880df/marc:subfield[@code='b']">
+              <bf:degree>
+                <xsl:if test="$vXmlLang880 != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString" select="."/>
@@ -46,6 +72,16 @@
                       <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
+                  <xsl:for-each select="$v880df/marc:subfield[@code='c'][position()]">
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang880 != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </xsl:for-each>
                 </bf:Agent>
               </bf:grantingInstitution>
             </xsl:for-each>
@@ -53,6 +89,16 @@
               <bf:date>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </bf:date>
+            </xsl:for-each>
+            <xsl:for-each select="$v880df/marc:subfield[@code='d']">
+              <bf:date>
+                <xsl:if test="$vXmlLang880 != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
                 </xsl:if>
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString" select="."/>
@@ -70,6 +116,16 @@
                       <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdfs:label>
+                  <xsl:for-each select="$v880df/marc:subfield[@code='g'][position()]">
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang880 != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </xsl:for-each>
                 </bf:Note>
               </bf:note>
             </xsl:for-each>
@@ -81,6 +137,16 @@
                       <xsl:with-param name="pString" select="."/>
                     </xsl:call-template>
                   </rdf:value>
+                  <xsl:for-each select="$v880df/marc:subfield[@code='o'][position()]">
+                    <rdf:value>
+                      <xsl:if test="$vXmlLang880 != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                      </xsl:call-template>
+                    </rdf:value>
+                  </xsl:for-each>
                 </bf:DissertationIdentifier>
               </bf:identifiedBy>
             </xsl:for-each>
@@ -376,6 +442,14 @@
   <xsl:template match="marc:datafield[@tag='546' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='546')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    
+    <xsl:variable name="vOccurrence">
+      <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+    </xsl:variable>
+    <xsl:variable name="v880Ref" select="concat('546', '-', $vOccurrence)" />
+    <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+    <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+    
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -391,6 +465,17 @@
                       <xsl:with-param name="pEndPunct" select="':;,/='"/>
                     </xsl:call-template>
                   </rdfs:label>
+                  <xsl:for-each select="$v880df/marc:subfield[@code='a'][position()]">
+                      <rdfs:label>
+                        <xsl:if test="$vXmlLang880 != ''">
+                          <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                        </xsl:if>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                          <xsl:with-param name="pEndPunct" select="':;,/='"/>
+                        </xsl:call-template>
+                      </rdfs:label>
+                    </xsl:for-each>
                   <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
@@ -408,6 +493,17 @@
                   <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
+              <xsl:for-each select="$v880df/marc:subfield[@code='b'][position()]">
+                  <rdfs:label>
+                    <xsl:if test="$vXmlLang880 != ''">
+                      <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                    </xsl:if>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="."/>
+                      <xsl:with-param name="pEndPunct" select="':;,/='"/>
+                    </xsl:call-template>
+                  </rdfs:label>
+                </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
@@ -549,6 +645,14 @@
   <xsl:template match="marc:datafield[@tag='504' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='504')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    
+    <xsl:variable name="vOccurrence">
+      <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+    </xsl:variable>
+    <xsl:variable name="v880Ref" select="concat('504', '-', $vOccurrence)" />
+    <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+    <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+   
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
@@ -561,6 +665,14 @@
                 </xsl:if>
                 <xsl:value-of select="."/>
               </rdfs:label>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a'][position()]">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="marc:subfield[@code='b']">
               <bf:count>
@@ -677,6 +789,14 @@
         <xsl:when test="$vTag='511' and @ind1='1'">Cast: </xsl:when>
       </xsl:choose>
     </xsl:variable>
+    
+    <xsl:variable name="vOccurrence">
+        <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+      </xsl:variable>
+    <xsl:variable name="v880Ref" select="concat($vTag, '-', $vOccurrence)" />
+    <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref) and not(contains(marc:subfield[@code='6'], '-00'))]"/>
+    <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
@@ -696,6 +816,14 @@
                 </xsl:if>
                 <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
               </rdfs:label>
+              <xsl:for-each select="$v880df/marc:subfield[@code='a'][position()]">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang880 != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:value-of select="$vDisplayConst"/><xsl:value-of select="."/>
+                </rdfs:label>
+              </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
