@@ -743,8 +743,8 @@
             </bf:AccessPolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
-        <!--
-        <xsl:if test="marc:subfield[@code='f']">
+        
+          <xsl:if test="not(marc:subfield[@code='a']) and marc:subfield[@code='f']">
           <bf:usageAndAccessPolicy>
             <bf:AccessPolicy>
               <xsl:choose>
@@ -773,7 +773,6 @@
             </bf:AccessPolicy>
           </bf:usageAndAccessPolicy>
         </xsl:if>
-        -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>
@@ -999,8 +998,8 @@
             </bf:UsePolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
-          <!--
-          <xsl:if test="marc:subfield[@code='f']">
+          
+          <xsl:if test="not(marc:subfield[@code='a']) and marc:subfield[@code='f']">
             <bf:usageAndAccessPolicy>
               <bf:UsePolicy>
                 <xsl:choose>
@@ -1029,7 +1028,6 @@
               </bf:UsePolicy>
             </bf:usageAndAccessPolicy>
           </xsl:if>
-          -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>
