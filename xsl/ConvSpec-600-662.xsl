@@ -408,7 +408,7 @@
             </madsrdf:authoritativeLabel>
           </xsl:if>
           <xsl:copy-of select="$v880Label" />
-          <xsl:copy-of select="$v880MarcKey"/>
+          <!-- <xsl:copy-of select="$v880MarcKey"/> -->
           <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
             <madsrdf:isMemberOfMADSScheme>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
