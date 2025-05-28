@@ -19,6 +19,18 @@
 
  <!-- enter here any special transforms for tags not dealt with in other conversion spec stylesheets -->
   
+  <xsl:template match="marc:datafield[@tag='906' or @tag='925' or @tag='955' or @tag='999']" mode="adminmetadata">
+    <xsl:param name="serialization" select="'rdfxml'"/>      
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bflc:marcKey><xsl:apply-templates select="." mode="marcKey"/></bflc:marcKey>
+        <xsl:call-template name="make-literal">          
+          <xsl:with-param name="datafield"><xsl:copy-of select="."/></xsl:with-param>                        
+        </xsl:call-template>          
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
   <xsl:template match="marc:datafield[@tag='097' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='097')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
@@ -76,31 +88,10 @@
       <lclocal:batch>BibframePilot2</lclocal:batch>
     </xsl:if>
   </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='906']" mode="adminmetadata">    
-      <xsl:param name="serialization" select="'rdfxml'"/>      
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">                    
-          <xsl:call-template name="make-literal">          
-              <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
-          </xsl:call-template>          
-        </xsl:when>
-      </xsl:choose>
-  </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='925']" mode="adminmetadata">    
-    <xsl:param name="serialization" select="'rdfxml'"/>                               
-        <xsl:call-template name="make-literal">         
-          <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
-        </xsl:call-template>                
-  </xsl:template>
-  <xsl:template match="marc:datafield[@tag='955']" mode="adminmetadata">             
-                        
-        <xsl:call-template name="make-literal">          
-          <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
-        </xsl:call-template>          
-  </xsl:template>
-<!--  <lclocal:d906>=906  b a $a 7 $b cbc $c origcop $d 3 $e ncip $f 20 $g y-soundrec</lclocal:d906>-->
+
+    <!--  
+      <lclocal:d906>=906  b a $a 7 $b cbc $c origcop $d 3 $e ncip $f 20 $g y-soundrec</lclocal:d906>
+    -->
     <xsl:template name="make-literal">      
       <xsl:param name="datafield"/>
       <xsl:variable name="el"><xsl:value-of select="concat('lclocal:d',exslt:node-set($datafield)//@tag)"/> </xsl:variable>
@@ -119,6 +110,7 @@
       <xsl:element name="{$el}">=<xsl:value-of select="exslt:node-set($datafield)//@tag"/><xsl:text>  </xsl:text><xsl:value-of select="exslt:node-set($datafield)//@ind1"/><xsl:value-of select="$ind2"/><xsl:for-each select="exslt:node-set($datafield)//marc:subfield"><xsl:text> </xsl:text>$<xsl:value-of select="@code"/><xsl:text> </xsl:text><xsl:value-of select="text()"/></xsl:for-each></xsl:element>      
 
   </xsl:template>
+  
   <!-- mode="adminmetadata" suppressed by batch-->
   <xsl:template name="marc993" >        
       <bf:status>      
