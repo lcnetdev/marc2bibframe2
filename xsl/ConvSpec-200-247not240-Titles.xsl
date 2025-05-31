@@ -654,6 +654,14 @@
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </xsl:if>
+            <xsl:variable name="vPos" select="count(preceding-sibling::marc:datafield[@tag='247']) + 1" />
+            <xsl:if test="../marc:datafield[@tag='547'][$vPos]">
+              <bf:note>
+                <bf:Note>
+                  <xsl:apply-templates select="../marc:datafield[@tag='547'][$vPos]" mode="instanceNote5XXLabel" />
+                </bf:Note>
+              </bf:note>
+            </xsl:if>
           </bf:VariantTitle>
         </bf:title>
       </xsl:when>

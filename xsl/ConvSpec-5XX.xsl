@@ -628,7 +628,10 @@
                        marc:datafield[@tag='536' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='536')] |
                        marc:datafield[@tag='544' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='544')] |
                        marc:datafield[@tag='545' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='545')] |
-                       marc:datafield[@tag='547' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='547')] |
+                       marc:datafield[
+                          (@tag='547' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='547'))
+                          and
+                          not(../marc:datafield[@tag='247'])] |
                        marc:datafield[@tag='550' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='550')] |
                        marc:datafield[@tag='555' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='555')] |
                        marc:datafield[@tag='556' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='556')] |
