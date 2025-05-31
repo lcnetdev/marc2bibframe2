@@ -936,10 +936,10 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <bf:originDate>
+          <bf:creationDate>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
             <xsl:value-of select="$vDateString"/>
-          </bf:originDate>
+          </bf:creationDate>
         </xsl:when>
       </xsl:choose>
     </xsl:if>
