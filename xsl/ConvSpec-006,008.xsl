@@ -218,7 +218,11 @@
     </xsl:variable>
     <xsl:variable name="originDate">
       <xsl:choose>
-        <xsl:when test="substring(., 7, 1) = 'r' and not(../marc:datafield[@tag='046']/marc:subfield[@code='k'])">
+        <xsl:when test="
+            substring(., 7, 1) = 'r' and
+            substring(., 12, 4) != '    ' and
+            substring(., 12, 4) != '||||'
+          ">
           <xsl:value-of select="substring(., 12, 4)"/>
         </xsl:when>
       </xsl:choose>

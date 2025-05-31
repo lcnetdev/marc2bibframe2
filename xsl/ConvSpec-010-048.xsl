@@ -623,6 +623,34 @@
                 <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
                 <xsl:with-param name="pPart" select="$vPart"/>
                 <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'marc'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-1')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6391'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-2')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6392'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-3')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6393'"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:call-template>
             </xsl:when>
@@ -651,6 +679,7 @@
     <xsl:param name="pLang"/>
     <xsl:param name="pPart"/>
     <xsl:param name="p3"/>
+    <xsl:param name="pSource"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pStart" select="1"/>
     <xsl:if test="string-length(substring($pLang,$pStart,3)) = 3">
@@ -662,7 +691,21 @@
       <xsl:variable name="match008" select="boolean(substring(../../marc:controlfield[@tag='008'],36,3)=$lCode)" />
       <xsl:variable name="langResource">
         <bf:language>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$lCode)"/></xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="$pSource = 'marc'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$lCode)"/></xsl:attribute>    
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6391'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6391,$lCode)"/></xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6392'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6392,$lCode)"/></xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6393'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6393,$lCode)"/></xsl:attribute>
+            </xsl:when>
+          </xsl:choose>
+          
         </bf:language>
       </xsl:variable>
       <xsl:choose>
@@ -893,10 +936,10 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <bf:originDate>
+          <bf:creationDate>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
             <xsl:value-of select="$vDateString"/>
-          </bf:originDate>
+          </bf:creationDate>
         </xsl:when>
       </xsl:choose>
     </xsl:if>

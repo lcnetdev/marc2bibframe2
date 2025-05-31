@@ -826,24 +826,33 @@
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:if>
-            </bf:Extent>
-          </bf:extent>
-        </xsl:if>
-        <xsl:for-each select="marc:subfield[@code='b' or @code='e']">
-          <bf:note>
-            <bf:Note>
-                <xsl:choose>
-                  <xsl:when test="@code='b'">
+              <xsl:for-each select="marc:subfield[@code='b']">
+                <bf:note>
+                  <bf:Note>
                     <rdf:type>
                       <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/physical</xsl:attribute>
                     </rdf:type>
-                  </xsl:when>
-                  <xsl:when test="@code='e'">
-                    <rdf:type>
-                      <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/accmat</xsl:attribute>
-                    </rdf:type>
-                  </xsl:when>
-                </xsl:choose>
+                    <rdfs:label>
+                      <xsl:if test="$vXmlLang != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:call-template name="tChopPunct">
+                        <xsl:with-param name="pString" select="."/>
+                        <xsl:with-param name="pEndPunct" select="':;,/=+'"/>
+                      </xsl:call-template>
+                    </rdfs:label>
+                  </bf:Note>
+                </bf:note>
+              </xsl:for-each>
+            </bf:Extent>
+          </bf:extent>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='e']">
+          <bf:note>
+            <bf:Note>
+              <rdf:type>
+                <xsl:attribute name="rdf:resource">http://id.loc.gov/vocabulary/mnotetype/accmat</xsl:attribute>
+              </rdf:type>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
                   <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>

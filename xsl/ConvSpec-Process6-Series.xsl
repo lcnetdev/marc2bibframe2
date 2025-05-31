@@ -9,7 +9,11 @@
 
   <!-- Conversion specs for 8XX (and obsolete 4XX) ,490 - Series -->
   <!-- convert 490 unless there's an 8xx with the same issn -->
-  <xsl:template match="marc:datafield[@tag = '490' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(marc:subfield[@code='6'],4,3)='-00')]" mode="work">
+  <xsl:template match="marc:datafield[
+            @tag = '490' or 
+            (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(marc:subfield[@code='6'],4,3)='-00') or 
+            @tag = '440' or 
+            (@tag='880' and substring(marc:subfield[@code='6'],1,3)='440' and substring(marc:subfield[@code='6'],4,3)='-00')]" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>    
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -179,6 +183,33 @@
                 </xsl:call-template>
               </bf:mainTitle>
             </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 1][@code='n']">
+              <bf:partNubmber>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 1][@code='n']"/>
+                </xsl:call-template>
+              </bf:partNubmber>
+            </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 2][@code='n']">
+              <bf:partNubmber>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 2][@code='n']"/>
+                </xsl:call-template>
+              </bf:partNubmber>
+            </xsl:if><xsl:if test="marc:subfield[$pPos + 1][@code='p']">
+              <bf:partName>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 1][@code='p']"/>
+                </xsl:call-template>
+              </bf:partName>
+            </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 2][@code='p']">
+              <bf:partName>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 2][@code='p']"/>
+                </xsl:call-template>
+              </bf:partName>
+            </xsl:if>
           </bf:Title>
         </bf:title>
       </xsl:if>
@@ -304,7 +335,7 @@
       marc:datafield[@tag = '810' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '810')] |
       marc:datafield[@tag = '811' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '811')] |
       marc:datafield[@tag = '830' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '830')] |
-      marc:datafield[@tag = '400' or @tag = '410' or @tag = '411' or @tag = '440']"
+      marc:datafield[@tag = '400' or @tag = '410' or @tag = '411']"
     mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>
