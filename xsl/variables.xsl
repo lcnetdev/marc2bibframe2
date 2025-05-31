@@ -29,6 +29,8 @@
   <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
   <xsl:variable name="geographicAreas">http://id.loc.gov/vocabulary/geographicAreas/</xsl:variable>
   <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>
+  <xsl:variable name="iso6391">http://id.loc.gov/vocabulary/iso639-1/</xsl:variable>
+  <xsl:variable name="iso6392">http://id.loc.gov/vocabulary/iso639-2/</xsl:variable>
   <xsl:variable name="iso6393">http://id.loc.gov/vocabulary/iso639-3/</xsl:variable>
   <xsl:variable name="issuance">http://id.loc.gov/vocabulary/issuance/</xsl:variable>
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
