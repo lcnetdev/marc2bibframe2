@@ -17,6 +17,9 @@
 
   <xsl:template match="marc:datafield|marc:df" mode="xmllang">
     <xsl:choose>
+      <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '[bcp47]')">
+        <xsl:value-of select="substring-after(marc:subfield[@code='7'], ']')"/>
+      </xsl:when>
       <xsl:when test="marc:subfield[@code='6'] and ../marc:controlfield[@tag='008']">
         <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
         <xsl:variable name="vCountry008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
@@ -71,9 +74,6 @@
           <xsl:when test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:when>
           <xsl:when test="$vScript != ''"><xsl:value-of select="concat('zxx-',$vScript)"/></xsl:when>
         </xsl:choose>        
-      </xsl:when>
-      <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '[bcp47]')">
-        <xsl:value-of select="substring-after(marc:subfield[@code='7'], ']')"/>
       </xsl:when>
       <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '(bcp47)')">
         <xsl:value-of select="substring-after(marc:subfield[@code='7'], ')')"/>
