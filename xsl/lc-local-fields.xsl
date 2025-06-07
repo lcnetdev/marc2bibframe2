@@ -19,7 +19,7 @@
 
  <!-- enter here any special transforms for tags not dealt with in other conversion spec stylesheets -->
   
-  <xsl:template match="marc:datafield[@tag='906' or @tag='925' or @tag='955' or @tag='999']" mode="adminmetadata">
+  <xsl:template match="marc:datafield[@tag='906' or @tag='925' or @tag='955' or @tag='998' or @tag='999']" mode="adminmetadata">
     <xsl:param name="serialization" select="'rdfxml'"/>      
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
@@ -100,6 +100,28 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!--some opac suppress flags are in 985, not 993-->
+  <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">   
+    <xsl:param name="recordid"/>
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="normalizedText">
+      <xsl:value-of select="normalize-space(translate(translate(normalize-space(marc:subfield[@code='a' or @code='e'][1]),$upper,$lower),' ',''))"/>
+    </xsl:variable>
+    <xsl:variable name="suppressTest">
+      <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
+    </xsl:variable>
+    <xsl:if test="$localfields and $normalizedText='bibframepilot2'">
+      <lclocal:batch>BibframePilot2</lclocal:batch>
+    </xsl:if>
+    <xsl:if test="$localfields='true' and contains($suppressTest,'opacsuppress')">
+      <xsl:call-template name="marc993"/>         
+    </xsl:if>
+    
+    <xsl:call-template name="make-literal">          
+      <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
+    </xsl:call-template>
+  </xsl:template>
+
     <!--  
       <lclocal:d906>=906  b a $a 7 $b cbc $c origcop $d 3 $e ncip $f 20 $g y-soundrec</lclocal:d906>
     -->
@@ -124,43 +146,43 @@
   
   <!-- mode="adminmetadata" suppressed by batch-->
   <xsl:template name="marc993" >        
-      <bf:status>      
-          <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/s">
-            <rdfs:label>opac suppressed</rdfs:label>
-          </bf:Status>               
-      </bf:status>
+    <bf:status>      
+      <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/s">
+        <rdfs:label>opac suppressed</rdfs:label>
+      </bf:Status>               
+    </bf:status>
   </xsl:template>  
   <xsl:template match="marc:datafield[@tag='993']" mode="adminmetadata">    
-  <xsl:if test="marc:subfield[@code='a']!=''">
-    <xsl:variable name="suppressTest">
-      <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
-    </xsl:variable>
+    <xsl:if test="marc:subfield[@code='a']!=''">
+      <xsl:variable name="suppressTest">
+        <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
+      </xsl:variable>
       <xsl:if test="contains($suppressTest, 'opacsuppress')">
-          <!--<xsl:when test="marc:subfield[@code='a']='opacunsuppress'">http://id.loc.gov/vocabulary/mstatus/unsupp</xsl:when>-->
-       <xsl:choose>         
-         <xsl:when test="marc:subfield[@code='b' or @code='c' or @code='n']"> 
+        <!--<xsl:when test="marc:subfield[@code='a']='opacunsuppress'">http://id.loc.gov/vocabulary/mstatus/unsupp</xsl:when>-->
+        <xsl:choose>         
+          <xsl:when test="marc:subfield[@code='b' or @code='c' or @code='n']"> 
             <bf:status>        
-            <bf:Status> <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mstatus/s"/>
-        
-            <rdfs:label>opac suppressed</rdfs:label>
-            <xsl:if test="marc:subfield[@code='b']!=''">
-              <bflc:catalogerId><xsl:value-of select="marc:subfield[@code='b']"/></bflc:catalogerId>
-            </xsl:if>
-            <xsl:if test="marc:subfield[@code='c']!=''">
-              <bf:qualifier><xsl:value-of select="marc:subfield[@code='c']"/></bf:qualifier>
-            </xsl:if>
-            <xsl:if test="marc:subfield[@code='d']!=''">
-              <bf:date><xsl:value-of select="marc:subfield[@code='d']"/></bf:date>
-            </xsl:if>            
-            <xsl:if test="marc:subfield[@code='n']!=''">
-              <bf:note><bf:Note><rdfs:label><xsl:value-of select="marc:subfield[@code='n']"/></rdfs:label></bf:Note></bf:note>
-            </xsl:if>
-          </bf:Status>               
-      </bf:status>
-       </xsl:when>
-         <xsl:otherwise><xsl:call-template name="marc993"/></xsl:otherwise>
-       </xsl:choose>
+              <bf:Status> <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mstatus/s"/>
+                
+                <rdfs:label>opac suppressed</rdfs:label>
+                <xsl:if test="marc:subfield[@code='b']!=''">
+                  <bflc:catalogerId><xsl:value-of select="marc:subfield[@code='b']"/></bflc:catalogerId>
+                </xsl:if>
+                <xsl:if test="marc:subfield[@code='c']!=''">
+                  <bf:qualifier><xsl:value-of select="marc:subfield[@code='c']"/></bf:qualifier>
+                </xsl:if>
+                <xsl:if test="marc:subfield[@code='d']!=''">
+                  <bf:date><xsl:value-of select="marc:subfield[@code='d']"/></bf:date>
+                </xsl:if>            
+                <xsl:if test="marc:subfield[@code='n']!=''">
+                  <bf:note><bf:Note><rdfs:label><xsl:value-of select="marc:subfield[@code='n']"/></rdfs:label></bf:Note></bf:note>
+                </xsl:if>
+              </bf:Status>               
+            </bf:status>
+          </xsl:when>
+          <xsl:otherwise><xsl:call-template name="marc993"/></xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
-  </xsl:if>
+    </xsl:if>
   </xsl:template>
 </xsl:stylesheet>
