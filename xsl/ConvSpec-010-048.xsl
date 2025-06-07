@@ -734,6 +734,9 @@
                 </bf:Work>
               </bf:accompaniedBy>
             </xsl:when>
+            <xsl:when test="$pSource != 'marc' and local-name($pPart)='a'">
+              <xsl:copy-of select="$langResource" />
+            </xsl:when>
             <xsl:when test="local-name($pPart)='a' and not($match008)">
               <xsl:copy-of select="$langResource" />
             </xsl:when>

@@ -520,39 +520,62 @@
 
   <xsl:template match="marc:datafield[@tag='580' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='580')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="v76X78Xcount" select="count(
+      ../marc:datafield[@tag='770'] or 
+      ../marc:datafield[@tag='772'] or 
+      ../marc:datafield[@tag='773'] or 
+      ../marc:datafield[@tag='774'] or 
+      ../marc:datafield[@tag='775'] or 
+      ../marc:datafield[@tag='777'] or 
+      ../marc:datafield[@tag='780'] or 
+      ../marc:datafield[@tag='785']
+      )" />
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:note>
-          <bf:Note>
-            <xsl:for-each select="marc:subfield[@code='a']">
-              <rdfs:label>
-                <xsl:if test="$vXmlLang != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="."/>
-              </rdfs:label>
-            </xsl:for-each>
-            <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
-              <xsl:variable name="vOccurrence">
-                <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
-              </xsl:variable>
-              <xsl:variable name="v880Ref" select="concat('580', '-', $vOccurrence)" />
-              <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
-              <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
-              <xsl:for-each select="$v880df/marc:subfield[@code='a']">
-                <rdfs:label>
-                  <xsl:if test="$vXmlLang880 != ''">
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
-                  </xsl:if>
-                  <xsl:value-of select="."/>
-                </rdfs:label>
-              </xsl:for-each>
-            </xsl:if>
-          </bf:Note>
-        </bf:note>
+        <xsl:choose>
+          <xsl:when test="$v76X78Xcount = 0">
+            <xsl:apply-templates select="." mode="relNote" />
+          </xsl:when>
+          <xsl:when test="$v76X78Xcount &gt; 0 and
+                          preceding-sibling::marc:datafield[@tag='580']">
+            <xsl:apply-templates select="." mode="relNote" />
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield[@tag='580' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='580')]" mode="relNote">
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <bf:note>
+      <bf:Note>
+        <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/relnote" />
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <rdfs:label>
+            <xsl:if test="$vXmlLang != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </rdfs:label>
+        </xsl:for-each>
+        <xsl:if test="marc:subfield[@code='6'] and not(contains(marc:subfield[@code='6'], '-00'))">
+          <xsl:variable name="vOccurrence">
+            <xsl:value-of select="substring(substring-after(marc:subfield[@code='6'],'-'),1,2)"/>
+          </xsl:variable>
+          <xsl:variable name="v880Ref" select="concat('580', '-', $vOccurrence)" />
+          <xsl:variable name="v880df" select="../marc:datafield[@tag='880' and starts-with(marc:subfield[@code='6'], $v880Ref)]"/>
+          <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$v880df" mode="xmllang"/></xsl:variable>
+          <xsl:for-each select="$v880df/marc:subfield[@code='a']">
+            <rdfs:label>
+              <xsl:if test="$vXmlLang880 != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="."/>
+            </rdfs:label>
+          </xsl:for-each>
+        </xsl:if>
+      </bf:Note>
+    </bf:note>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='586' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='586')]" mode="work">
