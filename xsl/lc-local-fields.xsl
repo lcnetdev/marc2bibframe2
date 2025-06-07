@@ -77,17 +77,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
-  <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="normalizedText">
-      <xsl:value-of select="normalize-space(translate(translate(normalize-space(marc:subfield[@code='a' or @code='e'][1]),$upper,$lower),' ',''))"/>
-    </xsl:variable>
-    <xsl:if test="$localfields and $normalizedText='bibframepilot2'">
-      <lclocal:batch>BibframePilot2</lclocal:batch>
-    </xsl:if>
-  </xsl:template>
 
   <!--some opac suppress flags are in 985, not 993-->
   <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">   
