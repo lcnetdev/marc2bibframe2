@@ -77,28 +77,6 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
-    <!--some opac suppress flags are in 985, not 993-->
-    <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">   
-    <xsl:param name="recordid"/>
-    <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="normalizedText">
-      <xsl:value-of select="normalize-space(translate(translate(normalize-space(marc:subfield[@code='a' or @code='e'][1]),$upper,$lower),' ',''))"/>
-    </xsl:variable>
-    <xsl:variable name="suppressTest">
-      <xsl:value-of select="normalize-space(translate(translate(normalize-space(.) , $upper,$lower),' ',''))"/>
-    </xsl:variable>
-    <xsl:if test="$localfields and $normalizedText='bibframepilot2'">
-      <lclocal:batch>BibframePilot2</lclocal:batch>
-    </xsl:if>
-    <xsl:if test="$localfields='true' and contains($suppressTest,'opacsuppress')">
-      <xsl:call-template name="marc993"/>         
-    </xsl:if>
-    
-    <xsl:call-template name="make-literal">          
-      <xsl:with-param name="datafield"><xsl:copy-of select="exslt:node-set(.)"/></xsl:with-param>                        
-    </xsl:call-template>
-  </xsl:template>
 
   <!--some opac suppress flags are in 985, not 993-->
   <xsl:template match="marc:datafield[@tag='985']" mode="adminmetadata">   
