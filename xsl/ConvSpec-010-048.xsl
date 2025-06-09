@@ -1323,7 +1323,7 @@
               <xsl:if test="$vTag='017' or $vTag='028' or $vTag='032' or $vTag='036'">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:assigner>
-                    <bf:Agent>
+                    <bf:Organization>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -1332,7 +1332,7 @@
                           <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdfs:label>
-                    </bf:Agent>
+                    </bf:Organization>
                   </bf:assigner>
                 </xsl:for-each>
               </xsl:if>
