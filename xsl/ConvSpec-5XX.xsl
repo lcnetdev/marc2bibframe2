@@ -530,6 +530,8 @@
         <xsl:choose>
           <xsl:when test="contains(marc:subfield[@code='a'], 'bsorbed by') and 
                           ../marc:datafield[@tag='785' and (@ind2='4' or @ind2='5')]"></xsl:when>
+          <xsl:when test="contains(marc:subfield[@code='a'], 'ontinued by') and 
+                          ../marc:datafield[@tag='785' and (@ind2='0' or @ind2='8')]"></xsl:when>
           <xsl:when test="(
                             count(../marc:datafield[@tag='580']) = 1 or 
                             following-sibling::marc:datafield[@tag='580']

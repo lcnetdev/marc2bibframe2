@@ -139,6 +139,10 @@
                                 contains(../marc:datafield[@tag='580']/marc:subfield[@code='a'], 'bsorbed by')">
                   <xsl:apply-templates select="../marc:datafield[@tag='580' and contains(marc:subfield[@code='a'], 'bsorbed by')][1]" mode="relNote" />
                 </xsl:when>
+                <xsl:when test="$vProperty = 'http://id.loc.gov/vocabulary/relationship/continuedby' and
+                  contains(../marc:datafield[@tag='580']/marc:subfield[@code='a'], 'ontinued by')">
+                  <xsl:apply-templates select="../marc:datafield[@tag='580' and contains(marc:subfield[@code='a'], 'ontinued by')][1]" mode="relNote" />
+                </xsl:when>
               </xsl:choose>  
             </xsl:if>
             <bf:relationship>
