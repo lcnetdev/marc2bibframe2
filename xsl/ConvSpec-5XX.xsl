@@ -521,19 +521,19 @@
   <xsl:template match="marc:datafield[@tag='580' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='580')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="v76X78Xcount" select="count(
-      ../marc:datafield[@tag='770'] or 
-      ../marc:datafield[@tag='772'] or 
-      ../marc:datafield[@tag='773'] or 
-      ../marc:datafield[@tag='774'] or 
-      ../marc:datafield[@tag='775'] or 
-      ../marc:datafield[@tag='777'] or 
-      ../marc:datafield[@tag='780'] or 
-      ../marc:datafield[@tag='785']
-      )" />
+                          ../marc:datafield[@tag='770' or @tag='772' or @tag='773' or 
+                                            @tag='774' or @tag='775' or @tag='777' or 
+                                            @tag='780' or @tag='785'] 
+                          )" />
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
           <xsl:when test="$v76X78Xcount = 0">
+            <xsl:apply-templates select="." mode="relNote" />
+          </xsl:when>
+          <xsl:when test="contains(marc:subfield[@code='a'], 'bsorbed by') and 
+                          ../marc:datafield[@tag='785' and (@ind2='4' or @ind2='5')]"></xsl:when>
+          <xsl:when test="$v76X78Xcount &gt; 0 and count(../marc:datafield[@tag='580']=1)">
             <xsl:apply-templates select="." mode="relNote" />
           </xsl:when>
           <xsl:when test="$v76X78Xcount &gt; 0 and
