@@ -528,18 +528,20 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
-          <xsl:when test="$v76X78Xcount = 0">
-            <xsl:apply-templates select="." mode="relNote" />
-          </xsl:when>
           <xsl:when test="contains(marc:subfield[@code='a'], 'bsorbed by') and 
                           ../marc:datafield[@tag='785' and (@ind2='4' or @ind2='5')]"></xsl:when>
-          <xsl:when test="$v76X78Xcount &gt; 0 and count(../marc:datafield[@tag='580']=1)">
+          <xsl:when test="(
+                            count(../marc:datafield[@tag='580']) = 1 or 
+                            following-sibling::marc:datafield[@tag='580']
+                          ) and
+                          (
+                            ../marc:datafield[@tag='780' and @ind2='4'] or
+                            ../marc:datafield[@tag='785' and @ind2='6'] or 
+                            ../marc:datafield[@tag='785' and @ind2='7']
+                          )"></xsl:when>
+          <xsl:otherwise>
             <xsl:apply-templates select="." mode="relNote" />
-          </xsl:when>
-          <xsl:when test="$v76X78Xcount &gt; 0 and
-                          preceding-sibling::marc:datafield[@tag='580']">
-            <xsl:apply-templates select="." mode="relNote" />
-          </xsl:when>
+          </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
     </xsl:choose>
