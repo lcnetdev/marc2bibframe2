@@ -139,21 +139,6 @@
                                 contains(../marc:datafield[@tag='580']/marc:subfield[@code='a'], 'bsorbed by')">
                   <xsl:apply-templates select="../marc:datafield[@tag='580' and contains(marc:subfield[@code='a'], 'bsorbed by')][1]" mode="relNote" />
                 </xsl:when>
-                <xsl:when test="(
-                                  $vTag = '770' or 
-                                  $vTag = '772' or 
-                                  $vTag = '773' or 
-                                  $vTag = '774' or 
-                                  $vTag = '775' or 
-                                  $vTag = '777' or 
-                                  $vTag = '780' or
-                                  $vTag = '785'
-                                 ) and 
-                                    count(../marc:datafield[@tag='580']) = 1 and
-                                    $v76X78Xcount = 1
-                          ">
-                  <xsl:apply-templates select="../marc:datafield[@tag='580']" mode="relNote" />
-                </xsl:when>
               </xsl:choose>  
             </xsl:if>
             <bf:relationship>
