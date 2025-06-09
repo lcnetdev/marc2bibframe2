@@ -26,8 +26,8 @@
                        marc:datafield[@tag='776' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='776') and contains(marc:subfield[@code='6'], '-00')] |
                        marc:datafield[@tag='777' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='777') and contains(marc:subfield[@code='6'], '-00')] |
                        marc:datafield[
-                          (@tag='780' and @ind2='7' and not(preceding-sibling::marc:datafield[1][@tag='780' and @ind2='7'])) or
-                          (@tag='780' and @ind2!='7') or 
+                          (@tag='780' and @ind2='4' and not(preceding-sibling::marc:datafield[1][@tag='780' and @ind2='4'])) or
+                          (@tag='780' and @ind2!='4') or 
                           (@tag='880' and substring(marc:subfield[@code='6'],1,3)='780') and contains(marc:subfield[@code='6'], '-00')] |
                        marc:datafield[
                           (@tag='785' and @ind2='6' and not(preceding-sibling::marc:datafield[1][@tag='785' and @ind2='6'])) or
@@ -49,14 +49,9 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="v76X78Xcount" select="count(
-                            ../marc:datafield[@tag='770'] or 
-                            ../marc:datafield[@tag='772'] or 
-                            ../marc:datafield[@tag='773'] or 
-                            ../marc:datafield[@tag='774'] or 
-                            ../marc:datafield[@tag='775'] or 
-                            ../marc:datafield[@tag='777'] or 
-                            ../marc:datafield[@tag='780'] or 
-                            ../marc:datafield[@tag='785']
+                            ../marc:datafield[@tag='770' or @tag='772' or @tag='773' or 
+                                              @tag='774' or @tag='775' or @tag='777' or 
+                                              @tag='780' or @tag='785'] 
                             )" />
     <xsl:variable name="vProperty">
       <xsl:choose>
@@ -141,8 +136,8 @@
                   <xsl:apply-templates select="../marc:datafield[@tag='580'][1]" mode="relNote" />
                 </xsl:when>
                 <xsl:when test="$vProperty = 'http://id.loc.gov/vocabulary/relationship/absorbedby' and
-                                contains(../marc:datafield[@tag='580']/marc:subfield[@code='a'], 'orbed by')">
-                  <xsl:apply-templates select="../marc:datafield[@tag='580' and contains(marc:subfield[@code='a'], 'orbed by')][1]" mode="relNote" />
+                                contains(../marc:datafield[@tag='580']/marc:subfield[@code='a'], 'bsorbed by')">
+                  <xsl:apply-templates select="../marc:datafield[@tag='580' and contains(marc:subfield[@code='a'], 'bsorbed by')][1]" mode="relNote" />
                 </xsl:when>
                 <xsl:when test="(
                                   $vTag = '770' or 
@@ -154,9 +149,10 @@
                                   $vTag = '780' or
                                   $vTag = '785'
                                  ) and 
-                                    count(../marc:datafield[@tag='580' and not(contains(marc:subfield[@code='a'], 'orbed by'))]) = 1
+                                    count(../marc:datafield[@tag='580']) = 1 and
+                                    $v76X78Xcount = 1
                           ">
-                  <xsl:apply-templates select="../marc:datafield[@tag='580'][1]" mode="relNote" />
+                  <xsl:apply-templates select="../marc:datafield[@tag='580']" mode="relNote" />
                 </xsl:when>
               </xsl:choose>  
             </xsl:if>
@@ -217,7 +213,7 @@
             </xsl:when>
             <xsl:when test="$vProperty = 'http://id.loc.gov/vocabulary/relationship/mergerof' and 
               following-sibling::marc:datafield[1][@tag='780' and @ind2='4']">
-              <bf:mergerOf>
+              <bf:associatedResource>
                 <xsl:apply-templates select="." mode="link7XXwork">
                   <xsl:with-param name="serialization" select="$serialization"/>
                   <xsl:with-param name="pTitleType" select="'work'"/>
@@ -228,7 +224,7 @@
                   <xsl:with-param name="pRelated880" select="$vRelated880" />
                   <xsl:with-param name="p880XmlLang" select="$v880XmlLang" />
                 </xsl:apply-templates>
-              </bf:mergerOf>
+              </bf:associatedResource>
               <bf:associatedResource>
                 <xsl:variable name="vWorkUri2"><xsl:value-of select="$recordid"/>#Work<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition + 1"/></xsl:variable>
                 <xsl:variable name="vInstanceUri2"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition  + 1"/></xsl:variable>
