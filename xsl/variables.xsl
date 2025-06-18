@@ -99,4 +99,7 @@
   <!-- abbreviations for punctuation processing -->
   <xsl:variable name="abbreviations" select="document('conf/abbreviations.xml')"/>
   
+  <!-- exclusions related to 856/859 processing -->
+  <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
+  
 </xsl:stylesheet>
