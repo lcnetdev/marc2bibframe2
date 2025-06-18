@@ -87,13 +87,13 @@
     
     <!-- <xsl:message><xsl:copy-of select="$groups" /></xsl:message> -->
     
-    <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
     <xsl:variable name="viable856s">
       <xsl:for-each select="marc:datafield[
             @tag='856' and 
             (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
             marc:subfield[@code='u'] and 
-            not( contains(marc:subfield[@code='3'], 'able of contents') )
+            not( contains(marc:subfield[@code='3'], 'able of contents') ) and 
+            not( contains(marc:subfield[@code='a'], 'able of contents') )
         ]">
         <xsl:variable name="theU" select="marc:subfield[@code='u']" />
         <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
@@ -216,6 +216,15 @@
             <xsl:apply-templates select="." />            
           </xsl:for-each>
           <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
+          <xsl:apply-templates select="marc:datafield[
+                                        @tag='856' and 
+                                        (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                                        marc:subfield[@code='u'] and 
+                                        ( 
+                                          contains(marc:subfield[@code='3'], 'able of contents') or 
+                                          contains(marc:subfield[@code='a'], 'able of contents') 
+                                        )
+                                  ]" />
         </marc:record>
         
         <!-- 
