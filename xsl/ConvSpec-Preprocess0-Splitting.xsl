@@ -216,6 +216,15 @@
             <xsl:apply-templates select="." />            
           </xsl:for-each>
           <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
+          <xsl:apply-templates select="marc:datafield[
+                                        @tag='856' and 
+                                        (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                                        marc:subfield[@code='u'] and 
+                                        ( 
+                                          contains(marc:subfield[@code='3'], 'able of contents') or 
+                                          contains(marc:subfield[@code='a'], 'able of contents') 
+                                        )
+                                  ]" />
         </marc:record>
         
         <!-- 
