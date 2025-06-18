@@ -27,7 +27,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:note>
           <bf:Note>
-            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/source" />
+            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/refcitation" />
             <rdfs:label>
               <xsl:if test="$vXmlLang != ''">
                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -44,6 +44,12 @@
             <xsl:if test="marc:subfield[@code='c']">
               <bflc:citation><xsl:value-of select="normalize-space(marc:subfield[@code='c'])"/></bflc:citation>
             </xsl:if>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
           </bf:Note>
         </bf:note>
       </xsl:when>
