@@ -42,8 +42,9 @@
     <xsl:param name="recordid"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pTagOrd" select="position()"/>
+    <xsl:variable name="theU" select="marc:subfield[@code='u']" />
     <!-- only process if there is $u -->
-    <xsl:if test="marc:subfield[@code='u'] and not(../marc:datafield[@tag='758'])">
+    <xsl:if test="marc:subfield[@code='u']">
       <!-- lower case for comparison -->
       <xsl:variable name="vSubfieldA" select="translate(normalize-space(marc:subfield[@code='a'][1]),$upper,$lower)"/>
       <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
@@ -63,7 +64,8 @@
         <xsl:when test="(@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
                         (substring(../marc:leader,7,1) != 'm' and
                         substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
-                        substring(../marc:controlfield[@tag='008'],24,1) != 's')">
+                        substring(../marc:controlfield[@tag='008'],24,1) != 's') and
+                        count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
             <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
             <xsl:choose>
               <xsl:when test="$serialization = 'rdfxml'">
