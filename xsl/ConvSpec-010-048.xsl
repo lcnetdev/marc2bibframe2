@@ -916,7 +916,8 @@
 
   <xsl:template match="marc:datafield[@tag='046' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='046')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="marc:subfield[@code='k']">
+    <xsl:variable name="cf008" select="../marc:controlfield[@tag='008']"/>
+    <xsl:if test="substring($cf008, 7, 1) != 'r' and marc:subfield[@code='k']">
       <xsl:variable name="vDate1">
         <xsl:call-template name="tMarcToEdtf">
           <xsl:with-param name="pDateString" select="marc:subfield[@code='k']"/>
@@ -939,10 +940,10 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <bf:creationDate>
+          <bf:originDate>
             <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
             <xsl:value-of select="$vDateString"/>
-          </bf:creationDate>
+          </bf:originDate>
         </xsl:when>
       </xsl:choose>
     </xsl:if>
