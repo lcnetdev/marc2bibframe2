@@ -1276,7 +1276,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
     <xsl:variable name="v353" select="../marc:datafield[@tag='353']/marc:subfield[@code='a']" />
-    <xsl:if test="$code = '1' and not($v353[.!='index'])">
+    <xsl:if test="$code = '1' and not($v353[.='index'])">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:supplementaryContent>
