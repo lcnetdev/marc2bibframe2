@@ -71,19 +71,25 @@
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
-    <xsl:variable name="vDescriptionConventions" select="translate(substring(.,19,1),' ','_')"/>
-    <xsl:for-each select="$codeMaps/maps/descriptionConventions/*[name() = $vDescriptionConventions]">
-      <xsl:choose>
-        <xsl:when test="$serialization = 'rdfxml'">
-          <bf:descriptionConventions>
-            <bf:DescriptionConventions>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-              <bf:code><xsl:value-of select="."/></bf:code>
-            </bf:DescriptionConventions>
-          </bf:descriptionConventions>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
+    <xsl:variable name="vDescriptionConvention" select="translate(substring(.,19,1),' ','_')"/>
+    <xsl:if test="../marc:datafield[@tag='040']/marc:subfield[@code='e']!='rda' or 
+                  (
+                    ../marc:datafield[@tag='040']/marc:subfield[@code='e']='rda' and 
+                    not(contains('apr', $vDescriptionConvention))
+                  )">
+      <xsl:for-each select="$codeMaps/maps/descriptionConventions/*[name() = $vDescriptionConvention]">
+        <xsl:choose>
+          <xsl:when test="$serialization = 'rdfxml'">
+            <bf:descriptionConventions>
+              <bf:DescriptionConventions>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </bf:DescriptionConventions>
+            </bf:descriptionConventions>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:leader" mode="work">
