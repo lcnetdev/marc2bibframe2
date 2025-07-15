@@ -1196,18 +1196,21 @@
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:illustrativeContent>
-              <bf:Illustration>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Illustration>
-            </bf:illustrativeContent>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:for-each>
+      <xsl:variable name="vMillus" select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]" />
+      <xsl:if test="not(../marc:datafield[@tag='340']/marc:subfield[@code='0']=$vMillus/@href)">
+        <xsl:for-each select="$vMillus">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:illustrativeContent>
+                <bf:Illustration>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Illustration>
+              </bf:illustrativeContent>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:if>
       <xsl:call-template name="illustrativeContent008">
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="illustrations" select="$illustrations"/>
