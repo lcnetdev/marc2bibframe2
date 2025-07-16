@@ -34,4 +34,19 @@
       <subfield code="f">1961-</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">3</controlfield>
+    <controlfield tag="008">741112c19uu9999cau x         0   a1eng  </controlfield>
+    <datafield ind1="0" ind2="1" tag="247">
+      <subfield code="a">Junior musician</subfield>
+      <subfield code="f">&lt;May 1935-Nov. 1937?, June 1939?-Oct. 1940?&gt;</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="1" tag="247">
+      <subfield code="a">Junior musician magazine</subfield>
+      <subfield code="f">Dec. 1937-May 1939, Nov. 1940-Sept. 1941</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="547">
+      <subfield code="a">Junior musician (Dec. 1937-May 1939, Nov. 1940-Sept. 1941, The Junior musician magazine).</subfield>
+    </datafield>
+  </record>
 </collection>
