@@ -682,7 +682,8 @@
     <xsl:param name="pSource"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pStart" select="1"/>
-    <xsl:if test="string-length(substring($pLang,$pStart,3)) = 3">
+    <xsl:if test="(string-length($pLang) = 2 and $pSource = 'iso6391') or 
+                  (string-length(substring($pLang,$pStart,3)) = 3)">
       <xsl:variable name="lCode">
         <xsl:call-template name="url-encode">
           <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
@@ -743,13 +744,16 @@
           </xsl:choose>
         </xsl:when>
       </xsl:choose>
-      <xsl:call-template name="parse041">
-        <xsl:with-param name="pLang" select="$pLang"/>
-        <xsl:with-param name="pPart" select="$pPart"/>
-        <xsl:with-param name="p3" select="$p3"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pStart" select="$pStart + 3"/>
-      </xsl:call-template>
+      <xsl:if test="$pSource = 'marc'">
+        <xsl:call-template name="parse041">
+          <xsl:with-param name="pLang" select="$pLang"/>
+          <xsl:with-param name="pPart" select="$pPart"/>
+          <xsl:with-param name="p3" select="$p3"/>
+          <xsl:with-param name="pSource" select="$pSource"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pStart" select="$pStart + 3"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
   
