@@ -1,3 +1,23 @@
+--- 2.10.0 2025/07/23
+Changes for updated v2.10.0 specifications:
+	ConvSpec-006-008
+		Added conversion of 008/06=r  where 008/11-14 is converted to bf:originDate
+	ConvSpec-010-048
+		Changed $b in 017, 028, 032, 036 from bf:Agent to bf:Organization
+	ConvSpec-200-247
+		Added reference to 547 field conversion
+	ConvSpec-3XX
+		Changed conversion of 300 $b field from Instance note with notetype to a note and notetype within the bf:extent resource
+	ConvSpec-490,510
+		Changed conversion of 510 Ind1=3 or 4 field from a relationship resource to a note resource
+	ConvSpec-5XX
+		Moved conversion of 547 field from Instance to Work and placed within a title resource
+		Moved conversion of 580 field to relationship resource
+		Added conversion of paired 5XX-880 fields 
+	ConvSpec-Process0-9
+		Changed conversion of 440 field to match 490 0# field
+
+
 --- 2.9.0 2025/03/07
 Changes for updated v2.9.0 specifications:
 	ConvSpec-010-048

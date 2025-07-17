@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v2.10.0
+
+Conversion updates based on specifications v2.8. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Added conversion of MARC 880 fields that are paired with 5XX fields
+* Changed conversion of MARC 300 $b; it is now a note within an extent resource
+* Changed conversion of MARC 510 (with first indicators=3 or 4) from a Work-to-Work relationship to an Instance note
+* Moved conversion of MARC 547 to a note within a former title resource, when possible
+* Moved conversion of MARC 580 to a note within a relationship resource, when possible
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.9.0 in the specifications are marked in red.
+
+
 ## v2.9.0
 
 Conversion updates based on specifications v2.8. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
