@@ -247,6 +247,7 @@
     <x:expect label="$3 creates a bflc:appliesTo property of the Note/Notation" test="//bf:Work[1]/bf:note/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate' and //bf:Work[1]/bf:notation/bf:Notation/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Marriage certificate'"/>
   </x:scenario>
 
+  <!-- See also 200-247 tests for 547 pairing with 247. -->
   <x:scenario label="547 - FORMER TITLE COMPLEXITY NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="547 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[12]/bf:Note/rdfs:label = 'Edition varies: 1916, New York edition.'"/>

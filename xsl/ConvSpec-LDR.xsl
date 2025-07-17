@@ -72,7 +72,8 @@
       </xsl:choose>
     </xsl:for-each>
     <xsl:variable name="vDescriptionConvention" select="translate(substring(.,19,1),' ','_')"/>
-    <xsl:if test="../marc:datafield[@tag='040']/marc:subfield[@code='e']!='rda' or 
+    <xsl:if test="not(../marc:datafield[@tag='040']/marc:subfield[@code='e']) or
+                  ../marc:datafield[@tag='040']/marc:subfield[@code='e']!='rda' or 
                   (
                     ../marc:datafield[@tag='040']/marc:subfield[@code='e']='rda' and 
                     not(contains('apr', $vDescriptionConvention))

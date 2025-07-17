@@ -216,14 +216,14 @@
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 v. (unpaged)</rdfs:label>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                    <rdfs:label>col. ill.</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:Extent>
             </bf:extent>
-            <bf:note>
-              <bf:Note>
-                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
-                <rdfs:label>col. ill.</rdfs:label>
-              </bf:Note>
-            </bf:note>
             <bf:dimensions>23 cm</bf:dimensions>
             <bf:note>
               <bf:Note>
@@ -423,9 +423,9 @@
               <bf:AudioIssueNumber>
                 <rdf:value>1259</rdf:value>
                 <bf:assigner>
-                  <bf:Agent>
+                  <bf:Organization>
                     <rdfs:label>Atlantic</rdfs:label>
-                  </bf:Agent>
+                  </bf:Organization>
                 </bf:assigner>
               </bf:AudioIssueNumber>
             </bf:identifiedBy>
@@ -438,14 +438,14 @@
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>1 sound disc</rdfs:label>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                    <rdfs:label>analog, 33 1/3 rpm</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:Extent>
             </bf:extent>
-            <bf:note>
-              <bf:Note>
-                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
-                <rdfs:label>analog, 33 1/3 rpm</rdfs:label>
-              </bf:Note>
-            </bf:note>
             <bf:dimensions>12 in</bf:dimensions>
             <bf:note>
               <bf:Note>
@@ -1022,14 +1022,14 @@
             <bf:extent>
               <bf:Extent>
                 <rdfs:label>xxiii, 622 p.</rdfs:label>
+                <bf:note>
+                  <bf:Note>
+                    <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
+                    <rdfs:label>ill.</rdfs:label>
+                  </bf:Note>
+                </bf:note>
               </bf:Extent>
             </bf:extent>
-            <bf:note>
-              <bf:Note>
-                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/physical"/>
-                <rdfs:label>ill.</rdfs:label>
-              </bf:Note>
-            </bf:note>
             <bf:dimensions>26 cm</bf:dimensions>
             <bf:note>
               <bf:Note>

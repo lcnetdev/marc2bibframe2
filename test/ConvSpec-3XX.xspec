@@ -14,11 +14,11 @@
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
     <x:expect label="300 creates an extent property of the Instance" test="count(//bf:Instance[1]/bf:extent) = 2"/>
     <x:expect label="$a, $f, $g create the rdfs:label property of the Extent" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/rdfs:label = '1 box 2 x 4 x 3 1/2 ft.'"/>
-    <x:expect label="$b creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'ill.'"/>
-    <x:expect label="...with rdf:type mnotetype/physical" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/physical'"/>
+    <x:expect label="$b creates a note property of the Instance" test="//bf:Instance[1]/bf:extent[2]/bf:Extent/bf:note[1]/bf:Note/rdfs:label = 'ill.'"/>
+    <x:expect label="...with rdf:type mnotetype/physical" test="//bf:Instance[1]/bf:extent[2]/bf:Extent/bf:note[1]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/physical'"/>
     <x:expect label="$c creates a dimensions property of the Instance" test="//bf:Instance[1]/bf:dimensions[1] = '21 cm'"/>
-    <x:expect label="$e creates a note property of the Instance"  test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = '1 answer book'"/>
-    <x:expect label="...with rdf:type mnotetype/accmat" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/accmat'"/>
+    <x:expect label="$e creates a note property of the Instance"  test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = '1 answer book'"/>
+    <x:expect label="...with rdf:type mnotetype/accmat" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/accmat'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Extent and the Notes" test="//bf:Instance[1]/bf:extent[1]/bf:Extent/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'records'"/>
   </x:scenario>
 

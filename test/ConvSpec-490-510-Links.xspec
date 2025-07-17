@@ -13,12 +13,12 @@
   
   <x:scenario label="510 - CITATION/REFERENCES NOTE">
     <x:context href="data/ConvSpec-490-510-Links/marc.xml"/>
-    <x:expect label="ind 1 determines the Instance property to create with a Work object" test="count(//bf:Work[1]/bf:relation/bf:Relation/bf:relationship[@rdf:resource='http://id.loc.gov/vocabulary/relationship/references']) = 1"/>
-    <x:expect label="$a creates a title property of the Work object" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:title/bf:Title/bf:mainTitle = 'Index Medicus'"/>
-    <x:expect label="$b creates a note property of the Work object with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/coverage'" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/coverage']/rdfs:label = 'v1n1, 1984-'"/>
-    <x:expect label="$c creates a note property of the Work object with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/loc'" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:note/bf:Note[rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/loc']/rdfs:label = 'p. 10, 50, and iii'"/>
-    <x:expect label="$x creates an identifiedBy/Issn property of the Work object" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/>
-    <x:expect label="$u creates an electronicLocator property of the Work" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:electronicLocator/@rdf:resource = 'https://portal.issn.org/resource/ISSN/0019-3879'"/>
+    <x:expect label="ind1 of 4 creates a note with expected noted type" test="count(//bf:Instance[1]/bf:note/bf:Note/rdf:type[@rdf:resource='http://id.loc.gov/vocabulary/mnotetype/refcitation']) = 1"/>
+    <x:expect label="$a creates a label property of the Note object" test="//bf:Instance[1]/bf:note/bf:Note/rdfs:label = 'Index Medicus,'"/>
+    <x:expect label="$b creates an enumeration and chronology resource with the note" test="//bf:Instance[1]/bf:note/bf:Note/bf:enumerationAndChronology/bf:EnumerationAndChronology/rdfs:label = 'v1n1, 1984-'"/>
+    <x:expect label="$c creates a citation reference in the note" test="//bf:Instance[1]/bf:note/bf:Note/bflc:citation = 'p. 10, 50, and iii,'"/>
+    <!-- <x:expect label="$x creates an identifiedBy/Issn property of the Note" test="//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '0019-3879'"/> -->
+    <x:expect label="$u creates an electronicLocator property of the Note" test="//bf:Instance[1]/bf:note/bf:Note/bf:electronicLocator/@rdf:resource = 'https://portal.issn.org/resource/ISSN/0019-3879'"/>
   </x:scenario>
 
 </x:description>
