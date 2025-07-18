@@ -54,6 +54,7 @@
       <marc:groups>
         <xsl:variable name="the300s">
           <xsl:apply-templates select="marc:datafield[@tag='300']" mode="groupify">
+            <xsl:with-param name="pLeader06" select="$leader06" />
             <xsl:with-param name="pcountOrig300" select="$countOrig300" />
           </xsl:apply-templates>    
         </xsl:variable>
@@ -393,6 +394,16 @@
           </xsl:call-template>
         </marc:subfield>
       </marc:datafield>
+      <marc:datafield tag="337" ind1=" " ind2=" ">
+        <marc:subfield code="a">computer</marc:subfield>
+        <marc:subfield code="b">c</marc:subfield>
+        <marc:subfield code="2">rdamedia</marc:subfield>
+      </marc:datafield>
+      <marc:datafield tag="338" ind1=" " ind2=" ">
+        <marc:subfield code="a">online resource</marc:subfield>
+        <marc:subfield code="b">cr</marc:subfield>
+        <marc:subfield code="2">rdacarrier</marc:subfield>
+      </marc:datafield>
       <xsl:apply-templates select="." />
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
@@ -437,6 +448,7 @@
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='300']" mode="groupify">
+    <xsl:param name="pLeader06" />
     <xsl:param name="pcountOrig300" />
     <marc:datafield>
       <xsl:attribute name="tag"><xsl:value-of select="@tag"/></xsl:attribute>
@@ -453,6 +465,7 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="addSF3">
+            <xsl:with-param name="pLeader06" select="$pLeader06" />
             <xsl:with-param name="theA" select="marc:subfield[@code='a'][1]" />
           </xsl:call-template>
         </xsl:otherwise>
@@ -536,24 +549,40 @@
   
   
   <xsl:template name="addSF3">
+    <xsl:param name="pLeader06" />
     <xsl:param name="theA" />
     <xsl:choose>
       <xsl:when test="contains($theA, 'audio disc')">
         <marc:subfield code='3'>audio disc</marc:subfield>
         <marc:subfield code='3'>CD</marc:subfield>
+        <marc:subfield code='3'>spoken word</marc:subfield>
+        <marc:subfield code='3'>audio</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'sound disc')">
         <marc:subfield code='3'>audio disc</marc:subfield>
         <marc:subfield code='3'>CD</marc:subfield>
+        <marc:subfield code='3'>spoken word</marc:subfield>
+        <marc:subfield code='3'>audio</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'audiocassette')">
         <marc:subfield code='3'>audiocassette</marc:subfield>
+        <marc:subfield code='3'>spoken word</marc:subfield>
+        <marc:subfield code='3'>audio</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'audio file')">
         <marc:subfield code='3'>audio file</marc:subfield>
+        <marc:subfield code='3'>audio</marc:subfield>
+        <marc:subfield code='3'>spoken word</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'sound file')">
+        <marc:subfield code='3'>sound file</marc:subfield>
+        <marc:subfield code='3'>spoken word</marc:subfield>
+        <marc:subfield code='3'>audio</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'video file')">
         <marc:subfield code='3'>video file</marc:subfield>
+        <marc:subfield code='3'>video</marc:subfield>
+        <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'videodisc')">
         <marc:subfield code='3'>videodisc</marc:subfield>
@@ -563,6 +592,7 @@
         <marc:subfield code='3'>moving image</marc:subfield>
         <marc:subfield code='3'>video</marc:subfield>
         <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
+        <marc:subfield code='3'>laser optical</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'DVD video')">
         <marc:subfield code='3'>videodisc</marc:subfield>
@@ -570,9 +600,18 @@
         <marc:subfield code='3'>moving image</marc:subfield>
         <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
         <marc:subfield code='3'>video</marc:subfield>
+        <marc:subfield code='3'>laser optical</marc:subfield>
+      </xsl:when>
+      <xsl:when test="$pLeader06 = 'g' and contains($theA, 'reel')">
+        <marc:subfield code='3'>film reel</marc:subfield>
+        <marc:subfield code='3'>projected</marc:subfield>
+        <marc:subfield code='3'>two-dimensional moving image</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'book')">
         <marc:subfield code='3'>book</marc:subfield>
+      </xsl:when>
+      <xsl:when test="contains($theA, 'manuscript')">
+        <marc:subfield code='3'>manuscript</marc:subfield>
       </xsl:when>
       <xsl:when test="contains($theA, 'score')">
         <marc:subfield code='3'>score</marc:subfield>
