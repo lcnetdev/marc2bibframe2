@@ -494,11 +494,25 @@
       <xsl:when test="$df856sf3 != ''">
         <xsl:value-of select="$df856sf3"/>
       </xsl:when>
+      <xsl:when test="$df300/marc:subfield[@code='3'] = 'all'">
+        <xsl:variable name="vT">
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="$df300/marc:subfield[@code='a'][1]"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:value-of select="concat('[', $vT, ']')"/>
+      </xsl:when>
+      <xsl:when test="$df300/marc:subfield[@code='a'][1] != ''">
+        <xsl:variable name="vT">
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="$df300/marc:subfield[@code='a'][1]"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:value-of select="concat('[', $vT, ']')"/>
+      </xsl:when>
+      <!-- If there is a 300 with a dollarA, why would we ever want the '3' to appear? -->
       <xsl:when test="$df300/marc:subfield[@code='3'] and $df300/marc:subfield[@code='3'] != 'all'">
         <xsl:value-of select="concat('[', $df300/marc:subfield[@code='3'][1], ']')"/>
-      </xsl:when>
-      <xsl:when test="$df300/marc:subfield[@code='3'] = 'all'">
-        <xsl:value-of select="concat('[', $df300/marc:subfield[@code='a'][1], ']')"/>
       </xsl:when>
       <xsl:when test="$cf007 != ''">
         <xsl:variable name="cf007pos1" select="substring($cf007, 1, 1)"/>
