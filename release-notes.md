@@ -2,7 +2,7 @@
 
 ## v2.10.0
 
-Conversion updates based on specifications v2.8. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+Conversion updates based on specifications v2.9. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
 
 * Added conversion of MARC 880 fields that are paired with 5XX fields
 * Changed conversion of MARC 300 $b; it is now a note within an extent resource
