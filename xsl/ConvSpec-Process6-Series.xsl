@@ -9,7 +9,11 @@
 
   <!-- Conversion specs for 8XX (and obsolete 4XX) ,490 - Series -->
   <!-- convert 490 unless there's an 8xx with the same issn -->
-  <xsl:template match="marc:datafield[@tag = '490' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(marc:subfield[@code='6'],4,3)='-00')]" mode="work">
+  <xsl:template match="marc:datafield[
+            @tag = '490' or 
+            (@tag='880' and substring(marc:subfield[@code='6'],1,3)='490' and substring(marc:subfield[@code='6'],4,3)='-00') or 
+            @tag = '440' or 
+            (@tag='880' and substring(marc:subfield[@code='6'],1,3)='440' and substring(marc:subfield[@code='6'],4,3)='-00')]" mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>    
     <xsl:param name="serialization" select="'rdfxml'"/>
@@ -179,6 +183,33 @@
                 </xsl:call-template>
               </bf:mainTitle>
             </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 1][@code='n']">
+              <bf:partNubmber>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 1][@code='n']"/>
+                </xsl:call-template>
+              </bf:partNubmber>
+            </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 2][@code='n']">
+              <bf:partNubmber>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 2][@code='n']"/>
+                </xsl:call-template>
+              </bf:partNubmber>
+            </xsl:if><xsl:if test="marc:subfield[$pPos + 1][@code='p']">
+              <bf:partName>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 1][@code='p']"/>
+                </xsl:call-template>
+              </bf:partName>
+            </xsl:if>
+            <xsl:if test="marc:subfield[$pPos + 2][@code='p']">
+              <bf:partName>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="marc:subfield[$pPos + 2][@code='p']"/>
+                </xsl:call-template>
+              </bf:partName>
+            </xsl:if>
           </bf:Title>
         </bf:title>
       </xsl:if>
@@ -304,7 +335,7 @@
       marc:datafield[@tag = '810' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '810')] |
       marc:datafield[@tag = '811' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '811')] |
       marc:datafield[@tag = '830' or (@tag = '880' and substring(marc:subfield[@code = '6'], 1, 3) = '830')] |
-      marc:datafield[@tag = '400' or @tag = '410' or @tag = '411' or @tag = '440']"
+      marc:datafield[@tag = '400' or @tag = '410' or @tag = '411']"
     mode="work">
     <xsl:param name="recordid"/>
     <xsl:param name="pPosition" select="position()"/>
@@ -349,18 +380,42 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="vHubIri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of
-            select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
-      </xsl:apply-templates>
+      <xsl:choose>
+        <xsl:when test="($vTag = '830' or $vTag = '440') and marc:subfield[@code='1']">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+          </xsl:apply-templates>            
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="generateUri" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Hub<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Hub</xsl:with-param>
+          </xsl:apply-templates>          
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
     <xsl:variable name="agentiri">
-      <xsl:apply-templates mode="generateUri" select=".">
-        <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of
-            select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
-        <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
-      </xsl:apply-templates>
+      <xsl:choose>
+        <xsl:when test="($vTag != '830' and $vTag != '440') and marc:subfield[@code='1']">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>            
+        </xsl:when>
+        <xsl:when test="($vTag != '830' and $vTag != '440') and marc:subfield[@code='0'][contains(text(),'id.loc.gov/authorities/names/')]">
+          <xsl:apply-templates mode="generateUriFrom1" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>            
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="generateUri" select=".">
+            <xsl:with-param name="pDefaultUri"><xsl:value-of select="$recordid"/>#Agent<xsl:value-of select="@tag"/>-<xsl:value-of select="$pPosition"/></xsl:with-param>
+            <xsl:with-param name="pEntity">bf:Agent</xsl:with-param>
+          </xsl:apply-templates>          
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
   <!--  <xsl:variable name="vLabel">
       <xsl:apply-templates mode="concat-nodes-space"
@@ -398,14 +453,12 @@
                       <!-- <xsl:with-param name="pLabel" select="marc:subfield[@code='a']"/> -->                  
                     </xsl:apply-templates>
                   </xsl:when>
-              <xsl:otherwise>
-                
+                  <xsl:otherwise>
                     <xsl:apply-templates mode="workName" select=".">
                       <xsl:with-param name="agentiri" select="$agentiri"/>
                       <xsl:with-param name="serialization" select="$serialization"/>
-                             
                     </xsl:apply-templates>
-              </xsl:otherwise>
+                  </xsl:otherwise>
                </xsl:choose>
                  
                 <xsl:for-each select="marc:subfield[@code = 'w']">

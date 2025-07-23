@@ -325,7 +325,7 @@
         <!-- marcKey -->
         <xsl:variable name="v880Occurrence" select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)" />
         <xsl:variable name="v880Ref" select="concat($tag, '-', $v880Occurrence)" />
-        <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
+        <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and $v880Occurrence != '00' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
         <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$related880" mode="xmllang"/></xsl:variable>
         
         <xsl:choose>
@@ -387,7 +387,7 @@
     
     <xsl:variable name="v880Occurrence" select="substring(substring-after(marc:subfield[@code = '6'], '-'), 1, 2)" />
     <xsl:variable name="v880Ref" select="concat($tag, '-', $v880Occurrence)" />
-    <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
+    <xsl:variable name="related880" select="ancestor::marc:record/marc:datafield[@tag='880' and $v880Occurrence != '00' and marc:subfield[@code='6' and substring(., 1, 6)=$v880Ref]]"/>
     <xsl:variable name="vXmlLang880"><xsl:apply-templates select="$related880" mode="xmllang"/></xsl:variable>
     
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
@@ -496,18 +496,18 @@
           <xsl:when test="marc:subfield[@code='t']">
             <xsl:apply-templates mode="concat-nodes-space"
               select="marc:subfield[@code='t'] |
-              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+              marc:subfield[@code='t']/following-sibling::marc:subfield[not(contains('ivwxyz012345678',@code))]"/>            
           </xsl:when>
           <xsl:when test="marc:subfield[@code='k']">
             <xsl:apply-templates mode="concat-nodes-space"
               select="marc:subfield[@code='k'] |
-              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('hivwxyz012345678',@code))]"/>            
+              marc:subfield[@code='k']/following-sibling::marc:subfield[not(contains('ivwxyz012345678',@code))]"/>            
           </xsl:when>
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates mode="concat-nodes-space"
-                             select="marc:subfield[not(contains('hivwxyz012345678',@code))]"/>
+                             select="marc:subfield[not(contains('ivwxyz012345678',@code))]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

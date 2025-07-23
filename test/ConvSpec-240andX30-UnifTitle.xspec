@@ -12,7 +12,7 @@
     <x:context href="data/ConvSpec-240andX30-UnifTitle/marc.xml"/>
     <x:expect label="title marc key generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bflc:marcKey = '1304 $aThe Encyclopedia of Latin American history and culture.$d(1952).$f[between 1775 and 1800].$gManuscripts, Latin.$hSound recording.$mviolin, viola,$rD major.$oarr.$pO.T.$nBook 4.$kSelections.$0(ID)0001'"/>
     <x:expect label="title sort string generation" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bflc:nonSortNum = '4'"/>
-    <x:expect label="All title subfields except $h, $0-8 become mainTitle" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. violin, viola, D major. arr. O.T. Book 4. Selections'"/>
+    <x:expect label="All title subfields except $h, $0-8 become mainTitle" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'The Encyclopedia of Latin American history and culture. (1952). [between 1775 and 1800]. Manuscripts, Latin. Sound recording. violin, viola, D major. arr. O.T. Book 4. Selections'"/>
     <x:expect label="$n becomes a partNumber" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:partNumber[1] = 'Book 4'"/>
     <x:expect label="$p becomes a partName" test="//bf:Work[1]/bf:expressionOf/bf:Hub/bf:title/bf:Title/bf:partName[1] = 'O.T.'"/>
   </x:scenario>
@@ -29,7 +29,7 @@
     <x:expect label="730 ind2=4 becomes bflc:hasVariantEntry" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[3]/bf:Relation/bf:relationship/@rdf:resource='http://id.loc.gov/ontologies/bflc/hasVariantEntry'"/>
     <x:expect label="730 ind2=4 becomes bflc:hasVariantEntry" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[3]/bf:Relation/bf:associatedResource/bf:Hub/bf:title/bf:Title/bf:mainTitle = 'Apocrypha'"/>
     <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[2]/bf:Relation/bf:relationship[1]/@rdf:resource='http://id.loc.gov/vocabulary/relationship/relatedwork'"/>
-    <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Hub/bf:title/bf:Title/bf:mainTitle = '[Motets]. E minor'"/>
+    <x:expect label="730 otherwise becomes a relatedTo of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[2]/bf:Relation/bf:associatedResource/bf:Hub/bf:title/bf:Title/bf:mainTitle = '[Motets]. E minor Sound recording'"/>
     <x:expect label="$i becomes a bflc:relationship of the main Work" test="//bf:Work[@rdf:about='http://example.org/2#Work']/bf:relation[2]/bf:Relation/bf:relationship[2]/bf:Relationship/rdfs:label='Parody of (work)'"/>
     <x:expect label="$d becomes a legalDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:legalDate = '1952'"/>
     <x:expect label="$f becomes the originDate of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:originDate = '[between 1775 and 1800]'"/>

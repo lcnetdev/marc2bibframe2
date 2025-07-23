@@ -172,6 +172,14 @@
       <x:expect label="Variant title without langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:date[not(@xml:lang)] = '1961-'"/>
       <x:expect label="Variant title with langtag" test="//bf:Work[2]/bf:title[1]/bf:VariantTitle/bf:date[@xml:lang='zh-hani'] = '1961-'"/>
     </x:scenario>
+    
+    <x:scenario label="247/547 pairing">
+      <x:context href="data/ConvSpec-200-247not240-Titles/marc247.xml"/>
+      <x:expect label="2 Variant titles" test="count(//bf:Work[3]/bf:title/bf:VariantTitle) = 2"/>
+      <x:expect label="Title of first Variant Title" test="//bf:Work[3]/bf:title[1]/bf:VariantTitle/bf:mainTitle = 'Junior musician'"/>
+      <x:expect label="Note of first Variant Title" test="//bf:Work[3]/bf:title[1]/bf:VariantTitle/bf:note/bf:Note/rdfs:label='Junior musician (Dec. 1937-May 1939, Nov. 1940-Sept. 1941, The Junior musician magazine).'"/>
+      <x:expect label="Title of second Variant Title" test="//bf:Work[3]/bf:title[2]/bf:VariantTitle/bf:date = 'Dec. 1937-May 1939, Nov. 1940-Sept. 1941'"/>
+    </x:scenario>
   </x:scenario>
 
 </x:description>

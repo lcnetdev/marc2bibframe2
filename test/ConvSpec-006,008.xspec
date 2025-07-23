@@ -144,6 +144,10 @@
     <x:expect label="s date" test="//bf:Instance[15]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2002'"/>
     <x:expect label="m date" test="//bf:Instance[16]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2013/2016'"/>
     <x:expect label="q date" test="//bf:Instance[17]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='1900~/1956~'"/>
+    <x:expect label="n date" test="//bf:Instance[18]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='XXXX'"/>
+    <x:expect label="n date" test="//bf:Instance[19]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='19XX'"/>
+    <x:expect label="r date 1" test="//bf:Instance[20]/bf:provisionActivity/bf:ProvisionActivity/bf:date[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2023'"/>
+    <x:expect label="r date 2" test="//bf:Work[20]/bf:originDate[@rdf:datatype='http://id.loc.gov/datatypes/edtf']='2021'"/>
   </x:scenario>
 
 </x:description>

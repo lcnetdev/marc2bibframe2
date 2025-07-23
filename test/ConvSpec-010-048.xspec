@@ -41,7 +41,7 @@
   <x:scenario label="017 - COPYRIGHT OR LEGAL DEPOSIT NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/CopyrightNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:CopyrightNumber/rdf:value='JP732'"/>
-    <x:expect label="$b creates an assigner property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:CopyrightNumber/bf:assigner/bf:Agent/rdfs:label = 'U.S. Copyright Office'"/>
+    <x:expect label="$b creates an assigner property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:CopyrightNumber/bf:assigner/bf:Organization/rdfs:label = 'U.S. Copyright Office'"/>
     <x:expect label="$d creates a date property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[9]/bf:CopyrightNumber/bf:date = '1951-05-04'"/>
     <x:expect label="$z creates a status/Status property of the CopyrightNumber" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:CopyrightNumber/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/cancinv'"/>
     <x:expect label="...and with rdfs:label 'invalid'" test="//bf:Instance[1]/bf:identifiedBy[11]/bf:CopyrightNumber/bf:status/bf:Status/rdfs:label = 'invalid'"/>
@@ -123,7 +123,7 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="ind1 determines the class of Identifier for the identifiedBy property of the Instance" test="count(//bf:Instance[1]/bf:identifiedBy[27]/bf:AudioIssueNumber) = 1"/>
     <x:expect label="$a creates an identifiedBy/Identifier property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:AudioIssueNumber/rdf:value = '440 073 033-9 (compact disc)'"/>
-    <x:expect label="$b creates an assigner property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:AudioIssueNumber/bf:assigner/bf:Agent/rdfs:label = 'Deutsche Grammophon'"/>
+    <x:expect label="$b creates an assigner property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:AudioIssueNumber/bf:assigner/bf:Organization/rdfs:label = 'Deutsche Grammophon'"/>
     <x:expect label="$q creates a qualifier property of the Identifier" test="//bf:Instance[1]/bf:identifiedBy[27]/bf:AudioIssueNumber/bf:qualifier[1] = 'disc 1'"/>
   </x:scenario>
 
@@ -136,7 +136,7 @@
   <x:scenario label="032 - POSTAL REGISTRATION NUMBER">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/PostalRegistration property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:PostalRegistration/rdf:value = '686310'"/>
-    <x:expect label="$b creates an assigner property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:PostalRegistration/bf:assigner/bf:Agent/rdfs:label = 'USPS'"/>
+    <x:expect label="$b creates an assigner property of the PostalRegistration" test="//bf:Instance[1]/bf:identifiedBy[30]/bf:PostalRegistration/bf:assigner/bf:Organization/rdfs:label = 'USPS'"/>
   </x:scenario>
   
   <x:scenario label="033 - DATE/TIME AND PLACE OF AN EVENT">
@@ -172,7 +172,7 @@
   <x:scenario label="036 - ORIGINAL STUDY NUMBER FOR COMPUTER DATA FILES">
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="$a creates an identifiedBy/StudyNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[34]/bf:StudyNumber/rdf:value = 'CNRS 84115'"/>
-    <x:expect label="$b creates an assigner property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[34]/bf:StudyNumber/bf:assigner/bf:Agent/rdfs:label = 'Centre national de la recherche scientifique'"/>
+    <x:expect label="$b creates an assigner property of the StudyNumber" test="//bf:Instance[1]/bf:identifiedBy[34]/bf:StudyNumber/bf:assigner/bf:Organization/rdfs:label = 'Centre national de la recherche scientifique'"/>
   </x:scenario>
   
   <x:scenario label="037 - SOURCE OF ACQUISITION">
@@ -209,9 +209,9 @@
     <x:context href="data/ConvSpec-010-048/marc.xml"/>
     <x:expect label="041 create language properties of the Work" test="//bf:Work/bf:language[1]/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/eng'"/>
     <!-- <x:expect label="ind1 creates a note property of the Work" test="//bf:Work/bf:note[1]/bf:Note/rdfs:label = 'Includes translation or is translation'"/> -->
-    <x:expect label="ind2 determines the source property of the Language" test="//bf:Work/bf:language[4]/bf:Language/bf:source/bf:Source/@rdf:about = 'http://id.loc.gov/vocabulary/languageschemes/iso6391'"/>
+    <x:expect label="ind2 determines the source property of the Language" test="//bf:Work/bf:language[3]/@rdf:resource = 'http://id.loc.gov/vocabulary/iso639-1/fr'"/>
     <x:expect label="No source property of Language if ind2 = ' '" test="count(//bf:Work/bf:language[1]/bf:Language/bf:source) = 0"/>
-    <x:expect label="subfields other than $a create a part property of the Language" test="//bf:Work/bf:language[2]/bf:Language/bf:part = 'Resource'"/>
+    <x:expect label="subfields other than $a create a relationship on the Work" test="//bf:Work/bf:accompaniedBy/bf:Work/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/resourceComponents/amt'"/>
     <x:expect label="041 $h creates notes" test="//bf:Work/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/resourceComponents/otx'"/>
     <x:expect label="041 $h creates notes" test="//bf:Work/bf:note[2]/bf:Note/bf:language/@rdf:resource = 'http://id.loc.gov/vocabulary/languages/swe'"/>
   </x:scenario>
@@ -231,6 +231,9 @@
     <x:expect label="$c creates a geographicCoverage property of the Work" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/rdf:value = 'us'"/>
     <x:expect label="...with source labelled 'ISO 3166'" test="//bf:Work/bf:geographicCoverage[3]/bf:GeographicCoverage/bf:source/bf:Source/bf:code = 'ISO 3166'"/>
     <x:expect label="$0 creates an identifier property of the GeographicCoverage" test="//bf:Work/bf:geographicCoverage[2]/bf:GeographicCoverage/bf:identifiedBy/bf:Identifier/rdf:value = '310008891'"/>
+    
+    <x:expect label="$0 creates an identifier property of the GeographicCoverage" test="//bf:Work/bf:geographicCoverage[4]/@rdf:resource = 'http://id.loc.gov/authorities/subjects/sh85074668'"/>
+    <x:expect label="... there is only one, even though there are three in the source." test="count(//bf:Work/bf:geographicCoverage/@rdf:resource[. = 'http://id.loc.gov/authorities/subjects/sh85074668']) = 1"/>
   </x:scenario>
   
   <x:scenario label="045 - TIME PERIOD OF CONTENT">

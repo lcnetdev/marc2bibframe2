@@ -623,6 +623,34 @@
                 <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
                 <xsl:with-param name="pPart" select="$vPart"/>
                 <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'marc'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-1')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6391'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-2')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6392'"/>
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="contains($vSource, '639-3')">
+              <xsl:call-template name="parse041">
+                <xsl:with-param name="pLang" select="translate(., ' ', '')"/>
+                <xsl:with-param name="pPart" select="$vPart"/>
+                <xsl:with-param name="p3" select="../marc:subfield[@code='3']"/>
+                <xsl:with-param name="pSource" select="'iso6393'"/>
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:call-template>
             </xsl:when>
@@ -651,9 +679,11 @@
     <xsl:param name="pLang"/>
     <xsl:param name="pPart"/>
     <xsl:param name="p3"/>
+    <xsl:param name="pSource"/>
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pStart" select="1"/>
-    <xsl:if test="string-length(substring($pLang,$pStart,3)) = 3">
+    <xsl:if test="(string-length($pLang) = 2 and $pSource = 'iso6391') or 
+                  (string-length(substring($pLang,$pStart,3)) = 3)">
       <xsl:variable name="lCode">
         <xsl:call-template name="url-encode">
           <xsl:with-param name="str" select="translate(normalize-space(substring($pLang,$pStart,3)),$upper,$lower)"/>
@@ -662,7 +692,21 @@
       <xsl:variable name="match008" select="boolean(substring(../../marc:controlfield[@tag='008'],36,3)=$lCode)" />
       <xsl:variable name="langResource">
         <bf:language>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$lCode)"/></xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="$pSource = 'marc'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$lCode)"/></xsl:attribute>    
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6391'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6391,$lCode)"/></xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6392'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6392,$lCode)"/></xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$pSource = 'iso6393'">
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($iso6393,$lCode)"/></xsl:attribute>
+            </xsl:when>
+          </xsl:choose>
+          
         </bf:language>
       </xsl:variable>
       <xsl:choose>
@@ -691,72 +735,96 @@
                 </bf:Work>
               </bf:accompaniedBy>
             </xsl:when>
+            <xsl:when test="$pSource != 'marc' and local-name($pPart)='a'">
+              <xsl:copy-of select="$langResource" />
+            </xsl:when>
             <xsl:when test="local-name($pPart)='a' and not($match008)">
               <xsl:copy-of select="$langResource" />
             </xsl:when>
           </xsl:choose>
         </xsl:when>
       </xsl:choose>
-      <xsl:call-template name="parse041">
-        <xsl:with-param name="pLang" select="$pLang"/>
-        <xsl:with-param name="pPart" select="$pPart"/>
-        <xsl:with-param name="p3" select="$p3"/>
-        <xsl:with-param name="serialization" select="$serialization"/>
-        <xsl:with-param name="pStart" select="$pStart + 3"/>
-      </xsl:call-template>
+      <xsl:if test="$pSource = 'marc'">
+        <xsl:call-template name="parse041">
+          <xsl:with-param name="pLang" select="$pLang"/>
+          <xsl:with-param name="pPart" select="$pPart"/>
+          <xsl:with-param name="p3" select="$p3"/>
+          <xsl:with-param name="pSource" select="$pSource"/>
+          <xsl:with-param name="serialization" select="$serialization"/>
+          <xsl:with-param name="pStart" select="$pStart + 3"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
   
   <xsl:template match="marc:datafield[@tag='043' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='043')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:for-each select="marc:subfield[@code='a']">
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <bf:geographicCoverage>
-            <xsl:variable name="vCode">
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="."/>
-                <xsl:with-param name="pEndPunct" select="'-'"/>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:variable name="encoded">
-              <xsl:call-template name="url-encode">
-                <xsl:with-param name="str" select="normalize-space($vCode)"/>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($geographicAreas,$encoded)"/></xsl:attribute>
-          </bf:geographicCoverage>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
-    <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
-      <xsl:choose>
-        <xsl:when test="$serialization='rdfxml'">
-          <bf:geographicCoverage>
-            <bf:GeographicCoverage>
-              <rdf:value><xsl:value-of select="."/></rdf:value>
-              <xsl:choose>
-                <xsl:when test="@code='c'">
-                  <bf:source>
-                    <bf:Source>
-                      <bf:code>ISO 3166</bf:code>
-                    </bf:Source>
-                  </bf:source>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                  <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='0']" mode="subfield0orw">
-                    <xsl:with-param name="serialization" select="$serialization"/>
-                  </xsl:apply-templates>
-                </xsl:otherwise>
-              </xsl:choose>
-            </bf:GeographicCoverage>
-          </bf:geographicCoverage>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:for-each>
+    <xsl:choose>
+      <xsl:when test="marc:subfield[@code='0'] and starts-with(marc:subfield[@code='0'], 'http')">
+        <xsl:for-each select="marc:subfield[@code='0']">
+          <xsl:variable name="v0" select="." />
+          <xsl:if test="not(parent::marc:datafield/preceding-sibling::marc:datafield[@tag = '043']/marc:subfield[@code='0' and .=$v0])">
+            <xsl:if test="contains(., '/authorities/subjects') or 
+                          contains(., '/authorities/names') or 
+                          contains(., '/vocabulary/geographicAreas')">
+                  <bf:geographicCoverage>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  </bf:geographicCoverage>
+            </xsl:if>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <bf:geographicCoverage>
+                <xsl:variable name="vCode">
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
+                    <xsl:with-param name="pEndPunct" select="'-'"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:variable name="encoded">
+                  <xsl:call-template name="url-encode">
+                    <xsl:with-param name="str" select="normalize-space($vCode)"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($geographicAreas,$encoded)"/></xsl:attribute>
+              </bf:geographicCoverage>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+        <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
+          <xsl:choose>
+            <xsl:when test="$serialization='rdfxml'">
+              <bf:geographicCoverage>
+                <bf:GeographicCoverage>
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                  <xsl:choose>
+                    <xsl:when test="@code='c'">
+                      <bf:source>
+                        <bf:Source>
+                          <bf:code>ISO 3166</bf:code>
+                        </bf:Source>
+                      </bf:source>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='0']" mode="subfield0orw">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                      </xsl:apply-templates>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </bf:GeographicCoverage>
+              </bf:geographicCoverage>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='045' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='045')]" mode="work">
@@ -852,7 +920,8 @@
 
   <xsl:template match="marc:datafield[@tag='046' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='046')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:if test="marc:subfield[@code='k']">
+    <xsl:variable name="cf008" select="../marc:controlfield[@tag='008']"/>
+    <xsl:if test="substring($cf008, 7, 1) != 'r' and marc:subfield[@code='k']">
       <xsl:variable name="vDate1">
         <xsl:call-template name="tMarcToEdtf">
           <xsl:with-param name="pDateString" select="marc:subfield[@code='k']"/>
@@ -1259,7 +1328,7 @@
               <xsl:if test="$vTag='017' or $vTag='028' or $vTag='032' or $vTag='036'">
                 <xsl:for-each select="../marc:subfield[@code='b']">
                   <bf:assigner>
-                    <bf:Agent>
+                    <bf:Organization>
                       <rdfs:label>
                         <xsl:if test="$vXmlLang != ''">
                           <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
@@ -1268,7 +1337,7 @@
                           <xsl:with-param name="pString" select="."/>
                         </xsl:call-template>
                       </rdfs:label>
-                    </bf:Agent>
+                    </bf:Organization>
                   </bf:assigner>
                 </xsl:for-each>
               </xsl:if>

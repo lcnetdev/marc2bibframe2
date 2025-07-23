@@ -7,9 +7,10 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v2.9.0</xsl:variable>
-  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-5-0/</xsl:variable>
-  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.9.0</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v2.10</xsl:variable>
+  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-6-0/</xsl:variable>
+  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0</xsl:variable>
+  <!-- <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/tree/v2.10-dev</xsl:variable> -->
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
@@ -28,6 +29,9 @@
   <xsl:variable name="genreForms">http://id.loc.gov/authorities/genreForms/</xsl:variable>
   <xsl:variable name="geographicAreas">http://id.loc.gov/vocabulary/geographicAreas/</xsl:variable>
   <xsl:variable name="graphicMaterials">http://id.loc.gov/vocabulary/graphicMaterials/</xsl:variable>
+  <xsl:variable name="iso6391">http://id.loc.gov/vocabulary/iso639-1/</xsl:variable>
+  <xsl:variable name="iso6392">http://id.loc.gov/vocabulary/iso639-2/</xsl:variable>
+  <xsl:variable name="iso6393">http://id.loc.gov/vocabulary/iso639-3/</xsl:variable>
   <xsl:variable name="issuance">http://id.loc.gov/vocabulary/issuance/</xsl:variable>
   <xsl:variable name="languages">http://id.loc.gov/vocabulary/languages/</xsl:variable>
   <xsl:variable name="marcgt">http://id.loc.gov/vocabulary/marcgt/</xsl:variable>
@@ -94,5 +98,8 @@
 
   <!-- abbreviations for punctuation processing -->
   <xsl:variable name="abbreviations" select="document('conf/abbreviations.xml')"/>
+  
+  <!-- exclusions related to 856/859 processing -->
+  <xsl:variable name="exclusions" select="document('conf/exclusions.xml')"/>
   
 </xsl:stylesheet>

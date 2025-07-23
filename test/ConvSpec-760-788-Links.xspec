@@ -78,6 +78,21 @@
  
     <x:expect label="758 with $1 and $i relationship" test="/rdf:RDF/bf:Work[1]/bf:relation[3]/bf:Relation/bf:relationship/bf:Relationship/rdfs:label='Has work manifested:'" />
     <x:expect label="...with link to $1 resource" test="/rdf:RDF/bf:Work[1]/bf:relation[3]/bf:Relation/bf:associatedResource/@rdf:resource='http://www.wikidata.org/entity/Q27712857'" />
+  </x:scenario>
+  
+  <x:scenario label="760-788 Relationhip Notes from 580">
+    <x:context href="data/ConvSpec-760-788-Links/marc.xml"/>
+    <x:expect label="There are 2 relation resources" test="count(/rdf:RDF/bf:Work[2]/bf:relation) = '2'"/>
+    <x:expect label="The first one is a continuationof relationship" test="//bf:Work[2]/bf:relation[1]/bf:Relation/bf:relationship/@rdf:resource = 'http://id.loc.gov/vocabulary/relationship/continuationof'"/>
+    <x:expect label="The second one is a splitinto relationship" test="//bf:Work[2]/bf:relation[2]/bf:Relation/bf:relationship/@rdf:resource = 'http://id.loc.gov/vocabulary/relationship/splitinto'"/>
+    <x:expect label="The second one has a note of relnote type" test="//bf:Work[2]/bf:relation[2]/bf:Relation/bf:note/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/relnote'"/>
+    <x:expect label="... with the expected value" test="//bf:Work[2]/bf:relation[2]/bf:Relation/bf:note/bf:Note/rdfs:label = 'Split into eight sections with the common title: Roczniki nauk rolniczych; Seria A, Roślinna; Seria B, Zootechniczna; Seria C, Mechanizacji; Seria D, Monografie; Seria E, Ochrona roślin; Seria F, Melioracji i użytków zielonych; Seria G, Ekonomiki rolnictwa; and: Seria H, Rybactwo.'"/>    
+    <x:expect label="... with 8 associated resources" test="count(//bf:Work[2]/bf:relation[2]/bf:Relation/bf:associatedResource) = '8'"/>
     
+    <x:expect label="There are 2 relation resources" test="count(/rdf:RDF/bf:Work[3]/bf:relation) = '2'"/>
+    <x:expect label="The first one is a continuationof relationship" test="//bf:Work[3]/bf:relation[1]/bf:Relation/bf:relationship/@rdf:resource = 'http://id.loc.gov/vocabulary/relationship/continuedby'"/>
+    <x:expect label="The second one is a splitinto relationship" test="//bf:Work[3]/bf:relation[2]/bf:Relation/bf:relationship/@rdf:resource = 'http://id.loc.gov/vocabulary/relationship/relatedwork'"/>
+    <x:expect label="The first one has a note of relnote type" test="//bf:Work[3]/bf:relation[1]/bf:Relation/bf:note/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/relnote'"/>
+    <x:expect label="... with the expected value" test="//bf:Work[3]/bf:relation[1]/bf:Relation/bf:note/bf:Note/rdfs:label = 'Continued by a print serial publication with the same title, and also as part of the annually issued CD-ROM: International business law library.'"/>    
   </x:scenario>
 </x:description>

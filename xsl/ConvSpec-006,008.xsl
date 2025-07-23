@@ -216,12 +216,29 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="originDate">
+      <xsl:choose>
+        <xsl:when test="
+            substring(., 7, 1) = 'r' and
+            substring(., 12, 4) != '    ' and
+            substring(., 12, 4) != '||||'
+          ">
+          <xsl:value-of select="substring(., 12, 4)"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="$language != ''">
           <bf:language>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($languages,$language)"/></xsl:attribute>
           </bf:language>
+        </xsl:if>
+        <xsl:if test="$originDate != ''">
+          <bf:originDate>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($edtf,'edtf')"/></xsl:attribute>
+            <xsl:value-of select="$originDate"/>
+          </bf:originDate>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
@@ -1179,18 +1196,21 @@
     <xsl:param name="illustrations"/>
     <xsl:param name="i" select="1"/>
     <xsl:if test="$i &lt; 5">
-      <xsl:for-each select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]">
-        <xsl:choose>
-          <xsl:when test="$serialization = 'rdfxml'">
-            <bf:illustrativeContent>
-              <bf:Illustration>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
-                <rdfs:label><xsl:value-of select="."/></rdfs:label>
-              </bf:Illustration>
-            </bf:illustrativeContent>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:for-each>
+      <xsl:variable name="vMillus" select="$codeMaps/maps/millus/*[name() = substring($illustrations,$i,1)]" />
+      <xsl:if test="not(../marc:datafield[@tag='340']/marc:subfield[@code='0']=$vMillus/@href)">
+        <xsl:for-each select="$vMillus">
+          <xsl:choose>
+            <xsl:when test="$serialization = 'rdfxml'">
+              <bf:illustrativeContent>
+                <bf:Illustration>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@href"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Illustration>
+              </bf:illustrativeContent>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:if>
       <xsl:call-template name="illustrativeContent008">
         <xsl:with-param name="serialization" select="$serialization"/>
         <xsl:with-param name="illustrations" select="$illustrations"/>
@@ -1259,7 +1279,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="code"/>
     <xsl:variable name="v353" select="../marc:datafield[@tag='353']/marc:subfield[@code='a']" />
-    <xsl:if test="$code = '1' and not($v353[.!='index'])">
+    <xsl:if test="$code = '1' and not($v353[.='index'])">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
           <bf:supplementaryContent>

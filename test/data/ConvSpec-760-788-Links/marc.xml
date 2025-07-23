@@ -94,4 +94,85 @@
       <subfield code="o">(istc)0A3200912B4A1057</subfield>
     </datafield>
   </record>
+  
+  <record>
+    <leader>03818cas a2200697 a 4500</leader>
+    <controlfield tag="001">2</controlfield>
+    <controlfield tag="008">911104d19uu1952pl uu p      f0    0pol  </controlfield>
+    <datafield tag="580" ind1=" " ind2=" ">
+      <subfield code="a">Split into eight sections with the common title: Roczniki nauk rolniczych; Seria A, Roślinna; Seria B, Zootechniczna; Seria C, Mechanizacji; Seria D, Monografie; Seria E, Ochrona roślin; Seria F, Melioracji i użytków zielonych; Seria G, Ekonomiki rolnictwa; and: Seria H, Rybactwo.</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">Centralny Instytut Rolniczy (Poland)</subfield>
+    </datafield>
+    <datafield tag="780" ind1="0" ind2="0">
+      <subfield code="t">Roczniki nauk rolniczych i leśnych</subfield>
+      <subfield code="w">(DLC)   91656663</subfield>
+      <subfield code="w">(OCoLC)24650058</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria A, Roślinna</subfield>
+      <subfield code="w">(DLC)   68040708</subfield>
+      <subfield code="w">(OCoLC)20278833</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria B, Zootechniczna</subfield>
+      <subfield code="x">0080-3669</subfield>
+      <subfield code="w">(DLC)sn 85005500</subfield>
+      <subfield code="w">(OCoLC)2482294</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria C, Mechanizacji</subfield>
+      <subfield code="x">0080-3677</subfield>
+      <subfield code="w">(OCoLC)4362035</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria D, Monografie</subfield>
+      <subfield code="x">0080-3685</subfield>
+      <subfield code="w">(DLC)   68040707</subfield>
+      <subfield code="w">(OCoLC)2510810</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria E, Ochrona roślin</subfield>
+      <subfield code="x">0080-3693</subfield>
+      <subfield code="w">(DLC)   73646266</subfield>
+      <subfield code="w">(OCoLC)1788681</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria F, Melioracji i użytków zielonych</subfield>
+      <subfield code="x">0080-3707</subfield>
+      <subfield code="w">(DLC)   68040710</subfield>
+      <subfield code="w">(OCoLC)2516165</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria G, Ekonomiki rolnictwa</subfield>
+      <subfield code="x">0080-3715</subfield>
+      <subfield code="w">(DLC)sn 85008633</subfield>
+      <subfield code="w">(OCoLC)2505513</subfield>
+    </datafield>
+    <datafield tag="785" ind1="1" ind2="6">
+      <subfield code="t">Roczniki nauk rolniczych. Seria H, Rybactwo</subfield>
+      <subfield code="x">0376-2173</subfield>
+      <subfield code="w">(DLC)sf 98086144</subfield>
+      <subfield code="w">(OCoLC)2515449</subfield>
+    </datafield>
+  </record>
+  
+  <record>
+    <leader>02521cai a2200505 a 4500</leader>
+    <controlfield tag="001">3</controlfield>
+    <controlfield tag="008">930819d19902001ne uu l       0   a2eng d</controlfield>
+    <datafield tag="580" ind1=" " ind2=" ">
+      <subfield code="a">Continued by a print serial publication with the same title, and also as part of the annually issued CD-ROM: International business law library.</subfield>
+    </datafield>
+    <datafield tag="785" ind1="0" ind2="0">
+      <subfield code="t">Legal aspects of doing business in Europe (Yorkhill Law Publishing)</subfield>
+      <subfield code="w">(DLC)  2007247005</subfield>
+      <subfield code="w">(OCoLC)80016886</subfield>
+    </datafield>
+    <datafield tag="787" ind1="1" ind2=" ">
+      <subfield code="t">International business law library</subfield>
+      <subfield code="w">(OCoLC)59758257</subfield>
+    </datafield>
+  </record>
 </collection>

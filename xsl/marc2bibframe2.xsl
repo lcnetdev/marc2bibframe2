@@ -221,8 +221,8 @@
             </xsl:choose>
             
             <xsl:variable name="cf005date" select="marc:controlfield[@tag='005']" />
-            <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))"/>
-            <xsl:if test="not (starts-with($changeDate, '0000'))">
+            <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))" /> 
+            <xsl:if test="marc:controlfield[@tag='005'] and not(starts-with($changeDate, '0000'))">
               <bf:date>
                 <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>
                 <xsl:value-of select="$changeDate"/>
@@ -267,7 +267,16 @@
             </bf:status>
             
             <xsl:variable name="cf005date" select="marc:subfield[@code='g']" />
-            <xsl:variable name="changeDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))"/>
+            <xsl:variable name="changeDate">
+              <xsl:choose>
+                <xsl:when test="string-length($cf005date) &gt; 8">
+                  <xsl:value-of select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2))" />
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
             <xsl:if test="not (starts-with($changeDate, '0000'))">
               <bf:date>
                 <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>

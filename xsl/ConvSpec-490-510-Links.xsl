@@ -9,10 +9,57 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="xsl marc">
 
-  <!-- Conversion specs for 510 - Other linking entries  see process 6 for 490 now -->
+  <!-- 
+    Conversion specs for 510 - Other linking entries.
+    See process 6 for 490 now 
+  -->
   
+  <xsl:template match="marc:datafield[
+                        (@tag='510' and (@ind1='3' or @ind1='4')) or 
+                        (@tag='880' and substring(marc:subfield[@code='6'],1,3)='510') and (@ind1='3' or @ind1='4')]" 
+          mode="instance">
+    <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
+    <xsl:variable name="vLabel">
+      <xsl:apply-templates mode="concat-nodes-space" select="marc:subfield[@code='a' or @code='b']"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$serialization = 'rdfxml'">
+        <bf:note>
+          <bf:Note>
+            <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/refcitation" />
+            <rdfs:label>
+              <xsl:if test="$vXmlLang != ''">
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+              </xsl:if>
+              <xsl:value-of select="normalize-space(marc:subfield[@code='a'])"/>
+            </rdfs:label>
+            <xsl:if test="marc:subfield[@code='b']">
+              <bf:enumerationAndChronology>
+                <bf:EnumerationAndChronology>
+                  <rdfs:label><xsl:value-of select="normalize-space(marc:subfield[@code='b'])"/></rdfs:label>
+                </bf:EnumerationAndChronology>
+              </bf:enumerationAndChronology>
+            </xsl:if>
+            <xsl:if test="marc:subfield[@code='c']">
+              <bflc:citation><xsl:value-of select="normalize-space(marc:subfield[@code='c'])"/></bflc:citation>
+            </xsl:if>
+            <xsl:apply-templates select="marc:subfield[@code='u']" mode="subfieldu">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+              <xsl:with-param name="serialization" select="$serialization"/>
+            </xsl:apply-templates>
+          </bf:Note>
+        </bf:note>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='510' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='510')]" mode="work">
+  <xsl:template match="marc:datafield[
+                          (@tag='510' and (@ind1='0' or @ind1='1' or @ind1='2')) or 
+                          (@tag='880' and substring(marc:subfield[@code='6'],1,3)='510') and (@ind1='0' or @ind1='1' or @ind1='2')]" 
+               mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:variable name="vProperty">

@@ -408,7 +408,7 @@
             </madsrdf:authoritativeLabel>
           </xsl:if>
           <xsl:copy-of select="$v880Label" />
-          <xsl:copy-of select="$v880MarcKey"/>
+          <!-- <xsl:copy-of select="$v880MarcKey"/> -->
           <xsl:for-each select="$subjectThesaurus/subjectThesaurus/subject[@ind2=current()/@ind2]/madsscheme">
             <madsrdf:isMemberOfMADSScheme>
               <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
@@ -697,6 +697,7 @@
     </xsl:variable>
     <xsl:variable name="vResource">
       <xsl:choose>
+        <xsl:when test="$vTag='651' and not(marc:subfield[@code='v' or @code='x' or @code='y'])">bf:Place</xsl:when>
         <xsl:when test="marc:subfield[@code='v' or @code='x' or @code='y' or @code='z']">bf:Topic</xsl:when>
         <xsl:when test="$vTag='647'">bf:Event</xsl:when>
         <xsl:when test="$vTag='648'">bf:Temporal</xsl:when>
