@@ -123,30 +123,42 @@
   
   <xsl:template match="marc:datafield[@tag='856' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='856')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    <xsl:param name="pInstanceType" />
     <xsl:apply-templates select="." mode="instance856">
+      <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
       <xsl:with-param name="serialization" select="$serialization"/>
     </xsl:apply-templates>
   </xsl:template>
   
   <!-- 859 is a local field at LoC -->
   <xsl:template match="marc:datafield[@tag='859' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='859')]" mode="instance">
+    <xsl:param name="pInstanceType" />
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:if test="$localfields">
       <xsl:apply-templates select="." mode="instance856">
+        <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         <xsl:with-param name="serialization" select="$serialization"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="marc:datafield" mode="instance856">
+    <xsl:param name="pInstanceType" />
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vSubfieldA" select="translate(normalize-space(marc:subfield[@code='a'][1]),$upper,$lower)"/>
     <xsl:variable name="vSubfield3" select="translate(normalize-space(marc:subfield[@code='3'][1]),$upper,$lower)"/>
     <xsl:if test="$serialization = 'rdfxml' and marc:subfield[@code='u']">
         <xsl:choose>
           <!-- If ind2 is #, 0, 1, or 8 and the Instance does not have the class of Electronic, create a new Instance -->
-          <xsl:when test="../marc:datafield[@tag='758'] and 
-            (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8')">
+          <!-- 
+            The check for a 758 here is to sniff if this is a Split MARC record.
+            That is, this MARC record is a slim one that will become a secondary Instance.
+            But records that have round-tripped will have a 758, not to mention who else sticks stuff in a 758.
+            And then there will be some records that do not have a 758, but will nonetheless have am 856
+              that needs to be converted.
+          -->
+          <xsl:when test="(@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                          $pInstanceType = 'SecondaryInstance'">
               <xsl:choose>
                 <xsl:when test="marc:subfield[@code='3']">
                   <bf:title>
@@ -177,6 +189,9 @@
                 </xsl:when>
               </xsl:choose>
               <xsl:apply-templates select="." mode="locator856" />
+          </xsl:when>
+          <xsl:when test="(@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and not(contains($vSubfieldA, 'table of contents')) and not(contains($vSubfield3, 'table of contents'))">
+            <xsl:apply-templates select="." mode="locator856" />
           </xsl:when>
           <xsl:when test="@ind2='2' and not(contains($vSubfieldA, 'table of contents')) and not(contains($vSubfield3, 'table of contents'))">
             <xsl:apply-templates select="." mode="locator856">
