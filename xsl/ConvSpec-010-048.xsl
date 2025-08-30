@@ -1017,85 +1017,89 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="not(../marc:datafield[@tag='382'])">
-          <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
-            <xsl:variable name="vCode" select="substring(.,1,2)"/>
-            <xsl:variable name="vCount" select="substring(.,3,2)"/>
-            <xsl:if test="$codeMaps/maps/df048Codes/*[name() = $vCode]">
-              <bf:mediumComponent>
-                <bf:MediumComponent>
-                  <bf:mediumOfPerformance>
-                    <bf:MediumOfPerformance>
-                      <xsl:attribute name="rdf:about">
-                        <xsl:value-of select="$codeMaps/maps/df048Codes/*[name() = $vCode]/@href" />
-                      </xsl:attribute>
-                      <rdfs:label>
-                        <xsl:value-of select="$codeMaps/maps/df048Codes/*[name() = $vCode]" />
-                      </rdfs:label>
-                    </bf:MediumOfPerformance>
-                    <bf:count>
-                      <xsl:choose>
-                        <xsl:when test="$vCount = ''">1</xsl:when>
-                        <xsl:otherwise><xsl:value-of select="number($vCount)" /></xsl:otherwise>
-                      </xsl:choose>
-                    </bf:count>
-                    <xsl:if test="@code = 'b'">
-                      <bf:mediumComponentQualifier>
-                        <bf:MediumComponentQualifier rdf:about="http://id.loc.gov/vocabulary/medcompqual/sol">
-                          <rdfs:label>solo</rdfs:label>
-                        </bf:MediumComponentQualifier>
-                      </bf:mediumComponentQualifier> 
+            <bf:collectionArrangement>
+                <bf:CollectionArrangement>
+                  <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
+                    <xsl:variable name="vCode" select="substring(.,1,2)"/>
+                    <xsl:variable name="vCount" select="substring(.,3,2)"/>
+                    <xsl:if test="$codeMaps/maps/df048Codes/*[name() = $vCode]">
+                      <bf:mediumComponent>
+                        <bf:MediumComponent>
+                          <bf:mediumOfPerformance>
+                            <bf:MediumOfPerformance>
+                              <xsl:attribute name="rdf:about">
+                                <xsl:value-of select="$codeMaps/maps/df048Codes/*[name() = $vCode]/@href" />
+                              </xsl:attribute>
+                              <rdfs:label>
+                                <xsl:value-of select="$codeMaps/maps/df048Codes/*[name() = $vCode]" />
+                              </rdfs:label>
+                            </bf:MediumOfPerformance>
+                            <bf:count>
+                              <xsl:choose>
+                                <xsl:when test="$vCount = ''">1</xsl:when>
+                                <xsl:otherwise><xsl:value-of select="number($vCount)" /></xsl:otherwise>
+                              </xsl:choose>
+                            </bf:count>
+                            <xsl:if test="@code = 'b'">
+                              <bf:mediumComponentQualifier>
+                                <bf:MediumComponentQualifier rdf:about="http://id.loc.gov/vocabulary/medcompqual/sol">
+                                  <rdfs:label>solo</rdfs:label>
+                                </bf:MediumComponentQualifier>
+                              </bf:mediumComponentQualifier> 
+                            </xsl:if>
+                          </bf:mediumOfPerformance>
+                        </bf:MediumComponent>
+                      </bf:mediumComponent>
                     </xsl:if>
-                  </bf:mediumOfPerformance>
-                </bf:MediumComponent>
-              </bf:mediumComponent>
-            </xsl:if>
-          </xsl:for-each>
-          <xsl:if test="marc:subfield[@code='a' or @code='b']">
-            <xsl:choose>
-              <xsl:when test="marc:subfield[(@code='a' or @code='b') and 
+                  </xsl:for-each>
+                  <xsl:if test="marc:subfield[@code='a' or @code='b']">
+                    <xsl:choose>
+                      <xsl:when test="marc:subfield[(@code='a' or @code='b') and 
                                           (
                                             substring(.,1,1) = 'c' or
                                             substring(.,1,1) = 'o' 
                                           )]">
-                <bf:ensembleSize>
-                  <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
-                    <rdfs:label>large ensemble</rdfs:label>
-                  </bf:EnsembleSize>
-                </bf:ensembleSize>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:variable name="vEnsembleSize">
-                  <xsl:call-template name="tallyEnsembleSize">
-                    <xsl:with-param name="pNodes" select="marc:subfield[@code='a' or @code='b']" />
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:choose>
-                  <xsl:when test="number($vEnsembleSize) &gt;= 10">
-                    <bf:ensembleSize>
-                      <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
-                        <rdfs:label>large ensemble</rdfs:label>
-                      </bf:EnsembleSize>
-                    </bf:ensembleSize>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:variable name="vElName" select="concat('_',$vEnsembleSize)"/>
-                    <xsl:if test="$codeMaps/maps/ensembleSizes/*[name() = $vElName]">
-                      <bf:ensembleSize>
-                        <bf:EnsembleSize>
-                          <xsl:attribute name="rdf:about">
-                            <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]/@href" />
-                          </xsl:attribute>
-                          <rdfs:label>
-                            <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]" />
-                          </rdfs:label>
-                        </bf:EnsembleSize>
-                      </bf:ensembleSize>
-                    </xsl:if>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:if>
+                        <bf:ensembleSize>
+                          <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
+                            <rdfs:label>large ensemble</rdfs:label>
+                          </bf:EnsembleSize>
+                        </bf:ensembleSize>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:variable name="vEnsembleSize">
+                          <xsl:call-template name="tallyEnsembleSize">
+                            <xsl:with-param name="pNodes" select="marc:subfield[@code='a' or @code='b']" />
+                          </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:choose>
+                          <xsl:when test="number($vEnsembleSize) &gt;= 10">
+                            <bf:ensembleSize>
+                              <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
+                                <rdfs:label>large ensemble</rdfs:label>
+                              </bf:EnsembleSize>
+                            </bf:ensembleSize>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:variable name="vElName" select="concat('_',$vEnsembleSize)"/>
+                            <xsl:if test="$codeMaps/maps/ensembleSizes/*[name() = $vElName]">
+                              <bf:ensembleSize>
+                                <bf:EnsembleSize>
+                                  <xsl:attribute name="rdf:about">
+                                    <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]/@href" />
+                                  </xsl:attribute>
+                                  <rdfs:label>
+                                    <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]" />
+                                  </rdfs:label>
+                                </bf:EnsembleSize>
+                              </bf:ensembleSize>
+                            </xsl:if>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:if>
+              </bf:CollectionArrangement>
+            </bf:collectionArrangement>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
