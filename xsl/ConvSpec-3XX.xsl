@@ -7,7 +7,8 @@
                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                exclude-result-prefixes="xsl marc">
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="xsl marc exsl">
 
   <!-- Conversion specs for 3XX -->
 
@@ -499,27 +500,198 @@
 
   <xsl:template match="marc:datafield[@tag='382' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='382')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    
+    <xsl:variable name="vSource">
+        <xsl:if test="marc:subfield[@code = '2']">
+            <xsl:choose>
+                <xsl:when test="marc:subfield[@code = '2'] = 'lcmpt'">
+                    <bf:source>
+                        <bf:Source>
+                            <xsl:attribute name="rdf:about">http://id.loc.gov/authorities/performanceMediums</xsl:attribute>
+                            <bf:code>lcmpt</bf:code>
+                        </bf:Source>
+                    </bf:source>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+                        <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:variable>
+    
+    <xsl:variable name="vStatus">
+        <xsl:if test="@ind1='1'">
+            <bf:status>
+                <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/part">
+                    <rdfs:label>partial</rdfs:label>
+                </bf:Status>
+            </bf:status>
+        </xsl:if>
+    </xsl:variable>
+    
+    <xsl:variable name="group382sfs-prenodeset">
+      <xsl:call-template name="group382sfs">
+        <xsl:with-param name="df" select="."/>
+        <xsl:with-param name="gpos" select="1"/>
+        <xsl:with-param name="pos" select="1"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="vGroup382sfs" select="exsl:node-set($group382sfs-prenodeset)"/>
+    
+    <!-- Find the group numbers. -->
+    <xsl:variable name="groups-prenodeset">
+      <xsl:for-each select="$vGroup382sfs/marc:sf">
+        <xsl:variable name="g" select="@gpos"/>
+        <xsl:choose>
+          <xsl:when test="count(preceding-sibling::marc:sf) = 0">
+            <group>
+              <xsl:value-of select="$g"/>
+            </group>
+          </xsl:when>
+          <xsl:when test="preceding-sibling::marc:sf[1][@gpos != $g]">
+            <group>
+              <xsl:value-of select="$g"/>
+            </group>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="groups" select="exsl:node-set($groups-prenodeset)" />
+    
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <bf:musicMedium>
-          <bf:MusicMedium>
-            <xsl:if test="@ind1='1'">
-              <bf:status>
-                <bf:Status>
-                  <xsl:attribute name="rdf:about"><xsl:value-of select="concat($mstatus,'part')"/></xsl:attribute>
-                  <rdfs:label>partial</rdfs:label>
-                </bf:Status>
-              </bf:status>
-            </xsl:if>
-            <bflc:readMarc382>
-              <xsl:apply-templates select="." mode="marcKey"/>
-            </bflc:readMarc382>
-            <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
-              <xsl:with-param name="serialization" select="$serialization"/>
-            </xsl:apply-templates>
-          </bf:MusicMedium>
-        </bf:musicMedium>
+          
+        <bf:collectionArrangement>
+            <bf:CollectionArrangement>
+                <xsl:if test="marc:subfield[@code = '3']">
+                    <rdfs:label>
+                        <xsl:value-of select="marc:subfield[@code = '3']" />
+                    </rdfs:label>
+                </xsl:if>
+                <xsl:for-each select="$groups/group">
+                  <xsl:variable name="g" select="."/>
+                  <bf:mediumComponent>
+                    <bf:MediumComponent>
+                    <xsl:for-each select="$vGroup382sfs/marc:sf[@gpos = $g]">
+                      <xsl:choose>
+                        <xsl:when test="@code = 'a' or @code = 'b'">
+                          <bf:mediumOfPerformance>
+                            <bf:MediumOfPerformance>
+                              <rdfs:label>
+                                <xsl:value-of select="." />
+                              </rdfs:label>
+                              <xsl:copy-of select="$vSource" />
+                            </bf:MediumOfPerformance>
+                          </bf:mediumOfPerformance>
+                        </xsl:when>
+                        <xsl:when test="@code = 'p'">
+                          <bf:alternateMediumOfPerformance>
+                            <bf:MediumOfPerformance>
+                              <rdfs:label>
+                                <xsl:value-of select="." />
+                              </rdfs:label>
+                              <xsl:copy-of select="$vSource" />
+                            </bf:MediumOfPerformance>
+                              </bf:alternateMediumOfPerformance>
+                        </xsl:when>
+                        <xsl:when test="@code = 'd' or @code = 'v'">
+                          <bf:note>
+                            <bf:Note>
+                              <rdfs:label>
+                                <xsl:value-of select="." />
+                              </rdfs:label>
+                            </bf:Note>
+                          </bf:note>
+                        </xsl:when>
+                        <xsl:when test="(@code = 'e' or @code = 'n') and not(preceding-sibling::marc:sf[@gpos = $g and (@code = 'e' or @code = 'n')])">
+                          <bf:count><xsl:value-of select="." /></bf:count>
+                        </xsl:when>
+                      </xsl:choose>
+                    </xsl:for-each>
+                    </bf:MediumComponent>
+                  </bf:mediumComponent>
+                </xsl:for-each>
+        
+                <xsl:copy-of select="$vStatus" />
+        
+                <xsl:choose>
+                    <xsl:when test="marc:subfield[@code = 't']">
+                        <bf:ensembleSize>
+                          <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
+                            <rdfs:label>large ensemble</rdfs:label>
+                          </bf:EnsembleSize>
+                        </bf:ensembleSize>
+                    </xsl:when>
+                    <xsl:when test="number(marc:subfield[@code = 's']) &gt;= 10">
+                        <bf:ensembleSize>
+                          <bf:EnsembleSize rdf:about="http://id.loc.gov/vocabulary/ensemblesize/ensemble">
+                            <rdfs:label>large ensemble</rdfs:label>
+                          </bf:EnsembleSize>
+                        </bf:ensembleSize>
+                    </xsl:when>
+                    <xsl:when test="marc:subfield[@code = 's']">
+                        <xsl:variable name="vElName" select="concat('_', marc:subfield[@code = 's'])"/>
+                        <xsl:if test="$codeMaps/maps/ensembleSizes/*[name() = $vElName]">
+                          <bf:ensembleSize>
+                            <bf:EnsembleSize>
+                              <xsl:attribute name="rdf:about">
+                                <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]/@href" />
+                              </xsl:attribute>
+                              <rdfs:label>
+                                <xsl:value-of select="$codeMaps/maps/ensembleSizes/*[name() = $vElName]" />
+                              </rdfs:label>
+                            </bf:EnsembleSize>
+                          </bf:ensembleSize>
+                        </xsl:if>
+                    </xsl:when>
+                </xsl:choose>
+            </bf:CollectionArrangement>
+        </bf:collectionArrangement>
+        
       </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="group382sfs">
+    <xsl:param name="df"/>
+    <xsl:param name="pos"/>
+    <xsl:param name="gpos"/>
+      
+    <xsl:variable name="sf" select="$df/marc:subfield[$pos]"/>
+    
+    <marc:sf>
+      <xsl:copy-of select="$sf/@*"/>
+      <xsl:attribute name="gpos">
+        <xsl:value-of select="$gpos"/>
+      </xsl:attribute>
+      <xsl:attribute name="pos">
+        <xsl:value-of select="$pos"/>
+      </xsl:attribute>
+      <xsl:copy-of select="$sf/text()"/>
+    </marc:sf>
+
+    <xsl:variable name="next_gpos" select="$gpos + 1"/>
+    <xsl:variable name="next_pos" select="$pos + 1"/>
+    
+    <xsl:choose>
+      <xsl:when
+        test="$df/marc:subfield[$next_pos][@code = 'p' or @code = 'd' or @code = 'e' or @code = 'n' or @code = 'v']">
+        <xsl:call-template name="group382sfs">
+          <xsl:with-param name="df" select="$df"/>
+          <xsl:with-param name="gpos" select="$gpos"/>
+          <xsl:with-param name="pos" select="$next_pos"/>
+        </xsl:call-template>
+        </xsl:when>
+        <xsl:when
+          test="$df/marc:subfield[$next_pos][@code = 'a' or @code = 'b']">
+          <xsl:call-template name="group382sfs">
+            <xsl:with-param name="df" select="$df"/>
+            <xsl:with-param name="gpos" select="$next_gpos"/>
+            <xsl:with-param name="pos" select="$next_pos"/>
+          </xsl:call-template>
+        </xsl:when>
     </xsl:choose>
   </xsl:template>
   
