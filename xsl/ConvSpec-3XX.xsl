@@ -563,8 +563,8 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
           
-        <bf:collectionArrangement>
-            <bf:CollectionArrangement>
+        <bf:ensemble>
+            <bf:Ensemble>
                 <xsl:if test="marc:subfield[@code = '3']">
                     <rdfs:label>
                         <xsl:value-of select="marc:subfield[@code = '3']" />
@@ -599,6 +599,9 @@
                         <xsl:when test="@code = 'd' or @code = 'v'">
                           <bf:note>
                             <bf:Note>
+                              <xsl:if test="@code = 'd'">
+                                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/doubling" />
+                              </xsl:if>
                               <rdfs:label>
                                 <xsl:value-of select="." />
                               </rdfs:label>
@@ -647,8 +650,8 @@
                         </xsl:if>
                     </xsl:when>
                 </xsl:choose>
-            </bf:CollectionArrangement>
-        </bf:collectionArrangement>
+            </bf:Ensemble>
+        </bf:ensemble>
         
       </xsl:when>
     </xsl:choose>
