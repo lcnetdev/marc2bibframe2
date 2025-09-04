@@ -563,8 +563,8 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
           
-        <bf:collectionArrangement>
-            <bf:CollectionArrangement>
+        <bf:ensemble>
+            <bf:Ensemble>
                 <xsl:if test="marc:subfield[@code = '3']">
                     <rdfs:label>
                         <xsl:value-of select="marc:subfield[@code = '3']" />
@@ -599,6 +599,9 @@
                         <xsl:when test="@code = 'd' or @code = 'v'">
                           <bf:note>
                             <bf:Note>
+                              <xsl:if test="@code = 'd'">
+                                <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/doubling" />
+                              </xsl:if>
                               <rdfs:label>
                                 <xsl:value-of select="." />
                               </rdfs:label>
@@ -647,8 +650,8 @@
                         </xsl:if>
                     </xsl:when>
                 </xsl:choose>
-            </bf:CollectionArrangement>
-        </bf:collectionArrangement>
+            </bf:Ensemble>
+        </bf:ensemble>
         
       </xsl:when>
     </xsl:choose>
@@ -699,26 +702,31 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a']">
-          <bf:musicSerialNumber>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </bf:musicSerialNumber>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='b']">
-          <bf:musicOpusNumber>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </bf:musicOpusNumber>
-        </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='c']">
-          <bf:musicThematicNumber>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="normalize-space(concat(.,' ',../marc:subfield[@code='d']))"/>
-            </xsl:call-template>
-          </bf:musicThematicNumber>
+        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
+          <bf:identifiedBy>
+            <xsl:variable name="vElName">
+              <xsl:choose>
+                <xsl:when test="@code = 'a'">bf:SerialNumber</xsl:when>
+                <xsl:when test="@code = 'b'">bf:OpusNumber</xsl:when>
+                <xsl:when test="@code = 'c'">bf:ThematicCatalogNumber</xsl:when>
+              </xsl:choose>  
+            </xsl:variable>
+            <xsl:element name="{$vElName}">
+              <rdf:value><xsl:value-of select="."/></rdf:value>
+              <xsl:if test="../marc:subfield[@code = 'e' or @code = 'd']">
+                <bf:source>
+                  <bf:Source>
+                    <bf:code>
+                      <xsl:value-of select="../marc:subfield[@code = 'e' or @code = 'd'][1]"/>
+                    </bf:code>
+                  </bf:Source>
+                </bf:source>
+              </xsl:if>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </xsl:element>
+          </bf:identifiedBy>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -730,14 +738,21 @@
     <xsl:for-each select="marc:subfield[@code='a']">
       <xsl:choose>
         <xsl:when test="$serialization = 'rdfxml'">
-          <bf:musicKey>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
-            </xsl:if>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </bf:musicKey>
+          <bf:keyMode>
+            <bf:KeyMode>
+              <rdfs:label>
+                <xsl:if test="$vXmlLang != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                <xsl:with-param name="serialization" select="$serialization"/>
+              </xsl:apply-templates>
+            </bf:KeyMode>
+          </bf:keyMode>
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>

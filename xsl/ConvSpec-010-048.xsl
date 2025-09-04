@@ -1017,8 +1017,8 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:if test="not(../marc:datafield[@tag='382'])">
-            <bf:collectionArrangement>
-                <bf:CollectionArrangement>
+            <bf:ensemble>
+                <bf:Ensemble>
                   <xsl:for-each select="marc:subfield[@code='a' or @code='b']">
                     <xsl:variable name="vCode" select="substring(.,1,2)"/>
                     <xsl:variable name="vCount" select="substring(.,3,2)"/>
@@ -1098,8 +1098,8 @@
                       </xsl:otherwise>
                     </xsl:choose>
                   </xsl:if>
-              </bf:CollectionArrangement>
-            </bf:collectionArrangement>
+              </bf:Ensemble>
+            </bf:ensemble>
         </xsl:if>
       </xsl:when>
     </xsl:choose>
