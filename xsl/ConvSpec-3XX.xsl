@@ -583,16 +583,23 @@
                               <xsl:copy-of select="$vSource" />
                             </bf:MediumOfPerformance>
                           </bf:mediumOfPerformance>
+                          <xsl:if test="@code = 'b'">
+                            <bf:mediumComponentQualifier>
+                              <bf:MediumComponentQualifier rdf:about="http://id.loc.gov/vocabulary/medcompqual/solo">
+                                <rdfs:label>solo</rdfs:label>
+                              </bf:MediumComponentQualifier>
+                            </bf:mediumComponentQualifier>
+                          </xsl:if>
                         </xsl:when>
                         <xsl:when test="@code = 'p'">
-                          <bf:alternateMediumOfPerformance>
-                            <bf:MediumOfPerformance>
+                          <bf:note>
+                            <bf:Note>
+                              <rdf:type rdf:resource="http://id.loc.gov/vocabulary/mnotetype/alternative" />
                               <rdfs:label>
                                 <xsl:value-of select="." />
                               </rdfs:label>
-                              <xsl:copy-of select="$vSource" />
-                            </bf:MediumOfPerformance>
-                              </bf:alternateMediumOfPerformance>
+                            </bf:Note>
+                          </bf:note>
                         </xsl:when>
                         <xsl:when test="@code = 'd' or @code = 'v'">
                           <bf:note>
