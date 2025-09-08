@@ -151,7 +151,18 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='055' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='055')]" mode="work">
+  <!-- 
+    To our northern neighbors...  
+      This MARC field may contain more than LCC numbers (ind2 is 6, 7, 8, or 9) so you may need 
+        to account for those.
+      Also, not being able to identify who assigned an LCC - other than LAC - creates a conflict
+        with LCCs converted from the 050 that were not assigned by LC.  So non-LAC LCCs are 
+        ignored at present (sorry!; decisions had to be made); you may need to 
+        account for those too.  
+  -->
+  <xsl:template match="marc:datafield[
+                        (@tag='055' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='055')) and 
+                        (@ind2='0' or @ind2='1' or @ind1='2')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vNodeUri">
       <xsl:for-each select="marc:subfield[@code='0' and contains(text(),'://')][1]">
