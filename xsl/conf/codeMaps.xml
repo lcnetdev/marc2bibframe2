@@ -486,7 +486,7 @@
     <!-- tag names are weird because of blank/number values used in LDR -->
     <_0 href="http://id.loc.gov/vocabulary/menclvl/f">full</_0>
     <_1 href="http://id.loc.gov/vocabulary/menclvl/1">full not examined</_1>
-    <_2 href="http://id.loc.gov/vocabulary/menclvl/7">minimal</_2>
+    <_2 href="http://id.loc.gov/vocabulary/menclvl/2">minimal not examined</_2>
     <_3 href="http://id.loc.gov/vocabulary/menclvl/3">abbreviated</_3>
     <_4 href="http://id.loc.gov/vocabulary/menclvl/4">core</_4>
     <_5 href="http://id.loc.gov/vocabulary/menclvl/5">preliminary</_5>

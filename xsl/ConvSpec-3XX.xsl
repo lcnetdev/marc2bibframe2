@@ -565,11 +565,9 @@
           
         <bf:ensemble>
             <bf:Ensemble>
-                <xsl:if test="marc:subfield[@code = '3']">
-                    <rdfs:label>
-                        <xsl:value-of select="marc:subfield[@code = '3']" />
-                    </rdfs:label>
-                </xsl:if>
+                <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
                 <xsl:for-each select="$groups/group">
                   <xsl:variable name="g" select="."/>
                   <bf:mediumComponent>
@@ -687,6 +685,14 @@
           <xsl:with-param name="pos" select="$next_pos"/>
         </xsl:call-template>
         </xsl:when>
+      <xsl:when
+        test="$sf/@code = '3' and $df/marc:subfield[$next_pos][@code = 'a' or @code = 'b']">
+        <xsl:call-template name="group382sfs">
+          <xsl:with-param name="df" select="$df"/>
+          <xsl:with-param name="gpos" select="$gpos"/>
+          <xsl:with-param name="pos" select="$next_pos"/>
+        </xsl:call-template>
+      </xsl:when>
         <xsl:when
           test="$df/marc:subfield[$next_pos][@code = 'a' or @code = 'b']">
           <xsl:call-template name="group382sfs">
