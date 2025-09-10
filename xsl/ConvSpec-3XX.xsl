@@ -715,32 +715,65 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
-        <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
-          <bf:identifiedBy>
-            <xsl:variable name="vElName">
-              <xsl:choose>
-                <xsl:when test="@code = 'a'">bf:SerialNumber</xsl:when>
-                <xsl:when test="@code = 'b'">bf:OpusNumber</xsl:when>
-                <xsl:when test="@code = 'c'">bf:ThematicCatalogNumber</xsl:when>
-              </xsl:choose>  
-            </xsl:variable>
-            <xsl:element name="{$vElName}">
-              <rdf:value><xsl:value-of select="."/></rdf:value>
-              <xsl:if test="../marc:subfield[@code = 'e' or @code = 'd']">
-                <bf:source>
-                  <bf:Source>
-                    <bf:code>
-                      <xsl:value-of select="../marc:subfield[@code = 'e' or @code = 'd'][1]"/>
-                    </bf:code>
-                  </bf:Source>
-                </bf:source>
-              </xsl:if>
-              <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
-                <xsl:with-param name="serialization" select="$serialization"/>
-              </xsl:apply-templates>
-            </xsl:element>
-          </bf:identifiedBy>
-        </xsl:for-each>
+        <xsl:choose>
+          <xsl:when test="count(marc:subfield[@code='a']) = '1' and marc:subfield[@code='a'] and marc:subfield[@code='b']">
+            <bf:identifiedBy>
+              <bf:OpusNumber>
+                <rdf:value><xsl:value-of select="concat(marc:subfield[@code='b'], ', ', marc:subfield[@code='a'])"/></rdf:value>
+                <xsl:if test="marc:subfield[@code = 'e']">
+                  <bf:source>
+                    <bf:Source>
+                      <bf:code>
+                        <xsl:value-of select="marc:subfield[@code = 'e'][1]"/>
+                      </bf:code>
+                    </bf:Source>
+                  </bf:source>
+                </xsl:if>
+                <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:OpusNumber>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:when test="count(marc:subfield[@code='a']) = '1' and marc:subfield[@code='a'] and not(marc:subfield[@code='b'])">
+            <bf:identifiedBy>
+              <bf:SerialNumber>
+                <rdf:value><xsl:value-of select="marc:subfield[@code='a']"/></rdf:value>
+                <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                  <xsl:with-param name="serialization" select="$serialization"/>
+                </xsl:apply-templates>
+              </bf:SerialNumber>
+            </bf:identifiedBy>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:for-each select="marc:subfield[@code='a' or @code='b' or @code='c']">
+              <bf:identifiedBy>
+                <xsl:variable name="vElName">
+                  <xsl:choose>
+                    <xsl:when test="@code = 'a'">bf:SerialNumber</xsl:when>
+                    <xsl:when test="@code = 'b'">bf:OpusNumber</xsl:when>
+                    <xsl:when test="@code = 'c'">bf:ThematicCatalogNumber</xsl:when>
+                  </xsl:choose>  
+                </xsl:variable>
+                <xsl:element name="{$vElName}">
+                  <rdf:value><xsl:value-of select="."/></rdf:value>
+                  <xsl:if test="../marc:subfield[@code = 'e' or @code = 'd']">
+                    <bf:source>
+                      <bf:Source>
+                        <bf:code>
+                          <xsl:value-of select="../marc:subfield[@code = 'e' or @code = 'd'][1]"/>
+                        </bf:code>
+                      </bf:Source>
+                    </bf:source>
+                  </xsl:if>
+                  <xsl:apply-templates select="../marc:subfield[@code='3']" mode="subfield3">
+                    <xsl:with-param name="serialization" select="$serialization"/>
+                  </xsl:apply-templates>
+                </xsl:element>
+              </bf:identifiedBy>
+            </xsl:for-each>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
