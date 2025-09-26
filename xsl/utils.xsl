@@ -243,6 +243,17 @@
         </xsl:call-template>
       </xsl:when>
       
+      <!-- 
+        This has been added to deal with what appears to be a bug 
+        in the MarkLogic XSLT processor. It has been reported.
+      -->
+      <xsl:when test="substring($vNormString,$vLength,1)='︡'">
+        <xsl:call-template name="tBalanceBrackets">
+          <xsl:with-param name="pString" select="$vNormString"/>
+          <xsl:with-param name="pAddBrackets" select="$pAddBrackets"/>
+        </xsl:call-template>
+      </xsl:when>
+      
       <!-- special handling for ending periods -->
       <!-- do not remove if we think it is an initial -->
       <!-- do not remove if we think it is an abbreviation -->
