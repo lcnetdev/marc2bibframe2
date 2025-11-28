@@ -293,22 +293,28 @@
   
   <x:scenario label="382 - MEDIUM OF PERFORMANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="382 creates a musicMedium/MusicMedium property of the Work" test="count(//bf:Work[1]/bf:musicMedium/bf:MusicMedium) = 1"/>
-    <x:expect label="If ind1=1, generate status property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/part'"/>
-    <x:expect label="Generate bflc:readMarc382 property of the MusicMedium from all subfields" test="//bf:Work[1]/bf:musicMedium/bf:MusicMedium/bflc:readMarc382 = '3821 $3Nach Bach$apiano$n1$vplayed on altered piano$pbaritone horn$n2$dsynthesizer$n1$s2$vpiano is prominent, but not all other instruments are not identified$2lcmpt'"/>
-    <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:musicMedium[1]/bf:MusicMedium/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
+    <x:expect label="382 creates a bf:ensemble property of the Work" test="count(//bf:Work[1]/bf:ensemble) = 1"/>
+    <x:expect label="If ind1=1, generate status property of the MusicMedium" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:status/bf:Status/@rdf:about = 'http://id.loc.gov/vocabulary/mstatus/part'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the MusicMedium" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Nach Bach'"/>
+    <x:expect label="... two medium components" test="count(//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:mediumComponent) = '2'"/>
+    <x:expect label="... first medium component is piano" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:mediumComponent[1]/bf:MediumComponent/bf:mediumOfPerformance/bf:MediumOfPerformance/rdfs:label = 'piano'"/>
+    <x:expect label="... first medium component has doubling" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:mediumComponent[1]/bf:MediumComponent/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/doubling'"/>
+    <x:expect label="... second medium component is baritone horn" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:mediumComponent[2]/bf:MediumComponent/bf:mediumOfPerformance/bf:MediumOfPerformance/rdfs:label = 'baritone horn'"/>
+    <x:expect label="... with ensemble size duo" test="//bf:Work[1]/bf:ensemble/bf:Ensemble/bf:ensembleSize/bf:EnsembleSize/@rdf:about = 'http://id.loc.gov/vocabulary/ensemblesize/duo'"/>
   </x:scenario>
 
   <x:scenario label="383 - NUMERIC DESIGNATION OF MUSICAL WORK">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a musicSerialNumber property of the Work" test="//bf:Work[1]/bf:musicSerialNumber[1] = 'no. 14'"/>
-    <x:expect label="$b creates a musicOpusNumber property of the Work" test="//bf:Work[1]/bf:musicOpusNumber[1] = 'op. 27, no. 2'"/>
-    <x:expect label="Each $c concatenated with $d creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:musicThematicNumber = 'F. I, 22-25 Fanna'"/>
+    <x:expect label="$a $b creates a bf:OpusNumber property of the Work" test="//bf:Work[1]/bf:identifiedBy[1]/bf:OpusNumber/rdf:value = 'op. 27, no. 1'"/>
+    <x:expect label="... $e becomes source of OpusNumber " test="//bf:Work[1]/bf:identifiedBy[1]/bf:OpusNumber/bf:source/bf:Source/bf:code = 'J. André'"/>
+    <x:expect label="Each $c concatenated creates a musicThematicNumber property of the Work" test="//bf:Work[1]/bf:identifiedBy[2]/bf:ThematicCatalogNumber/rdf:value = 'F. I, 22-25'"/>
+    <x:expect label="... $d becomes source of musicThematicNumber " test="//bf:Work[1]/bf:identifiedBy[2]/bf:ThematicCatalogNumber/bf:source/bf:Source/bf:code = 'Fanna'"/>
   </x:scenario>
 
   <x:scenario label="384 - KEY">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="$a creates a musicKey property of the Work" test="//bf:Work[1]/bf:musicKey = 'B minor'"/>
+    <x:expect label="$a creates a bf:keyMode property of the Work" test="//bf:Work[1]/bf:keyMode/bf:KeyMode/rdfs:label = 'B minor'"/>
+    <x:expect label="... $3 creates applies to" test="//bf:Work[1]/bf:keyMode/bf:KeyMode/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Shostakovich sonata no. 2'"/>
   </x:scenario>
   
   <x:scenario label="385 - AUDIENCE CHARACTERISTICS">
