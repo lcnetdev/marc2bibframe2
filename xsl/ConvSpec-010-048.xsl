@@ -1034,20 +1034,20 @@
                                 <xsl:value-of select="$codeMaps/maps/df048Codes/*[name() = $vCode]" />
                               </rdfs:label>
                             </bf:MediumOfPerformance>
-                            <bf:count>
-                              <xsl:choose>
-                                <xsl:when test="$vCount = ''">1</xsl:when>
-                                <xsl:otherwise><xsl:value-of select="number($vCount)" /></xsl:otherwise>
-                              </xsl:choose>
-                            </bf:count>
-                            <xsl:if test="@code = 'b'">
-                              <bf:mediumComponentQualifier>
-                                <bf:MediumComponentQualifier rdf:about="http://id.loc.gov/vocabulary/medcompqual/sol">
-                                  <rdfs:label>solo</rdfs:label>
-                                </bf:MediumComponentQualifier>
-                              </bf:mediumComponentQualifier> 
-                            </xsl:if>
                           </bf:mediumOfPerformance>
+                          <bf:count>
+                            <xsl:choose>
+                              <xsl:when test="$vCount = ''">1</xsl:when>
+                              <xsl:otherwise><xsl:value-of select="number($vCount)" /></xsl:otherwise>
+                            </xsl:choose>
+                          </bf:count>
+                          <xsl:if test="@code = 'b'">
+                            <bf:mediumComponentQualifier>
+                              <bf:MediumComponentQualifier rdf:about="http://id.loc.gov/vocabulary/medcompqual/sol">
+                                <rdfs:label>solo</rdfs:label>
+                              </bf:MediumComponentQualifier>
+                            </bf:mediumComponentQualifier> 
+                          </xsl:if>
                         </bf:MediumComponent>
                       </bf:mediumComponent>
                     </xsl:if>
