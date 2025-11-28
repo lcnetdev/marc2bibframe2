@@ -1,3 +1,28 @@
+--- 3.0.0 2025/12/01
+Changes for updated v3.0.0 specifications:
+	ConvSpec-LDR
+		Changed conversion of Leader byte 17=2 to a new code
+	ConvSpec-010-048
+		Removed 024 Ind2 mapping for identifiers that are located in MARC 028 field
+		Updated conversion of 024 $2 to use URIs from the standard identifier sounce codes list
+		Removing mapping of 048; it’s been moved to a new spec
+	ConvSpec-048-Codes
+		Now obsolete
+	ConvSpec-048,382
+		NEW spec, replacing ConvSpec-048-Codes and sections of ConvSpec-010-048 and ConvSpec=3XX
+		Updated conversion of medium of performance data to use new properties and classes
+	ConvSpec-050-088
+		Removed conversion of 055 fields when Ind2 does not equal “0”, “1” or “2”
+	ConvSpec-3XX
+		Removed mapping of 382; it’s been moved to the new ConvSpec-048,382
+		Changed conversion of 383 field to new identifier subclasses bf:SerialNumber, bf:OpusNumber, bf:ThematicCatalogNumber
+		Added conversion of 383 $e and $3
+		Changed conversion of 384 field to new bf:keyMode/bf:KeyMode
+		Added conversion of 383 $3
+	ConvSpec-Process0-9
+		Removed instruction to create an Instance for 856 Ind2=0 fields to match existing instructions in ConvSpec-Preprocess0
+
+
 --- 2.10.0 2025/07/23
 Changes for updated v2.10.0 specifications:
 	ConvSpec-006-008
