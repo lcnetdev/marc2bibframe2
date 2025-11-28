@@ -75,7 +75,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -262,7 +262,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -492,7 +492,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -682,6 +682,13 @@
                 <rdfs:label>Title from home page as viewed on Aug. 19, 2000.</rdfs:label>
               </bf:Note>
             </bf:note>
+            <bf:electronicLocator rdf:resource="http://www.whitehouse.gov"/>
+            <bf:electronicLocator rdf:resource="http://lcweb.loc.gov/staff/wpp/whitehouse.html"/>
+            <bf:note>
+              <bf:Note>
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Web site archive</rdfs:label>
+              </bf:Note>
+            </bf:note>
             <bf:instanceOf rdf:resource="http://example.org/12149120#Work"/>
             <bf:hasItem>
               <bf:Item rdf:about="http://example.org/12149120#Item856-27">
@@ -739,7 +746,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -1094,7 +1101,7 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v2.10.0"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>

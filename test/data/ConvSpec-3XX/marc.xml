@@ -218,17 +218,18 @@
       <subfield code="a">piano</subfield>
       <subfield code="n">1</subfield>
       <subfield code="v">played on altered piano</subfield>
-      <subfield code="p">baritone horn</subfield>
-      <subfield code="n">2</subfield>
       <subfield code="d">synthesizer</subfield>
+      <subfield code="n">1</subfield>
+      <subfield code="a">baritone horn</subfield>
       <subfield code="n">1</subfield>
       <subfield code="s">2</subfield>
       <subfield code="v">piano is prominent, but not all other instruments are not identified</subfield>
       <subfield code="2">lcmpt</subfield>
     </datafield>
     <datafield tag="383" ind1=" " ind2=" ">
-      <subfield code="a">no. 14,</subfield>
-      <subfield code="b">op. 27, no. 2</subfield>
+      <subfield code="a">no. 1</subfield>
+      <subfield code="b">op. 27</subfield>
+      <subfield code="e">J. André</subfield>
     </datafield>
     <datafield tag="383" ind1=" " ind2=" ">
       <subfield code="c">F. I, 22-25</subfield>

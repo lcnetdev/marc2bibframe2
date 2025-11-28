@@ -275,5 +275,26 @@
       <subfield code="1">http://vocab.getty.edu/ulan/500010879-agent</subfield>
       <subfield code="2">gettyulan</subfield>
     </datafield>
+    <datafield tag="048" ind1=" " ind2=" ">
+      <subfield code="a">va01</subfield>
+      <subfield code="a">vc01</subfield>
+      <subfield code="a">vd01</subfield>
+      <subfield code="a">vf01</subfield>
+      <subfield code="b">ca02</subfield>
+      <subfield code="b">ob</subfield>
+    </datafield>
+    <datafield tag="382" ind1="0" ind2="1">
+      <subfield code="3">1st work</subfield>
+      <subfield code="a">solo vocal ensemble</subfield>
+      <subfield code="e">1</subfield>
+      <subfield code="v">SATB</subfield>
+      <subfield code="a">mixed chorus</subfield>
+      <subfield code="e">1</subfield>
+      <subfield code="v">SATB</subfield>
+      <subfield code="a">orchestra</subfield>
+      <subfield code="e">1</subfield>
+      <subfield code="t">2</subfield>
+      <subfield code="2">l2mpct</subfield>
+    </datafield>
   </record>
 </collection>
