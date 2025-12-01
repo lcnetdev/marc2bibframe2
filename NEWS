@@ -1,4 +1,4 @@
---- 3.0.0 2025/12/01
+--- 3.0.0 2025/12/02
 Changes for updated v3.0.0 specifications:
 	ConvSpec-LDR
 		Changed conversion of Leader byte 17=2 to a new code
