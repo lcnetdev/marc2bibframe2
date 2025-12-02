@@ -34,6 +34,9 @@
       <xsl:when test="substring(.,7,1) = 'q'">Hub</xsl:when>
       <!-- <xsl:when test="substring(.,7,1) = 'a' and contains('abims',substring(.,8,1))">Print</xsl:when> -->
       <xsl:when test="../marc:datafield[
+                        @tag='958' and 
+                        marc:subfield[@code='a']='SplitMARC']">SecondaryInstance</xsl:when>
+      <xsl:when test="../marc:datafield[
                         @tag='758' and 
                         marc:subfield[@code='4']='http://id.loc.gov/ontologies/bibframe/instanceOf' and
                         contains(marc:subfield[@code='1'], $pBaseUri)

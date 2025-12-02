@@ -184,18 +184,18 @@
               </bf:mainTitle>
             </xsl:if>
             <xsl:if test="marc:subfield[$pPos + 1][@code='n']">
-              <bf:partNubmber>
+              <bf:partNumber>
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString" select="marc:subfield[$pPos + 1][@code='n']"/>
                 </xsl:call-template>
-              </bf:partNubmber>
+              </bf:partNumber>
             </xsl:if>
             <xsl:if test="marc:subfield[$pPos + 2][@code='n']">
-              <bf:partNubmber>
+              <bf:partNumber>
                 <xsl:call-template name="tChopPunct">
                   <xsl:with-param name="pString" select="marc:subfield[$pPos + 2][@code='n']"/>
                 </xsl:call-template>
-              </bf:partNubmber>
+              </bf:partNumber>
             </xsl:if><xsl:if test="marc:subfield[$pPos + 1][@code='p']">
               <bf:partName>
                 <xsl:call-template name="tChopPunct">

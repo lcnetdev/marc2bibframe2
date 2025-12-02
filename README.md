@@ -44,8 +44,13 @@ an XML file containing MARCXML as the second:
 
     xsltproc xsl/marc2bibframe2.xsl test/data/marc.xml
 
-### Preprocessing (new as of Oct 2023)
-An option preprocessing step will attempt to split individual MARC 
+### Preprocessing
+Users are strongly encouraged to 'preprocess' MARC records
+prior to passing them through the conversion.  The Library of Congress
+preprocesses all records first before converting to Bibframe and 
+therefore most designs and changes are predicated on this preprocessing.
+
+The preprocessing step will attempt to split individual MARC 
 records into multiple MARC records with the additional MARC records
 representing different Instances of the same Work in the original or 
 source MARC record.  It takes a MARC/XML record as input and will 
@@ -58,6 +63,8 @@ stylesheet, it can be invoked:
 More information about this process was presented in July 2023.  That 
 presentation can be [viewed in full](https://www.youtube.com/watch?v=9i3y23XiNQE)
 or the [slides downloaded](<https://www.loc.gov/bibframe/pdf/LD4-Breaking%20News-Splitting MARC records-20230712.pdf>).
+
+This feature was introduced in 2023. It is technically optional.
 
 ### Converter parameters
 The converter supports several optional parameters:

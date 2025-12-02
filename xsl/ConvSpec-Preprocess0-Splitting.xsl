@@ -94,7 +94,8 @@
             (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
             marc:subfield[@code='u'] and 
             not( contains(marc:subfield[@code='3'], 'able of contents') ) and 
-            not( contains(marc:subfield[@code='a'], 'able of contents') )
+            not( contains(marc:subfield[@code='a'], 'able of contents') ) and 
+            not(contains(../marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource'))
         ]">
         <xsl:variable name="theU" select="marc:subfield[@code='u']" />
         <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
@@ -111,7 +112,8 @@
           @tag='859' and 
           (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
           marc:subfield[@code='u'] and 
-          not( contains(marc:subfield[@code='3'], 'able of contents') )
+          not( contains(marc:subfield[@code='3'], 'able of contents') ) and 
+          not(contains(../marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource'))
           ]">
           <xsl:variable name="theU" select="marc:subfield[@code='u']" />
           <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
@@ -127,7 +129,7 @@
     <!-- But until then.... -->
     
     <xsl:choose>
-      <xsl:when test="$count007 &lt; 2 and $countViable856s = 0 and $countViable859s = 0 and $countOrig300 = 1">
+      <xsl:when test="$count007minusC &lt; 2 and $countViable856s = 0 and $countViable859s = 0 and $countOrig300 = 1">
         <!-- 
           There is either no 007 or one 007, no 856s, and one 300. Basically let's pass this through. 
           In this scenario, even if the 300 indicates additional materials, the assumption is that they 
@@ -330,6 +332,9 @@
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
       </marc:datafield>
+      <marc:datafield tag="958" ind1=" " ind2=" ">
+        <marc:subfield code="a">SplitMARC</marc:subfield>
+      </marc:datafield>
     </marc:record>
   </xsl:template>
   
@@ -359,6 +364,9 @@
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
+      </marc:datafield>
+      <marc:datafield tag="958" ind1=" " ind2=" ">
+        <marc:subfield code="a">SplitMARC</marc:subfield>
       </marc:datafield>
     </marc:record>
   </xsl:template>
@@ -408,6 +416,9 @@
       <marc:datafield tag="758" ind1=" " ind2=" ">
         <marc:subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</marc:subfield>
         <marc:subfield code="1"><xsl:value-of select="concat($base_recordid, '#Work')" /></marc:subfield>
+      </marc:datafield>
+      <marc:datafield tag="958" ind1=" " ind2=" ">
+        <marc:subfield code="a">SplitMARC</marc:subfield>
       </marc:datafield>
     </marc:record>
   </xsl:template>

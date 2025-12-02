@@ -1,5 +1,18 @@
 # marc2bibframe2 release notes
 
+## v3.0.0
+
+Conversion updates based on specifications v3.0. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Medium of Performance conversion from MARC fields 048 and 382 is now located in a new specification (ConvSpec-048,382). Properties and classes from the Performed Music Ontology have been added to the BIBFRAME ontology and are used in this new specification.
+* The ConvSpec-048-Codes specification is now obsolete.
+* Music identifiers in the MARC 383 field now use new classes (bf:SerialNumber, bf:OpusNumber, bf:ThematicIndexNumber) instead of literals.
+* Music key information from the MARC 384 field now uses a new object property bf:keyMode/bf:KeyMode
+* Identifier source data from MARC 024 $2 now includes a URI from the [Standard Identifiers vocabulary](https://id.loc.gov/vocabulary/identifiers.html).
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v2.10.0 in the specifications are marked in red.
+
+
 ## v2.10.0
 
 Conversion updates based on specifications v2.10. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
