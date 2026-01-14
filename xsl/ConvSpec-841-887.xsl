@@ -238,7 +238,7 @@
       <!-- If ind2 is #, 0, 1, or 8, the Instance has the class of Electronic, and $3 != 'Table of Contents', add an Item to the Instance -->
       <xsl:if test="not(../marc:datafield[@tag='758']) and 
                     marc:subfield[@code='u'] and
-                    (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                    (@ind2=' ' or @ind2='1' or @ind2='8') and
                     (substring(../marc:leader,7,1) = 'm' or
                     substring(../marc:controlfield[@tag='008'],24,1) = 'o' or
                     substring(../marc:controlfield[@tag='008'],24,1) = 's') and

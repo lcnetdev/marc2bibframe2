@@ -172,13 +172,13 @@
           <xsl:variable name="mDateInt" select="10000 * substring($cf005date,1,4) + 100 * substring($cf005date,5,2) + substring($cf005date,7,2)"/>
           <xsl:variable name="mDate" select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2))"/>
           <bf:date>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>date</xsl:attribute>
+            <xsl:attribute name="rdf:datatype"><xsl:value-of select="$xs"/>dateTime</xsl:attribute>
             <xsl:choose>
               <xsl:when test="$cDateInt &gt; $mDateInt">
-                <xsl:value-of select="$mDate" />
+                <xsl:value-of select="concat($mDate, 'T00:00:00')" />
               </xsl:when>
               <xsl:otherwise>
-                <xsl:value-of select="$cDate" />
+                <xsl:value-of select="concat($cDate, 'T00:00:00')" />
               </xsl:otherwise>
             </xsl:choose>
           </bf:date>
@@ -279,7 +279,7 @@
                   <xsl:value-of select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T',substring($cf005date,9,2),':',substring($cf005date,11,2),':',substring($cf005date,13,2))" />
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:value-of select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2))" />
+                  <xsl:value-of select="concat(substring($cf005date,1,4),'-',substring($cf005date,5,2),'-',substring($cf005date,7,2),'T00:00:00')" />
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
