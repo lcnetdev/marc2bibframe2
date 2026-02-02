@@ -829,16 +829,34 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:variable name="vDGURI">
+          <xsl:choose>
+            <xsl:when test="contains(marc:subfield[@code='0'], 'id.loc.gov') and starts-with(marc:subfield[@code='0'], 'http')">
+              <xsl:apply-templates mode="generateUriFrom0" select=".">
+                <xsl:with-param name="pDefaultUri" select="''"/>
+              </xsl:apply-templates> 
+            </xsl:when>
+            <xsl:when test="starts-with(substring-after(marc:subfield[@code='0'][1],')'),'dg')">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(substring-after(marc:subfield[@code='0'][1],')'))"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:value-of select="concat($demographicTerms,$encoded)"/>
+            </xsl:when>
+            <xsl:when test="starts-with(substring-after(marc:subfield[@code='0'][1],')'),'sh')">
+              <xsl:variable name="encoded">
+                <xsl:value-of select="translate(substring-after(marc:subfield[@code='0'][1],')'), ' ', '')"/>
+              </xsl:variable>
+              <xsl:value-of select="concat('http://id.loc.gov/authorities/subjects/',$encoded)"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:element name="{$vProp}">
             <xsl:element name="{$vResource}">
-              <xsl:if test="starts-with(substring-after(../marc:subfield[@code='0'][1],')'),'dg')">
-                <xsl:variable name="encoded">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="normalize-space(substring-after(../marc:subfield[@code='0'][1],')'))"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
+              <xsl:if test="$vDGURI != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vDGURI"/></xsl:attribute>
               </xsl:if>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
