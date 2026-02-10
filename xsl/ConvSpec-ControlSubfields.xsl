@@ -84,6 +84,9 @@
             <xsl:when test="starts-with($vIdentifier,'(uri)https://')">
               <xsl:value-of select="concat('http://', substring-after($vIdentifier,'(uri)https://'))"/>
             </xsl:when>
+            <xsl:when test="starts-with($vIdentifier,'(uri) ')">
+              <xsl:value-of select="substring-after($vIdentifier,'(uri) ')"/>
+            </xsl:when>
             <xsl:when test="starts-with($vIdentifier,'(uri)')">
               <xsl:value-of select="substring-after($vIdentifier,'(uri)')"/>
             </xsl:when>
@@ -131,7 +134,14 @@
           <xsl:variable name="vIdentifier">
             <xsl:value-of select="marc:subfield[@code='0'][starts-with(text(),'(DE-588)')][1]"/>
           </xsl:variable>
-          <xsl:value-of select="concat('https://d-nb.info/gnd/', substring-after($vIdentifier,'(DE-588)'))"/>
+          <xsl:choose>
+            <xsl:when test="substring($vIdentifier, string-length($vIdentifier)) != '.'">
+              <xsl:value-of select="concat('https://d-nb.info/gnd/', substring-after($vIdentifier,'(DE-588)'))"/>              
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="concat('https://d-nb.info/gnd/', substring-after(substring($vIdentifier, 1, string-length($vIdentifier) - 1),'(DE-588)'))"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:when test="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]">
           <xsl:value-of select="marc:subfield[@code='1'][contains(text(),'homosaurus.org/v')]"/>
@@ -168,6 +178,15 @@
             <xsl:value-of select="concat(substring-before($sf0,'authorities/names'), 'rwo/agents/', substring-after($sf0,'authorities/names/'))"/>
           </xsl:variable>
           <xsl:choose>
+            <xsl:when test="starts-with($v0Identifier,'(uri)https://')">
+              <xsl:value-of select="concat('http://', substring-after($v0Identifier,'(uri)https://'))"/>
+            </xsl:when>
+            <xsl:when test="starts-with($v0Identifier,'(uri) ')">
+              <xsl:value-of select="substring-after($v0Identifier,'(uri) ')"/>
+            </xsl:when>
+            <xsl:when test="starts-with($v0Identifier,'(uri)')">
+              <xsl:value-of select="substring-after($v0Identifier,'(uri)')"/>
+            </xsl:when>
             <xsl:when test="starts-with($v0Identifier,'https://')">
               <xsl:value-of select="concat('http://', substring-after($v0Identifier,'https://'))"/>
             </xsl:when>
@@ -220,6 +239,13 @@
             <madsrdf:isIdentifiedByAuthority>
               <xsl:attribute name="rdf:resource">
                 <xsl:value-of select="text()" />
+              </xsl:attribute>
+            </madsrdf:isIdentifiedByAuthority>
+          </xsl:when>
+          <xsl:when test="starts-with(text(),'(uri) ')">
+            <madsrdf:isIdentifiedByAuthority>
+              <xsl:attribute name="rdf:resource">
+                <xsl:value-of select="substring-after(text(),'(uri) ')" />
               </xsl:attribute>
             </madsrdf:isIdentifiedByAuthority>
           </xsl:when>

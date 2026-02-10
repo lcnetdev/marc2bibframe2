@@ -950,6 +950,11 @@
                                 <xsl:value-of select="text()" />
                               </xsl:attribute>
                             </xsl:when>
+                            <xsl:when test="starts-with(text(),'(uri) ')">
+                              <xsl:attribute name="rdf:about">
+                                <xsl:value-of select="substring-after(text(),'(uri) ')" />
+                              </xsl:attribute>
+                            </xsl:when>
                             <xsl:when test="starts-with(text(),'(uri)')">
                               <xsl:attribute name="rdf:about">
                                 <xsl:value-of select="substring-after(text(),'(uri)')" />
