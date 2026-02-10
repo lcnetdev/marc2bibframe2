@@ -322,8 +322,8 @@
       <xsl:if test="contains(marc:subfield[@code='0'],'://')">
         <xsl:variable name="vSource" select="substring(substring-after(marc:subfield[@code='0'],'('),1,string-length(substring-before(marc:subfield[@code='0'],')'))-1)"/>
         <xsl:choose>
-          <xsl:when test="$vSource != ''"><xsl:value-of select="substring-after(marc:subfield[@code='0'],')')"/></xsl:when>
-          <xsl:otherwise><xsl:value-of select="marc:subfield[@code='0']"/></xsl:otherwise>
+          <xsl:when test="$vSource != ''"><xsl:value-of select="translate(substring-after(marc:subfield[@code='0'],')'), ' ', '')"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="translate(marc:subfield[@code='0'], ' ', '')"/></xsl:otherwise>
         </xsl:choose>
       </xsl:if>
     </xsl:variable>
