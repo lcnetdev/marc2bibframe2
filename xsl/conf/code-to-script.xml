@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<code-to-script-map>
+  <entry key="ab">
+    <value>cyrl</value>
+  </entry>
+  <entry key="af">
+    <value>latn</value>
+  </entry>
+  <entry key="am">
+    <value>ethi</value>
+  </entry>
+  <entry key="ar">
+    <value>arab</value>
+  </entry>
+  <entry key="as">
+    <value>beng</value>
+  </entry>
+  <entry key="ay">
+    <value>latn</value>
+  </entry>
+  <entry key="be">
+    <value>cyrl</value>
+  </entry>
+  <entry key="bg">
+    <value>cyrl</value>
+  </entry>
+  <entry key="bn">
+    <value>beng</value>
+  </entry>
+  <entry key="bs">
+    <value>latn</value>
+  </entry>
+  <entry key="ca">
+    <value>latn</value>
+  </entry>
+  <entry key="ch">
+    <value>latn</value>
+  </entry>
+  <entry key="cs">
+    <value>latn</value>
+  </entry>
+  <entry key="cy">
+    <value>latn</value>
+  </entry>
+  <entry key="da">
+    <value>latn</value>
+  </entry>
+  <entry key="de">
+    <value>latn</value>
+  </entry>
+  <entry key="dv">
+    <value>thaa</value>
+  </entry>
+  <entry key="dz">
+    <value>tibt</value>
+  </entry>
+  <entry key="el">
+    <value>grek</value>
+  </entry>
+  <entry key="en">
+    <value>latn</value>
+  </entry>
+  <entry key="eo">
+    <value>latn</value>
+  </entry>
+  <entry key="es">
+    <value>latn</value>
+  </entry>
+  <entry key="et">
+    <value>latn</value>
+  </entry>
+  <entry key="eu">
+    <value>latn</value>
+  </entry>
+  <entry key="fa">
+    <value>arab</value>
+  </entry>
+  <entry key="fi">
+    <value>latn</value>
+  </entry>
+  <entry key="fj">
+    <value>latn</value>
+  </entry>
+  <entry key="fo">
+    <value>latn</value>
+  </entry>
+  <entry key="fr">
+    <value>latn</value>
+  </entry>
+  <entry key="fy">
+    <value>latn</value>
+  </entry>
+  <entry key="ga">
+    <value>latn</value>
+  </entry>
+  <entry key="gl">
+    <value>latn</value>
+  </entry>
+  <entry key="gn">
+    <value>latn</value>
+  </entry>
+  <entry key="gu">
+    <value>gujr</value>
+  </entry>
+  <entry key="gv">
+    <value>latn</value>
+  </entry>
+  <entry key="he">
+    <value>hebr</value>
+  </entry>
+  <entry key="hi">
+    <value>deva</value>
+  </entry>
+  <entry key="hr">
+    <value>latn</value>
+  </entry>
+  <entry key="ht">
+    <value>latn</value>
+  </entry>
+  <entry key="hu">
+    <value>latn</value>
+  </entry>
+  <entry key="hy">
+    <value>armn</value>
+  </entry>
+  <entry key="id">
+    <value>latn</value>
+  </entry>
+  <entry key="in">
+    <value>latn</value>
+  </entry>
+  <entry key="is">
+    <value>latn</value>
+  </entry>
+  <entry key="it">
+    <value>latn</value>
+  </entry>
+  <entry key="iw">
+    <value>hebr</value>
+  </entry>
+  <entry key="ja">
+    <value>jpan</value>
+  </entry>
+  <entry key="ka">
+    <value>geor</value>
+  </entry>
+  <entry key="kk">
+    <value>cyrl</value>
+  </entry>
+  <entry key="kl">
+    <value>latn</value>
+  </entry>
+  <entry key="km">
+    <value>khmr</value>
+  </entry>
+  <entry key="kn">
+    <value>knda</value>
+  </entry>
+  <entry key="ko">
+    <value>kore</value>
+  </entry>
+  <entry key="la">
+    <value>latn</value>
+  </entry>
+  <entry key="lb">
+    <value>latn</value>
+  </entry>
+  <entry key="ln">
+    <value>latn</value>
+  </entry>
+  <entry key="lo">
+    <value>laoo</value>
+  </entry>
+  <entry key="lt">
+    <value>latn</value>
+  </entry>
+  <entry key="lv">
+    <value>latn</value>
+  </entry>
+  <entry key="mg">
+    <value>latn</value>
+  </entry>
+  <entry key="mh">
+    <value>latn</value>
+  </entry>
+  <entry key="mk">
+    <value>cyrl</value>
+  </entry>
+  <entry key="ml">
+    <value>mlym</value>
+  </entry>
+  <entry key="mo">
+    <value>latn</value>
+  </entry>
+  <entry key="mr">
+    <value>deva</value>
+  </entry>
+  <entry key="ms">
+    <value>latn</value>
+  </entry>
+  <entry key="mt">
+    <value>latn</value>
+  </entry>
+  <entry key="my">
+    <value>mymr</value>
+  </entry>
+  <entry key="na">
+    <value>latn</value>
+  </entry>
+  <entry key="nb">
+    <value>latn</value>
+  </entry>
+  <entry key="nd">
+    <value>latn</value>
+  </entry>
+  <entry key="ne">
+    <value>deva</value>
+  </entry>
+  <entry key="nl">
+    <value>latn</value>
+  </entry>
+  <entry key="nn">
+    <value>latn</value>
+  </entry>
+  <entry key="no">
+    <value>latn</value>
+  </entry>
+  <entry key="nr">
+    <value>latn</value>
+  </entry>
+  <entry key="ny">
+    <value>latn</value>
+  </entry>
+  <entry key="om">
+    <value>latn</value>
+  </entry>
+  <entry key="or">
+    <value>orya</value>
+  </entry>
+  <entry key="pa">
+    <value>guru</value>
+  </entry>
+  <entry key="pl">
+    <value>latn</value>
+  </entry>
+  <entry key="ps">
+    <value>arab</value>
+  </entry>
+  <entry key="pt">
+    <value>latn</value>
+  </entry>
+  <entry key="qu">
+    <value>latn</value>
+  </entry>
+  <entry key="rm">
+    <value>latn</value>
+  </entry>
+  <entry key="rn">
+    <value>latn</value>
+  </entry>
+  <entry key="ro">
+    <value>latn</value>
+  </entry>
+  <entry key="ru">
+    <value>cyrl</value>
+  </entry>
+  <entry key="rw">
+    <value>latn</value>
+  </entry>
+  <entry key="sg">
+    <value>latn</value>
+  </entry>
+  <entry key="si">
+    <value>sinh</value>
+  </entry>
+  <entry key="sk">
+    <value>latn</value>
+  </entry>
+  <entry key="sl">
+    <value>latn</value>
+  </entry>
+  <entry key="sm">
+    <value>latn</value>
+  </entry>
+  <entry key="so">
+    <value>latn</value>
+  </entry>
+  <entry key="sq">
+    <value>latn</value>
+  </entry>
+  <entry key="ss">
+    <value>latn</value>
+  </entry>
+  <entry key="st">
+    <value>latn</value>
+  </entry>
+  <entry key="sv">
+    <value>latn</value>
+  </entry>
+  <entry key="sw">
+    <value>latn</value>
+  </entry>
+  <entry key="ta">
+    <value>taml</value>
+  </entry>
+  <entry key="te">
+    <value>telu</value>
+  </entry>
+  <entry key="th">
+    <value>thai</value>
+  </entry>
+  <entry key="ti">
+    <value>ethi</value>
+  </entry>
+  <entry key="tl">
+    <value>latn</value>
+  </entry>
+  <entry key="tn">
+    <value>latn</value>
+  </entry>
+  <entry key="to">
+    <value>latn</value>
+  </entry>
+  <entry key="tr">
+    <value>latn</value>
+  </entry>
+  <entry key="ts">
+    <value>latn</value>
+  </entry>
+  <entry key="uk">
+    <value>cyrl</value>
+  </entry>
+  <entry key="ur">
+    <value>arab</value>
+  </entry>
+  <entry key="ve">
+    <value>latn</value>
+  </entry>
+  <entry key="vi">
+    <value>latn</value>
+  </entry>
+  <entry key="xh">
+    <value>latn</value>
+  </entry>
+  <entry key="yi">
+    <value>hebr</value>
+  </entry>
+  <entry key="zu">
+    <value>latn</value>
+  </entry>
+  <entry key="dsb">
+    <value>latn</value>
+  </entry>
+  <entry key="frr">
+    <value>latn</value>
+  </entry>
+  <entry key="frs">
+    <value>latn</value>
+  </entry>
+  <entry key="gsw">
+    <value>latn</value>
+  </entry>
+  <entry key="hsb">
+    <value>latn</value>
+  </entry>
+  <entry key="kok">
+    <value>deva</value>
+  </entry>
+  <entry key="mai">
+    <value>deva</value>
+  </entry>
+  <entry key="men">
+    <value>latn</value>
+  </entry>
+  <entry key="nds">
+    <value>latn</value>
+  </entry>
+  <entry key="niu">
+    <value>latn</value>
+  </entry>
+  <entry key="nso">
+    <value>latn</value>
+  </entry>
+  <entry key="tem">
+    <value>latn</value>
+  </entry>
+  <entry key="tkl">
+    <value>latn</value>
+  </entry>
+  <entry key="tmh">
+    <value>latn</value>
+  </entry>
+  <entry key="tpi">
+    <value>latn</value>
+  </entry>
+  <entry key="tvl">
+    <value>latn</value>
+  </entry>
+</code-to-script-map>

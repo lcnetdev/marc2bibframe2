@@ -16,15 +16,23 @@
   -->
 
   <xsl:template match="marc:datafield|marc:df" mode="xmllang">
+    <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '[bcp47]')">
-        <xsl:value-of select="substring-after(marc:subfield[@code='7'], ']')"/>
+      <xsl:when test="marc:subfield[@code='7' and contains(., '(bcp47)')]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '(bcp47)')], ')')"/>
+        <xsl:call-template name="normalize-bcp47-lc">
+          <xsl:with-param name="pCode" select="$bcp47code"/>
+          <xsl:with-param name="p008lang" select="$vLang008"/>
+        </xsl:call-template>
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '(bcp47)')">
-        <xsl:value-of select="substring-after(marc:subfield[@code='7'], ')')"/>
+      <xsl:when test="marc:subfield[@code='7' and contains(., '[bcp47]')]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '[bcp47]')], ']')"/>
+        <xsl:call-template name="normalize-bcp47-lc">
+          <xsl:with-param name="pCode" select="$bcp47code"/>
+          <xsl:with-param name="p008lang" select="$vLang008"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:when test="marc:subfield[@code='6'] and ../marc:controlfield[@tag='008']">
-        <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
         <xsl:variable name="vCountry008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],16,3)"/></xsl:variable>
         <xsl:variable name="vScript6"><xsl:value-of select="substring-after(marc:subfield[@code='6'],'/')"/></xsl:variable>
         <xsl:variable name="vScript6simple">
@@ -33,7 +41,16 @@
             <xsl:otherwise><xsl:value-of select="$vScript6"/></xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="vLang"><xsl:value-of select="$languageMap/xml-langs/language/iso6392[text()=$vLang008]/parent::*/@xmllang"/></xsl:variable>
+        <xsl:variable name="vLang">
+          <xsl:choose>
+            <xsl:when test="$iso6392-to-1-map/iso6392-to-1-map/entry[@key=$vLang008]">
+              <xsl:value-of select="$iso6392-to-1-map/iso6392-to-1-map/entry[@key=$vLang008]/value" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$vLang008" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="vScript">
           <xsl:choose>
             <xsl:when test="$vScript6simple='(3'">arab</xsl:when>
@@ -65,7 +82,7 @@
             <xsl:when test="$vScript6simple='(2'">hebr</xsl:when>
             <xsl:when test="$vScript6simple='(4' and $vLang008='per'">arab</xsl:when>
             <xsl:when test="string-length($vScript6simple)=4 and string-length(translate($vScript6simple,concat($upper,$lower),''))=0">
-              <xsl:value-of select="$vScript6simple"/>
+              <xsl:value-of select="translate($vScript6simple,$upper,$lower)"/>
             </xsl:when>
             <xsl:when test="string-length($vScript6simple)=3 and string-length(translate($vScript6simple,'0123456789',''))=0">
               <xsl:value-of select="$scriptMap/xml-scripts/script[@num=$vScript6simple]/@code"/>
@@ -78,14 +95,85 @@
           <xsl:when test="$vScript != ''"><xsl:value-of select="concat('zxx-',$vScript)"/></xsl:when>
         </xsl:choose>        
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='7'] and contains(marc:subfield[@code='7'], '(bcp47)')">
-        <xsl:value-of select="substring-after(marc:subfield[@code='7'], ')')"/>
-      </xsl:when>
       <xsl:when test="@tag = '242' and marc:subfield[@code='y'] != 'eng'">
         <xsl:value-of select="marc:subfield[@code='y']"/>
       </xsl:when>
     </xsl:choose>
-
+  </xsl:template>
+  
+  <xsl:template name="normalize-bcp47-lc">
+    <xsl:param name="pCode"/>
+    <xsl:param name="p008lang"/>
+    
+    <xsl:choose>
+      <xsl:when test="contains($pCode, '-t-')">
+        <xsl:value-of select="$pCode"/>
+      </xsl:when>
+      <xsl:otherwise>
+        
+        <xsl:variable name="pCode1">
+          <xsl:choose>
+            <xsl:when test="contains($pCode, '-')">
+              <xsl:value-of select="substring-before($pCode, '-')" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$pCode" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="pLangCode">
+          <xsl:choose>
+            <xsl:when test="string-length($pCode1) = '3'">
+              <!-- 3 character code, let's see if we have a two character equivalent. -->
+              <xsl:choose>
+                <xsl:when test="$iso6392-to-1-map/iso6392-to-1-map/entry[@key=$pCode1]">
+                  <xsl:value-of select="$iso6392-to-1-map/iso6392-to-1-map/entry[@key=$pCode1]/value" />
+                </xsl:when>
+                <xsl:when test="($pCode1 = 'zxx' or $pCode1 = 'und') and $iso6392-to-1-map/iso6392-to-1-map/entry[@key=$p008lang]/value">
+                  <xsl:value-of select="$iso6392-to-1-map/iso6392-to-1-map/entry[@key=$p008lang]/value" />
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$pCode1" />
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+              <!-- Just going to presume a 2 character code for now. -->
+              <xsl:value-of select="$pCode1" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:variable name="pCode2">
+          <xsl:choose>
+            <xsl:when test="contains($pCode, '-')">
+              <xsl:value-of select="translate(substring-after($pCode, '-'), $upper, $lower)" />
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="pScriptCode">
+          <xsl:choose>
+            <xsl:when test="$pCode2 != '' and string-length($pCode2) = '4'">
+              <!-- Let's assume we have a script code already. -->
+              <xsl:value-of select="$pCode2"/>
+            </xsl:when>
+            <xsl:when test="$pCode2 = '' and $code-to-script-map/code-to-script-map/entry[@key=$pCode1]">
+              <xsl:value-of select="$code-to-script-map/code-to-script-map/entry[@key=$pCode1]"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:choose>
+          <xsl:when test="$pScriptCode != ''">
+            <xsl:value-of select="concat($pLangCode, '-', $pScriptCode)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$pLangCode"/>
+          </xsl:otherwise>
+        </xsl:choose>
+        
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
         
   <!--
