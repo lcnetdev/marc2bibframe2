@@ -1,76 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/MARC21/slim">
-<record>
-    <leader>02949cam a2200529 i 4500</leader>
-    <controlfield tag="001">in00024280266</controlfield>
-    <controlfield tag="003">DLC</controlfield>
-    <controlfield tag="005">20250718113648.0</controlfield>
-    <controlfield tag="008">250714s2024                        kor  </controlfield>
-    <datafield ind1="1" ind2=" " tag="100">
-        <subfield code="6">880-01</subfield>
-        <subfield code="a">Cho, Hyo-rae1</subfield>
-        <!-- no langtag -->
-    </datafield>
-    <datafield ind1="1" ind2=" " tag="880">
-        <subfield code="6">100-01/$1</subfield>
-        <subfield code="a">조 효래</subfield>
-        <subfield code="7">(bcp47)zxx-kore</subfield>
-        <!-- Flip to ko-kore -->
-    </datafield>
-    <datafield ind1="1" ind2=" " tag="100">
-        <subfield code="6">880-02</subfield>
-        <subfield code="a">Cho, Hyo-rae2</subfield>
-        <subfield code="7">(bcp47)ko-Latn</subfield>
-        <!-- ko-latn -->
-    </datafield>
-    <datafield ind1="1" ind2=" " tag="880">
-        <subfield code="6">100-02/$1</subfield>
-        <subfield code="a">조 효래</subfield>
-        <subfield code="7">(bcp47)ko</subfield>
-        <!-- ko-kore -->
-    </datafield>
-    <datafield ind1="1" ind2=" " tag="100">
-        <subfield code="6">880-03</subfield>
-        <subfield code="a">Cho, Hyo-rae3</subfield>
-        <!-- no langtag -->
-    </datafield>
-    <datafield ind1="1" ind2=" " tag="880">
-        <subfield code="6">100-03/$1</subfield>
-        <subfield code="a">조 효래</subfield>
-        <!-- ko-kore -->
-    </datafield>
-</record>
+    <record>
+        <leader>02949cam a2200529 i 4500</leader>
+        <controlfield tag="001">in00024280266</controlfield>
+        <controlfield tag="003">DLC</controlfield>
+        <controlfield tag="005">20250718113648.0</controlfield>
+        <controlfield tag="008">250714s2024                        kor  </controlfield>
+        <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="6">880-01</subfield>
+            <subfield code="a">Cho, Hyo-rae1</subfield>
+            <!-- no langtag -->
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="880">
+            <subfield code="6">100-01/$1</subfield>
+            <subfield code="a">조 효래</subfield>
+            <subfield code="7">(bcp47)zxx-kore</subfield>
+            <!-- Flip to ko-kore -->
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="6">880-02</subfield>
+            <subfield code="a">Cho, Hyo-rae2</subfield>
+            <subfield code="7">(bcp47)ko-Latn</subfield>
+            <!-- ko-latn -->
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="880">
+            <subfield code="6">100-02/$1</subfield>
+            <subfield code="a">조 효래</subfield>
+            <subfield code="7">(bcp47)ko</subfield>
+            <!-- ko-kore -->
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="6">880-03</subfield>
+            <subfield code="a">Cho, Hyo-rae3</subfield>
+            <!-- no langtag -->
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="880">
+            <subfield code="6">100-03/$1</subfield>
+            <subfield code="a">조 효래</subfield>
+            <!-- ko-kore -->
+        </datafield>
+    </record>
     <record>
         <leader>02949cam a2200529 i 4500</leader>
         <controlfield tag="001">2</controlfield>
         <controlfield tag="003">DLC</controlfield>
         <controlfield tag="005">20250718113648.0</controlfield>
         <controlfield tag="008">250714s2024                        pus  </controlfield>
-    <datafield tag="751" ind1=" " ind2=" ">
-        <subfield code="6">880-04</subfield>
-        <subfield code="a">Karrādah (Baghdad, Iraq)</subfield>
-        <!-- no langtag -->
-    </datafield>
-    <datafield tag="880" ind1=" " ind2=" ">
-        <subfield code="6">751-04</subfield>
-        <subfield code="a">كرادة (Baghdad, Iraq)</subfield>
-        <subfield code="7">(bcp47)ar</subfield>
-        <subfield code="7">(bcp47)en</subfield>
-        <!-- ar-arab -->
-    </datafield>
-    <datafield tag="100" ind1="3" ind2=" ">
-        <subfield code="6">880-05</subfield>
-        <subfield code="a">Ālūsī (Family :</subfield>
-        <subfield code="c">Iraq)</subfield>
-        <!-- no langtag -->
-    </datafield>
-    <datafield tag="880" ind1="3" ind2=" ">
-        <subfield code="6">100-05/Arab</subfield>
-        <subfield code="a">الآلوسية (Family :</subfield>
-        <subfield code="c">Iraq)</subfield>
-        <subfield code="7">(bcp47/dpsfa)ar</subfield>
-        <subfield code="7">(bcp47/dpsfa)en</subfield>
-        <subfield code="7">(bcp47/dpsfc)en</subfield>
-    </datafield>
-</record>
+        <datafield tag="242" ind1=" " ind2=" ">
+            <subfield code="a">Gamlet</subfield>
+            <subfield code="y">rus</subfield>
+            <!-- ru-cyrl -->
+        </datafield>
+        <datafield tag="242" ind1=" " ind2=" ">
+            <subfield code="a">Innocence reconnue.</subfield>
+            <subfield code="y">fre</subfield>
+            <!-- fr-latn -->
+        </datafield>
+        <datafield tag="651" ind1=" " ind2=" ">
+            <subfield code="6">880-04</subfield>
+            <subfield code="a">Karrādah (Baghdad, Iraq)</subfield>
+            <!-- no langtag -->
+        </datafield>
+        <datafield tag="880" ind1=" " ind2=" ">
+            <subfield code="6">651-04</subfield>
+            <subfield code="a">كرادة (Baghdad, Iraq)</subfield>
+            <subfield code="7">(bcp47)ar</subfield>
+            <subfield code="7">(bcp47)en</subfield>
+            <!-- ar-arab -->
+        </datafield>
+        <datafield tag="100" ind1="3" ind2=" ">
+            <subfield code="6">880-05</subfield>
+            <subfield code="a">Ālūsī (Family :</subfield>
+            <subfield code="c">Iraq)</subfield>
+            <!-- no langtag -->
+        </datafield>
+        <datafield tag="880" ind1="3" ind2=" ">
+            <subfield code="6">100-05</subfield>
+            <subfield code="a">الآلوسية (Family :</subfield>
+            <subfield code="c">Iraq)</subfield>
+            <subfield code="7">(bcp47/dpsfa)ar</subfield>
+            <subfield code="7">(bcp47/dpsfa)en</subfield>
+            <subfield code="7">(bcp47/dpsfc)en</subfield>
+            <!-- ar-arab -->
+        </datafield>
+    </record>
 </collection>
