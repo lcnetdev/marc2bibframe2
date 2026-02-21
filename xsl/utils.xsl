@@ -93,6 +93,14 @@
         </xsl:variable>
         <xsl:choose>
           <xsl:when test="$vLang = 'en' and $vScript != '' and $vScript != 'latn'"><xsl:value-of select="concat('und-',$vScript)"/></xsl:when>
+          <xsl:when test="$bcp47inferrence and 
+                          $code-to-script-map/code-to-script-map/entry[@key=$vLang] and
+                          $code-to-script-map/code-to-script-map/entry[@key=$vLang]/value != $vScript">
+            <xsl:value-of select="concat($vLang,'-',$vScript)"/>
+          </xsl:when>
+          <xsl:when test="$bcp47inferrence and $code-to-script-map/code-to-script-map/entry[@key=$vLang]">
+            <xsl:value-of select="$vLang" />
+          </xsl:when>
           <xsl:when test="$vLang != '' and $vScript != ''"><xsl:value-of select="concat($vLang,'-',$vScript)"/></xsl:when>
           <xsl:when test="$vScript != ''"><xsl:value-of select="concat('und-',$vScript)"/></xsl:when>
         </xsl:choose>        
@@ -113,7 +121,8 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
+
+
   <xsl:template name="normalize-bcp47-lc">
     <xsl:param name="pCode"/>
     <xsl:param name="p008lang"/>
@@ -168,9 +177,25 @@
           <xsl:choose>
             <xsl:when test="$pCode2 != '' and string-length($pCode2) = '4'">
               <!-- Let's assume we have a script code already. -->
-              <xsl:value-of select="$pCode2"/>
+              <xsl:choose>
+                <!-- 
+                    Desire to output a bcp47 code that adheres to the bcp47 rules,
+                    which produce codes with variations depending on rules the bcp47 people
+                    established.  So if $bcp47normalize is true *and* this language code is found 
+                    in the code-to-script map, the script should be omitted in this scenario.
+                    There will doubtless be people who complain about the first character of the
+                    script code not being capitalized.  The horror!!!
+                  -->
+                <xsl:when test="$bcp47inferrence and 
+                                $code-to-script-map/code-to-script-map/entry[@key=$pLangCode] and
+                                $code-to-script-map/code-to-script-map/entry[@key=$pLangCode]/value != $pCode2">
+                    <xsl:value-of select="$pCode2"/>
+                </xsl:when>
+                <xsl:when test="$bcp47inferrence and $code-to-script-map/code-to-script-map/entry[@key=$pLangCode]" />
+                <xsl:otherwise><xsl:value-of select="$pCode2"/></xsl:otherwise>
+              </xsl:choose>
             </xsl:when>
-            <xsl:when test="$pCode2 = '' and $code-to-script-map/code-to-script-map/entry[@key=$pLangCode]">
+            <xsl:when test="$pCode2 = '' and not($bcp47inferrence) and $code-to-script-map/code-to-script-map/entry[@key=$pLangCode]">
               <xsl:value-of select="$code-to-script-map/code-to-script-map/entry[@key=$pLangCode]"/>
             </xsl:when>
           </xsl:choose>
