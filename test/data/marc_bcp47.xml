@@ -41,7 +41,7 @@
         </datafield>
         <datafield tag="856" ind1="3" ind2=" ">
             <subfield code="a">Table of contents</subfield>
-            <subfield code="u">http://loc.gov/dude/</subfield>
+            <subfield code="u">http://loc.gov/dude조/</subfield>
         </datafield>
         <datafield tag="859" ind1="3" ind2=" ">
             <subfield code="a">Table of contents</subfield>

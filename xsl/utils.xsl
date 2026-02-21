@@ -863,7 +863,7 @@
       based on https://skew.org/xml/stylesheets/url-encode/url-encode.xsl
   -->
   <xsl:template name="url-encode">
-    <xsl:param name="str"/>   
+    <xsl:param name="str"/>
     <xsl:variable name="ascii"> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:variable>
     <xsl:variable name="safe">!'()*-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~</xsl:variable>
     <xsl:variable name="hex" >0123456789ABCDEF</xsl:variable>
@@ -881,6 +881,7 @@
               </xsl:when>
               <xsl:otherwise>
                 <xsl:message terminate="no">Warning: string contains a character that is out of range! Substituting "?".</xsl:message>
+                <xsl:message terminate="no"><xsl:value-of select="concat('See record with 001: ', ancestor-or-self::marc:record/marc:controlfield[@tag='001'])"/></xsl:message>
                 <xsl:text>63</xsl:text>
               </xsl:otherwise>
             </xsl:choose>

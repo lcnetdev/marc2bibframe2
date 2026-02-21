@@ -54,7 +54,11 @@
             <xsl:when test="$serialization='rdfxml'">
               <xsl:for-each select="marc:subfield[@code='u']">
                 <bf:tableOfContents>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="."/>
+                    </xsl:call-template>
+                  </xsl:attribute>
                 </bf:tableOfContents>
               </xsl:for-each>
             </xsl:when>
