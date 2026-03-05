@@ -287,11 +287,10 @@
                                             </xsl:if>
                                         </xsl:variable>
                                         <bflc:simplePlace>
-                                            <xsl:if test="$vXmlLang != ''">
-                                                <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vXmlLang"/>
-                                                </xsl:attribute>
-                                            </xsl:if>
+                                            <xsl:apply-templates select="ancestor::marc:df" mode="xmllang-attribute">
+                                                <xsl:with-param name="pSFCode" select="'a'" />
+                                                <xsl:with-param name="pXMLlang" select="$vXmlLang" />
+                                            </xsl:apply-templates>
                                             <xsl:value-of select="$vLabel"/>
                                         </bflc:simplePlace>
                                         <xsl:if test="$vLinkedLabel != ''">
@@ -360,11 +359,10 @@
                                             </xsl:if>
                                         </xsl:variable>
                                         <bflc:simpleAgent>
-                                            <xsl:if test="$vXmlLang != ''">
-                                                <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vXmlLang"/>
-                                                </xsl:attribute>
-                                            </xsl:if>
+                                            <xsl:apply-templates select="ancestor::marc:df" mode="xmllang-attribute">
+                                                <xsl:with-param name="pSFCode" select="'b'" />
+                                                <xsl:with-param name="pXMLlang" select="$vXmlLang" />
+                                            </xsl:apply-templates>
                                             <xsl:value-of select="$vLabel"/>
                                         </bflc:simpleAgent>
                                         <xsl:if test="$vLinkedLabel != ''">
@@ -395,11 +393,10 @@
                                             </xsl:if>
                                         </xsl:variable>
                                         <bflc:simpleDate>
-                                            <xsl:if test="$vXmlLang != ''">
-                                                <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vXmlLang"/>
-                                                </xsl:attribute>
-                                            </xsl:if>
+                                            <xsl:apply-templates select="ancestor::marc:df" mode="xmllang-attribute">
+                                                <xsl:with-param name="pSFCode" select="'c'" />
+                                                <xsl:with-param name="pXMLlang" select="$vXmlLang" />
+                                            </xsl:apply-templates>
                                             <xsl:value-of select="$vLabel"/>
                                         </bflc:simpleDate>
                                         <xsl:if test="$vLinkedLabel != ''">
@@ -605,7 +602,7 @@
         <xsl:variable name="sf" select="$df/marc:subfield[$pos]"/>
         
         <xsl:choose>
-            <xsl:when test="$sf/@code = '3' or $sf/@code = '6'">
+            <xsl:when test="$sf/@code = '3' or $sf/@code = '6' or $sf/@code = '7'">
                 <marc:sf>
                     <xsl:copy-of select="$sf/@*"/>
                     <xsl:attribute name="gpos">
@@ -722,7 +719,7 @@
 
         <xsl:choose>
             <xsl:when
-                test="$df/marc:subfield[$next_pos][@code = 'b' or @code = 'c' or @code = 'd' or @code = 'f' or @code = 'g']">
+                test="$df/marc:subfield[$next_pos][@code = 'b' or @code = 'c' or @code = 'd' or @code = 'f' or @code = 'g' or @code = '7']">
                 <xsl:call-template name="parse26x">
                     <xsl:with-param name="df" select="$df"/>
                     <xsl:with-param name="gpos" select="$gpos"/>
@@ -756,6 +753,15 @@
                     ($sf/@code != 'a' and $df/marc:subfield[$next_pos][@code = 'a'])
                     or
                     ($sf/@code != 'e' and $df/marc:subfield[$next_pos][@code = 'e'])">
+                <xsl:for-each select="$df/marc:subfield[@code = '7']">
+                    <marc:sf>
+                        <xsl:copy-of select="@*"/>
+                        <xsl:attribute name="gpos">
+                            <xsl:value-of select="$gpos"/>
+                        </xsl:attribute>
+                        <xsl:copy-of select="text()"/>
+                    </marc:sf>
+                </xsl:for-each>
                 <xsl:call-template name="parse26x">
                     <xsl:with-param name="df" select="$df"/>
                     <xsl:with-param name="gpos" select="$next_gpos"/>
