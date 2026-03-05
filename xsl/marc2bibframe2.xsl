@@ -46,6 +46,15 @@
   <xsl:param name="localfields" select="true()"/>
   
   <!--
+      Infer script from BCP47 code.
+      If true, BCP47 codes will not include 
+      the script component when it can be inferred from the language component.
+      If false, the script component (the "-cyrl" of ru-cyrl) will be included in
+      the code. At all times codes will be lowercased.
+  -->
+  <xsl:param name="bcp47inferrence" select="true()" />
+  
+  <!--
       datestamp for generationProcess property of Work adminMetadata
       Useful to override if date:date-time() extension is not
       available

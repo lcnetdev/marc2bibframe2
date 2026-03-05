@@ -87,7 +87,9 @@
   <xsl:variable name="subjectThesaurus" select="document('conf/subjectThesaurus.xml')"/>
 
   <!-- language/script maps -->
-  <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
+  <!-- <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/> -->
+  <xsl:variable name="iso6392-to-1-map" select="document('conf/iso6392-to-1.xml')"/>
+  <xsl:variable name="code-to-script-map" select="document('conf/code-to-script.xml')"/>
   <xsl:variable name="scriptMap" select="document('conf/scriptCrosswalk.xml')"/>
 
   <!-- code maps -->

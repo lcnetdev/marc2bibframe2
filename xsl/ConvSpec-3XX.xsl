@@ -1138,18 +1138,27 @@
 
   <xsl:template match="marc:datafield[@tag='306' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='306')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vDuration">
+            <xsl:choose>
+              <xsl:when test="string-length(.) = '6'">
+                <xsl:variable name="vH" select="concat(substring(., 1, 2), 'H')"/>
+                <xsl:variable name="vM" select="concat(substring(., 3, 2), 'M')"/>
+                <xsl:variable name="vS" select="concat(substring(., 5, 2), 'S')"/>
+                <xsl:value-of select="concat('PT', $vH, $vM, $vS)" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <bf:duration>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            <xsl:if test="starts-with($vDuration, 'PT')">
+              <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
             </xsl:if>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
+            <xsl:value-of select="$vDuration"/>
           </bf:duration>
         </xsl:for-each>
       </xsl:when>
