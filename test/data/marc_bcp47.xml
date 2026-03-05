@@ -61,7 +61,7 @@
         </datafield>
         <datafield tag="242" ind1=" " ind2=" ">
             <subfield code="a">Innocence reconnue.</subfield>
-            <subfield code="y">fre</subfield>
+            <subfield code="y">fre.</subfield>
             <!-- fr-latn -->
         </datafield>
         <datafield tag="651" ind1=" " ind2=" ">
@@ -90,6 +90,112 @@
             <subfield code="7">(bcp47/dpsfa)en</subfield>
             <subfield code="7">(bcp47/dpsfc)en</subfield>
             <!-- ar-arab -->
+        </datafield>
+    </record>
+    <record>
+        <leader>01040cam a2200301u  4500</leader>
+        <controlfield tag="001">6690714</controlfield>
+        <controlfield tag="005">20030723170016.0</controlfield>
+        <controlfield tag="008">840223t19741967it cf         000 0 ita  </controlfield>
+        <datafield tag="245" ind1="1" ind2="3">
+            <subfield code="a">Il principe : con una scelta dei Discorsi</subfield>
+            <subfield code="7">(bcp47)it</subfield>
+        </datafield>
+        <datafield tag="250" ind1=" " ind2=" ">
+            <subfield code="a">3. ed.</subfield>
+        </datafield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="a">Brescia : </subfield> 
+            <subfield code="b">La scuola,</subfield>
+            <subfield code="c">1974, c1967.</subfield>
+            <subfield code="7">(bcp47/dpsfa)it</subfield>
+            <subfield code="7">(bcp47/dpsfb)fr</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2="2">
+            <subfield code="a">Machiavelli, Niccolò,</subfield>
+            <subfield code="d">1469-1527.</subfield>
+            <subfield code="t">Discorsi sopra la prima deca di Tito Livio.</subfield>
+            <subfield code="k">Selections.</subfield>
+            <subfield code="f">1967.</subfield>
+            <subfield code="7">(bcp47/dpsfa)it</subfield>
+            <subfield code="7">(bcp47/dpsft)it</subfield>
+            <subfield code="7">(bcp47/dpsfk)en</subfield>
+        </datafield>
+    </record>
+    <record>
+        <leader>02950cam a2200505 i 4500</leader>
+        <controlfield tag="001">8858768</controlfield>
+        <controlfield tag="005">20180102113912.0</controlfield>
+        <controlfield tag="008">821217s1869    ru            000 0 rus  </controlfield>
+        <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Machiavelli, Niccolò,</subfield>
+            <subfield code="d">1469-1527.</subfield>
+        </datafield>
+        <datafield tag="240" ind1="1" ind2="0">
+            <subfield code="a">Principe.</subfield>
+            <subfield code="l">Russian</subfield>
+            <subfield code="7">(bcp47/dpsfa)it</subfield>
+            <subfield code="7">(bcp47/dpsfl)en</subfield>
+        </datafield>
+        <datafield tag="245" ind1="1" ind2="0">
+            <subfield code="6">880-03</subfield>
+            <subfield code="a">Gosudarʹ (Il Principe) i razsuzhdenīi︠a︡ na pervyi︠a︡ tri knigi Tita Livīi︠a︡ /</subfield>
+            <subfield code="c">sochinenīe Nikolai︠a︡ Makīavelli ; perevodʺ sʺ italʹi︠a︡nskago podʺ redakt︠s︡īei︠u︡ N. Kurochkina.</subfield>
+            <subfield code="7">(bcp47)ru-latn</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="0">
+            <subfield code="6">245-03/(N</subfield>
+            <subfield code="a">Государь (Il Principe) и разсужденія на первыя три книги Тита Ливія /</subfield>
+            <subfield code="c">сочиненіе Николая Макіавелли ; переводъ съ итальянскаго подъ редакціею Н. Курочкина.</subfield>
+            <subfield code="7">(bcp47)ru</subfield>
+        </datafield>
+        <datafield tag="246" ind1="3" ind2="0">
+            <subfield code="6">880-04</subfield>
+            <subfield code="a">Razsuzhdenīi︠a︡ na pervyi︠a︡ tri knigi Tita Livii︠a︡</subfield>
+        </datafield>
+        <datafield tag="880" ind1="3" ind2="0">
+            <subfield code="6">246-04/(N</subfield>
+            <subfield code="a">Разсужденія на первыя три книги Тита Ливия</subfield>
+        </datafield>
+        <datafield tag="246" ind1="3" ind2=" ">
+            <subfield code="6">880-05</subfield>
+            <subfield code="a">Razsuzhdenii︠a︡ na pervye tri knigi Tita Livii︠a︡</subfield>
+        </datafield>
+        <datafield tag="880" ind1="3" ind2=" ">
+            <subfield code="6">246-05/(N</subfield>
+            <subfield code="a">Разсуждения на первые три книги Тита Ливия</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="6">880-06</subfield>
+            <subfield code="a">S.-Peterburgʺ :</subfield>
+            <subfield code="b">Izdanīe "Russkoĭ knizhnoĭ torgovli",</subfield>
+            <subfield code="c">1869.</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2="1">
+            <subfield code="6">264-06/(N</subfield>
+            <subfield code="a">С.-Петербургъ :</subfield>
+            <subfield code="b">Изданіе "Русской книжной торговли",</subfield>
+            <subfield code="c">1869.</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="3">
+            <subfield code="6">880-07</subfield>
+            <subfield code="a">S.-Peterburgʺ :</subfield>
+            <subfield code="b">Vʺ tipografīi Tiblena i Ko (Nekli︠u︡dova) V.O. 8 l.d. No 25,</subfield>
+            <subfield code="c">1869.</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2="3">
+            <subfield code="6">264-07/(N</subfield>
+            <subfield code="a">С.-Петербургъ :</subfield>
+            <subfield code="b">Въ типографіи Тиблена и Ко (Неклюдова) В.О. 8 л.д. No 25,</subfield>
+            <subfield code="c">1869.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2="2">
+            <subfield code="a">Machiavelli, Niccolò,</subfield>
+            <subfield code="d">1469-1527.</subfield>
+            <subfield code="t">Discorsi sopra la prima deca di Tito Livio.</subfield>
+            <subfield code="l">Russian.</subfield>
+            <subfield code="7">(bcp47/dpsft)it</subfield>
+            <subfield code="7">(bcp47/dpsfl)en</subfield>
         </datafield>
     </record>
 </collection>

@@ -18,15 +18,15 @@
   <xsl:template match="marc:datafield|marc:df" mode="xmllang">
     <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="marc:subfield[@code='7' and contains(., '(bcp47)') and not(contains(., ')en'))]">
-        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '(bcp47)') and not(contains(., ')en'))], ')')"/>
+      <xsl:when test="marc:subfield[@code='7' and contains(., '(bcp47)')]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '(bcp47)')], ')')"/>
         <xsl:call-template name="normalize-bcp47-lc">
           <xsl:with-param name="pCode" select="$bcp47code"/>
           <xsl:with-param name="p008lang" select="$vLang008"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="marc:subfield[@code='7' and contains(., '[bcp47]') and not(contains(., ']en'))]">
-        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '[bcp47]') and not(contains(., ']en'))], ']')"/>
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '[bcp47]')], ']')"/>
         <xsl:call-template name="normalize-bcp47-lc">
           <xsl:with-param name="pCode" select="$bcp47code"/>
           <xsl:with-param name="p008lang" select="$vLang008"/>
@@ -106,18 +106,61 @@
         </xsl:choose>        
       </xsl:when>
       <xsl:when test="@tag = '242'">
-        <xsl:variable name="bcp47code" select="marc:subfield[@code='y']"/>
+        <xsl:variable name="bcp47code" select="translate(marc:subfield[@code='y'], '.', '')"/>
         <xsl:call-template name="normalize-bcp47-lc">
           <xsl:with-param name="pCode" select="$bcp47code"/>
           <xsl:with-param name="p008lang" select="$vLang008"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="marc:subfield[@code='7' and contains(., '(bcp47/') and not(contains(., ')en'))]">
-        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '(bcp47/') and not(contains(., ')en'))], ')')"/>
+      <xsl:when test="marc:subfield[@code='7' and contains(., '(bcp47/')]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., '(bcp47/')], ')')"/>
         <xsl:call-template name="normalize-bcp47-lc">
           <xsl:with-param name="pCode" select="$bcp47code"/>
           <xsl:with-param name="p008lang" select="$vLang008"/>
         </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="marc:sf[@code='7' and contains(., '(bcp47/')]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:sf[@code='7' and contains(., '(bcp47/')], ')')"/>
+        <xsl:call-template name="normalize-bcp47-lc">
+          <xsl:with-param name="pCode" select="$bcp47code"/>
+          <xsl:with-param name="p008lang" select="$vLang008"/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template match="marc:datafield|marc:df" mode="xmllang-attribute">
+    <xsl:param name="pSFCode"/>
+    <xsl:param name="pXMLlang"/>
+    
+    <xsl:variable name="vLang008"><xsl:value-of select="substring(../marc:controlfield[@tag='008'],36,3)"/></xsl:variable>
+    <xsl:variable name="vDPcode" select="concat('(bcp47/dpsf', $pSFCode, ')')" />
+
+    <xsl:choose>
+      <xsl:when test="marc:subfield[@code='7' and contains(., $vDPcode)]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:subfield[@code='7' and contains(., $vDPcode)], ')')"/>
+        <!-- <xsl:message><xsl:value-of select="$bcp47code"/></xsl:message> -->
+        <xsl:variable name="vXMLlang">
+          <xsl:call-template name="normalize-bcp47-lc">
+            <xsl:with-param name="pCode" select="$bcp47code"/>
+            <xsl:with-param name="p008lang" select="$vLang008"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXMLlang"/></xsl:attribute>
+      </xsl:when>
+      <xsl:when test="marc:sf[@code='7' and contains(., $vDPcode)]">
+        <xsl:variable name="bcp47code" select="substring-after(marc:sf[@code='7' and contains(., $vDPcode)], ')')"/>
+        <!-- <xsl:message><xsl:value-of select="$bcp47code"/></xsl:message> -->
+        <xsl:variable name="vXMLlang">
+          <xsl:call-template name="normalize-bcp47-lc">
+            <xsl:with-param name="pCode" select="$bcp47code"/>
+            <xsl:with-param name="p008lang" select="$vLang008"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXMLlang"/></xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$pXMLlang != ''">
+        <xsl:attribute name="xml:lang"><xsl:value-of select="$pXMLlang"/></xsl:attribute>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
