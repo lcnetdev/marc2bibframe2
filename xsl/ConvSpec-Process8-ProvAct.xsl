@@ -197,9 +197,7 @@
                                     <xsl:if test="$vLinkedStatement != ''">
                                         <bf:copyrightDate>
                                             <xsl:if test="$vLinkedXmlLang != ''">
-                                                <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vLinkedXmlLang"/>
-                                                </xsl:attribute>
+                                                <xsl:attribute name="xml:lang"><xsl:value-of select="$vLinkedXmlLang"/></xsl:attribute>
                                             </xsl:if>
                                             <xsl:call-template name="tChopPunct">
                                                 <xsl:with-param name="pString"
@@ -296,9 +294,7 @@
                                         <xsl:if test="$vLinkedLabel != ''">
                                             <bflc:simplePlace>
                                                 <xsl:if test="$vLinkedXmlLang != ''">
-                                                  <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vLinkedXmlLang"/>
-                                                  </xsl:attribute>
+                                                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vLinkedXmlLang"/></xsl:attribute>
                                                 </xsl:if>
                                                 <xsl:value-of select="$vLinkedLabel"/>
                                             </bflc:simplePlace>
@@ -368,9 +364,7 @@
                                         <xsl:if test="$vLinkedLabel != ''">
                                             <bflc:simpleAgent>
                                                 <xsl:if test="$vLinkedXmlLang != ''">
-                                                  <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vLinkedXmlLang"/>
-                                                  </xsl:attribute>
+                                                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vLinkedXmlLang"/></xsl:attribute>
                                                 </xsl:if>
                                                 <xsl:value-of select="$vLinkedLabel"/>
                                             </bflc:simpleAgent>
@@ -402,9 +396,7 @@
                                         <xsl:if test="$vLinkedLabel != ''">
                                             <bflc:simpleDate>
                                                 <xsl:if test="$vLinkedXmlLang != ''">
-                                                  <xsl:attribute name="xml:lang">
-                                                  <xsl:value-of select="$vLinkedXmlLang"/>
-                                                  </xsl:attribute>
+                                                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vLinkedXmlLang"/></xsl:attribute>
                                                 </xsl:if>
                                                 <xsl:value-of select="$vLinkedLabel"/>
                                             </bflc:simpleDate>
