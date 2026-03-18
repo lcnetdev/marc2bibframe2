@@ -246,7 +246,7 @@
         
         <xsl:choose>
           <xsl:when test="$pScriptCode != ''">
-            <xsl:value-of select="concat($pLangCode, '-', $pScriptCode)"/>
+            <xsl:value-of select="translate(concat($pLangCode, '-', $pScriptCode), ' &#10;', '')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$pLangCode"/>
