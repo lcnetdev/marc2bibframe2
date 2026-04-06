@@ -80,7 +80,6 @@
                   <xsl:value-of select="$vHubIri"/>
                 </xsl:attribute>
                 -->
-                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/Uncontrolled"/>
                 <bf:status>
                   <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/t">
                     <rdfs:label>transcribed</rdfs:label>
