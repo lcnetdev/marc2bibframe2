@@ -248,15 +248,19 @@
           </bf:musicMedium>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='r']">
-          <bf:musicKey>
-            <xsl:apply-templates select="ancestor::marc:datafield" mode="xmllang-attribute">
-              <xsl:with-param name="pSFCode" select="'r'" />
-              <xsl:with-param name="pXMLlang" select="$vXmlLang" />
-            </xsl:apply-templates>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
-          </bf:musicKey>
+          <bf:keyMode>
+            <bf:KeyMode>
+              <rdfs:label>
+                <xsl:apply-templates select="ancestor::marc:datafield" mode="xmllang-attribute">
+                  <xsl:with-param name="pSFCode" select="'r'" />
+                  <xsl:with-param name="pXMLlang" select="$vXmlLang" />
+                </xsl:apply-templates>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="."/>
+                </xsl:call-template>
+              </rdfs:label>
+            </bf:KeyMode>
+          </bf:keyMode>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='s']">
           <bf:version>
