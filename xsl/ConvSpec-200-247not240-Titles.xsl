@@ -127,7 +127,7 @@
       <xsl:when test="$serialization = 'rdfxml'">
         <bf:title>
           <bf:VariantTitle>
-            <bf:variantType>translated</bf:variantType>
+            <rdf:type rdf:resource="{concat($varianttitle, 'tra')}" />
             <xsl:if test="@ind2 != '0' and @ind2 != ' '">
               <bflc:nonSortNum>
                 <xsl:if test="$vXmlLang != ''">
@@ -224,24 +224,21 @@
       <xsl:apply-templates mode="concat-nodes-space"
                            select="marc:subfield[@code='a' or
                                    @code='b' or
-                                   @code='f' or 
-                                   @code='g' or
-                                   @code='k' or
                                    @code='n' or
-                                   @code='p' or
-                                   @code='s']"/>
+                                   @code='p']"/>
     </xsl:variable>
     <xsl:variable name="vLinkedLabel">
       <xsl:if test="@tag='245' and marc:subfield[@code='6']">
         <xsl:apply-templates mode="concat-nodes-space"
                              select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='a' or
                                      @code='b' or
-                                     @code='f' or 
-                                     @code='g' or
-                                     @code='k' or
                                      @code='n' or
-                                     @code='p' or
-                                     @code='s']"/>
+                                     @code='p']"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="vXmlLang880">
+      <xsl:if test="@tag='245' and marc:subfield[@code='6']">
+        <xsl:apply-templates select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]" mode="xmllang"/>
       </xsl:if>
     </xsl:variable>
     <!-- generate Work properties -->
@@ -258,12 +255,28 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:title>
           <bf:Title>
+            <bf:mainTitle>
+              <xsl:call-template name="tChopPunct">
+                <xsl:with-param name="pString" select="$label"/>
+              </xsl:call-template>
+            </bf:mainTitle>
+            <xsl:if test="$vLinkedLabel != ''">
+              <bf:mainTitle>
+                <xsl:if test="$vXmlLang880 != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                </xsl:if>
+                <xsl:call-template name="tChopPunct">
+                  <xsl:with-param name="pString" select="$vLinkedLabel"/>
+                </xsl:call-template>
+              </bf:mainTitle>
+            </xsl:if>
+            <!--
             <xsl:apply-templates mode="title245" select=".">
               <xsl:with-param name="serialization" select="$serialization"/>
               <xsl:with-param name="pSubtitle" select="false()"/>
               <xsl:with-param name="label" select="$label"/>
             </xsl:apply-templates>
-            <!-- generate Title properties from linked 880 -->
+            <!-\- generate Title properties from linked 880 -\->
             <xsl:if test="@tag='245' and marc:subfield[@code='6']">
               <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
                 <xsl:with-param name="serialization" select="$serialization"/>
@@ -271,6 +284,7 @@
                 <xsl:with-param name="label" select="$vLinkedLabel"/>
               </xsl:apply-templates>
             </xsl:if>
+            -->
           </bf:Title>
         </bf:title>
       </xsl:when>
