@@ -520,14 +520,19 @@
 
   <xsl:template match="marc:datafield[@tag='580' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='580')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
+    
+    <xsl:variable name="v8" select="marc:subfield[@code='8']"/>
 
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:choose>
+          <xsl:when test="../marc:datafield[starts-with(@tag, '7')]/marc:subfield[@code='8'] = $v8"></xsl:when>
           <xsl:when test="contains(marc:subfield[@code='a'], 'upplement') and 
                           ../marc:datafield[@tag='770']"></xsl:when>
           <xsl:when test="contains(marc:subfield[@code='a'], 'erged with') and 
                           ../marc:datafield[@tag='785' and @ind2='7']"></xsl:when>
+          <xsl:when test="contains(marc:subfield[@code='a'], 'erger of') and 
+                          ../marc:datafield[@tag='780' and @ind2='4']"></xsl:when>
           <xsl:when test="contains(marc:subfield[@code='a'], 'plit into') and 
                           ../marc:datafield[@tag='785' and @ind2='6']"></xsl:when>
           <xsl:when test="contains(marc:subfield[@code='a'], 'bsorbed by') and 
