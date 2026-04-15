@@ -101,37 +101,44 @@
     <marcxml:subfield code="a">DLC</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="2" ind2=" ">
-    <marcxml:subfield code="6">111-00/$1</marcxml:subfield>
+    <marcxml:subfield code="6">111-00</marcxml:subfield>
     <marcxml:subfield code="a">전국 장애인 체육 대회.</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="1" ind2="0">
-    <marcxml:subfield code="6">245-01/$1</marcxml:subfield>
+    <marcxml:subfield code="6">245-01</marcxml:subfield>
     <marcxml:subfield code="a">전국 장애인 체육 대회 :</marcxml:subfield>
     <marcxml:subfield code="b">[report].</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1=" " ind2=" ">
-    <marcxml:subfield code="6">260-02/$1</marcxml:subfield>
+    <marcxml:subfield code="6">260-02</marcxml:subfield>
     <marcxml:subfield code="a">대전 광역시 :</marcxml:subfield>
     <marcxml:subfield code="b">대전 광역시</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="2" ind2="4">
-    <marcxml:subfield code="6">611-03/$1</marcxml:subfield>
+    <marcxml:subfield code="6">611-03/</marcxml:subfield>
     <marcxml:subfield code="a">전국 장애인 체육 대회</marcxml:subfield>
     <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="2" ind2="4">
-    <marcxml:subfield code="6">611-04/$1</marcxml:subfield>
+    <marcxml:subfield code="6">611-04/</marcxml:subfield>
     <marcxml:subfield code="a">전국 장애 학생 체육 대회</marcxml:subfield>
     <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+      <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="1" ind2=" ">
-    <marcxml:subfield code="6">710-05/$1</marcxml:subfield>
+    <marcxml:subfield code="6">710-05</marcxml:subfield>
     <marcxml:subfield code="a">Korea (South).</marcxml:subfield>
     <marcxml:subfield code="b">문화 체육 관광부.</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="880" ind1="2" ind2=" ">
-    <marcxml:subfield code="6">711-06/$1</marcxml:subfield>
+    <marcxml:subfield code="6">711-06</marcxml:subfield>
     <marcxml:subfield code="a">전국 장애 학생 체육 대회.</marcxml:subfield>
+    <marcxml:subfield code="7">(bcp47)ko</marcxml:subfield>
   </marcxml:datafield>
   <marcxml:datafield tag="906" ind1=" " ind2=" ">
     <marcxml:subfield code="a">7</marcxml:subfield>

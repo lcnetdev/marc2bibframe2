@@ -10,6 +10,8 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
 
+  <x:param name="bcp47inferrence" select="false()"/>
+  
   <x:scenario label="100, 600complex, 700name">
     <x:context href="data/ConvSpec-880/100-600-600complex-700.xml"/>
     
@@ -85,7 +87,7 @@
     <x:expect label="648 creates a subject/Temporal property of the Work" test="count(//bf:Work[1]/bf:subject/bf:Temporal) = 1"/>
     <x:expect label="... subject/Temporal has two labels" test="count(//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel) = 2"/>
     <x:expect label="... subject/Temporal a chinese label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[@xml:lang='zh-hani'] = '二十世紀.'"/>
-    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[not(@xml:lang)] = '1900-1999.'"/>
+    <x:expect label="... subject/Temporal a a latin label" test="//bf:Work[1]/bf:subject/bf:Temporal/madsrdf:authoritativeLabel[not(@xml:lang)] = '1900-1999'"/>
     
     <!-- 655a -->
     <x:expect label="655 creates a genreform/GenreForm property of the Work" test="count(//bf:Work[1]/bf:genreForm/bf:GenreForm) = 1"/>
@@ -120,5 +122,16 @@
     <x:expect label="... subject/Topic a componentList/Topic with one auth label" test="count(//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel) = '1'"/>
     <x:expect label="... subject/Topic a componentList/Topic with a latin label" test="//bf:Work[1]/bf:subject[3]/bf:Topic/madsrdf:componentList/madsrdf:Topic/madsrdf:authoritativeLabel = 'Social conditions'"/>
   </x:scenario>
+  
+  <x:scenario label="Use bcp47 code from $7">
+    <x:context href="data/ConvSpec-880/111-611compex-711.xml"/>
+    
+    <x:expect label="title has 2 mainTitles" test="count(//bf:Work[1]/bf:title/bf:Title/bf:mainTitle) = 2"/>
+    <x:expect label="..second one has xmllang" test="//bf:Work[1]/bf:title/bf:Title/bf:mainTitle[2]/@xml:lang = 'ko-kore'" />
+    
+    <x:expect label="2nd contribution has 2 labels" test="count(//bf:Work[1]/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label) = 2"/>
+    <x:expect label="..second one has xmllang" test="//bf:Work[1]/bf:contribution/bf:Contribution/bf:agent/bf:Agent/rdfs:label[2]/@xml:lang = 'ko-kore'" />
+  </x:scenario>
+    
 
 </x:description>
