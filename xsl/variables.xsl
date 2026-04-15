@@ -7,7 +7,7 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v3.0.1</xsl:variable>
+  <xsl:variable name="vCurrentVersion">v3.1.0</xsl:variable>
   <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-3-0-1/</xsl:variable>
   <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0</xsl:variable>
   <!-- <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/tree/v3.1-dev</xsl:variable> -->
