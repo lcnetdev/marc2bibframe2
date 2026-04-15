@@ -108,7 +108,7 @@
     <x:expect label="260 creates one provisionActivity resources" test="count(//bf:Instance[2]/bf:provisionActivity) = 1"/>
     <x:expect label="...it is Publication." test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Publication'"/>
     <x:expect label="...008 place is coded in PA resource" test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/bf:place/@rdf:resource = 'http://id.loc.gov/vocabulary/countries/ja'"/>
-    <x:expect label="...simpleDate with language tag, from matching 880" test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/bflc:simpleDate[@xml:lang='ja-jpan'] = '[昭和 62 i.e. 1987]'"/>
+    <x:expect label="...simpleDate with language tag, from matching 880" test="//bf:Instance[2]/bf:provisionActivity/bf:ProvisionActivity/bflc:simpleDate[@xml:lang='ja'] = '[昭和 62 i.e. 1987]'"/>
     
     <x:expect label="Two 264s create one provisionActivity resource" test="count(//bf:Instance[3]/bf:provisionActivity) = 1"/>
     <x:expect label="...and one copyright date" test="count(//bf:Instance[3]/bf:copyrightDate) = 1"/>

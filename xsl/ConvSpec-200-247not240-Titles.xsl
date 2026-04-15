@@ -255,6 +255,14 @@
       <xsl:when test="$serialization='rdfxml'">
         <bf:title>
           <bf:Title>
+            <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+              <bflc:nonSortNum>
+                <xsl:if test="$vXmlLang880 != ''">
+                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="@ind2" />
+              </bflc:nonSortNum>
+            </xsl:if>
             <bf:mainTitle>
               <xsl:call-template name="tChopPunct">
                 <xsl:with-param name="pString" select="$label"/>
