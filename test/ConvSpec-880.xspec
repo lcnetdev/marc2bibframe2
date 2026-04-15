@@ -14,7 +14,7 @@
     <x:context href="data/ConvSpec-880/marc.xml"/>
     <x:expect label="$6 210-xx should make an AbbreviatedTitle" test="//bf:Instance[1]/bf:title[1]/bf:AbbreviatedTitle/bf:mainTitle='東海道五十三次絵卷.'"/>
     <x:expect label="$6 222-xx should make a KeyTitle" test="//bf:Work[1]/bf:title[1]/bf:KeyTitle/bf:mainTitle = '東海道五十三次絵卷.'"/>
-    <x:expect label="$6 242-xx should make a VariantTitle with varientType 'translated'" test="//bf:Instance[1]/bf:title[2]/bf:VariantTitle/bf:variantType = 'translated'"/>
+    <x:expect label="$6 242-xx should make a VariantTitle with varientType 'translated'" test="//bf:Instance[1]/bf:title[2]/bf:VariantTitle/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/vartitletype/tra'"/>
     <x:expect label="$6 243-xx should make a CollectiveTitle" test="//bf:Work[1]/bf:title[2]/bf:CollectiveTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 245-xx should make a Title" test="//bf:Instance[1]/bf:title[3]/bf:Title/bf:mainTitle = '東海道五十三次絵卷'"/>
     <x:expect label="$6 246-xx should make a VariantTitle" test="//bf:Work[1]/bf:title[4]/bf:ParallelTitle/bf:mainTitle = '東海道五十三次絵卷'"/>
@@ -74,8 +74,8 @@
   <x:scenario label="xml:lang attributes from 880">
     <x:context href="data/ConvSpec-880/marc-lang.xml"/>
     <x:expect label="Language from 008 and MARC8 script code from $6 create an xml:lang attribute of the Resource" test="//bf:Work[1]/bf:title[1]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-arab'"/>
-    <x:expect label="Script can come from 4-letter code" test="//bf:Work[1]/bf:title[2]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-Arab'"/>
-    <x:expect label="Script can come from 3-digit numeric code" test="//bf:Work[1]/bf:title[3]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-Arab'"/>
+    <x:expect label="Script can come from 4-letter code" test="//bf:Work[1]/bf:title[2]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-arab'"/>
+    <x:expect label="Script can come from 3-digit numeric code" test="//bf:Work[1]/bf:title[3]/bf:VariantTitle/bf:mainTitle/@xml:lang = 'da-arab'"/>
   </x:scenario>
 
   <x:scenario label="Subfield 6 processing">

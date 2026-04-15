@@ -59,4 +59,13 @@
       <subfield code="s">Member release.</subfield>
     </datafield>
   </record>
+  <record>
+    <controlfield tag="001">8</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Easy beading.</subfield>
+      <subfield code="n">Vol. 2 :</subfield>
+      <subfield code="b">fast, fashionable, fun : the best projects from the second year of BeadStyle magazine /</subfield>
+      <subfield code="c">from the editors of BeadStyle magazine.</subfield>
+    </datafield>
+  </record>
 </collection>

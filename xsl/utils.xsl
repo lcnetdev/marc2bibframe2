@@ -908,7 +908,7 @@
   <xsl:template name="url-encode">
     <xsl:param name="str"/>
     <xsl:variable name="ascii"> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:variable>
-    <xsl:variable name="safe">!'()*-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~</xsl:variable>
+    <xsl:variable name="safe">!'()*-.:/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~</xsl:variable>
     <xsl:variable name="hex" >0123456789ABCDEF</xsl:variable>
     <xsl:if test="$str">
       <xsl:variable name="first-char" select="substring($str,1,1)"/>
