@@ -7,10 +7,10 @@
   <!-- constants for marc2bibframe2.xsl -->
 
   <!-- Current marc2bibframe2 version -->
-  <xsl:variable name="vCurrentVersion">v3.0</xsl:variable>
-  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-2-6-0/</xsl:variable>
-  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.0.0</xsl:variable>
-  <!-- <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/tree/v3.0-dev</xsl:variable> -->
+  <xsl:variable name="vCurrentVersion">v3.1.0</xsl:variable>
+  <xsl:variable name="vOntoVersionURI">http://id.loc.gov/ontologies/bibframe-3-0-1/</xsl:variable>
+  <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0</xsl:variable>
+  <!-- <xsl:variable name="vConvVersionURI">https://github.com/lcnetdev/marc2bibframe2/tree/v3.1-dev</xsl:variable> -->
 
   <!-- namespace URIs -->
   <xsl:variable name="bf">http://id.loc.gov/ontologies/bibframe/</xsl:variable>
@@ -72,6 +72,7 @@
   <xsl:variable name="classG">http://id.loc.gov/authorities/classification/G</xsl:variable>
   <xsl:variable name="msupplcont">http://id.loc.gov/vocabulary/msupplcont/</xsl:variable>
   <xsl:variable name="mstatus">http://id.loc.gov/vocabulary/mstatus/</xsl:variable>
+  <xsl:variable name="varianttitle">http://id.loc.gov/vocabulary/vartitletype/</xsl:variable>
   
   <!-- other vocabulary stems -->
   <xsl:variable name="deorgs">https://ld.zdb-services.de/resource/organisations/</xsl:variable>
@@ -87,7 +88,9 @@
   <xsl:variable name="subjectThesaurus" select="document('conf/subjectThesaurus.xml')"/>
 
   <!-- language/script maps -->
-  <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/>
+  <!-- <xsl:variable name="languageMap" select="document('conf/languageCrosswalk.xml')"/> -->
+  <xsl:variable name="iso6392-to-1-map" select="document('conf/iso6392-to-1.xml')"/>
+  <xsl:variable name="code-to-script-map" select="document('conf/code-to-script.xml')"/>
   <xsl:variable name="scriptMap" select="document('conf/scriptCrosswalk.xml')"/>
 
   <!-- code maps -->

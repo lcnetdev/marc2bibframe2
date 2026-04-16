@@ -1,3 +1,23 @@
+--- 3.1.0 2025/04/15
+Changes for updated v3.1.0 specifications:
+    ConvSpec-001-007
+		Added 007/04=t to bf:EncodingFormat mapping for video recordings
+	ConvSpec-200-247
+		Work titles created from MARC 245 field now include all title-related subfields ($a, $b, $n, $p, etc.)
+		Added conversion of MARC 245 $z field as a note in the Instance title
+		Added URI for translated variant title type in MARC 242 field
+		Added processing instructions for $7
+	ConvSpec-240,X30
+		Switched conversion of $r from bf:musicKey to bf:keyMode
+		Added processing instructions for $7
+	ConvSpec-600-662
+		Switched conversion of $r from bf:musicKey to bf:keyMode
+		Added processing instructions for $7
+	ConvSpec-Process0-10
+		New Process 10 - Language and Script Encoding
+		Removed creation of "Uncontrolled" rdftype from Process 6
+
+
 --- 3.0.0 2025/12/02
 Changes for updated v3.0.0 specifications:
 	ConvSpec-LDR

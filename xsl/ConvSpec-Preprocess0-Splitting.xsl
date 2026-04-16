@@ -24,6 +24,15 @@
       converted unless this parameter evaluates to true()
   -->
   <xsl:param name="localfields" select="true()" />
+  
+  <!--
+      Infer script from BCP47 code.
+      If true, BCP47 codes will not include 
+      the script component when it can be inferred from the language component.
+      If false, the script component (the "-cyrl" of ru-cyrl) will be included in
+      the code. At all times codes will be lowercased.
+  -->
+  <xsl:param name="bcp47inferrence" select="true()" />
 
   <xsl:include href="variables.xsl"/>
   <xsl:include href="utils.xsl"/>
@@ -112,7 +121,8 @@
           @tag='859' and 
           (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
           marc:subfield[@code='u'] and 
-          not( contains(marc:subfield[@code='3'], 'able of contents') ) and 
+          not( contains(marc:subfield[@code='3'], 'able of contents') ) and
+          not( contains(marc:subfield[@code='a'], 'able of contents') ) and 
           not(contains(../marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource'))
           ]">
           <xsl:variable name="theU" select="marc:subfield[@code='u']" />
@@ -218,9 +228,9 @@
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
-          <xsl:apply-templates select="marc:datafield[@tag = '856' and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
+          <xsl:apply-templates select="marc:datafield[(@tag = '856' or @tag = '859') and (@ind2='2' or @ind2='3' or @ind2='4') and marc:subfield[@code='u']]" />
           <xsl:apply-templates select="marc:datafield[
-                                        @tag='856' and 
+                                        (@tag = '856' or @tag = '859') and 
                                         (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
                                         marc:subfield[@code='u'] and 
                                         ( 

@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iso6392-to-1-map>
+  <entry key="aar">
+    <value>aa</value>
+  </entry>
+  <entry key="abk">
+    <value>ab</value>
+  </entry>
+  <entry key="afr">
+    <value>af</value>
+  </entry>
+  <entry key="aka">
+    <value>ak</value>
+  </entry>
+  <entry key="sqi">
+    <value>sq</value>
+  </entry>
+  <entry key="alb">
+    <value>sq</value>
+  </entry>
+  <entry key="amh">
+    <value>am</value>
+  </entry>
+  <entry key="ara">
+    <value>ar</value>
+  </entry>
+  <entry key="arg">
+    <value>an</value>
+  </entry>
+  <entry key="hye">
+    <value>hy</value>
+  </entry>
+  <entry key="arm">
+    <value>hy</value>
+  </entry>
+  <entry key="asm">
+    <value>as</value>
+  </entry>
+  <entry key="ava">
+    <value>av</value>
+  </entry>
+  <entry key="ave">
+    <value>ae</value>
+  </entry>
+  <entry key="aym">
+    <value>ay</value>
+  </entry>
+  <entry key="aze">
+    <value>az</value>
+  </entry>
+  <entry key="bak">
+    <value>ba</value>
+  </entry>
+  <entry key="bam">
+    <value>bm</value>
+  </entry>
+  <entry key="eus">
+    <value>eu</value>
+  </entry>
+  <entry key="baq">
+    <value>eu</value>
+  </entry>
+  <entry key="bel">
+    <value>be</value>
+  </entry>
+  <entry key="ben">
+    <value>bn</value>
+  </entry>
+  <entry key="bih">
+    <value>bh</value>
+  </entry>
+  <entry key="bis">
+    <value>bi</value>
+  </entry>
+  <entry key="bod">
+    <value>bo</value>
+  </entry>
+  <entry key="tib">
+    <value>bo</value>
+  </entry>
+  <entry key="bos">
+    <value>bs</value>
+  </entry>
+  <entry key="bre">
+    <value>br</value>
+  </entry>
+  <entry key="bul">
+    <value>bg</value>
+  </entry>
+  <entry key="mya">
+    <value>my</value>
+  </entry>
+  <entry key="bur">
+    <value>my</value>
+  </entry>
+  <entry key="cat">
+    <value>ca</value>
+  </entry>
+  <entry key="ces">
+    <value>cs</value>
+  </entry>
+  <entry key="cze">
+    <value>cs</value>
+  </entry>
+  <entry key="cha">
+    <value>ch</value>
+  </entry>
+  <entry key="che">
+    <value>ce</value>
+  </entry>
+  <entry key="zho">
+    <value>zh</value>
+  </entry>
+  <entry key="chi">
+    <value>zh</value>
+  </entry>
+  <entry key="chu">
+    <value>cu</value>
+  </entry>
+  <entry key="chv">
+    <value>cv</value>
+  </entry>
+  <entry key="cor">
+    <value>kw</value>
+  </entry>
+  <entry key="cos">
+    <value>co</value>
+  </entry>
+  <entry key="cre">
+    <value>cr</value>
+  </entry>
+  <entry key="cym">
+    <value>cy</value>
+  </entry>
+  <entry key="wel">
+    <value>cy</value>
+  </entry>
+  <entry key="dan">
+    <value>da</value>
+  </entry>
+  <entry key="ger">
+    <value>de</value>
+  </entry>
+  <entry key="deu">
+    <value>de</value>
+  </entry>
+  <entry key="div">
+    <value>dv</value>
+  </entry>
+  <entry key="nld">
+    <value>nl</value>
+  </entry>
+  <entry key="dut">
+    <value>nl</value>
+  </entry>
+  <entry key="dzo">
+    <value>dz</value>
+  </entry>
+  <entry key="ell">
+    <value>el</value>
+  </entry>
+  <entry key="gre">
+    <value>el</value>
+  </entry>
+  <entry key="eng">
+    <value>en</value>
+  </entry>
+  <entry key="epo">
+    <value>eo</value>
+  </entry>
+  <entry key="est">
+    <value>et</value>
+  </entry>
+  <entry key="ewe">
+    <value>ee</value>
+  </entry>
+  <entry key="fao">
+    <value>fo</value>
+  </entry>
+  <entry key="fas">
+    <value>fa</value>
+  </entry>
+  <entry key="per">
+    <value>fa</value>
+  </entry>
+  <entry key="fij">
+    <value>fj</value>
+  </entry>
+  <entry key="fin">
+    <value>fi</value>
+  </entry>
+  <entry key="fre">
+    <value>fr</value>
+  </entry>
+  <entry key="fra">
+    <value>fr</value>
+  </entry>
+  <entry key="fry">
+    <value>fy</value>
+  </entry>
+  <entry key="ful">
+    <value>ff</value>
+  </entry>
+  <entry key="geo">
+    <value>ka</value>
+  </entry>
+  <entry key="kat">
+    <value>ka</value>
+  </entry>
+  <entry key="gla">
+    <value>gd</value>
+  </entry>
+  <entry key="gle">
+    <value>ga</value>
+  </entry>
+  <entry key="glg">
+    <value>gl</value>
+  </entry>
+  <entry key="glv">
+    <value>gv</value>
+  </entry>
+  <entry key="grn">
+    <value>gn</value>
+  </entry>
+  <entry key="guj">
+    <value>gu</value>
+  </entry>
+  <entry key="hat">
+    <value>ht</value>
+  </entry>
+  <entry key="hau">
+    <value>ha</value>
+  </entry>
+  <entry key="heb">
+    <value>he</value>
+  </entry>
+  <entry key="her">
+    <value>hz</value>
+  </entry>
+  <entry key="hin">
+    <value>hi</value>
+  </entry>
+  <entry key="hmo">
+    <value>ho</value>
+  </entry>
+  <entry key="hrv">
+    <value>hr</value>
+  </entry>
+  <entry key="hun">
+    <value>hu</value>
+  </entry>
+  <entry key="ibo">
+    <value>ig</value>
+  </entry>
+  <entry key="isl">
+    <value>is</value>
+  </entry>
+  <entry key="ice">
+    <value>is</value>
+  </entry>
+  <entry key="ido">
+    <value>io</value>
+  </entry>
+  <entry key="iii">
+    <value>ii</value>
+  </entry>
+  <entry key="iku">
+    <value>iu</value>
+  </entry>
+  <entry key="ile">
+    <value>ie</value>
+  </entry>
+  <entry key="ina">
+    <value>ia</value>
+  </entry>
+  <entry key="ind">
+    <value>id</value>
+  </entry>
+  <entry key="ipk">
+    <value>ik</value>
+  </entry>
+  <entry key="ita">
+    <value>it</value>
+  </entry>
+  <entry key="jav">
+    <value>jv</value>
+  </entry>
+  <entry key="jpn">
+    <value>ja</value>
+  </entry>
+  <entry key="kal">
+    <value>kl</value>
+  </entry>
+  <entry key="kan">
+    <value>kn</value>
+  </entry>
+  <entry key="kas">
+    <value>ks</value>
+  </entry>
+  <entry key="kau">
+    <value>kr</value>
+  </entry>
+  <entry key="kaz">
+    <value>kk</value>
+  </entry>
+  <entry key="khm">
+    <value>km</value>
+  </entry>
+  <entry key="kik">
+    <value>ki</value>
+  </entry>
+  <entry key="kin">
+    <value>rw</value>
+  </entry>
+  <entry key="kir">
+    <value>ky</value>
+  </entry>
+  <entry key="kom">
+    <value>kv</value>
+  </entry>
+  <entry key="kon">
+    <value>kg</value>
+  </entry>
+  <entry key="kor">
+    <value>ko</value>
+  </entry>
+  <entry key="kua">
+    <value>kj</value>
+  </entry>
+  <entry key="kur">
+    <value>ku</value>
+  </entry>
+  <entry key="lao">
+    <value>lo</value>
+  </entry>
+  <entry key="lat">
+    <value>la</value>
+  </entry>
+  <entry key="lav">
+    <value>lv</value>
+  </entry>
+  <entry key="lim">
+    <value>li</value>
+  </entry>
+  <entry key="lin">
+    <value>ln</value>
+  </entry>
+  <entry key="lit">
+    <value>lt</value>
+  </entry>
+  <entry key="ltz">
+    <value>lb</value>
+  </entry>
+  <entry key="lub">
+    <value>lu</value>
+  </entry>
+  <entry key="lug">
+    <value>lg</value>
+  </entry>
+  <entry key="mkd">
+    <value>mk</value>
+  </entry>
+  <entry key="mac">
+    <value>mk</value>
+  </entry>
+  <entry key="mah">
+    <value>mh</value>
+  </entry>
+  <entry key="mal">
+    <value>ml</value>
+  </entry>
+  <entry key="mri">
+    <value>mi</value>
+  </entry>
+  <entry key="mao">
+    <value>mi</value>
+  </entry>
+  <entry key="mar">
+    <value>mr</value>
+  </entry>
+  <entry key="msa">
+    <value>ms</value>
+  </entry>
+  <entry key="may">
+    <value>ms</value>
+  </entry>
+  <entry key="mlg">
+    <value>mg</value>
+  </entry>
+  <entry key="mlt">
+    <value>mt</value>
+  </entry>
+  <entry key="mon">
+    <value>mn</value>
+  </entry>
+  <entry key="nau">
+    <value>na</value>
+  </entry>
+  <entry key="nav">
+    <value>nv</value>
+  </entry>
+  <entry key="nbl">
+    <value>nr</value>
+  </entry>
+  <entry key="nde">
+    <value>nd</value>
+  </entry>
+  <entry key="ndo">
+    <value>ng</value>
+  </entry>
+  <entry key="nep">
+    <value>ne</value>
+  </entry>
+  <entry key="nno">
+    <value>nn</value>
+  </entry>
+  <entry key="nob">
+    <value>nb</value>
+  </entry>
+  <entry key="nor">
+    <value>no</value>
+  </entry>
+  <entry key="nya">
+    <value>ny</value>
+  </entry>
+  <entry key="oci">
+    <value>oc</value>
+  </entry>
+  <entry key="oji">
+    <value>oj</value>
+  </entry>
+  <entry key="ori">
+    <value>or</value>
+  </entry>
+  <entry key="orm">
+    <value>om</value>
+  </entry>
+  <entry key="oss">
+    <value>os</value>
+  </entry>
+  <entry key="pan">
+    <value>pa</value>
+  </entry>
+  <entry key="pli">
+    <value>pi</value>
+  </entry>
+  <entry key="pol">
+    <value>pl</value>
+  </entry>
+  <entry key="por">
+    <value>pt</value>
+  </entry>
+  <entry key="pus">
+    <value>ps</value>
+  </entry>
+  <entry key="que">
+    <value>qu</value>
+  </entry>
+  <entry key="roh">
+    <value>rm</value>
+  </entry>
+  <entry key="ron">
+    <value>ro</value>
+  </entry>
+  <entry key="rum">
+    <value>ro</value>
+  </entry>
+  <entry key="run">
+    <value>rn</value>
+  </entry>
+  <entry key="rus">
+    <value>ru</value>
+  </entry>
+  <entry key="sag">
+    <value>sg</value>
+  </entry>
+  <entry key="san">
+    <value>sa</value>
+  </entry>
+  <entry key="sin">
+    <value>si</value>
+  </entry>
+  <entry key="slk">
+    <value>sk</value>
+  </entry>
+  <entry key="slo">
+    <value>sk</value>
+  </entry>
+  <entry key="slv">
+    <value>sl</value>
+  </entry>
+  <entry key="sme">
+    <value>se</value>
+  </entry>
+  <entry key="smo">
+    <value>sm</value>
+  </entry>
+  <entry key="sna">
+    <value>sn</value>
+  </entry>
+  <entry key="snd">
+    <value>sd</value>
+  </entry>
+  <entry key="som">
+    <value>so</value>
+  </entry>
+  <entry key="sot">
+    <value>st</value>
+  </entry>
+  <entry key="spa">
+    <value>es</value>
+  </entry>
+  <entry key="srd">
+    <value>sc</value>
+  </entry>
+  <entry key="srp">
+    <value>sr</value>
+  </entry>
+  <entry key="ssw">
+    <value>ss</value>
+  </entry>
+  <entry key="sun">
+    <value>su</value>
+  </entry>
+  <entry key="swa">
+    <value>sw</value>
+  </entry>
+  <entry key="swe">
+    <value>sv</value>
+  </entry>
+  <entry key="tah">
+    <value>ty</value>
+  </entry>
+  <entry key="tam">
+    <value>ta</value>
+  </entry>
+  <entry key="tat">
+    <value>tt</value>
+  </entry>
+  <entry key="tel">
+    <value>te</value>
+  </entry>
+  <entry key="tgk">
+    <value>tg</value>
+  </entry>
+  <entry key="tgl">
+    <value>tl</value>
+  </entry>
+  <entry key="tha">
+    <value>th</value>
+  </entry>
+  <entry key="tir">
+    <value>ti</value>
+  </entry>
+  <entry key="ton">
+    <value>to</value>
+  </entry>
+  <entry key="tsn">
+    <value>tn</value>
+  </entry>
+  <entry key="tso">
+    <value>ts</value>
+  </entry>
+  <entry key="tuk">
+    <value>tk</value>
+  </entry>
+  <entry key="tur">
+    <value>tr</value>
+  </entry>
+  <entry key="twi">
+    <value>tw</value>
+  </entry>
+  <entry key="uig">
+    <value>ug</value>
+  </entry>
+  <entry key="ukr">
+    <value>uk</value>
+  </entry>
+  <entry key="urd">
+    <value>ur</value>
+  </entry>
+  <entry key="uzb">
+    <value>uz</value>
+  </entry>
+  <entry key="ven">
+    <value>ve</value>
+  </entry>
+  <entry key="vie">
+    <value>vi</value>
+  </entry>
+  <entry key="vol">
+    <value>vo</value>
+  </entry>
+  <entry key="wln">
+    <value>wa</value>
+  </entry>
+  <entry key="wol">
+    <value>wo</value>
+  </entry>
+  <entry key="xho">
+    <value>xh</value>
+  </entry>
+  <entry key="yid">
+    <value>yi</value>
+  </entry>
+  <entry key="yor">
+    <value>yo</value>
+  </entry>
+  <entry key="zha">
+    <value>za</value>
+  </entry>
+  <entry key="zul">
+    <value>zu</value>
+  </entry>
+</iso6392-to-1-map>

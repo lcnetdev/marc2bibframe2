@@ -829,16 +829,34 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
+        <xsl:variable name="vDGURI">
+          <xsl:choose>
+            <xsl:when test="contains(marc:subfield[@code='0'], 'id.loc.gov') and starts-with(marc:subfield[@code='0'], 'http')">
+              <xsl:apply-templates mode="generateUriFrom0" select=".">
+                <xsl:with-param name="pDefaultUri" select="''"/>
+              </xsl:apply-templates> 
+            </xsl:when>
+            <xsl:when test="starts-with(substring-after(marc:subfield[@code='0'][1],')'),'dg')">
+              <xsl:variable name="encoded">
+                <xsl:call-template name="url-encode">
+                  <xsl:with-param name="str" select="normalize-space(substring-after(marc:subfield[@code='0'][1],')'))"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:value-of select="concat($demographicTerms,$encoded)"/>
+            </xsl:when>
+            <xsl:when test="starts-with(substring-after(marc:subfield[@code='0'][1],')'),'sh')">
+              <xsl:variable name="encoded">
+                <xsl:value-of select="translate(substring-after(marc:subfield[@code='0'][1],')'), ' ', '')"/>
+              </xsl:variable>
+              <xsl:value-of select="concat('http://id.loc.gov/authorities/subjects/',$encoded)"/>
+            </xsl:when>
+          </xsl:choose>
+        </xsl:variable>
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:element name="{$vProp}">
             <xsl:element name="{$vResource}">
-              <xsl:if test="starts-with(substring-after(../marc:subfield[@code='0'][1],')'),'dg')">
-                <xsl:variable name="encoded">
-                  <xsl:call-template name="url-encode">
-                    <xsl:with-param name="str" select="normalize-space(substring-after(../marc:subfield[@code='0'][1],')'))"/>
-                  </xsl:call-template>
-                </xsl:variable>
-                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($demographicTerms,$encoded)"/></xsl:attribute>
+              <xsl:if test="$vDGURI != ''">
+                <xsl:attribute name="rdf:about"><xsl:value-of select="$vDGURI"/></xsl:attribute>
               </xsl:if>
               <rdfs:label>
                 <xsl:if test="$vXmlLang != ''">
@@ -1120,18 +1138,27 @@
 
   <xsl:template match="marc:datafield[@tag='306' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='306')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
-    <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
         <xsl:for-each select="marc:subfield[@code='a']">
+          <xsl:variable name="vDuration">
+            <xsl:choose>
+              <xsl:when test="string-length(.) = '6'">
+                <xsl:variable name="vH" select="concat(substring(., 1, 2), 'H')"/>
+                <xsl:variable name="vM" select="concat(substring(., 3, 2), 'M')"/>
+                <xsl:variable name="vS" select="concat(substring(., 5, 2), 'S')"/>
+                <xsl:value-of select="concat('PT', $vH, $vM, $vS)" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="."/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <bf:duration>
-            <xsl:if test="$vXmlLang != ''">
-              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+            <xsl:if test="starts-with($vDuration, 'PT')">
+              <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
             </xsl:if>
-            <xsl:attribute name="rdf:datatype"><xsl:value-of select="concat($xs,'duration')"/></xsl:attribute>
-            <xsl:call-template name="tChopPunct">
-              <xsl:with-param name="pString" select="."/>
-            </xsl:call-template>
+            <xsl:value-of select="$vDuration"/>
           </bf:duration>
         </xsl:for-each>
       </xsl:when>

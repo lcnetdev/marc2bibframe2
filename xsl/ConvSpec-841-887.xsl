@@ -54,7 +54,11 @@
             <xsl:when test="$serialization='rdfxml'">
               <xsl:for-each select="marc:subfield[@code='u']">
                 <bf:tableOfContents>
-                  <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+                  <xsl:attribute name="rdf:resource">
+                    <xsl:call-template name="url-encode">
+                      <xsl:with-param name="str" select="."/>
+                    </xsl:call-template>
+                  </xsl:attribute>
                 </bf:tableOfContents>
               </xsl:for-each>
             </xsl:when>
@@ -238,7 +242,7 @@
       <!-- If ind2 is #, 0, 1, or 8, the Instance has the class of Electronic, and $3 != 'Table of Contents', add an Item to the Instance -->
       <xsl:if test="not(../marc:datafield[@tag='758']) and 
                     marc:subfield[@code='u'] and
-                    (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
+                    (@ind2=' ' or @ind2='1' or @ind2='8' or (@ind2='0' and count(../marc:datafield[@tag='856']) &gt; 1)) and
                     (substring(../marc:leader,7,1) = 'm' or
                     substring(../marc:controlfield[@tag='008'],24,1) = 'o' or
                     substring(../marc:controlfield[@tag='008'],24,1) = 's') and

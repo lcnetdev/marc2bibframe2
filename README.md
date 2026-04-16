@@ -1,5 +1,5 @@
 
-[![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/master.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2)
+# [![CircleCI](https://circleci.com/gh/lcnetdev/marc2bibframe2/tree/master.svg?style=svg)](https://circleci.com/gh/lcnetdev/marc2bibframe2)
 
 # marc2bibframe2
 
@@ -85,9 +85,14 @@ The converter supports several optional parameters:
   `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
   by default, resulting in no source property being defined.
 
-- `localfields` - if true, apply special local processing for Library
+- `localfields` - Default is false.  If true, apply special local processing for Library
 of Congress records. This includes:
   - Process 859 fields the same as 856 fields
+
+- `bcp47inferrence` - Default is true.  If true, BCP47 codes will not include 
+the script component when it can be inferred from the language component.
+If false, the script component (the "-cyrl" of ru-cyrl) will be included in
+the code. At all times codes will be lowercased. 
 
 - `pGenerationDatestamp` - a value to be used as the datestamp for the
   bf:generationProcess property for the Work AdminMetadata. Defaults

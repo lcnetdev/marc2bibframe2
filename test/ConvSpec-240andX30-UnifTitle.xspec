@@ -38,7 +38,7 @@
     <x:expect label="...with URI that matches Hub" test="//bf:Work[@rdf:about='http://example.org/5#Work']/bf:expressionOf/bf:Hub/bf:contribution/bf:Contribution/bf:agent/bf:Agent/@rdf:about='http://example.org/5#Hub240-5-Agent'"/>
     <x:expect label="$m becomes a musicMedium of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:musicMedium/bf:MusicMedium/rdfs:label = 'violin, viola'"/>
     <x:expect label="$o creates an rdf:type property of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bibframe/Arrangement'"/>
-    <x:expect label="$r becomes a musicKey of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:musicKey = 'D major'"/>
+    <x:expect label="$r becomes a musicKey of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:expressionOf/bf:Hub/bf:keyMode/bf:KeyMode/rdfs:label = 'D major'"/>
     <x:expect label="$s becomes a version of the Hub" test="//bf:Hub[@rdf:about='http://example.org/2#Hub730-4']/bf:version = 'Codex Sinaiticus'"/>
     <x:expect label="$x becomes an Issn of the Hub" test="//bf:Hub[@rdf:about='http://example.org/2#Hub730-6']/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
     <x:expect label="$2 becomes a source of the Hub" test="//bf:Work[@rdf:about='http://example.org/1#Work']/bf:subject[1]/bf:Topic/madsrdf:componentList/bf:Hub/bf:source/bf:Source/bf:code='example'"/>
