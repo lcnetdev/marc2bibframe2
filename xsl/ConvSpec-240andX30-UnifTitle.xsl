@@ -77,6 +77,7 @@
           <xsl:when test="@ind2='2' and contains(marc:subfield[@code='i'], 'ontains')">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
           <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
           <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='expression of'">http://id.loc.gov/vocabulary/relationship/expressionof</xsl:when>
           <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
           <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
         </xsl:choose>
@@ -92,6 +93,7 @@
                                                     not(contains(., 'ontainer of')) and 
                                                     not(contains(., 'ontains')) and 
                                                     . !='is arrangement of' and 
+                                                    . !='expression of' and 
                                                     . !='is translation of']">
                 <bf:relationship>
                   <bf:Relationship>
