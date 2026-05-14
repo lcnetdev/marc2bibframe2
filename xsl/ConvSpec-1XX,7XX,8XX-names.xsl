@@ -142,6 +142,7 @@
             <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='expression of'">http://id.loc.gov/vocabulary/relationship/expressionof</xsl:when>
             <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -152,7 +153,7 @@
                   <bf:relationship>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProp"/></xsl:attribute>
                   </bf:relationship>
-                  <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
+                  <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='expression of' and .!='is translation of']">
                       <xsl:if test="
                           ( $vProp='http://id.loc.gov/vocabulary/relationship/part' and not(contains(., 'ontain')) ) 
                           or 
