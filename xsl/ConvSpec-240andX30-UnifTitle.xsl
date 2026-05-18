@@ -363,9 +363,24 @@
               </bflc:marcKey>
             </xsl:if>
           </xsl:when>
-          <xsl:when test="$tag='110' or $tag='100' or $tag='111'">
+          <xsl:when test="($tag='100' or $tag='110' or $tag='111' or 
+                          $tag='600' or $tag='610' or $tag='611' or 
+                          $tag='700' or $tag='710' or $tag='711')
+                          and
+                          marc:subfield[@code='k'] and not(marc:subfield[@code='t'])">
             <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
             <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$k'))" /></bflc:marcKey>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
+              <bflc:marcKey>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                <xsl:value-of select="concat(substring-before($vMarcKey880, '$k'), '$t', substring-after($vMarcKey880, '$k'))" />
+              </bflc:marcKey>
+            </xsl:if>
+          </xsl:when>
+          <xsl:when test="substring($tag,1,1)!='1' and marc:subfield[@code='k'] and (marc:subfield[@code='k']/following-sibling::marc:subfield[@code='t'])">
+            <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+            <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$t'))" /></bflc:marcKey>
             <xsl:if test="$vXmlLang880 != ''">
               <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
               <bflc:marcKey>
