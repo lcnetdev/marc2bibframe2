@@ -4,7 +4,7 @@
     xmlns:bf="http://id.loc.gov/ontologies/bibframe/"
     xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common"
-    exclude-result-prefixes="xsl marc">
+    exclude-result-prefixes="xsl marc exsl">
 
     <!-- Conversion specs for Process8 -->
 
@@ -178,10 +178,26 @@
                 <xsl:when test="$serialization = 'rdfxml'">
                     <xsl:choose>
                         <xsl:when test="$sfgTag = '264' and $df/@ind2 = '4'">
+                            <xsl:variable name="dfCopyrightD">
+                                <xsl:call-template name="tChopPunct">
+                                    <xsl:with-param name="pString" select="translate($vStatement, '©℗', '')"/>
+                                </xsl:call-template>
+                            </xsl:variable>
                             <xsl:choose>
-                                <xsl:when test="$cf008data/paGroup[type = 'Copyright']">
-                                    <xsl:copy-of
-                                        select="$cf008data/paGroup[type = 'Copyright']/bf:*"/>
+                                <xsl:when test="$cf008data/paGroup[type = 'Copyright']/bf:*">
+                                    <xsl:if test="$cf008data/paGroup[type = 'Copyright']/bf:copyrightDate[. = $dfCopyrightD]">
+                                        <xsl:copy-of select="$cf008data/paGroup[type = 'Copyright']/bf:*"/>    
+                                    </xsl:if>
+                                    <xsl:if test="$cf008data/paGroup[type = 'Copyright']/bf:copyrightDate[. != $dfCopyrightD]">
+                                        <bf:copyrightDate>
+                                            <xsl:if test="$vXmlLang != ''">
+                                                <xsl:attribute name="xml:lang">
+                                                    <xsl:value-of select="$vXmlLang"/>
+                                                </xsl:attribute>
+                                            </xsl:if>
+                                            <xsl:value-of select="$dfCopyrightD"/>
+                                        </bf:copyrightDate>
+                                    </xsl:if>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <bf:copyrightDate>
@@ -190,23 +206,17 @@
                                                 <xsl:value-of select="$vXmlLang"/>
                                             </xsl:attribute>
                                         </xsl:if>
-                                        <xsl:call-template name="tChopPunct">
-                                            <xsl:with-param name="pString" select="translate($vStatement, '©℗', '')"/>
-                                        </xsl:call-template>
+                                        <xsl:value-of select="$dfCopyrightD"/>
                                     </bf:copyrightDate>
                                     <xsl:if test="$vLinkedStatement != ''">
                                         <bf:copyrightDate>
                                             <xsl:if test="$vLinkedXmlLang != ''">
                                                 <xsl:attribute name="xml:lang"><xsl:value-of select="$vLinkedXmlLang"/></xsl:attribute>
                                             </xsl:if>
-                                            <xsl:call-template name="tChopPunct">
-                                                <xsl:with-param name="pString"
-                                                    select="translate($vLinkedStatement, '©℗', '')"/>
-                                            </xsl:call-template>
+                                            <xsl:value-of select="$dfCopyrightD"/>
                                         </bf:copyrightDate>
                                     </xsl:if>
                                 </xsl:otherwise>
-
                             </xsl:choose>
                         </xsl:when>
                         <xsl:otherwise>
