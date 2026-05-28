@@ -103,8 +103,7 @@
             (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
             marc:subfield[@code='u'] and 
             not( contains(marc:subfield[@code='3'], 'able of contents') ) and 
-            not( contains(marc:subfield[@code='a'], 'able of contents') ) and 
-            not(contains(../marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource'))
+            not( contains(marc:subfield[@code='a'], 'able of contents') )
         ]">
         <xsl:variable name="theU" select="marc:subfield[@code='u']" />
         <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
@@ -122,8 +121,7 @@
           (@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
           marc:subfield[@code='u'] and 
           not( contains(marc:subfield[@code='3'], 'able of contents') ) and
-          not( contains(marc:subfield[@code='a'], 'able of contents') ) and 
-          not(contains(../marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource'))
+          not( contains(marc:subfield[@code='a'], 'able of contents') )
           ]">
           <xsl:variable name="theU" select="marc:subfield[@code='u']" />
           <xsl:if test="count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
@@ -224,7 +222,8 @@
                                     @tag &gt; 300 and 
                                     @tag != '856' and @tag != '859' and 
                                     @tag != '336' and @tag != '337' and @tag != '338' and
-                                    @tag != '344' and @tag != '346' and @tag != '347' and @tag != '348']">
+                                    @tag != '344' and @tag != '346' and @tag != '347' and @tag != '348' and 
+                                    not(starts-with(@tag, '9'))]">
             <xsl:sort select="@tag"/>
             <xsl:apply-templates select="." />            
           </xsl:for-each>
@@ -238,6 +237,16 @@
                                           contains(marc:subfield[@code='a'], 'able of contents') 
                                         )
                                   ]" />
+          <xsl:if test="$countViable856s &gt; 0 and 
+                        contains(marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource')">
+            <xsl:apply-templates select="$viable856sNS/marc:datafield[1]" />
+          </xsl:if>
+          <xsl:if test="$countViable856s = 0 and 
+                        $countViable859s &gt; 0 and 
+                        contains(marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource')">
+            <xsl:apply-templates select="$viable859sNS/marc:datafield[1]" />
+          </xsl:if>
+          <xsl:apply-templates select="marc:datafield[starts-with(@tag, '9')]" />
         </marc:record>
         
         <!-- 
@@ -264,11 +273,16 @@
         <xsl:if test="count($viable856sNS/marc:datafield|$viable859sNS/marc:datafield) &gt; 0">
           <xsl:variable name="record" select="." />
           <xsl:for-each select="$viable856sNS/marc:datafield|$viable859sNS/marc:datafield">
-            <xsl:apply-templates select="." mode="split">
-              <xsl:with-param name="base_recordid" select="$recordid" />
-              <xsl:with-param name="pos" select="position()" />
-              <xsl:with-param name="record" select="$record" />
-            </xsl:apply-templates>
+            <xsl:choose>
+              <xsl:when test="position() = 1 and contains($record/marc:datafield[@tag='300'][1]/marc:subfield[@code='a'], 'nline resource')" />
+              <xsl:otherwise>
+                <xsl:apply-templates select="." mode="split">
+                  <xsl:with-param name="base_recordid" select="$recordid" />
+                  <xsl:with-param name="pos" select="position()" />
+                  <xsl:with-param name="record" select="$record" />
+                </xsl:apply-templates>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:for-each>
         </xsl:if>
 
