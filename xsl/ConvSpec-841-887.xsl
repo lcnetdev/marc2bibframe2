@@ -66,9 +66,17 @@
         </xsl:when>
         <!-- If ind2 is #, 0, 1, or 8 and the Instance does not have the class of Electronic, create a new Instance -->
         <xsl:when test="(@ind2=' ' or @ind2='0' or @ind2='1' or @ind2='8') and
-                        (substring(../marc:leader,7,1) != 'm' and
-                        substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
-                        substring(../marc:controlfield[@tag='008'],24,1) != 's') and
+                        (
+                          substring(../marc:leader,7,1) != 'm' and
+                          substring(../marc:controlfield[@tag='008'],24,1) != 'o' and
+                          substring(../marc:controlfield[@tag='008'],24,1) != 's'
+                        ) and
+                        (
+                          substring(../marc:leader,7,1) != 'e' and
+                          substring(../marc:leader,7,1) != 'f' and
+                          substring(../marc:controlfield[@tag='008'],29,1) != 'o' and
+                          substring(../marc:controlfield[@tag='008'],29,1) != 's'
+                        ) and
                         count($exclusions/exclusions/exclusion/@text[contains($theU, .)]) = 0">
             <xsl:variable name="vInstanceUri"><xsl:value-of select="$recordid"/>#Instance<xsl:value-of select="@tag"/>-<xsl:value-of select="$pTagOrd"/></xsl:variable>
             <xsl:choose>
