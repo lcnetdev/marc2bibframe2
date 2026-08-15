@@ -621,25 +621,11 @@
             <xsl:if test="$vXmlLang != ''">
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
-            <xsl:variable name="vEndsWIthEqualSign">
-              <xsl:call-template name="ends-with">
-                <xsl:with-param name="haystack" select="." />
-                <xsl:with-param name="needle" select="'='" />
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:choose>
-              <xsl:when test="$vEndsWIthEqualSign = '1'">
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pEndPunct" select="'.:;,/'"/>
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="."/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:call-template name="tChopPunct">
+              <!-- Allow equal sign. -->
+              <xsl:with-param name="pEndPunct" select="'.:;,/'"/>
+              <xsl:with-param name="pString" select="."/>
+            </xsl:call-template>
           </bf:mainTitle>
         </xsl:for-each>
         <!-- No subtitle in Work title object -->
