@@ -959,5 +959,44 @@
       <xsl:with-param name="str" select="translate(normalize-space($vCode),$upper,$lower)"/>
     </xsl:call-template>
   </xsl:template>
+  
+  <!-- Tokenize a string that's pipe separated -->
+  <!-- Gracias!   https://gist.github.com/rnelson/395bccd30092cedca87f -->
+  <xsl:template name="tokenize">
+    <xsl:param name="text"/>
+    <xsl:param name="separator" select="' ='"/>
+    <xsl:choose>
+      <xsl:when test="not(contains($text, $separator))">
+        <item>
+          <xsl:value-of select="normalize-space($text)"/>
+        </item>
+      </xsl:when>
+      <xsl:otherwise>
+        <item>
+          <xsl:value-of select="normalize-space(substring-before($text, $separator))"/>
+        </item>
+        <xsl:call-template name="tokenize">
+          <xsl:with-param name="text" select="substring-after($text, $separator)"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="ends-with">
+    <xsl:param name="haystack" />
+    <xsl:param name="needle" />
+    <xsl:choose>
+      <xsl:when test="substring($haystack, string-length($haystack), 1) = $needle">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="isUpper">
+    <xsl:param name="text"/>
+    <xsl:choose>
+      <xsl:when test="translate($text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞŸŽŠŒ', '') = ''">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
