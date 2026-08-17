@@ -7,7 +7,8 @@
                 xmlns:bflc="http://id.loc.gov/ontologies/bflc/"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
-                exclude-result-prefixes="xsl marc">
+                xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="xsl marc exsl">
 
   <!--
       Conversion specs for bib title fields 210-247 (not 240)
@@ -227,6 +228,14 @@
                                    @code='n' or
                                    @code='p']"/>
     </xsl:variable>
+    <xsl:variable name="label-c">
+      <xsl:apply-templates mode="concat-nodes-space"
+                           select="marc:subfield[@code='a' or
+                            @code='b' or
+                            @code='n' or
+                            @code='p' or
+                            @code='c']"/>
+    </xsl:variable>
     <xsl:variable name="vLinkedLabel">
       <xsl:if test="@tag='245' and marc:subfield[@code='6']">
         <xsl:apply-templates mode="concat-nodes-space"
@@ -234,6 +243,16 @@
                                      @code='b' or
                                      @code='n' or
                                      @code='p']"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="vLinkedLabel-c">
+      <xsl:if test="@tag='245' and marc:subfield[@code='6']">
+        <xsl:apply-templates mode="concat-nodes-space"
+                                    select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]/marc:subfield[@code='a' or
+                                      @code='b' or
+                                      @code='n' or
+                                      @code='p' or
+                                      @code='c']"/>
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="vXmlLang880">
@@ -253,50 +272,198 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$serialization='rdfxml'">
-        <bf:title>
-          <bf:Title>
-            <xsl:if test="@ind2 != '0' and @ind2 != ' '">
-              <bflc:nonSortNum>
-                <xsl:if test="$vXmlLang880 != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
-                </xsl:if>
-                <xsl:value-of select="@ind2" />
-              </bflc:nonSortNum>
-            </xsl:if>
-            <bf:mainTitle>
-              <xsl:call-template name="tChopPunct">
-                <xsl:with-param name="pString" select="$label"/>
+        <xsl:choose>
+          <xsl:when test="contains($label-c, ' =')">
+            <xsl:variable name="label-cPreNS">
+              <xsl:call-template name="tokenize">
+                <xsl:with-param name="text" select="$label-c" />
               </xsl:call-template>
-            </bf:mainTitle>
-            <xsl:if test="$vLinkedLabel != ''">
-              <bf:mainTitle>
-                <xsl:if test="$vXmlLang880 != ''">
-                  <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
-                </xsl:if>
-                <xsl:call-template name="tChopPunct">
-                  <xsl:with-param name="pString" select="$vLinkedLabel"/>
+            </xsl:variable>
+            <xsl:variable name="label-cNS" select="exsl:node-set($label-cPreNS)" />
+
+            <xsl:choose>
+              <xsl:when test="count($label-cNS/item) &lt; 5">
+                           
+            <xsl:variable name="vLinkedLabel-cPreNS">
+              <xsl:call-template name="tokenize">
+                <xsl:with-param name="text" select="$vLinkedLabel-c" />
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="vLinkedLabel-cNS" select="exsl:node-set($vLinkedLabel-cPreNS)" />
+            
+            <xsl:variable name="df246s" select="ancestor::marc:record/marc:datafield[@tag = '246']" />
+            
+            <xsl:for-each select="$label-cNS/item">
+              <xsl:variable name="lc" select="."/>
+              <xsl:variable name="pos" select="position()"/>
+              <xsl:if test="not($df246s/marc:subfield[@code = 'a' and contains($lc, .)])">
+                  <!--
+                  <xsl:if test="@ind2 != '0' and @ind2 != ' '">
+                    <bflc:nonSortNum>
+                      <xsl:if test="$vXmlLang880 != ''">
+                        <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="@ind2" />
+                    </bflc:nonSortNum>
+                  </xsl:if>
+                  -->
+                  <xsl:variable name="t">
+                    <xsl:choose>
+                      <xsl:when test="contains(., ' /')">
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="substring-before(., ' /')"/>
+                        </xsl:call-template>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:call-template name="tChopPunct">
+                          <xsl:with-param name="pString" select="."/>
+                        </xsl:call-template>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+                  <xsl:variable name="tStartsUpper">
+                    <xsl:call-template name="isUpper">
+                      <xsl:with-param name="text" select="substring($t, 1, 1)" />
+                    </xsl:call-template>
+                  </xsl:variable>
+                  
+                  <xsl:variable name="vFinalT">
+                    <xsl:choose>
+                      <xsl:when test="$tStartsUpper = '0' and $pos != '1'">
+                        <xsl:choose>
+                          <xsl:when test="contains($label-cNS/item[1], ' :')">
+                            <xsl:variable name="lIndex">
+                              <xsl:call-template name="tLastIndex">
+                                <xsl:with-param name="pString" select="$label-cNS/item[1]" />
+                                <xsl:with-param name="pSearch" select="' : '"></xsl:with-param>
+                              </xsl:call-template>
+                            </xsl:variable>
+                            <xsl:value-of select="concat(substring($label-cNS/item[1], 1, $lIndex), $t)"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="concat($label-cNS/item[1], ' : ', $t)"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="$t"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:variable>
+                  
+                  <xsl:variable name="vFinal880T">
+                    <xsl:if test="$vLinkedLabel-cPreNS != '' and $vLinkedLabel-cNS/item[$pos] != $lc">
+                      <xsl:variable name="langt">
+                        <xsl:choose>
+                          <xsl:when test="contains($vLinkedLabel-cNS/item[$pos], ' /')">
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="substring-before($vLinkedLabel-cNS/item[$pos], ' /')"/>
+                            </xsl:call-template>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:call-template name="tChopPunct">
+                              <xsl:with-param name="pString" select="$vLinkedLabel-cNS/item[$pos]"/>
+                            </xsl:call-template>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:variable>
+                      <xsl:variable name="langtStartsUpper">
+                        <xsl:call-template name="isUpper">
+                          <xsl:with-param name="text" select="substring($langt, 1, 1)" />
+                        </xsl:call-template>
+                      </xsl:variable>
+                        <xsl:choose>
+                          <xsl:when test="$langtStartsUpper = '0' and $pos != '1'">
+                            <xsl:choose>
+                              <xsl:when test="contains($vLinkedLabel-cNS/item[1], ' :')">
+                                <xsl:variable name="ltIndex">
+                                  <xsl:call-template name="tLastIndex">
+                                    <xsl:with-param name="pString" select="$vLinkedLabel-cNS/item[1]" />
+                                    <xsl:with-param name="pSearch" select="' : '"></xsl:with-param>
+                                  </xsl:call-template>
+                                </xsl:variable>
+                                <xsl:value-of select="concat(substring($vLinkedLabel-cNS/item[1], 1, $ltIndex), $langt)"/>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <xsl:value-of select="concat($vLinkedLabel-cNS/item[1], ' : ', $langt)"/>
+                              </xsl:otherwise>
+                            </xsl:choose>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="$langt"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                  </xsl:variable>
+                
+                <xsl:call-template name="work-title-from-parts">
+                  <xsl:with-param name="vLabel" select="$vFinalT" />
+                  <!-- <xsl:with-param name="vNonSortNum" select="@ind2" /> -->
+                  <xsl:with-param name="vXmlLang880" select="$vXmlLang880" />
+                  <xsl:with-param name="vLinkedLabel" select="$vFinal880T" />
+                  <xsl:with-param name="vTitleClass" select="'bf:ParallelTitle'" />
                 </xsl:call-template>
-              </bf:mainTitle>
-            </xsl:if>
-            <!--
-            <xsl:apply-templates mode="title245" select=".">
-              <xsl:with-param name="serialization" select="$serialization"/>
-              <xsl:with-param name="pSubtitle" select="false()"/>
-              <xsl:with-param name="label" select="$label"/>
-            </xsl:apply-templates>
-            <!-\- generate Title properties from linked 880 -\->
-            <xsl:if test="@tag='245' and marc:subfield[@code='6']">
-              <xsl:apply-templates mode="title245" select="../marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='245' and substring(substring-after(marc:subfield[@code='6'],'-'),1,2)=$vOccurrence]">
-                <xsl:with-param name="serialization" select="$serialization"/>
-                <xsl:with-param name="pSubtitle" select="false()"/>
-                <xsl:with-param name="label" select="$vLinkedLabel"/>
-              </xsl:apply-templates>
-            </xsl:if>
-            -->
-          </bf:Title>
-        </bf:title>
+                  
+              </xsl:if>
+            </xsl:for-each>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="work-title-from-parts">
+                  <xsl:with-param name="vLabel" select="$label" />
+                  <xsl:with-param name="vNonSortNum" select="@ind2" />
+                  <xsl:with-param name="vXmlLang880" select="$vXmlLang880" />
+                  <xsl:with-param name="vLinkedLabel" select="$vLinkedLabel" />
+                </xsl:call-template>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="work-title-from-parts">
+              <xsl:with-param name="vLabel" select="$label" />
+              <xsl:with-param name="vNonSortNum" select="@ind2" />
+              <xsl:with-param name="vXmlLang880" select="$vXmlLang880" />
+              <xsl:with-param name="vLinkedLabel" select="$vLinkedLabel" />
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="work-title-from-parts">
+    <xsl:param name="vNonSortNum" />
+    <xsl:param name="vLabel" />
+    <xsl:param name="vLinkedLabel" />
+    <xsl:param name="vXmlLang880" />
+    <xsl:param name="vTitleClass" select="'bf:Title'" />
+    <bf:title>
+      <xsl:element name="{$vTitleClass}">
+        <xsl:if test="$vNonSortNum != '' and $vNonSortNum != '0' and $vNonSortNum != ' '">
+          <bflc:nonSortNum>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="@ind2" />
+          </bflc:nonSortNum>
+        </xsl:if>
+        <bf:mainTitle>
+          <xsl:call-template name="tChopPunct">
+            <xsl:with-param name="pString" select="$vLabel"/>
+          </xsl:call-template>
+        </bf:mainTitle>
+        <xsl:if test="$vLinkedLabel != ''">
+          <bf:mainTitle>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+            </xsl:if>
+            <xsl:call-template name="tChopPunct">
+              <xsl:with-param name="pString" select="$vLinkedLabel"/>
+            </xsl:call-template>
+          </bf:mainTitle>
+        </xsl:if>
+      </xsl:element>
+    </bf:title>
   </xsl:template>
 
   <xsl:template match="marc:datafield[@tag='245' or @tag='880']" mode="work245">
@@ -455,6 +622,8 @@
               <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
             </xsl:if>
             <xsl:call-template name="tChopPunct">
+              <!-- Allow equal sign. -->
+              <xsl:with-param name="pEndPunct" select="'.:;,/'"/>
               <xsl:with-param name="pString" select="."/>
             </xsl:call-template>
           </bf:mainTitle>
