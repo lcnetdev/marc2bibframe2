@@ -296,6 +296,10 @@
             <xsl:for-each select="$label-cNS/item">
               <xsl:variable name="lc" select="."/>
               <xsl:variable name="pos" select="position()"/>
+              <!-- 
+                  Logic here is tricky.  The idea is: 
+                      "if there is no 246 $a whose value is found in the parallel title."
+              --> 
               <xsl:if test="not($df246s/marc:subfield[@code = 'a' and contains($lc, .)])">
                   <!--
                   <xsl:if test="@ind2 != '0' and @ind2 != ' '">
@@ -321,7 +325,8 @@
                       </xsl:otherwise>
                     </xsl:choose>
                   </xsl:variable>
-                  <xsl:variable name="tStartsUpper">
+                  
+                <xsl:variable name="tStartsUpper">
                     <xsl:call-template name="isUpper">
                       <xsl:with-param name="text" select="substring($t, 1, 1)" />
                     </xsl:call-template>
@@ -331,14 +336,19 @@
                     <xsl:choose>
                       <xsl:when test="$tStartsUpper = '0' and $pos != '1'">
                         <xsl:choose>
-                          <xsl:when test="contains($label-cNS/item[1], ' :')">
+                          <xsl:when test="contains($label-cNS/item[1], ' : ')">
                             <xsl:variable name="lIndex">
                               <xsl:call-template name="tLastIndex">
                                 <xsl:with-param name="pString" select="$label-cNS/item[1]" />
                                 <xsl:with-param name="pSearch" select="' : '"></xsl:with-param>
                               </xsl:call-template>
                             </xsl:variable>
-                            <xsl:value-of select="concat(substring($label-cNS/item[1], 1, $lIndex), $t)"/>
+                            <xsl:variable name="tfinal">
+                              <xsl:call-template name="tChopPunct">
+                                <xsl:with-param name="pString" select="substring($label-cNS/item[1], 1, ($lIndex - 1))"/>
+                              </xsl:call-template>
+                            </xsl:variable>
+                            <xsl:value-of select="concat($tfinal, ' : ', $t)"/>
                           </xsl:when>
                           <xsl:otherwise>
                             <xsl:value-of select="concat($label-cNS/item[1], ' : ', $t)"/>
