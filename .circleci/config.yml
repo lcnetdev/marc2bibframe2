@@ -18,8 +18,8 @@ jobs:
       - run:
           name: Install testing prerequisites
           command: |
-            # sudo apt-get update
-            # sudo apt-get install -y xsltproc
+            sudo apt-get update
+            sudo apt-get install -y xsltproc
             mkdir /tmp/saxon/
             mkdir /tmp/saxon/lib/
             
@@ -46,6 +46,9 @@ jobs:
       - run:
           name: Run LoC-specific test suite
           command: "$XSPEC test/ConvSpec-DLC.xspec"
+      - run:
+          name: Compare libxslt and Saxon output
+          command: SAXON_CP=${SAXON_CP:-/tmp/saxon/saxon-he-12.4.jar} ./test/compare-processors.sh
       - store_artifacts:
           path: test/xspec/marc2bibframe2-result.html
           destination: xspec-tests/marc2bibframe2-result.html

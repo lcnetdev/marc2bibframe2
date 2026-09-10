@@ -185,6 +185,22 @@ LoC-specific conversions, run only the ConvSpec-DLC.xspec test suite:
 
     xspec.sh test/ConvSpec-DLC.xspec
 
+### Testing against libxslt
+
+The XSpec suite runs under Saxon. A construct that Saxon evaluates correctly
+and libxslt does not will pass it and still produce wrong output for the many
+downstream users on libxslt -- lxml, Nokogiri, PHP's XSL extension,
+XML::LibXSLT and `xsltproc` itself. To catch that, `test/compare-processors.sh`
+converts the same records with both processors and requires the results to
+match:
+
+    SAXON_CP=/tmp/saxon/saxon-he-12.4.jar ./test/compare-processors.sh
+
+Both results are rendered through `test/normalize.xsl` first, by the same
+processor, so indentation, attribute order and where namespace declarations
+land are not treated as differences. With no arguments the script checks the
+records named in its `DEFAULT_FILES`; pass paths to check others.
+
 ## Active record conversion
 
 Active conversion of records - resolving URIs for elements of the
