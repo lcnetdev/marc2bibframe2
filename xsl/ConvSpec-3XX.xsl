@@ -145,6 +145,17 @@
                   </xsl:call-template>
                 </rdfs:label>
               </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='h']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Sensory hazards: </xsl:text>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
+                  </xsl:call-template>
+                </rdfs:label>
+              </xsl:for-each>
               <xsl:apply-templates select="../marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
