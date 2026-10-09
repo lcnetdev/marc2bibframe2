@@ -252,6 +252,30 @@
           <xsl:with-param name="serialization" select="$serialization"/>
           <xsl:with-param name="dataElements" select="substring(.,19,17)"/>
         </xsl:call-template>
+        <!-- Putting this here because access to the XML tree is needed. -->
+        <xsl:if test="not(../marc:datafield[@tag='385'])">
+          <xsl:variable name="iaCode" select="substring(substring(.,19,17),5,1)"/>
+          <xsl:if test="contains('abcdj', $iaCode)">
+            <xsl:for-each select="$codeMaps/maps/iaTOlcdgtMap[@iaCode=$iaCode]/lcdgt">
+              <bf:intendedAudience>
+                <bf:IntendedAudience>
+                  <xsl:attribute name="rdf:about"><xsl:value-of select="@uri"/></xsl:attribute>
+                  <rdfs:label><xsl:value-of select="." /></rdfs:label>
+                  <bflc:demographicGroup>
+                    <bflc:DemographicGroup rdf:about="http://id.loc.gov/authorities/demographicTerms/age">
+                      <rdfs:label>Age group</rdfs:label>
+                    </bflc:DemographicGroup>
+                  </bflc:demographicGroup>
+                  <bf:source>
+                    <bf:Source rdf:about="http://id.loc.gov/authorities/demographicTerms">
+                      <rdfs:label>LC Demographic Terms</rdfs:label>
+                    </bf:Source>
+                  </bf:source>
+                </bf:IntendedAudience>
+              </bf:intendedAudience>
+            </xsl:for-each>
+          </xsl:if>
+        </xsl:if>
       </xsl:when>
       <!-- computer files -->
       <xsl:when test="$vMaterialType='CF'">
