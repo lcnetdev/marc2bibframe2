@@ -305,12 +305,14 @@
               <xsl:with-param name="str" select="normalize-space(.)"/>
             </xsl:call-template>
           </xsl:variable>
-          <bf:descriptionAuthentication>
-            <bf:DescriptionAuthentication>
-              <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
-              <bf:code><xsl:value-of select="."/></bf:code>
-            </bf:DescriptionAuthentication>
-          </bf:descriptionAuthentication>
+          <xsl:if test="position() = '1' or not(preceding-sibling::marc:subfield[@code = 'a' and . = $encoded])">
+            <bf:descriptionAuthentication>
+              <bf:DescriptionAuthentication>
+                <xsl:attribute name="rdf:about"><xsl:value-of select="concat($marcauthen,$encoded)"/></xsl:attribute>
+                <bf:code><xsl:value-of select="."/></bf:code>
+              </bf:DescriptionAuthentication>
+            </bf:descriptionAuthentication>
+          </xsl:if>
         </xsl:for-each>
       </xsl:when>
     </xsl:choose>
@@ -795,29 +797,36 @@
             </xsl:when>
           </xsl:choose>
         </xsl:for-each>
-        <xsl:for-each select="marc:subfield[@code='b' or @code='c']">
+        <xsl:if test="marc:subfield[@code='b'] and marc:subfield[@code='2']">
+          <xsl:for-each select="marc:subfield[@code='b']">
+            <xsl:choose>
+              <xsl:when test="$serialization='rdfxml'">
+                <bf:geographicCoverage>
+                  <bf:GeographicCoverage>
+                    <rdf:value><xsl:value-of select="."/></rdf:value>
+                    <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                    <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='0']" mode="subfield0orw">
+                      <xsl:with-param name="serialization" select="$serialization"/>
+                    </xsl:apply-templates>
+                  </bf:GeographicCoverage>
+                </bf:geographicCoverage>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:for-each>
+        </xsl:if>
+        <xsl:for-each select="marc:subfield[@code='c']">
           <xsl:choose>
             <xsl:when test="$serialization='rdfxml'">
               <bf:geographicCoverage>
                 <bf:GeographicCoverage>
                   <rdf:value><xsl:value-of select="."/></rdf:value>
-                  <xsl:choose>
-                    <xsl:when test="@code='c'">
-                      <bf:source>
-                        <bf:Source>
-                          <bf:code>ISO 3166</bf:code>
-                        </bf:Source>
-                      </bf:source>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='2']" mode="subfield2">
-                        <xsl:with-param name="serialization" select="$serialization"/>
-                      </xsl:apply-templates>
-                      <xsl:apply-templates select="following-sibling::*[position()=1 or position()=2][@code='0']" mode="subfield0orw">
-                        <xsl:with-param name="serialization" select="$serialization"/>
-                      </xsl:apply-templates>
-                    </xsl:otherwise>
-                  </xsl:choose>
+                  <bf:source>
+                    <bf:Source>
+                      <bf:code>ISO 3166</bf:code>
+                    </bf:Source>
+                  </bf:source>
                 </bf:GeographicCoverage>
               </bf:geographicCoverage>
             </xsl:when>
