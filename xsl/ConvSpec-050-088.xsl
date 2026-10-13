@@ -462,6 +462,7 @@
     <xsl:choose>
       <xsl:when test="$serialization = 'rdfxml'">
         <xsl:variable name="df082" select="." />
+        <xsl:variable name="df040a" select="../marc:datafield[@tag='040']/marc:subfield[@code='a'][1]" />
         <xsl:for-each select="marc:subfield[@code='a']">
           <xsl:variable name="sfPos" select="position()" />
           <bf:classification>
@@ -483,29 +484,29 @@
                   </bf:itemPortion>
                 </xsl:if>
               </xsl:if>
-              <xsl:apply-templates select="marc:subfield[@code='2']" mode="subfield2">
+              <xsl:apply-templates select="$df082/marc:subfield[@code='2']" mode="subfield2">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
               <xsl:choose>
-                <xsl:when test="@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
-                <xsl:when test="@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
+                <xsl:when test="$df082/@ind1 = '0'"><bf:edition>full</bf:edition></xsl:when>
+                <xsl:when test="$df082/@ind1 = '1'"><bf:edition>abridged</bf:edition></xsl:when>
               </xsl:choose>
               <xsl:choose>
-                <xsl:when test="@ind2 = '0'">
+                <xsl:when test="$df082/@ind2 = '0'">
                   <bf:assigner>
                     <bf:Agent>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
                     </bf:Agent>
                   </bf:assigner>
                 </xsl:when>
-                <xsl:when test="marc:subfield[@code='q']">
+                <xsl:when test="$df082/marc:subfield[@code='q']">
                   <bf:assigner>
                     <bf:Agent>
-                      <rdfs:label><xsl:value-of select="marc:subfield[@code='q']"/></rdfs:label>
+                      <rdfs:label><xsl:value-of select="$df082/marc:subfield[@code='q']"/></rdfs:label>
                     </bf:Agent>
                   </bf:assigner>
                 </xsl:when>
-                <xsl:when test="@ind2 = ' ' and contains(../marc:datafield[@tag='040']/marc:subfield[@code='a'][1], 'DLC')">
+                <xsl:when test="$df082/@ind2 = ' ' and contains($df040a, 'DLC')">
                   <bf:assigner>
                     <bf:Agent>
                       <xsl:attribute name="rdf:about"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
