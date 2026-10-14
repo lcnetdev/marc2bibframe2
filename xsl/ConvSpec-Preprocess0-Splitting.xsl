@@ -23,7 +23,7 @@
       LoC for conversion. By default these fields will not be
       converted unless this parameter evaluates to true()
   -->
-  <xsl:param name="localfields" select="true()" />
+  <xsl:param name="localfields" select="false()" />
   
   <!--
       Infer script from BCP47 code.
