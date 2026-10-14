@@ -366,6 +366,13 @@
               </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
+          <xsl:if test="$localfields">
+            <xsl:for-each select="marc:datafield[contains(@tag, '9')]">
+              <bflc:marcKey>
+                <xsl:apply-templates select="." mode="marcKey" />
+              </bflc:marcKey>
+            </xsl:for-each>
+          </xsl:if>
         </bf:AdminMetadata>
       </bf:adminMetadata>
     </xsl:variable>
@@ -463,21 +470,38 @@
               </xsl:otherwise>
             </xsl:choose>
             <!-- generate hasItem properties -->
+            <xsl:variable name="vOrgCode">
+              <xsl:variable name="vLastSlash">
+                <xsl:call-template name="tLastIndex">
+                  <xsl:with-param name="pString" select="$idsource"/>
+                  <xsl:with-param name="pSearch" select="'/'"/>
+                </xsl:call-template>
+              </xsl:variable>
+              <xsl:variable name="vCode" select="substring($idsource, $vLastSlash + 1)" />
+              <xsl:choose>
+                <xsl:when test="$vCode != '' and $vCode='dlcmrc'">dlc</xsl:when>
+                <xsl:when test="$vCode != ''">
+                  <xsl:value-of select="translate($vCode, $upper, $lower)"/>
+                </xsl:when>
+                <xsl:otherwise>dlc</xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+            
             <xsl:if test="marc:datafield[@tag='051'] or
                           marc:datafield[@tag='541'] or
                           marc:datafield[@tag='880' and substring(marc:subfield[@code='6'],1,3)='541'] or 
-                          ($localfields and marc:datafield[marc:subfield[@code='5']='DLC'])">
+                          ($localfields and marc:datafield[translate(marc:subfield[@code='5'], $upper, $lower)=$vOrgCode])">
                 <bf:hasItem>
                     <bf:Item>
                       <xsl:attribute name="rdf:about">
                         <xsl:value-of select="concat($recordid,'#Item')"/>
                       </xsl:attribute>
                       <bf:heldBy>
-                        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,'dlc')"/></xsl:attribute>
+                        <xsl:attribute name="rdf:resource"><xsl:value-of select="concat($organizations,$vOrgCode)"/></xsl:attribute>
                       </bf:heldBy>
                       <xsl:choose>
                         <xsl:when test="$vCount880 = 0">
-                          <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="work">
+                          <xsl:apply-templates select="marc:datafield[translate(marc:subfield[@code='5'], $upper, $lower)=$vOrgCode]" mode="work">
                             <xsl:with-param name="recordid" select="$recordid"/>
                             <xsl:with-param name="serialization" select="$serialization"/>
                             <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
@@ -485,7 +509,7 @@
                           </xsl:apply-templates>
                         </xsl:when>
                         <xsl:otherwise>
-                          <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="mProcessWork880">
+                          <xsl:apply-templates select="marc:datafield[translate(marc:subfield[@code='5'], $upper, $lower)=$vOrgCode]" mode="mProcessWork880">
                             <xsl:with-param name="recordid" select="$recordid"/>
                             <xsl:with-param name="serialization" select="$serialization"/>
                             <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
@@ -495,7 +519,7 @@
                       </xsl:choose>
                       <xsl:choose>
                           <xsl:when test="$vCount880 = 0">
-                            <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="instance">
+                            <xsl:apply-templates select="marc:datafield[translate(marc:subfield[@code='5'], $upper, $lower)=$vOrgCode]" mode="instance">
                               <xsl:with-param name="recordid" select="$recordid"/>
                               <xsl:with-param name="serialization" select="$serialization"/>
                               <xsl:with-param name="pInstanceType" select="$vInstanceType"/>
@@ -503,7 +527,7 @@
                             </xsl:apply-templates>
                           </xsl:when>
                           <xsl:otherwise>
-                            <xsl:apply-templates select="marc:datafield[marc:subfield[@code='5']='DLC']" mode="mProcessInstance880">
+                            <xsl:apply-templates select="marc:datafield[translate(marc:subfield[@code='5'], $upper, $lower)=$vOrgCode]" mode="mProcessInstance880">
                               <xsl:with-param name="recordid" select="$recordid"/>
                               <xsl:with-param name="serialization" select="$serialization"/>
                               <xsl:with-param name="pInstanceType" select="$vInstanceType"/>

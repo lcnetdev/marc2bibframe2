@@ -37,7 +37,7 @@
             <xsl:apply-templates select="../marc:controlfield[@tag = '008']" mode="process8"/>
         </xsl:variable>
         <xsl:variable name="cf008data" select="exsl:node-set($cf008data-prenodeset)"/>
-        <!--<xsl:copy-of select="$cf008data" />-->
+        <!-- <xsl:message><xsl:copy-of select="$cf008data" /></xsl:message> -->
 
         <!--
             This variable looks like:
@@ -185,6 +185,8 @@
                             </xsl:variable>
                             <xsl:choose>
                                 <xsl:when test="$cf008data/paGroup[type = 'Copyright']/bf:*">
+                                    <xsl:copy-of select="$cf008data/paGroup[type = 'Copyright']/bf:*"/>
+                                    <!--
                                     <xsl:if test="$cf008data/paGroup[type = 'Copyright']/bf:copyrightDate[. = $dfCopyrightD]">
                                         <xsl:copy-of select="$cf008data/paGroup[type = 'Copyright']/bf:*"/>    
                                     </xsl:if>
@@ -198,6 +200,7 @@
                                             <xsl:value-of select="$dfCopyrightD"/>
                                         </bf:copyrightDate>
                                     </xsl:if>
+                                    -->
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <bf:copyrightDate>

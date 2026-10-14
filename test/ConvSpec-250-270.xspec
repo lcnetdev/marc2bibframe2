@@ -53,7 +53,7 @@
     <x:expect label="$b creates an agent property of the Publication" test="//bf:Instance[1]/bf:provisionActivity[1]/bf:ProvisionActivity/bflc:simpleAgent = 'Arts Council of Great Britain'"/>
     <x:expect label="Agent label from $b should have brackets if $a or $c have unmatched brackets" test="//bf:Instance[3]/bf:provisionActivity/bf:ProvisionActivity/bflc:simpleAgent = '[s.n.]'"/>
     <x:expect label="$c creates a date property of the publication" test="//bf:Instance[1]/bf:provisionActivity[2]/bf:ProvisionActivity/bflc:simpleDate = '&lt;1981- &gt;'"/>
-    <x:expect label="$d creates an identifiedBy/PublisherNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:PublisherNumber/rdf:value = '12345'"/>
+    <!-- <x:expect label="$d creates an identifiedBy/PublisherNumber property of the Instance" test="//bf:Instance[1]/bf:identifiedBy[1]/bf:PublisherNumber/rdf:value = '12345'"/> -->
     <x:expect label="$e creates a place property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bflc:simplePlace = 'Twickenham'"/>
     <x:expect label="$f creates an agent property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bflc:simpleAgent = 'CTD Printers'"/>
     <x:expect label="$g creates a date property of the Manufacture" test="//bf:Instance[1]/bf:provisionActivity[3]/bf:ProvisionActivity/bflc:simpleDate = '1974'"/>

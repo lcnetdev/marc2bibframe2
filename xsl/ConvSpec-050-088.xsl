@@ -469,7 +469,7 @@
             <bf:ClassificationDdc>
               <xsl:if test="$df082/marc:subfield[@code='1'][$sfPos]">
                 <xsl:attribute name="rdf:about">
-                  <xsl:apply-templates select="." mode="generateUriFrom1">
+                  <xsl:apply-templates select="$df082" mode="generateUriFrom1">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
                 </xsl:attribute>
