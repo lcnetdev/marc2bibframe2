@@ -170,12 +170,40 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:if>
-        <!-- Output an issuance type based on Leader/07 if there is no 334 present in record. -->
-        <xsl:if test="$issuanceUri != '' and not (../marc:datafield[@tag = '334'])">
-          <bf:issuance>
-            <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
-          </bf:issuance>
-        </xsl:if>
+        <!-- Output an issuance type based on Leader/07. If no Leader/07, output 334 if it exists. -->
+        <xsl:choose>
+          <xsl:when test="$issuanceUri != ''">
+            <bf:issuance>
+              <xsl:attribute name="rdf:resource"><xsl:value-of select="$issuanceUri"/></xsl:attribute>
+            </bf:issuance>
+          </xsl:when>
+          <xsl:when test="contains(../marc:datafield[@tag = '334']/marc:subfield[@code = '0'], 'id.loc.gov')">
+            <xsl:variable name="vals" select="../marc:datafield[@tag = '334']/marc:subfield[@code = '0' and contains(., 'id.loc.gov')]"/>
+            <xsl:for-each select="$vals">
+              <bf:issuance>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+              </bf:issuance>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:when test="../marc:datafield[@tag = '334']/marc:subfield[@code = 'b']">
+            <xsl:variable name="vals" select="../marc:datafield[@tag = '334']/marc:subfield[@code = 'b']"/>
+            <xsl:for-each select="$vals">
+              <bf:issuance>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="."/></xsl:attribute>
+              </bf:issuance>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:when test="../marc:datafield[@tag = '334']/marc:subfield[@code = 'a']">
+            <xsl:variable name="vals" select="../marc:datafield[@tag = '334']/marc:subfield[@code = 'a']"/>
+            <xsl:for-each select="$vals">
+              <bf:issuance>
+                <bf:Issuance>
+                  <rdfs:label><xsl:value-of select="."/></rdfs:label>
+                </bf:Issuance>
+              </bf:issuance>
+            </xsl:for-each>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
