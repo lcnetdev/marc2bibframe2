@@ -145,7 +145,7 @@
     <xsl:variable name="issuanceUri">
       <xsl:choose>
         <xsl:when test="substring(.,8,1) = 'a'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
-        <xsl:when test="substring(.,8,1) = 'b'"><xsl:value-of select="concat($issuance,'serl')"/></xsl:when>
+        <xsl:when test="substring(.,8,1) = 'b'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'c'"><xsl:value-of select="concat($issuance,'mulm')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'd'"><xsl:value-of select="concat($issuance,'mono')"/></xsl:when>
         <xsl:when test="substring(.,8,1) = 'i'"><xsl:value-of select="concat($issuance,'intg')"/></xsl:when>

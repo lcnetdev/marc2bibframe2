@@ -256,7 +256,7 @@
         <xsl:if test="not(../marc:datafield[@tag='385'])">
           <xsl:variable name="iaCode" select="substring(substring(.,19,17),5,1)"/>
           <xsl:if test="contains('abcdj', $iaCode)">
-            <xsl:for-each select="$codeMaps/maps/iaTOlcdgtMap[@iaCode=$iaCode]/lcdgt">
+            <xsl:for-each select="$codeMaps/maps/iaTOlcdgtMap/iaTOlcdgt[@iacode=$iaCode]/lcdgt">
               <bf:intendedAudience>
                 <bf:IntendedAudience>
                   <xsl:attribute name="rdf:about"><xsl:value-of select="@uri"/></xsl:attribute>
