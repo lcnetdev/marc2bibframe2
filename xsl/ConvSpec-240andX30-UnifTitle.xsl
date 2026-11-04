@@ -336,9 +336,11 @@
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
+          <!--
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
+          -->
         </xsl:if>
         
         <!-- marcKey -->

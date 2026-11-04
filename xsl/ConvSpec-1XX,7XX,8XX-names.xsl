@@ -319,9 +319,11 @@
                 </xsl:choose>
               </xsl:otherwise>
             </xsl:choose>
+            <!--
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </bf:Contribution>
         </bf:contribution>
       </xsl:when>

@@ -1611,11 +1611,13 @@
                 <xsl:with-param name="serialization" select="$serialization"/>
                 <xsl:with-param name="pVocabStem" select="$fingerprintschemes"/>
               </xsl:apply-templates>
+              <!--
               <xsl:for-each select="marc:subfield[@code='5']">
                 <xsl:apply-templates select="." mode="subfield5">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:for-each>
+              -->
             </bf:Fingerprint>
           </bf:identifiedBy>
         </xsl:when>
@@ -1706,11 +1708,13 @@
                   </bf:Note>
                 </bf:note>
               </xsl:for-each>
+              <!--
               <xsl:for-each select="marc:subfield[@code='5']">
                 <xsl:apply-templates select="." mode="subfield5">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
               </xsl:for-each>
+              -->
             </bf:AcquisitionSource>
           </bf:acquisitionSource>
         </xsl:when>

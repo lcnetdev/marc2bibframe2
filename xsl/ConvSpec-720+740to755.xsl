@@ -144,9 +144,11 @@
                       </xsl:call-template>
                     </bf:partName>
                   </xsl:for-each>
+                  <!--
                   <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
                     <xsl:with-param name="serialization" select="$serialization"/>
                   </xsl:apply-templates>
+                  -->
                 </bf:Work>
               </bf:associatedResource>
             </bf:Relation>
