@@ -765,9 +765,11 @@
               <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              <!--
               <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              -->
             </bf:AccessPolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
@@ -945,9 +947,11 @@
               <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              <!--
               <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              -->
             </bf:SystemRequirement>
           </bf:systemRequirement>
         </xsl:when>
@@ -1020,9 +1024,11 @@
               <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              <!--
               <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              -->
             </bf:UsePolicy>
           </bf:usageAndAccessPolicy>
           </xsl:if>
@@ -1204,9 +1210,11 @@
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <!--
             <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </bf:Note>
         </bf:note>
       </xsl:when>
@@ -1284,9 +1292,11 @@
             <xsl:apply-templates select="marc:subfield[@code='3']" mode="subfield3">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <!--
             <xsl:apply-templates select="marc:subfield[@code='5']" mode="subfield5">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </bf:ImmediateAcquisition>
         </bf:immediateAcquisition>
       </xsl:when>

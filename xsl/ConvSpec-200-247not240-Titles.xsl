@@ -754,9 +754,11 @@
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
             </xsl:if>
+            <!--
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </xsl:element>
         </bf:title>
       </xsl:when>
