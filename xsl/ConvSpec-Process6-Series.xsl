@@ -518,9 +518,11 @@
                 </xsl:for-each>              
               
                 <!-- $3 processed by hubUnifTitle template -->
+                <!--
                 <xsl:apply-templates mode="subfield5" select="marc:subfield[@code = '5']">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
+                -->
                 <xsl:apply-templates mode="subfield7" select="marc:subfield[@code = '7']">
                   <xsl:with-param name="serialization" select="$serialization"/>
                 </xsl:apply-templates>
