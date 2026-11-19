@@ -1,5 +1,17 @@
 # marc2bibframe2 release notes
 
+## v3.2.0
+
+Conversion updates based on specifications v3.2. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:
+
+* Parallel titles in the MARC 245 field that are separated by = signs will create multiple bf:ParallelTitle resources in the Work. The creation of Instance title resources is unchanged.
+* The creation of bflc:applicableInstitution resources for MARC fields that contain a $5 has been discontinued.
+* New codes and subfields from the latest MARC21 update have been added.
+* Separate bf:classification resources will be created if a MARC 050 or 082 field contains multiple $a subfields.
+
+See the [NEWS](NEWS) file and the [updated specifications](spec/) for full details of changes. Changes from v3.1.0 in the specifications are marked in red.
+
+
 ## v3.1.0
 
 Conversion updates based on specifications v3.1. See the Library of Congress’s [BIBFRAME site](https://www.loc.gov/bibframe/) for more details. Specifications are included in the distribution in the [spec](spec/) directory. Changes of note:

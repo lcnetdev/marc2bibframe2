@@ -97,10 +97,9 @@
     <x:expect label="$a creates a subject/Topic (or other) property of the Work" test="//bf:Work[1]/bf:subject[18]/bf:Topic/rdfs:label = 'fossil'"/> 
     <x:expect label="is identified as an Uncontrolled resource" test="//bf:Work[1]/bf:subject[18]/bf:Topic/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
     
-    <x:expect label="ind2 determine the class of the created object" test="local-name(//bf:Work[1]/bf:subject[19]/*) = 'Topic'"/>
-    <x:expect label="$a creates a subject/Topic (or other) property of the Work" test="//bf:Work[1]/bf:subject[19]/bf:Topic/rdfs:label = 'fossil'"/>
-    <x:expect label="$5 creates an applicationInstitution property of the Work" test="//bf:Work[1]/bf:subject[19]/bf:Topic/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
-    <x:expect label="is identified as an Uncontrolled resource" test="//bf:Work[1]/bf:subject[19]/bf:Topic/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
+    <x:expect label="ind2 determine the class of the created object" test="local-name(//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:subject[1]/*) = 'Topic'"/>
+    <x:expect label="$a creates a subject/Topic (or other) property of the Work" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:subject[1]/bf:Topic/rdfs:label = 'fossil'"/>
+    <x:expect label="is identified as an Uncontrolled resource" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:subject[1]/bf:Topic/rdf:type/@rdf:resource = 'http://id.loc.gov/ontologies/bflc/Uncontrolled'"/>
   </x:scenario>
   
   <x:scenario label="655 - INDEX TERM--GENRE/FORM">
