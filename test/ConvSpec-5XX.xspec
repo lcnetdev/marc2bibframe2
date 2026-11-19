@@ -10,18 +10,75 @@
                stylesheet="../xsl/marc2bibframe2.xsl"
                xslt-version="1.0">
 
+  <x:scenario label="5XXs with $5s - Create notes on Item">
+    <x:context href="data/ConvSpec-5XX/marc-dollar5s.xml"/>
+    
+    <x:expect label="500 with $5 creates a note property of the Item" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[1]/bf:Note/rdfs:label = 'From the papers of the Chase family.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[1]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some stuff'"/>
+    
+    <x:expect label="501 with $5 creates a note/Note property of the Item with noteType 'with'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/with'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[2]/bf:Note/rdfs:label = 'With: The reformed school / John Dury. London : Printed for R. Wasnothe, [1850]'"/>
+    
+    <x:expect label="506 with $5 creates a usageAndAccessPolicy/AccessPolicy of the Item" test="count(//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[1]/bf:AccessPolicy) = 1"/>
+    <x:expect label="$g creates a validDate property of the AccessPolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:validDate[1]='2019-02-07'" />
+    <x:expect label="$u creates an electronicLocator property of the AccessPolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:electronicLocator/@rdf:resource = 'https://www.local.org/license.txt'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the AccessPolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
+    
+    <x:expect label="533 creates a note/Note property of the Item with label from $abcdefn" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[3]/bf:Note/rdfs:label = 'Microfilm. Middleton, Conn., Wesleyan University Archives, 1973 35 mm. negative. (Current periodical series : publication no. 2313). Issues for 1853-1856 on reel with: Journal of the American Temperance Union and the New York prohibitionist, v. 21, no. 7 (July 1857)-v. 24 (1860).'"/>
+    <x:expect label="533 creates a noteType 'repro'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[3]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/repro'"/>
+    <x:expect label="$m creates a bflc:appliesTo property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[3]/bf:Note/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = '1962-1965'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[3]/bf:Note/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'Correspondence files'"/>
+    
+    <x:expect label="538 creates a systemRequirement/SystemRequirement property on the Item" test="count(//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:systemRequirement/bf:SystemRequirement) = 1"/>
+    <x:expect label="$a creates an rdfs:label property of the SystemRequirement" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label[1] = 'Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.'"/>
+    <x:expect label="$u creates an electronicLocator property of the SystemRequirement" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:systemRequirement[1]/bf:SystemRequirement/bf:electronicLocator/@rdf:resource = 'http://www.diglib.org/standards/bmarkfin.htm'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the SystemRequirement" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:systemRequirement[1]/bf:SystemRequirement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'v.1-49(1927-1975)'"/>
+    
+    <x:expect label="540 creates a usageAndAccessPolicy/UsePolicy property of the Item" test="count(//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy/bf:UsePolicy) = 1"/>
+    <x:expect label="$acq creates an rdfs:label property of the UsePolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[2]/bf:UsePolicy/rdfs:label[1] = 'Photocopying prohibited; 50 Stat.88; Executor of estate. DLC'"/>
+    <!-- <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/> -->
+    <x:expect label="$u creates an electronicLocator property of the UsePolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:electronicLocator/@rdf:resource = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
+    
+    <x:expect label="541 creates a new Item with an immediateAcquisition/ImmediateAcquisition property on Item" test="count(//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:immediateAcquisition/bf:ImmediateAcquisition) = 1"/>
+    <x:expect label="$abcdefhno creates an rdfs:label property of the ImmediateAcquistion" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:immediateAcquisition[1]/bf:ImmediateAcquisition/rdfs:label = '25 reels of microfilm U.S. Department of Transportation; Transfer under schedule; 1980/01/10.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the ImmediateAcquisition" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:immediateAcquisition/bf:ImmediateAcquisition/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Materials scheduled for permanent retention'"/>
+    
+    <x:expect label="561 with $5 creates a custodialHistory property on Item" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:custodialHistory = 'LC copy has something special about it.'"/>
+    
+    <x:expect label="563 with $5 creates a note/Note property of an Item with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/binding'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[4]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/binding'"/>
+    <x:expect label="$a creates an rdfs:label property of the note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[4]/bf:Note/rdfs:label = 'LC copy binding is something special indeed!'"/>
+    
+    <x:expect label="583 with $5 creates a note/Note property of an Item with a noteType 'action'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/action'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/rdfs:label[1] = 'upgraded'"/>
+    <x:expect label="$c creates a date property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:date = '19920110'"/>
+    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/rdfs:label[2] = 'Guy 1'"/>
+    <x:expect label="$k creates an agent property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:agent/bf:Agent/rdfs:label = 'Gal 2'"/>
+    <x:expect label="$l creates a status property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:status/bf:Status/rdfs:label = 'mutilated'"/>
+    <x:expect label="$u creates an electronicLocator property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:electronicLocator/@rdf:resource = 'http://karamelik.eastlib.ufl.edu/domain/no/existy.pl'"/>
+    <x:expect label="$z creates a note/Note property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:note/bf:Note/rdfs:label = 'Institute for Museum and Library Services grant'"/>
+    <x:expect label="$2 creates a source property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[5]/bf:Note/bf:source/bf:Source/bf:code = 'pda'"/>
+    
+    <x:expect label="585 creates a note/Note property of the Item with noteType 'exhibit'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[6]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/exhibit'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[6]/bf:Note/rdfs:label = 'Exhibited: &quot;Le Brun à Versailles,&quot; sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.'"/>
+    <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[6]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Color lithographs'"/>
+    
+    <x:expect label="588 creates a note/Note property of the Item with noteType 'descsource'" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[7]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/descsource'"/>
+    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[7]/bf:Note/rdfs:label = 'Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.'"/>
+    <x:expect label="Display constant can be generated by ind1" test="//bf:Item[bf:heldBy/@rdf:resource='http://id.loc.gov/vocabulary/organizations/dlc']/bf:note[8]/bf:Note/rdfs:label = 'Description based on: Volume 2.'"/>
+  </x:scenario>
+  
+  
   <x:scenario label="500 - GENERAL NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="500 creates a note property of the Instance" test="//bf:Instance[1]/bf:note[1]/bf:Note/rdfs:label = 'From the papers of the Chase family.'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[1]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Some stuff'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[1]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
   <x:scenario label="501 - WITH NOTE">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="501 creates a note/Note property of the Instance with noteType 'with'" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/with'"/>
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[2]/bf:Note/rdfs:label = 'With: The reformed school / John Dury. London : Printed for R. Wasnothe, [1850]'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[2]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
 
   <x:scenario label="502 - DISSERTATION NOTE">
@@ -55,7 +112,6 @@
     <x:expect label="$g creates a validDate property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:validDate[1]='2019-02-07'" />
     <x:expect label="$u creates an electronicLocator property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:electronicLocator/@rdf:resource = 'https://www.local.org/license.txt'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Office files of Under Secretary'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'MH'"/>
     
     <!-- <x:expect label="$0 creates a URI for the the AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:AccessPolicy/@rdf:about = 'https://www.gnu.org/licenses/gpl-3.0.txt'" /> -->
     <x:expect label="$f is the text for AccessPolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[1]/bf:AccessPolicy/bf:qualifier ='Preview only'" />
@@ -165,7 +221,6 @@
     <x:expect label="...with noteType 'repro'" test="//bf:Instance[1]/bf:note[7]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/repro'"/>
     <x:expect label="$m creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:appliesTo[1]/bflc:AppliesTo/rdfs:label = '1962-1965'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:appliesTo[2]/bflc:AppliesTo/rdfs:label = 'Correspondence files'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[7]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'ICU'"/>
   </x:scenario>
     
   <x:scenario label="534 - ORIGINAL VERSION NOTE">
@@ -197,7 +252,6 @@
     <x:expect label="$a creates an rdfs:label property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/rdfs:label[1] = 'Master and use copy. Digital Master created according to Benchmark for Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library Federation, December 2002.'"/>
     <x:expect label="$u creates an electronicLocator property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bf:electronicLocator/@rdf:resource = 'http://www.diglib.org/standards/bmarkfin.htm'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'v.1-49(1927-1975)'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the SystemRequirement" test="//bf:Instance[1]/bf:systemRequirement[1]/bf:SystemRequirement/bflc:applicableInstitution/bf:Agent/bf:code = 'NIC'"/>
   </x:scenario>
   
   <x:scenario label="540 - TERMS GOVERNING USE AND REPRODUCTION NOTE">
@@ -207,7 +261,7 @@
     <!-- <x:expect label="$d creates a note property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:note/bf:Note/rdfs:label = 'Authorized users: Executor of estate'"/> -->
     <x:expect label="$u creates an electronicLocator property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:electronicLocator/@rdf:resource = 'http://lcweb.loc.gov/rr/print/195_copr.html'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Diaries'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
+
     
     <x:expect label="$f creates an rdfs:label property of the UsePolicy" test="//bf:Instance[1]/bf:usageAndAccessPolicy[2]/bf:UsePolicy/bf:qualifier[1] = 'CC BY-NC-ND'"/>
     <!--
@@ -222,7 +276,6 @@
     <x:expect label="541 creates a new Item with an immediateAcquisition/ImmediateAcquisition property" test="count(//bf:Item/bf:immediateAcquisition/bf:ImmediateAcquisition) = 1"/>
     <x:expect label="$abcdefhno creates an rdfs:label property of the ImmediateAcquistion" test="//bf:Item[1]/bf:immediateAcquisition[1]/bf:ImmediateAcquisition/rdfs:label = '25 reels of microfilm U.S. Department of Transportation; Transfer under schedule; 1980/01/10.'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the ImmediateAcquisition" test="//bf:Item[1]/bf:immediateAcquisition/bf:ImmediateAcquisition/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Materials scheduled for permanent retention'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the ImmediateAcquisition" test="//bf:Item[1]/bf:immediateAcquisition/bf:ImmediateAcquisition/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
   
   <x:scenario label="544 - LOCATION OF OTHER ARCHIVAL MATERIALS NOTE">
@@ -276,15 +329,12 @@
   <x:scenario label="561 - OWNERSHIP AND CUSTODIAL HISTORY">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="561 creates a custodialHistory property on Instance" test="//bf:Instance[1]/bf:custodialHistory = 'On permanent loan from the collection of Paul Mellon.'"/>
-    <x:expect label="561 with $5 creates a custodialHistory property on Item" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:custodialHistory = 'LC copy has something special about it.'"/>
   </x:scenario>
   
   <x:scenario label="563 - BINDING INFORMATION">
     <x:context href="data/ConvSpec-5XX/marc.xml"/>
     <x:expect label="563 creates a note/Note property on Instance with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/binding'" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/binding'"/>
     <x:expect label="$a creates an rdfs:label property of the note" test="//bf:Instance[1]/bf:note[16]/bf:Note/rdfs:label = 'Late 16th century blind-tooled centrepiece binding, dark brown calf.'"/>
-    <x:expect label="563 with $5 creates a note/Note property of an Item with rdf:type 'http://id.loc.gov/vocabulary/mnotetype/binding'" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[3]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/binding'"/>
-    <x:expect label="$a creates an rdfs:label property of the note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[3]/bf:Note/rdfs:label = 'LC copy binding is something special indeed!'"/>
   </x:scenario>
 
   <x:scenario label="580 - LINKING ENTRY COMPLEXITY NOTE">
@@ -311,16 +361,6 @@
     <x:expect label="$u creates an electronicLocator property of the Note" test="//bf:Instance[1]/bf:note[19]/bf:Note/bf:electronicLocator/@rdf:resource = 'http://karamelik.eastlib.ufl.edu/cgi-bin/conserve/rara.pl'"/>
     <x:expect label="$z creates a note/Note property of the Note" test="//bf:Instance[1]/bf:note[19]/bf:Note/bf:note/bf:Note/rdfs:label = 'Institute for Museum and Library Services grant'"/>
     <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:note[19]/bf:Note/bf:source/bf:Source/bf:code = 'pda'"/>
-    
-    <x:expect label="583 with $5 creates a note/Note property of an Item with a noteType 'action'" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/action'"/>
-    <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/rdfs:label[1] = 'upgraded'"/>
-    <x:expect label="$c creates a date property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:date = '19920110'"/>
-    <x:expect label="$h creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/rdfs:label[2] = 'Guy 1'"/>
-    <x:expect label="$k creates an agent property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:agent/bf:Agent/rdfs:label = 'Gal 2'"/>
-    <x:expect label="$l creates a status property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:status/bf:Status/rdfs:label = 'mutilated'"/>
-    <x:expect label="$u creates an electronicLocator property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:electronicLocator/@rdf:resource = 'http://karamelik.eastlib.ufl.edu/domain/no/existy.pl'"/>
-    <x:expect label="$z creates a note/Note property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:note/bf:Note/rdfs:label = 'Institute for Museum and Library Services grant'"/>
-    <x:expect label="$2 creates a source property of the Note" test="//bf:Instance[1]/bf:hasItem/bf:Item/bf:note[4]/bf:Note/bf:source/bf:Source/bf:code = 'pda'"/>
   </x:scenario>
 
   <x:scenario label="585 - EXHIBITIONS NOTE">
@@ -328,7 +368,6 @@
     <x:expect label="585 creates a note/Note property of the Instance with noteType 'exhibit'" test="//bf:Instance[1]/bf:note[21]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/exhibit'"/>
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[21]/bf:Note/rdfs:label = 'Exhibited: &quot;Le Brun à Versailles,&quot; sponsored by the Cabinet des dessins, Musée du Louvre, 1985-1986.'"/>
     <x:expect label="$3 creates a bflc:appliesTo property of the Note" test="//bf:Instance[1]/bf:note[21]/bf:Note/bflc:appliesTo/bflc:AppliesTo/rdfs:label = 'Color lithographs'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[21]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'DLC'"/>
   </x:scenario>
   
   <x:scenario label="586 - AWARDS NOTE">
@@ -351,7 +390,6 @@
     <x:expect label="588 creates a note/Note property of the Instance with noteType 'descsource'" test="//bf:Instance[1]/bf:note[22]/bf:Note/rdf:type/@rdf:resource = 'http://id.loc.gov/vocabulary/mnotetype/descsource'"/>
     <x:expect label="$a creates an rdfs:label property of the Note" test="//bf:Instance[1]/bf:note[22]/bf:Note/rdfs:label = 'Publication to be resumed by F&amp;W Publications, Inc.in Oct. 2009.'"/>
     <x:expect label="Display constant can be generated by ind1" test="//bf:Instance[1]/bf:note[23]/bf:Note/rdfs:label = 'Description based on: Volume 2.'"/>
-    <x:expect label="$5 creates a bflc:applicableInstitution property of the Note" test="//bf:Instance[1]/bf:note[22]/bf:Note/bflc:applicableInstitution/bf:Agent/bf:code = 'EZB'"/>
   </x:scenario>
 
 </x:description>

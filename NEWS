@@ -1,3 +1,24 @@
+--- 3.2.0 2025/11/19
+Changes for updated v3.2.0 specifications:
+    ConvSpec-006-008
+		Added mapping for new continuing resources codes in 008/21.
+		Added mapping of intended audience codes in 008/22 to LCDGT labels and URIs.
+    ConvSpec-010-048
+		General data cleanup - do not convert 043 $b if $2 does not exist.
+    ConvSpec-050-088
+		Create separate bf:classification resources for each occurrence of $a in 050 and 082 fields.
+    ConvSpec-200-247
+		Changed creation of Work title resources for parallel titles. If a 245 field contains titles separated by = signs, separate bf:ParallelTitle resources are created. Creation of title resources in Instances is unchanged.
+    ConvSpec-250-270
+		General data cleanup - do not convert 260 $d
+    ConvSpec-3XX
+		Added conversion of new $h, $7 values in 341 field.
+    ConvSpec-LDR
+		Changed conversion of L/07=b from "serial" to "single unit"
+    ConvSpec-NumericSubfields
+		Removed creation of bflc:applicableInstitution resources from $5 instructions.
+
+
 --- 3.1.0 2025/04/15
 Changes for updated v3.1.0 specifications:
     ConvSpec-001-007
