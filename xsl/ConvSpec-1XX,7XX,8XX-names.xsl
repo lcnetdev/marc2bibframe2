@@ -135,13 +135,18 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:variable name="vXmlLang"><xsl:apply-templates select="." mode="xmllang"/></xsl:variable>
     <xsl:choose>
-      <xsl:when test="marc:subfield[@code='t']">
+      <xsl:when test="marc:subfield[@code='t'] or 
+                      (
+                        not(marc:subfield[@code='t']) and
+                        marc:subfield[@code='k'] 
+                      )">
         <xsl:variable name="vProp">
           <xsl:choose>
             <xsl:when test="@ind2='2'">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
             <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
             <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
+            <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='expression of'">http://id.loc.gov/vocabulary/relationship/expressionof</xsl:when>
             <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -152,7 +157,7 @@
                   <bf:relationship>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$vProp"/></xsl:attribute>
                   </bf:relationship>
-                  <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='is translation of']">
+                  <xsl:for-each select="marc:subfield[@code='i' and .!='is arrangement of' and .!='expression of' and .!='is translation of']">
                       <xsl:if test="
                           ( $vProp='http://id.loc.gov/vocabulary/relationship/part' and not(contains(., 'ontain')) ) 
                           or 
@@ -314,9 +319,11 @@
                 </xsl:choose>
               </xsl:otherwise>
             </xsl:choose>
+            <!--
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
           </bf:Contribution>
         </bf:contribution>
       </xsl:when>
@@ -345,6 +352,18 @@
           </xsl:apply-templates>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:if>
+    <xsl:if test="marc:subfield[@code='k'] and 
+                  not(marc:subfield[@code='t']) and 
+                  (
+                    substring($tag,1,1) = '6' or 
+                    substring($tag,1,1) = '7'
+                  )">
+        <xsl:apply-templates mode="hubUnifTitle" select=".">
+            <xsl:with-param name="serialization" select="$serialization"/>
+            <xsl:with-param name="pSource" select="$pSource"/>
+            <!--<xsl:with-param name="pLabel" select="marc:subfield[@code='t']"/>-->
+          </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
   
@@ -807,7 +826,23 @@
                         </xsl:call-template>
                     </bflc:marcKey>
                   </xsl:when>
-                  <xsl:when test="substring($tag,1,1)='6' and (
+                <xsl:when test="substring($tag,1,1)!='1' and marc:subfield[@code='k'] and not(marc:subfield[@code='t'])">
+                  <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+                  <bflc:marcKey>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="substring-before($vDF1xx, '$k')"/>
+                    </xsl:call-template>
+                  </bflc:marcKey>
+                </xsl:when>
+                <xsl:when test="substring($tag,1,1)!='1' and marc:subfield[@code='k'] and (marc:subfield[@code='k']/following-sibling::marc:subfield[@code='t'])">
+                  <xsl:variable name="vDF1xx"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+                  <bflc:marcKey>
+                    <xsl:call-template name="tChopPunct">
+                      <xsl:with-param name="pString" select="substring-before($vDF1xx, '$k')"/>
+                    </xsl:call-template>
+                  </bflc:marcKey>
+                </xsl:when>
+                <xsl:when test="substring($tag,1,1)='6' and (
                                   marc:subfield[@code='v'] or 
                                   marc:subfield[@code='x'] or 
                                   marc:subfield[@code='y'] or 
@@ -1041,8 +1076,7 @@
                                      @code='c' or
                                      @code='d' or
                                      @code='j' or
-                                     @code='q' or
-                                     @code='k']"/>
+                                     @code='q']"/>
           </xsl:when>
           <xsl:when test="@tag='100' and marc:subfield[@code='k'] and not(../marc:datafield[@tag = '240'])">
               <!-- $k is title-like. Process name as name, but will process $k later as a title. -->
@@ -1061,8 +1095,7 @@
                                      @code='c' or
                                      @code='d' or
                                      @code='j' or
-                                     @code='q' or
-                                     @code='k']"/>
+                                     @code='q']"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -1076,8 +1109,7 @@
                                          @code='c' or
                                          @code='d' or
                                          @code='n' or
-                                         @code='g' or
-                                         @code='k']"/>
+                                         @code='g']"/>
           </xsl:when>
           <xsl:when test="@tag='110' and marc:subfield[@code='k'] and not(../marc:datafield[@tag = '240'])">
               <!-- $k is title-like. Process name as name, but will process $k later as a title. -->
@@ -1096,8 +1128,7 @@
                                          @code='c' or
                                          @code='d' or
                                          @code='n' or
-                                         @code='g' or
-                                         @code='k']"/>
+                                         @code='g']"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>

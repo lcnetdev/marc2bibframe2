@@ -85,9 +85,11 @@ The converter supports several optional parameters:
   `http://id.loc.gov/vocabulary/organizations/dlc`. This will be empty
   by default, resulting in no source property being defined.
 
-- `localfields` - Default is false.  If true, apply special local processing for Library
-of Congress records. This includes:
-  - Process 859 fields the same as 856 fields
+- `localfields` - Default is false.  If true, local MARC fields (XX9, X9X, 9XX) will
+output as bflc:marcKey properties in the big AdminMetadata block.  Also,
+any field with a $5 whose organization code matches the last part of the 
+$idsource (see above) parameter will be processed. 051 and 541 fields will also be 
+any processed.  Finally, 859 fields will be processed as if 856 fields.
 
 - `bcp47inferrence` - Default is true.  If true, BCP47 codes will not include 
 the script component when it can be inferred from the language component.

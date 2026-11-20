@@ -30,6 +30,7 @@
     <xsl:param name="recordid"/>
     <xsl:param name="pAgentIri"/>
     <xsl:param name="pInstanceType"/>
+    <xsl:param name="pHasItem"/>
     <xsl:variable name="vProcess">
       <xsl:call-template name="tProcess"/>
     </xsl:variable>
@@ -40,6 +41,7 @@
         <xsl:with-param name="pPosition" select="position()"/>
         <xsl:with-param name="pAgentIri" select="$pAgentIri"/>
         <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
+        <xsl:with-param name="pHasItem" select="$pHasItem"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>
@@ -48,6 +50,7 @@
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="recordid"/>
     <xsl:param name="pInstanceType"/>
+    <xsl:param name="pHasItem"/>
     <xsl:variable name="vProcess">
       <xsl:call-template name="tProcess"/>
     </xsl:variable>
@@ -57,6 +60,7 @@
         <xsl:with-param name="recordid" select="$recordid"/>
         <xsl:with-param name="pInstanceType" select="$pInstanceType"/>
         <xsl:with-param name="pPosition" select="position()"/>
+        <xsl:with-param name="pHasItem" select="$pHasItem"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:template>

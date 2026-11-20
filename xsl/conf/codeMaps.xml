@@ -330,14 +330,17 @@
   <!-- continuing resource type -->
   <!-- used in 008/21 for continuing resources -->
   <crtype>
+    <a href="http://id.loc.gov/vocabulary/mserialpubtype/actrept">activity report</a>
     <d href="http://id.loc.gov/vocabulary/mserialpubtype/database">database</d>
     <g href="http://id.loc.gov/vocabulary/mserialpubtype/mag">magazine</g>
     <h href="http://id.loc.gov/vocabulary/mserialpubtype/blog">blog</h>
+    <i href="http://id.loc.gov/vocabulary/mserialpubtype/serzine">serial zine</i>
     <j href="http://id.loc.gov/vocabulary/mserialpubtype/journal">journal</j>
     <l href="http://id.loc.gov/vocabulary/mserialpubtype/looseleaf">loose leaf</l>
     <m href="http://id.loc.gov/vocabulary/mserialpubtype/monoseries">monographic series</m>
     <n href="http://id.loc.gov/vocabulary/mserialpubtype/newspaper">newspaper</n>
     <p href="http://id.loc.gov/vocabulary/mserialpubtype/periodical">periodical</p>
+    <q href="http://id.loc.gov/vocabulary/mserialpubtype/serpod">serial podcast</q>
     <r href="http://id.loc.gov/vocabulary/mserialpubtype/repo">repository</r>
     <s href="http://id.loc.gov/vocabulary/mserialpubtype/newsletter">newsletter</s>
     <t href="http://id.loc.gov/vocabulary/mserialpubtype/direct">directory</t>
@@ -720,4 +723,26 @@
     <_8 href="http://id.loc.gov/vocabulary/ensemblesize/octet">octet</_8>
     <_9 href="http://id.loc.gov/vocabulary/ensemblesize/nonet">nonet</_9>
   </ensembleSizes>
+  
+  <iaTOlcdgtMap>
+    <iaTOlcdgt iacode="a">
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060010">Children</lcdgt>
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060008">Infants</lcdgt>
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060009">Toddlers</lcdgt>
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060032">Preschool children</lcdgt>
+    </iaTOlcdgt>
+    <iaTOlcdgt iacode="b">
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060010">Children</lcdgt>
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060023">School children</lcdgt>
+    </iaTOlcdgt>
+    <iaTOlcdgt iacode="c">
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060394">Preteens</lcdgt>
+    </iaTOlcdgt>
+    <iaTOlcdgt iacode="d">
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060011">Teenagers</lcdgt>
+    </iaTOlcdgt>
+    <iaTOlcdgt iacode="j">
+      <lcdgt uri="http://id.loc.gov/authorities/demographicTerms/dg2015060010">Children</lcdgt>
+    </iaTOlcdgt>
+  </iaTOlcdgtMap>
 </maps>

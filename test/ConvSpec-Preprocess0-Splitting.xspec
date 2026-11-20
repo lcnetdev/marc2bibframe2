@@ -9,6 +9,8 @@
                xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#"
                stylesheet="../xsl/ConvSpec-Preprocess0-Splitting.xsl"
                xslt-version="1.0">
+ 
+  <x:param name="localfields" select="true()"/>
   
   <x:scenario label="Source record with 2 non-c 007s becomes 2 MARC records">
     <x:context href="data/ConvSpec-Preprocess0-Splitting/two007s-notCs.marc.xml"/>

@@ -48,9 +48,8 @@
 
   <x:scenario label="f - MODE OF ISSUANCE">
     <x:context href="data/ConvSpec-3XX/marc.xml"/>
-    <x:expect label="334 creates a content property of the Instance" test="count(//bf:Instance[1]/bf:issuance) = 1"/>
-    <x:expect label="$a creates an rdfs:label property of the Issuance" test="//bf:Instance[1]/bf:issuance[1]/bf:Issuance/rdfs:label = 'single unit'"/>
-    <x:expect label="$b creates an rdf:about attribute of the Issuance" test="//bf:Instance[1]/bf:issuance[1]/bf:Issuance/@rdf:about = 'http://id.loc.gov/vocabulary/issuance/mono'"/>
+    <x:expect label="334 ignored, but Leader07 creates a content property of the Instance" test="count(//bf:Instance[1]/bf:issuance) = 1"/>
+    <x:expect label="334 ignored, but Leader07 creates the expected issuance" test="//bf:Instance[1]/bf:issuance[1]/@rdf:resource = 'http://id.loc.gov/vocabulary/issuance/serl'"/>
   </x:scenario>
   
   <x:scenario label="336 - CONTENT TYPE">

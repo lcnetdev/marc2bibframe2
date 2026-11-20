@@ -12,6 +12,8 @@
 
   <!-- Conversion specs for 3XX -->
 
+  <!-- 334 processing handled in ConvSpec-LDR. -->
+  <!--
   <xsl:template match="marc:datafield[@tag='334' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='334')]" mode="instance">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="rdaResource">
@@ -21,7 +23,8 @@
       <xsl:with-param name="pUriStem"><xsl:value-of select="$issuance"/></xsl:with-param>
     </xsl:apply-templates>
   </xsl:template>
-  
+  -->
+
   <xsl:template match="marc:datafield[@tag='336' or (@tag='880' and substring(marc:subfield[@code='6'],1,3)='336')]" mode="work">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:apply-templates select="." mode="rdaResource">
@@ -140,6 +143,17 @@
                     <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
                   </xsl:if>
                   <xsl:text>Tactile assistive features: </xsl:text>
+                  <xsl:call-template name="tChopPunct">
+                    <xsl:with-param name="pString" select="."/>
+                  </xsl:call-template>
+                </rdfs:label>
+              </xsl:for-each>
+              <xsl:for-each select="../marc:subfield[@code='h']">
+                <rdfs:label>
+                  <xsl:if test="$vXmlLang != ''">
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang"/></xsl:attribute>
+                  </xsl:if>
+                  <xsl:text>Sensory hazards: </xsl:text>
                   <xsl:call-template name="tChopPunct">
                     <xsl:with-param name="pString" select="."/>
                   </xsl:call-template>
@@ -925,7 +939,8 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template match="marc:datafield[@tag='334' or @tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
+  <!-- 334 processing handled in ConvSpec-LDR. -->
+  <xsl:template match="marc:datafield[@tag='336' or @tag='337' or @tag='338' or @tag='880']" mode="rdaResource">
     <xsl:param name="serialization" select="'rdfxml'"/>
     <xsl:param name="pProp"/>
     <xsl:param name="pResource"/>

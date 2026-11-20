@@ -1057,9 +1057,11 @@
             <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            <!--
             <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
               <xsl:with-param name="serialization" select="$serialization"/>
             </xsl:apply-templates>
+            -->
             <xsl:if test="$vResource='bf:Event'">
               <bflc:marcKey><xsl:apply-templates select="."  mode="marcKey" /></bflc:marcKey>
             </xsl:if>
@@ -1110,9 +1112,11 @@
                   <xsl:with-param name="pString" select="."/>
                 </xsl:call-template>
               </rdfs:label>
+              <!--
               <xsl:apply-templates mode="subfield5" select="../marc:subfield[@code='5']">
                 <xsl:with-param name="serialization" select="$serialization"/>
               </xsl:apply-templates>
+              -->
             </xsl:element>
           </xsl:element>
         </xsl:for-each>

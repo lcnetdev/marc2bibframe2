@@ -77,6 +77,7 @@
           <xsl:when test="@ind2='2' and contains(marc:subfield[@code='i'], 'ontains')">http://id.loc.gov/vocabulary/relationship/part</xsl:when>
           <xsl:when test="@ind2='4' and count(marc:subfield[@code='i'])=0">http://id.loc.gov/ontologies/bflc/hasVariantEntry</xsl:when>
           <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is arrangement of'">http://id.loc.gov/vocabulary/relationship/arrangementof</xsl:when>
+          <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='expression of'">http://id.loc.gov/vocabulary/relationship/expressionof</xsl:when>
           <xsl:when test="@ind2=' ' and marc:subfield[@code='i']='is translation of'">http://id.loc.gov/vocabulary/relationship/translationof</xsl:when>
           <xsl:otherwise>http://id.loc.gov/vocabulary/relationship/relatedwork</xsl:otherwise>
         </xsl:choose>
@@ -92,6 +93,7 @@
                                                     not(contains(., 'ontainer of')) and 
                                                     not(contains(., 'ontains')) and 
                                                     . !='is arrangement of' and 
+                                                    . !='expression of' and 
                                                     . !='is translation of']">
                 <bf:relationship>
                   <bf:Relationship>
@@ -334,9 +336,11 @@
           <xsl:apply-templates mode="subfield3" select="marc:subfield[@code='3']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
+          <!--
           <xsl:apply-templates mode="subfield5" select="marc:subfield[@code='5']">
             <xsl:with-param name="serialization" select="$serialization"/>
           </xsl:apply-templates>
+          -->
         </xsl:if>
         
         <!-- marcKey -->
@@ -361,9 +365,24 @@
               </bflc:marcKey>
             </xsl:if>
           </xsl:when>
-          <xsl:when test="$tag='110' or $tag='100' or $tag='111'">
+          <xsl:when test="($tag='100' or $tag='110' or $tag='111' or 
+                          $tag='600' or $tag='610' or $tag='611' or 
+                          $tag='700' or $tag='710' or $tag='711')
+                          and
+                          marc:subfield[@code='k'] and not(marc:subfield[@code='t'])">
             <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
             <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$k'))" /></bflc:marcKey>
+            <xsl:if test="$vXmlLang880 != ''">
+              <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
+              <bflc:marcKey>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="$vXmlLang880"/></xsl:attribute>
+                <xsl:value-of select="concat(substring-before($vMarcKey880, '$k'), '$t', substring-after($vMarcKey880, '$k'))" />
+              </bflc:marcKey>
+            </xsl:if>
+          </xsl:when>
+          <xsl:when test="substring($tag,1,1)!='1' and marc:subfield[@code='k'] and (marc:subfield[@code='k']/following-sibling::marc:subfield[@code='t'])">
+            <xsl:variable name="vMarcKey1XX"><xsl:apply-templates select="." mode="marcKey"/></xsl:variable>
+            <bflc:marcKey><xsl:value-of select="concat(substring-before($vMarcKey1XX, '$k'), '$t', substring-after($vMarcKey1XX, '$t'))" /></bflc:marcKey>
             <xsl:if test="$vXmlLang880 != ''">
               <xsl:variable name="vMarcKey880"><xsl:apply-templates select="$related880" mode="marcKey"/></xsl:variable>
               <bflc:marcKey>

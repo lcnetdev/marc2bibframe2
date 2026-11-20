@@ -10,7 +10,10 @@
                stylesheet="../xsl/marc2bibframe2.xsl" xslt-version="1.0">
 
   <x:param name="pGenerationDatestamp" select="'1970-01-01T00:00:00Z'"/>
-
+  
+  <x:param name="localfields" select="true()"/>
+  <x:param name="idsource" select="'http://id.loc.gov/vocabulary/organizations/dlc'"/>
+  
   <x:import href="ConvSpec-LDR.xspec"/>
   <x:import href="ConvSpec-001-007.xspec"/>
   <x:import href="ConvSpec-006,008.xspec"/>
@@ -75,7 +78,8 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0" />
+                <bf:agent rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.2.0" />
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -108,6 +112,10 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC</rdfs:label>
                   </bf:Note>
                 </bf:note>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">906  $a7$bcbc$corignew$d3$encip$f20$gy-gencatlg</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">9250 $aacquire$b1 shelf copy$xpolicy default</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">955  $aof10 05-20-04 to HLCD;$cld04 2004-07-19 telework; to subj.$dld07 2004-07-22$eld11 2004-09-15 to BCCD</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">923  $d030902$n692026$s9300818</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -133,6 +141,21 @@
                 <rdfs:label>Fiction</rdfs:label>
               </bf:GenreForm>
             </bf:genreForm>
+            <bf:intendedAudience>
+              <bf:IntendedAudience rdf:about="http://id.loc.gov/authorities/demographicTerms/dg2015060010">
+                <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Children</rdfs:label>
+                <bflc:demographicGroup xmlns:bflc="http://id.loc.gov/ontologies/bflc/">
+                  <bflc:DemographicGroup rdf:about="http://id.loc.gov/authorities/demographicTerms/age">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">Age group</rdfs:label>
+                  </bflc:DemographicGroup>
+                </bflc:demographicGroup>
+                <bf:source>
+                  <bf:Source rdf:about="http://id.loc.gov/authorities/demographicTerms">
+                    <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">LC Demographic Terms</rdfs:label>
+                  </bf:Source>
+                </bf:source>
+              </bf:IntendedAudience>
+            </bf:intendedAudience>
             <bf:classification>
               <bf:ClassificationLcc>
                 <bf:classificationPortion>PZ54</bf:classificationPortion>
@@ -262,7 +285,8 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0"/>
+                <bf:agent rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.2.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -492,7 +516,8 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0"/>
+                <bf:agent rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.2.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -530,6 +555,9 @@
                     <bf:code>lccopycat</bf:code>
                   </bf:DescriptionAuthentication>
                 </bf:descriptionAuthentication>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">906  $a0$bibc$ccopycat$d1$encip$f20$gy-gencompf</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">9250 $aundetermined$xweb preservation project (wpp)</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">955  $avb07 (stars done) 08-19-00 to HLCD lk00; AA3s lk29 received for subject Aug 25, 2000; to DEWEY 08-25-00; aa11 08-28-00</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Multimedia" />
@@ -746,7 +774,8 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0"/>
+                <bf:agent rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.2.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
@@ -779,6 +808,12 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">040  $aDLC$cDLC$dDLC</rdfs:label>
                   </bf:Note>
                 </bf:note>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">906  $a7$bcbc$corignew$d1$eocip$f19$gy-gencatlg</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">9250 $aacquire$b1 shelf copy$xpolicy default</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">955  $apc19 to sa00 12-06-93; sb17 12-06-93 (descrip.); sb11 12-07-93; sb21 93-48623; aa21 12-08-93; CIP ver sb24 09-12-94</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">4901 $aA Joint publication in the Jossey-Bass public administration series, the Jossey-Bass nonprofit sector series, and the Jossey-Bass social and behavioral science series</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">922  $aadco</bflc:marcKey>
+                <bflc:marcKey xmlns:bflc="http://id.loc.gov/ontologies/bflc/">991  $bc-GenColl$hH97$i.H358 1994$p00019044853$tCopy 1$wBOOKS</bflc:marcKey>
               </bf:AdminMetadata>
             </bf:adminMetadata>
             <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>
@@ -1100,7 +1135,8 @@
                     <rdfs:label xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">changed</rdfs:label>
                   </bf:Status>
                 </bf:status>
-                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.1.0"/>
+                <bf:agent rdf:resource="http://id.loc.gov/vocabulary/organizations/dlc"/>
+                <bf:generationProcess rdf:resource="https://github.com/lcnetdev/marc2bibframe2/releases/tag/v3.2.0"/>
                 <bf:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1970-01-01T00:00:00Z</bf:date>
               </bf:AdminMetadata>
             </bf:adminMetadata>
