@@ -1,4 +1,4 @@
---- 3.2.0 2025/11/20
+--- 3.2.0 2026/11/20
 Changes for updated v3.2.0 specifications:
     ConvSpec-006-008
 		Added mapping for new continuing resources codes in 008/21.
@@ -46,16 +46,16 @@ Changes for updated v3.0.0 specifications:
 	ConvSpec-010-048
 		Removed 024 Ind2 mapping for identifiers that are located in MARC 028 field
 		Updated conversion of 024 $2 to use URIs from the standard identifier sounce codes list
-		Removing mapping of 048; itís been moved to a new spec
+		Removing mapping of 048; it‚Äôs been moved to a new spec
 	ConvSpec-048-Codes
 		Now obsolete
 	ConvSpec-048,382
 		NEW spec, replacing ConvSpec-048-Codes and sections of ConvSpec-010-048 and ConvSpec=3XX
 		Updated conversion of medium of performance data to use new properties and classes
 	ConvSpec-050-088
-		Removed conversion of 055 fields when Ind2 does not equal ì0î, ì1î or ì2î
+		Removed conversion of 055 fields when Ind2 does not equal ‚Äú0‚Äù, ‚Äú1‚Äù or ‚Äú2‚Äù
 	ConvSpec-3XX
-		Removed mapping of 382; itís been moved to the new ConvSpec-048,382
+		Removed mapping of 382; it‚Äôs been moved to the new ConvSpec-048,382
 		Changed conversion of 383 field to new identifier subclasses bf:SerialNumber, bf:OpusNumber, bf:ThematicCatalogNumber
 		Added conversion of 383 $e and $3
 		Changed conversion of 384 field to new bf:keyMode/bf:KeyMode
@@ -124,7 +124,7 @@ Changes toward updated v2.8.0 specifications:
 		Added conversion of $6
 	ConvSpec-200-247
 		Changed conversion of MARC 246/247 $6
-	ConvSpec-240,X30Ö
+	ConvSpec-240,X30‚Ä¶
 		Added conversion of $6
 		Changed bf:relationship URI from BF property to relationship entity
 	ConvSpec-5XX
