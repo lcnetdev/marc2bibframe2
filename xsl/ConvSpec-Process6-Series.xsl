@@ -63,7 +63,7 @@
     
     <!-- Find the group numbers. -->
     <xsl:variable name="tThisDF" select="."/>
-      <xsl:variable name="tGroupNums" select="$grouped490Info//@groupNum[not(.=preceding::bf:*/@groupNum[1])]" />
+      <xsl:variable name="tGroupNums" select="$grouped490Info/*[not(@groupNum = preceding-sibling::*/@groupNum)]/@groupNum" />
       <xsl:for-each select="$tGroupNums">
         <xsl:variable name="tGNum" select="."/>    
         <bf:relation>

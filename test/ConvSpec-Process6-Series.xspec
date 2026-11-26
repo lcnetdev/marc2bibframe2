@@ -27,6 +27,15 @@
     <x:expect label="$x of a 490 with ind1=1 and no matching 8XX creates a hasSeries property of the Work" test="//bf:Work[1]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Hub/bf:Work/bf:identifiedBy/bf:Issn/rdf:value = '1400-1144'"/>-->
   </x:scenario>
   
+  <x:scenario label="490 - DUPLICATE RELATIONS">
+    <x:context href="data/ConvSpec-Process6-Series/dup-relations.xml"/>
+    <x:expect label="A 490 with one $a creates one relation" test="count(//bf:Work[1]/bf:relation) = 1"/>
+    <x:expect label="...still one relation when the 490 also has a $v" test="count(//bf:Work[2]/bf:relation) = 1"/>
+    <x:expect label="...and the $v is the seriesEnumeration of that relation" test="//bf:Work[2]/bf:relation[1]/bf:Relation/bf:seriesEnumeration = 'no. 32'"/>
+    <x:expect label="...still one relation when the 490 also has a $x" test="count(//bf:Work[3]/bf:relation) = 1"/>
+    <x:expect label="...and the $x identifies the series of that relation" test="//bf:Work[3]/bf:relation[1]/bf:Relation/bf:associatedResource/bf:Series/bf:identifiedBy/bf:Issn/rdf:value = '1234-5678'"/>
+  </x:scenario>
+
   <x:scenario label="8XX SERIES STATEMENT and SERIES ADDED ENTRY">
     <x:context href="data/ConvSpec-Process6-Series/marc.xml"/>
     <x:expect label="Each 8XX  creates a hasSeries Hub property of the Work" test="count(//bf:Work[1]/bf:relation/bf:Relation/bf:associatedResource/bf:Hub) = 2"/>
